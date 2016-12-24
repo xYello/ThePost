@@ -14,6 +14,7 @@
 		4D58C4EA1E0E1883004CA0E3 /* ThePostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4E91E0E1883004CA0E3 /* ThePostTests.swift */; };
 		4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */; };
 		4D58C51C1E0E1BF8004CA0E3 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C51B1E0E1BF8004CA0E3 /* Fonts */; };
+		4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		4D58C4EB1E0E1883004CA0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4D58C51B1E0E1BF8004CA0E3 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = SOURCE_ROOT; };
+		4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		4D58C4D31E0E1882004CA0E3 /* ThePost */ = {
 			isa = PBXGroup;
 			children = (
+				4DD1BC9B1E0E251E005F4800 /* Text Fields */,
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
@@ -97,6 +100,14 @@
 				4D58C4EB1E0E1883004CA0E3 /* Info.plist */,
 			);
 			path = ThePostTests;
+			sourceTree = "<group>";
+		};
+		4DD1BC9B1E0E251E005F4800 /* Text Fields */ = {
+			isa = PBXGroup;
+			children = (
+				4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */,
+			);
+			name = "Text Fields";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
+				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
 				4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +428,7 @@
 				4D58C4F01E0E1883004CA0E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4D58C4F11E0E1883004CA0E3 /* Build configuration list for PBXNativeTarget "ThePostTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +437,7 @@
 				4D58C4F31E0E1883004CA0E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
