@@ -139,11 +139,11 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpSocial(_ sender: UIButton) {
-        if sender.titleLabel!.text == "Google" {
+        if sender.currentTitle == "Google" {
             
-        } else if sender.titleLabel!.text == "Facebook" {
+        } else if sender.currentTitle == "Facebook" {
             
-        } else if sender.titleLabel!.text == "Twitter" {
+        } else if sender.currentTitle == "Twitter" {
             
         }
     }
