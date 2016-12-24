@@ -48,13 +48,79 @@ class SignUpViewController: UIViewController {
         signUpButton.layer.cornerRadius = 25.0
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        view.addGestureRecognizer(gesture)
     }
+    
+    // MARK: - Actions
+    
+    @objc private func tapped() {
+        for otherView in view.subviews {
+            if otherView is UITextField {
+                otherView.resignFirstResponder()
+            }
+        }
+    }
+    
+    @IBAction func editingChanged(_ sender: RoundedTextField) {
+        if sender.placeholder == "Username" {
+            if let text = sender.text {
+                if text.characters.count >= 4 {
+                    usernameImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                } else {
+                    usernameImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                }
+            } else {
+                usernameImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+            }
+        }
+        
+        else if sender.placeholder == "Email" {
+            if let text = sender.text {
+                if text.characters.count >= 5 && text.contains("@") && text.contains(".") {
+                    emailImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                } else {
+                    emailImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                }
+            } else {
+                emailImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+            }
+        }
+        
+        else if sender.placeholder == "Password" {
+            if let text = sender.text {
+                
+                // TODO: Insert password strength logic here?
+                if text.characters.count >= 1 {
+                    passwordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                } else {
+                    passwordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                }
+            } else {
+                passwordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+            }
+        }
+        
+        else if sender.placeholder == "Confirm Password" {
+            if let text = sender.text {
+                if text == passwordTextField.text {
+                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                } else {
+                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                }
+            } else {
+                confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+            }
+        }
+    }
+    
     
     // MARK: - Helpers
     
     private func formatTextField(field: UITextField, withImageView imageView: UIImageView) {
         field.layer.cornerRadius = 20.0
-        field.attributedPlaceholder = NSAttributedString(string: field.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.white])
+        field.attributedPlaceholder = NSAttributedString(string: field.placeholder!, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3503303272)])
         
         imageView.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
@@ -66,28 +132,6 @@ class SignUpViewController: UIViewController {
         
         field.rightViewMode = .always
         field.rightView = imageView
-    }
-    
-    @objc private func keyboardWillShow(notification: NSNotification) {
-        let duration = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! TimeInterval
-        let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
-        let keyboardFrame = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
-        let keyboardUpCenterY = (view.frame.height - keyboardFrame.height) / 2.0
-        
-        let textFieldsCenterY = usernameTextField.frame.origin.y + ((confirmPasswordTextField.frame.origin.y) - usernameTextField.frame.origin.y) / 2.0
-        
-        for otherView in view.subviews {
-            if otherView is UITextField {
-                let centerOffset = keyboardUpCenterY - (textFieldsCenterY - otherView.frame.origin.y)
-                UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions(rawValue: UInt(curve)), animations: {
-                    otherView.frame = CGRect(x: otherView.frame.origin.x, y: centerOffset, width: otherView.frame.width, height: otherView.frame.height)
-                }, completion: nil)
-            } else {
-                UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions(rawValue: UInt(curve)), animations: {
-                    otherView.alpha = 0.0
-                }, completion: nil)
-            }
-        }
     }
 
 }
