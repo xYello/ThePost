@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController {
         confirmPasswordImageView = UIImageView(image: UIImage(named: "ConfirmPasswordCheck")!.withRenderingMode(.alwaysTemplate))
         formatTextField(field: confirmPasswordTextField, withImageView: confirmPasswordImageView)
         
-        signUpButton.layer.cornerRadius = 25.0
+        signUpButton.roundCorners()
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
         view.addGestureRecognizer(gesture)
@@ -151,7 +151,7 @@ class SignUpViewController: UIViewController {
     // MARK: - Helpers
     
     private func formatTextField(field: UITextField, withImageView imageView: UIImageView) {
-        field.layer.cornerRadius = 20.0
+        field.roundCorners()
         field.attributedPlaceholder = NSAttributedString(string: field.placeholder!, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3503303272)])
         
         imageView.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
