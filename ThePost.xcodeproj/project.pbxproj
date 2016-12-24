@@ -26,6 +26,9 @@
 		4D04C53F1E0EFCDD004B2264 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C52C1E0EFCDD004B2264 /* Lato-Thin.ttf */; };
 		4D04C5401E0EFCDD004B2264 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C52D1E0EFCDD004B2264 /* Lato-ThinItalic.ttf */; };
 		4D04C5411E0EFCDD004B2264 /* Traveler.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C52E1E0EFCDD004B2264 /* Traveler.ttf */; };
+		4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C5421E0F000B004B2264 /* WalkthroughViewController.swift */; };
+		4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */; };
+		4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */; };
 		4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */; };
 		4D58C4DA1E0E1882004CA0E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4D81E0E1882004CA0E3 /* Main.storyboard */; };
 		4D58C4DC1E0E1882004CA0E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */; };
@@ -65,6 +68,9 @@
 		4D04C52C1E0EFCDD004B2264 /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Thin.ttf"; path = "Fonts/Lato-Thin.ttf"; sourceTree = "<group>"; };
 		4D04C52D1E0EFCDD004B2264 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-ThinItalic.ttf"; path = "Fonts/Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
 		4D04C52E1E0EFCDD004B2264 /* Traveler.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Traveler.ttf; path = Fonts/Traveler.ttf; sourceTree = "<group>"; };
+		4D04C5421E0F000B004B2264 /* WalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
+		4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughCollectionViewCell.swift; sourceTree = "<group>"; };
+		4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+RoundedCorners.swift"; sourceTree = "<group>"; };
 		4D58C4D11E0E1882004CA0E3 /* ThePost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D58C4D91E0E1882004CA0E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,6 +128,15 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		4D04C54A1E0F1A6F004B2264 /* Walkthrough */ = {
+			isa = PBXGroup;
+			children = (
+				4D04C5421E0F000B004B2264 /* WalkthroughViewController.swift */,
+				4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */,
+			);
+			name = Walkthrough;
+			sourceTree = "<group>";
+		};
 		4D58C4C81E0E1882004CA0E3 = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +159,9 @@
 		4D58C4D31E0E1882004CA0E3 /* ThePost */ = {
 			isa = PBXGroup;
 			children = (
+				4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */,
 				4DD1BC9B1E0E251E005F4800 /* Text Fields */,
+				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
@@ -296,7 +313,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */,
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
+				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
+				4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
 				4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */,
 			);
