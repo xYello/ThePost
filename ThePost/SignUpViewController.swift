@@ -82,10 +82,16 @@ class SignUpViewController: UIViewController {
         
         else if sender.placeholder == "Password" {
             if let text = sender.text {
-                if text.characters.count >= 1 {
+                if text.characters.count > 1 {
                     passwordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
                 } else {
                     passwordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                }
+                
+                if text == confirmPasswordTextField.text {
+                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                } else {
+                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
                 }
             } else {
                 passwordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
@@ -106,7 +112,30 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUp(_ sender: UIButton) {
+        var viewsToShake:[UIView] = []
+        if usernameImageView.tintColor != #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1) {
+            viewsToShake.append(usernameTextField)
+        }
         
+        if emailImageView.tintColor != #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1) {
+            viewsToShake.append(emailTextField)
+        }
+        
+        if passwordImageView.tintColor != #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1) {
+            viewsToShake.append(passwordTextField)
+        }
+        
+        if confirmPasswordImageView.tintColor != #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1) {
+            viewsToShake.append(confirmPasswordTextField)
+        }
+        
+        if viewsToShake.isEmpty {
+            // Sign up
+        } else {
+            for view in viewsToShake {
+                shakeView(view: view)
+            }
+        }
     }
     
     @IBAction func signUpSocial(_ sender: UIButton) {
@@ -135,6 +164,16 @@ class SignUpViewController: UIViewController {
         
         field.rightViewMode = .always
         field.rightView = imageView
+    }
+    
+    private func shakeView(view: UIView) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.08
+        animation.repeatCount = 2
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: view.center.x - 10, y: view.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: view.center.x + 10, y: view.center.y))
+        view.layer.add(animation, forKey: "position")
     }
 
 }
