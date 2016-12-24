@@ -12,7 +12,14 @@ class WalkthroughCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var stepCountContainer: UIView!
     @IBOutlet weak var stepCountLabel: UILabel!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
+    
     @IBOutlet weak var bottomImageView: UIImageView!
+    
+    @IBOutlet weak var imageToBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageAspectRatioConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
