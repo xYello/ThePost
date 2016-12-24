@@ -20,11 +20,9 @@ class SignUpViewController: UIViewController {
     private var passwordImageView:UIImageView!
     private var confirmPasswordImageView:UIImageView!
     
-    @IBOutlet weak var redIndicator: UIView!
-    @IBOutlet weak var yellowIndicator: UIView!
-    @IBOutlet weak var greenIndicator: UIView!
-    
     @IBOutlet weak var signUpButton: UIButton!
+    
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +39,7 @@ class SignUpViewController: UIViewController {
         confirmPasswordImageView = UIImageView(image: UIImage(named: "ConfirmPasswordCheck")!.withRenderingMode(.alwaysTemplate))
         formatTextField(field: confirmPasswordTextField, withImageView: confirmPasswordImageView)
         
-        redIndicator.layer.cornerRadius = 10.0
-        yellowIndicator.layer.cornerRadius = 10.0
-        greenIndicator.layer.cornerRadius = 10.0
-        
         signUpButton.layer.cornerRadius = 25.0
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
         view.addGestureRecognizer(gesture)
@@ -90,8 +82,6 @@ class SignUpViewController: UIViewController {
         
         else if sender.placeholder == "Password" {
             if let text = sender.text {
-                
-                // TODO: Insert password strength logic here?
                 if text.characters.count >= 1 {
                     passwordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
                 } else {
@@ -115,6 +105,19 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    @IBAction func signUp(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func signUpSocial(_ sender: UIButton) {
+        if sender.titleLabel!.text == "Google" {
+            
+        } else if sender.titleLabel!.text == "Facebook" {
+            
+        } else if sender.titleLabel!.text == "Twitter" {
+            
+        }
+    }
     
     // MARK: - Helpers
     
