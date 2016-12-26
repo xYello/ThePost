@@ -9,7 +9,13 @@
 import UIKit
 
 extension UIView {
+    
     func roundCorners() {
         layer.cornerRadius = frame.height / 2.0
     }
+    
+    func roundCorners(radius: CGFloat) {
+        layer.cornerRadius = radius
+    }
+    
 }

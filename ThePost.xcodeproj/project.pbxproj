@@ -37,6 +37,8 @@
 		4D58C4EA1E0E1883004CA0E3 /* ThePostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4E91E0E1883004CA0E3 /* ThePostTests.swift */; };
 		4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */; };
 		4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */; };
+		4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */; };
+		4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,8 @@
 		4D58C4EB1E0E1883004CA0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorViewController.swift; sourceTree = "<group>"; };
+		4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,7 @@
 				4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */,
 				4DD1BC9B1E0E251E005F4800 /* Text Fields */,
 				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
+				4DFB05AC1E118A4600BEACE2 /* Jeep Selector */,
 				4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */,
 				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
@@ -190,6 +195,15 @@
 				4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */,
 			);
 			name = "Text Fields";
+			sourceTree = "<group>";
+		};
+		4DFB05AC1E118A4600BEACE2 /* Jeep Selector */ = {
+			isa = PBXGroup;
+			children = (
+				4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */,
+				4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */,
+			);
+			name = "Jeep Selector";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +336,8 @@
 				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
 				4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
+				4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */,
+				4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */,
 				4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
