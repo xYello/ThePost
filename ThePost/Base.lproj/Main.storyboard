@@ -341,6 +341,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TracksBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Lal-rS-7KA">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="acl-qf-2Vj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.094117647058823528" alpha="0.62" colorSpace="calibratedRGB"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Your Jeep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aE-Jx-ZLC">
                                 <rect key="frame" x="16" y="69" width="343" height="47"/>
                                 <constraints>
@@ -366,9 +371,61 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="283" height="269"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WranglerJK" translatesAutoresizingMaskIntoConstraints="NO" id="eEZ-uE-98C">
+                                                    <rect key="frame" x="8" y="8" width="267" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="eEZ-uE-98C" secondAttribute="height" multiplier="69:49" constant="86.755102040816325" id="sQw-Ka-a3i"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jeep Model" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeW-gg-j5s">
+                                                    <rect key="frame" x="8" y="142" width="267" height="23"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="19"/>
+                                                    <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model Year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pN6-cr-WXZ">
+                                                    <rect key="frame" x="8" y="163" width="267" height="23"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="19"/>
+                                                    <color key="textColor" red="0.36078431372549019" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HF3-Xb-1uX">
+                                                    <rect key="frame" x="63" y="205" width="157" height="37"/>
+                                                    <color key="backgroundColor" red="0.30980392156862746" green="0.4823529411764706" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="157" id="qxS-tE-dAQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="19"/>
+                                                    <state key="normal" title="Select">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="VeW-gg-j5s" firstAttribute="centerY" relation="greaterThanOrEqual" secondItem="lKS-Yd-LfQ" secondAttribute="centerY" constant="19" id="01c-Zk-jZ1"/>
+                                            <constraint firstAttribute="leadingMargin" secondItem="eEZ-uE-98C" secondAttribute="leading" id="8Go-Pc-FWc"/>
+                                            <constraint firstAttribute="leadingMargin" secondItem="VeW-gg-j5s" secondAttribute="leading" id="CCI-Aj-Q4R"/>
+                                            <constraint firstAttribute="leadingMargin" secondItem="pN6-cr-WXZ" secondAttribute="leading" id="Rn3-jb-5Jf"/>
+                                            <constraint firstItem="eEZ-uE-98C" firstAttribute="centerX" secondItem="lKS-Yd-LfQ" secondAttribute="centerX" id="WWU-gB-XWz"/>
+                                            <constraint firstItem="VeW-gg-j5s" firstAttribute="top" secondItem="eEZ-uE-98C" secondAttribute="bottom" constant="6" id="aqE-iU-4S8"/>
+                                            <constraint firstItem="HF3-Xb-1uX" firstAttribute="centerX" secondItem="lKS-Yd-LfQ" secondAttribute="centerX" id="bzc-Wi-mrP"/>
+                                            <constraint firstItem="VeW-gg-j5s" firstAttribute="centerX" secondItem="lKS-Yd-LfQ" secondAttribute="centerX" id="dvZ-kI-qTG"/>
+                                            <constraint firstItem="pN6-cr-WXZ" firstAttribute="top" secondItem="VeW-gg-j5s" secondAttribute="bottom" constant="-2" id="l0x-hT-jos"/>
+                                            <constraint firstItem="pN6-cr-WXZ" firstAttribute="centerX" secondItem="lKS-Yd-LfQ" secondAttribute="centerX" id="qkP-Pt-evN"/>
+                                            <constraint firstAttribute="bottomMargin" relation="lessThanOrEqual" secondItem="HF3-Xb-1uX" secondAttribute="bottom" constant="19" id="tMk-ow-3zN"/>
+                                            <constraint firstAttribute="topMargin" secondItem="eEZ-uE-98C" secondAttribute="top" id="uAN-mn-mNZ"/>
+                                            <constraint firstItem="HF3-Xb-1uX" firstAttribute="top" relation="lessThanOrEqual" secondItem="pN6-cr-WXZ" secondAttribute="bottom" constant="19" id="zD9-ku-Gez"/>
+                                        </constraints>
                                         <size key="customSize" width="283" height="269"/>
+                                        <connections>
+                                            <outlet property="modelImage" destination="eEZ-uE-98C" id="fqK-UF-EKU"/>
+                                            <outlet property="modelLabel" destination="VeW-gg-j5s" id="s4m-ct-mpW"/>
+                                            <outlet property="modelYearLabel" destination="pN6-cr-WXZ" id="OMF-UA-Xbf"/>
+                                            <outlet property="selectButton" destination="HF3-Xb-1uX" id="FkA-ok-T0q"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -590,5 +647,6 @@
         <image name="LocationRequest" width="180" height="170"/>
         <image name="MoneyPower" width="176" height="215"/>
         <image name="TracksBackground" width="414" height="736"/>
+        <image name="WranglerJK" width="207" height="147"/>
     </resources>
 </document>

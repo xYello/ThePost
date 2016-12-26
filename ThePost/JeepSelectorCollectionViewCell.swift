@@ -10,10 +10,17 @@ import UIKit
 
 class JeepSelectorCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var modelImage: UIImageView!
+    @IBOutlet weak var modelLabel: UILabel!
+    @IBOutlet weak var modelYearLabel: UILabel!
+    
+    @IBOutlet weak var selectButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.roundCorners(radius: 20.0)
+        selectButton.roundCorners()
     }
     
 }

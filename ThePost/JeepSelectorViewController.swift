@@ -28,7 +28,10 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         super.viewDidLoad()
         
         let layout = UPCarouselFlowLayout()
-        layout.itemSize = CGSize(width: 234, height: 219)
+        
+        // These ratios that are defined here are values defined in the Sketch file. Cell size / screen size
+        layout.itemSize = CGSize(width: floor(view.frame.width * (350/414)), height: floor(view.frame.height * (326/736)))
+        
         layout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 120)
         layout.scrollDirection = .horizontal
         layout.sideItemScale = 1.0
@@ -52,6 +55,25 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "jeepSelectorCell", for: indexPath) as! JeepSelectorCollectionViewCell
+        
+        switch indexPath.row {
+        case 0:
+            cell.modelImage.image = UIImage(named: "WranglerJK")
+            cell.modelLabel.text = "Jeep Wrangler JK"
+            cell.modelYearLabel.text = "2007-2016"
+        case 1:
+            cell.modelImage.image = UIImage(named: "WranglerTJ")
+            cell.modelLabel.text = "Jeep Wrangler TJ"
+            cell.modelYearLabel.text = "1997-2006"
+        case 2:
+            cell.modelImage.image = UIImage(named: "WranglerYJ")
+            cell.modelLabel.text = "Jeep Wrangler YJ"
+            cell.modelYearLabel.text = "1987-1995"
+        default:
+            cell.modelImage.image = UIImage(named: "CherokeeXJ")
+            cell.modelLabel.text = "Jeep Cherokee XJ"
+            cell.modelYearLabel.text = "1984-2001"
+        }
         
         return cell
     }
