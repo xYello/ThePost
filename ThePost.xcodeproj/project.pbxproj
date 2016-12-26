@@ -616,6 +616,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 115D60087408F23246E2357E /* Pods-ThePost.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZP73CTVZZ8;
 				INFOPLIST_FILE = ThePost/Info.plist;
@@ -630,6 +631,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 491CCC48649D090E390CB725 /* Pods-ThePost.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZP73CTVZZ8;
 				INFOPLIST_FILE = ThePost/Info.plist;
