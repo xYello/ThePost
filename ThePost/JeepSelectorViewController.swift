@@ -80,7 +80,7 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     
     // MARK: - CollectionView delegate
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let layout = collectionView.collectionViewLayout as! UPCarouselFlowLayout
         let pageSide = (layout.scrollDirection == .horizontal) ? pageSize.width : pageSize.height
         let offset = (layout.scrollDirection == .horizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y
