@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2557D85A6ACDEFC8A0EB3C6F /* Pods_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5034073F914D3333664873A4 /* Pods_ThePostTests.framework */; };
 		4D04C52F1E0EFCDD004B2264 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */; };
 		4D04C5301E0EFCDD004B2264 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51D1E0EFCDD004B2264 /* Lato-BlackItalic.ttf */; };
 		4D04C5311E0EFCDD004B2264 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51E1E0EFCDD004B2264 /* Lato-Bold.ttf */; };
@@ -39,6 +40,8 @@
 		4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */; };
 		4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */; };
 		4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */; };
+		AAE467FBCC3A36A369BEDF7E /* Pods_ThePost_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B09A96BE32B256DA705CD98 /* Pods_ThePost_ThePostTests.framework */; };
+		F151803B1B4EFDB9B184EE87 /* Pods_ThePost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEE8A856D35A366CD4E6F /* Pods_ThePost.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		115D60087408F23246E2357E /* Pods-ThePost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.debug.xcconfig"; sourceTree = "<group>"; };
+		256704F50B1CE9685D86C69D /* Pods-ThePostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests.release.xcconfig"; sourceTree = "<group>"; };
+		491CCC48649D090E390CB725 /* Pods-ThePost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.release.xcconfig"; sourceTree = "<group>"; };
+		4B09A96BE32B256DA705CD98 /* Pods_ThePost_ThePostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePost_ThePostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CFB889A2F4182A4FE7D89A8 /* Pods-ThePost-ThePostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost-ThePostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost-ThePostTests/Pods-ThePost-ThePostTests.release.xcconfig"; sourceTree = "<group>"; };
 		4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "Fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
 		4D04C51D1E0EFCDD004B2264 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "Fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		4D04C51E1E0EFCDD004B2264 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "Fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -88,6 +96,10 @@
 		4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorViewController.swift; sourceTree = "<group>"; };
 		4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorCollectionViewCell.swift; sourceTree = "<group>"; };
+		5034073F914D3333664873A4 /* Pods_ThePostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8338EE65D1A2121D99B1BB72 /* Pods-ThePostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D567B87397C9E2452D5FACB6 /* Pods-ThePost-ThePostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost-ThePostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost-ThePostTests/Pods-ThePost-ThePostTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ED1FEE8A856D35A366CD4E6F /* Pods_ThePost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F151803B1B4EFDB9B184EE87 /* Pods_ThePost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +115,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2557D85A6ACDEFC8A0EB3C6F /* Pods_ThePostTests.framework in Frameworks */,
+				AAE467FBCC3A36A369BEDF7E /* Pods_ThePost_ThePostTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +165,8 @@
 				4D58C4E81E0E1883004CA0E3 /* ThePostTests */,
 				4D58C4D21E0E1882004CA0E3 /* Products */,
 				4D04C51B1E0EFCD1004B2264 /* Fonts */,
+				BB5F56DB3268B1AEADAA9036 /* Pods */,
+				6A2A18C2A86745746D25D45F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,6 +223,29 @@
 			name = "Jeep Selector";
 			sourceTree = "<group>";
 		};
+		6A2A18C2A86745746D25D45F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED1FEE8A856D35A366CD4E6F /* Pods_ThePost.framework */,
+				5034073F914D3333664873A4 /* Pods_ThePostTests.framework */,
+				4B09A96BE32B256DA705CD98 /* Pods_ThePost_ThePostTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB5F56DB3268B1AEADAA9036 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				115D60087408F23246E2357E /* Pods-ThePost.debug.xcconfig */,
+				491CCC48649D090E390CB725 /* Pods-ThePost.release.xcconfig */,
+				8338EE65D1A2121D99B1BB72 /* Pods-ThePostTests.debug.xcconfig */,
+				256704F50B1CE9685D86C69D /* Pods-ThePostTests.release.xcconfig */,
+				D567B87397C9E2452D5FACB6 /* Pods-ThePost-ThePostTests.debug.xcconfig */,
+				4CFB889A2F4182A4FE7D89A8 /* Pods-ThePost-ThePostTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -213,9 +253,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D58C4EE1E0E1883004CA0E3 /* Build configuration list for PBXNativeTarget "ThePost" */;
 			buildPhases = (
+				CBE7155D42C1ECEEA2429F58 /* [CP] Check Pods Manifest.lock */,
 				4D58C4CD1E0E1882004CA0E3 /* Sources */,
 				4D58C4CE1E0E1882004CA0E3 /* Frameworks */,
 				4D58C4CF1E0E1882004CA0E3 /* Resources */,
+				C98A0231D4596695EF9707A1 /* [CP] Embed Pods Frameworks */,
+				421915FC7495E973D24568B3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,9 +273,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D58C4F11E0E1883004CA0E3 /* Build configuration list for PBXNativeTarget "ThePostTests" */;
 			buildPhases = (
+				CBA559704C21B7AEF423901B /* [CP] Check Pods Manifest.lock */,
 				4D58C4E11E0E1883004CA0E3 /* Sources */,
 				4D58C4E21E0E1883004CA0E3 /* Frameworks */,
 				4D58C4E31E0E1883004CA0E3 /* Resources */,
+				A3E611CE0688B39FD95F619E /* [CP] Embed Pods Frameworks */,
+				2433B771663B88EE30278A33 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -324,6 +370,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2433B771663B88EE30278A33 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		421915FC7495E973D24568B3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ThePost/Pods-ThePost-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3E611CE0688B39FD95F619E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C98A0231D4596695EF9707A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ThePost/Pods-ThePost-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBA559704C21B7AEF423901B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CBE7155D42C1ECEEA2429F58 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D58C4CD1E0E1882004CA0E3 /* Sources */ = {
@@ -475,6 +614,7 @@
 		};
 		4D58C4EF1E0E1883004CA0E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 115D60087408F23246E2357E /* Pods-ThePost.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZP73CTVZZ8;
@@ -488,6 +628,7 @@
 		};
 		4D58C4F01E0E1883004CA0E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 491CCC48649D090E390CB725 /* Pods-ThePost.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZP73CTVZZ8;
@@ -501,6 +642,7 @@
 		};
 		4D58C4F21E0E1883004CA0E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8338EE65D1A2121D99B1BB72 /* Pods-ThePostTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -516,6 +658,7 @@
 		};
 		4D58C4F31E0E1883004CA0E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 256704F50B1CE9685D86C69D /* Pods-ThePostTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

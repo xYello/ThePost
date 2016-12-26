@@ -1,0 +1,21 @@
+PODS:
+  - UPCarouselFlowLayout (1.0.0)
+
+DEPENDENCIES:
+  - UPCarouselFlowLayout (from `https://github.com/SirArkimedes/UPCarouselFlowLayout.git`)
+
+EXTERNAL SOURCES:
+  UPCarouselFlowLayout:
+    :git: https://github.com/SirArkimedes/UPCarouselFlowLayout.git
+
+CHECKOUT OPTIONS:
+  UPCarouselFlowLayout:
+    :commit: 100b338701c444b47276df843a8fcc69803d7c21
+    :git: https://github.com/SirArkimedes/UPCarouselFlowLayout.git
+
+SPEC CHECKSUMS:
+  UPCarouselFlowLayout: adfa361c52315c0efc56dbe2555c494b8940f58a
+
+PODFILE CHECKSUM: 94c35fe6116f46200a5dca7b6fef0c9b8a4f46ce
+
+COCOAPODS: 1.1.1

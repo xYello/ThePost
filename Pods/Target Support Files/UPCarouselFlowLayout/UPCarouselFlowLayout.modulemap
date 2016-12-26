@@ -1,0 +1,6 @@
+framework module UPCarouselFlowLayout {
+  umbrella header "UPCarouselFlowLayout-umbrella.h"
+
+  export *
+  module * { export * }
+}
