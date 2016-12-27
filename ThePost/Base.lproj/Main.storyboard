@@ -163,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="39l-YW-LXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1678" y="198"/>
+            <point key="canvasLocation" x="1738" y="197"/>
         </scene>
         <!--App Services Request View Controller-->
         <scene sceneID="Rwr-sl-hba">
@@ -268,63 +268,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a0p-3G-Al3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2407" y="197"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="fYb-Tj-7Pl">
-            <objects>
-                <viewController storyboardIdentifier="signInViewController" id="y0Z-C4-amN" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VRx-nd-OCs"/>
-                        <viewControllerLayoutGuide type="bottom" id="XSO-2a-4Xt"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="uaW-cS-x6d">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sa8-GH-rvX">
-                                <rect key="frame" x="16" y="28" width="343" height="224"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3fe-oh-iRf">
-                                        <rect key="frame" x="46" y="8" width="141" height="103"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="103" id="Oxc-Mr-NGr"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Traveler-Bold" family="Traveler" pointSize="100"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DrO-9n-A42">
-                                        <rect key="frame" x="0.0" y="75" width="343" height="141"/>
-                                        <fontDescription key="fontDescription" name="Traveler-Bold" family="Traveler" pointSize="100"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="DrO-9n-A42" firstAttribute="top" secondItem="3fe-oh-iRf" secondAttribute="bottom" constant="-36" id="0rG-8M-jVV"/>
-                                    <constraint firstItem="3fe-oh-iRf" firstAttribute="leading" secondItem="Sa8-GH-rvX" secondAttribute="leading" constant="46" id="5Wf-W1-Szk"/>
-                                    <constraint firstItem="DrO-9n-A42" firstAttribute="leading" secondItem="Sa8-GH-rvX" secondAttribute="leading" id="9hf-le-8oc"/>
-                                    <constraint firstItem="3fe-oh-iRf" firstAttribute="top" secondItem="Sa8-GH-rvX" secondAttribute="top" constant="8" id="9rl-9A-7ab"/>
-                                    <constraint firstAttribute="trailing" secondItem="3fe-oh-iRf" secondAttribute="trailing" constant="156" id="H5B-tX-orE"/>
-                                    <constraint firstItem="DrO-9n-A42" firstAttribute="centerX" secondItem="Sa8-GH-rvX" secondAttribute="centerX" id="IJL-DK-5sJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="DrO-9n-A42" secondAttribute="bottom" constant="8" id="hse-Zh-TN2"/>
-                                    <constraint firstAttribute="height" constant="224" id="huJ-mK-x2V"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.22358676791191101" green="0.22378635406494141" blue="0.22361770272254944" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Sa8-GH-rvX" firstAttribute="top" secondItem="VRx-nd-OCs" secondAttribute="bottom" constant="8" id="cZI-uq-vlR"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Sa8-GH-rvX" secondAttribute="leading" id="dfx-dO-L2r"/>
-                            <constraint firstItem="Sa8-GH-rvX" firstAttribute="centerX" secondItem="uaW-cS-x6d" secondAttribute="centerX" id="hcO-il-kiu"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Na7-2q-6Er" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3351" y="197"/>
+            <point key="canvasLocation" x="2458" y="197"/>
         </scene>
         <!--Jeep Selector View Controller-->
         <scene sceneID="RJg-qb-mtk">
@@ -771,7 +715,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2884" y="197"/>
+            <point key="canvasLocation" x="3151" y="197"/>
         </scene>
         <!--Post Launch View Controller-->
         <scene sceneID="xhf-9K-zZp">
