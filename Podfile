@@ -6,7 +6,8 @@ target 'ThePost' do
   use_frameworks!
 
   # Pods for ThePost
-  pod "UPCarouselFlowLayout", :git => 'https://github.com/SirArkimedes/UPCarouselFlowLayout.git'
+  pod 'UPCarouselFlowLayout', :git => 'https://github.com/SirArkimedes/UPCarouselFlowLayout.git'
+  pod 'Firebase/Core'
 
   target 'ThePostTests' do
     inherit! :search_paths
