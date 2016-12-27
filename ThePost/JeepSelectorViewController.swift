@@ -95,7 +95,11 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     // MARK: - Actions
     
     @objc private func selectedJeepCategory(sender: JeepModelButton) {
-        print(sender.jeepModel.name!)
+        performSegue(withIdentifier: "categorySelectorSegue", sender: self)
+    }
+    
+    @IBAction func unwindToSelf(_ segue: UIStoryboardSegue) {
+        print(segue.source.isViewLoaded)
     }
 
 }
