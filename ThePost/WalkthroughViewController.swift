@@ -80,7 +80,7 @@ class WalkthroughViewController: UIViewController, UICollectionViewDataSource, U
     
     // MARK: CollectionView delegate
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         pageControl.currentPage = Int(collectionView.contentOffset.x / collectionView.frame.width)
     }
     
