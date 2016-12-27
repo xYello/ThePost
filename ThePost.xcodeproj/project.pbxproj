@@ -31,6 +31,7 @@
 		4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */; };
 		4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */; };
 		4D04C54E1E0F2CD3004B2264 /* AppServicesRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */; };
+		4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */; };
 		4D35A20E1E11FA4B00A115EB /* CategorySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A20D1E11FA4B00A115EB /* CategorySelectorViewController.swift */; };
 		4D35A2121E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A2111E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift */; };
 		4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */; };
@@ -90,6 +91,7 @@
 		4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+RoundedCorners.swift"; sourceTree = "<group>"; };
 		4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppServicesRequestViewController.swift; sourceTree = "<group>"; };
+		4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingViewController.swift; sourceTree = "<group>"; };
 		4D35A20D1E11FA4B00A115EB /* CategorySelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectorViewController.swift; sourceTree = "<group>"; };
 		4D35A2111E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectorCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TransparentBorders.swift"; sourceTree = "<group>"; };
@@ -173,6 +175,14 @@
 			name = Walkthrough;
 			sourceTree = "<group>";
 		};
+		4D239C401E12DF9300F2668E /* Product Listing */ = {
+			isa = PBXGroup;
+			children = (
+				4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */,
+			);
+			name = "Product Listing";
+			sourceTree = "<group>";
+		};
 		4D35A20C1E11FA2800A115EB /* Category PIcker */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,8 +224,9 @@
 				4DFB05AC1E118A4600BEACE2 /* Jeep Selector */,
 				4D35A21B1E12126300A115EB /* Jeep.swift */,
 				4D35A20C1E11FA2800A115EB /* Category PIcker */,
-				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
+				4D239C401E12DF9300F2668E /* Product Listing */,
 				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
+				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
 				4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */,
 				4D58C4DD1E0E1882004CA0E3 /* LaunchScreen.storyboard */,
@@ -502,6 +513,7 @@
 				4D35A2121E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift in Sources */,
 				4D35A2201E1233C000A115EB /* PostLaunchViewController.swift in Sources */,
 				4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */,
+				4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */,
 				4D04C54E1E0F2CD3004B2264 /* AppServicesRequestViewController.swift in Sources */,
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
 				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
