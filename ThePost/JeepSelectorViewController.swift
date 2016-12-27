@@ -73,16 +73,8 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         if let name = jeeps[indexPath.row].name {
             cell.modelLabel.text = name
         }
-        
-        if jeeps[indexPath.row].endYear == -1 {
-            let components = Calendar.current.dateComponents([.year], from: Date())
-            if let start = jeeps[indexPath.row].startYear, let end = components.year {
-                cell.modelYearLabel.text = "\(start)-\(end)"
-            }
-        } else {
-            if let start = jeeps[indexPath.row].startYear, let end = jeeps[indexPath.row].endYear {
-                cell.modelYearLabel.text = "\(start)-\(end)"
-            }
+        if let start = jeeps[indexPath.row].startYear, let end = jeeps[indexPath.row].endYear {
+            cell.modelYearLabel.text = "\(start)-\(end)"
         }
         
         cell.selectButton.jeepModel = jeeps[indexPath.row]

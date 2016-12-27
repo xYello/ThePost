@@ -26,9 +26,15 @@ class Jeep: NSObject {
     private(set) var image: UIImage?
     private(set) var name: String?
     private(set) var startYear: Int?
-    
-    // -1 is present.
     private(set) var endYear: Int?
+    private(set) var isInProduction = false {
+        didSet {
+            if isInProduction {
+                let components = Calendar.current.dateComponents([.year], from: Date())
+                endYear = components.year
+            }
+        }
+    }
     
     init(withType type: JeepModel) {
         super.init()
@@ -44,7 +50,7 @@ class Jeep: NSObject {
             image = UIImage(named: "WranglerJK")!
             name = "Jeep Wrangler JK"
             startYear = 2007
-            endYear = -1
+            isInProduction = true
         case .wranglerTJ:
             image = UIImage(named: "WranglerTJ")!
             name = "Jeep Wrangler TJ"
