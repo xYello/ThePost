@@ -35,6 +35,8 @@
 		4D35A2121E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A2111E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift */; };
 		4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */; };
 		4D35A2161E120E2A00A115EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */; };
+		4D35A21C1E12126300A115EB /* Jeep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A21B1E12126300A115EB /* Jeep.swift */; };
+		4D35A21E1E121E3800A115EB /* JeepModelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A21D1E121E3800A115EB /* JeepModelButton.swift */; };
 		4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */; };
 		4D58C4DA1E0E1882004CA0E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4D81E0E1882004CA0E3 /* Main.storyboard */; };
 		4D58C4DC1E0E1882004CA0E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */; };
@@ -91,6 +93,8 @@
 		4D35A2111E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectorCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TransparentBorders.swift"; sourceTree = "<group>"; };
 		4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4D35A21B1E12126300A115EB /* Jeep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jeep.swift; sourceTree = "<group>"; };
+		4D35A21D1E121E3800A115EB /* JeepModelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepModelButton.swift; sourceTree = "<group>"; };
 		4D58C4D11E0E1882004CA0E3 /* ThePost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D58C4D91E0E1882004CA0E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		4D04C54A1E0F1A6F004B2264 /* Walkthrough */ = {
 			isa = PBXGroup;
 			children = (
+				4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */,
 				4D04C5421E0F000B004B2264 /* WalkthroughViewController.swift */,
 				4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */,
 			);
@@ -205,8 +210,8 @@
 				4DD1BC9B1E0E251E005F4800 /* Text Fields */,
 				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
 				4DFB05AC1E118A4600BEACE2 /* Jeep Selector */,
+				4D35A21B1E12126300A115EB /* Jeep.swift */,
 				4D35A20C1E11FA2800A115EB /* Category PIcker */,
-				4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */,
 				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
 				4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */,
@@ -239,6 +244,7 @@
 			children = (
 				4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */,
 				4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */,
+				4D35A21D1E121E3800A115EB /* JeepModelButton.swift */,
 			);
 			name = "Jeep Selector";
 			sourceTree = "<group>";
@@ -500,6 +506,8 @@
 				4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */,
 				4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */,
 				4D35A20E1E11FA4B00A115EB /* CategorySelectorViewController.swift in Sources */,
+				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
+				4D35A21E1E121E3800A115EB /* JeepModelButton.swift in Sources */,
 				4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */,
 				4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */,
 			);

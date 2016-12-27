@@ -14,7 +14,7 @@ class JeepSelectorCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var modelLabel: UILabel!
     @IBOutlet weak var modelYearLabel: UILabel!
     
-    @IBOutlet weak var selectButton: UIButton!
+    @IBOutlet weak var selectButton: JeepModelButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
