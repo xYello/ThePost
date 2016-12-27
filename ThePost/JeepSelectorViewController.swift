@@ -17,6 +17,8 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     
     private var jeeps:[Jeep] = []
     
+    private var selectedJeepModel: Jeep!
+    
     private var pageSize: CGSize {
         let layout = collectionView.collectionViewLayout as! UPCarouselFlowLayout
         var pageSize = layout.itemSize
@@ -95,11 +97,19 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     // MARK: - Actions
     
     @objc private func selectedJeepCategory(sender: JeepModelButton) {
+        selectedJeepModel = sender.jeepModel
         performSegue(withIdentifier: "categorySelectorSegue", sender: self)
     }
     
-    @IBAction func unwindToSelf(_ segue: UIStoryboardSegue) {
-        print(segue.source.isViewLoaded)
+    // MARK: - Segues
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == "categorySelectorSegue" {
+            let vc = segue.destination as! CategorySelectorViewController
+            vc.jeepModel = selectedJeepModel
+        }
     }
 
 }

@@ -8,9 +8,11 @@
 
 import UIKit
 
-class CategorySelectorViewController: UIViewController, UICollectionViewDataSource {
+class CategorySelectorViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var jeepModel: Jeep!
     
     // MARK: - View lifecycle
     
@@ -23,6 +25,7 @@ class CategorySelectorViewController: UIViewController, UICollectionViewDataSour
         layout.itemSize = CGSize(width: floor(view.frame.width * (335/414)), height: floor(view.frame.height * (200/736)))
         
         collectionView.dataSource = self
+        collectionView.delegate = self
     }
     
     // MARK: - CollectionView datasource
@@ -52,7 +55,10 @@ class CategorySelectorViewController: UIViewController, UICollectionViewDataSour
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - CollectionView delegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "unwindToPostLaunchSegue", sender: self)
     }
 
 }
