@@ -15,6 +15,8 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     
     @IBOutlet weak var pageControl: UIPageControl!
     
+    private var jeeps:[Jeep] = []
+    
     private var pageSize: CGSize {
         let layout = collectionView.collectionViewLayout as! UPCarouselFlowLayout
         var pageSize = layout.itemSize
@@ -28,6 +30,11 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         super.viewDidLoad()
         
         let layout = UPCarouselFlowLayout()
+        
+        jeeps.append(Jeep(withType: JeepModel.wranglerJK))
+        jeeps.append(Jeep(withType: JeepModel.wranglerTJ))
+        jeeps.append(Jeep(withType: JeepModel.wranglerYJ))
+        jeeps.append(Jeep(withType: JeepModel.cherokeeXJ))
         
         // These ratios that are defined here are values defined in the Sketch file. Cell size / screen size
         layout.itemSize = CGSize(width: floor(view.frame.width * (350/414)), height: floor(view.frame.height * (326/736)))
@@ -50,30 +57,35 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     // MARK: - CollectionView datasource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return jeeps.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "jeepSelectorCell", for: indexPath) as! JeepSelectorCollectionViewCell
         
-        switch indexPath.row {
-        case 0:
-            cell.modelImage.image = UIImage(named: "WranglerJK")
-            cell.modelLabel.text = "Jeep Wrangler JK"
-            cell.modelYearLabel.text = "2007-2016"
-        case 1:
-            cell.modelImage.image = UIImage(named: "WranglerTJ")
-            cell.modelLabel.text = "Jeep Wrangler TJ"
-            cell.modelYearLabel.text = "1997-2006"
-        case 2:
-            cell.modelImage.image = UIImage(named: "WranglerYJ")
-            cell.modelLabel.text = "Jeep Wrangler YJ"
-            cell.modelYearLabel.text = "1987-1995"
-        default:
-            cell.modelImage.image = UIImage(named: "CherokeeXJ")
-            cell.modelLabel.text = "Jeep Cherokee XJ"
-            cell.modelYearLabel.text = "1984-2001"
+        if cell.selectButton.allTargets.count < 1 {
+            cell.selectButton.addTarget(self, action: #selector(selectedJeepCategory), for: .touchUpInside)
         }
+        
+        if let image = jeeps[indexPath.row].image {
+            cell.modelImage.image = image
+        }
+        if let name = jeeps[indexPath.row].name {
+            cell.modelLabel.text = name
+        }
+        
+        if jeeps[indexPath.row].endYear == -1 {
+            let components = Calendar.current.dateComponents([.year], from: Date())
+            if let start = jeeps[indexPath.row].startYear, let end = components.year {
+                cell.modelYearLabel.text = "\(start)-\(end)"
+            }
+        } else {
+            if let start = jeeps[indexPath.row].startYear, let end = jeeps[indexPath.row].endYear {
+                cell.modelYearLabel.text = "\(start)-\(end)"
+            }
+        }
+        
+        cell.selectButton.jeepModel = jeeps[indexPath.row]
         
         return cell
     }
@@ -86,6 +98,12 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         let offset = (layout.scrollDirection == .horizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y
         
         pageControl.currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func selectedJeepCategory(sender: JeepModelButton) {
+        print(sender.jeepModel.name!)
     }
 
 }
