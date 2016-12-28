@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Dqg-8C-pNe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -548,7 +548,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uw-Pc-9hT">
-                                <rect key="frame" x="111" y="59" width="152" height="21"/>
+                                <rect key="frame" x="16" y="59" width="343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="D8r-4j-xbm"/>
                                 </constraints>
@@ -680,21 +680,24 @@
                             <constraint firstItem="jIr-iy-5De" firstAttribute="top" secondItem="LrS-8a-6Ds" secondAttribute="bottom" constant="47" id="AT4-we-UE5"/>
                             <constraint firstItem="8zY-kj-1oB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Aih-Yo-NuT"/>
                             <constraint firstItem="iVE-UD-FbC" firstAttribute="top" secondItem="jIr-iy-5De" secondAttribute="bottom" constant="8" id="CQc-TM-9dc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2uw-Pc-9hT" secondAttribute="trailing" constant="96" id="G59-Jg-jQ2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2uw-Pc-9hT" secondAttribute="trailing" id="G59-Jg-jQ2"/>
                             <constraint firstItem="iVE-UD-FbC" firstAttribute="leading" secondItem="tJ7-nT-3wp" secondAttribute="trailing" constant="8" id="HOp-Vc-ulA"/>
                             <constraint firstItem="tJ7-nT-3wp" firstAttribute="top" secondItem="jIr-iy-5De" secondAttribute="bottom" constant="8" id="IHF-IR-0Bk"/>
                             <constraint firstItem="jIr-iy-5De" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Icd-Bj-Afu"/>
-                            <constraint firstItem="LrS-8a-6Ds" firstAttribute="top" secondItem="AsL-0i-nu0" secondAttribute="bottom" constant="47" id="LOr-gi-DS0"/>
+                            <constraint firstItem="LrS-8a-6Ds" firstAttribute="top" relation="lessThanOrEqual" secondItem="AsL-0i-nu0" secondAttribute="bottom" constant="47" id="LOr-gi-DS0"/>
                             <constraint firstItem="2uw-Pc-9hT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="LtJ-UI-72P"/>
                             <constraint firstItem="lcp-bx-zcM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="23" id="M6p-it-cBZ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="k3B-OQ-ofh" secondAttribute="leading" id="Mbs-lA-Ush"/>
                             <constraint firstItem="lcp-bx-zcM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W0C-hC-rFX"/>
                             <constraint firstItem="lcp-bx-zcM" firstAttribute="top" secondItem="k3B-OQ-ofh" secondAttribute="bottom" constant="41" id="WJv-Hm-boP"/>
                             <constraint firstItem="E5Q-kK-SbS" firstAttribute="top" secondItem="jIr-iy-5De" secondAttribute="bottom" constant="8" id="adN-nL-IwB"/>
+                            <constraint firstItem="LrS-8a-6Ds" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AsL-0i-nu0" secondAttribute="bottom" constant="10" id="dt1-w0-fVO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tJ7-nT-3wp" secondAttribute="bottom" constant="10" id="fKP-oc-2OY"/>
                             <constraint firstItem="AsL-0i-nu0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fuO-GH-sS9"/>
                             <constraint firstItem="tJ7-nT-3wp" firstAttribute="leading" secondItem="E5Q-kK-SbS" secondAttribute="trailing" constant="8" id="fx1-ym-FnK"/>
                             <constraint firstItem="AsL-0i-nu0" firstAttribute="top" secondItem="8zY-kj-1oB" secondAttribute="bottom" constant="15" id="gDK-5Y-oL4"/>
                             <constraint firstItem="LrS-8a-6Ds" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="58" id="gsX-ky-MSB"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="lessThanOrEqual" secondItem="tJ7-nT-3wp" secondAttribute="bottom" constant="91" id="htD-Ew-I6h"/>
                             <constraint firstItem="AsL-0i-nu0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="23" id="lBp-BF-geB"/>
                             <constraint firstItem="ghV-TO-6SP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="23" id="pSV-Us-P6V"/>
                             <constraint firstItem="2uw-Pc-9hT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qEI-Yn-5v8"/>
@@ -711,11 +714,12 @@
                         <outlet property="passwordTextField" destination="8zY-kj-1oB" id="2dW-Nv-9a9"/>
                         <outlet property="signUpButton" destination="LrS-8a-6Ds" id="wzC-GW-fem"/>
                         <outlet property="usernameTextField" destination="lcp-bx-zcM" id="ZXk-i3-zoF"/>
+                        <segue destination="Dqg-8C-pNe" kind="show" identifier="skipToPostLaunch" id="JdL-Y4-HUk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4922" y="878"/>
+            <point key="canvasLocation" x="-103.2" y="474.51274362818594"/>
         </scene>
         <!--Post Launch View Controller-->
         <scene sceneID="xhf-9K-zZp">
@@ -957,7 +961,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmx-hC-gKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="927.20000000000005" y="2700.8995502248877"/>
+            <point key="canvasLocation" x="84" y="2591"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3pT-7z-kF9">
@@ -1040,7 +1044,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGO-po-Qdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12" y="2700.8995502248877"/>
+            <point key="canvasLocation" x="84" y="1856"/>
         </scene>
     </scenes>
     <resources>
