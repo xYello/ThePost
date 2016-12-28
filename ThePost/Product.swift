@@ -36,15 +36,14 @@ class Product: NSObject {
     var jeepModel: JeepModel!
     var price: Float!
     var condition: Condition!
+    var primaryColor: String!
     
-    var primaryColor: String?
     var originalBox: UIImage?
     var originalReciept: UIImage?
     var relaseYear: Int?
     var detailedDescription: String?
     var simplifiedDescription: String {
         get {
-            guard let color = primaryColor else { return "" }
             
             var string = "\(condition.description) - "
             
@@ -59,7 +58,7 @@ class Product: NSObject {
                 string.append("XJ - ")
             }
             
-            string.append(color)
+            string.append(primaryColor)
             
             return string
         }
@@ -69,7 +68,7 @@ class Product: NSObject {
     var acceptsPayPal = false
     var acceptsCaash = false
     
-    init(withName name: String, model: JeepModel, price: Float, condition: Condition) {
+    init(withName name: String, model: JeepModel, price: Float, condition: Condition, color: String) {
         super.init()
         
         defer {
@@ -77,6 +76,7 @@ class Product: NSObject {
             self.jeepModel = model
             self.price = price
             self.condition = condition
+            self.primaryColor = color
         }
     }
 

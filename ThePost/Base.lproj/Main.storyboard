@@ -815,7 +815,7 @@
             </objects>
             <point key="canvasLocation" x="903" y="1857"/>
         </scene>
-        <!--Test-->
+        <!--Product Listing-->
         <scene sceneID="M69-kX-baG">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="eb5-1Y-8Mf" customClass="ProductListingViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
@@ -946,7 +946,7 @@
                             <constraint firstItem="FDR-cf-xRl" firstAttribute="centerX" secondItem="1TW-Le-DYq" secondAttribute="centerX" id="qVT-BS-OgW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Test" id="7uX-fZ-UhN">
+                    <navigationItem key="navigationItem" title="Product Listing" id="7uX-fZ-UhN">
                         <barButtonItem key="rightBarButtonItem" image="controls" id="9r3-lU-kcM">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
