@@ -797,7 +797,7 @@
             </objects>
             <point key="canvasLocation" x="838" y="476"/>
         </scene>
-        <!--Messages-->
+        <!--View Controller-->
         <scene sceneID="tlW-2B-70z">
             <objects>
                 <viewController id="hUW-YE-oOj" sceneMemberID="viewController">
@@ -810,13 +810,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Messages" id="f5h-Ch-K2U"/>
+                    <tabBarItem key="tabBarItem" image="NewPostTabBarIcon" id="f5h-Ch-K2U"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCu-NX-yL1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1754" y="1857"/>
         </scene>
-        <!--Profile-->
+        <!--View Controller-->
         <scene sceneID="8a6-7X-2FF">
             <objects>
                 <viewController id="C80-yy-GNU" sceneMemberID="viewController">
@@ -829,7 +829,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="gR2-QB-zbc"/>
+                    <tabBarItem key="tabBarItem" image="MessagesTabBarIcon" id="gR2-QB-zbc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GVb-4D-abc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -979,14 +979,16 @@
             </objects>
             <point key="canvasLocation" x="84" y="2591"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Sliding Selection Tab Bar Controller-->
         <scene sceneID="3pT-7z-kF9">
             <objects>
-                <tabBarController id="Bv8-tW-FXm" sceneMemberID="viewController">
+                <tabBarController id="Bv8-tW-FXm" customClass="SlidingSelectionTabBarController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="iIe-sb-Xqo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.14117647059999999" green="0.1647058824" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="gar-Tn-OcQ" kind="relationship" relationship="viewControllers" id="3mD-Ne-6zd"/>
@@ -1000,7 +1002,7 @@
             </objects>
             <point key="canvasLocation" x="1748" y="878"/>
         </scene>
-        <!--Favorites-->
+        <!--View Controller-->
         <scene sceneID="o5O-e6-fmd">
             <objects>
                 <viewController id="byy-RR-jng" sceneMemberID="viewController">
@@ -1013,13 +1015,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorites" id="hrl-HZ-3sD"/>
+                    <tabBarItem key="tabBarItem" image="ActivityTabBarIcon" id="hrl-HZ-3sD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GKi-nx-Pco" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2567" y="1857"/>
         </scene>
-        <!--Settings-->
+        <!--View Controller-->
         <scene sceneID="7zf-QE-Kby">
             <objects>
                 <viewController id="anJ-nv-bkZ" sceneMemberID="viewController">
@@ -1032,17 +1034,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="Us2-ff-0Ip"/>
+                    <tabBarItem key="tabBarItem" image="ProfileTabBarIcon" id="Us2-ff-0Ip"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHm-QY-fYy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3418" y="1857"/>
         </scene>
-        <!--Feed-->
+        <!--Navigation Controller-->
         <scene sceneID="a4h-AO-ggS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" id="hyP-Uw-OGH"/>
+                    <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1064,9 +1066,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ActivityTabBarIcon" width="24" height="29"/>
         <image name="FavoriteIcon" width="15" height="14"/>
+        <image name="HomeTabBarIcon" width="25" height="27"/>
         <image name="LocationRequest" width="180" height="170"/>
+        <image name="MessagesTabBarIcon" width="27" height="27"/>
         <image name="MoneyPower" width="176" height="215"/>
+        <image name="NewPostTabBarIcon" width="29" height="29"/>
+        <image name="ProfileTabBarIcon" width="27" height="27"/>
         <image name="TerrainBackground" width="414" height="736"/>
         <image name="TracksBackground" width="414" height="736"/>
         <image name="Wheels&amp;Tires" width="180" height="144"/>
