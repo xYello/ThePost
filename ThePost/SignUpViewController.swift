@@ -23,7 +23,7 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     
-    
+    private var ref: FIRDatabaseReference!
     
     // MARK: - View lifecycle
     

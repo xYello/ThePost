@@ -1,0 +1,6 @@
+framework module FirebaseTwitterAuthUI {
+  umbrella header "FirebaseTwitterAuthUI.h"
+
+  export *
+  module * { export * }
+}
