@@ -352,7 +352,7 @@
 				TargetAttributes = {
 					4D58C4D01E0E1882004CA0E3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ZP73CTVZZ8;
+						DevelopmentTeam = 2ZSZVH3P4S;
 						ProvisioningStyle = Automatic;
 					};
 					4D58C4E41E0E1883004CA0E3 = {
@@ -693,10 +693,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZP73CTVZZ8;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ThePost.ThePost;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -708,11 +710,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZP73CTVZZ8;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ThePost.ThePost;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
