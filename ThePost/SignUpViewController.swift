@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpViewController: UIViewController {
 
@@ -131,6 +132,8 @@ class SignUpViewController: UIViewController {
         
         if viewsToShake.isEmpty {
             // Sign up
+            
+            
             
             performSegue(withIdentifier: "skipToPostLaunch", sender: self)
         } else {
