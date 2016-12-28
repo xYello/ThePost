@@ -131,6 +131,8 @@ class SignUpViewController: UIViewController {
         
         if viewsToShake.isEmpty {
             // Sign up
+            
+            performSegue(withIdentifier: "skipToPostLaunch", sender: self)
         } else {
             for view in viewsToShake {
                 shakeView(view: view)
@@ -142,7 +144,7 @@ class SignUpViewController: UIViewController {
         if sender.currentTitle == "Google" {
             
         } else if sender.currentTitle == "Facebook" {
-            
+            performSegue(withIdentifier: "skipToPostLaunch", sender: self)
         } else if sender.currentTitle == "Twitter" {
             
         }
