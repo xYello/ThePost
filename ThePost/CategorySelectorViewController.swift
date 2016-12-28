@@ -57,6 +57,18 @@ class CategorySelectorViewController: UIViewController, UICollectionViewDataSour
     
     // MARK: - CollectionView delegate
     
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? CategorySelectorCollectionViewCell {
+            cell.selectedCoverView.alpha = 0.5
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? CategorySelectorCollectionViewCell {
+            cell.selectedCoverView.alpha = 0.0
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "unwindToPostLaunchSegue", sender: self)
     }

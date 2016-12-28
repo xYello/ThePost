@@ -486,6 +486,10 @@
                                                     <color key="textColor" red="0.14901960780000001" green="0.1647058824" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gm5-9U-AYd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="269" height="195"/>
+                                                    <color key="backgroundColor" red="0.30980392159999998" green="0.4823529412" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -493,18 +497,23 @@
                                             <constraint firstAttribute="leadingMargin" secondItem="fh5-O0-pQ7" secondAttribute="leading" id="0zR-EU-v8d"/>
                                             <constraint firstItem="fh5-O0-pQ7" firstAttribute="centerX" secondItem="vir-OI-ohu" secondAttribute="centerX" id="5sr-zu-nt9"/>
                                             <constraint firstItem="Anp-10-SG2" firstAttribute="top" secondItem="vir-OI-ohu" secondAttribute="topMargin" constant="-8" id="Btn-kL-R85"/>
+                                            <constraint firstItem="gm5-9U-AYd" firstAttribute="top" secondItem="vir-OI-ohu" secondAttribute="top" id="ObZ-FP-7Og"/>
                                             <constraint firstItem="Anp-10-SG2" firstAttribute="centerX" secondItem="vir-OI-ohu" secondAttribute="centerX" id="PF6-ky-svi"/>
                                             <constraint firstItem="glb-qd-E7g" firstAttribute="top" secondItem="fh5-O0-pQ7" secondAttribute="bottom" constant="-13" id="VLX-B2-fGg"/>
                                             <constraint firstItem="fh5-O0-pQ7" firstAttribute="centerY" secondItem="vir-OI-ohu" secondAttribute="centerY" id="ZUM-j4-pok"/>
+                                            <constraint firstAttribute="trailing" secondItem="gm5-9U-AYd" secondAttribute="trailing" id="dJz-pk-gaN"/>
                                             <constraint firstItem="Anp-10-SG2" firstAttribute="leading" secondItem="vir-OI-ohu" secondAttribute="leadingMargin" constant="-8" id="iFK-2U-vj3"/>
+                                            <constraint firstItem="gm5-9U-AYd" firstAttribute="leading" secondItem="vir-OI-ohu" secondAttribute="leading" id="nCZ-KZ-2P3"/>
                                             <constraint firstItem="Anp-10-SG2" firstAttribute="centerY" secondItem="vir-OI-ohu" secondAttribute="centerY" id="nza-Rm-CMq"/>
                                             <constraint firstAttribute="leadingMargin" secondItem="glb-qd-E7g" secondAttribute="leading" id="qXS-xX-e8r"/>
+                                            <constraint firstAttribute="bottom" secondItem="gm5-9U-AYd" secondAttribute="bottom" id="sqK-N7-kgp"/>
                                             <constraint firstItem="glb-qd-E7g" firstAttribute="centerX" secondItem="vir-OI-ohu" secondAttribute="centerX" id="tlZ-dE-dGj"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="backgroundImageView" destination="Anp-10-SG2" id="4su-wc-4Zz"/>
                                             <outlet property="categoryTitleLabel" destination="fh5-O0-pQ7" id="5od-xn-Y1g"/>
                                             <outlet property="numberOfItemsLabel" destination="glb-qd-E7g" id="Xxf-WH-wKd"/>
+                                            <outlet property="selectedCoverView" destination="gm5-9U-AYd" id="ujU-H4-Y4C"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -538,7 +547,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Un-wS-xiY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="FTj-u2-V4L" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2583" y="-51"/>
+            <point key="canvasLocation" x="2581.5999999999999" y="-51.724137931034484"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="tne-QT-ifu">
