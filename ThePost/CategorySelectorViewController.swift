@@ -31,7 +31,7 @@ class CategorySelectorViewController: UIViewController, UICollectionViewDataSour
     // MARK: - CollectionView datasource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
