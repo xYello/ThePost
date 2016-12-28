@@ -43,12 +43,13 @@
 		4D35A2201E1233C000A115EB /* PostLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A21F1E1233C000A115EB /* PostLaunchViewController.swift */; };
 		4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */; };
 		4D58C4DA1E0E1882004CA0E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4D81E0E1882004CA0E3 /* Main.storyboard */; };
-		4D58C4DC1E0E1882004CA0E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */; };
 		4D58C4DF1E0E1882004CA0E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4DD1E0E1882004CA0E3 /* LaunchScreen.storyboard */; };
 		4D58C4EA1E0E1883004CA0E3 /* ThePostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4E91E0E1883004CA0E3 /* ThePostTests.swift */; };
 		4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */; };
 		4D907B561E13824D00F9FD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D907B551E13824D00F9FD8B /* User.swift */; };
 		4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */; };
+		4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */; };
+		4DD3CCC11E14688C00821C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */; };
 		4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */; };
 		4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */; };
 		AAE467FBCC3A36A369BEDF7E /* Pods_ThePost_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B09A96BE32B256DA705CD98 /* Pods_ThePost_ThePostTests.framework */; };
@@ -116,6 +117,7 @@
 		4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4D907B551E13824D00F9FD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSelectionTabBarController.swift; sourceTree = "<group>"; };
 		4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorViewController.swift; sourceTree = "<group>"; };
 		4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorCollectionViewCell.swift; sourceTree = "<group>"; };
 		5034073F914D3333664873A4 /* Pods_ThePostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +228,7 @@
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */,
 				4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */,
+				4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */,
 				4DD1BC9B1E0E251E005F4800 /* Text Fields */,
 				4D35A21F1E1233C000A115EB /* PostLaunchViewController.swift */,
 				4D35A21B1E12126300A115EB /* Jeep.swift */,
@@ -387,13 +390,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DD3CCC11E14688C00821C7C /* Assets.xcassets in Resources */,
 				4D04C5311E0EFCDD004B2264 /* Lato-Bold.ttf in Resources */,
 				4D04C5391E0EFCDD004B2264 /* Lato-LightItalic.ttf in Resources */,
 				4D58C4DF1E0E1882004CA0E3 /* LaunchScreen.storyboard in Resources */,
 				4D04C5371E0EFCDD004B2264 /* Lato-Italic.ttf in Resources */,
 				4D04C5341E0EFCDD004B2264 /* Lato-HairlineItalic.ttf in Resources */,
 				4D04C53E1E0EFCDD004B2264 /* Lato-SemiboldItalic.ttf in Resources */,
-				4D58C4DC1E0E1882004CA0E3 /* Assets.xcassets in Resources */,
 				4D04C5401E0EFCDD004B2264 /* Lato-ThinItalic.ttf in Resources */,
 				4D04C53B1E0EFCDD004B2264 /* Lato-MediumItalic.ttf in Resources */,
 				4D04C5361E0EFCDD004B2264 /* Lato-HeavyItalic.ttf in Resources */,
@@ -543,6 +546,7 @@
 				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
 				4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
+				4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */,
 				4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */,
 				4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */,
 				4D239C441E131BBE00F2668E /* Product.swift in Sources */,
