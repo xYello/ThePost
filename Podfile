@@ -5,9 +5,12 @@ target 'ThePost' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for ThePost
+  # Collection View custom scrolling
   pod 'UPCarouselFlowLayout', :git => 'https://github.com/SirArkimedes/UPCarouselFlowLayout.git'
+
+  # Firebase
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
   target 'ThePostTests' do
     inherit! :search_paths
