@@ -13,6 +13,9 @@ target 'ThePost' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'FirebaseUI'
+  
+  #Fabric
+  pod 'Crashlytics'
 
   target 'ThePostTests' do
     inherit! :search_paths

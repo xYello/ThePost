@@ -48,6 +48,13 @@ class SignUpViewController: UIViewController {
         view.addGestureRecognizer(gesture)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if FIRAuth.auth()?.currentUser != nil {
+            performSegue(withIdentifier: "skipToPostLaunch", sender: self)
+        }
+        ref = FIRDatabase.database().reference()
+    }
+    
     // MARK: - Actions
     
     @objc private func tapped() {
@@ -135,9 +142,28 @@ class SignUpViewController: UIViewController {
         if viewsToShake.isEmpty {
             // Sign up
             
+            FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { user, error in
+                guard let user = user, error == nil else {
+                    // TODO: Update with error reporting.
+                    print("Error signing up: \(error!.localizedDescription)")
+                    return
+                }
+                
+                let changeRequest = FIRAuth.auth()!.currentUser!.profileChangeRequest()
+                changeRequest.displayName = self.usernameTextField.text
+                
+                changeRequest.commitChanges() { error in
+                    guard error == nil else {
+                        // TODO: Update with error reporting.
+                        print("Error saving changes: \(error!.localizedDescription)")
+                        return
+                    }
+                    
+                    self.ref.child("users").child(user.uid).setValue(["fullName": self.usernameTextField.text])
+                    self.performSegue(withIdentifier: "skipToPostLaunch", sender: self)
+                }
+            })
             
-            
-            performSegue(withIdentifier: "skipToPostLaunch", sender: self)
         } else {
             for view in viewsToShake {
                 shakeView(view: view)

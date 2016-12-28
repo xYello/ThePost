@@ -21,8 +21,8 @@ class PostLaunchViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         // TODO: Remove this.
-        didSelectJeep = true
-        jeepModel = Jeep(withType: JeepModel.wranglerJK)
+        //didSelectJeep = true
+        //jeepModel = Jeep(withType: JeepModel.wranglerJK)
         
         if !didSelectJeep {
             performSegue(withIdentifier: "jeepSelectorSegue", sender: self)
