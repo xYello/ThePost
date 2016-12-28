@@ -19,7 +19,7 @@ class AppServicesRequestViewController: UIViewController {
     
     @IBOutlet weak var requestButton: UIButton!
     
-    private var originalContainerFrame:CGRect!
+    private var originalContainerFrame: CGRect!
     
     // MARK: - View lifecycle
     
