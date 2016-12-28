@@ -10,7 +10,9 @@ target 'ThePost' do
 
   # Firebase
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'FirebaseUI'
 
   target 'ThePostTests' do
     inherit! :search_paths

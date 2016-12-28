@@ -1,0 +1,6 @@
+framework module FirebaseStorageUI {
+  umbrella header "FirebaseStorageUI.h"
+
+  export *
+  module * { export * }
+}
