@@ -15,7 +15,7 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     
     @IBOutlet weak var pageControl: UIPageControl!
     
-    private var jeeps:[Jeep] = []
+    private var jeeps: [Jeep] = []
     
     private var selectedJeepModel: Jeep!
     

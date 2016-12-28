@@ -16,12 +16,14 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: RoundedTextField!
     @IBOutlet weak var confirmPasswordTextField: RoundedTextField!
     
-    private var usernameImageView:UIImageView!
-    private var emailImageView:UIImageView!
-    private var passwordImageView:UIImageView!
-    private var confirmPasswordImageView:UIImageView!
+    private var usernameImageView: UIImageView!
+    private var emailImageView: UIImageView!
+    private var passwordImageView: UIImageView!
+    private var confirmPasswordImageView: UIImageView!
     
     @IBOutlet weak var signUpButton: UIButton!
+    
+    
     
     // MARK: - View lifecycle
     
