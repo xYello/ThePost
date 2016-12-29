@@ -52,7 +52,8 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "textCell", for: indexPath) as! NewProductTextTableViewCell
         
-        cell.sideImageView.image = #imageLiteral(resourceName: "PIPItemName")
+        cell.sideImageView.image = #imageLiteral(resourceName: "PIPItemName").withRenderingMode(.alwaysTemplate)
+        cell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
         cell.detailNameLabel.text = "Item Name"
         
         cell.contentTextField.attributedPlaceholder = NSAttributedString(string: "Type here...", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)])
