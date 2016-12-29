@@ -1,18 +1,20 @@
 //
-//  NewProductTextTableViewCell.swift
+//  NewProductDropDownTableViewCell.swift
 //  ThePost
 //
-//  Created by Andrew Robinson on 12/28/16.
+//  Created by Andrew Robinson on 12/29/16.
 //  Copyright © 2016 The Post. All rights reserved.
 //
 
 import UIKit
 
-class NewProductTextTableViewCell: UITableViewCell {
+class NewProductDropDownTableViewCell: UITableViewCell {
 
     @IBOutlet weak var sideImageView: UIImageView!
     @IBOutlet weak var detailNameLabel: UILabel!
-    @IBOutlet weak var contentTextField: UITextField!
+    @IBOutlet weak var contentLabel: UILabel!
+    
+    @IBOutlet weak var pickerView: UIPickerView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
