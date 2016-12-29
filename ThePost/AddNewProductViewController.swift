@@ -50,7 +50,7 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
                        ["Make & Model": .dropDown],
                        ["Price": .price],
                        ["Condition": .dropDown],
-//                       ["Details (optional)": .details],
+                       ["Details (optional)": .details],
                        ["Willing to Ship Item": .controlSwitch],
                        ["Do you accept PayPal?": .controlSwitch],
                        ["Cash?": .controlSwitch]]
@@ -111,8 +111,15 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
             }
                         
             cell = dropDownCell
-        } else if type == .controlSwitch {
+        } else if type == .details {
+            let detailCell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! NewProductDetailsTableViewCell
             
+            detailCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
+            detailCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
+            detailCell.detailNameLabel.text = descriptionName
+            
+            cell = detailCell
+        } else if type == .controlSwitch {
             let controlCell = tableView.dequeueReusableCell(withIdentifier: "controlCell", for: indexPath) as! NewProductSwitchTableViewCell
             
             controlCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
@@ -142,6 +149,10 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
             if type == .dropDown {
                 height = 216.0
             }
+        }
+        
+        if type == .details {
+            height = 216.0
         }
         
         return height
@@ -183,7 +194,7 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         
         if textField.keyboardType == .numberPad {
             if let text = textField.text {
-                if text.characters.count > 6 {
+                if text.characters.count > 6 && string != "" {
                     shouldAllowCharacter = false
                 }
             }
@@ -255,7 +266,7 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
             imageName = "PIPPrice"
         case "Condition":
             imageName = "PIPCondition"
-        case "Details":
+        case "Details (optional)":
             imageName = "PIPDetails"
         case "Willing to Ship Item":
             imageName = "PIPShip"
