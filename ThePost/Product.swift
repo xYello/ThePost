@@ -24,6 +24,8 @@ enum Condition {
         case .other: return "Other";
         }
     }
+    
+     static var count: Int { return Condition.other.hashValue + 1 }
 }
 
 class Product: NSObject {

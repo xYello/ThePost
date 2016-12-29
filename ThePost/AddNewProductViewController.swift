@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddNewProductViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class AddNewProductViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     private enum CellType {
         case textField
@@ -97,9 +97,10 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
             dropDownCell.detailNameLabel.text = descriptionName
             dropDownCell.contentLabel.text = "Tap here..."
             
-            dropDownCell.pickerView.dataSource = self
-            dropDownCell.pickerView.delegate = self
-            
+            if descriptionName == "Condition" {
+                dropDownCell.pickerType = .condition
+            }
+                        
             cell = dropDownCell
         } else {
             cell = UITableViewCell()
@@ -146,6 +147,7 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
                 currentlyOpenPickerIndex = indexPath.row
                 tableView.beginUpdates()
                 tableView.endUpdates()
+                dropDownCell.setContentLabelForCurrentlySelectedRow()
                 dropDownCell.pickerView.alpha = 0.0
                 UIView.animate(withDuration: 0.25, animations: {
                     dropDownCell.pickerView.alpha = 1.0
@@ -168,22 +170,6 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         UIView.animate(withDuration: 0.25, animations: {
             self.container.frame = CGRect(x: self.container.frame.origin.x, y: self.container.frame.origin.y + 40, width: self.container.frame.width, height: self.container.frame.height)
         })
-    }
-    
-    // MARK: - PickerView datasource
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 4
-    }
-    
-    // MARK: - PickerView delegate
-    
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: "Test", attributes: [NSForegroundColorAttributeName:#colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)])
     }
  
     // MARK: - Actions

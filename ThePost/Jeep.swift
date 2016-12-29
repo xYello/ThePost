@@ -13,6 +13,17 @@ enum JeepModel {
     case wranglerTJ
     case wranglerYJ
     case cherokeeXJ
+    
+    var description : String {
+        switch self {
+        case .wranglerJK: return "Jeep Wrangler JK";
+        case .wranglerTJ: return "Jeep Wrangler TJ";
+        case .wranglerYJ: return "Jeep Wrangler YJ";
+        case .cherokeeXJ: return "Jeep Cherokee XJ";
+        }
+    }
+    
+    static var count: Int { return JeepModel.cherokeeXJ.hashValue + 1 }
 }
 
 class Jeep: NSObject {
