@@ -849,38 +849,39 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Wv-4f-JXe">
-                                                            <rect key="frame" x="5" y="4" width="22" height="22"/>
+                                                            <rect key="frame" x="5" y="5" width="18" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="9Wv-4f-JXe" secondAttribute="height" multiplier="20:20" id="kaz-Zs-dG9"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-pw-eQ7">
-                                                            <rect key="frame" x="32" y="7" width="61" height="15"/>
+                                                            <rect key="frame" x="32" y="6" width="61" height="15"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="content" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6W-o8-7t7">
-                                                            <rect key="frame" x="295" y="7" width="40" height="15"/>
-                                                            <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="12"/>
+                                                        <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type here..." textAlignment="right" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="2LO-ri-bfP">
+                                                            <rect key="frame" x="99" y="0.0" width="236" height="29"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="12"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
+                                                        </textField>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="9Wv-4f-JXe" firstAttribute="centerY" secondItem="DBg-z7-6CX" secondAttribute="centerY" id="4aY-9R-Eet"/>
-                                                        <constraint firstItem="9Wv-4f-JXe" firstAttribute="top" secondItem="DBg-z7-6CX" secondAttribute="topMargin" constant="-4" id="82P-U5-fCW"/>
-                                                        <constraint firstItem="k6W-o8-7t7" firstAttribute="centerY" secondItem="DBg-z7-6CX" secondAttribute="centerY" id="Ea8-Oz-zJl"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="k6W-o8-7t7" secondAttribute="trailing" id="LSh-a5-b1O"/>
+                                                        <constraint firstItem="9Wv-4f-JXe" firstAttribute="top" secondItem="DBg-z7-6CX" secondAttribute="topMargin" constant="-3" id="82P-U5-fCW"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="2LO-ri-bfP" secondAttribute="bottom" constant="-8" id="9F6-Rk-taw"/>
+                                                        <constraint firstItem="2LO-ri-bfP" firstAttribute="leading" secondItem="m6a-pw-eQ7" secondAttribute="trailing" constant="6" id="9cd-xu-GNe"/>
+                                                        <constraint firstItem="2LO-ri-bfP" firstAttribute="top" secondItem="DBg-z7-6CX" secondAttribute="topMargin" constant="-8" id="R1r-Nm-1b4"/>
                                                         <constraint firstAttribute="leadingMargin" secondItem="9Wv-4f-JXe" secondAttribute="leading" constant="3" id="WHG-wu-Hvw"/>
-                                                        <constraint firstItem="m6a-pw-eQ7" firstAttribute="leading" secondItem="9Wv-4f-JXe" secondAttribute="trailing" constant="4.5" id="niA-g3-bMo"/>
-                                                        <constraint firstItem="k6W-o8-7t7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m6a-pw-eQ7" secondAttribute="trailing" constant="4" id="oUn-gP-K8P"/>
-                                                        <constraint firstItem="m6a-pw-eQ7" firstAttribute="centerY" secondItem="DBg-z7-6CX" secondAttribute="centerY" id="xor-jt-y9h"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="2LO-ri-bfP" secondAttribute="trailing" id="kN3-95-nyN"/>
+                                                        <constraint firstItem="m6a-pw-eQ7" firstAttribute="leading" secondItem="9Wv-4f-JXe" secondAttribute="trailing" constant="9" id="niA-g3-bMo"/>
+                                                        <constraint firstItem="m6a-pw-eQ7" firstAttribute="centerY" secondItem="DBg-z7-6CX" secondAttribute="centerY" constant="-1" id="xor-jt-y9h"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" red="0.18823529410000001" green="0.21960784310000001" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
-                                                    <outlet property="contentLabel" destination="k6W-o8-7t7" id="b0u-Ma-Fal"/>
+                                                    <outlet property="contentTextField" destination="2LO-ri-bfP" id="hDx-So-Cf5"/>
                                                     <outlet property="detailNameLabel" destination="m6a-pw-eQ7" id="PbM-0Y-x2C"/>
                                                     <outlet property="sideImageView" destination="9Wv-4f-JXe" id="QTX-JZ-rJh"/>
                                                 </connections>
@@ -1195,7 +1196,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
