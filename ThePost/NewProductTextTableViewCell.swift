@@ -12,9 +12,8 @@ class NewProductTextTableViewCell: UITableViewCell {
 
     @IBOutlet weak var sideImageView: UIImageView!
     @IBOutlet weak var detailNameLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var contentTextField: UITextField!
 
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
