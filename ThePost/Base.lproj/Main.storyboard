@@ -954,6 +954,46 @@
                                                     <outlet property="sideImageView" destination="xfz-Rr-eg6" id="hov-To-tI6"/>
                                                 </connections>
                                             </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="controlCell" rowHeight="30" id="zim-FK-aZl" customClass="NewProductSwitchTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="274" width="343" height="30"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zim-FK-aZl" id="bec-IA-v3X">
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hlc-9e-1OQ">
+                                                            <rect key="frame" x="5" y="5" width="18" height="18"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="Hlc-9e-1OQ" secondAttribute="height" multiplier="20:20" id="uOh-X7-REY"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyU-RR-9ca">
+                                                            <rect key="frame" x="32" y="6" width="61" height="15"/>
+                                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                                                            <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="slO-3z-g1E">
+                                                            <rect key="frame" x="294" y="0.0" width="51" height="31"/>
+                                                        </switch>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Hlc-9e-1OQ" firstAttribute="top" secondItem="bec-IA-v3X" secondAttribute="topMargin" constant="-3" id="78k-I3-XyQ"/>
+                                                        <constraint firstAttribute="leadingMargin" secondItem="Hlc-9e-1OQ" secondAttribute="leading" constant="3" id="A9o-pe-Ijf"/>
+                                                        <constraint firstItem="slO-3z-g1E" firstAttribute="top" secondItem="bec-IA-v3X" secondAttribute="topMargin" constant="-8" id="bgf-XB-NTm"/>
+                                                        <constraint firstItem="NyU-RR-9ca" firstAttribute="leading" secondItem="Hlc-9e-1OQ" secondAttribute="trailing" constant="9" id="gkD-LB-b1o"/>
+                                                        <constraint firstItem="NyU-RR-9ca" firstAttribute="centerY" secondItem="bec-IA-v3X" secondAttribute="centerY" constant="-1" id="hNJ-3a-ne7"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="slO-3z-g1E" secondAttribute="trailing" constant="-8" id="hn4-Qs-Zpn"/>
+                                                        <constraint firstItem="Hlc-9e-1OQ" firstAttribute="centerY" secondItem="bec-IA-v3X" secondAttribute="centerY" id="uof-Ec-aAw"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" red="0.18823529410000001" green="0.21960784310000001" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <outlet property="detailNameLabel" destination="NyU-RR-9ca" id="NpW-p1-pq2"/>
+                                                    <outlet property="sideImageView" destination="Hlc-9e-1OQ" id="OrO-AN-Dhc"/>
+                                                    <outlet property="switchControl" destination="slO-3z-g1E" id="vv6-Rt-fnc"/>
+                                                </connections>
+                                            </tableViewCell>
                                         </prototypes>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MMq-a0-e48" userLabel="BottomBar Container">
