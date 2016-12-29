@@ -47,8 +47,8 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         submitButton.roundCorners(radius: 8.0)
         
         tableFormat = [["Item Name": .textField],
-                       ["Make & Model": .dropDown]]
-//                       ["Price": .price],
+                       ["Make & Model": .dropDown],
+                       ["Price": .price]]
 //                       ["Condition": .dropDown],
 //                       ["Details (optional)": .details],
 //                       ["Willing to Ship Item": .controlSwitch],
@@ -79,13 +79,22 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         let type = Array(dictionary.values)[0]
         let imageName = evaluateImageName(withDescription: descriptionName)
         
-        if type == .textField {
+        if type == .textField || type == .price {
             let textCell = tableView.dequeueReusableCell(withIdentifier: "textCell", for: indexPath) as! NewProductTextTableViewCell
             
-            textCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
+            if type == .price {
+                textCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
+                textCell.contentTextField.attributedPlaceholder = NSAttributedString(string: "$Price", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 0.5)])
+                textCell.contentTextField.textColor = #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 1)
+                textCell.contentTextField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
+                textCell.contentTextField.keyboardType = .numberPad
+            } else {
+                textCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
+                textCell.contentTextField.attributedPlaceholder = NSAttributedString(string: "Type here...", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)])
+            }
+            
             textCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
             textCell.detailNameLabel.text = descriptionName
-            textCell.contentTextField.attributedPlaceholder = NSAttributedString(string: "Type here...", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)])
             textCell.contentTextField.delegate = self
             
             cell = textCell
@@ -159,6 +168,20 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
     
     // MARK: - TextField delegate
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var shouldAllowCharacter = true
+        
+        if textField.keyboardType == .numberPad {
+            if let text = textField.text {
+                if text.characters.count > 6 {
+                    shouldAllowCharacter = false
+                }
+            }
+        }
+        
+        return shouldAllowCharacter
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.25, animations: {
             self.container.frame = CGRect(x: self.container.frame.origin.x, y: self.container.frame.origin.y - 40, width: self.container.frame.width, height: self.container.frame.height)
@@ -173,6 +196,22 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
     }
  
     // MARK: - Actions
+    
+    @objc func textChanged(_ sender: UITextField) {
+        if let text = sender.text {
+            let noCommas = text.replacingOccurrences(of: ",", with: "")
+            let noSymbol = noCommas.replacingOccurrences(of: "$", with: "")
+            
+            if let price = Int(noSymbol) {
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .currency
+                formatter.maximumFractionDigits = 0
+                
+                let string = formatter.string(from: price as NSNumber)
+                sender.text = string
+            }
+        }
+    }
  
     @IBAction func wantsToCancel(_ sender: UIButton) {
         prepareForDismissal() {
@@ -202,6 +241,8 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         switch description {
         case "Make & Model":
             imageName = "PIPMakeModel"
+        case "Price":
+            imageName = "PIPPrice"
         default:
             imageName = "PIPItemName"
         }
