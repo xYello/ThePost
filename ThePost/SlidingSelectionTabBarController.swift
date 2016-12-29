@@ -78,12 +78,14 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         
         let index = tabBar.items!.index(of: item)
         
-        if let views = interactionViews {
-            let selectedFrame = views[index!].frame
-            
-            UIView.animate(withDuration: 0.25, delay: 0.1, options: .curveEaseOut, animations: {
-                self.selectionBar!.frame = CGRect(x: selectedFrame.origin.x, y: selectedFrame.height - 1, width: self.selectionBar!.frame.width, height: self.selectionBar!.frame.height)
-            }, completion: nil)
+        if index != 2 {
+            if let views = interactionViews {
+                let selectedFrame = views[index!].frame
+                
+                UIView.animate(withDuration: 0.25, delay: 0.1, options: .curveEaseOut, animations: {
+                    self.selectionBar!.frame = CGRect(x: selectedFrame.origin.x, y: selectedFrame.height - 1, width: self.selectionBar!.frame.width, height: self.selectionBar!.frame.height)
+                }, completion: nil)
+            }
         }
     }
     
