@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddNewProductViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class AddNewProductViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private enum CellType {
         case textField
@@ -86,16 +86,13 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
                 textCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
                 textCell.contentTextField.attributedPlaceholder = NSAttributedString(string: "$Price", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 0.5)])
                 textCell.contentTextField.textColor = #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 1)
-                textCell.contentTextField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
                 textCell.contentTextField.keyboardType = .numberPad
             } else {
                 textCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
-                textCell.contentTextField.attributedPlaceholder = NSAttributedString(string: "Type here...", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)])
             }
             
             textCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
             textCell.detailNameLabel.text = descriptionName
-            textCell.contentTextField.delegate = self
             
             cell = textCell
         } else if type == .dropDown {
@@ -187,53 +184,8 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         }
 
     }
-    
-    // MARK: - TextField delegate
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        var shouldAllowCharacter = true
-        
-        if textField.keyboardType == .numberPad {
-            if let text = textField.text {
-                if text.characters.count > 6 && string != "" {
-                    shouldAllowCharacter = false
-                }
-            }
-        }
-        
-        return shouldAllowCharacter
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.container.frame = CGRect(x: self.container.frame.origin.x, y: self.container.frame.origin.y - 40, width: self.container.frame.width, height: self.container.frame.height)
-        })
-        dismissOpenPicker()
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.container.frame = CGRect(x: self.container.frame.origin.x, y: self.container.frame.origin.y + 40, width: self.container.frame.width, height: self.container.frame.height)
-        })
-    }
  
     // MARK: - Actions
-    
-    @objc func textChanged(_ sender: UITextField) {
-        if let text = sender.text {
-            let noCommas = text.replacingOccurrences(of: ",", with: "")
-            let noSymbol = noCommas.replacingOccurrences(of: "$", with: "")
-            
-            if let price = Int(noSymbol) {
-                let formatter = NumberFormatter()
-                formatter.numberStyle = .currency
-                formatter.maximumFractionDigits = 0
-                
-                let string = formatter.string(from: price as NSNumber)
-                sender.text = string
-            }
-        }
-    }
  
     @IBAction func wantsToCancel(_ sender: UIButton) {
         prepareForDismissal() {
