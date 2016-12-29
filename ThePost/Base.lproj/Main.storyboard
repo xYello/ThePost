@@ -841,7 +841,7 @@
                                         <rect key="frame" x="0.0" y="237" width="343" height="321"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" rowHeight="30" id="zCa-W9-V9g" customClass="NewProductTextTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" rowHeight="30" id="zCa-W9-V9g" customClass="NewProductTextTableViewCell" customModule="ThePost" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="343" height="30"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zCa-W9-V9g" id="DBg-z7-6CX">
@@ -884,6 +884,74 @@
                                                     <outlet property="contentTextField" destination="2LO-ri-bfP" id="hDx-So-Cf5"/>
                                                     <outlet property="detailNameLabel" destination="m6a-pw-eQ7" id="PbM-0Y-x2C"/>
                                                     <outlet property="sideImageView" destination="9Wv-4f-JXe" id="QTX-JZ-rJh"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dropDownCell" rowHeight="216" id="dMS-Kz-4SC" customClass="NewProductDropDownTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="58" width="343" height="216"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dMS-Kz-4SC" id="mQO-u8-pcK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="215"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xfz-Rr-eg6">
+                                                            <rect key="frame" x="5" y="5" width="18" height="18"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="xfz-Rr-eg6" secondAttribute="height" multiplier="20:20" id="5fp-Ut-eR0"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbt-b3-Vne">
+                                                            <rect key="frame" x="32" y="6" width="61" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="2" id="FBD-s7-Or5"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                                                            <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DropdownArrow" translatesAutoresizingMaskIntoConstraints="NO" id="kQE-Bq-fYB">
+                                                            <rect key="frame" x="323" y="13" width="12" height="6"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="kQE-Bq-fYB" secondAttribute="height" multiplier="17:9" id="7U5-gp-Laj"/>
+                                                                <constraint firstAttribute="width" constant="12" id="vln-Gd-iOZ"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="content" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUA-bb-BQt">
+                                                            <rect key="frame" x="276" y="7" width="40" height="15"/>
+                                                            <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="12"/>
+                                                            <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vga-WL-wQ1">
+                                                            <rect key="frame" x="0.0" y="30" width="343" height="185"/>
+                                                            <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="185" id="43L-I8-pMw"/>
+                                                            </constraints>
+                                                        </pickerView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="SUA-bb-BQt" firstAttribute="top" secondItem="mQO-u8-pcK" secondAttribute="topMargin" constant="-1" id="4UZ-0U-UBl"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vga-WL-wQ1" secondAttribute="trailing" id="8AZ-vx-pM7"/>
+                                                        <constraint firstItem="vga-WL-wQ1" firstAttribute="top" secondItem="Vbt-b3-Vne" secondAttribute="bottom" constant="9" id="8cC-5O-R9P"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="kQE-Bq-fYB" secondAttribute="trailing" id="B8d-1l-VGd"/>
+                                                        <constraint firstItem="kQE-Bq-fYB" firstAttribute="leading" secondItem="SUA-bb-BQt" secondAttribute="trailing" constant="7" id="JHA-6o-wZm"/>
+                                                        <constraint firstItem="Vbt-b3-Vne" firstAttribute="leading" secondItem="xfz-Rr-eg6" secondAttribute="trailing" constant="9" id="SqD-PF-uQe"/>
+                                                        <constraint firstAttribute="leadingMargin" secondItem="xfz-Rr-eg6" secondAttribute="leading" constant="3" id="Yv1-5K-fN9"/>
+                                                        <constraint firstItem="vga-WL-wQ1" firstAttribute="top" secondItem="kQE-Bq-fYB" secondAttribute="bottom" constant="11" id="cSp-Zc-lNK"/>
+                                                        <constraint firstItem="vga-WL-wQ1" firstAttribute="top" secondItem="xfz-Rr-eg6" secondAttribute="bottom" constant="7" id="ll5-Ec-1RB"/>
+                                                        <constraint firstItem="xfz-Rr-eg6" firstAttribute="top" secondItem="mQO-u8-pcK" secondAttribute="topMargin" constant="-3" id="miV-1B-G7M"/>
+                                                        <constraint firstItem="vga-WL-wQ1" firstAttribute="leading" secondItem="mQO-u8-pcK" secondAttribute="leading" id="nhf-y4-GnS"/>
+                                                        <constraint firstItem="SUA-bb-BQt" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Vbt-b3-Vne" secondAttribute="trailing" constant="183" id="o0g-eJ-vJF"/>
+                                                        <constraint firstItem="vga-WL-wQ1" firstAttribute="top" secondItem="mQO-u8-pcK" secondAttribute="topMargin" constant="22" id="okz-ed-bRy"/>
+                                                        <constraint firstItem="SUA-bb-BQt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vbt-b3-Vne" secondAttribute="trailing" constant="6" id="t6v-Lx-pPp"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" red="0.18823529410000001" green="0.21960784310000001" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <outlet property="contentLabel" destination="SUA-bb-BQt" id="lhS-bL-0ql"/>
+                                                    <outlet property="detailNameLabel" destination="Vbt-b3-Vne" id="kPB-Pb-UlT"/>
+                                                    <outlet property="pickerView" destination="vga-WL-wQ1" id="jOk-sw-4Yc"/>
+                                                    <outlet property="sideImageView" destination="xfz-Rr-eg6" id="hov-To-tI6"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -1217,6 +1285,7 @@
     </scenes>
     <resources>
         <image name="ActivityTabBarIcon" width="21" height="26"/>
+        <image name="DropdownArrow" width="14" height="7"/>
         <image name="FavoriteIcon" width="15" height="14"/>
         <image name="HomeTabBarIcon" width="22" height="24"/>
         <image name="LocationRequest" width="180" height="170"/>
