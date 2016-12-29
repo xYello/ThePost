@@ -35,6 +35,14 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7020763423)
+        })
+    }
+    
     // MARK: - TableView datasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,11 +67,25 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource {
     // MARK: - Actions
     
     @IBAction func wantsToCancel(_ sender: UIButton) {
-        dismiss(animated: false, completion: nil)
+        prepareForDismissal() {
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     
     @IBAction func wantsToSubmit(_ sender: UIButton) {
-        dismiss(animated: false, completion: nil)
+        prepareForDismissal() {
+            self.dismiss(animated: false, completion: nil)
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func prepareForDismissal(dismissCompletion: @escaping () -> Void) {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+        }, completion: { done in
+            dismissCompletion()
+        })
     }
 
 }

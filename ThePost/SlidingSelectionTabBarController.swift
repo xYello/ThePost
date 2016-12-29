@@ -97,6 +97,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         if viewController.title == "addNewPostTabBarViewController" {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "addNewPostViewController")
+            vc.modalPresentationStyle = .overCurrentContext
             
             present(vc, animated: false, completion: nil)
         } else {
