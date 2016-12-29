@@ -48,8 +48,8 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         
         tableFormat = [["Item Name": .textField],
                        ["Make & Model": .dropDown],
-                       ["Price": .price]]
-//                       ["Condition": .dropDown],
+                       ["Price": .price],
+                       ["Condition": .dropDown]]
 //                       ["Details (optional)": .details],
 //                       ["Willing to Ship Item": .controlSwitch],
 //                       ["Do you accept PayPal?": .controlSwitch],
@@ -128,7 +128,7 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         
         var height: CGFloat = 30.0
         
-        if currentlyOpenPickerIndex != -1 {
+        if currentlyOpenPickerIndex != -1 && currentlyOpenPickerIndex == indexPath.row {
             if type == .dropDown {
                 height = 216.0
             }
