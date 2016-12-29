@@ -49,11 +49,11 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         tableFormat = [["Item Name": .textField],
                        ["Make & Model": .dropDown],
                        ["Price": .price],
-                       ["Condition": .dropDown]]
+                       ["Condition": .dropDown],
 //                       ["Details (optional)": .details],
-//                       ["Willing to Ship Item": .controlSwitch],
-//                       ["Do you accept PayPal?": .controlSwitch],
-//                       ["Cash?": .controlSwitch]]
+                       ["Willing to Ship Item": .controlSwitch],
+                       ["Do you accept PayPal?": .controlSwitch],
+                       ["Cash?": .controlSwitch]]
         
     }
     
@@ -111,6 +111,16 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
             }
                         
             cell = dropDownCell
+        } else if type == .controlSwitch {
+            
+            let controlCell = tableView.dequeueReusableCell(withIdentifier: "controlCell", for: indexPath) as! NewProductSwitchTableViewCell
+            
+            controlCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
+            controlCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
+            controlCell.detailNameLabel.text = descriptionName
+            
+            cell = controlCell
+            
         } else {
             cell = UITableViewCell()
         }
@@ -243,6 +253,16 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
             imageName = "PIPMakeModel"
         case "Price":
             imageName = "PIPPrice"
+        case "Condition":
+            imageName = "PIPCondition"
+        case "Details":
+            imageName = "PIPDetails"
+        case "Willing to Ship Item":
+            imageName = "PIPShip"
+        case "Do you accept PayPal?":
+            imageName = "PIPPayPal"
+        case "Cash?":
+            imageName = "PIPCash"
         default:
             imageName = "PIPItemName"
         }
