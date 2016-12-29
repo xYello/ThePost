@@ -104,11 +104,12 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
             dropDownCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
             dropDownCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
             dropDownCell.detailNameLabel.text = descriptionName
-            dropDownCell.contentLabel.text = "Tap here..."
             
             if descriptionName == "Condition" {
                 dropDownCell.pickerType = .condition
             }
+            
+            dropDownCell.setContentLabelForCurrentlySelectedRow()
                         
             cell = dropDownCell
         } else if type == .details {

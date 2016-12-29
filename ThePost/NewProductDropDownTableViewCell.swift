@@ -35,6 +35,8 @@ class NewProductDropDownTableViewCell: UITableViewCell, UIPickerViewDataSource, 
         
         generatePickerData()
         
+        contentLabel.text = ""
+        
         pickerView.delegate = self
         pickerView.dataSource = self
     }
