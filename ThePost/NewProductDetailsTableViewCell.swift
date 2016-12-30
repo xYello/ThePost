@@ -22,7 +22,10 @@ class NewProductDetailsTableViewCell: UITableViewCell, UITextFieldDelegate, UITe
         
         originalBoxSwitch.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         
-        releaseYearTextField.attributedPlaceholder = NSAttributedString(string: "Type here...", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)])
+        let components = Calendar.current.dateComponents([.year], from: Date())
+        if let year = components.year {
+            releaseYearTextField.attributedPlaceholder = NSAttributedString(string: "\(year)", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)])
+        }
         
         releaseYearTextField.delegate = self
         descriptionTextView.delegate = self
