@@ -147,7 +147,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                 textCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
             }
             
-            textCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
+            textCell.sideImageView.tintColor = textCell.detailNameLabel.textColor
             textCell.detailNameLabel.text = descriptionName
             
             cell = textCell
