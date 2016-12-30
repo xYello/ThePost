@@ -39,19 +39,29 @@ class NewProductTextTableViewCell: UITableViewCell, UITextFieldDelegate {
     // MARK: - Actions
     
     @objc func textChanged(_ sender: UITextField) {
-        if sender.keyboardType == .numberPad {
-            if let text = sender.text {
-                let noCommas = text.replacingOccurrences(of: ",", with: "")
-                let noSymbol = noCommas.replacingOccurrences(of: "$", with: "")
-                
-                if let price = Int(noSymbol) {
-                    let formatter = NumberFormatter()
-                    formatter.numberStyle = .currency
-                    formatter.maximumFractionDigits = 0
+        if let text = sender.text {
+            if text != "" {
+                if sender.keyboardType == .numberPad {
                     
-                    let string = formatter.string(from: price as NSNumber)
-                    sender.text = string
+                    let noCommas = text.replacingOccurrences(of: ",", with: "")
+                    let noSymbol = noCommas.replacingOccurrences(of: "$", with: "")
+                    
+                    if let price = Int(noSymbol) {
+                        let formatter = NumberFormatter()
+                        formatter.numberStyle = .currency
+                        formatter.maximumFractionDigits = 0
+                        
+                        let string = formatter.string(from: price as NSNumber)
+                        sender.text = string
+                        
+                    }
                 }
+                
+                sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
+                detailNameLabel.textColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
+            } else {
+                sideImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                detailNameLabel.textColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
             }
         }
     }
