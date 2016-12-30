@@ -20,7 +20,7 @@ class NewProductDetailsTableViewCell: UITableViewCell, UITextFieldDelegate, UITe
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        originalBoxSwitch.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        originalBoxSwitch.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         
         releaseYearTextField.attributedPlaceholder = NSAttributedString(string: "Type here...", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)])
         
