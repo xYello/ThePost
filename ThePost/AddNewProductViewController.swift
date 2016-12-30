@@ -242,6 +242,9 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             
             collectionView.reloadData()
             collectionView.alpha = 1.0
+            
+            let indexPath = IndexPath(row: storedPictures.count - 1, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .right, animated: false)
         }
     }
  
