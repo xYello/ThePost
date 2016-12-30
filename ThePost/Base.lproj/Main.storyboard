@@ -900,7 +900,7 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="46I-dO-gQa">
-                                        <rect key="frame" x="0.0" y="259" width="343" height="299"/>
+                                        <rect key="frame" x="0.0" y="259" width="343" height="301"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="separatorColor" red="0.35686274509999999" green="0.35686274509999999" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1194,7 +1194,7 @@
                                         <rect key="frame" x="0.0" y="560" width="343" height="53"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzv-As-Nwp">
-                                                <rect key="frame" x="253" y="11" width="82" height="30"/>
+                                                <rect key="frame" x="253" y="8" width="82" height="36"/>
                                                 <color key="backgroundColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="82" id="jz8-fa-4Z9"/>
@@ -1208,7 +1208,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmL-vn-zoQ">
-                                                <rect key="frame" x="156" y="11" width="82" height="30"/>
+                                                <rect key="frame" x="156" y="8" width="82" height="37"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="82" id="EyA-pX-cix"/>
@@ -1227,17 +1227,17 @@
                                             <constraint firstItem="gzv-As-Nwp" firstAttribute="leading" secondItem="hmL-vn-zoQ" secondAttribute="trailing" constant="15" id="2B6-Sq-SBx"/>
                                             <constraint firstAttribute="height" constant="53" id="7kq-NV-onl"/>
                                             <constraint firstItem="hmL-vn-zoQ" firstAttribute="centerY" secondItem="gzv-As-Nwp" secondAttribute="centerY" id="Enu-Qi-4Hk"/>
-                                            <constraint firstAttribute="bottom" secondItem="gzv-As-Nwp" secondAttribute="bottom" constant="12" id="Hxd-vu-NDx"/>
+                                            <constraint firstAttribute="bottom" secondItem="gzv-As-Nwp" secondAttribute="bottom" constant="9" id="Hxd-vu-NDx"/>
                                             <constraint firstAttribute="trailing" secondItem="gzv-As-Nwp" secondAttribute="trailing" constant="8" id="aZn-Ms-bWx"/>
-                                            <constraint firstItem="hmL-vn-zoQ" firstAttribute="top" secondItem="MMq-a0-e48" secondAttribute="top" constant="11" id="eT3-jg-deo"/>
-                                            <constraint firstItem="gzv-As-Nwp" firstAttribute="top" secondItem="MMq-a0-e48" secondAttribute="top" constant="11" id="lvv-pH-wSb"/>
+                                            <constraint firstItem="hmL-vn-zoQ" firstAttribute="top" secondItem="MMq-a0-e48" secondAttribute="top" constant="8" id="eT3-jg-deo"/>
+                                            <constraint firstItem="gzv-As-Nwp" firstAttribute="top" secondItem="MMq-a0-e48" secondAttribute="top" constant="8" id="lvv-pH-wSb"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529411764706" green="0.2196078431372549" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="xcH-HC-i49" firstAttribute="top" secondItem="03z-kh-JRe" secondAttribute="top" id="7Dr-Kf-jLl"/>
-                                    <constraint firstItem="MMq-a0-e48" firstAttribute="top" secondItem="46I-dO-gQa" secondAttribute="bottom" constant="2" id="7Kl-bS-jta"/>
+                                    <constraint firstItem="MMq-a0-e48" firstAttribute="top" secondItem="46I-dO-gQa" secondAttribute="bottom" id="7Kl-bS-jta"/>
                                     <constraint firstItem="xcH-HC-i49" firstAttribute="leading" secondItem="03z-kh-JRe" secondAttribute="leading" id="F1g-Cr-8de"/>
                                     <constraint firstAttribute="trailing" secondItem="03z-kh-JRe" secondAttribute="trailing" id="F8d-4y-p66"/>
                                     <constraint firstItem="Jp4-aA-K4n" firstAttribute="trailing" secondItem="03z-kh-JRe" secondAttribute="trailing" id="Htf-0h-bpF"/>
@@ -1512,7 +1512,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
