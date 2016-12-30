@@ -50,6 +50,7 @@
 		4D58C4EA1E0E1883004CA0E3 /* ThePostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4E91E0E1883004CA0E3 /* ThePostTests.swift */; };
 		4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */; };
 		4D907B561E13824D00F9FD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D907B551E13824D00F9FD8B /* User.swift */; };
+		4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */; };
 		4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */; };
 		4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */; };
 		4DD3CCC11E14688C00821C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */; };
@@ -124,6 +125,7 @@
 		4D58C4EB1E0E1883004CA0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4D907B551E13824D00F9FD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSelectionTabBarController.swift; sourceTree = "<group>"; };
 		4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,14 @@
 			path = ThePostTests;
 			sourceTree = "<group>";
 		};
+		4DC6C6701E1609AA00431D3A /* Collection View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */,
+			);
+			name = "Collection View Cells";
+			sourceTree = "<group>";
+		};
 		4DD1BC9B1E0E251E005F4800 /* Text Fields */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,13 +289,14 @@
 		4DD3CCC41E14DC8200821C7C /* Add New Product */ = {
 			isa = PBXGroup;
 			children = (
-				4DD3CCC71E14DD3800821C7C /* Cells */,
+				4DC6C6701E1609AA00431D3A /* Collection View Cells */,
+				4DD3CCC71E14DD3800821C7C /* Table View Cells */,
 				4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */,
 			);
 			name = "Add New Product";
 			sourceTree = "<group>";
 		};
-		4DD3CCC71E14DD3800821C7C /* Cells */ = {
+		4DD3CCC71E14DD3800821C7C /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
 				4DD3CCC81E14DD8700821C7C /* NewProductTextTableViewCell.swift */,
@@ -293,7 +304,7 @@
 				4D24E8CA1E15C79900E524FD /* NewProductDetailsTableViewCell.swift */,
 				4D24E8C81E15C48600E524FD /* NewProductSwitchTableViewCell.swift */,
 			);
-			name = Cells;
+			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
 		4DFB05AC1E118A4600BEACE2 /* Jeep Selector */ = {
@@ -586,6 +597,7 @@
 				4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */,
 				4D239C441E131BBE00F2668E /* Product.swift in Sources */,
 				4D239C421E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift in Sources */,
+				4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */,
 				4D35A20E1E11FA4B00A115EB /* CategorySelectorViewController.swift in Sources */,
 				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
 				4D35A21E1E121E3800A115EB /* JeepModelButton.swift in Sources */,

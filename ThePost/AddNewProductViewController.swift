@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import AVFoundation
 
-class AddNewProductViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AddNewProductViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource,
+                                   UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private enum CellType {
         case textField
@@ -20,6 +22,9 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
 
     @IBOutlet weak var container: UIView!
     
+    @IBOutlet weak var cameraButton: UIButton!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var cancelButton: UIButton!
@@ -28,6 +33,9 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
     private var tableFormat: [[String:CellType]] = []
     
     private var currentlyOpenPickerIndex = -1
+    
+    private var imagePicker: UIImagePickerController!
+    private var storedPictures: [UIImage] = []
     
     // MARK: - View lifecycle
     
@@ -46,6 +54,11 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         
         submitButton.roundCorners(radius: 8.0)
         
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        collectionView.dataSource = self
+        collectionView.alpha = 0.0
+        
         tableFormat = [["Item Name": .textField],
                        ["Make & Model": .dropDown],
                        ["Price": .price],
@@ -63,6 +76,26 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         UIView.animate(withDuration: 0.25, animations: {
             self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7020763423)
         })
+    }
+    
+    // MARK: - CollectionView datasource
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return storedPictures.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ProductImageCollectionViewCell
+        
+        cell.imageView.image = storedPictures[indexPath.row]
+        
+        return cell
+    }
+    
+    // MARK: - CollectionView delegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presentCameraOptions()
     }
     
     // MARK: - TableView datasource
@@ -184,9 +217,30 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
         }
 
     }
+    
+    // MARK: - ImagePicker delegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            storedPictures.append(image)
+            
+            if cameraButton.isUserInteractionEnabled {
+                cameraButton.isUserInteractionEnabled = false
+                collectionView.delegate = self
+            }
+            
+            collectionView.reloadData()
+            collectionView.alpha = 1.0
+        }
+    }
  
     // MARK: - Actions
  
+    @IBAction func wantsToAddPicture(_ sender: UIButton) {
+        presentCameraOptions()
+    }
+    
     @IBAction func wantsToCancel(_ sender: UIButton) {
         prepareForDismissal() {
             self.dismiss(animated: false, completion: nil)
@@ -244,6 +298,32 @@ class AddNewProductViewController: UIViewController, UITableViewDataSource, UITa
                 UIView.animate(withDuration: 0.25, animations: {
                     openCell.pickerView.alpha = 0.0
                 })
+            }
+        }
+    }
+    
+    private func presentCameraOptions() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+            
+            self.imagePicker = UIImagePickerController()
+            self.imagePicker.delegate = self
+            self.imagePicker.sourceType = .camera
+            
+            if status == .notDetermined {
+                AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
+                    if granted {
+                        self.present(self.imagePicker, animated: true, completion: nil)
+                    }
+                })
+            } else if status == .authorized {
+                present(imagePicker, animated: true, completion: nil)
+            } else {
+                if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    }
+                }
             }
         }
     }
