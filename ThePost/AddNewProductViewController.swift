@@ -22,6 +22,8 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
 
     @IBOutlet weak var container: UIView!
     
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var cameraAlert: UIView!
     @IBOutlet weak var cameraAlertLabel: UILabel!
@@ -31,6 +33,8 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
+    
+    @IBOutlet weak var backgroundImageViewAspectRatioConstraint: NSLayoutConstraint!
     
     private var tableFormat: [[String:CellType]] = []
     
@@ -58,8 +62,6 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         
         cameraAlert.alpha = 0.0
         
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         collectionView.dataSource = self
         collectionView.alpha = 0.0
         
@@ -82,6 +84,9 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+//        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+//        layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         
         if container.alpha != 1.0 {
             let point = CGPoint(x: container.frame.midX, y: container.frame.midY)
@@ -244,6 +249,18 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             storedPictures.append(image)
             
+            if image.size.width >= image.size.height {
+                backgroundImageView.removeConstraint(backgroundImageViewAspectRatioConstraint)
+                backgroundImageViewAspectRatioConstraint = NSLayoutConstraint(item: backgroundImageView,
+                                                                              attribute: .width,
+                                                                              relatedBy: .equal,
+                                                                              toItem: backgroundImageView,
+                                                                              attribute: .height,
+                                                                              multiplier: image.size.width / image.size.height,
+                                                                              constant: 0.0)
+                backgroundImageView.addConstraint(backgroundImageViewAspectRatioConstraint)
+            }
+            
             if cameraAlert.alpha != 0.0 {
                 cameraAlert.alpha = 0.0
             }
@@ -258,6 +275,9 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             
             let indexPath = IndexPath(row: storedPictures.count - 1, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .right, animated: false)
+            
+            let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+            layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }
     }
  
