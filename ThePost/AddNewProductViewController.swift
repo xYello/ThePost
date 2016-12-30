@@ -50,7 +50,6 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         
         animator = UIDynamicAnimator()
         
-        tableView.separatorColor = #colorLiteral(red: 0.3568627451, green: 0.3568627451, blue: 0.3568627451, alpha: 0.102270344)
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -139,8 +138,10 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             
             if type == .price {
                 textCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
-                textCell.contentTextField.attributedPlaceholder = NSAttributedString(string: "$Price", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 0.7040950084)])
+                textCell.contentTextField.attributedPlaceholder = NSAttributedString(string: "$0", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 0.7040950084)])
                 textCell.contentTextField.textColor = #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 1)
+                textCell.contentTextField.alpha = 1.0
+                textCell.contentTextField.font = UIFont(name: "Lato-Bold", size: 16)
                 textCell.contentTextField.keyboardType = .numberPad
             } else {
                 textCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
@@ -184,10 +185,6 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         } else {
             cell = UITableViewCell()
         }
-        
-        cell.preservesSuperviewLayoutMargins = false
-        cell.separatorInset = UIEdgeInsets.zero
-        cell.layoutMargins = UIEdgeInsets.zero
         
         return cell
     }
@@ -290,7 +287,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             let cell = tableView.cellForRow(at: indexPath)
             
             if let textCell = cell as? NewProductTextTableViewCell {
-                if textCell.contentTextField.text == "" {
+                if textCell.contentTextField.text == "" || textCell.contentTextField.text == "$" {
                     textCell.sideImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
                     textCell.detailNameLabel.textColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
                     
