@@ -41,16 +41,21 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     
     private var disappearTimerSet = false
     
+    private var animator: UIDynamicAnimator!
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        animator = UIDynamicAnimator()
         
         tableView.separatorColor = #colorLiteral(red: 0.3568627451, green: 0.3568627451, blue: 0.3568627451, alpha: 0.102270344)
         tableView.dataSource = self
         tableView.delegate = self
         
         container.roundCorners(radius: 8.0)
+        container.alpha = 0.0
         
         cameraAlert.alpha = 0.0
         
@@ -79,9 +84,20 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7020763423)
-        })
+        if container.alpha != 1.0 {
+            let point = CGPoint(x: container.frame.midX, y: container.frame.midY)
+            let snap = UISnapBehavior(item: container, snapTo: point)
+            snap.damping = 1.0
+            
+            container.frame = CGRect(x: container.frame.origin.x + view.frame.width, y: -container.frame.origin.y - view.frame.height, width: container.frame.width, height: container.frame.height)
+            container.alpha = 1.0
+            
+            animator.addBehavior(snap)
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7020763423)
+            })
+        }
     }
     
     // MARK: - CollectionView datasource
@@ -123,7 +139,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             
             if type == .price {
                 textCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
-                textCell.contentTextField.attributedPlaceholder = NSAttributedString(string: "$Price", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 0.5)])
+                textCell.contentTextField.attributedPlaceholder = NSAttributedString(string: "$Price", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 0.7040950084)])
                 textCell.contentTextField.textColor = #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 1)
                 textCell.contentTextField.keyboardType = .numberPad
             } else {
@@ -261,11 +277,29 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     }
     
     @IBAction func wantsToSubmit(_ sender: UIButton) {
+            
+        var isReadyForSubmit = true
+        
         if storedPictures.count == 0 {
             displayCameraAlert(with: "You will need to upload at least one photo to submit your item.")
-        } else {
-            // Ready to submit
+            isReadyForSubmit = false
+        }
+        
+        for i in 0...tableFormat.count {
+            let indexPath = IndexPath(row: i, section: 0)
+            let cell = tableView.cellForRow(at: indexPath)
             
+            if let textCell = cell as? NewProductTextTableViewCell {
+                if textCell.contentTextField.text == "" {
+                    textCell.sideImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                    textCell.detailNameLabel.textColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                    
+                    isReadyForSubmit = false
+                }
+            }
+        }
+        
+        if isReadyForSubmit {
             prepareForDismissal() {
                 self.dismiss(animated: false, completion: nil)
             }
@@ -275,7 +309,18 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     // MARK: - Helpers
     
     private func prepareForDismissal(dismissCompletion: @escaping () -> Void) {
+        animator.removeAllBehaviors()
+        
+        let gravity = UIGravityBehavior(items: [container])
+        gravity.gravityDirection = CGVector(dx: 0.0, dy: 9.8)
+        animator.addBehavior(gravity)
+        
+        let item = UIDynamicItemBehavior(items: [container])
+        item.addAngularVelocity(-CGFloat(M_PI_2), for: container)
+        animator.addBehavior(item)
+        
         UIView.animate(withDuration: 0.25, animations: {
+            self.container.alpha = 0.0
             self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         }, completion: { done in
             dismissCompletion()
@@ -379,9 +424,6 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                 self.cameraAlert.roundCorners()
             })
         }
-    }
-    
-    private func dismissCameraAlert() {
     }
 
 }
