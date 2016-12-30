@@ -20,15 +20,15 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         super.viewDidLoad()
         
         tabBar.clipsToBounds = true
-        tabBar.backgroundColor = #colorLiteral(red: 0.1411764706, green: 0.1647058824, blue: 0.2117647059, alpha: 1)
+        tabBar.backgroundColor = UIColor.black
         delegate = self
         
         if let items = tabBar.items {
             items[2].image = #imageLiteral(resourceName: "NewPostTabBarIcon").withRenderingMode(.alwaysOriginal)
-        }
-        
-        for item in tabBar.items! {
-            item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+            
+            for item in tabBar.items! {
+                item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+            }
         }
     }
     
@@ -42,7 +42,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                 let circle = UIView()
                 circle.isUserInteractionEnabled = false
                 circle.frame = CGRect(x: views[2].frame.midX, y: views[2].frame.midY, width: 0, height: 0)
-                circle.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.07)
+                circle.backgroundColor = #colorLiteral(red: 0.1843137255, green: 0.2196078431, blue: 0.2784313725, alpha: 1)
                 circle.roundCorners()
                 circle.alpha = 0.0
                 tabBar.insertSubview(circle, belowSubview: views[2])
