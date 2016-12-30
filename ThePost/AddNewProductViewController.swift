@@ -23,6 +23,8 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var container: UIView!
     
     @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var cameraAlert: UIView!
+    @IBOutlet weak var cameraAlertLabel: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -37,6 +39,8 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     private var imagePicker: UIImagePickerController!
     private var storedPictures: [UIImage] = []
     
+    private var disappearTimerSet = false
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -48,16 +52,18 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         
         container.roundCorners(radius: 8.0)
         
-        cancelButton.layer.borderColor = cancelButton.titleLabel!.textColor.cgColor
-        cancelButton.layer.borderWidth = 1.0
-        cancelButton.roundCorners(radius: 8.0)
-        
-        submitButton.roundCorners(radius: 8.0)
+        cameraAlert.alpha = 0.0
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         collectionView.dataSource = self
         collectionView.alpha = 0.0
+        
+        cancelButton.layer.borderColor = cancelButton.titleLabel!.textColor.cgColor
+        cancelButton.layer.borderWidth = 1.0
+        cancelButton.roundCorners(radius: 8.0)
+        
+        submitButton.roundCorners(radius: 8.0)
         
         tableFormat = [["Item Name": .textField],
                        ["Make & Model": .dropDown],
@@ -225,6 +231,10 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             storedPictures.append(image)
             
+            if cameraAlert.alpha != 0.0 {
+                cameraAlert.alpha = 0.0
+            }
+            
             if cameraButton.isUserInteractionEnabled {
                 cameraButton.isUserInteractionEnabled = false
                 collectionView.delegate = self
@@ -248,8 +258,14 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     }
     
     @IBAction func wantsToSubmit(_ sender: UIButton) {
-        prepareForDismissal() {
-            self.dismiss(animated: false, completion: nil)
+        if storedPictures.count == 0 {
+            displayCameraAlert(with: "You will need to upload at least one photo to submit your item.")
+        } else {
+            // Ready to submit
+            
+            prepareForDismissal() {
+                self.dismiss(animated: false, completion: nil)
+            }
         }
     }
     
@@ -303,29 +319,66 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     }
     
     private func presentCameraOptions() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        if storedPictures.count < 4 {
             
-            self.imagePicker = UIImagePickerController()
-            self.imagePicker.delegate = self
-            self.imagePicker.sourceType = .camera
-            
-            if status == .notDetermined {
-                AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
-                    if granted {
-                        self.present(self.imagePicker, animated: true, completion: nil)
-                    }
-                })
-            } else if status == .authorized {
-                present(imagePicker, animated: true, completion: nil)
-            } else {
-                if let url = URL(string: UIApplicationOpenSettingsURLString) {
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url)
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+                
+                self.imagePicker = UIImagePickerController()
+                self.imagePicker.delegate = self
+                self.imagePicker.sourceType = .camera
+                
+                if status == .notDetermined {
+                    AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
+                        if granted {
+                            self.present(self.imagePicker, animated: true, completion: nil)
+                        }
+                    })
+                } else if status == .authorized {
+                    present(imagePicker, animated: true, completion: nil)
+                } else {
+                    if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url)
+                        }
                     }
                 }
             }
+            
+        } else {
+            
+            displayCameraAlert(with: "You may only upload 4 photos for a product.")
+            if !disappearTimerSet {
+                
+                disappearTimerSet = true
+                Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false, block: { timer in
+                    self.disappearTimerSet = false
+                    UIView.animate(withDuration: 0.15, animations: {
+                        self.cameraAlert.frame = CGRect(x: self.cameraAlert.frame.origin.x, y: self.cameraAlert.frame.origin.y + 5, width: self.cameraAlert.frame.width, height: self.cameraAlert.frame.height)
+                        self.cameraAlert.alpha = 0.0
+                        self.cameraAlert.roundCorners()
+                    }, completion: { done in
+                        self.cameraAlert.frame = CGRect(x: self.cameraAlert.frame.origin.x, y: self.cameraAlert.frame.origin.y - 5, width: self.cameraAlert.frame.width, height: self.cameraAlert.frame.height)
+                    })
+                })
+                
+            }
         }
+    }
+    
+    private func displayCameraAlert(with text: String) {
+        if cameraAlert.alpha == 0.0 {
+            cameraAlertLabel.text = text
+            cameraAlert.frame = CGRect(x: cameraAlert.frame.origin.x, y: cameraAlert.frame.origin.y - 5, width: cameraAlert.frame.width, height: cameraAlert.frame.height)
+            UIView.animate(withDuration: 0.15, animations: {
+                self.cameraAlert.frame = CGRect(x: self.cameraAlert.frame.origin.x, y: self.cameraAlert.frame.origin.y + 5, width: self.cameraAlert.frame.width, height: self.cameraAlert.frame.height)
+                self.cameraAlert.alpha = 1.0
+                self.cameraAlert.roundCorners()
+            })
+        }
+    }
+    
+    private func dismissCameraAlert() {
     }
 
 }
