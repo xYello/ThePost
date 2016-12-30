@@ -198,16 +198,16 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         let dictionary = tableFormat[indexPath.row]
         let type = Array(dictionary.values)[0]
         
-        var height: CGFloat = 30.0
+        var height: CGFloat = 35.0
         
         if currentlyOpenPickerIndex != -1 && currentlyOpenPickerIndex == indexPath.row {
             if type == .dropDown {
-                height = 216.0
+                height = 221.0
             }
         }
         
         if type == .details {
-            height = 216.0
+            height = 221.0
         }
         
         return height

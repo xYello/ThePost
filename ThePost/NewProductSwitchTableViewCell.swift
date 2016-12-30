@@ -16,7 +16,7 @@ class NewProductSwitchTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        switchControl.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        switchControl.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
     }
 
 }
