@@ -1426,7 +1426,7 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.91091769933700562" green="0.91506445407867432" blue="0.91102784872055054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.18823529411764706" green="0.2196078431372549" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="FDR-cf-xRl" firstAttribute="top" secondItem="rmV-5e-953" secondAttribute="bottom" id="0m5-eX-CLR"/>
                             <constraint firstItem="FDR-cf-xRl" firstAttribute="leading" secondItem="1TW-Le-DYq" secondAttribute="leadingMargin" constant="-16" id="6SL-ju-6VG"/>
@@ -1435,8 +1435,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Product Listing" id="7uX-fZ-UhN">
-                        <barButtonItem key="rightBarButtonItem" image="controls" id="9r3-lU-kcM">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="leftBarButtonItem" image="PLPSearch" id="wEQ-J1-2iO">
+                            <color key="tintColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="PLPControls" id="9r3-lU-kcM">
+                            <color key="tintColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1517,10 +1520,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1544,11 +1547,12 @@
         <image name="NewPostTabBarIcon" width="29" height="29"/>
         <image name="PIPBackgroundImage" width="385" height="265"/>
         <image name="PIPCamera" width="79" height="79"/>
+        <image name="PLPControls" width="20" height="21"/>
+        <image name="PLPSearch" width="22" height="21"/>
         <image name="ProfileTabBarIcon" width="23" height="23"/>
         <image name="TerrainBackground" width="414" height="736"/>
         <image name="TracksBackground" width="414" height="736"/>
         <image name="Wheels&amp;Tires" width="180" height="144"/>
         <image name="WranglerJK" width="207" height="147"/>
-        <image name="controls" width="20" height="21"/>
     </resources>
 </document>

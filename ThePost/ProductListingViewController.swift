@@ -26,9 +26,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         
         collectionView.dataSource = self
         
-        navigationController!.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "ProductListingNavbarBackground"), for: .default)
         if let start = jeepModel.startYear, let end = jeepModel.endYear, let name = jeepModel.name {
             navigationController!.navigationBar.topItem!.title = name + " \(start)-\(end)"
+//            navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1), NSFontAttributeName: UIFont(name: "Lato-Regular", size: 14)!]
         }
         
         // TODO: Remove
