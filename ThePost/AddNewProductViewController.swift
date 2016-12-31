@@ -9,8 +9,8 @@
 import UIKit
 import AVFoundation
 
-class AddNewProductViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource,
-                                   UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddNewProductViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate,
+                                   UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private enum CellType {
         case textField
@@ -47,10 +47,18 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     
     private var animator: UIDynamicAnimator!
     
+    private var containerOriginalFrame: CGRect!
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedOnView))
+        view.addGestureRecognizer(tap)
         
         animator = UIDynamicAnimator()
         
@@ -85,8 +93,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        containerOriginalFrame = container.frame
         
         if container.alpha != 1.0 {
             let point = CGPoint(x: container.frame.midX, y: container.frame.midY)
@@ -150,6 +157,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                 textCell.contentTextField.keyboardType = .numberPad
             } else {
                 textCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
+                textCell.contentTextField.delegate = self
             }
             
             textCell.sideImageView.tintColor = textCell.detailNameLabel.textColor
@@ -176,6 +184,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             detailCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
             detailCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
             detailCell.detailNameLabel.text = descriptionName
+            detailCell.releaseYearTextField.delegate = self
             
             cell = detailCell
         } else if type == .controlSwitch {
@@ -242,6 +251,18 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
 
     }
     
+    // MARK: - TextField delegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        let indexPath = IndexPath(row: 2, section: 0)
+        if let cell = tableView.cellForRow(at: indexPath) as? NewProductTextTableViewCell {
+            cell.contentTextField.becomeFirstResponder()
+        }
+        
+        return false
+    }
+    
     // MARK: - ImagePicker delegate
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -287,6 +308,10 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         presentCameraOptions()
     }
     
+    @objc private func tappedOnView() {
+        view.endEditing(true)
+    }
+    
     @IBAction func wantsToCancel(_ sender: UIButton) {
         prepareForDismissal() {
             self.dismiss(animated: false, completion: nil)
@@ -320,6 +345,69 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             prepareForDismissal() {
                 self.dismiss(animated: false, completion: nil)
             }
+        }
+    }
+    
+    // MARK: - Notifications
+    
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
+        if container.frame.origin.y == containerOriginalFrame.origin.y {
+            
+            var cellFrameInView: CGRect!
+            
+            // Find the active textfield in tableview
+            for cell in tableView.visibleCells {
+                if let textCell = cell as? NewProductTextTableViewCell {
+                    if textCell.contentTextField.isFirstResponder {
+                        cellFrameInView = view.convert(textCell.frame, from: tableView)
+                        let cellIndexPath = tableView.indexPath(for: textCell)
+                        tableView.scrollToRow(at: cellIndexPath!, at: .top, animated: true)
+                    }
+                } else if let detailsCell = cell as? NewProductDetailsTableViewCell {
+                    if detailsCell.releaseYearTextField.isFirstResponder || detailsCell.descriptionTextView.isFirstResponder {
+                        cellFrameInView = view.convert(detailsCell.frame, from: tableView)
+                        let cellIndexPath = tableView.indexPath(for: detailsCell)
+                        tableView.scrollToRow(at: cellIndexPath!, at: .top, animated: true)
+                    }
+                }
+            }
+            
+            if let userInfo = notification.userInfo {
+                let keyboardRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+                let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+                let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
+                let animationCurveRaw = animationCurveRawNSN.uintValue
+                let animationCurve  = UIViewAnimationOptions(rawValue: animationCurveRaw)
+                
+                let keyboardOriginY = keyboardRect.origin.y
+                let distanceFromCellFrame = keyboardOriginY - (cellFrameInView.origin.y + cellFrameInView.height)
+                
+                if distanceFromCellFrame < 0 {
+                    UIView.animate(withDuration: duration, delay: 0.0, options: animationCurve, animations: {
+                        self.container.frame = CGRect(x: self.container.frame.origin.x,
+                                                      y: self.container.frame.origin.y + distanceFromCellFrame,
+                                                      width: self.container.frame.width,
+                                                      height: self.container.frame.height)
+                    }, completion: nil)
+                }
+            }
+            
+        }
+    }
+    
+    @objc private func keyboardWillHide(_ notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
+            let animationCurveRaw = animationCurveRawNSN.uintValue
+            let animationCurve  = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            
+            UIView.animate(withDuration: duration, delay: 0.0, options: animationCurve, animations: {
+                self.container.frame = CGRect(x: self.container.frame.origin.x,
+                                              y: self.containerOriginalFrame.origin.y,
+                                              width: self.container.frame.width,
+                                              height: self.container.frame.height)
+            }, completion: nil)
         }
     }
     
