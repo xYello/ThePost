@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewProductTextTableViewCell: UITableViewCell, UITextFieldDelegate {
+class NewProductTextTableViewCell: NewProductBaseTableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var sideImageView: UIImageView!
     @IBOutlet weak var detailNameLabel: UILabel!
@@ -54,6 +54,13 @@ class NewProductTextTableViewCell: UITableViewCell, UITextFieldDelegate {
                         let string = formatter.string(from: price as NSNumber)
                         sender.text = string
                         
+                        if let delegate = delegate {
+                            delegate.valueDidChangeInCell(sender: self, value: price)
+                        }
+                    }
+                } else {
+                    if let delegate = delegate {
+                        delegate.valueDidChangeInCell(sender: self, value: text)
                     }
                 }
                 

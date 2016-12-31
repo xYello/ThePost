@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewProductDetailsTableViewCell: UITableViewCell, UITextFieldDelegate, UITextViewDelegate {
+class NewProductDetailsTableViewCell: NewProductBaseTableViewCell, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var sideImageView: UIImageView!
     @IBOutlet weak var detailNameLabel: UILabel!
@@ -39,6 +39,10 @@ class NewProductDetailsTableViewCell: UITableViewCell, UITextFieldDelegate, UITe
         if let text = textField.text {
             if text.characters.count >= 4 && string != "" {
                 shouldAllowCharacter = false
+            } else {
+                if let delegate = delegate {
+                    delegate.valueDidChangeInCell(sender: self, value: text)
+                }
             }
         }
         
@@ -51,10 +55,23 @@ class NewProductDetailsTableViewCell: UITableViewCell, UITextFieldDelegate, UITe
         if let text = textView.text {
             if text.characters.count >= 300 && text != "" {
                 shouldAllowCharacter = false
+            } else {
+                if let delegate = delegate {
+                    delegate.valueDidChangeInCell(sender: self, value: text)
+                }
             }
         }
         
         return shouldAllowCharacter
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func switchValueChanged(_ sender: UISwitch) {
+        if let delegate = delegate {
+            delegate.valueDidChangeInCell(sender: self, value: sender.isOn)
+        }
+    }
+    
 
 }

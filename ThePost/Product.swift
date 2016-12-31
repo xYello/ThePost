@@ -30,7 +30,7 @@ enum Condition {
 
 class Product: NSObject {
     
-    //var owner: Profile!
+    var owner: User!
     
     var images: [UIImage] = []
     
@@ -40,8 +40,7 @@ class Product: NSObject {
     var condition: Condition!
     var primaryColor: String!
     
-    var originalBox: UIImage?
-    var originalReciept: UIImage?
+    var originalBox = false
     var relaseYear: Int?
     var detailedDescription: String?
     var simplifiedDescription: String {
@@ -68,7 +67,7 @@ class Product: NSObject {
     
     var willingToShip = false
     var acceptsPayPal = false
-    var acceptsCaash = false
+    var acceptsCash = false
     
     init(withName name: String, model: JeepModel, price: Float, condition: Condition, color: String) {
         super.init()

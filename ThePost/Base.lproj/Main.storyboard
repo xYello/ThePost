@@ -1051,6 +1051,9 @@
                                                                 </label>
                                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eYh-lL-GpF">
                                                                     <rect key="frame" x="274" y="3" width="51" height="31"/>
+                                                                    <connections>
+                                                                        <action selector="switchValueChanged:" destination="Z7o-PZ-twX" eventType="valueChanged" id="xKm-aU-h6W"/>
+                                                                    </connections>
                                                                 </switch>
                                                                 <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f6D-qt-UML" userLabel="Seperator">
                                                                     <rect key="frame" x="19" y="36" width="304" height="1"/>
@@ -1153,13 +1156,16 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="NyU-RR-9ca">
-                                                            <rect key="frame" x="39" y="7" width="82" height="20"/>
+                                                            <rect key="frame" x="39" y="6" width="82" height="20"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="slO-3z-g1E">
                                                             <rect key="frame" x="294" y="2" width="51" height="31"/>
+                                                            <connections>
+                                                                <action selector="switchValueChanged:" destination="zim-FK-aZl" eventType="valueChanged" id="AOU-Ch-BxC"/>
+                                                            </connections>
                                                         </switch>
                                                     </subviews>
                                                     <constraints>
@@ -1508,7 +1514,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
