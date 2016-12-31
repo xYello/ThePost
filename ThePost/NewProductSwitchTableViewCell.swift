@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewProductSwitchTableViewCell: UITableViewCell {
+class NewProductSwitchTableViewCell: NewProductBaseTableViewCell {
 
     @IBOutlet weak var sideImageView: UIImageView!
     @IBOutlet weak var detailNameLabel: UILabel!
@@ -17,6 +17,15 @@ class NewProductSwitchTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         switchControl.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+    }
+    
+    // MARK: - Actions
+    
+    
+    @IBAction func switchValueChanged(_ sender: UISwitch) {
+        if let delegate = delegate {
+            delegate.valueDidChangeInCell(sender: self, value: sender.isOn)
+        }
     }
 
 }

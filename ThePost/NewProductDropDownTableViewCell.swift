@@ -13,7 +13,7 @@ enum PickerContentType {
     case condition
 }
 
-class NewProductDropDownTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegate {
+class NewProductDropDownTableViewCell: NewProductBaseTableViewCell, UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var sideImageView: UIImageView!
     @IBOutlet weak var detailNameLabel: UILabel!
@@ -68,6 +68,9 @@ class NewProductDropDownTableViewCell: UITableViewCell, UIPickerViewDataSource, 
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         contentLabel.text = data[row]
+        if let delegate = delegate {
+            delegate.valueDidChangeInCell(sender: self, value: data[row])
+        }
     }
     
     // MARK: - Helpers
@@ -90,7 +93,11 @@ class NewProductDropDownTableViewCell: UITableViewCell, UIPickerViewDataSource, 
     }
     
     func setContentLabelForCurrentlySelectedRow() {
-        contentLabel.text = data[pickerView.selectedRow(inComponent: 0)]
+        let value = data[pickerView.selectedRow(inComponent: 0)]
+        contentLabel.text = value
+        if let delegate = delegate {
+            delegate.valueDidChangeInCell(sender: self, value: value)
+        }
     }
 
 }

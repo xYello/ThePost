@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 class AddNewProductViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate,
-                                   UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+                                   UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, NewProductBaseTableViewCellDelegate {
     
     private enum CellType {
         case textField
@@ -42,12 +42,13 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     
     private var imagePicker: UIImagePickerController!
     private var storedPictures: [UIImage] = []
-    
     private var disappearTimerSet = false
     
     private var animator: UIDynamicAnimator!
     
     private var containerOriginalFrame: CGRect!
+    
+    private var newProduct: Product!
     
     // MARK: - View lifecycle
     
@@ -139,7 +140,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell
+        var cell = NewProductBaseTableViewCell()
         
         let dictionary = tableFormat[indexPath.row]
         let descriptionName = Array(dictionary.keys)[0]
@@ -185,7 +186,6 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             detailCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
             detailCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
             detailCell.detailNameLabel.text = descriptionName
-            detailCell.releaseYearTextField.delegate = self
             
             cell = detailCell
         } else if type == .controlSwitch {
@@ -196,10 +196,9 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             controlCell.detailNameLabel.text = descriptionName
             
             cell = controlCell
-            
-        } else {
-            cell = UITableViewCell()
         }
+        
+        cell.delegate = self
         
         return cell
     }
@@ -302,6 +301,30 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }
     }
+    
+    // MARK: - NewPostBaseCell delegate
+    
+    func valueDidChangeInCell(sender: NewProductBaseTableViewCell, value: Any?) {
+        if let textCell = sender as? NewProductTextTableViewCell {
+            
+            if textCell.detailNameLabel.text == "Price" {
+                if let price = value as? Int {
+//                    newProduct.price = Float(price)
+                }
+            } else if textCell.detailNameLabel.text == "Item Name" {
+                if let name = value as? String {
+//                    newProduct.name = name
+                }
+            }
+            
+        } else if let dropDownCell = sender as? NewProductDropDownTableViewCell {
+            
+        } else if let detailsCell = sender as? NewProductDetailsTableViewCell {
+            
+        } else if let switchCell = sender as? NewProductSwitchTableViewCell {
+            
+        }
+    }
  
     // MARK: - Actions
  
@@ -343,6 +366,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         }
         
         if isReadyForSubmit {
+            createNewProductListing()
             prepareForDismissal() {
                 self.dismiss(animated: false, completion: nil)
             }
@@ -554,6 +578,10 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                 self.cameraAlert.roundCorners()
             })
         }
+    }
+    
+    private func createNewProductListing() {
+        
     }
 
 }
