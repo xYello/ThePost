@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class AddNewProductViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate,
                                    UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, NewProductBaseTableViewCellDelegate {
@@ -48,12 +49,15 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     
     private var containerOriginalFrame: CGRect!
     
+    private var ref: FIRDatabaseReference!
     private var newProduct: Product?
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = FIRDatabase.database().reference()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
@@ -617,6 +621,44 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     }
     
     private func createNewProductListing() {
+        
+        if let product = newProduct {
+            if let userID = FIRAuth.auth()?.currentUser?.uid {
+                ref.child("users").child(userID).observeSingleEvent(of: .value, with: { snapshot in
+                    
+                    if let value = snapshot.value as? NSDictionary {
+                        if let fullName = value["fullName"] as? String {
+                            
+                            let key = self.ref.child("products").childByAutoId().key
+                            var dbProduct: [String: Any] = ["owner": userID,
+                                           "author": fullName,
+                                           "name": product.name,
+                                           "jeepModel": product.jeepModel.description,
+                                           "price": product.price,
+                                           "condition": product.condition.description,
+                                           "originalBox": product.originalBox,
+                                           "willingToShip": product.willingToShip,
+                                           "acceptsPayPal": product.acceptsPayPal,
+                                           "acceptsCash": product.acceptsCash]
+                            
+                            if let releaseYear = product.releaseYear {
+                                dbProduct["releaseYear"] = releaseYear
+                            }
+                            if let description = product.detailedDescription {
+                                dbProduct["detailedDescription"] = description
+                            }
+                            
+                            let childUpdates = ["/products/\(key)": dbProduct, "/user-products/\(userID)/\(key)": dbProduct]
+                            
+                            self.ref.updateChildValues(childUpdates)
+                        }
+                    }
+                    
+                }, withCancel: { error in
+                    print("Error saving new product: \(error.localizedDescription)")
+                })
+            }
+        }
         
     }
 
