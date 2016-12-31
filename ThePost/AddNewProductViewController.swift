@@ -48,7 +48,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     
     private var containerOriginalFrame: CGRect!
     
-    private var newProduct: Product!
+    private var newProduct: Product?
     
     // MARK: - View lifecycle
     
@@ -305,23 +305,59 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     // MARK: - NewPostBaseCell delegate
     
     func valueDidChangeInCell(sender: NewProductBaseTableViewCell, value: Any?) {
+        
+        if newProduct == nil {
+            newProduct = Product()
+        }
+        
         if let textCell = sender as? NewProductTextTableViewCell {
             
             if textCell.detailNameLabel.text == "Price" {
                 if let price = value as? Int {
-//                    newProduct.price = Float(price)
+                    newProduct!.price = Float(price)
                 }
             } else if textCell.detailNameLabel.text == "Item Name" {
                 if let name = value as? String {
-//                    newProduct.name = name
+                    newProduct!.name = name
                 }
             }
             
         } else if let dropDownCell = sender as? NewProductDropDownTableViewCell {
             
+            if dropDownCell.pickerType == .jeep {
+                if let jeepType = value as? JeepModel {
+                    newProduct!.jeepModel = jeepType
+                }
+            } else {
+                if let condition = value as? Condition {
+                    newProduct!.condition = condition
+                }
+            }
+            
         } else if let detailsCell = sender as? NewProductDetailsTableViewCell {
             
+            if let hasOriginalBox = value as? Bool {
+                newProduct!.originalBox = hasOriginalBox
+            } else if let stringValue = value as? String {
+                
+                if stringValue == detailsCell.releaseYearTextField.text {
+                    newProduct!.releaseYear = Int(stringValue)
+                } else {
+                    newProduct!.detailedDescription = stringValue
+                }
+            }
+            
         } else if let switchCell = sender as? NewProductSwitchTableViewCell {
+            
+            if let switchIsOnOff = value as? Bool {
+                if switchCell.detailNameLabel.text == "Willing to Ship Item" {
+                    newProduct!.willingToShip = switchIsOnOff
+                } else if switchCell.detailNameLabel.text == "Do you accept PayPal?" {
+                    newProduct!.acceptsPayPal = switchIsOnOff
+                } else if switchCell.detailNameLabel.text == "Cash?" {
+                    newProduct!.acceptsCash = switchIsOnOff
+                }
+            }
             
         }
     }

@@ -68,9 +68,7 @@ class NewProductDropDownTableViewCell: NewProductBaseTableViewCell, UIPickerView
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         contentLabel.text = data[row]
-        if let delegate = delegate {
-            delegate.valueDidChangeInCell(sender: self, value: data[row])
-        }
+        pushValueChanged(with: data[row])
     }
     
     // MARK: - Helpers
@@ -95,8 +93,45 @@ class NewProductDropDownTableViewCell: NewProductBaseTableViewCell, UIPickerView
     func setContentLabelForCurrentlySelectedRow() {
         let value = data[pickerView.selectedRow(inComponent: 0)]
         contentLabel.text = value
+        pushValueChanged(with: value)
+    }
+    
+    private func pushValueChanged(with value: String) {
+        var pushValue: Any
+        
+        switch pickerType {
+        case .jeep:
+            
+            switch value {
+            case JeepModel.wranglerJK.description:
+                pushValue = JeepModel.wranglerJK
+            case JeepModel.wranglerTJ.description:
+                pushValue = JeepModel.wranglerTJ
+            case JeepModel.wranglerYJ.description:
+                pushValue = JeepModel.wranglerYJ
+            default:
+                pushValue = JeepModel.cherokeeXJ
+            }
+            
+        case .condition:
+            
+            switch value {
+            case Condition.used.description:
+                pushValue = Condition.used
+            case Condition.new.description:
+                pushValue = Condition.new
+            case Condition.broke.description:
+                pushValue = Condition.broke
+            case Condition.remanufactured.description:
+                pushValue = Condition.remanufactured
+            default:
+                pushValue = Condition.other
+            }
+            
+        }
+        
         if let delegate = delegate {
-            delegate.valueDidChangeInCell(sender: self, value: value)
+            delegate.valueDidChangeInCell(sender: self, value: pushValue)
         }
     }
 

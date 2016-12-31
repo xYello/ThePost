@@ -39,10 +39,6 @@ class NewProductDetailsTableViewCell: NewProductBaseTableViewCell, UITextFieldDe
         if let text = textField.text {
             if text.characters.count >= 4 && string != "" {
                 shouldAllowCharacter = false
-            } else {
-                if let delegate = delegate {
-                    delegate.valueDidChangeInCell(sender: self, value: text)
-                }
             }
         }
         
@@ -52,12 +48,12 @@ class NewProductDetailsTableViewCell: NewProductBaseTableViewCell, UITextFieldDe
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         var shouldAllowCharacter = true
         
-        if let text = textView.text {
-            if text.characters.count >= 300 && text != "" {
+        if let string = textView.text {
+            if string.characters.count >= 300 && text != "" {
                 shouldAllowCharacter = false
             } else {
                 if let delegate = delegate {
-                    delegate.valueDidChangeInCell(sender: self, value: text)
+                    delegate.valueDidChangeInCell(sender: self, value: string + text)
                 }
             }
         }
@@ -73,5 +69,10 @@ class NewProductDetailsTableViewCell: NewProductBaseTableViewCell, UITextFieldDe
         }
     }
     
+    @IBAction func releaseYearTextChanged(_ sender: UITextField) {
+        if let delegate = delegate {
+            delegate.valueDidChangeInCell(sender: self, value: sender.text)
+        }
+    }
 
 }
