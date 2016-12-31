@@ -58,6 +58,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tappedOnView))
+        tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
         animator = UIDynamicAnimator()
@@ -472,31 +473,26 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     }
     
     private func presentCameraOptions() {
+        
         if storedPictures.count < 4 {
             
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
-                
-                self.imagePicker = UIImagePickerController()
-                self.imagePicker.delegate = self
-                self.imagePicker.sourceType = .camera
-                
-                if status == .notDetermined {
-                    AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
-                        if granted {
-                            self.present(self.imagePicker, animated: true, completion: nil)
-                        }
-                    })
-                } else if status == .authorized {
-                    present(imagePicker, animated: true, completion: nil)
-                } else {
-                    if let url = URL(string: UIApplicationOpenSettingsURLString) {
-                        if UIApplication.shared.canOpenURL(url) {
-                            UIApplication.shared.open(url)
-                        }
-                    }
-                }
-            }
+            let options = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            let camera = UIAlertAction(title: "Take a photo", style: .default, handler: { alert in
+                self.presentCamera(withSource: .camera)
+            })
+            
+            let library = UIAlertAction(title: "Choose from library", style: .default, handler: { aler in
+                self.presentCamera(withSource: .photoLibrary)
+            })
+            
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            options.addAction(camera)
+            options.addAction(library)
+            options.addAction(cancel)
+            
+            present(options, animated: true, completion: nil)
             
         } else {
             
@@ -517,6 +513,35 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                 
             }
         }
+    }
+    
+    private func presentCamera(withSource type: UIImagePickerControllerSourceType) {
+        
+        if type == .photoLibrary || UIImagePickerController.isSourceTypeAvailable(.camera) {
+            
+            let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+            
+            imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = type
+            
+            if status == .notDetermined {
+                AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
+                    if granted {
+                        self.present(self.imagePicker, animated: true, completion: nil)
+                    }
+                })
+            } else if status == .authorized {
+                present(imagePicker, animated: true, completion: nil)
+            } else {
+                if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            }
+        }
+        
     }
     
     private func displayCameraAlert(with text: String) {
