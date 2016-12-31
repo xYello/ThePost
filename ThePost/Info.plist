@@ -40,8 +40,10 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We would like access to the photo library to upload images of products for product postings.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>We would like the camera to take images of products for product postings.</string>
+	<string>We would like access to the camera to take images of products for product postings.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
