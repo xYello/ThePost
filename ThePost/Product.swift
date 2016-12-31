@@ -41,7 +41,7 @@ class Product: NSObject {
     var primaryColor: String!
     
     var originalBox = false
-    var relaseYear: Int?
+    var releaseYear: Int?
     var detailedDescription: String?
     var simplifiedDescription: String {
         get {
@@ -68,6 +68,10 @@ class Product: NSObject {
     var willingToShip = false
     var acceptsPayPal = false
     var acceptsCash = false
+    
+    override init() {
+        super.init()
+    }
     
     init(withName name: String, model: JeepModel, price: Float, condition: Condition, color: String) {
         super.init()
