@@ -66,7 +66,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func editingChanged(_ sender: RoundedTextField) {
-        if sender.placeholder == "Username" {
+        if sender.placeholder == "Full Name" {
             if let text = sender.text {
                 if text.characters.count >= 4 {
                     usernameImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
