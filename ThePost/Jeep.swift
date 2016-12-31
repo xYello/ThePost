@@ -8,11 +8,8 @@
 
 import UIKit
 
-enum JeepModel {
-    case wranglerJK
-    case wranglerTJ
-    case wranglerYJ
-    case cherokeeXJ
+enum JeepModel: Int {
+    case wranglerJK = 0, wranglerTJ, wranglerYJ, cherokeeXJ
     
     var description : String {
         switch self {
@@ -24,6 +21,15 @@ enum JeepModel {
     }
     
     static var count: Int { return JeepModel.cherokeeXJ.hashValue + 1 }
+    
+    static func enumFromString(string: String) -> JeepModel? {
+        var i = 0
+        while let item = JeepModel(rawValue: i) {
+            if item.description == string { return item }
+            i += 1
+        }
+        return nil
+    }
 }
 
 class Jeep: NSObject {

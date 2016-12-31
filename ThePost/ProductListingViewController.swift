@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProductListingViewController: UIViewController, UICollectionViewDataSource {
     
@@ -16,10 +17,16 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     private var products: [Product] = []
     
+    private var ref: FIRDatabaseReference!
+    private var productRef: FIRDatabaseReference!
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = FIRDatabase.database().reference()
+        productRef = ref.child("products")
                 
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: floor(view.frame.height * (235/736)))
@@ -33,6 +40,44 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         // TODO: Remove
         addFakeData()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        products.removeAll()
+        productRef.observe(.childAdded, with: { snapshot in
+            if let productDict = snapshot.value as? [String: Any] {
+                if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
+                    if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
+                        let product = Product(withName: productDict["name"] as! String,
+                                              model: jeepModel,
+                                              price: productDict["price"] as! Float,
+                                              condition: condition,
+                                              color: "Blue")
+                        self.products.append(product)
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        })
+        
+        productRef.observe(.childRemoved, with: { snapshot in
+            if let productDict = snapshot.value as? [String: Any] {
+                if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
+                    if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
+                        let product = Product(withName: productDict["name"] as! String,
+                                              model: jeepModel,
+                                              price: productDict["price"] as! Float,
+                                              condition: condition,
+                                              color: "Blue")
+                        
+                        let index = self.indexOfMessage(product)
+                        self.products.remove(at: index)
+                        
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        })
     }
     
     private func addFakeData() {
@@ -88,6 +133,21 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         cell.nameLabel.text = product.name
         
         return cell
+    }
+    
+    // MARK: - Helpers
+    
+    func indexOfMessage(_ snapshot: Product) -> Int {
+        var index = 0
+        for product in self.products {
+            
+            // TODO: This check can be true for more than one product...
+            if snapshot.name == product.name {
+                return index
+            }
+            index += 1
+        }
+        return -1
     }
 
 }

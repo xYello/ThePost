@@ -8,12 +8,8 @@
 
 import UIKit
 
-enum Condition {
-    case new
-    case used
-    case broke
-    case remanufactured
-    case other
+enum Condition: Int {
+    case new = 0, used, broke, remanufactured, other
     
     var description : String {
         switch self {
@@ -26,6 +22,15 @@ enum Condition {
     }
     
      static var count: Int { return Condition.other.hashValue + 1 }
+    
+    static func enumFromString(string: String) -> Condition? {
+        var i = 0
+        while let item = Condition(rawValue: i) {
+            if item.description == string { return item }
+            i += 1
+        }
+        return nil
+    }
 }
 
 class Product: NSObject {
@@ -38,6 +43,7 @@ class Product: NSObject {
     var jeepModel: JeepModel!
     var price: Float!
     var condition: Condition!
+    var favoriteCount: Int!
     var primaryColor: String!
     
     var originalBox = false
