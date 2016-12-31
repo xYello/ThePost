@@ -59,17 +59,26 @@ class CategorySelectorViewController: UIViewController, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? CategorySelectorCollectionViewCell {
-            cell.selectedCoverView.alpha = 0.5
+            cell.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            cell.categoryTitleLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            cell.numberOfItemsLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? CategorySelectorCollectionViewCell {
-            cell.selectedCoverView.alpha = 0.0
+            cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            cell.categoryTitleLabel.textColor = #colorLiteral(red: 0.1490196078, green: 0.1647058824, blue: 0.1882352941, alpha: 1)
+            cell.numberOfItemsLabel.textColor = #colorLiteral(red: 0.1411764706, green: 0.1647058824, blue: 0.2117647059, alpha: 1)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? CategorySelectorCollectionViewCell {
+            cell.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            cell.categoryTitleLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            cell.numberOfItemsLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
         performSegue(withIdentifier: "unwindToPostLaunchSegue", sender: self)
     }
 

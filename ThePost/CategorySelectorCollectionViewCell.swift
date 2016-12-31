@@ -15,8 +15,6 @@ class CategorySelectorCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var categoryTitleLabel: UILabel!
     @IBOutlet weak var numberOfItemsLabel: UILabel!
     
-    @IBOutlet weak var selectedCoverView: UIView!
-    
     var categoryTitle = "" {
         didSet {
             categoryTitleLabel.text = categoryTitle
@@ -38,7 +36,6 @@ class CategorySelectorCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        selectedCoverView.alpha = 0.0
         roundCorners(radius: 15)
     }
     
