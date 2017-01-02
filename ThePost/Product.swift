@@ -44,7 +44,6 @@ class Product: NSObject {
     var price: Float!
     var condition: Condition!
     var favoriteCount: Int!
-    var primaryColor: String!
     
     var originalBox = false
     var releaseYear: Int?
@@ -56,16 +55,14 @@ class Product: NSObject {
             
             switch jeepModel! {
             case .wranglerJK:
-                string.append("JK - ")
+                string.append("JK")
             case .wranglerTJ:
-                string.append("TJ - ")
+                string.append("TJ")
             case .wranglerYJ:
-                string.append("YJ - ")
+                string.append("YJ")
             case .cherokeeXJ:
-                string.append("XJ - ")
+                string.append("XJ")
             }
-            
-            string.append(primaryColor)
             
             return string
         }
@@ -79,7 +76,7 @@ class Product: NSObject {
         super.init()
     }
     
-    init(withName name: String, model: JeepModel, price: Float, condition: Condition, color: String) {
+    init(withName name: String, model: JeepModel, price: Float, condition: Condition) {
         super.init()
         
         defer {
@@ -87,7 +84,6 @@ class Product: NSObject {
             self.jeepModel = model
             self.price = price
             self.condition = condition
-            self.primaryColor = color
         }
     }
 
