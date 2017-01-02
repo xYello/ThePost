@@ -21,7 +21,6 @@ class NewProductSwitchTableViewCell: NewProductBaseTableViewCell {
     
     // MARK: - Actions
     
-    
     @IBAction func switchValueChanged(_ sender: UISwitch) {
         if let delegate = delegate {
             delegate.valueDidChangeInCell(sender: self, value: sender.isOn)

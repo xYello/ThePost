@@ -51,8 +51,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                         let product = Product(withName: productDict["name"] as! String,
                                               model: jeepModel,
                                               price: productDict["price"] as! Float,
-                                              condition: condition,
-                                              color: "Blue")
+                                              condition: condition)
                         self.products.append(product)
                         self.collectionView.reloadData()
                     }
@@ -67,8 +66,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                         let product = Product(withName: productDict["name"] as! String,
                                               model: jeepModel,
                                               price: productDict["price"] as! Float,
-                                              condition: condition,
-                                              color: "Blue")
+                                              condition: condition)
                         
                         let index = self.indexOfMessage(product)
                         self.products.remove(at: index)
@@ -81,26 +79,26 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     }
     
     private func addFakeData() {
-        let product1 = Product(withName: "This is my part. :D", model: jeepModel.type, price: 40.24, condition: .new, color: "Black")
+        let product1 = Product(withName: "This is my part. :D", model: jeepModel.type, price: 40.24, condition: .new)
         product1.images.append(#imageLiteral(resourceName: "ProductSample1"))
         products.append(product1)
         
-        let product2 = Product(withName: "Jeep Bundle", model: jeepModel.type, price: 683.0, condition: .used, color: "Red")
+        let product2 = Product(withName: "Jeep Bundle", model: jeepModel.type, price: 683.0, condition: .used)
         product2.images.append(#imageLiteral(resourceName: "ProductSample1"))
         products.append(product2)
         
-        let product5 = Product(withName: "My Jeep", model: jeepModel.type, price: 11000.0, condition: .broke, color: "Yellow")
+        let product5 = Product(withName: "My Jeep", model: jeepModel.type, price: 11000.0, condition: .broke)
         product5.images.append(#imageLiteral(resourceName: "ProductSample2"))
         product5.images.append(#imageLiteral(resourceName: "ProductSample1"))
         product5.images.append(#imageLiteral(resourceName: "ProductSample2"))
         product5.images.append(#imageLiteral(resourceName: "ProductSample1"))
         products.append(product5)
         
-        let product3 = Product(withName: "Jeep Wrangler JK soft top parts 2 door OEM mopar", model: jeepModel.type,  price: 175.0, condition: .remanufactured, color: "Grey")
+        let product3 = Product(withName: "Jeep Wrangler JK soft top parts 2 door OEM mopar", model: jeepModel.type,  price: 175.0, condition: .remanufactured)
         product3.images.append(#imageLiteral(resourceName: "ProductSample2"))
         products.append(product3)
         
-        let product4 = Product(withName: "Custom spoked rims", model: jeepModel.type, price: 1000.0, condition: .other, color: "Blue")
+        let product4 = Product(withName: "Custom spoked rims", model: jeepModel.type, price: 1000.0, condition: .other)
         product4.images.append(#imageLiteral(resourceName: "ProductSample1"))
         products.append(product4)
     }
