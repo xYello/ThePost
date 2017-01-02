@@ -92,7 +92,7 @@ class SignUpViewController: UIViewController {
         
         else if sender.placeholder == "Password" {
             if let text = sender.text {
-                if text.characters.count > 1 {
+                if text.characters.count > 5 {
                     passwordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
                 } else {
                     passwordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
