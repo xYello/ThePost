@@ -50,6 +50,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     private var containerOriginalFrame: CGRect!
     
     private var ref: FIRDatabaseReference!
+    private var storageRef: FIRStorageReference!
     private var newProduct: Product?
     
     // MARK: - View lifecycle
@@ -58,6 +59,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         super.viewDidLoad()
         
         ref = FIRDatabase.database().reference()
+        storageRef = FIRStorage.storage().reference()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
@@ -650,7 +652,29 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                             
                             let childUpdates = ["/products/\(key)": dbProduct, "/user-products/\(userID)/\(key)": dbProduct]
                             
-                            self.ref.updateChildValues(childUpdates)
+                            self.ref.updateChildValues(childUpdates, withCompletionBlock: { error in
+                                
+                                // Compress stored images
+                                var compressedImages: [Data] = []
+                                for image in self.storedPictures {
+                                    let imageData = UIImageJPEGRepresentation(image, 0.4)
+                                    
+                                    compressedImages.append(imageData!)
+                                }
+                                
+                                // Upload images
+                                for imageData in compressedImages {
+                                    let filePath = "products/" + userID + "/" + key + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+                                    let metadata = FIRStorageMetadata()
+                                    metadata.contentType = "image/jpeg"
+                                    
+                                    self.storageRef.child(filePath).put(imageData, metadata: metadata, completion: { metadata, error in
+                                        if let error = error {
+                                            print("Error uploading images: \(error.localizedDescription)")
+                                        }
+                                    })
+                                }
+                            })
                         }
                     }
                     
@@ -659,6 +683,10 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                 })
             }
         }
+        
+    }
+    
+    private func generateCompressedImage() {
         
     }
 
