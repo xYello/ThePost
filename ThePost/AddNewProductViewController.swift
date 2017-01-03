@@ -183,6 +183,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                 dropDownCell.pickerType = .condition
             }
             
+            dropDownCell.delegate = self
             dropDownCell.setContentLabelForCurrentlySelectedRow()
                         
             cell = dropDownCell
