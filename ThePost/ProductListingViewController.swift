@@ -9,13 +9,14 @@
 import UIKit
 import Firebase
 
-class ProductListingViewController: UIViewController, UICollectionViewDataSource {
+class ProductListingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var jeepModel: Jeep!
 
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var products: [Product] = []
+    private var keyPaths: [String] = []
     
     private var ref: FIRDatabaseReference!
     private var productRef: FIRDatabaseReference?
@@ -31,6 +32,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: floor(view.frame.height * (235/736)))
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         if let start = jeepModel.startYear, let end = jeepModel.endYear, let name = jeepModel.name {
             navigationController!.navigationBar.topItem!.title = name + " \(start)-\(end)"
@@ -52,7 +54,13 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                                                   model: jeepModel,
                                                   price: productDict["price"] as! Float,
                                                   condition: condition)
+                            
+                            if let likeCount = productDict["likeCount"] as? Int {
+                                product.likeCount = likeCount
+                            }
+                            
                             self.products.append(product)
+                            self.keyPaths.append(snapshot.key)
                             self.collectionView.reloadData()
                         }
                     }
@@ -70,6 +78,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                             
                             let index = self.indexOfMessage(product)
                             self.products.remove(at: index)
+                            self.keyPaths.remove(at: index)
                             
                             self.collectionView.reloadData()
                         }
@@ -97,7 +106,12 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plpContentCell", for: indexPath) as! ProductListingContentCollectionViewCell
         let product = products[indexPath.row]
         
-        cell.favoriteCountLabel.text = "4"
+        if let likeCount = product.likeCount {
+            cell.likeCountLabel.text = "\(likeCount)"
+        } else {
+            cell.likeCountLabel.text = "0"
+        }
+        
         cell.descriptionLabel.text = product.simplifiedDescription
         
         let formatter = NumberFormatter()
@@ -115,6 +129,22 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         cell.nameLabel.text = product.name
         
         return cell
+    }
+    
+    // MARK: - CollectionView delegate
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let productCell = cell as? ProductListingContentCollectionViewCell {
+            productCell.productKey = keyPaths[indexPath.row]
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let productCell = cell as? ProductListingContentCollectionViewCell {
+            if let likesListener = productCell.likesListenerRef {
+                likesListener.removeAllObservers()
+            }
+        }
     }
     
     // MARK: - Helpers

@@ -43,7 +43,7 @@ class Product: NSObject {
     var jeepModel: JeepModel!
     var price: Float!
     var condition: Condition!
-    var favoriteCount: Int!
+    var likeCount: Int?
     
     var originalBox = false
     var releaseYear: Int?
