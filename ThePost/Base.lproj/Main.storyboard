@@ -1282,7 +1282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jd-Rp-ZQW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1752.8" y="2544.3778110944531"/>
+            <point key="canvasLocation" x="1748" y="2658"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="8a6-7X-2FF">
@@ -1376,7 +1376,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="27" id="zoo-Ny-9sS"/>
                                                     </constraints>
-                                                    <state key="normal" image="FavoriteIcon"/>
+                                                    <state key="normal" image="LikeIcon"/>
                                                     <connections>
                                                         <action selector="likedProduct:" destination="eoB-qG-Hcs" eventType="touchUpInside" id="dWW-bg-kny"/>
                                                     </connections>
@@ -1453,7 +1453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmx-hC-gKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="84" y="2590.2548725637184"/>
+            <point key="canvasLocation" x="84" y="2658"/>
         </scene>
         <!--Sliding Selection Tab Bar Controller-->
         <scene sceneID="3pT-7z-kF9">
@@ -1522,7 +1522,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1544,8 +1544,8 @@
     <resources>
         <image name="ActivityTabBarIcon" width="20" height="24"/>
         <image name="DropdownArrow" width="14" height="7"/>
-        <image name="FavoriteIcon" width="15" height="14"/>
         <image name="HomeTabBarIcon" width="21" height="23"/>
+        <image name="LikeIcon" width="15" height="14"/>
         <image name="LocationRequest" width="180" height="170"/>
         <image name="MessagesTabBarIcon" width="23" height="23"/>
         <image name="MoneyPower" width="176" height="215"/>
