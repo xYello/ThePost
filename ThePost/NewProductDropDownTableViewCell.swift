@@ -84,7 +84,7 @@ class NewProductDropDownTableViewCell: NewProductBaseTableViewCell, UIPickerView
         } else if pickerType == .condition {
             data.append(Condition.used.description)
             data.append(Condition.new.description)
-            data.append(Condition.broke.description)
+            data.append(Condition.damaged.description)
             data.append(Condition.remanufactured.description)
             data.append(Condition.other.description)
         }
@@ -101,33 +101,9 @@ class NewProductDropDownTableViewCell: NewProductBaseTableViewCell, UIPickerView
         
         switch pickerType {
         case .jeep:
-            
-            switch value {
-            case JeepModel.wranglerJK.description:
-                pushValue = JeepModel.wranglerJK
-            case JeepModel.wranglerTJ.description:
-                pushValue = JeepModel.wranglerTJ
-            case JeepModel.wranglerYJ.description:
-                pushValue = JeepModel.wranglerYJ
-            default:
-                pushValue = JeepModel.cherokeeXJ
-            }
-            
+            pushValue = JeepModel.enumFromString(string: value)!
         case .condition:
-            
-            switch value {
-            case Condition.used.description:
-                pushValue = Condition.used
-            case Condition.new.description:
-                pushValue = Condition.new
-            case Condition.broke.description:
-                pushValue = Condition.broke
-            case Condition.remanufactured.description:
-                pushValue = Condition.remanufactured
-            default:
-                pushValue = Condition.other
-            }
-            
+            pushValue = Condition.enumFromString(string: value)!
         }
         
         if let delegate = delegate {
