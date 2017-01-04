@@ -9,19 +9,19 @@
 import UIKit
 
 enum Condition: Int {
-    case new = 0, used, broke, remanufactured, other
+    case new = 0, used, damaged, remanufactured, other
     
     var description : String {
         switch self {
         case .new: return "New";
         case .used: return "Used";
-        case .broke: return "Broken";
+        case .damaged: return "Damaged";
         case .remanufactured: return "Remanufactured";
         case .other: return "Other";
         }
     }
     
-     static var count: Int { return Condition.other.hashValue + 1 }
+    static var count: Int { return Condition.other.hashValue + 1 }
     
     static func enumFromString(string: String) -> Condition? {
         var i = 0
