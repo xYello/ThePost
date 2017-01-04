@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorageUI
 
 class ProductListingContentCollectionViewCell: UICollectionViewCell {
     
@@ -28,35 +29,14 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                 ref = FIRDatabase.database().reference().child("products").child(key)
                 likesListenerRef = ref!
                 
+                // Grab product images
+                grabProductImages(forKey: key)
+                
                 // Setup the observer to listen for like count changes for this product
-                likesListenerRef!.observe(.childChanged, with: { snapshot in
-                    if let likeCount = snapshot.value as? Int {
-                        DispatchQueue.main.async {
-                            self.likeCountLabel.text = "\(likeCount)"
-                        }
-                    }
-                })
+                setupListenerForLikeCount()
                 
                 // Check to see if the current user likes this product
-                if let uid = FIRAuth.auth()?.currentUser?.uid {
-                    var color = #colorLiteral(red: 0.2235294118, green: 0.2235294118, blue: 0.2235294118, alpha: 0.2034658138)
-                    let likesRef = FIRDatabase.database().reference().child("products").child(key)
-                    likesRef.observeSingleEvent(of: .value, with: { snapshot in
-                        if let product = snapshot.value as? [String: AnyObject] {
-                            if let likes = product["likes"] as? [String: Bool] {
-                                if let _ = likes[uid] {
-                                    color = #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
-                                }
-                            }
-                            
-                        }
-                        
-                        DispatchQueue.main.async {
-                            self.likeButton.imageView!.tintColor = color
-                        }
-                        
-                    })
-                }
+                checkForCurrentUserLike(forKey: key)
             }
         }
     }
@@ -96,7 +76,7 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Helpers
     
-    func incrementLikes(forRef ref: FIRDatabaseReference) {
+    private func incrementLikes(forRef ref: FIRDatabaseReference) {
         
         ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
             if var product = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
@@ -126,7 +106,51 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                 print(error.localizedDescription)
             }
         }
-        // [END post_stars_transaction]
     }
+    
+    private func grabProductImages(forKey key: String) {
+        let firstImageRef = FIRDatabase.database().reference().child("products").child(key).child("images").child("1")
+        firstImageRef.observeSingleEvent(of: .value, with: { snapshot in
+            if let urlString = snapshot.value as? String {
+                let url = URL(string: urlString)
+                self.imageView.sd_setImage(with: url)
+            } else {
+                self.imageView.image = nil
+            }
+        })
+    }
+    
+    private func setupListenerForLikeCount() {
+        likesListenerRef!.observe(.childChanged, with: { snapshot in
+            if let likeCount = snapshot.value as? Int {
+                DispatchQueue.main.async {
+                    self.likeCountLabel.text = "\(likeCount)"
+                }
+            }
+        })
+    }
+    
+    private func checkForCurrentUserLike(forKey key: String) {
+        if let uid = FIRAuth.auth()?.currentUser?.uid {
+            var color = #colorLiteral(red: 0.2235294118, green: 0.2235294118, blue: 0.2235294118, alpha: 0.2034658138)
+            let likesRef = FIRDatabase.database().reference().child("products").child(key)
+            likesRef.observeSingleEvent(of: .value, with: { snapshot in
+                if let product = snapshot.value as? [String: AnyObject] {
+                    if let likes = product["likes"] as? [String: Bool] {
+                        if let _ = likes[uid] {
+                            color = #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
+                        }
+                    }
+                    
+                }
+                
+                DispatchQueue.main.async {
+                    self.likeButton.imageView!.tintColor = color
+                }
+                
+            })
+        }
+    }
+    
     
 }
