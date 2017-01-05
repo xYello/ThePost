@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Lato-BoldItalic.ttf</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -21,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>0.5</string>
 	<key>CFBundleVersion</key>
-	<string>6</string>
+	<string>7</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -48,6 +44,10 @@
 	<string>We would like access to the camera to take images of products for product postings.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We would like access to the photo library to upload images of products for product postings.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Lato-BoldItalic.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
