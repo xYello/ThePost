@@ -651,49 +651,53 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                                 dbProduct["detailedDescription"] = description
                             }
                             
-                            let childUpdates = ["/products/\(key)": dbProduct, "/user-products/\(userID)/\(key)": dbProduct]
+                            // Compress stored images
+                            var compressedImages: [Data] = []
+                            for image in self.storedPictures {
+                                let imageData = UIImageJPEGRepresentation(image, 0.1)
+                                
+                                compressedImages.append(imageData!)
+                            }
                             
-                            self.ref.updateChildValues(childUpdates, withCompletionBlock: { error in
+                            // Upload images
+                            var imageOrder = 0
+                            var imageDictionary: [String: String] = [:]
+                            for imageData in compressedImages {
                                 
-                                // Compress stored images
-                                var compressedImages: [Data] = []
-                                for image in self.storedPictures {
-                                    let imageData = UIImageJPEGRepresentation(image, 0.1)
-                                    
-                                    compressedImages.append(imageData!)
-                                }
+                                let filePath = "products/" + key + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+                                let metadata = FIRStorageMetadata()
+                                metadata.contentType = "image/jpeg"
                                 
-                                // Upload images
-                                var imageOrder = 0
-                                for imageData in compressedImages {
-                                    
-                                    let filePath = "products/" + key + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
-                                    let metadata = FIRStorageMetadata()
-                                    metadata.contentType = "image/jpeg"
-                                    
-                                    self.storageRef.child(filePath).put(imageData, metadata: metadata, completion: { metadata, error in
-                                        if let error = error {
-                                            print("Error uploading images: \(error.localizedDescription)")
-                                        } else {
-                                            
-                                            // Grab image url and store in database
-                                            self.storageRef.child(filePath).downloadURL() { url, error in
-                                                if let error = error {
-                                                    print("Error getting download url: \(error.localizedDescription)")
-                                                } else {
+                                self.storageRef.child(filePath).put(imageData, metadata: metadata, completion: { metadata, error in
+                                    if let error = error {
+                                        print("Error uploading images: \(error.localizedDescription)")
+                                    } else {
+                                        
+                                        // Grab image url and store in product dictionary
+                                        self.storageRef.child(filePath).downloadURL() { url, error in
+                                            if let error = error {
+                                                print("Error getting download url: \(error.localizedDescription)")
+                                            } else {
+                                                if let url = url {
+                                                    let stringUrl = url.absoluteString
+
                                                     imageOrder += 1
-                                                    if let url = url {
-                                                        let stringUrl = url.absoluteString
-                                                        let childUpdates = ["products/\(key)/images/\(imageOrder)": stringUrl, "user-products/\(userID)/\(key)/images/\(imageOrder)": stringUrl]
-                                                        self.ref.updateChildValues(childUpdates)
+                                                    imageDictionary["\(imageOrder)"] = stringUrl
+                                                    
+                                                    if imageOrder == self.storedPictures.count {
+                                                        dbProduct["images"] = imageDictionary
+                                                        let productUpdates = ["/products/\(key)": dbProduct, "/user-products/\(userID)/\(key)": dbProduct]
+                                                        
+                                                        // Save the completed product at the very end
+                                                        self.ref.updateChildValues(productUpdates)
                                                     }
                                                 }
                                             }
-                                            
                                         }
-                                    })
-                                }
-                            })
+                                        
+                                    }
+                                })
+                            }
                         }
                     }
                     
