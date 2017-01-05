@@ -13,9 +13,12 @@ target 'ThePost' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'FirebaseUI'
-  
-  #Fabric
+
+  # Fabric
   pod 'Crashlytics'
+
+  # SwiftKeychainWrapper
+  pod 'SwiftKeychainWrapper'
 
   target 'ThePostTests' do
     inherit! :search_paths
