@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 class SignUpViewController: UIViewController {
 
@@ -49,8 +50,18 @@ class SignUpViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if FIRAuth.auth()?.currentUser != nil {
-            performSegue(withIdentifier: "skipToPostLaunch", sender: self)
+        if let pass = KeychainWrapper.standard.string(forKey: "userPass") {
+            if let email = FIRAuth.auth()?.currentUser?.email {
+                
+                let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)
+                FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
+                    if let error = error {
+                        print("Error reauthenticating: \(error.localizedDescription)")
+                    } else {
+                        self.performSegue(withIdentifier: "skipToPostLaunch", sender: self)
+                    }
+                })
+            }
         }
         ref = FIRDatabase.database().reference()
     }
@@ -159,6 +170,7 @@ class SignUpViewController: UIViewController {
                         return
                     }
                     
+                    KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: "userPass")
                     self.ref.child("users").child(user.uid).setValue(["fullName": self.usernameTextField.text])
                     self.performSegue(withIdentifier: "skipToPostLaunch", sender: self)
                 }
