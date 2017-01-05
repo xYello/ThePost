@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDelegate {
     
@@ -87,7 +88,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         
         let index = tabBar.items!.index(of: item)
         
-        if index != 2 {
+        if index != 2 && FIRAuth.auth()?.currentUser != nil {
             if let views = interactionViews {
                 let selectedFrame = views[index!].frame
                 
@@ -103,7 +104,13 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         var shouldSelect = false
         
-        if viewController.title == "addNewPostTabBarViewController" {
+        if FIRAuth.auth()?.currentUser == nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "SignInUpPrompt")
+            vc.modalPresentationStyle = .overCurrentContext
+            
+            present(vc, animated: false, completion: nil)
+        } else if viewController.title == "addNewPostTabBarViewController" {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "addNewPostViewController")
             vc.modalPresentationStyle = .overCurrentContext

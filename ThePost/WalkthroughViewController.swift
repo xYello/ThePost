@@ -25,7 +25,7 @@ class WalkthroughViewController: UIViewController, UICollectionViewDataSource, U
     // MARK: - Actions
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
-        // TODO: Skip...
+        performSegue(withIdentifier: "appServicesRequestSegue", sender: self)
     }
     
     // MARK: - CollectionView datasource
