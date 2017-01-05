@@ -117,13 +117,13 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         
-        let string = formatter.string(from: floor(product.price) as NSNumber)
-        let endIndex = string!.index(string!.endIndex, offsetBy: -3)
-        let truncated = string!.substring(to: endIndex) // Remove the .00 from the price.
-        cell.priceLabel.text = truncated
-        
-        if product.images.count > 0 {
-            cell.imageView.image = product.images[0]
+        if product.price == 0.00 {
+            cell.priceLabel.text = "Free"
+        } else {
+            let string = formatter.string(from: floor(product.price) as NSNumber)
+            let endIndex = string!.index(string!.endIndex, offsetBy: -3)
+            let truncated = string!.substring(to: endIndex) // Remove the .00 from the price.
+            cell.priceLabel.text = truncated
         }
         
         cell.nameLabel.text = product.name
