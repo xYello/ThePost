@@ -67,4 +67,8 @@ class AppServicesRequestViewController: UIViewController {
         }
     }
     
+    @IBAction func skipButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "unwindToPresenting", sender: self)
+    }
+    
 }

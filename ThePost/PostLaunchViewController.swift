@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import SwiftKeychainWrapper
 
 class PostLaunchViewController: UIViewController {
     
@@ -24,10 +26,27 @@ class PostLaunchViewController: UIViewController {
         didSelectJeep = true
         jeepModel = Jeep(withType: JeepModel.wranglerJK)
         
-        if !didSelectJeep {
-            performSegue(withIdentifier: "jeepSelectorSegue", sender: self)
+        if let pass = KeychainWrapper.standard.string(forKey: "userPass") {
+            if let email = FIRAuth.auth()?.currentUser?.email {
+                
+                let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)
+                FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
+                    if let error = error {
+                        print("Error reauthenticating: \(error.localizedDescription)")
+                    }
+                    
+                    self.decideWhichSegueToPerform()
+                })
+            } else {
+                self.decideWhichSegueToPerform()
+            }
         } else {
-            performSegue(withIdentifier: "tabBarControllerSegue", sender: self)
+            do {
+                try FIRAuth.auth()?.signOut()
+                self.decideWhichSegueToPerform()
+            } catch {
+                print("Error signing out")
+            }
         }
     }
     
@@ -38,6 +57,16 @@ class PostLaunchViewController: UIViewController {
             print("Selected Jeep was: \(vc.jeepModel.name!)")
             jeepModel = vc.jeepModel
             didSelectJeep = true
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func decideWhichSegueToPerform() {
+        if !self.didSelectJeep {
+            self.performSegue(withIdentifier: "jeepSelectorSegue", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "tabBarControllerSegue", sender: self)
         }
     }
     

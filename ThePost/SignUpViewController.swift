@@ -47,22 +47,7 @@ class SignUpViewController: UIViewController {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
         view.addGestureRecognizer(gesture)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if let pass = KeychainWrapper.standard.string(forKey: "userPass") {
-            if let email = FIRAuth.auth()?.currentUser?.email {
-                
-                let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)
-                FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
-                    if let error = error {
-                        print("Error reauthenticating: \(error.localizedDescription)")
-                    } else {
-                        self.performSegue(withIdentifier: "skipToPostLaunch", sender: self)
-                    }
-                })
-            }
-        }
+        
         ref = FIRDatabase.database().reference()
     }
     
@@ -172,7 +157,7 @@ class SignUpViewController: UIViewController {
                     
                     KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: "userPass")
                     self.ref.child("users").child(user.uid).setValue(["fullName": self.usernameTextField.text])
-                    self.performSegue(withIdentifier: "skipToPostLaunch", sender: self)
+                    self.performSegue(withIdentifier: "walkthroughSegue", sender: self)
                 }
             })
             
@@ -187,7 +172,7 @@ class SignUpViewController: UIViewController {
         if sender.currentTitle == "Google" {
             
         } else if sender.currentTitle == "Facebook" {
-            performSegue(withIdentifier: "skipToPostLaunch", sender: self)
+            performSegue(withIdentifier: "walkthroughSegue", sender: self)
         } else if sender.currentTitle == "Twitter" {
             
         }

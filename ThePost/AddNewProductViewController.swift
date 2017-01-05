@@ -114,7 +114,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             animator.addBehavior(snap)
             
             UIView.animate(withDuration: 0.25, animations: {
-                self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7020763423)
+                self.view.backgroundColor = #colorLiteral(red: 0.4705882353, green: 0.4705882353, blue: 0.4705882353, alpha: 0.7527527265)
             })
         }
     }
