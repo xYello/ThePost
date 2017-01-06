@@ -68,6 +68,8 @@ PODS:
   - FirebaseUI/Twitter (1.0.0):
     - FirebaseUI/Auth
     - TwitterKit (~> 2.4)
+  - GeoFire (2.0.0):
+    - Firebase/Database (~> 3.2)
   - GoogleAppUtilities (1.1.2):
     - GoogleSymbolUtilities (~> 1.1)
   - GoogleInterchangeUtilities (1.2.2):
@@ -111,14 +113,20 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - FirebaseUI
+  - GeoFire (from `https://github.com/firebase/geofire-objc.git`)
   - SwiftKeychainWrapper
   - UPCarouselFlowLayout (from `https://github.com/SirArkimedes/UPCarouselFlowLayout.git`)
 
 EXTERNAL SOURCES:
+  GeoFire:
+    :git: https://github.com/firebase/geofire-objc.git
   UPCarouselFlowLayout:
     :git: https://github.com/SirArkimedes/UPCarouselFlowLayout.git
 
 CHECKOUT OPTIONS:
+  GeoFire:
+    :commit: dbb8d193f5ee1371837800d0502bd29cba779da4
+    :git: https://github.com/firebase/geofire-objc.git
   UPCarouselFlowLayout:
     :commit: 100b338701c444b47276df843a8fcc69803d7c21
     :git: https://github.com/SirArkimedes/UPCarouselFlowLayout.git
@@ -137,6 +145,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   FirebaseStorage: 5738284835edb57f0e81d4ae5832bb17c1e4b5fa
   FirebaseUI: 82bd64fc3fc5a9451c37a720aee813990e727cf1
+  GeoFire: ef73103b88eb026c27212c40ea16757d6ad362ea
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSignIn: a8694c0a8e6d1b0ec77c58014de5bfd4ba2fa766
@@ -150,6 +159,6 @@ SPEC CHECKSUMS:
   TwitterKit: 97e729ceea041d174126235bf6ff67dcf37772d4
   UPCarouselFlowLayout: adfa361c52315c0efc56dbe2555c494b8940f58a
 
-PODFILE CHECKSUM: affbd16c8ad226c7e74e5f1c6eb9d22545cf308f
+PODFILE CHECKSUM: 780ca234cbf67db0a7b539ef9c6b415ed00c8229
 
 COCOAPODS: 1.1.1
