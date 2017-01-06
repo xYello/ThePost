@@ -33,6 +33,11 @@ class PostLaunchViewController: UIViewController {
                 FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
                     if let error = error {
                         print("Error reauthenticating: \(error.localizedDescription)")
+                        do {
+                            try FIRAuth.auth()?.signOut()
+                        } catch {
+                            print("Error signing out")
+                        }
                     }
                     
                     self.decideWhichSegueToPerform()

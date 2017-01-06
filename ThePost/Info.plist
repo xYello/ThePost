@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The Wave uses your location to show where a product that you created is located and to also search for products near you.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -41,9 +43,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>We would like access to the camera to take images of products for product postings.</string>
+	<string>The Wave would like access to the camera to take images of products.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We would like access to the photo library to upload images of products for product postings.</string>
+	<string>The Wave would like access to the photo library to upload images of products.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-BoldItalic.ttf</string>
