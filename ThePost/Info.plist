@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The Wave uses your location to show where a product that you created is located and to also search for products near you.</string>
+	<string>The Wave uses your location to show where a product that you created is located and to also search for products near you. The Wave will never share your location with others.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

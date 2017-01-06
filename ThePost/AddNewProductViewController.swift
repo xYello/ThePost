@@ -9,8 +9,9 @@
 import UIKit
 import AVFoundation
 import Firebase
+import GeoFire
 
-class AddNewProductViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate,
+class AddNewProductViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate,
                                    UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, NewProductBaseTableViewCellDelegate {
     
     private enum CellType {
@@ -54,13 +55,26 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     private var storageRef: FIRStorageReference!
     private var newProduct: Product?
     
+    private var geoFire: GeoFire!
+    private var locationManager: CLLocationManager!
+    private var lastGrabbedLocation: CLLocation?
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ref = FIRDatabase.database().reference()
+        geoFire = GeoFire(firebaseRef: ref.child("products-location"))
         storageRef = FIRStorage.storage().reference()
+        
+        locationManager = CLLocationManager()
+        
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
@@ -370,6 +384,14 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                 }
             }
             
+        }
+    }
+    
+    // MARK: - LocationManager delegate
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = manager.location {
+            lastGrabbedLocation = location
         }
     }
  
@@ -693,7 +715,12 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                                                         let productUpdates = ["/products/\(key)": dbProduct, "/user-products/\(userID)/\(key)": dbProduct]
                                                         
                                                         // Save the completed product at the very end
-                                                        self.ref.updateChildValues(productUpdates)
+                                                        self.ref.updateChildValues(productUpdates) { error in
+                                                            // Save location of user as current location of product
+                                                            if let location = self.lastGrabbedLocation {
+                                                                self.geoFire.setLocation(location, forKey: key)
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
