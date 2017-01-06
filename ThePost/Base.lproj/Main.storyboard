@@ -872,6 +872,16 @@
                                             <action selector="wantsToAddPicture:" destination="NCn-ah-941" eventType="touchUpInside" id="NUd-do-2Gs"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lj-6g-vH4">
+                                        <rect key="frame" x="51" y="174" width="240" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="7Ub-9N-dNG"/>
+                                            <constraint firstAttribute="width" constant="240" id="qS0-hD-kpk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
+                                        <color key="textColor" red="0.90980392156862744" green="0.90588235294117647" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zzp-eJ-5at">
                                         <rect key="frame" x="51" y="174" width="240" height="50"/>
                                         <subviews>
@@ -1240,10 +1250,12 @@
                                 <constraints>
                                     <constraint firstItem="xcH-HC-i49" firstAttribute="top" secondItem="03z-kh-JRe" secondAttribute="top" id="7Dr-Kf-jLl"/>
                                     <constraint firstItem="MMq-a0-e48" firstAttribute="top" secondItem="46I-dO-gQa" secondAttribute="bottom" id="7Kl-bS-jta"/>
+                                    <constraint firstItem="8Lj-6g-vH4" firstAttribute="centerX" secondItem="STY-D9-ZMu" secondAttribute="centerX" id="Df5-Y5-BxC"/>
                                     <constraint firstItem="xcH-HC-i49" firstAttribute="leading" secondItem="03z-kh-JRe" secondAttribute="leading" id="F1g-Cr-8de"/>
                                     <constraint firstAttribute="trailing" secondItem="03z-kh-JRe" secondAttribute="trailing" id="F8d-4y-p66"/>
                                     <constraint firstAttribute="trailing" secondItem="Jp4-aA-K4n" secondAttribute="trailing" id="Isy-Sw-azw"/>
                                     <constraint firstAttribute="bottom" secondItem="MMq-a0-e48" secondAttribute="bottom" id="J5w-oh-hrF"/>
+                                    <constraint firstItem="8Lj-6g-vH4" firstAttribute="top" secondItem="xcH-HC-i49" secondAttribute="centerY" constant="45" id="Kjc-9n-xDw"/>
                                     <constraint firstItem="Jp4-aA-K4n" firstAttribute="top" secondItem="STY-D9-ZMu" secondAttribute="top" id="MoD-Il-Gir"/>
                                     <constraint firstItem="Jp4-aA-K4n" firstAttribute="bottom" secondItem="03z-kh-JRe" secondAttribute="bottom" id="NNU-6j-6ba"/>
                                     <constraint firstItem="46I-dO-gQa" firstAttribute="top" secondItem="03z-kh-JRe" secondAttribute="bottom" constant="1" id="Qff-Qd-77P"/>
@@ -1275,6 +1287,7 @@
                         <outlet property="cameraAlert" destination="Zzp-eJ-5at" id="M5m-7U-Y0c"/>
                         <outlet property="cameraAlertLabel" destination="g1p-gl-DtC" id="HUD-JQ-PJT"/>
                         <outlet property="cameraButton" destination="xcH-HC-i49" id="cWM-QH-ltJ"/>
+                        <outlet property="cameraDescriptionLabel" destination="8Lj-6g-vH4" id="U3W-uB-3aw"/>
                         <outlet property="cancelButton" destination="hmL-vn-zoQ" id="AgV-9N-pJc"/>
                         <outlet property="collectionView" destination="Jp4-aA-K4n" id="RuR-C0-uQG"/>
                         <outlet property="container" destination="STY-D9-ZMu" id="p8i-3R-j6j"/>
@@ -1284,7 +1297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jd-Rp-ZQW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1748" y="2658"/>
+            <point key="canvasLocation" x="1748" y="2657.7211394302849"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="8a6-7X-2FF">
