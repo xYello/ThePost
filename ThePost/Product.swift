@@ -35,6 +35,8 @@ enum Condition: Int {
 
 class Product: NSObject {
     
+    var uid: String!
+    
     var owner: User!
     
     var images: [UIImage] = []
