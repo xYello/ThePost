@@ -23,8 +23,8 @@ class PostLaunchViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         // TODO: Remove this.
-//        didSelectJeep = true
-//        jeepModel = Jeep(withType: JeepModel.wranglerJK)
+        didSelectJeep = true
+        jeepModel = Jeep(withType: JeepModel.wranglerJK)
         
         if let pass = KeychainWrapper.standard.string(forKey: "userPass") {
             if let email = FIRAuth.auth()?.currentUser?.email {

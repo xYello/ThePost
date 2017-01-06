@@ -55,6 +55,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                                                   price: productDict["price"] as! Float,
                                                   condition: condition)
                             
+                            product.uid = snapshot.key
+                            
                             if let likeCount = productDict["likeCount"] as? Int {
                                 product.likeCount = likeCount
                             }
@@ -153,8 +155,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         var index = 0
         for product in self.products {
             
-            // TODO: This check can be true for more than one product...
-            if snapshot.name == product.name {
+            if snapshot.uid == product.uid {
                 return index
             }
             index += 1
