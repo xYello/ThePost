@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class AppServicesRequestViewController: UIViewController {
+class AppServicesRequestViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var containerView: UIView!
     
@@ -21,10 +22,15 @@ class AppServicesRequestViewController: UIViewController {
     
     private var originalContainerFrame: CGRect!
     
+    private var manager: CLLocationManager!
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        manager = CLLocationManager()
+        manager.delegate = self
         
         requestButton.roundCorners()
     }
@@ -40,7 +46,9 @@ class AppServicesRequestViewController: UIViewController {
     @IBAction func requestButtonPressed(_ sender: UIButton) {
         if requestButton.currentTitle == "Enable Location" {
             
-            
+            if CLLocationManager.locationServicesEnabled() {
+                manager.requestWhenInUseAuthorization()
+            }
             
             UIView.animate(withDuration: 0.25, animations: {
                 self.containerView.frame = CGRect(x: self.containerView.frame.origin.x - 1 * self.containerView.frame.width,
@@ -61,14 +69,20 @@ class AppServicesRequestViewController: UIViewController {
                 })
             })
         } else {
-            
-            
-            
+            performSegue(withIdentifier: "unwindToPresenting", sender: self)
         }
     }
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "unwindToPresenting", sender: self)
+    }
+    
+    // MARK: - CLLocationManager delegates
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            manager.startUpdatingLocation()
+        }
     }
     
 }
