@@ -28,6 +28,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var cameraAlert: UIView!
     @IBOutlet weak var cameraAlertLabel: UILabel!
+    @IBOutlet weak var cameraDescriptionLabel: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -306,6 +307,9 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             
             let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
             layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+            
+            cameraDescriptionLabel.text = "Add more Photos"
+            cameraButton.setImage(#imageLiteral(resourceName: "PIPCameraPlus"), for: .normal)
         }
     }
     
