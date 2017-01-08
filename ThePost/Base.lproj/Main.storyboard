@@ -1950,20 +1950,6 @@
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99,999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNG-Fl-i7w">
-                                                    <rect key="frame" x="306" y="7" width="54" height="17"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="54" id="2cF-tQ-ziL"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                                    <color key="textColor" red="0.34509803921568627" green="0.69019607843137254" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="characterSpacing">
-                                                            <real key="value" value="10"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LikeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="g5C-Rm-Qa0">
                                                     <rect key="frame" x="110" y="52" width="14" height="19"/>
                                                     <constraints>
@@ -1979,28 +1965,37 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SoldSign" translatesAutoresizingMaskIntoConstraints="NO" id="xMR-sb-bUc">
                                                     <rect key="frame" x="32" y="20" width="51" height="39"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99,999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5z-r1-atz">
+                                                    <rect key="frame" x="306" y="7" width="54" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="54" id="nWo-q6-wPQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                                    <color key="textColor" red="0.34509803919999998" green="0.69019607839999997" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dLM-cf-Vz7" firstAttribute="leading" secondItem="6QI-s4-xu6" secondAttribute="trailing" constant="8" id="2ZN-7Q-3Oi"/>
+                                                <constraint firstItem="D5z-r1-atz" firstAttribute="top" secondItem="dLM-cf-Vz7" secondAttribute="top" id="69v-2f-D2W"/>
                                                 <constraint firstItem="wea-hg-Par" firstAttribute="top" secondItem="g5C-Rm-Qa0" secondAttribute="top" constant="-1" id="8bl-CH-qeN"/>
                                                 <constraint firstItem="wea-hg-Par" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0sA-Ne-oYs" secondAttribute="bottom" constant="5" id="95e-iK-FNN"/>
                                                 <constraint firstItem="6QI-s4-xu6" firstAttribute="centerY" secondItem="Pkg-OL-95I" secondAttribute="centerY" id="98H-Wf-uvj"/>
                                                 <constraint firstItem="xMR-sb-bUc" firstAttribute="trailing" secondItem="6QI-s4-xu6" secondAttribute="trailing" constant="-17" id="9fb-al-3D1"/>
-                                                <constraint firstItem="yNG-Fl-i7w" firstAttribute="top" secondItem="dLM-cf-Vz7" secondAttribute="top" id="AKa-df-Jfe"/>
                                                 <constraint firstItem="wea-hg-Par" firstAttribute="bottom" secondItem="g5C-Rm-Qa0" secondAttribute="bottom" constant="-1" id="EhY-C2-WN5"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="wea-hg-Par" secondAttribute="trailing" id="Ex1-ES-r1T"/>
-                                                <constraint firstItem="yNG-Fl-i7w" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dLM-cf-Vz7" secondAttribute="trailing" priority="750" constant="5" id="G0n-xx-Ad8"/>
                                                 <constraint firstItem="g5C-Rm-Qa0" firstAttribute="leading" secondItem="6QI-s4-xu6" secondAttribute="trailing" constant="10" id="HqO-fW-Dew"/>
+                                                <constraint firstItem="D5z-r1-atz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dLM-cf-Vz7" secondAttribute="trailing" priority="750" constant="5" id="K3a-8j-8so"/>
                                                 <constraint firstItem="g5C-Rm-Qa0" firstAttribute="bottom" secondItem="6QI-s4-xu6" secondAttribute="bottom" id="Mu5-hr-0uh"/>
                                                 <constraint firstItem="0sA-Ne-oYs" firstAttribute="top" secondItem="dLM-cf-Vz7" secondAttribute="bottom" constant="2" id="QPD-Nz-JdW"/>
                                                 <constraint firstItem="6QI-s4-xu6" firstAttribute="top" secondItem="Pkg-OL-95I" secondAttribute="topMargin" constant="-1" id="SbF-Ep-YmU"/>
                                                 <constraint firstItem="dLM-cf-Vz7" firstAttribute="top" secondItem="6QI-s4-xu6" secondAttribute="top" id="YiX-7W-UGk"/>
                                                 <constraint firstItem="wea-hg-Par" firstAttribute="leading" secondItem="g5C-Rm-Qa0" secondAttribute="trailing" constant="5" id="Z2T-lY-49u"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="yNG-Fl-i7w" secondAttribute="trailing" constant="7" id="ZDT-fr-ukS"/>
                                                 <constraint firstItem="6QI-s4-xu6" firstAttribute="leading" secondItem="Pkg-OL-95I" secondAttribute="leadingMargin" constant="7" id="gQw-Ka-M1z"/>
                                                 <constraint firstItem="xMR-sb-bUc" firstAttribute="leading" secondItem="6QI-s4-xu6" secondAttribute="leading" constant="17" id="orB-4U-KtA"/>
                                                 <constraint firstItem="0sA-Ne-oYs" firstAttribute="leading" secondItem="dLM-cf-Vz7" secondAttribute="leading" id="rw0-cQ-vT7"/>
                                                 <constraint firstItem="xMR-sb-bUc" firstAttribute="bottom" secondItem="6QI-s4-xu6" secondAttribute="bottom" constant="-12" id="sbw-5a-83V"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="D5z-r1-atz" secondAttribute="trailing" constant="7" id="vgd-Ls-pcH"/>
                                                 <constraint firstItem="xMR-sb-bUc" firstAttribute="top" secondItem="6QI-s4-xu6" secondAttribute="top" constant="13" id="wBX-Ha-fwm"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -2009,7 +2004,7 @@
                                             <outlet property="likeCountLabel" destination="wea-hg-Par" id="uTl-fd-BgW"/>
                                             <outlet property="likeImageView" destination="g5C-Rm-Qa0" id="epQ-9r-WJv"/>
                                             <outlet property="nameLabel" destination="dLM-cf-Vz7" id="20p-cf-bwd"/>
-                                            <outlet property="priceLabel" destination="yNG-Fl-i7w" id="vLS-18-aeC"/>
+                                            <outlet property="priceLabel" destination="D5z-r1-atz" id="mBE-k1-XLU"/>
                                             <outlet property="productImageView" destination="6QI-s4-xu6" id="rbZ-Pz-Du4"/>
                                             <outlet property="simplifiedDescriptionLabel" destination="0sA-Ne-oYs" id="M0U-cz-chj"/>
                                             <outlet property="soldImageView" destination="xMR-sb-bUc" id="ZSg-9b-aXo"/>
@@ -2097,7 +2092,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2121,7 +2116,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="icS-JB-eAG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="MessagesTabBarIcon" id="gR2-QB-zbc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8D-YI-vEB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="T8D-YI-vEB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

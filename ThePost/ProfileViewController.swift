@@ -52,7 +52,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let uid = FIRAuth.auth()!.currentUser!.uid
         userProductsRef = FIRDatabase.database().reference().child("user-products").child(uid)
-        likesQuery = FIRDatabase.database().reference().child("user-likes").child(uid).queryLimited(toFirst: 100)
+        likesQuery = FIRDatabase.database().reference().child("user-likes").child(uid).queryLimited(toLast: 100)
         
         setupProductListeners()
         
