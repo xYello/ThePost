@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import SwiftKeychainWrapper
 
 class AppServicesRequestViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -82,6 +83,17 @@ class AppServicesRequestViewController: UIViewController, CLLocationManagerDeleg
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             manager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = manager.location {
+            CLGeocoder().reverseGeocodeLocation(location, completionHandler: { placemarks, error in
+                if let marks = placemarks {
+                    KeychainWrapper.standard.set(marks[0].locality!, forKey: "userCity")
+                    KeychainWrapper.standard.set(marks[0].administrativeArea!, forKey: "userState")
+                }
+            })
         }
     }
     

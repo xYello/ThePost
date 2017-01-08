@@ -78,6 +78,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                                                   price: productDict["price"] as! Float,
                                                   condition: condition)
                             
+                            product.uid = snapshot.key
+                            
                             let index = self.indexOfMessage(product)
                             self.products.remove(at: index)
                             self.keyPaths.remove(at: index)
@@ -151,7 +153,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     // MARK: - Helpers
     
-    func indexOfMessage(_ snapshot: Product) -> Int {
+    private func indexOfMessage(_ snapshot: Product) -> Int {
         var index = 0
         for product in self.products {
             

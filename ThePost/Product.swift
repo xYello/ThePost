@@ -74,6 +74,8 @@ class Product: NSObject {
     var acceptsPayPal = false
     var acceptsCash = false
     
+    var isSold = false
+    
     override init() {
         super.init()
     }
