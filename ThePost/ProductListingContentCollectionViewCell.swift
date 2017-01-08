@@ -82,12 +82,19 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
             if var product = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
                 var likes: Dictionary<String, Bool> = product["likes"] as? [String : Bool] ?? [:]
                 var likeCount = product["likeCount"] as? Int ?? 0
+                
+                let userLikesRef = FIRDatabase.database().reference().child("user-likes").child(uid)
+                
                 if let _ = likes[uid] {
                     likeCount -= 1
                     likes.removeValue(forKey: uid)
+                    userLikesRef.child(self.productKey!).removeValue()
                 } else {
                     likeCount += 1
                     likes[uid] = true
+                    
+                    let userLikesUpdate = [self.productKey!: true]
+                    userLikesRef.updateChildValues(userLikesUpdate)
                 }
                 product["likeCount"] = likeCount as AnyObject?
                 product["likes"] = likes as AnyObject?
@@ -106,6 +113,7 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                 print(error.localizedDescription)
             }
         }
+        
     }
     
     private func grabProductImages(forKey key: String) {

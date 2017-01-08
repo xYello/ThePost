@@ -43,6 +43,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     private var likedProducts: [Product] = []
     
     private var userProductsRef: FIRDatabaseReference!
+    private var likesQuery: FIRDatabaseQuery!
 
     // MARK: - View lifecycle
     
@@ -51,7 +52,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let uid = FIRAuth.auth()!.currentUser!.uid
         userProductsRef = FIRDatabase.database().reference().child("user-products").child(uid)
+        likesQuery = FIRDatabase.database().reference().child("user-likes").child(uid).queryLimited(toFirst: 100)
+        
         setupProductListeners()
+        
+        grabLikedPosts(with: uid)
         
         getUserProfile(with: uid)
         
@@ -81,6 +86,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     deinit {
         userProductsRef.removeAllObservers()
+        likesQuery.removeAllObservers()
     }
     
     // MARK: - TableView datasource
@@ -237,7 +243,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                             self.sellingProducts.append(product)
                         }
                         
-                        self.tableView.reloadData()
+                        if self.productViewType == .selling || self.productViewType == .sold {
+                            self.tableView.reloadData()
+                        }
                     }
                 }
             }
@@ -253,27 +261,79 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                                               condition: condition)
                         product.uid = snapshot.key
                         
-                        let index = self.indexOfMessage(product)
                         if let isSold = productDict["isSold"] as? Bool {
                             if isSold {
+                                let index = self.indexOf(product: product, in: self.soldProducts)
                                 self.soldProducts.remove(at: index)
                             } else {
+                                let index = self.indexOf(product: product, in: self.sellingProducts)
                                 self.sellingProducts.remove(at: index)
                             }
                         } else {
+                            let index = self.indexOf(product: product, in: self.sellingProducts)
                             self.sellingProducts.remove(at: index)
                         }
                         
-                        self.tableView.reloadData()
+                        if self.productViewType == .selling || self.productViewType == .sold {
+                            self.tableView.reloadData()
+                        }
                     }
                 }
             }
         })
     }
     
-    private func indexOfMessage(_ snapshot: Product) -> Int {
+    private func grabLikedPosts(with uid: String) {
+        likesQuery.observe(.childAdded, with: { snapshot in
+            let productQuery = FIRDatabase.database().reference().child("products").child(snapshot.key)
+            productQuery.observeSingleEvent(of: .value, with: { snapshot in
+                if let productDict = snapshot.value as? [String: Any] {
+                    if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
+                        if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
+                            let product = Product(withName: productDict["name"] as! String,
+                                                  model: jeepModel,
+                                                  price: productDict["price"] as! Float,
+                                                  condition: condition)
+                            product.uid = snapshot.key
+                            
+                            self.likedProducts.append(product)
+                            if self.productViewType == .liked {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
+            })
+        })
+        
+        likesQuery.observe(.childRemoved, with: { snapshot in
+            let productQuery = FIRDatabase.database().reference().child("products").child(snapshot.key)
+            productQuery.observeSingleEvent(of: .value, with: { snapshot in
+                if let productDict = snapshot.value as? [String: Any] {
+                    if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
+                        if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
+                            let product = Product(withName: productDict["name"] as! String,
+                                                  model: jeepModel,
+                                                  price: productDict["price"] as! Float,
+                                                  condition: condition)
+                            product.uid = snapshot.key
+                            
+                            let index = self.indexOf(product: product, in: self.likedProducts)
+                            self.likedProducts.remove(at: index)
+                            
+                            if self.productViewType == .liked {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
+            })
+        })
+    }
+    
+    private func indexOf(product snapshot: Product, in array: [Product]) -> Int {
         var index = 0
-        for product in productArray() {
+        for product in array {
             
             if snapshot.uid == product.uid {
                 return index
