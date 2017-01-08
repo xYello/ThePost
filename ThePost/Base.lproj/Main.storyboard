@@ -1441,9 +1441,9 @@
                                                         <constraint firstAttribute="width" secondItem="eGG-kW-Bk7" secondAttribute="height" multiplier="4032:3024" id="lHn-qH-I3c"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dor-dV-FEf">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$00,000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dor-dV-FEf">
                                                     <rect key="frame" x="0.0" y="138" width="51" height="21"/>
-                                                    <color key="backgroundColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.71764705882352942" green="0.30980392156862746" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="51" id="mmp-gu-KTj"/>
                                                         <constraint firstAttribute="height" constant="21" id="v7U-Ee-SYT"/>
@@ -1455,7 +1455,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSy-jX-hSv">
                                                     <rect key="frame" x="8" y="162" width="196" height="13"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqo-z9-kJ4" userLabel="Seperator View">
@@ -1471,7 +1471,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="vlT-rK-ODr"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="10"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWV-7K-tOG">
@@ -1495,7 +1495,7 @@
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.83921568627450982" green="0.84705882352941175" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="hqo-z9-kJ4" firstAttribute="centerX" secondItem="eoB-qG-Hcs" secondAttribute="centerX" id="3HQ-Nq-ocy"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="hqo-z9-kJ4" secondAttribute="trailing" id="97z-8a-7oC"/>

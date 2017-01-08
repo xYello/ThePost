@@ -57,7 +57,7 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
             
             if let imageView = likeButton.imageView {
                 if imageView.tintColor == #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1) {
-                    imageView.tintColor = #colorLiteral(red: 0.2235294118, green: 0.2235294118, blue: 0.2235294118, alpha: 0.2034658138)
+                    imageView.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3)
                 } else {
                     imageView.tintColor = #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
                 }
