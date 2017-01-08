@@ -902,7 +902,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-pw-eQ7">
-                                                            <rect key="frame" x="34" y="7" width="82" height="20"/>
+                                                            <rect key="frame" x="34" y="6" width="82" height="20"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1151,13 +1151,13 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="NyU-RR-9ca">
-                                                            <rect key="frame" x="34" y="7" width="82" height="20"/>
+                                                            <rect key="frame" x="34" y="6" width="82" height="20"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="slO-3z-g1E">
-                                                            <rect key="frame" x="294" y="2" width="51" height="31"/>
+                                                            <rect key="frame" x="286" y="2" width="51" height="31"/>
                                                             <connections>
                                                                 <action selector="switchValueChanged:" destination="zim-FK-aZl" eventType="valueChanged" id="AOU-Ch-BxC"/>
                                                             </connections>
@@ -1169,7 +1169,7 @@
                                                         <constraint firstItem="slO-3z-g1E" firstAttribute="top" secondItem="bec-IA-v3X" secondAttribute="topMargin" constant="-6" id="bgf-XB-NTm"/>
                                                         <constraint firstItem="NyU-RR-9ca" firstAttribute="leading" secondItem="Hlc-9e-1OQ" secondAttribute="trailing" constant="9" id="gkD-LB-b1o"/>
                                                         <constraint firstItem="NyU-RR-9ca" firstAttribute="centerY" secondItem="bec-IA-v3X" secondAttribute="centerY" constant="-1" id="hNJ-3a-ne7"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="slO-3z-g1E" secondAttribute="trailing" constant="-8" id="hn4-Qs-Zpn"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="slO-3z-g1E" secondAttribute="trailing" id="hn4-Qs-Zpn"/>
                                                         <constraint firstItem="Hlc-9e-1OQ" firstAttribute="centerY" secondItem="bec-IA-v3X" secondAttribute="centerY" id="uof-Ec-aAw"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -2068,7 +2068,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2092,7 +2092,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="icS-JB-eAG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="MessagesTabBarIcon" id="gR2-QB-zbc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="T8D-YI-vEB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8D-YI-vEB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
