@@ -122,9 +122,11 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     
     private func setupListenerForLikeCount() {
         likesListenerRef!.observe(.childChanged, with: { snapshot in
-            if let likeCount = snapshot.value as? Int {
-                DispatchQueue.main.async {
-                    self.likeCountLabel.text = "\(likeCount)"
+            if snapshot.key == "likeCount" {
+                if let likeCount = snapshot.value as? Int {
+                    DispatchQueue.main.async {
+                        self.likeCountLabel.text = "\(likeCount)"
+                    }
                 }
             }
         })

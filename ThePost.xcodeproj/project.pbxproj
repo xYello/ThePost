@@ -40,6 +40,8 @@
 		4D24E8C51E157F5000E524FD /* NewProductDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D24E8C41E157F5000E524FD /* NewProductDropDownTableViewCell.swift */; };
 		4D24E8C91E15C48600E524FD /* NewProductSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D24E8C81E15C48600E524FD /* NewProductSwitchTableViewCell.swift */; };
 		4D24E8CB1E15C79900E524FD /* NewProductDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D24E8CA1E15C79900E524FD /* NewProductDetailsTableViewCell.swift */; };
+		4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A38DB1E2180A3003D42CA /* ProductListingTableViewCell.swift */; };
+		4D34358D1E203E2800E031D7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34358C1E203E2800E031D7 /* ProfileViewController.swift */; };
 		4D35A20E1E11FA4B00A115EB /* CategorySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A20D1E11FA4B00A115EB /* CategorySelectorViewController.swift */; };
 		4D35A2121E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A2111E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift */; };
 		4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */; };
@@ -114,6 +116,8 @@
 		4D24E8C41E157F5000E524FD /* NewProductDropDownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductDropDownTableViewCell.swift; sourceTree = "<group>"; };
 		4D24E8C81E15C48600E524FD /* NewProductSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		4D24E8CA1E15C79900E524FD /* NewProductDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		4D2A38DB1E2180A3003D42CA /* ProductListingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingTableViewCell.swift; sourceTree = "<group>"; };
+		4D34358C1E203E2800E031D7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4D35A20D1E11FA4B00A115EB /* CategorySelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectorViewController.swift; sourceTree = "<group>"; };
 		4D35A2111E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectorCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TransparentBorders.swift"; sourceTree = "<group>"; };
@@ -221,6 +225,15 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
+		4D34358B1E203E1900E031D7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4D34358C1E203E2800E031D7 /* ProfileViewController.swift */,
+				4D2A38DB1E2180A3003D42CA /* ProductListingTableViewCell.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
 		4D35A20C1E11FA2800A115EB /* Category Selector */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +281,7 @@
 				4D239C401E12DF9300F2668E /* Product Listing */,
 				4D23EC711E1F85B40001C045 /* Chat */,
 				4DD3CCC41E14DC8200821C7C /* Add New Product */,
+				4D34358B1E203E1900E031D7 /* Profile */,
 				4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */,
 				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
 				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
@@ -611,7 +625,9 @@
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
 				4DEB7A621E17724A00C23216 /* NewProductBaseTableViewCell.swift in Sources */,
 				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
+				4D34358D1E203E2800E031D7 /* ProfileViewController.swift in Sources */,
 				4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */,
+				4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
 				4D23EC751E1F86130001C045 /* ConversationTableViewCell.swift in Sources */,
 				4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */,
