@@ -882,26 +882,6 @@
                                         <color key="textColor" red="0.90980392156862744" green="0.90588235294117647" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zzp-eJ-5at">
-                                        <rect key="frame" x="51" y="174" width="240" height="50"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will need to upload at least one photo to submit your item." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1p-gl-DtC">
-                                                <rect key="frame" x="13" y="8" width="214" height="34"/>
-                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="g1p-gl-DtC" secondAttribute="bottom" constant="8" id="1Zm-rL-PcU"/>
-                                            <constraint firstItem="g1p-gl-DtC" firstAttribute="top" secondItem="Zzp-eJ-5at" secondAttribute="top" constant="8" id="2tt-nV-c31"/>
-                                            <constraint firstAttribute="width" secondItem="Zzp-eJ-5at" secondAttribute="height" multiplier="24:5" id="7uO-Iy-zRO"/>
-                                            <constraint firstAttribute="trailing" secondItem="g1p-gl-DtC" secondAttribute="trailing" constant="13" id="EcA-1h-ayE"/>
-                                            <constraint firstItem="g1p-gl-DtC" firstAttribute="leading" secondItem="Zzp-eJ-5at" secondAttribute="leading" constant="13" id="RpO-OR-r0I"/>
-                                            <constraint firstAttribute="width" constant="240" id="TL1-Ip-l6O"/>
-                                        </constraints>
-                                    </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="46I-dO-gQa">
                                         <rect key="frame" x="0.0" y="259" width="343" height="301"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1261,12 +1241,10 @@
                                     <constraint firstItem="46I-dO-gQa" firstAttribute="top" secondItem="03z-kh-JRe" secondAttribute="bottom" constant="1" id="Qff-Qd-77P"/>
                                     <constraint firstItem="MMq-a0-e48" firstAttribute="leading" secondItem="STY-D9-ZMu" secondAttribute="leading" id="RLl-6d-OLi"/>
                                     <constraint firstItem="03z-kh-JRe" firstAttribute="top" secondItem="STY-D9-ZMu" secondAttribute="top" id="Rwx-X6-EOW"/>
-                                    <constraint firstItem="Zzp-eJ-5at" firstAttribute="centerX" secondItem="STY-D9-ZMu" secondAttribute="centerX" id="UU4-xq-rGR"/>
                                     <constraint firstItem="Jp4-aA-K4n" firstAttribute="leading" secondItem="STY-D9-ZMu" secondAttribute="leading" id="WcD-vs-ty1"/>
                                     <constraint firstAttribute="trailing" secondItem="46I-dO-gQa" secondAttribute="trailing" id="arw-5A-H3M"/>
                                     <constraint firstItem="xcH-HC-i49" firstAttribute="bottom" secondItem="03z-kh-JRe" secondAttribute="bottom" id="bV2-Vg-TWA"/>
                                     <constraint firstItem="46I-dO-gQa" firstAttribute="leading" secondItem="STY-D9-ZMu" secondAttribute="leading" id="gXS-t2-RqR"/>
-                                    <constraint firstItem="Zzp-eJ-5at" firstAttribute="top" secondItem="xcH-HC-i49" secondAttribute="centerY" constant="45" id="kvf-V7-o0f"/>
                                     <constraint firstAttribute="trailing" secondItem="MMq-a0-e48" secondAttribute="trailing" id="oBI-b2-Fht"/>
                                     <constraint firstItem="03z-kh-JRe" firstAttribute="leading" secondItem="STY-D9-ZMu" secondAttribute="leading" id="pNO-Ru-yAI"/>
                                     <constraint firstItem="xcH-HC-i49" firstAttribute="trailing" secondItem="03z-kh-JRe" secondAttribute="trailing" id="wTJ-U6-MYI"/>
@@ -1284,8 +1262,6 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="03z-kh-JRe" id="LoN-HE-cHN"/>
                         <outlet property="backgroundImageViewAspectRatioConstraint" destination="2x4-Hz-gJa" id="RGX-GX-n4M"/>
-                        <outlet property="cameraAlert" destination="Zzp-eJ-5at" id="M5m-7U-Y0c"/>
-                        <outlet property="cameraAlertLabel" destination="g1p-gl-DtC" id="HUD-JQ-PJT"/>
                         <outlet property="cameraButton" destination="xcH-HC-i49" id="cWM-QH-ltJ"/>
                         <outlet property="cameraDescriptionLabel" destination="8Lj-6g-vH4" id="U3W-uB-3aw"/>
                         <outlet property="cancelButton" destination="hmL-vn-zoQ" id="AgV-9N-pJc"/>

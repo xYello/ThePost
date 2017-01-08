@@ -27,8 +27,6 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var backgroundImageView: UIImageView!
     
     @IBOutlet weak var cameraButton: UIButton!
-    @IBOutlet weak var cameraAlert: UIView!
-    @IBOutlet weak var cameraAlertLabel: UILabel!
     @IBOutlet weak var cameraDescriptionLabel: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -45,7 +43,6 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     
     private var imagePicker: UIImagePickerController!
     private var storedPictures: [UIImage] = []
-    private var disappearTimerSet = false
     
     private var animator: UIDynamicAnimator!
     
@@ -90,8 +87,6 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         
         container.roundCorners(radius: 8.0)
         container.alpha = 0.0
-        
-        cameraAlert.alpha = 0.0
         
         collectionView.dataSource = self
         collectionView.alpha = 0.0
@@ -304,10 +299,6 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                 backgroundImageView.addConstraint(backgroundImageViewAspectRatioConstraint)
             }
             
-            if cameraAlert.alpha != 0.0 {
-                cameraAlert.alpha = 0.0
-            }
-            
             if cameraButton.isUserInteractionEnabled {
                 cameraButton.isUserInteractionEnabled = false
                 collectionView.delegate = self
@@ -322,8 +313,13 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
             layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
             
-            cameraDescriptionLabel.text = "Add more Photos"
-            cameraButton.setImage(#imageLiteral(resourceName: "PIPCameraPlus"), for: .normal)
+            if storedPictures.count < 4 {
+                cameraDescriptionLabel.text = "Add more Photos"
+                cameraButton.setImage(#imageLiteral(resourceName: "PIPCameraPlus"), for: .normal)
+            } else {
+                cameraDescriptionLabel.text = ""
+                cameraButton.isHidden = true
+            }
         }
     }
     
@@ -416,7 +412,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         var isReadyForSubmit = true
         
         if storedPictures.count == 0 {
-            displayCameraAlert(with: "You will need to upload at least one photo to submit your item.")
+            shakeView(view: cameraDescriptionLabel)
             isReadyForSubmit = false
         }
         
@@ -567,45 +563,23 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     
     private func presentCameraOptions() {
         
-        if storedPictures.count < 4 {
-            
-            let options = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            
-            let camera = UIAlertAction(title: "Take a photo", style: .default, handler: { alert in
-                self.presentCamera(withSource: .camera)
-            })
-            
-            let library = UIAlertAction(title: "Choose from library", style: .default, handler: { aler in
-                self.presentCamera(withSource: .photoLibrary)
-            })
-            
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            options.addAction(camera)
-            options.addAction(library)
-            options.addAction(cancel)
-            
-            present(options, animated: true, completion: nil)
-            
-        } else {
-            
-            displayCameraAlert(with: "You may only upload 4 photos for a product.")
-            if !disappearTimerSet {
-                
-                disappearTimerSet = true
-                Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false, block: { timer in
-                    self.disappearTimerSet = false
-                    UIView.animate(withDuration: 0.15, animations: {
-                        self.cameraAlert.frame = CGRect(x: self.cameraAlert.frame.origin.x, y: self.cameraAlert.frame.origin.y + 5, width: self.cameraAlert.frame.width, height: self.cameraAlert.frame.height)
-                        self.cameraAlert.alpha = 0.0
-                        self.cameraAlert.roundCorners()
-                    }, completion: { done in
-                        self.cameraAlert.frame = CGRect(x: self.cameraAlert.frame.origin.x, y: self.cameraAlert.frame.origin.y - 5, width: self.cameraAlert.frame.width, height: self.cameraAlert.frame.height)
-                    })
-                })
-                
-            }
-        }
+        let options = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let camera = UIAlertAction(title: "Take a photo", style: .default, handler: { alert in
+            self.presentCamera(withSource: .camera)
+        })
+        
+        let library = UIAlertAction(title: "Choose from library", style: .default, handler: { aler in
+            self.presentCamera(withSource: .photoLibrary)
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        options.addAction(camera)
+        options.addAction(library)
+        options.addAction(cancel)
+        
+        present(options, animated: true, completion: nil)
     }
     
     private func presentCamera(withSource type: UIImagePickerControllerSourceType) {
@@ -637,16 +611,14 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         
     }
     
-    private func displayCameraAlert(with text: String) {
-        if cameraAlert.alpha == 0.0 {
-            cameraAlertLabel.text = text
-            cameraAlert.frame = CGRect(x: cameraAlert.frame.origin.x, y: cameraAlert.frame.origin.y - 5, width: cameraAlert.frame.width, height: cameraAlert.frame.height)
-            UIView.animate(withDuration: 0.15, animations: {
-                self.cameraAlert.frame = CGRect(x: self.cameraAlert.frame.origin.x, y: self.cameraAlert.frame.origin.y + 5, width: self.cameraAlert.frame.width, height: self.cameraAlert.frame.height)
-                self.cameraAlert.alpha = 1.0
-                self.cameraAlert.roundCorners()
-            })
-        }
+    private func shakeView(view: UIView) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.08
+        animation.repeatCount = 2
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: view.center.x - 10, y: view.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: view.center.x + 10, y: view.center.y))
+        view.layer.add(animation, forKey: "position")
     }
     
     private func createNewProductListing() {
