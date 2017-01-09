@@ -19,10 +19,13 @@ target 'ThePost' do
 
   # Fabric
   pod 'Crashlytics'
-
+  
   # SwiftKeychainWrapper
   pod 'SwiftKeychainWrapper'
-
+  
+  # JSQMessagesViewController
+  pod 'JSQMessagesViewController'
+  
   target 'ThePostTests' do
     inherit! :search_paths
     # Pods for testing

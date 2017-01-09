@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatConversationViewController: UIViewController, UITableViewDataSource {
+class ChatConversationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,6 +18,15 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let tabBar = tabBarController as? SlidingSelectionTabBarController {
+            tabBar.showShadow()
+        }
     }
     
     // MARK: - TableView datasource
@@ -38,6 +47,40 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource {
         cell.timeLabel.text = "Now"
         
         return cell
+    }
+    
+    // MARK: - TableView delegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let tabBar = tabBarController as? SlidingSelectionTabBarController {
+            tabBar.hideShadow()
+        }
+        
+        // SE
+        // Y31TlLgriYZS6pMqb9Z4MBq141I2
+        // Cantalope Robinson
+        
+        // Phone
+        // kKLTNG4QEvToQeFNFVJpQFEM22D2
+        // Andrew Robinson
+        let test = Conversation(id: "someChatID", otherPersonId: "kKLTNG4QEvToQeFNFVJpQFEM22D2", otherPersonName: "Andrew Robinson", productID: "-K_uqmLSqvxav-ykvDxg")
+        performSegue(withIdentifier: "chatViewController", sender: test)
+    }
+    
+    // MARK: - Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if let conversation = sender as? Conversation {
+            if let vc = segue.destination as? ChatViewController {
+                navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+                navigationController!.navigationBar.tintColor = #colorLiteral(red: 0.7647058824, green: 0.768627451, blue: 0.7137254902, alpha: 1)
+                
+                vc.conversation = conversation
+                vc.hidesBottomBarWhenPushed = true
+            }
+        }
     }
     
 }

@@ -15,6 +15,8 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
     
     private var interactionViews: [UIView]?
     
+    private var shadowLayer: CALayer!
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -24,14 +26,14 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         tabBar.backgroundColor = UIColor.black
         delegate = self
         
-        let border = CALayer()
-        border.frame = CGRect(x: -tabBar.frame.width / 2.0, y: tabBar.frame.origin.y, width: 2 * tabBar.frame.size.width, height: 10.0)
-        border.backgroundColor = UIColor.white.cgColor
-        border.shadowRadius = 5.0
-        border.shadowColor = #colorLiteral(red: 0.02352941176, green: 0.04705882353, blue: 0.09019607843, alpha: 1).cgColor
-        border.shadowOpacity = 0.25
+        shadowLayer = CALayer()
+        shadowLayer.frame = CGRect(x: -tabBar.frame.width / 2.0, y: tabBar.frame.origin.y, width: 2 * tabBar.frame.size.width, height: 10.0)
+        shadowLayer.backgroundColor = #colorLiteral(red: 0.1411764706, green: 0.1647058824, blue: 0.2117647059, alpha: 1).cgColor
+        shadowLayer.shadowRadius = 5.0
+        shadowLayer.shadowColor = #colorLiteral(red: 0.02352941176, green: 0.04705882353, blue: 0.09019607843, alpha: 1).cgColor
+        shadowLayer.shadowOpacity = 0.25
         
-        tabBar.superview!.layer.insertSublayer(border, at: 1)
+        tabBar.superview!.layer.insertSublayer(shadowLayer, at: 1)
         
         if let items = tabBar.items {
             items[2].image = #imageLiteral(resourceName: "NewPostTabBarIcon").withRenderingMode(.alwaysOriginal)
@@ -121,6 +123,16 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         }
         
         return shouldSelect
+    }
+    
+    // MARK: - Show/hide shadow layer
+    
+    func showShadow() {
+        shadowLayer.isHidden = false
+    }
+    
+    func hideShadow() {
+        shadowLayer.isHidden = true
     }
 
 }
