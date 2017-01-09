@@ -55,6 +55,8 @@
 		4D58C4EA1E0E1883004CA0E3 /* ThePostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4E91E0E1883004CA0E3 /* ThePostTests.swift */; };
 		4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */; };
 		4D907B561E13824D00F9FD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D907B551E13824D00F9FD8B /* User.swift */; };
+		4DA153F31E22EA6D00708543 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA153F21E22EA6D00708543 /* ChatViewController.swift */; };
+		4DA153F51E22EB1300708543 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA153F41E22EB1300708543 /* Conversation.swift */; };
 		4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */; };
 		4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */; };
 		4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */; };
@@ -136,6 +138,8 @@
 		4D58C4EB1E0E1883004CA0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4D907B551E13824D00F9FD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4DA153F21E22EA6D00708543 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		4DA153F41E22EB1300708543 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSelectionTabBarController.swift; sourceTree = "<group>"; };
@@ -219,8 +223,9 @@
 		4D23EC711E1F85B40001C045 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				4D23EC761E1F86360001C045 /* ChatConversationViewController.swift */,
-				4D23EC741E1F86130001C045 /* ConversationTableViewCell.swift */,
+				4DA153F41E22EB1300708543 /* Conversation.swift */,
+				4DA153F01E22EA3F00708543 /* Conversations */,
+				4DA153F11E22EA4C00708543 /* Individual Conversation */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -301,6 +306,23 @@
 				4D58C4EB1E0E1883004CA0E3 /* Info.plist */,
 			);
 			path = ThePostTests;
+			sourceTree = "<group>";
+		};
+		4DA153F01E22EA3F00708543 /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				4D23EC761E1F86360001C045 /* ChatConversationViewController.swift */,
+				4D23EC741E1F86130001C045 /* ConversationTableViewCell.swift */,
+			);
+			name = Conversations;
+			sourceTree = "<group>";
+		};
+		4DA153F11E22EA4C00708543 /* Individual Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				4DA153F21E22EA6D00708543 /* ChatViewController.swift */,
+			);
+			name = "Individual Conversation";
 			sourceTree = "<group>";
 		};
 		4DC6C6701E1609AA00431D3A /* Collection View Cells */ = {
@@ -626,6 +648,7 @@
 				4DEB7A621E17724A00C23216 /* NewProductBaseTableViewCell.swift in Sources */,
 				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
 				4D34358D1E203E2800E031D7 /* ProfileViewController.swift in Sources */,
+				4DA153F31E22EA6D00708543 /* ChatViewController.swift in Sources */,
 				4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */,
 				4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
@@ -640,6 +663,7 @@
 				4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */,
 				4D35A20E1E11FA4B00A115EB /* CategorySelectorViewController.swift in Sources */,
 				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
+				4DA153F51E22EB1300708543 /* Conversation.swift in Sources */,
 				4D35A21E1E121E3800A115EB /* JeepModelButton.swift in Sources */,
 				4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */,
 				4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */,
