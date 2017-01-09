@@ -136,12 +136,7 @@ class ChatViewController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         let itemRef = messageRef.childByAutoId()
         
-        let dateformatter = DateFormatter()
-        dateformatter.dateStyle = .short
-        dateformatter.timeStyle = .short
-        let stringDate = dateformatter.string(from: date)
-        
-        let messageItem = ["senderId": senderId, "senderName": senderDisplayName, "text": text, "date": stringDate] as [String: String]
+        let messageItem = ["senderId": senderId, "senderName": senderDisplayName, "text": text] as [String: String]
         
         itemRef.setValue(messageItem)
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
