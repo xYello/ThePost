@@ -12,8 +12,6 @@ import JSQMessagesViewController
 
 class ChatViewController: JSQMessagesViewController {
     
-    @IBOutlet weak var testView: UIView!
-    
     private var conversationRef: FIRDatabaseReference!
     private var messageRef: FIRDatabaseReference!
     private var messageQueryRef: FIRDatabaseQuery!
