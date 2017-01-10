@@ -22,10 +22,6 @@ class ProductViewerViewController: UIViewController {
         animator = UIDynamicAnimator()
         
         container.alpha = 0.0
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedOnView))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,14 +40,6 @@ class ProductViewerViewController: UIViewController {
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.backgroundColor = #colorLiteral(red: 0.4705882353, green: 0.4705882353, blue: 0.4705882353, alpha: 0.7527527265)
             })
-        }
-    }
-    
-    // MARK: - Actions
-    
-    @objc private func tappedOnView() {
-        prepareForDismissal {
-            self.dismiss(animated: false, completion: nil)
         }
     }
     
