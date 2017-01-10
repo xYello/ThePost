@@ -153,11 +153,15 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "viewProductInfo")
-        vc.modalPresentationStyle = .overCurrentContext
-        
-        if let tabController = tabBarController {
-            tabController.present(vc, animated: false, completion: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "viewProductInfo") as? ProductViewerViewController {
+            vc.modalPresentationStyle = .overCurrentContext
+            
+            let product = products[indexPath.row]
+            vc.product = product
+            
+            if let tabController = tabBarController {
+                tabController.present(vc, animated: false, completion: nil)
+            }
         }
     }
     

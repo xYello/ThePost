@@ -50,6 +50,8 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         }
     }
     
+    var product: Product!
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {

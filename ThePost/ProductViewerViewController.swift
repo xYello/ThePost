@@ -14,6 +14,8 @@ class ProductViewerViewController: UIViewController {
     
     private var animator: UIDynamicAnimator!
     
+    var product: Product!
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -62,6 +64,16 @@ class ProductViewerViewController: UIViewController {
         }, completion: { done in
             dismissCompletion()
         })
+    }
+    
+    // MARK: - Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if let destination = segue.destination as? ProductViewerContainerViewController {
+            destination.product = product
+        }
     }
 
 }
