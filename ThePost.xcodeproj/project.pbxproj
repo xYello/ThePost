@@ -54,6 +54,7 @@
 		4D58C4DF1E0E1882004CA0E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4DD1E0E1882004CA0E3 /* LaunchScreen.storyboard */; };
 		4D58C4EA1E0E1883004CA0E3 /* ThePostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4E91E0E1883004CA0E3 /* ThePostTests.swift */; };
 		4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */; };
+		4D5AB0AB1E242765005BF23B /* ChatContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AB0AA1E242765005BF23B /* ChatContainerViewController.swift */; };
 		4D907B561E13824D00F9FD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D907B551E13824D00F9FD8B /* User.swift */; };
 		4DA153F31E22EA6D00708543 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA153F21E22EA6D00708543 /* ChatViewController.swift */; };
 		4DA153F51E22EB1300708543 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA153F41E22EB1300708543 /* Conversation.swift */; };
@@ -137,6 +138,7 @@
 		4D58C4E91E0E1883004CA0E3 /* ThePostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThePostTests.swift; sourceTree = "<group>"; };
 		4D58C4EB1E0E1883004CA0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		4D5AB0AA1E242765005BF23B /* ChatContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContainerViewController.swift; sourceTree = "<group>"; };
 		4D907B551E13824D00F9FD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4DA153F21E22EA6D00708543 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		4DA153F41E22EB1300708543 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 		4DA153F11E22EA4C00708543 /* Individual Conversation */ = {
 			isa = PBXGroup;
 			children = (
+				4D5AB0AA1E242765005BF23B /* ChatContainerViewController.swift */,
 				4DA153F21E22EA6D00708543 /* ChatViewController.swift */,
 			);
 			name = "Individual Conversation";
@@ -647,6 +650,7 @@
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
 				4DEB7A621E17724A00C23216 /* NewProductBaseTableViewCell.swift in Sources */,
 				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
+				4D5AB0AB1E242765005BF23B /* ChatContainerViewController.swift in Sources */,
 				4D34358D1E203E2800E031D7 /* ProfileViewController.swift in Sources */,
 				4DA153F31E22EA6D00708543 /* ChatViewController.swift in Sources */,
 				4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */,
