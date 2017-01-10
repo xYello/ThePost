@@ -151,6 +151,16 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "viewProductInfo")
+        vc.modalPresentationStyle = .overCurrentContext
+        
+        if let tabController = tabBarController {
+            tabController.present(vc, animated: false, completion: nil)
+        }
+    }
+    
     // MARK: - Helpers
     
     private func indexOfMessage(_ snapshot: Product) -> Int {
