@@ -1648,6 +1648,41 @@
             </objects>
             <point key="canvasLocation" x="84" y="2658"/>
         </scene>
+        <!--Product Viewer View Controller-->
+        <scene sceneID="kAv-O9-1u7">
+            <objects>
+                <viewController storyboardIdentifier="viewProductInfo" id="R40-HT-vga" customClass="ProductViewerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vse-FW-mGO"/>
+                        <viewControllerLayoutGuide type="bottom" id="62z-QQ-dfe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KPj-6z-vBv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Geq-5T-U0S">
+                                <rect key="frame" x="16" y="34" width="343" height="613"/>
+                                <connections>
+                                    <segue destination="OL0-SV-hFV" kind="embed" id="2lN-Kf-mD6"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Geq-5T-U0S" secondAttribute="trailing" id="23H-Q8-jMM"/>
+                            <constraint firstItem="Geq-5T-U0S" firstAttribute="top" secondItem="Vse-FW-mGO" secondAttribute="bottom" constant="14" id="Pp9-mX-twV"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Geq-5T-U0S" secondAttribute="leading" id="mrL-R0-dQS"/>
+                            <constraint firstItem="62z-QQ-dfe" firstAttribute="top" secondItem="Geq-5T-U0S" secondAttribute="bottom" constant="20" id="qmP-Op-TRh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="container" destination="Geq-5T-U0S" id="MIm-ce-9gh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="krh-LS-1nT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="84" y="3388.1559220389809"/>
+        </scene>
         <!--Sliding Selection Tab Bar Controller-->
         <scene sceneID="3pT-7z-kF9">
             <objects>
@@ -2182,7 +2217,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2206,7 +2241,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="icS-JB-eAG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="MessagesTabBarIcon" id="gR2-QB-zbc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8D-YI-vEB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="T8D-YI-vEB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2255,6 +2290,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVu-1B-wIp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1634" y="3388"/>
+        </scene>
+        <!--Product Viewer Container View Controller-->
+        <scene sceneID="Zch-8y-Ymn">
+            <objects>
+                <viewController id="OL0-SV-hFV" customClass="ProductViewerContainerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4FN-xO-var">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="613"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rak-7D-VsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="84" y="4056"/>
         </scene>
     </scenes>
     <resources>
