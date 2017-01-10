@@ -359,6 +359,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             
             if let hasOriginalBox = value as? Bool {
                 newProduct!.originalBox = hasOriginalBox
+                view.endEditing(false)
             } else if let stringValue = value as? String {
                 
                 if stringValue == detailsCell.releaseYearTextField.text {
@@ -370,6 +371,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             
         } else if let switchCell = sender as? NewProductSwitchTableViewCell {
             
+            view.endEditing(false)
             if let switchIsOnOff = value as? Bool {
                 if switchCell.detailNameLabel.text == "Willing to Ship Item" {
                     newProduct!.willingToShip = switchIsOnOff

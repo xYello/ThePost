@@ -16,7 +16,7 @@ class NewProductDetailsTableViewCell: NewProductBaseTableViewCell, UITextFieldDe
     @IBOutlet weak var originalBoxSwitch: UISwitch!
     @IBOutlet weak var releaseYearTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -49,7 +49,7 @@ class NewProductDetailsTableViewCell: NewProductBaseTableViewCell, UITextFieldDe
         var shouldAllowCharacter = true
         
         if let string = textView.text {
-            if string.characters.count >= 300 && text != "" {
+            if string.characters.count >= 112 && text != "" {
                 shouldAllowCharacter = false
             } else {
                 if let delegate = delegate {
