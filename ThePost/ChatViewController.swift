@@ -25,6 +25,8 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     var soldImageView: UIImageView!
     var writeAReviewButton: UIButton!
     
+    var soldImageViewMidConstraint: NSLayoutConstraint!
+    
     private var conversationRef: FIRDatabaseReference!
     private var messageRef: FIRDatabaseReference!
     private var messageQueryRef: FIRDatabaseQuery!
@@ -57,21 +59,26 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
             if isProductSold {
                 
                 let ogCenter = soldImageView.center
-                soldImageView.frame = CGRect(x: -soldImageView.frame.width,
-                                             y: soldImageView.frame.origin.y,
-                                             width: soldImageView.frame.width,
-                                             height: soldImageView.frame.height)
+                let containerOgFrame = soldContainer.frame
+                soldImageViewMidConstraint.constant = -soldContainer.frame.width
+                soldContainer.frame = CGRect(x: soldContainer.frame.origin.x,
+                                             y: soldContainer.frame.origin.y,
+                                             width: 0,
+                                             height: soldContainer.frame.height)
                 
-                let snap = UISnapBehavior(item: soldImageView, snapTo: ogCenter)
-                snap.damping = 1.0
-                animator.addBehavior(snap)
-                
-                UIView.animate(withDuration: 0.25, animations: {
+                UIView.animate(withDuration: 0.5, animations: {
                     self.greenButton.alpha = 0.0
                     self.outlineButton.alpha = 0.0
                     
                     self.soldContainer.alpha = 1.0
                     self.soldImageView.alpha = 1.0
+                    
+                    self.soldContainer.frame = containerOgFrame
+                    self.view.layoutIfNeeded()
+                }, completion: { done in
+                    let snap = UISnapBehavior(item: self.soldImageView, snapTo: ogCenter)
+                    snap.damping = 1.0
+                    self.animator.addBehavior(snap)
                 })
                 
             } else {
@@ -133,7 +140,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         
         getProductDetails()
         
-        soldContainer.alpha = 1.0
+        soldContainer.alpha = 0.0
         soldImageView.alpha = 0.0
         
         writeAReviewButton.alpha = 0.0
