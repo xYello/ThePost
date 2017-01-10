@@ -10,7 +10,20 @@ import UIKit
 import Firebase
 import JSQMessagesViewController
 
-class ChatViewController: JSQMessagesViewController {
+class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
+    
+    var conversation: Conversation! {
+        didSet {
+            title = conversation.otherPersonName
+        }
+    }
+    
+    var greenButton: UIButton!
+    var outlineButton: UIButton!
+    
+    var soldContainer: UIView!
+    var soldImageView: UIImageView!
+    var writeAReviewButton: UIButton!
     
     private var conversationRef: FIRDatabaseReference!
     private var messageRef: FIRDatabaseReference!
@@ -18,11 +31,7 @@ class ChatViewController: JSQMessagesViewController {
     private var userTypingRef: FIRDatabaseReference!
     private var otherUserTypingQueryRef: FIRDatabaseQuery!
     
-    var conversation: Conversation! {
-        didSet {
-            title = conversation.otherPersonName
-        }
-    }
+    private var productIsSoldRef: FIRDatabaseReference!
     
     private var messages = [JSQMessage]()
     
@@ -40,10 +49,55 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
+    private var animator: UIDynamicAnimator!
+    
+    private var isProductOwner = false
+    private var isProductSold = false {
+        didSet {
+            if isProductSold {
+                
+                let ogCenter = soldImageView.center
+                soldImageView.frame = CGRect(x: -soldImageView.frame.width,
+                                             y: soldImageView.frame.origin.y,
+                                             width: soldImageView.frame.width,
+                                             height: soldImageView.frame.height)
+                
+                let snap = UISnapBehavior(item: soldImageView, snapTo: ogCenter)
+                snap.damping = 1.0
+                animator.addBehavior(snap)
+                
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.greenButton.alpha = 0.0
+                    self.outlineButton.alpha = 0.0
+                    
+                    self.soldContainer.alpha = 1.0
+                    self.soldImageView.alpha = 1.0
+                })
+                
+            } else {
+                let originalContainerFrame = soldContainer.frame
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.greenButton.alpha = 1.0
+                    self.outlineButton.alpha = 1.0
+                    self.soldContainer.frame = CGRect(x: self.soldContainer.frame.origin.x,
+                                                      y: self.soldContainer.frame.origin.y - self.soldContainer.frame.height,
+                                                      width: self.soldContainer.frame.width,
+                                                      height: self.soldContainer.frame.height)
+                }, completion: { done in
+                    self.soldContainer.alpha = 0.0
+                    self.soldContainer.frame = originalContainerFrame
+                })
+            }
+        }
+    }
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        animator = UIDynamicAnimator()
+        animator.delegate = self
         
         senderId = FIRAuth.auth()!.currentUser!.uid
         senderDisplayName = conversation.otherPersonName
@@ -53,7 +107,9 @@ class ChatViewController: JSQMessagesViewController {
         userTypingRef = conversationRef.child("typingIndicator").child(senderId)
         otherUserTypingQueryRef = conversationRef.child("typingIndicator").child(conversation.otherPersonId)
         
-        collectionView.backgroundColor = #colorLiteral(red: 0.1882352941, green: 0.2196078431, blue: 0.2784313725, alpha: 1)
+        productIsSoldRef = FIRDatabase.database().reference().child("products").child(conversation.productID).child("isSold")
+        
+        collectionView.backgroundColor = #colorLiteral(red: 0.1870684326, green: 0.2210902572, blue: 0.2803535461, alpha: 1)
         
         inputToolbar.contentView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
         inputToolbar.contentView.textView.backgroundColor = #colorLiteral(red: 0.1882352941, green: 0.2196078431, blue: 0.2784313725, alpha: 1)
@@ -66,6 +122,24 @@ class ChatViewController: JSQMessagesViewController {
         collectionView!.collectionViewLayout.incomingAvatarViewSize = .zero
         
         observeMessages()
+        
+        greenButton.roundCorners(radius: 8.0)
+        greenButton.alpha = 0.0
+        
+        outlineButton.roundCorners(radius: 8.0)
+        outlineButton.alpha = 0.0
+        outlineButton.layer.borderColor = outlineButton.titleLabel!.textColor.cgColor
+        outlineButton.layer.borderWidth = 1.0
+        
+        getProductDetails()
+        
+        soldContainer.alpha = 1.0
+        soldImageView.alpha = 0.0
+        
+        writeAReviewButton.alpha = 0.0
+        writeAReviewButton.roundCorners(radius: 8.0)
+        writeAReviewButton.layer.borderColor = outlineButton.titleLabel!.textColor.cgColor
+        writeAReviewButton.layer.borderWidth = 1.0
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,6 +153,20 @@ class ChatViewController: JSQMessagesViewController {
     deinit {
         messageQueryRef.removeAllObservers()
         otherUserTypingQueryRef.removeAllObservers()
+        productIsSoldRef.removeAllObservers()
+    }
+    
+    // MARK: - Animator delegate
+    
+    func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
+        if !isProductOwner {
+            writeAReviewButton.addTarget(self, action: #selector(writeAReviewButtonPressed), for: .touchUpInside)
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.soldImageView.alpha = 0.0
+                self.writeAReviewButton.alpha = 1.0
+            })
+        }
     }
     
     // MARK: - JSQCollectionView datasource
@@ -150,6 +238,29 @@ class ChatViewController: JSQMessagesViewController {
         isTyping = textView.text != ""
     }
     
+    // MARK: - Other Actions
+    
+    @objc private func greenButtonPressed() {
+        if greenButton.currentTitle == "Mark Sold" {
+            let productRef = FIRDatabase.database().reference()
+            let childUpdates = ["products/\(conversation.productID!)/isSold": true,
+                                "user-products/\(senderId!)/\(conversation.productID!)/isSold": true]
+            productRef.updateChildValues(childUpdates)
+        } else if greenButton.currentTitle == "View Profile" {
+            // TODO: View profile...
+        }
+    }
+    
+    @objc private func outlinedButtonPressed() {
+        if outlineButton.currentTitle == "View Product" {
+            // TODO: View product...
+        }
+    }
+    
+    @objc private func writeAReviewButtonPressed() {
+        // TODO: Open Write A Review...
+    }
+    
     // MARK: - Helpers
     
     private func addMessage(withId id: String, name: String, text: String) {
@@ -179,6 +290,58 @@ class ChatViewController: JSQMessagesViewController {
             if let isTyping = snapshot.value as? Bool {
                 self.showTypingIndicator = isTyping
                 self.scrollToBottom(animated: true)
+            }
+        })
+    }
+    
+    private func getProductDetails() {
+        let productRef = FIRDatabase.database().reference().child("products").child(conversation.productID)
+        productRef.observeSingleEvent(of: .value, with: { snapshot in
+            if let productDict = snapshot.value as? [String: Any] {
+                if let ownerID = productDict["owner"] as? String {
+                    var greenText = ""
+                    var outlineText = ""
+                    if ownerID == self.senderId {
+                        greenText = "Mark Sold"
+                        outlineText = "View Product"
+                        self.isProductOwner = true
+                    } else {
+                        greenText = "View Profile"
+                        outlineText = "View Product"
+                    }
+                    
+                    if let isSold = productDict["isSold"] as? Bool{
+                        if isSold {
+                            self.isProductSold = true
+                        } else {
+                            self.isProductSold = false
+                        }
+                    } else {
+                        self.isProductSold = false
+                    }
+                    
+                    if !self.isProductSold {
+                        self.setupIsSoldObserver()
+                    }
+                    
+                    self.greenButton.addTarget(self, action: #selector(self.greenButtonPressed), for: .touchUpInside)
+                    self.outlineButton.addTarget(self, action: #selector(self.outlinedButtonPressed), for: .touchUpInside)
+                    
+                    DispatchQueue.main.async {
+                        self.greenButton.setTitle(greenText, for: .normal)
+                        self.outlineButton.setTitle(outlineText, for: .normal)
+                    }
+                }
+            }
+        })
+    }
+    
+    private func setupIsSoldObserver() {
+        productIsSoldRef.observe(.value, with: { snapshot in
+            if let isSold = snapshot.value as? Bool {
+                if isSold  {
+                    self.isProductSold = true
+                }
             }
         })
     }

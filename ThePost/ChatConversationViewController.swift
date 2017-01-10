@@ -59,11 +59,13 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         // SE
         // Y31TlLgriYZS6pMqb9Z4MBq141I2
         // Cantalope Robinson
+        // -Ka47KEo6QTXclpeenox <- Is this user's product
         
         // Phone
         // kKLTNG4QEvToQeFNFVJpQFEM22D2
         // Andrew Robinson
-        let test = Conversation(id: "someChatID", otherPersonId: "kKLTNG4QEvToQeFNFVJpQFEM22D2", otherPersonName: "Andrew Robinson", productID: "-K_uqmLSqvxav-ykvDxg")
+        // -K_uqmLSqvxav-ykvDxg
+        let test = Conversation(id: "someChatID", otherPersonId: "kKLTNG4QEvToQeFNFVJpQFEM22D2", otherPersonName: "Andrew Robinson", productID: "-Ka47KEo6QTXclpeenox")
         performSegue(withIdentifier: "chatViewController", sender: test)
     }
     
@@ -73,11 +75,11 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         super.prepare(for: segue, sender: sender)
         
         if let conversation = sender as? Conversation {
-            if let vc = segue.destination as? ChatViewController {
+            if let vc = segue.destination as? ChatContainerViewController {
                 navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
                 navigationController!.navigationBar.tintColor = #colorLiteral(red: 0.7647058824, green: 0.768627451, blue: 0.7137254902, alpha: 1)
                 
-                vc.conversation = conversation
+                vc.conversationToPass = conversation
                 vc.hidesBottomBarWhenPushed = true
             }
         }
