@@ -1488,6 +1488,7 @@
                         <outlet property="outlineButton" destination="xXZ-Nv-4cj" id="Pc3-EU-gb0"/>
                         <outlet property="soldContainer" destination="n06-fg-fqF" id="bKf-sN-GE8"/>
                         <outlet property="soldImageView" destination="zzx-y1-fS3" id="Yi3-EW-wyL"/>
+                        <outlet property="soldImageViewMidConstraint" destination="Obb-tk-pvu" id="muu-Q5-uSv"/>
                         <outlet property="writeAReviewButton" destination="2n6-dP-blU" id="Qe3-Ut-E4g"/>
                     </connections>
                 </viewController>

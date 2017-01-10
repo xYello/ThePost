@@ -17,6 +17,8 @@ class ChatContainerViewController: UIViewController {
     @IBOutlet weak var soldImageView: UIImageView!
     @IBOutlet weak var writeAReviewButton: UIButton!
     
+    @IBOutlet weak var soldImageViewMidConstraint: NSLayoutConstraint!
+    
     var conversationToPass: Conversation!
 
     override func viewDidLoad() {
@@ -37,6 +39,8 @@ class ChatContainerViewController: UIViewController {
                     vc.soldContainer = soldContainer
                     vc.soldImageView = soldImageView
                     vc.writeAReviewButton = writeAReviewButton
+                    
+                    vc.soldImageViewMidConstraint = soldImageViewMidConstraint
                 }
             }
         }
