@@ -27,6 +27,10 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var orangeButton: UIButton!
+    @IBOutlet weak var greenButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
+    
     private var tableFormat: [[String:CellType]] = []
     
     var favoriteCount = 0 {
@@ -61,6 +65,13 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        orangeButton.roundCorners(radius: 8.0)
+        greenButton.roundCorners(radius: 8.0)
+        
+        closeButton.layer.borderColor = closeButton.titleLabel!.textColor.cgColor
+        closeButton.layer.borderWidth = 1.0
+        closeButton.roundCorners(radius: 8.0)
         
         favoriteCount = 1213
         viewsCount = 12345
@@ -165,6 +176,20 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     
     @IBAction func likeButtonTapped(_ sender: UIButton) {
         print("Increment likes")
+    }
+    
+    @IBAction func orangeButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func greenButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func closeTapped(_ sender: UIButton) {
+        if let parent = parent as? ProductViewerViewController {
+            parent.prepareForDismissal {
+                parent.dismiss(animated: false, completion: nil)
+            }
+        }
     }
     
     // MARK: - Helpers
