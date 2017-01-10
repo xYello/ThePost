@@ -49,6 +49,7 @@
 		4D35A21C1E12126300A115EB /* Jeep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A21B1E12126300A115EB /* Jeep.swift */; };
 		4D35A21E1E121E3800A115EB /* JeepModelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A21D1E121E3800A115EB /* JeepModelButton.swift */; };
 		4D35A2201E1233C000A115EB /* PostLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A21F1E1233C000A115EB /* PostLaunchViewController.swift */; };
+		4D581B5E1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D581B5D1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift */; };
 		4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */; };
 		4D58C4DA1E0E1882004CA0E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4D81E0E1882004CA0E3 /* Main.storyboard */; };
 		4D58C4DF1E0E1882004CA0E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4DD1E0E1882004CA0E3 /* LaunchScreen.storyboard */; };
@@ -57,6 +58,10 @@
 		4D5AB0AB1E242765005BF23B /* ChatContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AB0AA1E242765005BF23B /* ChatContainerViewController.swift */; };
 		4D5AB0B01E249404005BF23B /* ProductViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AB0AF1E249404005BF23B /* ProductViewerViewController.swift */; };
 		4D5AB0B21E249418005BF23B /* ProductViewerContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AB0B11E249418005BF23B /* ProductViewerContainerViewController.swift */; };
+		4D5AB0B61E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AB0B51E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift */; };
+		4D5AB0B81E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AB0B71E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift */; };
+		4D5AB0BA1E24B512005BF23B /* ProductViewerExCheckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AB0B91E24B512005BF23B /* ProductViewerExCheckTableViewCell.swift */; };
+		4D5AB0BC1E24B54A005BF23B /* ProductViewerTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AB0BB1E24B54A005BF23B /* ProductViewerTextTableViewCell.swift */; };
 		4D907B561E13824D00F9FD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D907B551E13824D00F9FD8B /* User.swift */; };
 		4DA153F31E22EA6D00708543 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA153F21E22EA6D00708543 /* ChatViewController.swift */; };
 		4DA153F51E22EB1300708543 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA153F41E22EB1300708543 /* Conversation.swift */; };
@@ -130,6 +135,7 @@
 		4D35A21B1E12126300A115EB /* Jeep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jeep.swift; sourceTree = "<group>"; };
 		4D35A21D1E121E3800A115EB /* JeepModelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepModelButton.swift; sourceTree = "<group>"; };
 		4D35A21F1E1233C000A115EB /* PostLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostLaunchViewController.swift; sourceTree = "<group>"; };
+		4D581B5D1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewerImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D58C4D11E0E1882004CA0E3 /* ThePost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D58C4D91E0E1882004CA0E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -143,6 +149,10 @@
 		4D5AB0AA1E242765005BF23B /* ChatContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContainerViewController.swift; sourceTree = "<group>"; };
 		4D5AB0AF1E249404005BF23B /* ProductViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewerViewController.swift; sourceTree = "<group>"; };
 		4D5AB0B11E249418005BF23B /* ProductViewerContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewerContainerViewController.swift; sourceTree = "<group>"; };
+		4D5AB0B51E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewerDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		4D5AB0B71E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewerSellerTableViewCell.swift; sourceTree = "<group>"; };
+		4D5AB0B91E24B512005BF23B /* ProductViewerExCheckTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewerExCheckTableViewCell.swift; sourceTree = "<group>"; };
+		4D5AB0BB1E24B54A005BF23B /* ProductViewerTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewerTextTableViewCell.swift; sourceTree = "<group>"; };
 		4D907B551E13824D00F9FD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4DA153F21E22EA6D00708543 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		4DA153F41E22EB1300708543 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -329,6 +339,10 @@
 		4D5AB0AD1E2493B4005BF23B /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				4D5AB0BB1E24B54A005BF23B /* ProductViewerTextTableViewCell.swift */,
+				4D5AB0B51E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift */,
+				4D5AB0B71E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift */,
+				4D5AB0B91E24B512005BF23B /* ProductViewerExCheckTableViewCell.swift */,
 			);
 			name = "Table View Cells";
 			sourceTree = "<group>";
@@ -336,6 +350,7 @@
 		4D5AB0AE1E2493D7005BF23B /* Collection View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				4D581B5D1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift */,
 			);
 			name = "Collection View Cells";
 			sourceTree = "<group>";
@@ -668,9 +683,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D5AB0BC1E24B54A005BF23B /* ProductViewerTextTableViewCell.swift in Sources */,
 				4D24E8C51E157F5000E524FD /* NewProductDropDownTableViewCell.swift in Sources */,
 				4D35A2121E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift in Sources */,
 				4D35A2201E1233C000A115EB /* PostLaunchViewController.swift in Sources */,
+				4D581B5E1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift in Sources */,
 				4DD3CCC31E14C59C00821C7C /* AddNewProductViewController.swift in Sources */,
 				4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */,
 				4D5AB0B21E249418005BF23B /* ProductViewerContainerViewController.swift in Sources */,
@@ -681,6 +698,7 @@
 				4D04C54E1E0F2CD3004B2264 /* AppServicesRequestViewController.swift in Sources */,
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
 				4DEB7A621E17724A00C23216 /* NewProductBaseTableViewCell.swift in Sources */,
+				4D5AB0B61E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift in Sources */,
 				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
 				4D5AB0AB1E242765005BF23B /* ChatContainerViewController.swift in Sources */,
 				4D34358D1E203E2800E031D7 /* ProfileViewController.swift in Sources */,
@@ -695,7 +713,9 @@
 				4D239C441E131BBE00F2668E /* Product.swift in Sources */,
 				4D239C421E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift in Sources */,
 				4D23EC701E1ECE0C0001C045 /* SignInUpPromptViewController.swift in Sources */,
+				4D5AB0BA1E24B512005BF23B /* ProductViewerExCheckTableViewCell.swift in Sources */,
 				4D23EC771E1F86360001C045 /* ChatConversationViewController.swift in Sources */,
+				4D5AB0B81E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift in Sources */,
 				4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */,
 				4D35A20E1E11FA4B00A115EB /* CategorySelectorViewController.swift in Sources */,
 				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
