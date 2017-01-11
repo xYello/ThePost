@@ -37,9 +37,9 @@ class Product: NSObject {
     
     var uid: String!
     
-    var owner: User!
+    var ownerId: String!
     
-    var images: [UIImage] = []
+    var images: [String] = []
     
     var name: String!
     var jeepModel: JeepModel!

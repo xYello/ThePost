@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
-class ProductViewerContainerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate {
+class ProductViewerContainerViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
     
     private enum CellType {
         case text
@@ -22,6 +23,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var likeImageView: UIImageView!
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var viewsCountLabel: UILabel!
     
@@ -31,7 +33,14 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     @IBOutlet weak var greenButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     
-    private var tableFormat: [[String:CellType]] = []
+    private var likesRef: FIRDatabaseReference!
+    private var viewsRef: FIRDatabaseReference!
+    
+    private var tableFormat: [[String: CellType]] = []
+    private var textCellLayout: [String] = []
+    private var checkCellLayout: [Bool] = []
+    
+    private var seller: User!
     
     var favoriteCount = 0 {
         didSet {
@@ -54,16 +63,17 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     
     // MARK: - View lifecycle
     
+    // TODO: Report button
     override func viewDidLoad() {
         super.viewDidLoad()
         view.roundCorners(radius: 8.0)
+        view.clipsToBounds = true
         
         priceContainer.layer.shadowRadius = 3.0
         priceContainer.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
         priceContainer.roundCorners(radius: 8.0)
         
         collectionView.dataSource = self
-        collectionView.delegate = self
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -75,9 +85,10 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         closeButton.layer.borderWidth = 1.0
         closeButton.roundCorners(radius: 8.0)
         
-        favoriteCount = 1213
-        viewsCount = 12345
-        priceLabel.text = "$20,000"
+        if let image = likeImageView.image {
+            likeImageView.image = image.withRenderingMode(.alwaysTemplate)
+            likeImageView.tintColor = #colorLiteral(red: 0.2235294118, green: 0.2235294118, blue: 0.2235294118, alpha: 0.2034658138)
+        }
         
         tableFormat = [["Item Name": .text],
                        ["Make & Model": .text],
@@ -88,20 +99,59 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                        ["Willing to Ship Item": .exCheck],
                        ["Accepts PayPal": .exCheck],
                        ["Accepts Cash": .exCheck]]
+        
+        if let uid = FIRAuth.auth()?.currentUser?.uid {
+            if uid == product.ownerId {
+                orangeButton.setTitle("Delete", for: .normal)
+                greenButton.setTitle("Edit", for: .normal)
+            } else {
+                orangeButton.setTitle("Make Offer", for: .normal)
+                greenButton.setTitle("Message", for: .normal)
+            }
+        }
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        let string = formatter.string(from: floor(product.price) as NSNumber)
+        let endIndex = string!.index(string!.endIndex, offsetBy: -3)
+        let truncated = string!.substring(to: endIndex) // Remove the .00 from the price.
+        priceLabel.text = truncated
+        
+        textCellLayout = [product.name, product.jeepModel.description, truncated, product.condition.description]
+        checkCellLayout = [product.willingToShip, product.acceptsPayPal, product.acceptsPayPal]
+        
+        grabProductImages()
+        setupLikesAndViewsListeners()
+        grabSellerInfo()
+        checkForCurrentUserLike()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+    deinit {
+        likesRef.removeAllObservers()
+        viewsRef.removeAllObservers()
     }
     
     // MARK: - CollectionView datasource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return product.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ProductViewerImageCollectionViewCell
+        
+        let url = URL(string: product.images[indexPath.row])
+        cell.imageView.sd_setImage(with: url)
+        
         return cell
     }
-    
-    // MARK: - CollectionView delegate
     
     // MARK: - TableView datasource
     
@@ -123,7 +173,9 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             textCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
             textCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
             textCell.detailNameLabel.text = descriptionName
-            textCell.textDetailLabel.text = "I need a longer test text. :D"
+            
+            let detailText = textCellLayout[indexPath.row]
+            textCell.textDetailLabel.text = detailText
             
             cell = textCell
         } else if type == .details {
@@ -132,8 +184,22 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             detailsCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
             detailsCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
             detailsCell.detailNameLabel.text = descriptionName
+            detailsCell.hasOriginalBox = product.originalBox
+            
+            // TODO: Update
             detailsCell.datePostedLabel.text = "1 hour 14 mins ago"
-            detailsCell.releaseYearLabel.text = "2014"
+            
+            if let releaseYear = product.releaseYear {
+                detailsCell.releaseYearLabel.text = "\(releaseYear)"
+            } else {
+                detailsCell.releaseYearLabel.text = ""
+            }
+            
+            if let itemDescription = product.detailedDescription {
+                detailsCell.descriptionTextView.text = "\(itemDescription)"
+            } else {
+                detailsCell.descriptionTextView.text = "No description provided."
+            }
             
             cell = detailsCell
         } else if type == .seller {
@@ -142,6 +208,8 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             sellerCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
             sellerCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
             sellerCell.detailNameLabel.text = descriptionName
+            sellerCell.sellerNameLabel.text = seller.fullName
+            sellerCell.numberOfReviewsLabel.text = "0 Reviews"
             
             cell = sellerCell
         } else if type == .exCheck {
@@ -150,6 +218,9 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             exCheckCell.sideImageView.image = UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate)
             exCheckCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
             exCheckCell.detailNameLabel.text = descriptionName
+            
+            let index = tableFormat.count - indexPath.row
+            exCheckCell.isChecked = checkCellLayout[checkCellLayout.count - index]
             
             cell = exCheckCell
         }
@@ -174,27 +245,68 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     
     // MARK: - TableView delegate
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: Open Owner's profile
+    }
+    
     // MARK: - Actions
     
     @IBAction func likeButtonTapped(_ sender: UIButton) {
-        print("Increment likes")
+        if likeImageView.tintColor == #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1) {
+            likeImageView.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3)
+        } else {
+            likeImageView.tintColor = #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
+        }
+        
+        let productRef = FIRDatabase.database().reference().child("products").child(product.uid)
+        incrementLikes(forRef: productRef)
+        productRef.observeSingleEvent(of: .value, with: { snapshot in
+            let value = snapshot.value as? NSDictionary
+            if let uid = value?["owner"] as? String {
+                let userProductRef = FIRDatabase.database().reference().child("user-products").child(uid).child(self.product.uid)
+                self.incrementLikes(forRef: userProductRef)
+            }
+        })
     }
     
     @IBAction func orangeButtonTapped(_ sender: UIButton) {
+        if sender.currentTitle == "Delete" {
+            let alert = UIAlertController(title: "Delete \(product.name!)?", message: "Are you sure you want to delete \(product.name!)?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
+                FIRDatabase.database().reference().child("products").child(self.product.uid).removeValue()
+                FIRDatabase.database().reference().child("user-products").child(FIRAuth.auth()!.currentUser!.uid).child(self.product.uid)
+                FIRDatabase.database().reference().child("products-location").child(self.product.uid).removeValue()
+                self.dismissParent()
+            }))
+            
+            present(alert, animated: true, completion: nil)
+        } else if sender.currentTitle == "Make Offer" {
+            // TODO: Move to messages
+        }
     }
     
     @IBAction func greenButtonTapped(_ sender: UIButton) {
+        if sender.currentTitle == "Edit" {
+            
+        } else if sender.currentTitle == "Message" {
+            // TODO: Move to messages
+        }
     }
     
     @IBAction func closeTapped(_ sender: UIButton) {
+        dismissParent()
+    }
+    
+    // MARK: - Helpers
+    
+    private func dismissParent() {
         if let parent = parent as? ProductViewerViewController {
             parent.prepareForDismissal {
                 parent.dismiss(animated: false, completion: nil)
             }
         }
     }
-    
-    // MARK: - Helpers
     
     private func evaluateImageName(withDescription description: String) -> String {
         var imageName = ""
@@ -221,6 +333,138 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         }
         
         return imageName
+    }
+    
+    private func grabProductImages() {
+        let imagesRef = FIRDatabase.database().reference().child("products").child(product.uid).child("images")
+        imagesRef.observeSingleEvent(of: .value, with: { snapshot in
+            for image in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                self.product.images.append(image.value as! String)
+            }
+            self.collectionView.reloadData()
+        })
+    }
+    
+    // MARK: - Firebase Database
+    
+    private func setupLikesAndViewsListeners() {
+        likesRef = FIRDatabase.database().reference().child("products").child(product.uid).child("likeCount")
+        likesRef.observe(.value, with: { snapshot in
+            if let count = snapshot.value as? Int {
+                DispatchQueue.main.async {
+                    self.likeCountLabel.text = "\(count)"
+                }
+            }
+        })
+        
+        viewsRef = FIRDatabase.database().reference().child("products").child(product.uid).child("viewCount")
+        viewsRef.observe(.value, with: { snapshot in
+            if let count = snapshot.value as? Int {
+                DispatchQueue.main.async {
+                    self.viewsCountLabel.text = "\(count)"
+                }
+            }
+        })
+        
+        // Increment views
+        let productRef = FIRDatabase.database().reference().child("products").child(product.uid)
+        incrementViews(forRef: productRef.child("viewCount"))
+        productRef.observeSingleEvent(of: .value, with: { snapshot in
+            let value = snapshot.value as? NSDictionary
+            if let uid = value?["owner"] as? String {
+                let userProductRef = FIRDatabase.database().reference().child("user-products").child(uid).child(self.product.uid).child("viewCount")
+                self.incrementViews(forRef: userProductRef)
+            }
+        })
+    }
+    
+    private func grabSellerInfo() {
+        seller = User()
+        let userRef = FIRDatabase.database().reference().child("users").child(product.ownerId).child("fullName")
+        userRef.observeSingleEvent(of: .value, with: { snapshot in
+            if let name = snapshot.value as? String {
+                self.seller.fullName = name
+                let indexPath = IndexPath(row: 5, section: 0)
+                self.tableView.reloadRows(at: [indexPath], with: .none)
+            }
+        })
+    }
+    
+    private func incrementLikes(forRef ref: FIRDatabaseReference) {
+        
+        ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            if var product = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
+                var likes: Dictionary<String, Bool> = product["likes"] as? [String : Bool] ?? [:]
+                var likeCount = product["likeCount"] as? Int ?? 0
+                
+                let userLikesRef = FIRDatabase.database().reference().child("user-likes").child(uid)
+                
+                if let _ = likes[uid] {
+                    likeCount -= 1
+                    likes.removeValue(forKey: uid)
+                    userLikesRef.child(self.product.uid).removeValue()
+                } else {
+                    likeCount += 1
+                    likes[uid] = true
+                    
+                    let userLikesUpdate = [self.product.uid: true]
+                    userLikesRef.updateChildValues(userLikesUpdate)
+                }
+                product["likeCount"] = likeCount as AnyObject?
+                product["likes"] = likes as AnyObject?
+                
+                DispatchQueue.main.sync {
+                    self.likeCountLabel.text = "\(likeCount)"
+                }
+                
+                currentData.value = product
+                
+                return FIRTransactionResult.success(withValue: currentData)
+            }
+            return FIRTransactionResult.success(withValue: currentData)
+        }) { (error, committed, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+        
+    }
+    
+    private func incrementViews(forRef ref: FIRDatabaseReference) {
+        ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            if let count = currentData.value as? Int {
+                currentData.value = count + 1
+                
+                return FIRTransactionResult.success(withValue: currentData)
+            }
+            return FIRTransactionResult.success(withValue: currentData)
+        }) { (error, committed, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func checkForCurrentUserLike() {
+        if let uid = FIRAuth.auth()?.currentUser?.uid {
+            var color = #colorLiteral(red: 0.2235294118, green: 0.2235294118, blue: 0.2235294118, alpha: 0.2034658138)
+            let likesRef = FIRDatabase.database().reference().child("products").child(product.uid)
+            likesRef.observeSingleEvent(of: .value, with: { snapshot in
+                if let product = snapshot.value as? [String: AnyObject] {
+                    if let likes = product["likes"] as? [String: Bool] {
+                        if let _ = likes[uid] {
+                            color = #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
+                        }
+                    }
+                    
+                }
+                
+                DispatchQueue.main.async {
+                    self.likeImageView.tintColor = color
+                }
+                
+            })
+        }
     }
 
 }

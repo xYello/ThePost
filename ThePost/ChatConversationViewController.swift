@@ -65,6 +65,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         // kKLTNG4QEvToQeFNFVJpQFEM22D2
         // Andrew Robinson
         // -K_uqmLSqvxav-ykvDxg
+        
+        // TODO: What if a product becomes deleted?
         let test = Conversation(id: "someChatID", otherPersonId: "kKLTNG4QEvToQeFNFVJpQFEM22D2", otherPersonName: "Andrew Robinson", productID: "-Ka47KEo6QTXclpeenox")
         performSegue(withIdentifier: "chatViewController", sender: test)
     }

@@ -11,7 +11,7 @@ import UIKit
 class User: NSObject {
     
     //var username: String!
-    var fullName: String!
+    var fullName: String = ""
     
     var profilePicture: UIImage?
     

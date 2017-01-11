@@ -2217,7 +2217,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2241,7 +2241,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="icS-JB-eAG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="MessagesTabBarIcon" id="gR2-QB-zbc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8D-YI-vEB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="T8D-YI-vEB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2313,7 +2313,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Fgf-ZP-VcA" secondAttribute="height" multiplier="4:3" id="PMc-Tb-RMd"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T9F-Ax-G5e">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="T9F-Ax-G5e">
                                     <size key="itemSize" width="280" height="241"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -2321,7 +2321,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="U9e-7r-9cq" customClass="ProductViewerImageCollectionViewCell" customModule="ThePost" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="0.0" width="280" height="241"/>
+                                        <rect key="frame" x="0.0" y="8" width="280" height="241"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="241"/>
@@ -2338,6 +2338,9 @@
                                             <constraint firstAttribute="bottom" secondItem="PHH-uY-Xpt" secondAttribute="bottom" id="ioT-Df-KYf"/>
                                             <constraint firstAttribute="trailing" secondItem="PHH-uY-Xpt" secondAttribute="trailing" id="yND-w9-gAQ"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="PHH-uY-Xpt" id="9jk-l7-17k"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -2361,11 +2364,11 @@
                                     <constraint firstAttribute="width" constant="71" id="wmh-sw-6Br"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvj-U5-D7z" userLabel="Favorite Views Container">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvj-U5-D7z" userLabel="Like Views Container">
                                 <rect key="frame" x="0.0" y="257" width="343" height="34"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hW-0n-MEw">
-                                        <rect key="frame" x="32" y="10" width="38" height="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hW-0n-MEw">
+                                        <rect key="frame" x="32" y="10" width="7" height="15"/>
                                         <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="12"/>
                                         <color key="textColor" red="0.70980392160000005" green="0.70980392160000005" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2383,14 +2386,14 @@
                                             <action selector="likeButtonTapped:" destination="OL0-SV-hFV" eventType="touchUpInside" id="XpT-cT-jEd"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usP-pE-pZB">
-                                        <rect key="frame" x="102" y="10" width="38" height="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usP-pE-pZB">
+                                        <rect key="frame" x="71" y="10" width="7" height="15"/>
                                         <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="12"/>
                                         <color key="textColor" red="0.70980392160000005" green="0.70980392160000005" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PVViewsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="h55-cO-f5e">
-                                        <rect key="frame" x="78" y="8" width="23" height="18"/>
+                                        <rect key="frame" x="47" y="8" width="23" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="23" id="myt-Zg-KHf"/>
                                         </constraints>
@@ -2756,6 +2759,7 @@
                                                         <constraint firstItem="BXN-Rq-4uv" firstAttribute="top" secondItem="kk1-RX-B0A" secondAttribute="bottom" constant="8" id="3rk-RA-dNa"/>
                                                         <constraint firstItem="sLr-uH-lCT" firstAttribute="bottom" secondItem="0xA-nK-XPe" secondAttribute="bottom" id="4DQ-P1-Atc"/>
                                                         <constraint firstItem="o2E-id-ryT" firstAttribute="top" secondItem="sLr-uH-lCT" secondAttribute="bottom" constant="10" id="6Q8-G9-oht"/>
+                                                        <constraint firstItem="3He-xP-5D1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kk1-RX-B0A" secondAttribute="trailing" constant="6" id="FtO-U1-5Sv"/>
                                                         <constraint firstItem="RHC-eo-2zI" firstAttribute="top" secondItem="BXN-Rq-4uv" secondAttribute="bottom" constant="8" id="HDr-vw-KGf"/>
                                                         <constraint firstItem="o2E-id-ryT" firstAttribute="top" secondItem="RHC-eo-2zI" secondAttribute="bottom" constant="8" id="HrK-zB-Csr"/>
                                                         <constraint firstItem="kk1-RX-B0A" firstAttribute="leading" secondItem="jua-5k-Nrw" secondAttribute="leading" constant="33" id="Hsv-qu-twK"/>
@@ -2819,8 +2823,10 @@
                                             <outlet property="detailNameLabel" destination="H83-Cu-aLg" id="1Bp-HB-xv5"/>
                                             <outlet property="fiveStar" destination="sLr-uH-lCT" id="UNM-qY-otW"/>
                                             <outlet property="fourStar" destination="0xA-nK-XPe" id="WBw-5u-fb9"/>
+                                            <outlet property="numberOfReviewsLabel" destination="RHC-eo-2zI" id="4sH-nT-o8s"/>
                                             <outlet property="oneStar" destination="5dd-ly-EL8" id="YmY-tf-B4E"/>
                                             <outlet property="sellerImageView" destination="3He-xP-5D1" id="tpm-8V-KkV"/>
+                                            <outlet property="sellerNameLabel" destination="kk1-RX-B0A" id="3qu-pP-asY"/>
                                             <outlet property="sideImageView" destination="cfF-Bo-d6F" id="ftr-8E-DvS"/>
                                             <outlet property="threeStar" destination="3w4-X9-9Kf" id="2fB-b4-UrH"/>
                                             <outlet property="twoStart" destination="d8Q-yl-Po6" id="9EP-xq-4ti"/>
@@ -2954,6 +2960,7 @@
                         <outlet property="collectionView" destination="Fgf-ZP-VcA" id="KVC-bJ-t2S"/>
                         <outlet property="greenButton" destination="S6K-Gm-ZFh" id="P9W-uT-t3c"/>
                         <outlet property="likeCountLabel" destination="5hW-0n-MEw" id="EF8-QR-APD"/>
+                        <outlet property="likeImageView" destination="VzE-eM-wc5" id="uSc-oT-4Ma"/>
                         <outlet property="orangeButton" destination="PtQ-xq-0Ye" id="ztn-xJ-it5"/>
                         <outlet property="priceContainer" destination="1s5-7y-Nxs" id="qMw-8N-5Qf"/>
                         <outlet property="priceLabel" destination="akD-zt-4Ge" id="dKb-HK-GWG"/>

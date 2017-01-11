@@ -56,6 +56,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                                                   condition: condition)
                             
                             product.uid = snapshot.key
+                            product.ownerId = productDict["owner"] as! String
                             
                             if let likeCount = productDict["likeCount"] as? Int {
                                 product.likeCount = likeCount
