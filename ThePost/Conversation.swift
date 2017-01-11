@@ -19,11 +19,17 @@ class Conversation: NSObject {
     
     var firstMessage: String?
     
+    var lastSentMessage: String?
+    
     init(id: String, otherPersonId: String, otherPersonName: String, productID: String) {
         self.id = id
         self.otherPersonId = otherPersonId
         self.otherPersonName = otherPersonName
         self.productID = productID
+    }
+    
+    override init() {
+        super.init()
     }
 
 }

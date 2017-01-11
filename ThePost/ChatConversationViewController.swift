@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 let tabBarSwitchedToChatConversationNotification = "ktabBarSwitchedToChatConversationNotification"
 
@@ -16,6 +17,11 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     
     var newConversation: Conversation?
     
+    private var conversations: [Conversation] = []
+    
+    private var chatRef: FIRDatabaseReference!
+    private var conversationReferences: [FIRDatabaseQuery] = []
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -23,6 +29,12 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        if let uid = FIRAuth.auth()?.currentUser?.uid {
+            chatRef = FIRDatabase.database().reference().child("user-chats").child(uid)
+        }
+        
+        observeConversations()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,20 +54,32 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         }
     }
     
+    deinit {
+        chatRef.removeAllObservers()
+        for ref in conversationReferences {
+            ref.removeAllObservers()
+        }
+    }
+    
     // MARK: - TableView datasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "conversationCell", for: indexPath) as! ConversationTableViewCell
+        let conversation = conversations[indexPath.row]
         
-        cell.profileImageView.image = #imageLiteral(resourceName: "MeanJeep")
+        cell.profileImageView.image = #imageLiteral(resourceName: "ETHANPROFILESAMPLE")
         
-        cell.personNameLabel.text = "Grayson Pierce"
+        cell.personNameLabel.text = conversation.otherPersonName
         
-        cell.recentMessageLabel.text = "haha, I beat you Jason! let’s see who wins this time ;)"
+        if let lastMessage = conversation.lastSentMessage {
+            cell.recentMessageLabel.text = lastMessage
+        } else {
+            cell.recentMessageLabel.text = ""
+        }
         
         cell.timeLabel.text = "Now"
         
@@ -69,19 +93,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
             tabBar.hideShadow()
         }
         
-        // SE
-        // Y31TlLgriYZS6pMqb9Z4MBq141I2
-        // Cantalope Robinson
-        // -Ka47KEo6QTXclpeenox <- Is this user's product
-        
-        // Phone
-        // kKLTNG4QEvToQeFNFVJpQFEM22D2
-        // Andrew Robinson
-        // -K_uqmLSqvxav-ykvDxg
-        
-        // TODO: What if a product becomes deleted?
-        let test = Conversation(id: "someChatID", otherPersonId: "kKLTNG4QEvToQeFNFVJpQFEM22D2", otherPersonName: "Andrew Robinson", productID: "-Ka47KEo6QTXclpeenox")
-        performSegue(withIdentifier: "chatViewController", sender: test)
+        let conversation = conversations[indexPath.row]
+        performSegue(withIdentifier: "chatViewController", sender: conversation)
     }
     
     // MARK: - Segue
@@ -98,6 +111,72 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                 vc.hidesBottomBarWhenPushed = true
             }
         }
+    }
+    
+    // MARK: - Firebase observers
+    
+    private func observeConversations() {
+        chatRef.observe(.childAdded, with: { snapshot in
+            self.createChatObserver(forKey: snapshot.key)
+        })
+    }
+ 
+    private func createChatObserver(forKey key: String) {
+        let newConvo = Conversation()
+        newConvo.id = key
+ 
+        let ref = FIRDatabase.database().reference().child("chats").child(key)
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let chatDict = snapshot.value as? [String: AnyObject] {
+                
+                if let productID = chatDict["productID"] as? String {
+                    newConvo.productID = productID
+                }
+                
+                if let participantsDict = chatDict["participants"] as? [String: Bool] {
+                    
+                    for (key, _) in participantsDict {
+                        if key != FIRAuth.auth()!.currentUser!.uid {
+                            
+                            let userRef = FIRDatabase.database().reference().child("users").child(key).child("fullName")
+                            userRef.observeSingleEvent(of: .value, with: { snapshot in
+                                if let name = snapshot.value as? String {
+                                    newConvo.otherPersonId = key
+                                    newConvo.otherPersonName = name
+                                    
+                                    self.conversations.append(newConvo)
+                                    self.tableView.reloadData()
+                                    
+                                    let index = self.conversations.count - 1
+                                    self.createLastMessageListener(forRef: ref, withConversationIndex: index)
+                                }
+                            })
+                            
+                        }
+                    }
+                    
+                }
+                
+            }
+        })
+    }
+    
+    private func createLastMessageListener(forRef ref: FIRDatabaseReference, withConversationIndex index: Int) {
+        let messagesQueryRef = ref.child("messages").queryLimited(toLast: 1)
+        messagesQueryRef.observe(.value, with: { snapshot in
+            if let messageDict = snapshot.value as? [String: AnyObject] {
+                if let messageData = messageDict.values.first as? [String: String] {
+                    if let text = messageData["text"] {
+                        let conversation = self.conversations[index]
+                        conversation.lastSentMessage = text
+                        
+                        let indexPath = IndexPath(row: index, section: 0)
+                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    }
+                }
+            }
+        })
+        conversationReferences.append(messagesQueryRef)
     }
     
 }
