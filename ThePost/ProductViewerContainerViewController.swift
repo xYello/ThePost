@@ -274,10 +274,11 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             let alert = UIAlertController(title: "Delete \(product.name!)?", message: "Are you sure you want to delete \(product.name!)?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
-                FIRDatabase.database().reference().child("products").child(self.product.uid).removeValue()
-                FIRDatabase.database().reference().child("user-products").child(FIRAuth.auth()!.currentUser!.uid).child(self.product.uid)
-                FIRDatabase.database().reference().child("products-location").child(self.product.uid).removeValue()
-                self.dismissParent()
+                // TODO: Delete the product for everywhere.
+//                FIRDatabase.database().reference().child("products").child(self.product.uid).removeValue()
+//                FIRDatabase.database().reference().child("user-products").child(FIRAuth.auth()!.currentUser!.uid).child(self.product.uid)
+//                FIRDatabase.database().reference().child("products-location").child(self.product.uid).removeValue()
+//                self.dismissParent()
             }))
             
             present(alert, animated: true, completion: nil)
