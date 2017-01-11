@@ -642,7 +642,9 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                                            "originalBox": product.originalBox,
                                            "willingToShip": product.willingToShip,
                                            "acceptsPayPal": product.acceptsPayPal,
-                                           "acceptsCash": product.acceptsCash]
+                                           "acceptsCash": product.acceptsCash,
+                                           "likeCount": 0,
+                                           "viewCount": 0]
                             
                             if let releaseYear = product.releaseYear {
                                 dbProduct["releaseYear"] = releaseYear

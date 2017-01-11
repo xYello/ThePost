@@ -12,8 +12,10 @@ class ProductViewerSellerTableViewCell: UITableViewCell {
 
     @IBOutlet weak var sideImageView: UIImageView!
     @IBOutlet weak var detailNameLabel: UILabel!
+    @IBOutlet weak var sellerNameLabel: UILabel!
     @IBOutlet weak var sellerImageView: UIImageView!
     
+    @IBOutlet weak var numberOfReviewsLabel: UILabel!
     @IBOutlet weak var oneStar: UIImageView!
     @IBOutlet weak var twoStart: UIImageView!
     @IBOutlet weak var threeStar: UIImageView!
