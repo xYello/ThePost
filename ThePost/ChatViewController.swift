@@ -37,9 +37,9 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         }
     }
     private var messageRef: FIRDatabaseReference!
-    private var messageQueryRef: FIRDatabaseQuery!
-    private var userTypingRef: FIRDatabaseReference!
-    private var otherUserTypingQueryRef: FIRDatabaseQuery!
+    private var messageQueryRef: FIRDatabaseQuery?
+    private var userTypingRef: FIRDatabaseReference?
+    private var otherUserTypingQueryRef: FIRDatabaseQuery?
     
     private var productIsSoldRef: FIRDatabaseReference!
     
@@ -56,7 +56,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         set {
             localTyping = newValue
             if conversationRef != nil {
-                userTypingRef.setValue(newValue)
+                userTypingRef!.setValue(newValue)
             }
         }
     }
@@ -175,8 +175,14 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     }
     
     deinit {
-        messageQueryRef.removeAllObservers()
-        otherUserTypingQueryRef.removeAllObservers()
+        if let messageQuery = messageQueryRef {
+            messageQuery.removeAllObservers()
+        }
+        
+        if let typingQuery = otherUserTypingQueryRef {
+            typingQuery.removeAllObservers()
+        }
+        
         productIsSoldRef.removeAllObservers()
     }
     
@@ -318,7 +324,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     private func observeMessages() {
         messageQueryRef = messageRef.queryLimited(toLast: 25)
         
-        messageQueryRef.observe(.childAdded, with: { snapshot in
+        messageQueryRef!.observe(.childAdded, with: { snapshot in
             if let messageDict = snapshot.value as? [String: String] {
                 if let id = messageDict["senderId"], let name = messageDict["senderName"], let text = messageDict["text"] {
                     self.addMessage(withId: id, name: name, text: text)
@@ -330,9 +336,9 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     }
     
     private func observeTyping() {
-        userTypingRef.onDisconnectRemoveValue()
+        userTypingRef!.onDisconnectRemoveValue()
         
-        otherUserTypingQueryRef.observe(.value, with: { snapshot in
+        otherUserTypingQueryRef!.observe(.value, with: { snapshot in
             if let isTyping = snapshot.value as? Bool {
                 self.showTypingIndicator = isTyping
                 self.scrollToBottom(animated: true)
