@@ -62,6 +62,22 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                                 product.likeCount = likeCount
                             }
                             
+                            product.originalBox = productDict["originalBox"] as! Bool
+                            if let year = productDict["releaseYear"] as? Int {
+                                product.releaseYear = year
+                            }
+                            if let desc = productDict["detailedDescription"] as? String {
+                                product.detailedDescription = desc
+                            }
+                            
+                            product.willingToShip = productDict["willingToShip"] as! Bool
+                            product.acceptsPayPal = productDict["acceptsPayPal"] as! Bool
+                            product.acceptsCash = productDict["acceptsCash"] as! Bool
+                            
+                            if let isSold = productDict["isSold"] as? Bool {
+                                product.isSold = isSold
+                            }
+                            
                             self.products.append(product)
                             self.keyPaths.append(snapshot.key)
                             self.collectionView.reloadData()
