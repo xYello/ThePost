@@ -132,6 +132,21 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: cell.priceLabel.text!)
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
             cell.priceLabel.attributedText = attributeString
+        } else {
+            cell.productImageView.alpha = 1.0
+            cell.soldImageView.isHidden = true
+            cell.nameLabel.alpha = 1.0
+            cell.priceLabel.alpha = 1.0
+            cell.simplifiedDescriptionLabel.alpha = 1.0
+            cell.likeImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            cell.likeImageView.alpha = 1.0
+            cell.likeCountLabel.alpha = 1.0
+            
+            if let attributedText = cell.priceLabel.attributedText {
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: attributedText.string)
+                attributeString.removeAttribute(NSStrikethroughColorAttributeName, range: NSMakeRange(0, attributeString.length))
+                cell.priceLabel.attributedText = attributeString
+            }
         }
         
         return cell
