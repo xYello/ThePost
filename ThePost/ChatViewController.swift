@@ -108,7 +108,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         }
     }
     
-    private var inputBarDefaultHeight: CGFloat!
+    private var inputBarDefaultHeight: CGFloat?
     
     // MARK: - View lifecycle
     
@@ -248,13 +248,22 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         if conversationRef == nil {
             conversationRef = FIRDatabase.database().reference().child("chats").childByAutoId()
             
+            let participants = [conversation.otherPersonId: true,
+                                senderId: true]
+            conversationRef!.child("participants").updateChildValues(participants)
+            
+            let productID = ["productID": conversation.productID]
+            conversationRef!.updateChildValues(productID)
+            
             let userChatsRef = FIRDatabase.database().reference().child("user-chats")
             let childUpdate = [conversationRef!.key: true]
             
             userChatsRef.child(conversation.otherPersonId).updateChildValues(childUpdate)
             userChatsRef.child(senderId).updateChildValues(childUpdate)
             
-            inputToolbar.preferredDefaultHeight = inputBarDefaultHeight
+            if let height = inputBarDefaultHeight {
+                inputToolbar.preferredDefaultHeight = height
+            }
         }
         
         let itemRef = messageRef.childByAutoId()
@@ -347,7 +356,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
                         outlineText = "View Product"
                     }
                     
-                    if let isSold = productDict["isSold"] as? Bool{
+                    if let isSold = productDict["isSold"] as? Bool {
                         if isSold {
                             self.isProductSold = true
                         } else {
