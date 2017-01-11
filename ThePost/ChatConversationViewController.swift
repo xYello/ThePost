@@ -22,6 +22,11 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     private var chatRef: FIRDatabaseReference!
     private var conversationReferences: [FIRDatabaseQuery] = []
     
+    private var hasLoaded = false
+    private var totalNumberOfConversations: UInt = 0
+    
+    private var initialConversationsGrabbed: UInt = 0
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -45,8 +50,25 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                 tabBar.hideShadow()
             }
             
-            performSegue(withIdentifier: "chatViewController", sender: new)
-            newConversation = nil
+            for convo in conversations {
+                if convo.otherPersonId == new.otherPersonId && convo.productID == new.productID {
+                    newConversation = nil
+                    performSegue(withIdentifier: "chatViewController", sender: convo)
+                }
+            }
+            
+            chatRef.observeSingleEvent(of: .value, with: { snapshot in
+                self.totalNumberOfConversations = snapshot.childrenCount
+                if !snapshot.hasChildren() {
+                    self.newConversation = nil
+                    self.performSegue(withIdentifier: "chatViewController", sender: new)
+                } else {
+                    if let convoStillExists = self.newConversation, self.hasLoaded {
+                        self.newConversation = nil
+                        self.performSegue(withIdentifier: "chatViewController", sender: convoStillExists)
+                    }
+                }
+            })
         } else {
             if let tabBar = tabBarController as? SlidingSelectionTabBarController {
                 tabBar.showShadow()
@@ -121,10 +143,11 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         })
     }
  
-    private func createChatObserver(forKey key: String) {
+    private func createChatObserver(forKey key: String) {        
         let newConvo = Conversation()
         newConvo.id = key
- 
+        
+        initialConversationsGrabbed += 1
         let ref = FIRDatabase.database().reference().child("chats").child(key)
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let chatDict = snapshot.value as? [String: AnyObject] {
@@ -135,6 +158,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                 
                 if let participantsDict = chatDict["participants"] as? [String: Bool] {
                     
+                    self.hasLoaded = true
                     for (key, _) in participantsDict {
                         if key != FIRAuth.auth()!.currentUser!.uid {
                             
@@ -149,6 +173,16 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                                     
                                     let index = self.conversations.count - 1
                                     self.createLastMessageListener(forRef: ref, withConversationIndex: index)
+                                    
+                                    if let preLaunchConvo = self.newConversation {
+                                        if newConvo.otherPersonId == preLaunchConvo.otherPersonId && newConvo.productID == preLaunchConvo.productID {
+                                            self.newConversation = nil
+                                            self.performSegue(withIdentifier: "chatViewController", sender: newConvo)
+                                        } else if self.initialConversationsGrabbed == self.totalNumberOfConversations {
+                                            self.newConversation = nil
+                                            self.performSegue(withIdentifier: "chatViewController", sender: preLaunchConvo)
+                                        }
+                                    }
                                 }
                             })
                             
