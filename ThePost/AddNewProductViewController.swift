@@ -633,6 +633,12 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                         if let fullName = value["fullName"] as? String {
                             
                             let key = self.ref.child("products").childByAutoId().key
+                            
+                            let formatter = DateFormatter()
+                            formatter.dateFormat = "MM/dd/yy HH:mm:ss"
+                            formatter.timeZone = TimeZone(identifier: "America/New_York")
+                            let now = formatter.string(from: Date())
+                            
                             var dbProduct: [String: Any] = ["owner": userID,
                                            "author": fullName,
                                            "name": product.name,
@@ -644,7 +650,8 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                                            "acceptsPayPal": product.acceptsPayPal,
                                            "acceptsCash": product.acceptsCash,
                                            "likeCount": 0,
-                                           "viewCount": 0]
+                                           "viewCount": 0,
+                                           "datePosted": now]
                             
                             if let releaseYear = product.releaseYear {
                                 dbProduct["releaseYear"] = releaseYear
