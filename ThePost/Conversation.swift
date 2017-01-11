@@ -17,6 +17,8 @@ class Conversation: NSObject {
     
     var productID: String!
     
+    var firstMessage: String?
+    
     init(id: String, otherPersonId: String, otherPersonName: String, productID: String) {
         self.id = id
         self.otherPersonId = otherPersonId

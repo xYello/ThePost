@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+let openChatControllerNotificationKey = "kOpenChatControllerNotification"
+
 class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private var selectionBar: UIView?
@@ -42,6 +44,8 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                 item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
             }
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(openChatTab(notification:)), name: NSNotification.Name(rawValue: openChatControllerNotificationKey), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -133,6 +137,41 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
     
     func hideShadow() {
         shadowLayer.isHidden = true
+    }
+    
+    // MARK: - Notifications
+    
+    @objc private func openChatTab(notification: NSNotification) {
+        if let userInfo = notification.userInfo as? [String: String] {
+            if childViewControllers.count >= 1 {
+                if let navBar = childViewControllers[1] as? UINavigationController {
+                    if navBar.childViewControllers.count >= 1 {
+                        if let conversationVC = navBar.childViewControllers[0] as? ChatConversationViewController {
+                            let conversation = Conversation(id: "",
+                                                            otherPersonId: userInfo["productOwnerID"]!,
+                                                            otherPersonName: userInfo["productOwnerName"]!,
+                                                            productID: userInfo["productID"]!)
+                            
+                            if let preMessage = userInfo["preformattedMessage"] {
+                                conversation.firstMessage = preMessage
+                            }
+                            
+                            conversationVC.newConversation = conversation
+
+                            selectedIndex = 1
+                            
+                            // Move selection bar
+                            if let views = interactionViews {
+                                let selectedFrame = views[1].frame
+                                UIView.animate(withDuration: 0.25, delay: 0.1, options: .curveEaseOut, animations: {
+                                    self.selectionBar!.frame = CGRect(x: selectedFrame.origin.x, y: selectedFrame.height - 1, width: self.selectionBar!.frame.width, height: self.selectionBar!.frame.height)
+                                }, completion: nil)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

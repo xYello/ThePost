@@ -27,7 +27,15 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     
     var soldImageViewMidConstraint: NSLayoutConstraint!
     
-    private var conversationRef: FIRDatabaseReference!
+    private var conversationRef: FIRDatabaseReference? {
+        didSet {
+            messageRef = conversationRef!.child("messages")
+            userTypingRef = conversationRef!.child("typingIndicator").child(senderId)
+            otherUserTypingQueryRef = conversationRef!.child("typingIndicator").child(conversation.otherPersonId)
+            
+            observeMessages()
+        }
+    }
     private var messageRef: FIRDatabaseReference!
     private var messageQueryRef: FIRDatabaseQuery!
     private var userTypingRef: FIRDatabaseReference!
@@ -47,7 +55,9 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         }
         set {
             localTyping = newValue
-            userTypingRef.setValue(newValue)
+            if conversationRef != nil {
+                userTypingRef.setValue(newValue)
+            }
         }
     }
     
@@ -98,6 +108,8 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         }
     }
     
+    private var inputBarDefaultHeight: CGFloat!
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -109,12 +121,12 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         senderId = FIRAuth.auth()!.currentUser!.uid
         senderDisplayName = conversation.otherPersonName
         
-        conversationRef = FIRDatabase.database().reference().child("chats").child(conversation.id)
-        messageRef = conversationRef.child("messages")
-        userTypingRef = conversationRef.child("typingIndicator").child(senderId)
-        otherUserTypingQueryRef = conversationRef.child("typingIndicator").child(conversation.otherPersonId)
+        if conversation.id != "" {
+            conversationRef = FIRDatabase.database().reference().child("chats").child(conversation.id)
+        }
         
         productIsSoldRef = FIRDatabase.database().reference().child("products").child(conversation.productID).child("isSold")
+        getProductDetails()
         
         collectionView.backgroundColor = #colorLiteral(red: 0.1870684326, green: 0.2210902572, blue: 0.2803535461, alpha: 1)
         
@@ -122,13 +134,18 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         inputToolbar.contentView.textView.backgroundColor = #colorLiteral(red: 0.1882352941, green: 0.2196078431, blue: 0.2784313725, alpha: 1)
         inputToolbar.contentView.textView.textColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
         
+        if let message = conversation.firstMessage, message != "" {
+            inputToolbar.contentView.textView.text = message
+            
+            inputBarDefaultHeight = inputToolbar.preferredDefaultHeight
+            inputToolbar.preferredDefaultHeight = 120.0
+        }
+        
         outgoingBubble = setupOutgoingBubble()
         incomingBubble = setupIncomingBubble()
         
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = .zero
         collectionView!.collectionViewLayout.incomingAvatarViewSize = .zero
-        
-        observeMessages()
         
         greenButton.roundCorners(radius: 8.0)
         greenButton.alpha = 0.0
@@ -137,8 +154,6 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         outlineButton.alpha = 0.0
         outlineButton.layer.borderColor = outlineButton.titleLabel!.textColor.cgColor
         outlineButton.layer.borderWidth = 1.0
-        
-        getProductDetails()
         
         soldContainer.alpha = 0.0
         soldImageView.alpha = 0.0
@@ -154,7 +169,9 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         
         collectionView.collectionViewLayout.springinessEnabled = true
         
-        observeTyping()
+        if conversation.id != "" {
+            observeTyping()
+        }
     }
     
     deinit {
@@ -227,6 +244,19 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     // MARK: - JSQMessages Actions
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        
+        if conversationRef == nil {
+            conversationRef = FIRDatabase.database().reference().child("chats").childByAutoId()
+            
+            let userChatsRef = FIRDatabase.database().reference().child("user-chats")
+            let childUpdate = [conversationRef!.key: true]
+            
+            userChatsRef.child(conversation.otherPersonId).updateChildValues(childUpdate)
+            userChatsRef.child(senderId).updateChildValues(childUpdate)
+            
+            inputToolbar.preferredDefaultHeight = inputBarDefaultHeight
+        }
+        
         let itemRef = messageRef.childByAutoId()
         
         let messageItem = ["senderId": senderId, "senderName": senderDisplayName, "text": text] as [String: String]
