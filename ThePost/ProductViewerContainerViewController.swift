@@ -187,9 +187,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             detailsCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
             detailsCell.detailNameLabel.text = descriptionName
             detailsCell.hasOriginalBox = product.originalBox
-            
-            // TODO: Update
-            detailsCell.datePostedLabel.text = "1 hour 14 mins ago"
+            detailsCell.datePostedLabel.text = product.relativeDate
             
             if let releaseYear = product.releaseYear {
                 detailsCell.releaseYearLabel.text = "\(releaseYear)"
