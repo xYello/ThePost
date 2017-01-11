@@ -16,7 +16,6 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var products: [Product] = []
-    private var keyPaths: [String] = []
     
     private var ref: FIRDatabaseReference!
     private var productRef: FIRDatabaseReference?
@@ -80,9 +79,11 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                                 product.isSold = isSold
                             }
                             
-                            self.products.append(product)
-                            self.keyPaths.append(snapshot.key)
-                            self.collectionView.reloadData()
+                            self.products.insert(product, at: 0)
+                            
+                            self.collectionView.performBatchUpdates({
+                                self.collectionView.reloadSections(IndexSet(integer: 0))
+                            }, completion: nil)
                         }
                     }
                 }
@@ -101,9 +102,10 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                             
                             let index = self.indexOfMessage(product)
                             self.products.remove(at: index)
-                            self.keyPaths.remove(at: index)
                             
-                            self.collectionView.reloadData()
+                            self.collectionView.performBatchUpdates({
+                                self.collectionView.reloadSections(IndexSet(integer: 0))
+                            }, completion: nil)
                         }
                     }
                 }
@@ -158,7 +160,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let productCell = cell as? ProductListingContentCollectionViewCell {
-            productCell.productKey = keyPaths[indexPath.row]
+            productCell.productKey = products[indexPath.row].uid
         }
     }
     
