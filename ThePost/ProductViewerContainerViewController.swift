@@ -69,6 +69,8 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         view.roundCorners(radius: 8.0)
         view.clipsToBounds = true
         
+        product.images.removeAll()
+        
         priceContainer.layer.shadowRadius = 3.0
         priceContainer.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
         priceContainer.roundCorners(radius: 8.0)
@@ -335,6 +337,8 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         return imageName
     }
     
+    // MARK: - Firebase Database
+    
     private func grabProductImages() {
         let imagesRef = FIRDatabase.database().reference().child("products").child(product.uid).child("images")
         imagesRef.observeSingleEvent(of: .value, with: { snapshot in
@@ -344,8 +348,6 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             self.collectionView.reloadData()
         })
     }
-    
-    // MARK: - Firebase Database
     
     private func setupLikesAndViewsListeners() {
         likesRef = FIRDatabase.database().reference().child("products").child(product.uid).child("likeCount")
