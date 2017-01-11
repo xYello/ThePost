@@ -8,9 +8,13 @@
 
 import UIKit
 
+let tabBarSwitchedToChatConversationNotification = "ktabBarSwitchedToChatConversationNotification"
+
 class ChatConversationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    var newConversation: Conversation?
     
     // MARK: - View lifecycle
     
@@ -24,8 +28,17 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let tabBar = tabBarController as? SlidingSelectionTabBarController {
-            tabBar.showShadow()
+        if let new = newConversation {
+            if let tabBar = tabBarController as? SlidingSelectionTabBarController {
+                tabBar.hideShadow()
+            }
+            
+            performSegue(withIdentifier: "chatViewController", sender: new)
+            newConversation = nil
+        } else {
+            if let tabBar = tabBarController as? SlidingSelectionTabBarController {
+                tabBar.showShadow()
+            }
         }
     }
     

@@ -282,7 +282,12 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             
             present(alert, animated: true, completion: nil)
         } else if sender.currentTitle == "Make Offer" {
-            // TODO: Move to messages
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: openChatControllerNotificationKey), object: nil, userInfo:
+                ["productID": product.uid,
+                 "productOwnerID": product.ownerId,
+                 "productOwnerName": seller.fullName,
+                 "preformattedMessage": "I would like to buy your product that you have for sale! Specifically the, \(product.name!)."])
+            dismissParent()
         }
     }
     
@@ -290,7 +295,11 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         if sender.currentTitle == "Edit" {
             
         } else if sender.currentTitle == "Message" {
-            // TODO: Move to messages
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: openChatControllerNotificationKey), object: nil, userInfo:
+                ["productID": product.uid,
+                 "productOwnerID": product.ownerId,
+                 "productOwnerName": seller.fullName])
+            dismissParent()
         }
     }
     
