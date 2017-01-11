@@ -57,10 +57,41 @@ class SignInUpPromptViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions
+    
+    @IBAction func dismissSignUpPrompt(_ sender: UIButton) {
+        prepareForDismissal {
+            self.dismiss(animated: false, completion: nil)
+        }
+    }
+    
+    // MARK: - Dismissal
+    
+    func prepareForDismissal(dismissCompletion: @escaping () -> Void) {
+        animator.removeAllBehaviors()
+        
+        let gravity = UIGravityBehavior(items: [container])
+        gravity.gravityDirection = CGVector(dx: 0.0, dy: 9.8)
+        animator.addBehavior(gravity)
+        
+        let item = UIDynamicItemBehavior(items: [container])
+        item.addAngularVelocity(-CGFloat(M_PI_2), for: container)
+        animator.addBehavior(item)
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.container.alpha = 0.0
+            self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+        }, completion: { done in
+            dismissCompletion()
+        })
+    }
+    
     // MARK: - Unwind
     
     @IBAction func unwindToSignInUpPrompt(_ segue: UIStoryboardSegue) {
-        dismiss(animated: false, completion: nil)
+        prepareForDismissal {
+            self.dismiss(animated: false, completion: nil)
+        }
     }
 
 }
