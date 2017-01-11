@@ -9,13 +9,15 @@
 import UIKit
 
 class RoundedTextField: UITextField {
-
+    
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: 15, dy: 0)
+        super.textRect(forBounds: bounds)
+        return CGRect(x: bounds.origin.x + 18.0, y: bounds.origin.y, width: bounds.width - 58, height: bounds.height)
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: 15, dy: 0)
+        super.editingRect(forBounds: bounds)
+        return CGRect(x: bounds.origin.x + 18.0, y: bounds.origin.y, width: bounds.width - 58, height: bounds.height)
     }
 
 }
