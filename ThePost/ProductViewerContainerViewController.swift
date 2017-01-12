@@ -120,7 +120,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         priceLabel.text = truncated
         
         textCellLayout = [product.name, product.jeepModel.description, truncated, product.condition.description]
-        checkCellLayout = [product.willingToShip, product.acceptsPayPal, product.acceptsPayPal]
+        checkCellLayout = [product.willingToShip, product.acceptsPayPal, product.acceptsCash]
         
         grabProductImages()
         setupLikesAndViewsListeners()
