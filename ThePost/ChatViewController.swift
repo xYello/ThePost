@@ -323,6 +323,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         if let vc = storyboard.instantiateViewController(withIdentifier: "createAReviewController") as? CreateReviewViewController {
             vc.modalPresentationStyle = .overCurrentContext
             vc.product = product
+            vc.userId = conversation.otherPersonId
             
             present(vc, animated: false, completion: nil)
         }

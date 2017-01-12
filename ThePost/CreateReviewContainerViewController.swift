@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import SwiftKeychainWrapper
 
 class CreateReviewContainerViewController: UIViewController, UITextViewDelegate {
 
@@ -29,7 +31,49 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     
     private var originalViewFrame: CGRect?
     
-    private var amountOfStars = 0
+    private var amountOfStars = 0 {
+        didSet {
+            switch amountOfStars {
+            case 1:
+                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                
+                leftMidStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+                midStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+                rightMidStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+                farRightStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+            case 2:
+                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                
+                midStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+                rightMidStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+                farRightStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+            case 3:
+                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                
+                rightMidStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+                farRightStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+            case 4:
+                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                rightMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                
+                farRightStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+            default:
+                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                rightMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                farRightStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+            }
+        }
+    }
+    
+    var product: Product!
+    var userId: String!
     
     // MARK: - View lifecycle
     
@@ -45,9 +89,16 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
         let pan = UIPanGestureRecognizer(target: self, action: #selector(viewTapped))
         view.addGestureRecognizer(pan)
         
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        let string = formatter.string(from: floor(product.price) as NSNumber)
+        let endIndex = string!.index(string!.endIndex, offsetBy: -3)
+        let truncated = string!.substring(to: endIndex) // Remove the .00 from the price.
+        priceLabel.text = truncated
+        
         imageView.roundCorners()
         
-        questionLabel.text = "Overall, how would you rate Ethan Andrews through the process of your purchase?"
+        questionLabel.text = ""
         
         formatStar(farLeftStar)
         formatStar(leftMidStar)
@@ -62,9 +113,14 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
         cancelButton.roundCorners(radius: 8.0)
         
         submitButton.roundCorners(radius: 8.0)
+        submitButton.isEnabled = false
+        submitButton.backgroundColor = UIColor.clear
+        checkIfPreviouslyReviewed()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+        
+        grabProfileDetails()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -121,57 +177,22 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     // MARK: - Actions
     
     @IBAction func farLeftPressed(_ sender: UIButton) {
-        farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        
-        leftMidStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
-        midStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
-        rightMidStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
-        farRightStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
-        
         amountOfStars = 1
     }
     
     @IBAction func leftMidPressed(_ sender: UIButton) {
-        farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        
-        midStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
-        rightMidStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
-        farRightStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
-        
         amountOfStars = 2
     }
     
     @IBAction func midPressed(_ sender: UIButton) {
-        
-        farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        
-        rightMidStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
-        farRightStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
-        
         amountOfStars = 3
     }
     
     @IBAction func rightMidPressed(_ sender: UIButton) {
-        farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        rightMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        
-        farRightStar.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
-        
         amountOfStars = 4
     }
     
     @IBAction func farRightPressed(_ sender: UIButton) {
-        farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        rightMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        farRightStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        
         amountOfStars = 5
     }
     
@@ -184,6 +205,49 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     }
     
     @IBAction func wantsToSubmit(_ sender: UIButton) {
+        
+        var viewsToShake: [UIView] = []
+        
+        if amountOfStars == 0 {
+            viewsToShake.append(farLeftStar)
+            viewsToShake.append(leftMidStar)
+            viewsToShake.append(midStar)
+            viewsToShake.append(rightMidStar)
+            viewsToShake.append(farRightStar)
+        }
+        
+        if textView.text == "" {
+            viewsToShake.append(fakePlaceholderLabel)
+            fakePlaceholderLabel.isHidden = false
+        }
+        
+        if viewsToShake.count == 0 && fakePlaceholderLabel.isHidden {
+            if let uid = FIRAuth.auth()?.currentUser?.uid {
+                if let city = KeychainWrapper.standard.string(forKey: "userCity"), let state = KeychainWrapper.standard.string(forKey: "userState") {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "MM/dd/yy HH:mm:ss"
+                    formatter.timeZone = TimeZone(identifier: "America/New_York")
+                    let now = formatter.string(from: Date())
+                    
+                    let review: [String: Any] = ["rating": amountOfStars,
+                                                 "timeReviewed": now,
+                                                 "comment": textView.text,
+                                                 "reviewerCity": city,
+                                                 "reviewerState": state]
+                    
+                    let ref = FIRDatabase.database().reference().child("user-reviews").child(userId).child(uid)
+                    let childUpdates = [product.uid: review]
+                    ref.updateChildValues(childUpdates)
+                }
+                
+                dismissParent()
+            }
+        } else {
+            for view in viewsToShake {
+                shakeView(view: view)
+            }
+        }
+        
     }
     
     // MARK: - Helpers
@@ -199,6 +263,52 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                 parent.dismiss(animated: false, completion: nil)
             }
         }
+    }
+    
+    private func grabProfileDetails() {
+        let userRef = FIRDatabase.database().reference().child("users").child(userId).child("fullName")
+        userRef.observeSingleEvent(of: .value, with: { snapshot in
+            if let name = snapshot.value as? String {
+                DispatchQueue.main.async {
+                    self.questionLabel.text = "Overall, how would you rate \(name) through the process of your purchase?"
+                }
+            }
+        })
+    }
+    
+    private func checkIfPreviouslyReviewed() {
+        if let uid = FIRAuth.auth()?.currentUser?.uid {
+            let ref = FIRDatabase.database().reference().child("user-reviews").child(userId).child(uid)
+            ref.observeSingleEvent(of: .value, with: { snapshot in
+                if let review = snapshot.value as? [String: AnyObject] {
+                    if let review = review[self.product.uid] as? [String: Any] {
+                        DispatchQueue.main.async {
+                            self.amountOfStars = review["rating"] as! Int
+                            self.textView.text = review["comment"] as! String
+                            self.fakePlaceholderLabel.isHidden = true
+                            
+                            self.submitButton.isEnabled = true
+                            self.submitButton.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                        }
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    self.submitButton.isEnabled = true
+                    self.submitButton.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                }
+            })
+        }
+    }
+    
+    private func shakeView(view: UIView) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.08
+        animation.repeatCount = 2
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: view.center.x - 10, y: view.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: view.center.x + 10, y: view.center.y))
+        view.layer.add(animation, forKey: "position")
     }
     
 }
