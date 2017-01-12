@@ -319,7 +319,13 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     }
     
     @objc private func writeAReviewButtonPressed() {
-        // TODO: Open Write A Review...
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "createAReviewController") as? CreateReviewViewController {
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.product = product
+            
+            present(vc, animated: false, completion: nil)
+        }
     }
     
     // MARK: - Helpers
