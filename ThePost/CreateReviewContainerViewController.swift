@@ -42,6 +42,9 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(viewTapped))
+        view.addGestureRecognizer(pan)
+        
         imageView.roundCorners()
         
         questionLabel.text = "Overall, how would you rate Ethan Andrews through the process of your purchase?"
@@ -81,14 +84,14 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                 let animationCurveRaw = animationCurveRawNSN.uintValue
                 let animationCurve  = UIViewAnimationOptions(rawValue: animationCurveRaw)
                 
-                let textViewBottomY = textView.frame.origin.y + textView.frame.height
-                let distanceToTopKeyboardY = textViewBottomY - keyboardRect.origin.y
+                let endViewFrame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y - textView.frame.origin.y, width: view.frame.width, height: view.frame.height)
+                let viewExpansion = keyboardRect.origin.y - endViewFrame.origin.y - endViewFrame.height
                 
                 UIView.animate(withDuration: duration, delay: 0.0, options: animationCurve, animations: {
                     self.view.frame = CGRect(x: self.view.frame.origin.x,
-                                             y: self.view.frame.origin.y - 2 * distanceToTopKeyboardY,
+                                             y: self.view.frame.origin.y - self.textView.frame.origin.y,
                                              width: self.view.frame.width,
-                                             height: self.view.frame.height + 2 * distanceToTopKeyboardY)
+                                             height: self.view.frame.height + viewExpansion)
                 }, completion: nil)
             }
         }
