@@ -31,6 +31,7 @@
 		4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */; };
 		4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */; };
 		4D04C54E1E0F2CD3004B2264 /* AppServicesRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */; };
+		4D161BC81E26E97B001BEE9D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D161BC71E26E97B001BEE9D /* SignInViewController.swift */; };
 		4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */; };
 		4D239C421E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */; };
 		4D239C441E131BBE00F2668E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C431E131BBE00F2668E /* Product.swift */; };
@@ -117,6 +118,7 @@
 		4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+RoundedCorners.swift"; sourceTree = "<group>"; };
 		4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppServicesRequestViewController.swift; sourceTree = "<group>"; };
+		4D161BC71E26E97B001BEE9D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingViewController.swift; sourceTree = "<group>"; };
 		4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D239C431E131BBE00F2668E /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				4D34358B1E203E1900E031D7 /* Profile */,
 				4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */,
 				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
+				4D161BC71E26E97B001BEE9D /* SignInViewController.swift */,
 				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
 				4D5AB0AC1E24939F005BF23B /* Product Viewer */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
@@ -706,6 +709,7 @@
 				4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */,
 				4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
+				4D161BC81E26E97B001BEE9D /* SignInViewController.swift in Sources */,
 				4D23EC751E1F86130001C045 /* ConversationTableViewCell.swift in Sources */,
 				4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */,
 				4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */,
