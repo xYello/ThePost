@@ -15,6 +15,7 @@ class CreateReviewViewController: UIViewController {
     private var animator: UIDynamicAnimator!
     
     var product: Product!
+    var userId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +70,9 @@ class CreateReviewViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if let destination = segue.destination as? ProductViewerContainerViewController {
+        if let destination = segue.destination as? CreateReviewContainerViewController {
+            destination.product = product
+            destination.userId = userId
         }
     }
 
