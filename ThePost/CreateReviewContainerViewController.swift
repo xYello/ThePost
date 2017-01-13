@@ -31,6 +31,8 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     
     private var originalViewFrame: CGRect?
     
+    private var hasReviewedBefore = false
+    
     private var amountOfStars = 0 {
         didSet {
             switch amountOfStars {
@@ -235,9 +237,26 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                                                  "reviewerCity": city,
                                                  "reviewerState": state]
                     
-                    let ref = FIRDatabase.database().reference().child("user-reviews").child(userId).child(uid)
+                    let ref = FIRDatabase.database().reference().child("user-reviews").child(userId)
                     let childUpdates = [product.uid: review]
-                    ref.updateChildValues(childUpdates)
+                    ref.child(uid).updateChildValues(childUpdates)
+                    
+                    if !hasReviewedBefore {
+                        ref.child("reviewCount").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+                            if let count = currentData.value as? Int {
+                                currentData.value = count + 1
+                                
+                                return FIRTransactionResult.success(withValue: currentData)
+                            } else {
+                                currentData.value = 1
+                            }
+                            return FIRTransactionResult.success(withValue: currentData)
+                        }) { (error, committed, snapshot) in
+                            if let error = error {
+                                print(error.localizedDescription)
+                            }
+                        }
+                    }
                 }
                 
                 dismissParent()
@@ -282,6 +301,8 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
             ref.observeSingleEvent(of: .value, with: { snapshot in
                 if let review = snapshot.value as? [String: AnyObject] {
                     if let review = review[self.product.uid] as? [String: Any] {
+                        self.hasReviewedBefore = true
+                        
                         DispatchQueue.main.async {
                             self.amountOfStars = review["rating"] as! Int
                             self.textView.text = review["comment"] as! String
