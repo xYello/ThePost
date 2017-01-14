@@ -13,15 +13,7 @@ class PercentageBar: UIView {
     private var bar: UIView!
     private var topBarConstraint: NSLayoutConstraint!
     
-    var value: CGFloat = 0.0 {
-        didSet {
-            topBarConstraint.constant = frame.height - (value * frame.height)
-            
-            UIView.animate(withDuration: 0.25, animations: {
-                self.layoutIfNeeded()
-            })
-        }
-    }
+    var value: CGFloat = 0.0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,6 +32,14 @@ class PercentageBar: UIView {
         
         topBarConstraint = NSLayoutConstraint(item: bar, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: frame.height)
         addConstraint(topBarConstraint)
+    }
+    
+    func animateValueChanges() {
+        topBarConstraint.constant = frame.height - (value * frame.height)
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.layoutIfNeeded()
+        })
     }
 
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ReviewSummaryTableViewCell: UITableViewCell {
 
@@ -21,6 +22,16 @@ class ReviewSummaryTableViewCell: UITableViewCell {
     @IBOutlet weak var rightMidStar: UIImageView!
     @IBOutlet weak var farRightStar: UIImageView!
     
+    var reviewUserId: String! {
+        didSet {
+            let userRef = FIRDatabase.database().reference().child("users").child(reviewUserId).child("fullName")
+            userRef.observeSingleEvent(of: .value, with: { snapshot in
+                if let name = snapshot.value as? String {
+                    self.reviewerNameLabel.text = name
+                }
+            })
+        }
+    }
     var amountOfStars = 0 {
         didSet {
             switch amountOfStars {
