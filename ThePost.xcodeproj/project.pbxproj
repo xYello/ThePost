@@ -68,6 +68,11 @@
 		4D907B561E13824D00F9FD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D907B551E13824D00F9FD8B /* User.swift */; };
 		4DA153F31E22EA6D00708543 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA153F21E22EA6D00708543 /* ChatViewController.swift */; };
 		4DA153F51E22EB1300708543 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA153F41E22EB1300708543 /* Conversation.swift */; };
+		4DBF61E31E29C26600D07AD5 /* ReviewsSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61E21E29C26600D07AD5 /* ReviewsSummaryViewController.swift */; };
+		4DBF61E51E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61E41E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift */; };
+		4DBF61E71E29CA3100D07AD5 /* PercentageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61E61E29CA3100D07AD5 /* PercentageBar.swift */; };
+		4DBF61EB1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61EA1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift */; };
+		4DBF61ED1E29E05100D07AD5 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61EC1E29E05100D07AD5 /* Review.swift */; };
 		4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */; };
 		4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */; };
 		4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */; };
@@ -162,6 +167,11 @@
 		4D907B551E13824D00F9FD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4DA153F21E22EA6D00708543 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		4DA153F41E22EB1300708543 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		4DBF61E21E29C26600D07AD5 /* ReviewsSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsSummaryViewController.swift; sourceTree = "<group>"; };
+		4DBF61E41E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsSummaryContainerViewController.swift; sourceTree = "<group>"; };
+		4DBF61E61E29CA3100D07AD5 /* PercentageBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentageBar.swift; sourceTree = "<group>"; };
+		4DBF61EA1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		4DBF61EC1E29E05100D07AD5 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSelectionTabBarController.swift; sourceTree = "<group>"; };
@@ -236,8 +246,9 @@
 		4D161BC91E2700BC001BEE9D /* Reviews */ = {
 			isa = PBXGroup;
 			children = (
-				4D161BCA1E2700EC001BEE9D /* CreateReviewViewController.swift */,
-				4D161BCC1E2710C2001BEE9D /* CreateReviewContainerViewController.swift */,
+				4DBF61EC1E29E05100D07AD5 /* Review.swift */,
+				4DBF61E91E29DEDE00D07AD5 /* Create */,
+				4DBF61E81E29DED500D07AD5 /* Summary */,
 			);
 			name = Reviews;
 			sourceTree = "<group>";
@@ -310,7 +321,7 @@
 				4D35A21B1E12126300A115EB /* Jeep.swift */,
 				4D239C431E131BBE00F2668E /* Product.swift */,
 				4D907B551E13824D00F9FD8B /* User.swift */,
-				4DD1BC9B1E0E251E005F4800 /* Text Fields */,
+				4DD1BC9B1E0E251E005F4800 /* Sub Classes */,
 				4D35A21F1E1233C000A115EB /* PostLaunchViewController.swift */,
 				4D239C401E12DF9300F2668E /* Product Listing */,
 				4D23EC711E1F85B40001C045 /* Chat */,
@@ -390,6 +401,25 @@
 			name = "Individual Conversation";
 			sourceTree = "<group>";
 		};
+		4DBF61E81E29DED500D07AD5 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				4DBF61E21E29C26600D07AD5 /* ReviewsSummaryViewController.swift */,
+				4DBF61E41E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift */,
+				4DBF61EA1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift */,
+			);
+			name = Summary;
+			sourceTree = "<group>";
+		};
+		4DBF61E91E29DEDE00D07AD5 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				4D161BCA1E2700EC001BEE9D /* CreateReviewViewController.swift */,
+				4D161BCC1E2710C2001BEE9D /* CreateReviewContainerViewController.swift */,
+			);
+			name = Create;
+			sourceTree = "<group>";
+		};
 		4DC6C6701E1609AA00431D3A /* Collection View Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,12 +428,13 @@
 			name = "Collection View Cells";
 			sourceTree = "<group>";
 		};
-		4DD1BC9B1E0E251E005F4800 /* Text Fields */ = {
+		4DD1BC9B1E0E251E005F4800 /* Sub Classes */ = {
 			isa = PBXGroup;
 			children = (
 				4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */,
+				4DBF61E61E29CA3100D07AD5 /* PercentageBar.swift */,
 			);
-			name = "Text Fields";
+			name = "Sub Classes";
 			sourceTree = "<group>";
 		};
 		4DD3CCC41E14DC8200821C7C /* Add New Product */ = {
@@ -714,8 +745,11 @@
 				4D24E8CB1E15C79900E524FD /* NewProductDetailsTableViewCell.swift in Sources */,
 				4D24E8C91E15C48600E524FD /* NewProductSwitchTableViewCell.swift in Sources */,
 				4D04C54E1E0F2CD3004B2264 /* AppServicesRequestViewController.swift in Sources */,
+				4DBF61EB1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift in Sources */,
+				4DBF61E51E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift in Sources */,
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
 				4DEB7A621E17724A00C23216 /* NewProductBaseTableViewCell.swift in Sources */,
+				4DBF61E71E29CA3100D07AD5 /* PercentageBar.swift in Sources */,
 				4D5AB0B61E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift in Sources */,
 				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
 				4D5AB0AB1E242765005BF23B /* ChatContainerViewController.swift in Sources */,
@@ -732,9 +766,11 @@
 				4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */,
 				4D239C441E131BBE00F2668E /* Product.swift in Sources */,
 				4D239C421E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift in Sources */,
+				4DBF61ED1E29E05100D07AD5 /* Review.swift in Sources */,
 				4D23EC701E1ECE0C0001C045 /* SignInUpPromptViewController.swift in Sources */,
 				4D5AB0BA1E24B512005BF23B /* ProductViewerExCheckTableViewCell.swift in Sources */,
 				4D23EC771E1F86360001C045 /* ChatConversationViewController.swift in Sources */,
+				4DBF61E31E29C26600D07AD5 /* ReviewsSummaryViewController.swift in Sources */,
 				4D5AB0B81E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift in Sources */,
 				4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */,
 				4D35A20E1E11FA4B00A115EB /* CategorySelectorViewController.swift in Sources */,
