@@ -35,20 +35,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         collectionView.delegate = self
         
         jeepModel = Jeep(withType: JeepModel.wranglerJK)
-        let selectedJeepNumber:Int = KeychainWrapper.standard.integer(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)!
+        let selectedJeepDescription:String = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)!
         
-        switch selectedJeepNumber {
-        case 0:
-            jeepModel.type = JeepModel.wranglerJK
-        case 1:
-            jeepModel.type = JeepModel.wranglerTJ
-        case 2:
-            jeepModel.type = JeepModel.wranglerYJ
-        case 3:
-            jeepModel.type = JeepModel.cherokeeXJ
-        default:
-            jeepModel.type = JeepModel.wranglerJK
-        }
+        jeepModel = Jeep(withType: JeepModel.enumFromString(string: selectedJeepDescription)!)
         
         if let start = jeepModel.startYear, let end = jeepModel.endYear, let name = jeepModel.name {
             navigationController!.navigationBar.topItem!.title = name + " \(start)-\(end)"
