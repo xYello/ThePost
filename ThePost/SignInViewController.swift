@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 class SignInViewController: UIViewController {
 
@@ -58,6 +59,7 @@ class SignInViewController: UIViewController {
                         print("Error signing in: \(error.localizedDescription)")
                     }
                 } else {
+                    KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: Constants.UserInfoKeys.UserPass.rawValue)
                     self.performSegue(withIdentifier: "unwindToPresenting", sender: self)
                 }
             })
