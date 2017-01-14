@@ -22,6 +22,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     
+    @IBOutlet weak var farLeftStar: UIImageView!
+    @IBOutlet weak var leftMidStar: UIImageView!
+    @IBOutlet weak var midStar: UIImageView!
+    @IBOutlet weak var rightMidStar: UIImageView!
+    @IBOutlet weak var farRightStar: UIImageView!
+    
     @IBOutlet weak var numberOfReviewsLabel: UILabel!
     
     @IBOutlet weak var sellingProductTypeButton: UIButton!
@@ -44,6 +50,33 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private var userProductsRef: FIRDatabaseReference!
     private var likesQuery: FIRDatabaseQuery!
+    
+    private var amountOfStars = 0 {
+        didSet {
+            switch amountOfStars {
+            case 1:
+                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+            case 2:
+                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+            case 3:
+                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+            case 4:
+                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                rightMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+            default:
+                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                rightMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                farRightStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+            }
+        }
+    }
 
     // MARK: - View lifecycle
     
@@ -59,6 +92,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         grabLikedPosts(with: uid)
         
         getUserProfile(with: uid)
+        grabUsersReviewStats(with: uid)
+        
+        let stars: [UIImageView] = [farLeftStar, leftMidStar, midStar, rightMidStar, farRightStar]
+        for star in stars {
+            star.image = UIImage(named: "ProfileReviewsStar")!.withRenderingMode(.alwaysTemplate)
+            star.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+        }
         
         if let city = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserCity.rawValue), let state = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserState.rawValue) {
             locationLabel.text = "\(city), \(state)"
@@ -241,6 +281,34 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             })
         }
+    }
+    
+    private func grabUsersReviewStats(with uid: String) {
+        let ref = FIRDatabase.database().reference().child("reviews").child(uid).child("reviewNumbers")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let numbers = snapshot.value as? [String: Int] {
+                let count = numbers["count"]!
+                let number = Double(numbers["sum"]!) / Double(count)
+                let roundedNumber = number.roundTo(places: 1)
+                
+                self.determineStarsfor(number: roundedNumber)
+                
+                DispatchQueue.main.async {
+                    self.numberOfReviewsLabel.text = "\(count) reviews"
+                }
+            }
+        })
+    }
+    
+    private func determineStarsfor(number: Double) {
+        let wholeNumber = Int(number)
+        var starsToTurnOn = wholeNumber
+        
+        if number - Double(wholeNumber) >= 0.9 {
+            starsToTurnOn += 1
+        }
+        
+        amountOfStars = starsToTurnOn
     }
     
     private func setupProductListeners() {
