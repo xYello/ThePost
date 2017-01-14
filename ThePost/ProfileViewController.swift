@@ -170,6 +170,18 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - Actions
 
+    @IBAction func reviewsButtonTapped(_ sender: UIButton) {
+        if let uid = FIRAuth.auth()?.currentUser?.uid {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let vc = storyboard.instantiateViewController(withIdentifier: "reviewsSummaryController") as? ReviewsSummaryViewController {
+                vc.modalPresentationStyle = .overCurrentContext
+                vc.userId = uid
+                    
+                present(vc, animated: false, completion: nil)
+            }
+        }
+    }
+    
     @IBAction func productListingButtonTapped(_ sender: UIButton) {
         
         if sender.titleColor(for: .normal) != #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1) {
