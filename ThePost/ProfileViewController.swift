@@ -337,12 +337,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                         if let isSold = productDict["isSold"] as? Bool {
                             product.isSold = isSold
                             if isSold {
-                                self.soldProducts.append(product)
+                                self.soldProducts.insert(product, at: 0)
                             } else {
-                                self.sellingProducts.append(product)
+                                self.sellingProducts.insert(product, at: 0)
                             }
                         } else {
-                            self.sellingProducts.append(product)
+                            self.sellingProducts.insert(product, at: 0)
                         }
                         
                         if self.productViewType == .selling || self.productViewType == .sold {
@@ -398,7 +398,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                                                   condition: condition)
                             product.uid = snapshot.key
                             
-                            self.likedProducts.append(product)
+                            if let isSold = productDict["isSold"] as? Bool {
+                                product.isSold = isSold
+                            }
+                            
+                            self.likedProducts.insert(product, at: 0)
                             if self.productViewType == .liked {
                                 self.tableView.reloadData()
                             }
