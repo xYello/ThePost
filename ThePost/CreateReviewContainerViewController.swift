@@ -33,7 +33,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate,
     private var originalViewFrame: CGRect?
     
     private var reviewedBeforeKey: String?
-    private var previousReviewAmountOfStart = 0
+    private var previousReviewAmountOfStars = 0
     
     private var manager: CLLocationManager!
     
@@ -274,11 +274,37 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate,
                         ref.updateChildValues(childUpdates)
                         
                         ref.child("reviewNumbers").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-                            if let reviewNumbers = currentData.value as? [String: Int] {
-                                if var sum = reviewNumbers["sum"] {
-                                    sum += self.amountOfStars - self.previousReviewAmountOfStart
+                            if var reviewNumbers = currentData.value as? [String: Int] {
+                                if let _ = reviewNumbers["sum"] {
+                                    reviewNumbers["sum"]! += self.amountOfStars - self.previousReviewAmountOfStars
                                     
-                                    currentData.value = ["count": reviewNumbers["count"], "sum": sum]
+                                    switch self.previousReviewAmountOfStars {
+                                    case 1:
+                                        reviewNumbers["oneStars"]! -= 1
+                                    case 2:
+                                        reviewNumbers["twoStars"]! -= 1
+                                    case 3:
+                                        reviewNumbers["threeStars"]! -= 1
+                                    case 4:
+                                        reviewNumbers["fourStars"]! -= 1
+                                    default:
+                                        reviewNumbers["fiveStars"]! -= 1
+                                    }
+                                    
+                                    switch self.amountOfStars {
+                                    case 1:
+                                        reviewNumbers["oneStars"]! += 1
+                                    case 2:
+                                        reviewNumbers["twoStars"]! += 1
+                                    case 3:
+                                        reviewNumbers["threeStars"]! += 1
+                                    case 4:
+                                        reviewNumbers["fourStars"]! += 1
+                                    default:
+                                        reviewNumbers["fiveStars"]! += 1
+                                    }
+                                    
+                                    currentData.value = reviewNumbers
                                 }
                             }
                             return FIRTransactionResult.success(withValue: currentData)
@@ -291,16 +317,33 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate,
                         let childUpdates = [ref.childByAutoId().key: review]
                         ref.updateChildValues(childUpdates)
                         
+                        var starCountString = ""
+                        switch self.amountOfStars {
+                        case 1:
+                            starCountString = "oneStars"
+                        case 2:
+                            starCountString = "twoStars"
+                        case 3:
+                            starCountString = "threeStars"
+                        case 4:
+                            starCountString = "fourStars"
+                        default:
+                            starCountString = "fiveStars"
+                        }
+                        
                         ref.child("reviewNumbers").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-                            if let reviewNumbers = currentData.value as? [String: Int] {
-                                if var count = reviewNumbers["count"], var sum = reviewNumbers["sum"] {
-                                    count += 1
-                                    sum += self.amountOfStars
+                            if var reviewNumbers = currentData.value as? [String: Int] {
+                                if let count = reviewNumbers["count"] {
+                                    reviewNumbers["sum"]! += self.amountOfStars
+                                    reviewNumbers["count"]! = count + 1
+                                    reviewNumbers[starCountString]! += 1
                                     
-                                    currentData.value = ["count": count, "sum": sum]
+                                    currentData.value = reviewNumbers
                                 }
                             } else {
-                                currentData.value = ["count": 1, "sum": self.amountOfStars]
+                                var newNumbers = ["count": 1, "sum": self.amountOfStars, "oneStars": 0, "twoStars": 0, "threeStars": 0, "fourStars": 0, "fiveStars": 0]
+                                newNumbers[starCountString] = 1
+                                currentData.value = newNumbers
                             }
                             return FIRTransactionResult.success(withValue: currentData)
                         }) { (error, committed, snapshot) in
@@ -369,7 +412,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate,
                         if let review = value as? [String: AnyObject] {
                             if review["productId"] as! String == self.product.uid {
                                 self.reviewedBeforeKey = key
-                                self.previousReviewAmountOfStart = review["rating"] as! Int
+                                self.previousReviewAmountOfStars = review["rating"] as! Int
                                 
                                 DispatchQueue.main.async {
                                     self.amountOfStars = review["rating"] as! Int
