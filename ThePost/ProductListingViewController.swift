@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 class ProductListingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -32,6 +33,22 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        jeepModel = Jeep(withType: JeepModel.wranglerJK)
+        let selectedJeepNumber:Int = KeychainWrapper.standard.integer(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)!
+        
+        switch selectedJeepNumber {
+        case 0:
+            jeepModel.type = JeepModel.wranglerJK
+        case 1:
+            jeepModel.type = JeepModel.wranglerTJ
+        case 2:
+            jeepModel.type = JeepModel.wranglerYJ
+        case 3:
+            jeepModel.type = JeepModel.cherokeeXJ
+        default:
+            jeepModel.type = JeepModel.wranglerJK
+        }
         
         if let start = jeepModel.startYear, let end = jeepModel.endYear, let name = jeepModel.name {
             navigationController!.navigationBar.topItem!.title = name + " \(start)-\(end)"
