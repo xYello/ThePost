@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Fabric
 import Crashlytics
+import SwiftKeychainWrapper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         Fabric.with([Answers.self, Crashlytics.self])
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // UnComment this to load jeep selector on starup everytime.
+//        KeychainWrapper.standard.removeObject(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)
+        
+        let selectedJeep = KeychainWrapper.standard.integer(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)
+        var mainViewController:UIViewController
+        if selectedJeep == nil {
+            mainViewController = mainStoryboard.instantiateViewController(withIdentifier: "jeepSelectorViewController") as! JeepSelectorViewController
+        } else {
+            mainViewController = mainStoryboard.instantiateViewController(withIdentifier: "slidingSelectionTabBarController") as! SlidingSelectionTabBarController
+        }
+        
+        self.window?.rootViewController = mainViewController
+        
+        self.window?.makeKeyAndVisible()
+        
+        if let pass = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserPass.rawValue) {
+            if let email = FIRAuth.auth()?.currentUser?.email {
+                
+                let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)
+                FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
+                    if let error = error {
+                        print("Error reauthenticating: \(error.localizedDescription)")
+                        do {
+                            try FIRAuth.auth()?.signOut()
+                        } catch {
+                            print("Error signing out")
+                        }
+                    }
+                    
+                })
+            } else {
+            }
+        } else {
+            do {
+                try FIRAuth.auth()?.signOut()
+            } catch {
+                print("Error signing out")
+            }
+        }
         
         return true
     }

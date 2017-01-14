@@ -8,6 +8,7 @@
 
 import UIKit
 import UPCarouselFlowLayout
+import SwiftKeychainWrapper
 
 class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -98,6 +99,7 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     
     @objc private func selectedJeepCategory(sender: JeepModelButton) {
         selectedJeepModel = sender.jeepModel
+        KeychainWrapper.standard.set(selectedJeepModel.type.rawValue, forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)
         performSegue(withIdentifier: "categorySelectorSegue", sender: self)
     }
     

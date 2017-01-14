@@ -26,7 +26,7 @@ class PostLaunchViewController: UIViewController {
         didSelectJeep = true
         jeepModel = Jeep(withType: JeepModel.wranglerJK)
         
-        if let pass = KeychainWrapper.standard.string(forKey: "userPass") {
+        if let pass = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserPass.rawValue) {
             if let email = FIRAuth.auth()?.currentUser?.email {
                 
                 let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)

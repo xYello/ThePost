@@ -60,7 +60,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         getUserProfile(with: uid)
         
-        if let city = KeychainWrapper.standard.string(forKey: "userCity"), let state = KeychainWrapper.standard.string(forKey: "userState") {
+        if let city = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserCity.rawValue), let state = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserState.rawValue) {
             locationLabel.text = "\(city), \(state)"
         } else {
             locationLabel.text = "(No location provided)"

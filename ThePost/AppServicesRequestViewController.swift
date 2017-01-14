@@ -90,8 +90,8 @@ class AppServicesRequestViewController: UIViewController, CLLocationManagerDeleg
         if let location = manager.location {
             CLGeocoder().reverseGeocodeLocation(location, completionHandler: { placemarks, error in
                 if let marks = placemarks {
-                    KeychainWrapper.standard.set(marks[0].locality!, forKey: "userCity")
-                    KeychainWrapper.standard.set(marks[0].administrativeArea!, forKey: "userState")
+                    KeychainWrapper.standard.set(marks[0].locality!, forKey: Constants.UserInfoKeys.UserCity.rawValue)
+                    KeychainWrapper.standard.set(marks[0].administrativeArea!, forKey: Constants.UserInfoKeys.UserState.rawValue)
                 }
             })
         }
