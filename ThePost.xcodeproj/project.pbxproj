@@ -77,6 +77,7 @@
 		4DEB7A621E17724A00C23216 /* NewProductBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB7A611E17724A00C23216 /* NewProductBaseTableViewCell.swift */; };
 		4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */; };
 		4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */; };
+		60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2ED5C1E29C6DA00ED83EA /* Constants.swift */; };
 		AAE467FBCC3A36A369BEDF7E /* Pods_ThePost_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B09A96BE32B256DA705CD98 /* Pods_ThePost_ThePostTests.framework */; };
 		F151803B1B4EFDB9B184EE87 /* Pods_ThePost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEE8A856D35A366CD4E6F /* Pods_ThePost.framework */; };
 /* End PBXBuildFile section */
@@ -171,6 +172,7 @@
 		4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorViewController.swift; sourceTree = "<group>"; };
 		4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorCollectionViewCell.swift; sourceTree = "<group>"; };
 		5034073F914D3333664873A4 /* Pods_ThePostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		60C2ED5C1E29C6DA00ED83EA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8338EE65D1A2121D99B1BB72 /* Pods-ThePostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D567B87397C9E2452D5FACB6 /* Pods-ThePost-ThePostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost-ThePostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost-ThePostTests/Pods-ThePost-ThePostTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED1FEE8A856D35A366CD4E6F /* Pods_ThePost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
+				60C2ED5C1E29C6DA00ED83EA /* Constants.swift */,
 				4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */,
 				4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */,
 				4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */,
@@ -518,7 +521,7 @@
 				TargetAttributes = {
 					4D58C4D01E0E1882004CA0E3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 2ZSZVH3P4S;
+						DevelopmentTeam = F92T972GML;
 						ProvisioningStyle = Automatic;
 					};
 					4D58C4E41E0E1883004CA0E3 = {
@@ -729,6 +732,7 @@
 				4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */,
 				4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */,
 				4D161BCD1E2710C2001BEE9D /* CreateReviewContainerViewController.swift in Sources */,
+				60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */,
 				4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */,
 				4D239C441E131BBE00F2668E /* Product.swift in Sources */,
 				4D239C421E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift in Sources */,
@@ -888,7 +892,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
+				DEVELOPMENT_TEAM = F92T972GML;
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
@@ -906,7 +910,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
+				DEVELOPMENT_TEAM = F92T972GML;
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;

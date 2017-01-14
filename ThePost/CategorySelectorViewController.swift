@@ -79,7 +79,7 @@ class CategorySelectorViewController: UIViewController, UICollectionViewDataSour
             cell.categoryTitleLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             cell.numberOfItemsLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
-        performSegue(withIdentifier: "unwindToPostLaunchSegue", sender: self)
+        performSegue(withIdentifier: "showSlidingSelectionTabBarController", sender: self)
     }
 
 }
