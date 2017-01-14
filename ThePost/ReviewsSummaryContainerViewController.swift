@@ -55,7 +55,6 @@ class ReviewsSummaryContainerViewController: UIViewController, UITableViewDataSo
         tableView.estimatedRowHeight = 150
         
         userRatingLabel.text = "3.9"
-        farLeftBar.value = 11.0 / 39.0
         farLeftStarLabel.text = "11"
         totalReviewsLabel.text = "39"
         profileNameLabel.text = "Ethan Andrews"
@@ -104,6 +103,14 @@ class ReviewsSummaryContainerViewController: UIViewController, UITableViewDataSo
     
     @IBAction func wantsToClose(_ sender: UIButton) {
         dismissParent()
+    }
+    
+    func parentAnimatorDidFinish() {
+        farLeftBar.value = 11.0 / 39.0
+        leftMidBar.value = 11.0 / 39.0
+        midBar.value = 11.0 / 39.0
+        rightMidBar.value = 11.0 / 39.0
+        farRightBar.value = 11.0 / 39.0
     }
     
     // MARK: - Helpers

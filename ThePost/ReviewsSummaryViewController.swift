@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewsSummaryViewController: UIViewController {
+class ReviewsSummaryViewController: UIViewController, UIDynamicAnimatorDelegate {
 
     @IBOutlet weak var container: UIView!
     
@@ -20,6 +20,7 @@ class ReviewsSummaryViewController: UIViewController {
         super.viewDidLoad()
         
         animator = UIDynamicAnimator()
+        animator.delegate = self
         
         container.alpha = 0.0
     }
@@ -40,6 +41,14 @@ class ReviewsSummaryViewController: UIViewController {
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.backgroundColor = #colorLiteral(red: 0.4705882353, green: 0.4705882353, blue: 0.4705882353, alpha: 0.7527527265)
             })
+        }
+    }
+    
+    // MARK: - Animator delegates
+    
+    func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
+        if let vc = childViewControllers[0] as? ReviewsSummaryContainerViewController {
+            vc.parentAnimatorDidFinish()
         }
     }
     
