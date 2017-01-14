@@ -31,7 +31,8 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     
     private var originalViewFrame: CGRect?
     
-    private var hasReviewedBefore = false
+    private var reviewedBeforeKey: String?
+    private var previousReviewAmountOfStart = 0
     
     private var amountOfStars = 0 {
         didSet {
@@ -235,25 +236,49 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                                                  "timeReviewed": now,
                                                  "comment": textView.text,
                                                  "reviewerCity": city,
-                                                 "reviewerState": state]
+                                                 "reviewerState": state,
+                                                 "reviewerId": uid,
+                                                 "productId": product.uid]
                     
-                    let ref = FIRDatabase.database().reference().child("user-reviews").child(userId)
-                    let childUpdates = [product.uid: review]
-                    ref.child(uid).updateChildValues(childUpdates)
+                    let ref = FIRDatabase.database().reference().child("reviews").child(userId)
                     
-                    if !hasReviewedBefore {
-                        ref.child("reviewCount").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-                            if let count = currentData.value as? Int {
-                                currentData.value = count + 1
-                                
-                                return FIRTransactionResult.success(withValue: currentData)
-                            } else {
-                                currentData.value = 1
+                    if let key = reviewedBeforeKey {
+                        let childUpdates = [key: review]
+                        ref.updateChildValues(childUpdates)
+                        
+                        ref.child("reviewNumbers").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+                            if let reviewNumbers = currentData.value as? [String: Int] {
+                                if var sum = reviewNumbers["sum"] {
+                                    sum += self.amountOfStars - self.previousReviewAmountOfStart
+                                    
+                                    currentData.value = ["count": reviewNumbers["count"], "sum": sum]
+                                }
                             }
                             return FIRTransactionResult.success(withValue: currentData)
                         }) { (error, committed, snapshot) in
                             if let error = error {
-                                print(error.localizedDescription)
+                                print("Error while updating reviews: \(error.localizedDescription)")
+                            }
+                        }
+                    } else {
+                        let childUpdates = [ref.childByAutoId().key: review]
+                        ref.updateChildValues(childUpdates)
+                        
+                        ref.child("reviewNumbers").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+                            if let reviewNumbers = currentData.value as? [String: Int] {
+                                if var count = reviewNumbers["count"], var sum = reviewNumbers["sum"] {
+                                    count += 1
+                                    sum += self.amountOfStars
+                                    
+                                    currentData.value = ["count": count, "sum": sum]
+                                }
+                            } else {
+                                currentData.value = ["count": 1, "sum": self.amountOfStars]
+                            }
+                            return FIRTransactionResult.success(withValue: currentData)
+                        }) { (error, committed, snapshot) in
+                            if let error = error {
+                                print("Error while updating reviews: \(error.localizedDescription)")
                             }
                         }
                     }
@@ -297,21 +322,28 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     
     private func checkIfPreviouslyReviewed() {
         if let uid = FIRAuth.auth()?.currentUser?.uid {
-            let ref = FIRDatabase.database().reference().child("user-reviews").child(userId).child(uid)
+            let ref = FIRDatabase.database().reference().child("reviews").child(userId).queryOrdered(byChild: "reviewerId").queryStarting(atValue: uid).queryEnding(atValue: uid)
             ref.observeSingleEvent(of: .value, with: { snapshot in
-                if let review = snapshot.value as? [String: AnyObject] {
-                    if let review = review[self.product.uid] as? [String: Any] {
-                        self.hasReviewedBefore = true
-                        
-                        DispatchQueue.main.async {
-                            self.amountOfStars = review["rating"] as! Int
-                            self.textView.text = review["comment"] as! String
-                            self.fakePlaceholderLabel.isHidden = true
-                            
-                            self.submitButton.isEnabled = true
-                            self.submitButton.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                if let userReviewsDict = snapshot.value as? [String: AnyObject] {
+                    
+                    for (key, value) in userReviewsDict {
+                        if let review = value as? [String: AnyObject] {
+                            if review["productId"] as! String == self.product.uid {
+                                self.reviewedBeforeKey = key
+                                self.previousReviewAmountOfStart = review["rating"] as! Int
+                                
+                                DispatchQueue.main.async {
+                                    self.amountOfStars = review["rating"] as! Int
+                                    self.textView.text = review["comment"] as! String
+                                    self.fakePlaceholderLabel.isHidden = true
+                                    
+                                    self.submitButton.isEnabled = true
+                                    self.submitButton.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                                }
+                            }
                         }
                     }
+                    
                 }
                 
                 DispatchQueue.main.async {
