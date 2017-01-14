@@ -2928,7 +2928,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileReviewsStar" translatesAutoresizingMaskIntoConstraints="NO" id="5dd-ly-EL8">
-                                                            <rect key="frame" x="224" y="45" width="16" height="16"/>
+                                                            <rect key="frame" x="223" y="45" width="17" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="5dd-ly-EL8" secondAttribute="height" multiplier="22:21" id="37x-Qx-0KG"/>
                                                             </constraints>
@@ -3049,15 +3049,15 @@
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.21960784310000001" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="detailNameLabel" destination="H83-Cu-aLg" id="1Bp-HB-xv5"/>
-                                            <outlet property="fiveStar" destination="sLr-uH-lCT" id="UNM-qY-otW"/>
-                                            <outlet property="fourStar" destination="0xA-nK-XPe" id="WBw-5u-fb9"/>
+                                            <outlet property="farLeftStar" destination="5dd-ly-EL8" id="L9J-Rb-OzA"/>
+                                            <outlet property="farRightStar" destination="sLr-uH-lCT" id="7NC-Fc-E8m"/>
+                                            <outlet property="leftMidStar" destination="d8Q-yl-Po6" id="BEo-Oa-81A"/>
+                                            <outlet property="midStar" destination="3w4-X9-9Kf" id="Bog-qB-E4J"/>
                                             <outlet property="numberOfReviewsLabel" destination="RHC-eo-2zI" id="4sH-nT-o8s"/>
-                                            <outlet property="oneStar" destination="5dd-ly-EL8" id="YmY-tf-B4E"/>
+                                            <outlet property="rightMidStar" destination="0xA-nK-XPe" id="53u-R4-xek"/>
                                             <outlet property="sellerImageView" destination="3He-xP-5D1" id="tpm-8V-KkV"/>
                                             <outlet property="sellerNameLabel" destination="kk1-RX-B0A" id="3qu-pP-asY"/>
                                             <outlet property="sideImageView" destination="cfF-Bo-d6F" id="ftr-8E-DvS"/>
-                                            <outlet property="threeStar" destination="3w4-X9-9Kf" id="2fB-b4-UrH"/>
-                                            <outlet property="twoStart" destination="d8Q-yl-Po6" id="9EP-xq-4ti"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="exCheckCell" rowHeight="35" id="R09-Wm-Pg8" customClass="ProductViewerExCheckTableViewCell" customModule="ThePost" customModuleProvider="target">

@@ -209,7 +209,14 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             sellerCell.sideImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
             sellerCell.detailNameLabel.text = descriptionName
             sellerCell.sellerNameLabel.text = seller.fullName
-            sellerCell.numberOfReviewsLabel.text = "0 Reviews"
+            
+            var reviewsCountString = "\(seller.totalNumberOfReviews) reviews"
+            if seller.totalNumberOfReviews == 1 {
+                reviewsCountString = "\(seller.totalNumberOfReviews) review"
+            }
+            sellerCell.numberOfReviewsLabel.text = reviewsCountString
+            
+            sellerCell.amountOfStars = seller.starRating
             
             cell = sellerCell
         } else if type == .exCheck {
@@ -394,10 +401,37 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         userRef.observeSingleEvent(of: .value, with: { snapshot in
             if let name = snapshot.value as? String {
                 self.seller.fullName = name
-                let indexPath = IndexPath(row: 5, section: 0)
-                self.tableView.reloadRows(at: [indexPath], with: .none)
+                
+                let ref = FIRDatabase.database().reference().child("reviews").child(self.product.ownerId).child("reviewNumbers")
+                ref.observeSingleEvent(of: .value, with: { snapshot in
+                    if let numbers = snapshot.value as? [String: Int] {
+                        let count = numbers["count"]!
+                        let number = Double(numbers["sum"]!) / Double(count)
+                        let roundedNumber = number.roundTo(places: 1)
+                        
+                        self.seller.starRating = self.determineStarsfor(number: roundedNumber)
+                        
+                        DispatchQueue.main.async {
+                            self.seller.totalNumberOfReviews = count
+                        }
+                    }
+                    
+                    let indexPath = IndexPath(row: 5, section: 0)
+                    self.tableView.reloadRows(at: [indexPath], with: .none)
+                })
             }
         })
+    }
+    
+    private func determineStarsfor(number: Double) -> Int {
+        let wholeNumber = Int(number)
+        var starsToTurnOn = wholeNumber
+        
+        if number - Double(wholeNumber) >= 0.9 {
+            starsToTurnOn += 1
+        }
+        
+        return starsToTurnOn
     }
     
     private func incrementLikes(forRef ref: FIRDatabaseReference) {
