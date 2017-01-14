@@ -54,6 +54,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     private var amountOfStars = 0 {
         didSet {
             switch amountOfStars {
+            case 0:
+                break
             case 1:
                 farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
             case 2:
@@ -293,8 +295,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 
                 self.determineStarsfor(number: roundedNumber)
                 
+                var reviewsCountString = "\(count) reviews"
+                if count == 1 {
+                    reviewsCountString = "\(count) review"
+                }
+                
                 DispatchQueue.main.async {
-                    self.numberOfReviewsLabel.text = "\(count) reviews"
+                    self.numberOfReviewsLabel.text = reviewsCountString
                 }
             }
         })
