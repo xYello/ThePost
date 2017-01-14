@@ -21,6 +21,9 @@ class Conversation: NSObject {
     
     var lastSentMessage: String?
     
+    var isProductSold = false
+    var productName = ""
+    
     init(id: String, otherPersonId: String, otherPersonName: String, productID: String) {
         self.id = id
         self.otherPersonId = otherPersonId

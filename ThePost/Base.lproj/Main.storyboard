@@ -1249,6 +1249,9 @@
                                                         <constraint firstAttribute="width" secondItem="V5o-O6-TbL" secondAttribute="height" multiplier="1:1" id="I1b-zP-bIP"/>
                                                     </constraints>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SoldSign" translatesAutoresizingMaskIntoConstraints="NO" id="d0y-ne-eCl">
+                                                    <rect key="frame" x="19" y="26" width="53" height="48"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Person Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYG-Sc-uCT">
                                                     <rect key="frame" x="104" y="12" width="96" height="21"/>
                                                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
@@ -1285,8 +1288,12 @@
                                                 <constraint firstItem="NjO-4y-aB9" firstAttribute="top" secondItem="awg-YX-9YY" secondAttribute="topMargin" constant="4" id="Hal-7c-CgT"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="V5o-O6-TbL" secondAttribute="leading" id="I0n-T7-8dI"/>
                                                 <constraint firstItem="pss-Nt-8cp" firstAttribute="leading" secondItem="eYG-Sc-uCT" secondAttribute="leading" id="PRl-bb-doX"/>
+                                                <constraint firstItem="d0y-ne-eCl" firstAttribute="bottom" secondItem="V5o-O6-TbL" secondAttribute="bottom" constant="-13" id="R6T-LI-Qso"/>
+                                                <constraint firstItem="d0y-ne-eCl" firstAttribute="trailing" secondItem="V5o-O6-TbL" secondAttribute="trailing" constant="-11" id="WQV-IM-Ldo"/>
                                                 <constraint firstItem="eYG-Sc-uCT" firstAttribute="leading" secondItem="V5o-O6-TbL" secondAttribute="trailing" constant="21" id="YbW-Ab-Ng9"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="pss-Nt-8cp" secondAttribute="trailing" id="a3H-WY-vg9"/>
+                                                <constraint firstItem="d0y-ne-eCl" firstAttribute="top" secondItem="V5o-O6-TbL" secondAttribute="top" constant="14" id="aSb-Me-VSz"/>
+                                                <constraint firstItem="d0y-ne-eCl" firstAttribute="leading" secondItem="V5o-O6-TbL" secondAttribute="leading" constant="11" id="bbw-kx-FYe"/>
                                                 <constraint firstItem="NjO-4y-aB9" firstAttribute="centerY" secondItem="eYG-Sc-uCT" secondAttribute="centerY" id="dTM-qM-rbz"/>
                                                 <constraint firstItem="pss-Nt-8cp" firstAttribute="bottom" secondItem="V5o-O6-TbL" secondAttribute="bottom" id="dhP-HX-rcI"/>
                                                 <constraint firstItem="eYG-Sc-uCT" firstAttribute="top" secondItem="awg-YX-9YY" secondAttribute="topMargin" constant="4" id="ewd-Lc-ymL"/>
@@ -1303,6 +1310,7 @@
                                             <outlet property="presenceIndicator" destination="GcG-77-XE4" id="U6V-a6-jBA"/>
                                             <outlet property="profileImageView" destination="V5o-O6-TbL" id="V0M-5w-zxG"/>
                                             <outlet property="recentMessageLabel" destination="pss-Nt-8cp" id="8KD-EL-xMl"/>
+                                            <outlet property="soldImageView" destination="d0y-ne-eCl" id="0ya-8E-P4C"/>
                                             <outlet property="timeLabel" destination="NjO-4y-aB9" id="Lpq-s3-F47"/>
                                         </connections>
                                     </tableViewCell>
@@ -2442,7 +2450,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2466,7 +2474,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="icS-JB-eAG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="MessagesTabBarIcon" id="gR2-QB-zbc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8D-YI-vEB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="T8D-YI-vEB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

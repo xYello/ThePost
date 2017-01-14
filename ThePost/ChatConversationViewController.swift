@@ -21,6 +21,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     
     private var chatRef: FIRDatabaseReference!
     private var conversationReferences: [FIRDatabaseQuery] = []
+    private var productReferences: [FIRDatabaseReference] = []
     
     private var hasLoaded = false
     private var totalNumberOfConversations: UInt = 0
@@ -81,6 +82,9 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         for ref in conversationReferences {
             ref.removeAllObservers()
         }
+        for ref in productReferences {
+            ref.removeAllObservers()
+        }
     }
     
     // MARK: - TableView datasource
@@ -104,6 +108,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         }
         
         cell.timeLabel.text = "Now"
+        
+        cell.isProductSold = conversation.isProductSold
         
         return cell
     }
@@ -173,6 +179,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                                     
                                     let index = self.conversations.count - 1
                                     self.createLastMessageListener(forRef: ref, withConversationIndex: index)
+                                    self.getProductDetailsWith(conversationIndex: index)
                                     
                                     if let preLaunchConvo = self.newConversation {
                                         if newConvo.otherPersonId == preLaunchConvo.otherPersonId && newConvo.productID == preLaunchConvo.productID {
@@ -211,6 +218,30 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
             }
         })
         conversationReferences.append(messagesQueryRef)
+    }
+    
+    private func getProductDetailsWith(conversationIndex index: Int) {
+        let productRef = FIRDatabase.database().reference().child("products").child(conversations[index].productID)
+        productRef.observe(.value, with: { snapshot in
+            if let productDict = snapshot.value as? [String: Any] {
+                let conversation = self.conversations[index]
+                
+                if let name = productDict["name"] as? String {
+                    // TODO: Product Name?
+                    conversation.productName = name
+                }
+                
+                if let isSold = productDict["isSold"] as? Bool {
+                    if isSold {
+                        conversation.isProductSold = true
+                    }
+                }
+                
+                let indexPath = IndexPath(row: index, section: 0)
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+        })
+        productReferences.append(productRef)
     }
     
 }
