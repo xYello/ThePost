@@ -9,8 +9,9 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import CoreLocation
 
-class CreateReviewContainerViewController: UIViewController, UITextViewDelegate {
+class CreateReviewContainerViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -33,6 +34,8 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     
     private var reviewedBeforeKey: String?
     private var previousReviewAmountOfStart = 0
+    
+    private var manager: CLLocationManager!
     
     private var amountOfStars = 0 {
         didSet {
@@ -85,6 +88,13 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
         view.roundCorners(radius: 8.0)
         view.clipsToBounds = true
         
+        manager = CLLocationManager()
+        manager.delegate = self
+        
+        if CLLocationManager.locationServicesEnabled() {
+            manager.startUpdatingLocation()
+        }
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
@@ -130,6 +140,10 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
         super.viewDidAppear(animated)
         
         originalViewFrame = view.frame
+        
+        if CLLocationManager.locationServicesEnabled() {
+            manager.startUpdatingLocation()
+        }
     }
     
     // MARK: - Notifications
@@ -175,6 +189,19 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         fakePlaceholderLabel.isHidden = true
+    }
+    
+    // MARK: - CLLocationManager delegates
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = manager.location {
+            CLGeocoder().reverseGeocodeLocation(location, completionHandler: { placemarks, error in
+                if let marks = placemarks {
+                    KeychainWrapper.standard.set(marks[0].locality!, forKey: Constants.UserInfoKeys.UserCity.rawValue)
+                    KeychainWrapper.standard.set(marks[0].administrativeArea!, forKey: Constants.UserInfoKeys.UserState.rawValue)
+                }
+            })
+        }
     }
     
     // MARK: - Actions
@@ -282,9 +309,21 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                             }
                         }
                     }
+                    
+                    dismissParent()
+                } else {
+                    let alert = UIAlertController(title: "Location Services", message: "You must have location services on to write a review.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { alert in
+                        if let settingsURL = URL(string: UIApplicationOpenSettingsURLString) {
+                            if UIApplication.shared.canOpenURL(settingsURL) {
+                                UIApplication.shared.open(settingsURL)
+                            }
+                        }
+                    }))
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    
+                    present(alert, animated: true, completion: nil)
                 }
-                
-                dismissParent()
             }
         } else {
             for view in viewsToShake {
