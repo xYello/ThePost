@@ -367,7 +367,6 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         productRef.observeSingleEvent(of: .value, with: { snapshot in
             if let productDict = snapshot.value as? [String: Any] {
                 
-                
                 if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
                     if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
                         let product = Product(withName: productDict["name"] as! String,
