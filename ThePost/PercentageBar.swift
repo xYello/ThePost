@@ -16,6 +16,10 @@ class PercentageBar: UIView {
     var value: CGFloat = 0.0 {
         didSet {
             topBarConstraint.constant = frame.height - (value * frame.height)
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.layoutIfNeeded()
+            })
         }
     }
     
