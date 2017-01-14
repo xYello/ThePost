@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // UnComment this to load jeep selector on starup everytime.
 //        KeychainWrapper.standard.removeObject(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)
         
-        let selectedJeep = KeychainWrapper.standard.integer(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)
+        let selectedJeep = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)
         var mainViewController:UIViewController
         if selectedJeep == nil {
             mainViewController = mainStoryboard.instantiateViewController(withIdentifier: "jeepSelectorViewController") as! JeepSelectorViewController
@@ -56,7 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                     
                 })
-            } else {
             }
         } else {
             do {
