@@ -31,6 +31,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     
     private var updateTimer: Timer?
     
+    private var userIsViewingConversation: Conversation?
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -86,6 +88,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         updateTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true, block: { timer in
             self.tableView.reloadSections([0], with: .automatic)
         })
+        
+        userIsViewingConversation = nil
     }
     
     deinit {
@@ -115,6 +119,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         
         cell.personNameLabel.text = conversation.otherPersonName
         
+        cell.messageCountUnread = conversation.unreadMessageCount
         if let lastMessage = conversation.lastSentMessage {
             cell.recentMessageLabel.text = lastMessage
         } else {
@@ -137,6 +142,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         }
         
         let conversation = conversations[indexPath.row]
+        conversation.unreadMessageCount = 0
+        userIsViewingConversation = conversation
         performSegue(withIdentifier: "chatViewController", sender: conversation)
     }
     
@@ -297,6 +304,15 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                         }
                         
                         conversation.lastSentMessage = text
+                        
+                        if let sender = messageData["senderId"] {
+                            if let viewingConvo = self.userIsViewingConversation, viewingConvo.id == conversation.id {
+                            } else {
+                                if let _ = conversation.lastSentMessageTime, sender != FIRAuth.auth()?.currentUser?.uid {
+                                    conversation.unreadMessageCount += 1
+                                }
+                            }
+                        }
                         
                         if let time = messageData["time"] {
                             conversation.lastSentMessageTime = time
