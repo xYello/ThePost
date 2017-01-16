@@ -80,11 +80,11 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         }
         
         if let timer = updateTimer {
-            tableView.reloadData()
+            tableView.reloadSections([0], with: .automatic)
             timer.invalidate()
         }
         updateTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true, block: { timer in
-            self.tableView.reloadData()
+            self.tableView.reloadSections([0], with: .automatic)
         })
     }
     
