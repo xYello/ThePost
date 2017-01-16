@@ -132,9 +132,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         
         collectionView.backgroundColor = #colorLiteral(red: 0.1870684326, green: 0.2210902572, blue: 0.2803535461, alpha: 1)
         
-        inputToolbar.contentView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
-        inputToolbar.contentView.textView.backgroundColor = #colorLiteral(red: 0.1882352941, green: 0.2196078431, blue: 0.2784313725, alpha: 1)
-        inputToolbar.contentView.textView.textColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
+        inputToolbar.contentView.leftBarButtonItem = nil
         
         if let message = conversation.firstMessage, message != "" {
             inputToolbar.contentView.textView.text = message
