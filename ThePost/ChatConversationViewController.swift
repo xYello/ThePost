@@ -31,6 +31,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     
     private var initialConversationsGrabbed: UInt = 0
     
+    private var updateTimer: Timer?
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -78,6 +80,14 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                 tabBar.showShadow()
             }
         }
+        
+        if let timer = updateTimer {
+            tableView.reloadData()
+            timer.invalidate()
+        }
+        updateTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true, block: { timer in
+            self.tableView.reloadData()
+        })
     }
     
     deinit {
@@ -112,10 +122,9 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         } else {
             cell.recentMessageLabel.text = ""
         }
+        cell.timeLabel.text = conversation.relativeDate
         
         cell.presenceIndicator.isHidden = !conversation.isOtherPersonOnline
-        
-        cell.timeLabel.text = "Now"
         
         cell.isProductSold = conversation.isProductSold
         
@@ -146,6 +155,32 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                 vc.conversationToPass = conversation
                 vc.hidesBottomBarWhenPushed = true
             }
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func findAndSetIndex(forPreviousIndex index: Int) {
+        if conversations.count > 0 {
+            let conversation = conversations.remove(at: index)
+            
+            var iteratorIndex = 0
+            var indexToPlaceAt = -1
+            for iteratorConversation in conversations {
+                if indexToPlaceAt == -1 {
+                    if let date = iteratorConversation.date {
+                        if conversation.date! > date {
+                            indexToPlaceAt = iteratorIndex
+                        }
+                    } else {
+                        indexToPlaceAt = iteratorIndex
+                    }
+                }
+                
+                iteratorIndex += 1
+            }
+            
+            conversations.insert(conversation, at: indexToPlaceAt)
         }
     }
     
@@ -269,8 +304,14 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                         let conversation = self.conversations[index]
                         conversation.lastSentMessage = text
                         
-                        let indexPath = IndexPath(row: index, section: 0)
-                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                        if let time = messageData["time"] {
+                            conversation.lastSentMessageTime = time
+                            
+                            // Order conversations based on last sent
+                            self.findAndSetIndex(forPreviousIndex: index)
+                        }
+                        
+                        self.tableView.reloadSections([0], with: .automatic)
                     }
                 }
             }

@@ -275,7 +275,12 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         
         let itemRef = messageRef.childByAutoId()
         
-        let messageItem = ["senderId": senderId, "senderName": senderDisplayName, "text": text] as [String: String]
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yy HH:mm:ss"
+        formatter.timeZone = TimeZone(identifier: "America/New_York")
+        let now = formatter.string(from: Date())
+        
+        let messageItem = ["senderId": senderId, "senderName": senderDisplayName, "text": text, "time": now] as [String: String]
         
         itemRef.setValue(messageItem)
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
