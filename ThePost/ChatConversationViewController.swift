@@ -12,7 +12,7 @@ import Firebase
 let tabBarSwitchedToChatConversationNotification = "ktabBarSwitchedToChatConversationNotification"
 
 class ChatConversationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var newConversation: Conversation?
@@ -23,8 +23,6 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     private var userPresenceIndicatorReferences: [FIRDatabaseReference] = []
     private var conversationReferences: [FIRDatabaseQuery] = []
     private var productReferences: [FIRDatabaseReference] = []
-    
-    private var otherUserChatIndexes: [String: [Int]] = [:]
     
     private var hasLoaded = false
     private var totalNumberOfConversations: UInt = 0
@@ -161,15 +159,16 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     // MARK: - Helpers
     
     private func findAndSetIndex(forPreviousIndex index: Int) {
-        if conversations.count > 0 {
+        if conversations.count > 1 {
             let conversation = conversations.remove(at: index)
+            tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
             
             var iteratorIndex = 0
             var indexToPlaceAt = -1
             for iteratorConversation in conversations {
                 if indexToPlaceAt == -1 {
                     if let date = iteratorConversation.date {
-                        if conversation.date! > date {
+                        if conversation.date! >= date {
                             indexToPlaceAt = iteratorIndex
                         }
                     } else {
@@ -181,6 +180,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
             }
             
             conversations.insert(conversation, at: indexToPlaceAt)
+            tableView.insertRows(at: [IndexPath(row: indexToPlaceAt, section: 0)], with: .automatic)
         }
     }
     
@@ -191,8 +191,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
             self.createChatObserver(forKey: snapshot.key)
         })
     }
- 
-    private func createChatObserver(forKey key: String) {        
+    
+    private func createChatObserver(forKey key: String) {
         let newConvo = Conversation()
         newConvo.id = key
         
@@ -221,9 +221,9 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                                     self.tableView.reloadData()
                                     
                                     let index = self.conversations.count - 1
-                                    self.createPresenceListener(forKey: key, forIndex: index)
-                                    self.createLastMessageListener(forRef: ref, withConversationIndex: index)
-                                    self.getProductDetailsWith(conversationIndex: index)
+                                    self.createPresenceListener(forKey: key, withConversation: newConvo)
+                                    self.createLastMessageListener(forRef: ref, withConversation: newConvo)
+                                    self.getProductDetailsWith(conversationIndex: index, withConversation: newConvo)
                                     
                                     if let preLaunchConvo = self.newConversation {
                                         if newConvo.otherPersonId == preLaunchConvo.otherPersonId && newConvo.productID == preLaunchConvo.productID {
@@ -246,72 +246,67 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         })
     }
     
-    private func createPresenceListener(forKey key: String, forIndex index: Int) {
-        var matchingKey = false
-        for (oldKey, _) in otherUserChatIndexes {
-            if oldKey == key {
-                matchingKey = true
-            }
-        }
-        
-        if let _ = otherUserChatIndexes[key] {
-            otherUserChatIndexes[key]!.append(index)
-        } else {
-            otherUserChatIndexes[key] = [index]
-        }
-        
-        if !matchingKey {
-            let userRef = FIRDatabase.database().reference().child("users").child(key)
-            userRef.child("isOnline").observe(.value, with: { snapshot in
-                if let isOnline = snapshot.value as? Bool {
-                    if let indexesOfConversations = self.otherUserChatIndexes[userRef.key] {
-                        var indexPathsToUpdate: [IndexPath] = []
-                        
-                        for index in indexesOfConversations {
-                            let conversation = self.conversations[index]
-                            conversation.isOtherPersonOnline = isOnline
-                            
-                            indexPathsToUpdate.append(IndexPath(row: index, section: 0))
-                        }
-                        
-                        self.tableView.reloadRows(at: indexPathsToUpdate, with: .automatic)
+    private func createPresenceListener(forKey key: String, withConversation conversation: Conversation) {
+        let userRef = FIRDatabase.database().reference().child("users").child(key)
+        userRef.child("isOnline").observe(.value, with: { snapshot in
+            if let isOnline = snapshot.value as? Bool {
+                var iteratorIndex = 0
+                var indexPathsToUpdate: [IndexPath] = []
+                for convo in self.conversations {
+                    if convo.otherPersonId == key {
+                        convo.isOtherPersonOnline = isOnline
+                        indexPathsToUpdate.append(IndexPath(row: iteratorIndex, section: 0))
                     }
-                } else {
-                    if let indexesOfConversations = self.otherUserChatIndexes[userRef.key] {
-                        var indexPathsToUpdate: [IndexPath] = []
-                        
-                        for index in indexesOfConversations {
-                            let conversation = self.conversations[index]
-                            conversation.isOtherPersonOnline = false
-                            
-                            indexPathsToUpdate.append(IndexPath(row: index, section: 0))
-                        }
-                        
-                        self.tableView.reloadRows(at: indexPathsToUpdate, with: .automatic)
-                    }
+                    
+                    iteratorIndex += 1
                 }
-            })
-            userPresenceIndicatorReferences.append(userRef)
-        }
+                
+                self.tableView.reloadRows(at: indexPathsToUpdate, with: .automatic)
+            } else {
+                var iteratorIndex = 0
+                var indexPathsToUpdate: [IndexPath] = []
+                for convo in self.conversations {
+                    if convo.otherPersonId == key {
+                        convo.isOtherPersonOnline = false
+                        indexPathsToUpdate.append(IndexPath(row: iteratorIndex, section: 0))
+                    }
+                    
+                    iteratorIndex += 1
+                }
+                
+                self.tableView.reloadRows(at: indexPathsToUpdate, with: .automatic)
+            }
+        })
+        userPresenceIndicatorReferences.append(userRef)
     }
     
-    private func createLastMessageListener(forRef ref: FIRDatabaseReference, withConversationIndex index: Int) {
+    private func createLastMessageListener(forRef ref: FIRDatabaseReference, withConversation conversation: Conversation) {
         let messagesQueryRef = ref.child("messages").queryLimited(toLast: 1)
         messagesQueryRef.observe(.value, with: { snapshot in
             if let messageDict = snapshot.value as? [String: AnyObject] {
                 if let messageData = messageDict.values.first as? [String: String] {
                     if let text = messageData["text"] {
-                        let conversation = self.conversations[index]
+                        var iteratorIndex = 0
+                        var conversationIndex = -1
+                        for convo in self.conversations {
+                            if convo.id == conversation.id {
+                                conversationIndex = iteratorIndex
+                            }
+                            
+                            iteratorIndex += 1
+                        }
+                        
                         conversation.lastSentMessage = text
                         
                         if let time = messageData["time"] {
                             conversation.lastSentMessageTime = time
                             
                             // Order conversations based on last sent
-                            self.findAndSetIndex(forPreviousIndex: index)
+                            self.findAndSetIndex(forPreviousIndex: conversationIndex)
                         }
                         
-                        self.tableView.reloadSections([0], with: .automatic)
+                        let indexPath = IndexPath(row: conversationIndex, section: 0)
+                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
                     }
                 }
             }
@@ -319,11 +314,19 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         conversationReferences.append(messagesQueryRef)
     }
     
-    private func getProductDetailsWith(conversationIndex index: Int) {
+    private func getProductDetailsWith(conversationIndex index: Int, withConversation conversation: Conversation) {
         let productRef = FIRDatabase.database().reference().child("products").child(conversations[index].productID)
         productRef.observe(.value, with: { snapshot in
             if let productDict = snapshot.value as? [String: Any] {
-                let conversation = self.conversations[index]
+                var iteratorIndex = 0
+                var conversationIndex = -1
+                for convo in self.conversations {
+                    if convo.id == conversation.id {
+                        conversationIndex = iteratorIndex
+                    }
+                    
+                    iteratorIndex += 1
+                }
                 
                 if let name = productDict["name"] as? String {
                     // TODO: Product Name?
@@ -336,7 +339,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                     }
                 }
                 
-                let indexPath = IndexPath(row: index, section: 0)
+                let indexPath = IndexPath(row: conversationIndex, section: 0)
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         })
