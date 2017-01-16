@@ -123,7 +123,6 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         checkCellLayout = [product.willingToShip, product.acceptsPayPal, product.acceptsCash]
         
         grabProductImages()
-        setupLikesAndViewsListeners()
         grabSellerInfo()
         checkForCurrentUserLike()
     }
@@ -131,11 +130,15 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        setupLikesAndViewsListeners()
+        
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
-    deinit {
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
         likesRef.removeAllObservers()
         viewsRef.removeAllObservers()
     }
