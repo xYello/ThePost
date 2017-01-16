@@ -48,8 +48,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     private var soldProducts: [Product] = []
     private var likedProducts: [Product] = []
     
-    private var userProductsRef: FIRDatabaseReference!
-    private var likesQuery: FIRDatabaseQuery!
+    private var userProductsRef: FIRDatabaseReference?
+    private var likesQuery: FIRDatabaseQuery?
     
     private var amountOfStars = 0 {
         didSet {
@@ -86,13 +86,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         
         let uid = FIRAuth.auth()!.currentUser!.uid
-        userProductsRef = FIRDatabase.database().reference().child("user-products").child(uid)
-        likesQuery = FIRDatabase.database().reference().child("user-likes").child(uid).queryLimited(toLast: 100)
-        
-        setupProductListeners()
-        
-        grabLikedPosts(with: uid)
-        
         getUserProfile(with: uid)
         grabUsersReviewStats(with: uid)
         
@@ -117,6 +110,21 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        
+        if userProductsRef == nil {
+            sellingProducts.removeAll()
+            soldProducts.removeAll()
+            
+            userProductsRef = FIRDatabase.database().reference().child("user-products").child(uid)
+            setupProductListeners()
+        }
+        if likesQuery == nil {
+            likedProducts.removeAll()
+            likesQuery = FIRDatabase.database().reference().child("user-likes").child(uid).queryLimited(toLast: 100)
+            grabLikedPosts()
+        }
+        
         if selectionBar == nil {
             selectionBar = UIView()
             selectionBar!.frame = CGRect(x: sellingProductTypeButton.frame.origin.x - 4, y: self.bottomMostSeperator.frame.origin.y - 1, width: sellingProductTypeButton.frame.width + 8, height: 2)
@@ -126,9 +134,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    deinit {
-        userProductsRef.removeAllObservers()
-        likesQuery.removeAllObservers()
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if let ref = userProductsRef {
+            ref.removeAllObservers()
+            userProductsRef = nil
+        }
+        if let ref = likesQuery {
+            ref.removeAllObservers()
+            likesQuery = nil
+        }
     }
     
     // MARK: - TableView datasource
@@ -319,7 +335,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     private func setupProductListeners() {
-        userProductsRef.observe(.childAdded, with: { snapshot in
+        userProductsRef!.observe(.childAdded, with: { snapshot in
             if let productDict = snapshot.value as? [String: Any] {
                 if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
                     if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
@@ -353,7 +369,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         })
         
-        userProductsRef.observe(.childRemoved, with: { snapshot in
+        userProductsRef!.observe(.childRemoved, with: { snapshot in
             if let productDict = snapshot.value as? [String: Any] {
                 if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
                     if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
@@ -385,8 +401,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         })
     }
     
-    private func grabLikedPosts(with uid: String) {
-        likesQuery.observe(.childAdded, with: { snapshot in
+    private func grabLikedPosts() {
+        likesQuery!.observe(.childAdded, with: { snapshot in
             let productQuery = FIRDatabase.database().reference().child("products").child(snapshot.key)
             productQuery.observeSingleEvent(of: .value, with: { snapshot in
                 if let productDict = snapshot.value as? [String: Any] {
@@ -412,7 +428,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             })
         })
         
-        likesQuery.observe(.childRemoved, with: { snapshot in
+        likesQuery!.observe(.childRemoved, with: { snapshot in
             let productQuery = FIRDatabase.database().reference().child("products").child(snapshot.key)
             productQuery.observeSingleEvent(of: .value, with: { snapshot in
                 if let productDict = snapshot.value as? [String: Any] {
