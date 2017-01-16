@@ -14,6 +14,7 @@ class Conversation: NSObject {
     
     var otherPersonId: String!
     var otherPersonName: String!
+    var isOtherPersonOnline = false
     
     var productID: String!
     

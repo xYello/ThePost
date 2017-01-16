@@ -20,8 +20,11 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     private var conversations: [Conversation] = []
     
     private var chatRef: FIRDatabaseReference!
+    private var userPresenceIndicatorReferences: [FIRDatabaseReference] = []
     private var conversationReferences: [FIRDatabaseQuery] = []
     private var productReferences: [FIRDatabaseReference] = []
+    
+    private var otherUserChatIndexes: [String: [Int]] = [:]
     
     private var hasLoaded = false
     private var totalNumberOfConversations: UInt = 0
@@ -85,6 +88,9 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         for ref in productReferences {
             ref.removeAllObservers()
         }
+        for ref in userPresenceIndicatorReferences {
+            ref.removeAllObservers()
+        }
     }
     
     // MARK: - TableView datasource
@@ -106,6 +112,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         } else {
             cell.recentMessageLabel.text = ""
         }
+        
+        cell.presenceIndicator.isHidden = !conversation.isOtherPersonOnline
         
         cell.timeLabel.text = "Now"
         
@@ -178,6 +186,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                                     self.tableView.reloadData()
                                     
                                     let index = self.conversations.count - 1
+                                    self.createPresenceListener(forKey: key, forIndex: index)
                                     self.createLastMessageListener(forRef: ref, withConversationIndex: index)
                                     self.getProductDetailsWith(conversationIndex: index)
                                     
@@ -200,6 +209,55 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                 
             }
         })
+    }
+    
+    private func createPresenceListener(forKey key: String, forIndex index: Int) {
+        var matchingKey = false
+        for (oldKey, _) in otherUserChatIndexes {
+            if oldKey == key {
+                matchingKey = true
+            }
+        }
+        
+        if let _ = otherUserChatIndexes[key] {
+            otherUserChatIndexes[key]!.append(index)
+        } else {
+            otherUserChatIndexes[key] = [index]
+        }
+        
+        if !matchingKey {
+            let userRef = FIRDatabase.database().reference().child("users").child(key)
+            userRef.child("isOnline").observe(.value, with: { snapshot in
+                if let isOnline = snapshot.value as? Bool {
+                    if let indexesOfConversations = self.otherUserChatIndexes[userRef.key] {
+                        var indexPathsToUpdate: [IndexPath] = []
+                        
+                        for index in indexesOfConversations {
+                            let conversation = self.conversations[index]
+                            conversation.isOtherPersonOnline = isOnline
+                            
+                            indexPathsToUpdate.append(IndexPath(row: index, section: 0))
+                        }
+                        
+                        self.tableView.reloadRows(at: indexPathsToUpdate, with: .automatic)
+                    }
+                } else {
+                    if let indexesOfConversations = self.otherUserChatIndexes[userRef.key] {
+                        var indexPathsToUpdate: [IndexPath] = []
+                        
+                        for index in indexesOfConversations {
+                            let conversation = self.conversations[index]
+                            conversation.isOtherPersonOnline = false
+                            
+                            indexPathsToUpdate.append(IndexPath(row: index, section: 0))
+                        }
+                        
+                        self.tableView.reloadRows(at: indexPathsToUpdate, with: .automatic)
+                    }
+                }
+            })
+            userPresenceIndicatorReferences.append(userRef)
+        }
     }
     
     private func createLastMessageListener(forRef ref: FIRDatabaseReference, withConversationIndex index: Int) {

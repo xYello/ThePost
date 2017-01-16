@@ -41,6 +41,7 @@ class ConversationTableViewCell: UITableViewCell {
         soldImageView.alpha = 0.0
         
         presenceIndicator.roundCorners()
+        presenceIndicator.isHidden = true
     }
 
 }
