@@ -1259,7 +1259,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GcG-77-XE4" userLabel="Presence Indicator">
-                                                    <rect key="frame" x="208" y="16.5" width="11" height="11"/>
+                                                    <rect key="frame" x="208" y="17" width="11" height="11"/>
                                                     <color key="backgroundColor" red="0.39215686274509803" green="0.792156862745098" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="11" id="3sB-oi-bg3"/>
@@ -1278,13 +1278,34 @@
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wv6-Te-jhw">
+                                                    <rect key="frame" x="20" y="24" width="51" height="51"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="####" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFC-16-cOD">
+                                                            <rect key="frame" x="0.0" y="0.0" width="51" height="51"/>
+                                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                                            <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.84705882352941175" green="0.33725490196078434" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="DFC-16-cOD" firstAttribute="leading" secondItem="Wv6-Te-jhw" secondAttribute="leading" id="63K-9i-bwy"/>
+                                                        <constraint firstAttribute="bottom" secondItem="DFC-16-cOD" secondAttribute="bottom" id="Yoq-V2-Voa"/>
+                                                        <constraint firstAttribute="trailing" secondItem="DFC-16-cOD" secondAttribute="trailing" id="tcp-q0-S5V"/>
+                                                        <constraint firstItem="DFC-16-cOD" firstAttribute="top" secondItem="Wv6-Te-jhw" secondAttribute="top" id="yjw-ho-Bt3"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="GcG-77-XE4" firstAttribute="centerY" secondItem="eYG-Sc-uCT" secondAttribute="centerY" id="1Fg-6T-SPn"/>
                                                 <constraint firstItem="GcG-77-XE4" firstAttribute="leading" secondItem="eYG-Sc-uCT" secondAttribute="trailing" constant="8" id="3OP-In-rDJ"/>
                                                 <constraint firstItem="V5o-O6-TbL" firstAttribute="top" secondItem="awg-YX-9YY" secondAttribute="topMargin" constant="4" id="61R-E0-U30"/>
+                                                <constraint firstItem="Wv6-Te-jhw" firstAttribute="bottom" secondItem="V5o-O6-TbL" secondAttribute="bottom" constant="-12" id="7Kk-in-bfP"/>
+                                                <constraint firstItem="Wv6-Te-jhw" firstAttribute="trailing" secondItem="V5o-O6-TbL" secondAttribute="trailing" constant="-12" id="8fG-14-de2"/>
                                                 <constraint firstItem="NjO-4y-aB9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GcG-77-XE4" secondAttribute="trailing" constant="8" id="9VQ-TI-jeg"/>
+                                                <constraint firstItem="Wv6-Te-jhw" firstAttribute="leading" secondItem="V5o-O6-TbL" secondAttribute="leading" constant="12" id="DSD-Tg-kmR"/>
                                                 <constraint firstItem="NjO-4y-aB9" firstAttribute="top" secondItem="awg-YX-9YY" secondAttribute="topMargin" constant="4" id="Hal-7c-CgT"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="V5o-O6-TbL" secondAttribute="leading" id="I0n-T7-8dI"/>
                                                 <constraint firstItem="pss-Nt-8cp" firstAttribute="leading" secondItem="eYG-Sc-uCT" secondAttribute="leading" id="PRl-bb-doX"/>
@@ -1298,6 +1319,7 @@
                                                 <constraint firstItem="pss-Nt-8cp" firstAttribute="bottom" secondItem="V5o-O6-TbL" secondAttribute="bottom" id="dhP-HX-rcI"/>
                                                 <constraint firstItem="eYG-Sc-uCT" firstAttribute="top" secondItem="awg-YX-9YY" secondAttribute="topMargin" constant="4" id="ewd-Lc-ymL"/>
                                                 <constraint firstItem="V5o-O6-TbL" firstAttribute="centerY" secondItem="awg-YX-9YY" secondAttribute="centerY" id="l8s-dt-N5q"/>
+                                                <constraint firstItem="Wv6-Te-jhw" firstAttribute="top" secondItem="V5o-O6-TbL" secondAttribute="top" constant="12" id="m9Q-i7-WZe"/>
                                                 <constraint firstItem="pss-Nt-8cp" firstAttribute="top" secondItem="eYG-Sc-uCT" secondAttribute="bottom" constant="6" id="oMG-qW-ueX"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1312,6 +1334,8 @@
                                             <outlet property="recentMessageLabel" destination="pss-Nt-8cp" id="8KD-EL-xMl"/>
                                             <outlet property="soldImageView" destination="d0y-ne-eCl" id="0ya-8E-P4C"/>
                                             <outlet property="timeLabel" destination="NjO-4y-aB9" id="Lpq-s3-F47"/>
+                                            <outlet property="unreadCountLabel" destination="DFC-16-cOD" id="oep-0e-QhH"/>
+                                            <outlet property="unreadMessageView" destination="Wv6-Te-jhw" id="g3j-uK-UBC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2450,7 +2474,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2474,7 +2498,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="icS-JB-eAG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="MessagesTabBarIcon" id="gR2-QB-zbc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="T8D-YI-vEB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8D-YI-vEB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

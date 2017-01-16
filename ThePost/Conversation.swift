@@ -20,6 +20,8 @@ class Conversation: NSObject {
     
     var firstMessage: String?
     
+    var unreadMessageCount = 0
+    
     var lastSentMessage: String?
     var lastSentMessageTime: String?
     var date: Date? {
