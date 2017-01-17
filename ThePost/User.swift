@@ -10,7 +10,7 @@ import UIKit
 
 class User: NSObject {
     
-    var fullName: String = ""
+    var fullName: String = "Seller Name"
     
     var profilePicture: UIImage?
     
