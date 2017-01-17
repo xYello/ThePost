@@ -256,7 +256,9 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     // MARK: - TableView delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Open Owner's profile
+        if indexPath.row == 6 {
+            
+        }
     }
     
     // MARK: - Actions
