@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewsSummaryViewController: UIViewController, UIDynamicAnimatorDelegate {
+class ReviewsSummaryViewController: ModalPresentationViewController, UIDynamicAnimatorDelegate {
 
     @IBOutlet weak var container: UIView!
     
@@ -23,6 +23,8 @@ class ReviewsSummaryViewController: UIViewController, UIDynamicAnimatorDelegate 
         animator.delegate = self
         
         container.alpha = 0.0
+        
+        modalContainer = container
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,9 +40,11 @@ class ReviewsSummaryViewController: UIViewController, UIDynamicAnimatorDelegate 
             
             animator.addBehavior(snap)
             
-            UIView.animate(withDuration: 0.25, animations: {
-                self.view.backgroundColor = #colorLiteral(red: 0.4705882353, green: 0.4705882353, blue: 0.4705882353, alpha: 0.7527527265)
-            })
+            if shouldAnimateBackgroundColor {
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.view.backgroundColor = #colorLiteral(red: 0.4705882353, green: 0.4705882353, blue: 0.4705882353, alpha: 0.7527527265)
+                })
+            }
         }
     }
     
@@ -57,6 +61,8 @@ class ReviewsSummaryViewController: UIViewController, UIDynamicAnimatorDelegate 
     func prepareForDismissal(dismissCompletion: @escaping () -> Void) {
         animator.removeAllBehaviors()
         
+        super.removeFromPresentationStack()
+        
         let gravity = UIGravityBehavior(items: [container])
         gravity.gravityDirection = CGVector(dx: 0.0, dy: 9.8)
         animator.addBehavior(gravity)
@@ -67,7 +73,9 @@ class ReviewsSummaryViewController: UIViewController, UIDynamicAnimatorDelegate 
         
         UIView.animate(withDuration: 0.25, animations: {
             self.container.alpha = 0.0
-            self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+            if self.shouldAnimateBackgroundColor {
+                self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+            }
         }, completion: { done in
             dismissCompletion()
         })
