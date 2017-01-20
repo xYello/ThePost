@@ -1,26 +1,27 @@
 //
-//  ReviewsSummaryViewController.swift
+//  ProfileModalViewController.swift
 //  ThePost
 //
-//  Created by Andrew Robinson on 1/13/17.
+//  Created by Andrew Robinson on 1/17/17.
 //  Copyright © 2017 The Post. All rights reserved.
 //
 
 import UIKit
 
-class ReviewsSummaryViewController: ModalPresentationViewController, UIDynamicAnimatorDelegate {
+class ProfileModalViewController: ModalPresentationViewController {
 
     @IBOutlet weak var container: UIView!
     
     private var animator: UIDynamicAnimator!
     
-    var userId: String!
+    var idToPass: String!
+    
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         animator = UIDynamicAnimator()
-        animator.delegate = self
         
         container.alpha = 0.0
         
@@ -45,14 +46,6 @@ class ReviewsSummaryViewController: ModalPresentationViewController, UIDynamicAn
                     self.view.backgroundColor = #colorLiteral(red: 0.4705882353, green: 0.4705882353, blue: 0.4705882353, alpha: 0.7527527265)
                 })
             }
-        }
-    }
-    
-    // MARK: - Animator delegates
-    
-    func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
-        if let vc = childViewControllers[0] as? ReviewsSummaryContainerViewController {
-            vc.parentAnimatorDidFinish()
         }
     }
     
@@ -86,8 +79,11 @@ class ReviewsSummaryViewController: ModalPresentationViewController, UIDynamicAn
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if let destination = segue.destination as? ReviewsSummaryContainerViewController {
-            destination.userId = userId
+        if let destination = segue.destination as? ProfileViewController {
+            destination.userId = idToPass
+            
+            destination.view.roundCorners(radius: 8.0)
+            destination.view.clipsToBounds = true
         }
     }
 

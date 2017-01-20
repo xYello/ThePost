@@ -305,7 +305,13 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
                                 "user-products/\(senderId!)/\(conversation.productID!)/isSold": true]
             productRef.updateChildValues(childUpdates)
         } else if greenButton.currentTitle == "View Profile" {
-            // TODO: View profile...
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let vc = storyboard.instantiateViewController(withIdentifier: "profileModalViewController") as? ProfileModalViewController {
+                vc.modalPresentationStyle = .overCurrentContext
+                vc.idToPass = conversation.otherPersonId
+                
+                PresentationCenter.manager.present(viewController: vc, sender: self)
+            }
         }
     }
     
@@ -316,7 +322,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
                 vc.modalPresentationStyle = .overCurrentContext
                 vc.product = product
                 
-                present(vc, animated: false, completion: nil)
+                PresentationCenter.manager.present(viewController: vc, sender: self)
             }
         }
     }

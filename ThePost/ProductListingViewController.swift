@@ -187,7 +187,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             vc.product = product
             
             if let tabController = tabBarController {
-                tabController.present(vc, animated: false, completion: nil)
+                PresentationCenter.manager.present(viewController: vc, sender: tabController)
             }
         }
     }

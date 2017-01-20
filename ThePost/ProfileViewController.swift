@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var settingsButton: UIButton!
     
     @IBOutlet weak var farLeftStar: UIImageView!
     @IBOutlet weak var leftMidStar: UIImageView!
@@ -34,6 +35,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var bottomMostSeperator: UIView!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var closeButton: UIButton!
+    
+    @IBOutlet weak var profileImageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
     
     private var previouslySelectedButton: UIButton!
     private var selectionBar: UIView?
@@ -79,13 +85,24 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
     }
+    
+    var userId: String?
 
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let uid = FIRAuth.auth()!.currentUser!.uid
+        var uid = ""
+        if let id = userId {
+            uid = id
+            settingsButton.isHidden = true
+            profileImageViewTopConstraint.constant = 0.0
+        } else {
+            uid = FIRAuth.auth()!.currentUser!.uid
+            bottomBarHeightConstraint.constant = tabBarController!.tabBar.frame.height
+        }
+        
         getUserProfile(with: uid)
         grabUsersReviewStats(with: uid)
         
@@ -106,11 +123,20 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.dataSource = self
         tableView.delegate = self
         
+        closeButton.layer.borderColor = closeButton.titleLabel!.textColor.cgColor
+        closeButton.layer.borderWidth = 1.0
+        closeButton.roundCorners(radius: 8.0)
+        
         previouslySelectedButton = sellingProductTypeButton
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let uid = FIRAuth.auth()!.currentUser!.uid
+        var uid = ""
+        if let id = userId {
+            uid = id
+        } else {
+            uid = FIRAuth.auth()!.currentUser!.uid
+        }
         
         if userProductsRef == nil {
             sellingProducts.removeAll()
@@ -229,14 +255,19 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - Actions
 
     @IBAction func reviewsButtonTapped(_ sender: UIButton) {
-        if let uid = FIRAuth.auth()?.currentUser?.uid {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let vc = storyboard.instantiateViewController(withIdentifier: "reviewsSummaryController") as? ReviewsSummaryViewController {
-                vc.modalPresentationStyle = .overCurrentContext
-                vc.userId = uid
-                    
-                present(vc, animated: false, completion: nil)
-            }
+        var uid = ""
+        if let id = userId {
+            uid = id
+        } else if let deviceUserId = FIRAuth.auth()?.currentUser?.uid {
+            uid = deviceUserId
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "reviewsSummaryController") as? ReviewsSummaryViewController {
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.userId = uid
+            
+            PresentationCenter.manager.present(viewController: vc, sender: self)
         }
     }
     
@@ -270,6 +301,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    @IBAction func wantsToClose(_ sender: UIButton) {
+        dismissParent()
+    }
+    
     // MARK: - Helpers
     
     private func productArray() -> [Product] {
@@ -286,19 +321,23 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         return arrayToReturn
     }
     
-    private func getUserProfile(with uid: String) {
-        if let name = FIRAuth.auth()?.currentUser?.displayName {
-            profileNameLabel.text = name
-        } else {
-            let ref = FIRDatabase.database().reference().child(uid).child("fullName")
-            ref.observeSingleEvent(of: .value, with: { snapshot in
-                if let fullName = snapshot.value as? String {
-                    DispatchQueue.main.async {
-                        self.profileNameLabel.text = fullName
-                    }
-                }
-            })
+    private func dismissParent() {
+        if let parent = parent as? ProfileModalViewController {
+            parent.prepareForDismissal {
+                parent.dismiss(animated: false, completion: nil)
+            }
         }
+    }
+    
+    private func getUserProfile(with uid: String) {
+        let ref = FIRDatabase.database().reference().child("users").child(uid).child("fullName")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let fullName = snapshot.value as? String {
+                DispatchQueue.main.async {
+                    self.profileNameLabel.text = fullName
+                }
+            }
+        })
     }
     
     private func grabUsersReviewStats(with uid: String) {
