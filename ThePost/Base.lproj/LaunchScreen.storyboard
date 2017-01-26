@@ -23,14 +23,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MeanJeep" translatesAutoresizingMaskIntoConstraints="NO" id="5gX-oG-YAI">
-                                <rect key="frame" x="49" y="343" width="277" height="130"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WaveIcon" translatesAutoresizingMaskIntoConstraints="NO" id="5gX-oG-YAI">
+                                <rect key="frame" x="49" y="286" width="277" height="242"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="5gX-oG-YAI" secondAttribute="height" multiplier="277:130" id="CtO-pZ-R05"/>
+                                    <constraint firstAttribute="width" secondItem="5gX-oG-YAI" secondAttribute="height" multiplier="277:130" constant="-238.64615384615388" id="CtO-pZ-R05"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ThePostTextImage" translatesAutoresizingMaskIntoConstraints="NO" id="rbG-Ez-MQf">
-                                <rect key="frame" x="60" y="224" width="264" height="111"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TheWaveTextImage" translatesAutoresizingMaskIntoConstraints="NO" id="rbG-Ez-MQf">
+                                <rect key="frame" x="55" y="139" width="264" height="111"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rbG-Ez-MQf" secondAttribute="height" multiplier="88:37" id="c0W-hr-dTQ"/>
                                 </constraints>
@@ -38,12 +38,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.1647058824" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="rbG-Ez-MQf" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-54" id="2bg-hD-R8A"/>
+                            <constraint firstItem="rbG-Ez-MQf" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-139" id="2bg-hD-R8A"/>
                             <constraint firstItem="5gX-oG-YAI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="33" id="C8T-8R-djz"/>
-                            <constraint firstItem="5gX-oG-YAI" firstAttribute="centerX" secondItem="rbG-Ez-MQf" secondAttribute="centerX" constant="-4.5" id="GMB-sB-dgU"/>
-                            <constraint firstItem="rbG-Ez-MQf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="4.5" id="JB9-Hw-ft9"/>
-                            <constraint firstItem="rbG-Ez-MQf" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="44" id="ban-lb-eeu"/>
-                            <constraint firstItem="5gX-oG-YAI" firstAttribute="top" secondItem="rbG-Ez-MQf" secondAttribute="bottom" constant="8" id="kdp-La-tx8"/>
+                            <constraint firstItem="5gX-oG-YAI" firstAttribute="centerX" secondItem="rbG-Ez-MQf" secondAttribute="centerX" constant="0.5" id="GMB-sB-dgU"/>
+                            <constraint firstItem="rbG-Ez-MQf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-0.5" id="JB9-Hw-ft9"/>
+                            <constraint firstItem="rbG-Ez-MQf" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="39" id="ban-lb-eeu"/>
+                            <constraint firstItem="5gX-oG-YAI" firstAttribute="top" secondItem="rbG-Ez-MQf" secondAttribute="bottom" constant="36" id="kdp-La-tx8"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -53,7 +53,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MeanJeep" width="300" height="141"/>
-        <image name="ThePostTextImage" width="289" height="106"/>
+        <image name="TheWaveTextImage" width="275" height="110"/>
+        <image name="WaveIcon" width="270" height="270"/>
     </resources>
 </document>
