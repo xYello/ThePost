@@ -74,6 +74,10 @@
 		4DBF61E71E29CA3100D07AD5 /* PercentageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61E61E29CA3100D07AD5 /* PercentageBar.swift */; };
 		4DBF61EB1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61EA1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift */; };
 		4DBF61ED1E29E05100D07AD5 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61EC1E29E05100D07AD5 /* Review.swift */; };
+		4DC30D501E399E050087B447 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC30D4F1E399E050087B447 /* ActivityViewController.swift */; };
+		4DC30D531E39A6D60087B447 /* NewReviewActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC30D521E39A6D60087B447 /* NewReviewActivityTableViewCell.swift */; };
+		4DC30D551E39A6EE0087B447 /* SoldActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC30D541E39A6EE0087B447 /* SoldActivityTableViewCell.swift */; };
+		4DC30D571E39A70B0087B447 /* LikedProductActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC30D561E39A70B0087B447 /* LikedProductActivityTableViewCell.swift */; };
 		4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */; };
 		4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */; };
 		4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */; };
@@ -176,6 +180,10 @@
 		4DBF61E61E29CA3100D07AD5 /* PercentageBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentageBar.swift; sourceTree = "<group>"; };
 		4DBF61EA1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		4DBF61EC1E29E05100D07AD5 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		4DC30D4F1E399E050087B447 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		4DC30D521E39A6D60087B447 /* NewReviewActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewReviewActivityTableViewCell.swift; sourceTree = "<group>"; };
+		4DC30D541E39A6EE0087B447 /* SoldActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoldActivityTableViewCell.swift; sourceTree = "<group>"; };
+		4DC30D561E39A70B0087B447 /* LikedProductActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedProductActivityTableViewCell.swift; sourceTree = "<group>"; };
 		4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSelectionTabBarController.swift; sourceTree = "<group>"; };
@@ -349,6 +357,7 @@
 				4D239C401E12DF9300F2668E /* Product Listing */,
 				4D23EC711E1F85B40001C045 /* Chat */,
 				4DD3CCC41E14DC8200821C7C /* Add New Product */,
+				4DC30D4E1E399DEF0087B447 /* Activity */,
 				4D34358B1E203E1900E031D7 /* Profile */,
 				4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */,
 				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
@@ -441,6 +450,25 @@
 				4D161BCC1E2710C2001BEE9D /* CreateReviewContainerViewController.swift */,
 			);
 			name = Create;
+			sourceTree = "<group>";
+		};
+		4DC30D4E1E399DEF0087B447 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				4DC30D511E39A6AB0087B447 /* Table View Cells */,
+				4DC30D4F1E399E050087B447 /* ActivityViewController.swift */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
+		4DC30D511E39A6AB0087B447 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4DC30D521E39A6D60087B447 /* NewReviewActivityTableViewCell.swift */,
+				4DC30D541E39A6EE0087B447 /* SoldActivityTableViewCell.swift */,
+				4DC30D561E39A70B0087B447 /* LikedProductActivityTableViewCell.swift */,
+			);
+			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
 		4DC6C6701E1609AA00431D3A /* Collection View Cells */ = {
@@ -776,6 +804,7 @@
 				4DBF61E71E29CA3100D07AD5 /* PercentageBar.swift in Sources */,
 				4D5AB0B61E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift in Sources */,
 				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
+				4DC30D551E39A6EE0087B447 /* SoldActivityTableViewCell.swift in Sources */,
 				4D5AB0AB1E242765005BF23B /* ChatContainerViewController.swift in Sources */,
 				4D34358D1E203E2800E031D7 /* ProfileViewController.swift in Sources */,
 				4DA153F31E22EA6D00708543 /* ChatViewController.swift in Sources */,
@@ -783,10 +812,12 @@
 				4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
 				4D1102061E2EAD7600ADF559 /* ProfileModalViewController.swift in Sources */,
+				4DC30D571E39A70B0087B447 /* LikedProductActivityTableViewCell.swift in Sources */,
 				4D161BC81E26E97B001BEE9D /* SignInViewController.swift in Sources */,
 				4D23EC751E1F86130001C045 /* ConversationTableViewCell.swift in Sources */,
 				4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */,
 				4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */,
+				4DC30D501E399E050087B447 /* ActivityViewController.swift in Sources */,
 				4D161BCD1E2710C2001BEE9D /* CreateReviewContainerViewController.swift in Sources */,
 				60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */,
 				4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */,
@@ -800,6 +831,7 @@
 				4D23EC771E1F86360001C045 /* ChatConversationViewController.swift in Sources */,
 				4DBF61E31E29C26600D07AD5 /* ReviewsSummaryViewController.swift in Sources */,
 				4D5AB0B81E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift in Sources */,
+				4DC30D531E39A6D60087B447 /* NewReviewActivityTableViewCell.swift in Sources */,
 				4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */,
 				4D35A20E1E11FA4B00A115EB /* CategorySelectorViewController.swift in Sources */,
 				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
