@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTextField: RoundedTextField!
     @IBOutlet weak var emailTextField: RoundedTextField!
@@ -24,7 +24,13 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     
+    @IBOutlet weak var welcomeLabelToViewTopConstraint: NSLayoutConstraint!
+    
     private var ref: FIRDatabaseReference!
+    
+    private var welcomeLabelToViewTopConstant: CGFloat = 0.0
+    
+    private var isTypingInTextField = false
     
     // MARK: - View lifecycle
     
@@ -51,14 +57,38 @@ class SignUpViewController: UIViewController {
         ref = FIRDatabase.database().reference()
     }
     
+    // MARK: Textfield delegate
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if !isTypingInTextField {
+            isTypingInTextField = true
+            
+            welcomeLabelToViewTopConstant = welcomeLabelToViewTopConstraint.constant
+            welcomeLabelToViewTopConstraint.constant = -usernameTextField.frame.origin.y + usernameTextField.frame.height + 28
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if !isTypingInTextField {
+            welcomeLabelToViewTopConstraint.constant = welcomeLabelToViewTopConstant
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
     // MARK: - Actions
     
     @objc private func tapped() {
-        for otherView in view.subviews {
-            if otherView is UITextField {
-                otherView.resignFirstResponder()
-            }
-        }
+        isTypingInTextField = false
+        view.endEditing(false)
     }
     
     @IBAction func editingChanged(_ sender: RoundedTextField) {
@@ -67,10 +97,10 @@ class SignUpViewController: UIViewController {
                 if text.characters.count >= 4 {
                     usernameImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
                 } else {
-                    usernameImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                    usernameImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
                 }
             } else {
-                usernameImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                usernameImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
             }
         }
         
@@ -79,10 +109,10 @@ class SignUpViewController: UIViewController {
                 if text.characters.count >= 5 && text.contains("@") && text.contains(".") {
                     emailImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
                 } else {
-                    emailImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                    emailImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
                 }
             } else {
-                emailImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                emailImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
             }
         }
         
@@ -91,16 +121,16 @@ class SignUpViewController: UIViewController {
                 if text.characters.count > 5 {
                     passwordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
                 } else {
-                    passwordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                    passwordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
                 }
                 
                 if text == confirmPasswordTextField.text {
                     confirmPasswordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
                 } else {
-                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
                 }
             } else {
-                passwordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                passwordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
             }
         }
         
@@ -109,10 +139,10 @@ class SignUpViewController: UIViewController {
                 if text == passwordTextField.text {
                     confirmPasswordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
                 } else {
-                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
                 }
             } else {
-                confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8552903533, green: 0.03449717909, blue: 0.01357735228, alpha: 1)
+                confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
             }
         }
     }
@@ -182,6 +212,7 @@ class SignUpViewController: UIViewController {
     
     private func formatTextField(field: UITextField, withImageView imageView: UIImageView) {
         field.roundCorners()
+        field.delegate = self
         field.attributedPlaceholder = NSAttributedString(string: field.placeholder!, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3503303272)])
         
         imageView.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
