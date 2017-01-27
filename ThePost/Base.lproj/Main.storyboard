@@ -564,7 +564,7 @@
                                     <constraint firstAttribute="height" constant="21" id="D8r-4j-xbm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lets get you started." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3B-OQ-ofh">
@@ -591,8 +591,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="YxW-2T-MHO"/>
                                 </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                 <connections>
                                     <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="pxE-li-kZW"/>
@@ -604,8 +604,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="ykE-fm-GgY"/>
                                 </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                 <connections>
                                     <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="olt-fx-QlU"/>
@@ -617,8 +617,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="dVB-HY-PmP"/>
                                 </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="zH2-R9-zs7"/>
@@ -630,8 +630,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="0Bp-eL-Yha"/>
                                 </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="0aL-TP-9nY"/>
@@ -845,7 +845,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-pw-eQ7">
-                                                            <rect key="frame" x="35" y="7" width="82" height="20"/>
+                                                            <rect key="frame" x="35" y="6" width="82" height="20"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1094,7 +1094,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="NyU-RR-9ca">
-                                                            <rect key="frame" x="33" y="7" width="82" height="20"/>
+                                                            <rect key="frame" x="33" y="6" width="82" height="20"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -2113,7 +2113,7 @@
                                     <constraint firstAttribute="height" constant="43" id="tQ7-Rm-zP8"/>
                                 </constraints>
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                 <connections>
                                     <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="AVD-oQ-SOG"/>
@@ -2126,7 +2126,7 @@
                                     <constraint firstAttribute="height" constant="43" id="xm1-wC-pT9"/>
                                 </constraints>
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="dSd-OA-hHv"/>
@@ -2732,7 +2732,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2756,7 +2756,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="icS-JB-eAG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="MessagesTabBarIcon" id="gR2-QB-zbc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="T8D-YI-vEB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8D-YI-vEB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2962,13 +2962,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="detail text" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="E56-ef-Y16">
-                                                    <rect key="frame" x="266" y="7" width="69" height="20"/>
+                                                    <rect key="frame" x="266" y="6" width="69" height="20"/>
                                                     <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="16"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHW-Ry-uzI">
-                                                    <rect key="frame" x="33" y="7" width="82" height="20"/>
+                                                    <rect key="frame" x="33" y="6" width="82" height="20"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -3364,7 +3364,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUC-YP-cW1">
-                                                    <rect key="frame" x="33" y="7" width="82" height="20"/>
+                                                    <rect key="frame" x="33" y="6" width="82" height="20"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -4304,7 +4304,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ey7-I1-ngI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="ActivityTabBarIcon" id="hrl-HZ-3sD"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="PXY-oV-xsh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PXY-oV-xsh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019610000001" green="0.16078431369999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
