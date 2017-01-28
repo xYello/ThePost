@@ -10,21 +10,15 @@ import UIKit
 
 class WalkthroughCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var stepCountContainer: UIView!
-    @IBOutlet weak var stepCountLabel: UILabel!
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     
     @IBOutlet weak var bottomImageView: UIImageView!
     
-    @IBOutlet weak var imageToBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageAspectRatioConstraint: NSLayoutConstraint!
+    @IBOutlet weak var nextButton: UIButton!
     
     override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        stepCountContainer.roundCorners()
+        nextButton.roundCorners()
     }
     
 }
