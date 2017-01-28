@@ -130,6 +130,11 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         cell.presenceIndicator.isHidden = !conversation.isOtherPersonOnline
         
         cell.isProductSold = conversation.isProductSold
+        if conversation.isProductSold {
+            cell.profileImageView.alpha = 0.2
+        } else {
+            cell.profileImageView.alpha = 1.0
+        }
         
         return cell
     }
