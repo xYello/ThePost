@@ -21,8 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var userRef: FIRDatabaseReference?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+
         FIRApp.configure()
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         Fabric.with([Answers.self, Crashlytics.self])
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -43,26 +44,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.makeKeyAndVisible()
         
-        if let pass = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserPass.rawValue) {
-            if let email = FIRAuth.auth()?.currentUser?.email {
-                
-                let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)
-                FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
-                    if let error = error {
-                        print("Error reauthenticating: \(error.localizedDescription)")
-                        do {
-                            try FIRAuth.auth()?.signOut()
-                        } catch {
-                            print("Error signing out")
-                        }
-                    } else {
-                        self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
-                        self.userRef!.onDisconnectRemoveValue()
-                        self.userRef!.setValue(true)
+        if let pass = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserPass.rawValue), let email = FIRAuth.auth()?.currentUser?.email {
+            let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)
+            FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
+                if let error = error {
+                    print("Error reauthenticating: \(error.localizedDescription)")
+                    do {
+                        try FIRAuth.auth()?.signOut()
+                    } catch {
+                        print("Error signing out")
                     }
-                    
-                })
-            }
+                } else {
+                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
+                    self.userRef!.onDisconnectRemoveValue()
+                    self.userRef!.setValue(true)
+                }
+                
+            })
+        } else if FBSDKAccessToken.current() != nil {
+            let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
+                if let error = error {
+                    print("Error reauthenticating: \(error.localizedDescription)")
+                    do {
+                        try FIRAuth.auth()?.signOut()
+                    } catch {
+                        print("Error signing out")
+                    }
+                } else {
+                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
+                    self.userRef!.onDisconnectRemoveValue()
+                    self.userRef!.setValue(true)
+                }
+                
+            })
         } else {
             do {
                 try FIRAuth.auth()?.signOut()

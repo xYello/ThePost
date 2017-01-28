@@ -43,9 +43,6 @@ class SignInUpPromptViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let _ = FBSDKAccessToken.current() {
-            // TODO:
-        }
         
         if container.alpha != 1.0 {
             let point = CGPoint(x: container.frame.midX, y: container.frame.midY)
