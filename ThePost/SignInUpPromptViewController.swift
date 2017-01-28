@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FBSDKLoginKit
 
 class SignInUpPromptViewController: UIViewController {
 
@@ -41,6 +43,10 @@ class SignInUpPromptViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        if let _ = FBSDKAccessToken.current() {
+            // TODO:
+        }
+        
         if container.alpha != 1.0 {
             let point = CGPoint(x: container.frame.midX, y: container.frame.midY)
             let snap = UISnapBehavior(item: container, snapTo: point)
@@ -59,10 +65,62 @@ class SignInUpPromptViewController: UIViewController {
     
     // MARK: - Actions
     
+    @IBAction func connectWithFacebook(_ sender: UIButton) {
+        signUpFacebook()
+    }
+    
+    @IBAction func connectWithTwitter(_ sender: UIButton) {
+    }
+    
     @IBAction func dismissSignUpPrompt(_ sender: UIButton) {
         prepareForDismissal {
             self.dismiss(animated: false, completion: nil)
         }
+    }
+    
+    // MARK: - Sign up helpers
+    
+    private func signUpFacebook() {
+        FBSDKLoginManager().logIn(withReadPermissions: ["public_profile", "email"], from: self, handler: { result, error in
+            if let error = error {
+                // TODO: Update with error reporting.
+                print("Error signing up: \(error.localizedDescription)")
+            } else {
+                if FBSDKAccessToken.current() != nil {
+                    let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,name"], tokenString: FBSDKAccessToken.current().tokenString, version: nil, httpMethod: "GET")
+                    if let req = req {
+                        
+                        req.start() { connection, result, error in
+                            if let error = error {
+                                // TODO: Update with error reporting.
+                                print("Error signing up: \(error.localizedDescription)")
+                            } else {
+                                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                                FIRAuth.auth()?.signIn(with: credential, completion: { user, firError in
+                                    if let firError = firError {
+                                        // TODO: Update with error reporting.
+                                        print("Error signing up: \(firError.localizedDescription)")
+                                    } else {
+                                        if let data = result as? [String: AnyObject] {
+                                            var email = ""
+                                            if let e = data["email"] as? String {
+                                                email = e
+                                            }
+                                            
+                                            FIRDatabase.database().reference().child("users").child(user!.uid).setValue(["fullName": data["name"] as! String, "email": email])
+                                            self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                    }
+                } else {
+                    // TODO: Update with error reporting.
+                    print("Did not actually sign up with Facebook.")
+                }
+            }
+        })
     }
     
     // MARK: - Dismissal
