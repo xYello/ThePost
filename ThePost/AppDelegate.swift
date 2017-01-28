@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Fabric
 import Crashlytics
+import TwitterKit
 import SwiftKeychainWrapper
 import FBSDKCoreKit
 
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FIRApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        Fabric.with([Answers.self, Crashlytics.self])
+        Fabric.with([Answers.self, Crashlytics.self, Twitter.self])
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -63,6 +64,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         } else if FBSDKAccessToken.current() != nil {
             let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
+                if let error = error {
+                    print("Error reauthenticating: \(error.localizedDescription)")
+                    do {
+                        try FIRAuth.auth()?.signOut()
+                    } catch {
+                        print("Error signing out")
+                    }
+                } else {
+                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
+                    self.userRef!.onDisconnectRemoveValue()
+                    self.userRef!.setValue(true)
+                }
+                
+            })
+        } else if let token = KeychainWrapper.standard.string(forKey: Constants.TwitterInfoKeys.token.rawValue), let secret = KeychainWrapper.standard.string(forKey: Constants.TwitterInfoKeys.secret.rawValue) {
+            let credential = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
             FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
                 if let error = error {
                     print("Error reauthenticating: \(error.localizedDescription)")
@@ -120,6 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        Twitter.sharedInstance().application(app, open: url, options: options)
         return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String!, annotation: options[.annotation])
     }
     
