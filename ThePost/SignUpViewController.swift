@@ -57,6 +57,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         ref = FIRDatabase.database().reference()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     // MARK: Textfield delegate
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -186,7 +190,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     }
                     
                     KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: Constants.UserInfoKeys.UserPass.rawValue)
-                    self.ref.child("users").child(user.uid).setValue(["fullName": self.usernameTextField.text])
+                    self.ref.child("users").child(user.uid).setValue(["fullName": self.usernameTextField.text, "email": self.emailTextField.text])
                     self.performSegue(withIdentifier: "walkthroughSegue", sender: self)
                 }
             })
@@ -199,13 +203,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUpSocial(_ sender: UIButton) {
-        if sender.currentTitle == "Google" {
-            
-        } else if sender.currentTitle == "Facebook" {
-            performSegue(withIdentifier: "walkthroughSegue", sender: self)
-        } else if sender.currentTitle == "Twitter" {
-            
-        }
     }
     
     // MARK: - Helpers
