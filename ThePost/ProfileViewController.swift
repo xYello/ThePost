@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
+// TODO:
+import FBSDKLoginKit
+
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private enum ProductViewing {
@@ -294,6 +297,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
+        KeychainWrapper.standard.removeObject(forKey: Constants.UserInfoKeys.UserPass.rawValue)
+        
+        FBSDKLoginManager().logOut()
+        
+        KeychainWrapper.standard.removeObject(forKey: Constants.TwitterInfoKeys.token.rawValue)
+        KeychainWrapper.standard.removeObject(forKey: Constants.TwitterInfoKeys.secret.rawValue)
+        
         do {
             try FIRAuth.auth()?.signOut()
         } catch {

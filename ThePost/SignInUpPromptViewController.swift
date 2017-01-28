@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import TwitterKit
+import SwiftKeychainWrapper
 
 class SignInUpPromptViewController: UIViewController {
 
@@ -67,6 +69,7 @@ class SignInUpPromptViewController: UIViewController {
     }
     
     @IBAction func connectWithTwitter(_ sender: UIButton) {
+        signUpTwitter()
     }
     
     @IBAction func dismissSignUpPrompt(_ sender: UIButton) {
@@ -118,6 +121,47 @@ class SignInUpPromptViewController: UIViewController {
                 }
             }
         })
+    }
+    
+    private func signUpTwitter() {
+        if ACAccountStore().accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter).accessGranted {
+            Twitter.sharedInstance().logIn() { session, error in
+                if let error = error {
+                    // TODO: Update with error reporting.
+                    print("Error signing up: \(error.localizedDescription)")
+                } else {
+                    let credential = FIRTwitterAuthProvider.credential(withToken: session!.authToken, secret: session!.authTokenSecret)
+                    FIRAuth.auth()?.signIn(with: credential, completion: { user, firError in
+                        if let firError = firError {
+                            // TODO: Update with error reporting.
+                            print("Error signing up: \(firError.localizedDescription)")
+                        } else {
+                            var name = ""
+                            if let n = user?.displayName {
+                                name = n
+                            }
+                            
+                            KeychainWrapper.standard.set(session!.authToken, forKey: Constants.TwitterInfoKeys.token.rawValue)
+                            KeychainWrapper.standard.set(session!.authTokenSecret, forKey: Constants.TwitterInfoKeys.secret.rawValue)
+                            
+                            FIRDatabase.database().reference().child("users").child(user!.uid).setValue(["fullName": name])
+                            self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
+                        }
+                    })
+                }
+            }
+        } else {
+            let alert = UIAlertController(title: "Twitter!?", message: "The Wave currently does not have access to Twitter accounts. Give it access?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+                if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Dismissal

@@ -16,5 +16,10 @@ class Constants: NSObject {
         case UserPass = "userPass"
         case UserSelectedJeep = "userSelectedJeep"
     }
+    
+    enum TwitterInfoKeys: String {
+        case token = "twitterToken"
+        case secret = "twitterTokenSecret"
+    }
 
 }
