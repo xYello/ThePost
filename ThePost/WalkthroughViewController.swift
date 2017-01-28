@@ -10,8 +10,11 @@ import UIKit
 
 class WalkthroughViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var skipButton: UIButton!
+    
+    var indexPath:IndexPath?
     
     // MARK: - View lifecycle
     
@@ -20,6 +23,15 @@ class WalkthroughViewController: UIViewController, UICollectionViewDataSource, U
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+    }
+    
+    
+    override func viewWillLayoutSubviews() {
+        let circlePath = CAShapeLayer()
+        circlePath.path = UIBezierPath(roundedRect: circleView.bounds, byRoundingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: circleView.bounds.width / 2, height: circleView.bounds.height / 2)).cgPath
+        
+        circleView.layer.mask = circlePath
     }
     
     // MARK: - Actions
@@ -36,43 +48,34 @@ class WalkthroughViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "walkthroughCell", for: indexPath) as! WalkthroughCollectionViewCell
-        cell.stepCountLabel.text = "\(indexPath.row + 1)"
+        self.indexPath = indexPath
         
         if indexPath.row == 0 {
             cell.titleLabel.text = "Buy/Sell/Trade"
             cell.messageLabel.text = "Yes, we’re making it easy to buy, sell and swap your Jeep parts."
-            cell.bottomImageView.image = UIImage(named: "MoneyPower")
-            cell.imageToBottomConstraint.constant = -8
+            cell.bottomImageView.image = #imageLiteral(resourceName: "PriceTag ")
+            cell.nextButton.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
+            self.skipButton.isHidden = false
+
             
         } else if indexPath.row == 1 {
             cell.titleLabel.text = "Message"
             cell.messageLabel.text = "Once you’ve found the perfect part you can message the seller and ask to buy."
-            cell.bottomImageView.image = UIImage(named: "LikeConversation")
-            
-            cell.bottomImageView.removeConstraint(cell.imageAspectRatioConstraint)
-            cell.imageAspectRatioConstraint = NSLayoutConstraint(item: cell.bottomImageView,
-                                                                 attribute: .width,
-                                                                 relatedBy: .equal,
-                                                                 toItem: cell.bottomImageView,
-                                                                 attribute: .height,
-                                                                 multiplier: 214.0/223.0,
-                                                                 constant: 0.0)
-            cell.addConstraint(cell.imageAspectRatioConstraint)
+            cell.bottomImageView.image = #imageLiteral(resourceName: "LikeConversation ")
+            cell.nextButton.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
+            self.skipButton.isHidden = false
+
             
         } else if indexPath.row == 2 {
             cell.titleLabel.text = "Rate & Review"
+            cell.nextButton.setTitle("Finish", for: .normal)
             cell.messageLabel.text = "Rating the seller/buyer is the best way to keep our community growing."
-            cell.bottomImageView.image = UIImage(named: "FavoriteProfile")
+            cell.bottomImageView.image = #imageLiteral(resourceName: "FavoriteProfile")
+            cell.nextButton.addTarget(self, action: #selector(finishedButtonPressed), for: .touchUpInside)
+            self.skipButton.isHidden = true
+
             
-            cell.bottomImageView.removeConstraint(cell.imageAspectRatioConstraint)
-            cell.imageAspectRatioConstraint = NSLayoutConstraint(item: cell.bottomImageView,
-                                                                 attribute: .width,
-                                                                 relatedBy: .equal,
-                                                                 toItem: cell.bottomImageView,
-                                                                 attribute: .height,
-                                                                 multiplier: 180.0/174.0,
-                                                                 constant: 0.0)
-            cell.addConstraint(cell.imageAspectRatioConstraint)
+            
         }
         
         return cell
@@ -80,12 +83,26 @@ class WalkthroughViewController: UIViewController, UICollectionViewDataSource, U
     
     // MARK: CollectionView delegate
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        pageControl.currentPage = Int(collectionView.contentOffset.x / collectionView.frame.width)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+    @objc func nextButtonPressed() {
+        
+        //get cell size
+        let cellSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+        
+        //get current content Offset of the Collection view
+        let contentOffset = collectionView.contentOffset
+        
+        //scroll to next cell
+        collectionView.scrollRectToVisible(CGRect(x: contentOffset.x + cellSize.width, y: contentOffset.y, width: cellSize.width, height: cellSize.height),animated: true)
+        
+        
+    }
+    
+    @objc func finishedButtonPressed() {
+        self.performSegue(withIdentifier: "appServicesRequestSegue", sender: nil)
     }
 
 }

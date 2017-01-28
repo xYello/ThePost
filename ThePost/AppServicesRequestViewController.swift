@@ -59,7 +59,7 @@ class AppServicesRequestViewController: UIViewController, CLLocationManagerDeleg
             }, completion: { done in
                 self.titleLabel.text = "Push Notifications"
                 self.messageLabel.text = "Stay up to date with all that happens in The Post. Enable your notifcations."
-                self.imageView.image = UIImage(named: "NotificationRequest")
+                self.imageView.image = #imageLiteral(resourceName: "PhoneRing")
                 self.requestButton.setTitle("Enable Notifications", for: .normal)
                 self.containerView.frame = CGRect(x: self.originalContainerFrame.origin.x + 1 * self.containerView.frame.width,
                                                   y: self.containerView.frame.origin.y,
