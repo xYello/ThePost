@@ -136,7 +136,7 @@
 		4C2895BE6FD94CC46C5B4139ABA4B9FE /* GeoFire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A2C5E6FF5EF712C6818E58A6DECEB4 /* GeoFire-dummy.m */; };
 		4CC2E382704A6A7F44FC84D74F3F06F2 /* FBSDKBridgeAPIProtocolWebV1.h in Headers */ = {isa = PBXBuildFile; fileRef = E7249137FD941610C57B551CFEAA3418 /* FBSDKBridgeAPIProtocolWebV1.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4CCBF4DC98798CF31A907A6271104368 /* JSQMessagesTypingIndicatorFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 803E3AF66C8F07341CEA7235E50C8769 /* JSQMessagesTypingIndicatorFooterView.m */; };
-		4DC30D4D1E399C720087B447 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F291EBC7A5C1195355C4AECC0B129545 /* FirebaseDatabase.framework */; };
+		4DBF97411E3C811F00D8B87C /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F291EBC7A5C1195355C4AECC0B129545 /* FirebaseDatabase.framework */; };
 		4ECECEB5C372BB91D3A66BFD432AD598 /* BFCancellationTokenSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D413744C8C0594A3E1D76ED056BA39E /* BFCancellationTokenSource.m */; };
 		50B0673F9D031074EE0249AF0B5A4A0A /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8604A33EDC60936172448BDB94FA36EC /* SDWebImageDownloader.m */; };
 		50FDB4CB4FACEAAD1F45C6CF087338F1 /* FBSDKErrorRecoveryAttempter.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDEBAFAFC0859A9692B872BB338AAA6 /* FBSDKErrorRecoveryAttempter.m */; };
@@ -1265,7 +1265,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DC30D4D1E399C720087B447 /* FirebaseDatabase.framework in Frameworks */,
+				4DBF97411E3C811F00D8B87C /* FirebaseDatabase.framework in Frameworks */,
 				1FA375816005BD73DC57C12C9D40E516 /* CoreLocation.framework in Frameworks */,
 				A83EEEDEDD3140EE175D2C85B3689135 /* Foundation.framework in Frameworks */,
 				735B1005CF6967A0B2224C691D8DAB4F /* GoogleToolboxForMac.framework in Frameworks */,
