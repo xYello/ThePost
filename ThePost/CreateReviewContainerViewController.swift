@@ -197,8 +197,8 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate,
         if let location = manager.location {
             CLGeocoder().reverseGeocodeLocation(location, completionHandler: { placemarks, error in
                 if let marks = placemarks {
-                    KeychainWrapper.standard.set(marks[0].locality!, forKey: Constants.UserInfoKeys.UserCity.rawValue)
-                    KeychainWrapper.standard.set(marks[0].administrativeArea!, forKey: Constants.UserInfoKeys.UserState.rawValue)
+                    KeychainWrapper.standard.set(marks[0].locality!, forKey: UserInfoKeys.UserCity)
+                    KeychainWrapper.standard.set(marks[0].administrativeArea!, forKey: UserInfoKeys.UserState)
                 }
             })
         }
@@ -253,7 +253,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate,
         
         if viewsToShake.count == 0 && fakePlaceholderLabel.isHidden {
             if let uid = FIRAuth.auth()?.currentUser?.uid {
-                if let city = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserCity.rawValue), let state = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserState.rawValue) {
+                if let city = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserCity), let state = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserState) {
                     let formatter = DateFormatter()
                     formatter.dateFormat = "MM/dd/yy HH:mm:ss"
                     formatter.timeZone = TimeZone(identifier: "America/New_York")

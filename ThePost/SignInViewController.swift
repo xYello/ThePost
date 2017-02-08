@@ -108,7 +108,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         print("Error signing in: \(error.localizedDescription)")
                     }
                 } else {
-                    KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: Constants.UserInfoKeys.UserPass.rawValue)
+                    KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
                     self.performSegue(withIdentifier: "unwindToPresenting", sender: self)
                 }
             })

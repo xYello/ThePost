@@ -35,7 +35,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         collectionView.delegate = self
         
         jeepModel = Jeep(withType: JeepModel.wranglerJK)
-        let selectedJeepDescription:String = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)!
+        let selectedJeepDescription:String = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep)!
         
         jeepModel = Jeep(withType: JeepModel.enumFromString(string: selectedJeepDescription)!)
         

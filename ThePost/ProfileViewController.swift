@@ -115,7 +115,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             star.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
         }
         
-        if let city = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserCity.rawValue), let state = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserState.rawValue) {
+        if let city = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserCity), let state = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserState) {
             locationLabel.text = "\(city), \(state)"
         } else {
             locationLabel.text = "(No location provided)"
@@ -297,12 +297,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
-        KeychainWrapper.standard.removeObject(forKey: Constants.UserInfoKeys.UserPass.rawValue)
+        KeychainWrapper.standard.removeObject(forKey: UserInfoKeys.UserPass)
         
         FBSDKLoginManager().logOut()
         
-        KeychainWrapper.standard.removeObject(forKey: Constants.TwitterInfoKeys.token.rawValue)
-        KeychainWrapper.standard.removeObject(forKey: Constants.TwitterInfoKeys.secret.rawValue)
+        KeychainWrapper.standard.removeObject(forKey: TwitterInfoKeys.token)
+        KeychainWrapper.standard.removeObject(forKey: TwitterInfoKeys.secret)
         
         do {
             try FIRAuth.auth()?.signOut()

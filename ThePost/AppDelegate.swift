@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // UnComment this to load jeep selector on starup everytime.
 //        KeychainWrapper.standard.removeObject(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)
         
-        let selectedJeep = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)
+        let selectedJeep = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep)
         var mainViewController:UIViewController
         if selectedJeep == nil {
             mainViewController = mainStoryboard.instantiateViewController(withIdentifier: "jeepSelectorViewController") as! JeepSelectorViewController
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.makeKeyAndVisible()
         
-        if let pass = KeychainWrapper.standard.string(forKey: Constants.UserInfoKeys.UserPass.rawValue), let email = FIRAuth.auth()?.currentUser?.email {
+        if let pass = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserPass), let email = FIRAuth.auth()?.currentUser?.email {
             let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)
             FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
                 if let error = error {
@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 
             })
-        } else if let token = KeychainWrapper.standard.string(forKey: Constants.TwitterInfoKeys.token.rawValue), let secret = KeychainWrapper.standard.string(forKey: Constants.TwitterInfoKeys.secret.rawValue) {
+        } else if let token = KeychainWrapper.standard.string(forKey: TwitterInfoKeys.token), let secret = KeychainWrapper.standard.string(forKey: TwitterInfoKeys.secret) {
             let credential = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
             FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
                 if let error = error {
