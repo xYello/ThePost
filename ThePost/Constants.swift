@@ -6,20 +6,14 @@
 //  Copyright © 2017 The Post. All rights reserved.
 //
 
-import UIKit
+struct UserInfoKeys {
+    static let UserCity = "userCity"
+    static let UserState = "userState"
+    static let UserPass = "userPass"
+    static let UserSelectedJeep = "userSelectedJeep"
+}
 
-class Constants: NSObject {
-    
-    enum UserInfoKeys : String {
-        case UserCity = "userCity"
-        case UserState = "userState"
-        case UserPass = "userPass"
-        case UserSelectedJeep = "userSelectedJeep"
-    }
-    
-    enum TwitterInfoKeys: String {
-        case token = "twitterToken"
-        case secret = "twitterTokenSecret"
-    }
-
+struct TwitterInfoKeys {
+    static let token = "twitterToken"
+    static let secret = "twitterTokenSecret"
 }

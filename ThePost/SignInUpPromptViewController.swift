@@ -138,8 +138,8 @@ class SignInUpPromptViewController: UIViewController {
                             name = n
                         }
                         
-                        KeychainWrapper.standard.set(session.authToken, forKey: Constants.TwitterInfoKeys.token.rawValue)
-                        KeychainWrapper.standard.set(session.authTokenSecret, forKey: Constants.TwitterInfoKeys.secret.rawValue)
+                        KeychainWrapper.standard.set(session.authToken, forKey: TwitterInfoKeys.token)
+                        KeychainWrapper.standard.set(session.authTokenSecret, forKey: TwitterInfoKeys.secret)
                         
                         FIRDatabase.database().reference().child("users").child(user!.uid).setValue(["fullName": name])
                         self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
