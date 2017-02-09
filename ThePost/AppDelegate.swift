@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         // UnComment this to load jeep selector on starup everytime.
-//        KeychainWrapper.standard.removeObject(forKey: Constants.UserInfoKeys.UserSelectedJeep.rawValue)
+//        KeychainWrapper.standard.removeObject(forKey: UserInfoKeys.UserSelectedJeep)
         
         let selectedJeep = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep)
         var mainViewController:UIViewController

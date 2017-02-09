@@ -100,18 +100,7 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     @objc private func selectedJeepCategory(sender: JeepModelButton) {
         selectedJeepModel = sender.jeepModel
         KeychainWrapper.standard.set(selectedJeepModel.type.description, forKey: UserInfoKeys.UserSelectedJeep)
-        performSegue(withIdentifier: "categorySelectorSegue", sender: self)
-    }
-    
-    // MARK: - Segues
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        if segue.identifier == "categorySelectorSegue" {
-            let vc = segue.destination as! CategorySelectorViewController
-            vc.jeepModel = selectedJeepModel
-        }
+        performSegue(withIdentifier: "showSlidingSelectionTabBarController", sender: self)
     }
 
 }
