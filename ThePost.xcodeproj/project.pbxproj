@@ -47,8 +47,6 @@
 		4D24E8CB1E15C79900E524FD /* NewProductDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D24E8CA1E15C79900E524FD /* NewProductDetailsTableViewCell.swift */; };
 		4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A38DB1E2180A3003D42CA /* ProductListingTableViewCell.swift */; };
 		4D34358D1E203E2800E031D7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34358C1E203E2800E031D7 /* ProfileViewController.swift */; };
-		4D35A20E1E11FA4B00A115EB /* CategorySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A20D1E11FA4B00A115EB /* CategorySelectorViewController.swift */; };
-		4D35A2121E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A2111E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift */; };
 		4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */; };
 		4D35A2161E120E2A00A115EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */; };
 		4D35A21C1E12126300A115EB /* Jeep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A21B1E12126300A115EB /* Jeep.swift */; };
@@ -148,8 +146,6 @@
 		4D24E8CA1E15C79900E524FD /* NewProductDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		4D2A38DB1E2180A3003D42CA /* ProductListingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingTableViewCell.swift; sourceTree = "<group>"; };
 		4D34358C1E203E2800E031D7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		4D35A20D1E11FA4B00A115EB /* CategorySelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectorViewController.swift; sourceTree = "<group>"; };
-		4D35A2111E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectorCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TransparentBorders.swift"; sourceTree = "<group>"; };
 		4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4D35A21B1E12126300A115EB /* Jeep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jeep.swift; sourceTree = "<group>"; };
@@ -315,15 +311,6 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		4D35A20C1E11FA2800A115EB /* Category Selector */ = {
-			isa = PBXGroup;
-			children = (
-				4D35A20D1E11FA4B00A115EB /* CategorySelectorViewController.swift */,
-				4D35A2111E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift */,
-			);
-			name = "Category Selector";
-			sourceTree = "<group>";
-		};
 		4D58C4C81E0E1882004CA0E3 = {
 			isa = PBXGroup;
 			children = (
@@ -364,7 +351,6 @@
 				4D161BC71E26E97B001BEE9D /* SignInViewController.swift */,
 				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
 				4DFB05AC1E118A4600BEACE2 /* Jeep Selector */,
-				4D35A20C1E11FA2800A115EB /* Category Selector */,
 				4D5AB0AC1E24939F005BF23B /* Product Viewer */,
 				4D161BC91E2700BC001BEE9D /* Reviews */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
@@ -786,7 +772,6 @@
 			files = (
 				4D5AB0BC1E24B54A005BF23B /* ProductViewerTextTableViewCell.swift in Sources */,
 				4D24E8C51E157F5000E524FD /* NewProductDropDownTableViewCell.swift in Sources */,
-				4D35A2121E11FA8400A115EB /* CategorySelectorCollectionViewCell.swift in Sources */,
 				4D581B5E1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift in Sources */,
 				4DD3CCC31E14C59C00821C7C /* AddNewProductViewController.swift in Sources */,
 				4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */,
@@ -833,7 +818,6 @@
 				4D5AB0B81E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift in Sources */,
 				4DC30D531E39A6D60087B447 /* NewReviewActivityTableViewCell.swift in Sources */,
 				4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */,
-				4D35A20E1E11FA4B00A115EB /* CategorySelectorViewController.swift in Sources */,
 				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
 				4DA153F51E22EB1300708543 /* Conversation.swift in Sources */,
 				4D35A21E1E121E3800A115EB /* JeepModelButton.swift in Sources */,
