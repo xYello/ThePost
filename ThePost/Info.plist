@@ -74,8 +74,6 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>The Wave would like access to the camera to take images of products.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The Wave uses your location to show where a product that you created is located and to also search for products near you. The Wave will never share your location with others.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>The Wave would like access to the photo library to upload images of products.</string>
 	<key>UIAppFonts</key>

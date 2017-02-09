@@ -11,7 +11,7 @@ import Firebase
 import SwiftKeychainWrapper
 import CoreLocation
 
-class CreateReviewContainerViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
+class CreateReviewContainerViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -34,8 +34,6 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate,
     
     private var reviewedBeforeKey: String?
     private var previousReviewAmountOfStars = 0
-    
-    private var manager: CLLocationManager!
     
     private var amountOfStars = 0 {
         didSet {
@@ -88,13 +86,6 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate,
         view.roundCorners(radius: 8.0)
         view.clipsToBounds = true
         
-        manager = CLLocationManager()
-        manager.delegate = self
-        
-        if CLLocationManager.locationServicesEnabled() {
-            manager.startUpdatingLocation()
-        }
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
@@ -140,10 +131,6 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate,
         super.viewDidAppear(animated)
         
         originalViewFrame = view.frame
-        
-        if CLLocationManager.locationServicesEnabled() {
-            manager.startUpdatingLocation()
-        }
     }
     
     // MARK: - Notifications
@@ -189,19 +176,6 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate,
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         fakePlaceholderLabel.isHidden = true
-    }
-    
-    // MARK: - CLLocationManager delegates
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = manager.location {
-            CLGeocoder().reverseGeocodeLocation(location, completionHandler: { placemarks, error in
-                if let marks = placemarks {
-                    KeychainWrapper.standard.set(marks[0].locality!, forKey: UserInfoKeys.UserCity)
-                    KeychainWrapper.standard.set(marks[0].administrativeArea!, forKey: UserInfoKeys.UserState)
-                }
-            })
-        }
     }
     
     // MARK: - Actions
@@ -253,120 +227,104 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate,
         
         if viewsToShake.count == 0 && fakePlaceholderLabel.isHidden {
             if let uid = FIRAuth.auth()?.currentUser?.uid {
-                if let city = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserCity), let state = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserState) {
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "MM/dd/yy HH:mm:ss"
-                    formatter.timeZone = TimeZone(identifier: "America/New_York")
-                    let now = formatter.string(from: Date())
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MM/dd/yy HH:mm:ss"
+                formatter.timeZone = TimeZone(identifier: "America/New_York")
+                let now = formatter.string(from: Date())
+                
+                let review: [String: Any] = ["rating": amountOfStars,
+                                             "timeReviewed": now,
+                                             "comment": textView.text,
+                                             "reviewerId": uid,
+                                             "productId": product.uid]
+                
+                let ref = FIRDatabase.database().reference().child("reviews").child(userId)
+                
+                if let key = reviewedBeforeKey {
+                    let childUpdates = [key: review]
+                    ref.updateChildValues(childUpdates)
                     
-                    let review: [String: Any] = ["rating": amountOfStars,
-                                                 "timeReviewed": now,
-                                                 "comment": textView.text,
-                                                 "reviewerCity": city,
-                                                 "reviewerState": state,
-                                                 "reviewerId": uid,
-                                                 "productId": product.uid]
-                    
-                    let ref = FIRDatabase.database().reference().child("reviews").child(userId)
-                    
-                    if let key = reviewedBeforeKey {
-                        let childUpdates = [key: review]
-                        ref.updateChildValues(childUpdates)
-                        
-                        ref.child("reviewNumbers").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-                            if var reviewNumbers = currentData.value as? [String: Int] {
-                                if let _ = reviewNumbers["sum"] {
-                                    reviewNumbers["sum"]! += self.amountOfStars - self.previousReviewAmountOfStars
-                                    
-                                    switch self.previousReviewAmountOfStars {
-                                    case 1:
-                                        reviewNumbers["oneStars"]! -= 1
-                                    case 2:
-                                        reviewNumbers["twoStars"]! -= 1
-                                    case 3:
-                                        reviewNumbers["threeStars"]! -= 1
-                                    case 4:
-                                        reviewNumbers["fourStars"]! -= 1
-                                    default:
-                                        reviewNumbers["fiveStars"]! -= 1
-                                    }
-                                    
-                                    switch self.amountOfStars {
-                                    case 1:
-                                        reviewNumbers["oneStars"]! += 1
-                                    case 2:
-                                        reviewNumbers["twoStars"]! += 1
-                                    case 3:
-                                        reviewNumbers["threeStars"]! += 1
-                                    case 4:
-                                        reviewNumbers["fourStars"]! += 1
-                                    default:
-                                        reviewNumbers["fiveStars"]! += 1
-                                    }
-                                    
-                                    currentData.value = reviewNumbers
+                    ref.child("reviewNumbers").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+                        if var reviewNumbers = currentData.value as? [String: Int] {
+                            if let _ = reviewNumbers["sum"] {
+                                reviewNumbers["sum"]! += self.amountOfStars - self.previousReviewAmountOfStars
+                                
+                                switch self.previousReviewAmountOfStars {
+                                case 1:
+                                    reviewNumbers["oneStars"]! -= 1
+                                case 2:
+                                    reviewNumbers["twoStars"]! -= 1
+                                case 3:
+                                    reviewNumbers["threeStars"]! -= 1
+                                case 4:
+                                    reviewNumbers["fourStars"]! -= 1
+                                default:
+                                    reviewNumbers["fiveStars"]! -= 1
                                 }
-                            }
-                            return FIRTransactionResult.success(withValue: currentData)
-                        }) { (error, committed, snapshot) in
-                            if let error = error {
-                                print("Error while updating reviews: \(error.localizedDescription)")
+                                
+                                switch self.amountOfStars {
+                                case 1:
+                                    reviewNumbers["oneStars"]! += 1
+                                case 2:
+                                    reviewNumbers["twoStars"]! += 1
+                                case 3:
+                                    reviewNumbers["threeStars"]! += 1
+                                case 4:
+                                    reviewNumbers["fourStars"]! += 1
+                                default:
+                                    reviewNumbers["fiveStars"]! += 1
+                                }
+                                
+                                currentData.value = reviewNumbers
                             }
                         }
-                    } else {
-                        let childUpdates = [ref.childByAutoId().key: review]
-                        ref.updateChildValues(childUpdates)
-                        
-                        var starCountString = ""
-                        switch self.amountOfStars {
-                        case 1:
-                            starCountString = "oneStars"
-                        case 2:
-                            starCountString = "twoStars"
-                        case 3:
-                            starCountString = "threeStars"
-                        case 4:
-                            starCountString = "fourStars"
-                        default:
-                            starCountString = "fiveStars"
-                        }
-                        
-                        ref.child("reviewNumbers").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-                            if var reviewNumbers = currentData.value as? [String: Int] {
-                                if let count = reviewNumbers["count"] {
-                                    reviewNumbers["sum"]! += self.amountOfStars
-                                    reviewNumbers["count"]! = count + 1
-                                    reviewNumbers[starCountString]! += 1
-                                    
-                                    currentData.value = reviewNumbers
-                                }
-                            } else {
-                                var newNumbers = ["count": 1, "sum": self.amountOfStars, "oneStars": 0, "twoStars": 0, "threeStars": 0, "fourStars": 0, "fiveStars": 0]
-                                newNumbers[starCountString] = 1
-                                currentData.value = newNumbers
-                            }
-                            return FIRTransactionResult.success(withValue: currentData)
-                        }) { (error, committed, snapshot) in
-                            if let error = error {
-                                print("Error while updating reviews: \(error.localizedDescription)")
-                            }
+                        return FIRTransactionResult.success(withValue: currentData)
+                    }) { (error, committed, snapshot) in
+                        if let error = error {
+                            print("Error while updating reviews: \(error.localizedDescription)")
                         }
                     }
-                    
-                    dismissParent()
                 } else {
-                    let alert = UIAlertController(title: "Location Services", message: "You must have location services on to write a review.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { alert in
-                        if let settingsURL = URL(string: UIApplicationOpenSettingsURLString) {
-                            if UIApplication.shared.canOpenURL(settingsURL) {
-                                UIApplication.shared.open(settingsURL)
-                            }
-                        }
-                    }))
-                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    let childUpdates = [ref.childByAutoId().key: review]
+                    ref.updateChildValues(childUpdates)
                     
-                    present(alert, animated: true, completion: nil)
+                    var starCountString = ""
+                    switch self.amountOfStars {
+                    case 1:
+                        starCountString = "oneStars"
+                    case 2:
+                        starCountString = "twoStars"
+                    case 3:
+                        starCountString = "threeStars"
+                    case 4:
+                        starCountString = "fourStars"
+                    default:
+                        starCountString = "fiveStars"
+                    }
+                    
+                    ref.child("reviewNumbers").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+                        if var reviewNumbers = currentData.value as? [String: Int] {
+                            if let count = reviewNumbers["count"] {
+                                reviewNumbers["sum"]! += self.amountOfStars
+                                reviewNumbers["count"]! = count + 1
+                                reviewNumbers[starCountString]! += 1
+                                
+                                currentData.value = reviewNumbers
+                            }
+                        } else {
+                            var newNumbers = ["count": 1, "sum": self.amountOfStars, "oneStars": 0, "twoStars": 0, "threeStars": 0, "fourStars": 0, "fiveStars": 0]
+                            newNumbers[starCountString] = 1
+                            currentData.value = newNumbers
+                        }
+                        return FIRTransactionResult.success(withValue: currentData)
+                    }) { (error, committed, snapshot) in
+                        if let error = error {
+                            print("Error while updating reviews: \(error.localizedDescription)")
+                        }
+                    }
                 }
+                
+                dismissParent()
             }
         } else {
             for view in viewsToShake {
