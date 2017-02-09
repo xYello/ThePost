@@ -12,6 +12,8 @@ import SwiftKeychainWrapper
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var exitButton: UIButton!
+    
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var emailTextField: RoundedTextField!
@@ -53,6 +55,16 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Textfield delegate
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.placeholder == "Email" {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            signInButton.sendActions(for: .touchUpInside)
+        }
+        
+        return true
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         if !isTypingInTextField {
@@ -64,6 +76,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.layoutIfNeeded()
                 self.nameView.alpha = 0.0
+                self.exitButton.alpha = 0.0
             })
         }
     }
@@ -78,6 +91,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.layoutIfNeeded()
                 self.nameView.alpha = 1.0
+                self.exitButton.alpha = 1.0
             })
         }
     }
