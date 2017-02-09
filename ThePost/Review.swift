@@ -12,8 +12,6 @@ class Review: NSObject {
     
     var reviewerId: String!
     var comment: String!
-    var reviewerCity: String!
-    var reviewerState: String!
     var timePostedString: String!
     var rating: Int!
     

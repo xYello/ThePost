@@ -136,8 +136,6 @@ class ReviewsSummaryContainerViewController: UIViewController, UITableViewDataSo
         
         cell.commentLabel.text = review.comment
         
-        cell.locationLabel.text = "\(review.reviewerCity!), \(review.reviewerState!)"
-        
         cell.amountOfStars = review.rating
         
         return cell
@@ -233,15 +231,11 @@ class ReviewsSummaryContainerViewController: UIViewController, UITableViewDataSo
                 
                 for (_, value) in reviews {
                     if let review = value as? [String: AnyObject] {
-                        if let comment = review["comment"] as? String, let rating = review["rating"] as? Int,
-                            let city = review["reviewerCity"] as? String, let reviewerId = review["reviewerId"] as? String,
-                            let state = review["reviewerState"] as? String, let time = review["timeReviewed"] as? String {
+                        if let comment = review["comment"] as? String, let rating = review["rating"] as? Int, let reviewerId = review["reviewerId"] as? String, let time = review["timeReviewed"] as? String {
                             
                             let newReview = Review()
                             newReview.comment = comment
                             newReview.rating = rating
-                            newReview.reviewerCity = city
-                            newReview.reviewerState = state
                             newReview.reviewerId = reviewerId
                             newReview.timePostedString = time
                             

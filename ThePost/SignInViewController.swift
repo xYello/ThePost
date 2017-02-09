@@ -109,7 +109,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     }
                 } else {
                     KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
-                    self.performSegue(withIdentifier: "unwindToPresenting", sender: self)
+                    self.performSegue(withIdentifier: "showAppServicesRequestViewController", sender: self)
                 }
             })
         }

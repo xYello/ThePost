@@ -14,7 +14,6 @@ class ReviewSummaryTableViewCell: UITableViewCell {
     @IBOutlet weak var reviewerNameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
     
     @IBOutlet weak var farLeftStar: UIImageView!
     @IBOutlet weak var leftMidStar: UIImageView!

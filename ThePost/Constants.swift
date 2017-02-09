@@ -7,8 +7,6 @@
 //
 
 struct UserInfoKeys {
-    static let UserCity = "userCity"
-    static let UserState = "userState"
     static let UserPass = "userPass"
     static let UserSelectedJeep = "userSelectedJeep"
 }
