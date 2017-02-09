@@ -56,7 +56,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Textfield delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.placeholder == "Email" {
+        if textField === emailTextField {
             passwordTextField.becomeFirstResponder()
         } else {
             signInButton.sendActions(for: .touchUpInside)

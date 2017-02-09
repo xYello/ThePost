@@ -63,6 +63,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Textfield delegate
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === usernameTextField {
+            emailTextField.becomeFirstResponder()
+        } else if textField === emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField === passwordTextField {
+            confirmPasswordTextField.becomeFirstResponder()
+        } else {
+            signUpButton.sendActions(for: .touchUpInside)
+        }
+        
+        return true
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         if !isTypingInTextField {
@@ -212,7 +226,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         field.delegate = self
         field.attributedPlaceholder = NSAttributedString(string: field.placeholder!, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3503303272)])
         
-        imageView.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        imageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
         
         // Pad the image so it doesn't appear right in-line with the textfield border.
         if let size = imageView.image?.size {
