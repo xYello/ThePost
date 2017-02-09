@@ -14,9 +14,6 @@ target 'ThePost' do
   pod 'Firebase/Database'
   pod 'FirebaseUI'
 
-  # GeoFire
-  pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
-
   # Fabric
   pod 'Crashlytics'
   

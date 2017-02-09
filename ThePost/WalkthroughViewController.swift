@@ -74,8 +74,6 @@ class WalkthroughViewController: UIViewController, UICollectionViewDataSource, U
             cell.nextButton.addTarget(self, action: #selector(finishedButtonPressed), for: .touchUpInside)
             self.skipButton.isHidden = true
 
-            
-            
         }
         
         return cell

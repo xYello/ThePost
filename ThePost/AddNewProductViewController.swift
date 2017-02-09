@@ -9,7 +9,6 @@
 import UIKit
 import AVFoundation
 import Firebase
-import GeoFire
 
 class AddNewProductViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate,
                                    UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, NewProductBaseTableViewCellDelegate {
@@ -52,15 +51,12 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     private var storageRef: FIRStorageReference!
     private var newProduct: Product?
     
-    private var geoFire: GeoFire!
-    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ref = FIRDatabase.database().reference()
-        geoFire = GeoFire(firebaseRef: ref.child("products-location"))
         storageRef = FIRStorage.storage().reference()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
