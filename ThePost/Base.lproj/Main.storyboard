@@ -181,7 +181,7 @@
                                             <constraint firstAttribute="height" constant="31" id="eRr-0E-flj"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="24"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneRing" translatesAutoresizingMaskIntoConstraints="NO" id="DFb-Rz-JG9">
@@ -222,7 +222,7 @@
                                             <constraint firstAttribute="height" constant="78" id="VDh-CT-vvr"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="18"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1986,7 +1986,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHm-8D-WCT">
-                                <rect key="frame" x="155" y="272" width="66" height="17"/>
+                                <rect key="frame" x="154.5" y="272" width="66" height="17"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
                                 <color key="textColor" red="0.84705882352941175" green="0.33725490196078434" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1999,7 +1999,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.14029026031494141" green="0.16589674353599548" blue="0.21330386400222778" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kmw-si-vqL" firstAttribute="leading" secondItem="kiq-qU-cZY" secondAttribute="leadingMargin" constant="23" id="3HF-X2-8PA"/>
                             <constraint firstItem="MhJ-v1-Vyl" firstAttribute="centerY" secondItem="kiq-qU-cZY" secondAttribute="centerY" constant="-21" id="4fA-yd-O6l"/>
@@ -2035,12 +2035,120 @@
                         <outlet property="signInButton" destination="ylb-qv-6RH" id="0Je-Gh-gnU"/>
                         <segue destination="WXe-Hn-GK7" kind="unwind" identifier="unwindToPresenting" unwindAction="unwindToSignInUpPrompt:" id="ccb-I4-ETV"/>
                         <segue destination="zwZ-hU-X1N" kind="show" identifier="showAppServicesRequestViewController" id="sCY-8F-ZpQ"/>
+                        <segue destination="PUb-2G-xIQ" kind="show" identifier="showRecoverPassword" id="c8Q-D5-0Tv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DFS-s4-YyP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="WXe-Hn-GK7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4760.8000000000002" y="721.88905547226398"/>
+        </scene>
+        <!--Recover Password View Controller-->
+        <scene sceneID="EoN-9a-oUJ">
+            <objects>
+                <viewController id="PUb-2G-xIQ" customClass="RecoverPasswordViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qIr-Y2-QSz"/>
+                        <viewControllerLayoutGuide type="bottom" id="WaA-54-cGO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vlh-I9-FDa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awm-sN-QMC">
+                                <rect key="frame" x="342" y="23" width="17" height="22"/>
+                                <state key="normal" image="PVEx"/>
+                                <connections>
+                                    <action selector="closeButtonPressed:" destination="PUb-2G-xIQ" eventType="touchUpInside" id="gwP-dN-3Wr"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recover Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GxP-Zs-TKI">
+                                <rect key="frame" x="16" y="186" width="343" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="pHp-9D-qjU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="24"/>
+                                <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Did you lose your password? No fret. Just enter the email address associated with the account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrp-kn-Po8">
+                                <rect key="frame" x="31" y="213" width="312" height="78"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="78" id="gDW-UD-9X8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="18"/>
+                                <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvk-6b-SeO">
+                                <rect key="frame" x="87" y="391" width="201" height="47"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="201" id="0OM-BC-tCp"/>
+                                    <constraint firstAttribute="height" constant="47" id="nJf-yc-JGf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="22"/>
+                                <state key="normal" title="Recover">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recoverPasswordPressed:" destination="PUb-2G-xIQ" eventType="touchUpInside" id="0Hk-gn-NBx"/>
+                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qBo-sE-11N"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oKi-FP-Nco" customClass="RoundedTextField" customModule="ThePost" customModuleProvider="target">
+                                <rect key="frame" x="39" y="312" width="297" height="43"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.25117973989999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="EbW-i1-xY6"/>
+                                </constraints>
+                                <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="go"/>
+                                <connections>
+                                    <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="1sk-7g-ceu"/>
+                                </connections>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Password" translatesAutoresizingMaskIntoConstraints="NO" id="7aO-6F-Reu">
+                                <rect key="frame" x="156" y="128" width="62" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="62" id="Q9n-fi-XJI"/>
+                                    <constraint firstAttribute="height" constant="50" id="kHW-bp-eob"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Rrp-kn-Po8" firstAttribute="centerX" secondItem="Vlh-I9-FDa" secondAttribute="centerX" id="3U8-6Y-Iv9"/>
+                            <constraint firstItem="cvk-6b-SeO" firstAttribute="centerX" secondItem="Vlh-I9-FDa" secondAttribute="centerX" id="3sK-gt-wQO"/>
+                            <constraint firstItem="Rrp-kn-Po8" firstAttribute="leading" secondItem="Vlh-I9-FDa" secondAttribute="leading" constant="31" id="Dvv-1X-Fzm"/>
+                            <constraint firstAttribute="trailing" secondItem="awm-sN-QMC" secondAttribute="trailing" constant="16" id="KVf-LX-Yxc"/>
+                            <constraint firstItem="7aO-6F-Reu" firstAttribute="centerX" secondItem="Vlh-I9-FDa" secondAttribute="centerX" id="QVv-Do-trB"/>
+                            <constraint firstItem="oKi-FP-Nco" firstAttribute="top" secondItem="Rrp-kn-Po8" secondAttribute="bottom" constant="21" id="ShK-yb-HUr"/>
+                            <constraint firstItem="GxP-Zs-TKI" firstAttribute="leading" secondItem="Vlh-I9-FDa" secondAttribute="leading" constant="16" id="aYO-4K-UKY"/>
+                            <constraint firstItem="awm-sN-QMC" firstAttribute="top" secondItem="Vlh-I9-FDa" secondAttribute="topMargin" constant="23" id="f1Q-aX-FSk"/>
+                            <constraint firstItem="oKi-FP-Nco" firstAttribute="centerX" secondItem="Vlh-I9-FDa" secondAttribute="centerX" id="g7N-5z-zcP"/>
+                            <constraint firstItem="GxP-Zs-TKI" firstAttribute="centerX" secondItem="Vlh-I9-FDa" secondAttribute="centerX" id="gtx-4n-yqO"/>
+                            <constraint firstItem="cvk-6b-SeO" firstAttribute="top" secondItem="oKi-FP-Nco" secondAttribute="bottom" constant="36" id="lMa-cC-VSJ"/>
+                            <constraint firstItem="GxP-Zs-TKI" firstAttribute="top" secondItem="7aO-6F-Reu" secondAttribute="bottom" constant="8" id="rVe-rQ-r4t"/>
+                            <constraint firstItem="oKi-FP-Nco" firstAttribute="leading" secondItem="Vlh-I9-FDa" secondAttribute="leading" constant="39" id="uD6-0O-nV6"/>
+                            <constraint firstItem="Rrp-kn-Po8" firstAttribute="top" secondItem="GxP-Zs-TKI" secondAttribute="bottom" constant="-4" id="yfz-Il-g5r"/>
+                            <constraint firstItem="oKi-FP-Nco" firstAttribute="centerY" secondItem="Vlh-I9-FDa" secondAttribute="centerY" id="zEt-84-5Yu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="oKi-FP-Nco" id="SnC-3i-D73"/>
+                        <outlet property="emailTextFieldCenterYConstraint" destination="zEt-84-5Yu" id="ElJ-y0-Qys"/>
+                        <outlet property="exitButton" destination="awm-sN-QMC" id="nPJ-Sc-nYH"/>
+                        <outlet property="messageLabel" destination="Rrp-kn-Po8" id="HsW-97-EO6"/>
+                        <outlet property="passwordIcon" destination="7aO-6F-Reu" id="Dud-4a-OZk"/>
+                        <outlet property="recoverButton" destination="cvk-6b-SeO" id="NZg-2q-doE"/>
+                        <outlet property="titleLabel" destination="GxP-Zs-TKI" id="y35-uy-avV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oJq-Wr-afc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6261.6000000000004" y="721.88905547226398"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="7zf-QE-Kby">
@@ -4105,6 +4213,7 @@
         <image name="PVEx" width="17" height="17"/>
         <image name="PVMoreOptions" width="28" height="6"/>
         <image name="PVViewsIcon" width="15" height="10"/>
+        <image name="Password" width="25" height="31"/>
         <image name="PhoneRing" width="180" height="174"/>
         <image name="PriceTag " width="169" height="172"/>
         <image name="ProfileCellPhoneIcon" width="18" height="31"/>

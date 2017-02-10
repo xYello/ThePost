@@ -82,6 +82,7 @@
 		4DD3CCC11E14688C00821C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */; };
 		4DD3CCC31E14C59C00821C7C /* AddNewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */; };
 		4DD3CCC91E14DD8700821C7C /* NewProductTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCC81E14DD8700821C7C /* NewProductTextTableViewCell.swift */; };
+		4DE4D9EF1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */; };
 		4DEB7A621E17724A00C23216 /* NewProductBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB7A611E17724A00C23216 /* NewProductBaseTableViewCell.swift */; };
 		4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */; };
 		4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */; };
@@ -185,6 +186,7 @@
 		4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSelectionTabBarController.swift; sourceTree = "<group>"; };
 		4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
 		4DD3CCC81E14DD8700821C7C /* NewProductTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductTextTableViewCell.swift; sourceTree = "<group>"; };
+		4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		4DEB7A611E17724A00C23216 /* NewProductBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductBaseTableViewCell.swift; sourceTree = "<group>"; };
 		4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorViewController.swift; sourceTree = "<group>"; };
 		4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */,
 				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
 				4D161BC71E26E97B001BEE9D /* SignInViewController.swift */,
+				4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */,
 				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
 				4DFB05AC1E118A4600BEACE2 /* Jeep Selector */,
 				4D5AB0AC1E24939F005BF23B /* Product Viewer */,
@@ -816,6 +819,7 @@
 				4D23EC771E1F86360001C045 /* ChatConversationViewController.swift in Sources */,
 				4DBF61E31E29C26600D07AD5 /* ReviewsSummaryViewController.swift in Sources */,
 				4D5AB0B81E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift in Sources */,
+				4DE4D9EF1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift in Sources */,
 				4DC30D531E39A6D60087B447 /* NewReviewActivityTableViewCell.swift in Sources */,
 				4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */,
 				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
