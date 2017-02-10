@@ -99,7 +99,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Actions
     
     @IBAction func forgotPasswordButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "unwindToPresenting", sender: self)
+        dismissKeyboard()
+        performSegue(withIdentifier: "showRecoverPassword", sender: self)
     }
 
     @IBAction func signInButtonPressed(_ sender: UIButton) {
@@ -129,14 +130,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func facebookButtonPressed(_ sender: UIButton) {
-        
-    }
-    
-    @IBAction func twitterButtonPressed(_ sender: UIButton) {
-        
-    }
-    
     @objc private func dismissKeyboard() {
         isTypingInTextField = false
         view.endEditing(false)
@@ -158,6 +151,16 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         field.rightViewMode = .always
         field.rightView = imageView
+    }
+    
+    // MARK: - Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if let vc = segue.destination as? RecoverPasswordViewController {
+            vc.preloadedEmailAddress = emailTextField.text
+        }
     }
     
 }
