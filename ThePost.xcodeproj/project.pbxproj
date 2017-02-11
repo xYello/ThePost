@@ -51,6 +51,7 @@
 		4D35A2161E120E2A00A115EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */; };
 		4D35A21C1E12126300A115EB /* Jeep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A21B1E12126300A115EB /* Jeep.swift */; };
 		4D35A21E1E121E3800A115EB /* JeepModelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A21D1E121E3800A115EB /* JeepModelButton.swift */; };
+		4D5643391E4EAF7600064948 /* SignInUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D5643381E4EAF7600064948 /* SignInUp.storyboard */; };
 		4D581B5E1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D581B5D1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift */; };
 		4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */; };
 		4D58C4DA1E0E1882004CA0E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4D81E0E1882004CA0E3 /* Main.storyboard */; };
@@ -151,6 +152,7 @@
 		4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4D35A21B1E12126300A115EB /* Jeep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jeep.swift; sourceTree = "<group>"; };
 		4D35A21D1E121E3800A115EB /* JeepModelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepModelButton.swift; sourceTree = "<group>"; };
+		4D5643381E4EAF7600064948 /* SignInUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignInUp.storyboard; sourceTree = "<group>"; };
 		4D581B5D1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewerImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D58C4D11E0E1882004CA0E3 /* ThePost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				4D5AB0AC1E24939F005BF23B /* Product Viewer */,
 				4D161BC91E2700BC001BEE9D /* Reviews */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
+				4D5643381E4EAF7600064948 /* SignInUp.storyboard */,
 				4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */,
 				4D58C4DD1E0E1882004CA0E3 /* LaunchScreen.storyboard */,
 				4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */,
@@ -641,6 +644,7 @@
 				4D04C53A1E0EFCDD004B2264 /* Lato-Medium.ttf in Resources */,
 				4D04C5331E0EFCDD004B2264 /* Lato-Hairline.ttf in Resources */,
 				4D04C5411E0EFCDD004B2264 /* Traveler.ttf in Resources */,
+				4D5643391E4EAF7600064948 /* SignInUp.storyboard in Resources */,
 				4D04C53C1E0EFCDD004B2264 /* Lato-Regular.ttf in Resources */,
 				4D04C52F1E0EFCDD004B2264 /* Lato-Black.ttf in Resources */,
 				4D04C53F1E0EFCDD004B2264 /* Lato-Thin.ttf in Resources */,

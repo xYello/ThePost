@@ -111,7 +111,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         var shouldSelect = false
         
         if FIRAuth.auth()?.currentUser == nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "SignInUp", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "SignInUpPrompt")
             vc.modalPresentationStyle = .overCurrentContext
             
