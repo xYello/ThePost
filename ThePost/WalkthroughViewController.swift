@@ -55,16 +55,12 @@ class WalkthroughViewController: UIViewController, UICollectionViewDataSource, U
             cell.messageLabel.text = "Yes, we’re making it easy to buy, sell and swap your Jeep parts."
             cell.bottomImageView.image = #imageLiteral(resourceName: "PriceTag ")
             cell.nextButton.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
-            self.skipButton.isHidden = false
-
             
         } else if indexPath.row == 1 {
             cell.titleLabel.text = "Message"
             cell.messageLabel.text = "Once you’ve found the perfect part you can message the seller and ask to buy."
             cell.bottomImageView.image = #imageLiteral(resourceName: "LikeConversation ")
             cell.nextButton.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
-            self.skipButton.isHidden = false
-
             
         } else if indexPath.row == 2 {
             cell.titleLabel.text = "Rate & Review"
@@ -72,18 +68,26 @@ class WalkthroughViewController: UIViewController, UICollectionViewDataSource, U
             cell.messageLabel.text = "Rating the seller/buyer is the best way to keep our community growing."
             cell.bottomImageView.image = #imageLiteral(resourceName: "FavoriteProfile")
             cell.nextButton.addTarget(self, action: #selector(finishedButtonPressed), for: .touchUpInside)
-            self.skipButton.isHidden = true
-
         }
         
         return cell
     }
     
-    // MARK: CollectionView delegate
+    // MARK: - CollectionView delegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if Int(collectionView.contentOffset.x / collectionView.frame.width) == 2 {
+            skipButton.isHidden = true
+        } else {
+            skipButton.isHidden = false
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
+    
+    // MARK: - Actions
     
     @objc func nextButtonPressed() {
         
