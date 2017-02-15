@@ -216,9 +216,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func signUpSocial(_ sender: UIButton) {
-    }
-    
     // MARK: - Helpers
     
     private func formatTextField(field: UITextField, withImageView imageView: UIImageView) {

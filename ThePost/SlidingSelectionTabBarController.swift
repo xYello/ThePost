@@ -9,8 +9,6 @@
 import UIKit
 import Firebase
 
-let openChatControllerNotificationKey = "kOpenChatControllerNotification"
-
 class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private var selectionBar: UIView?
@@ -46,6 +44,8 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(openChatTab(notification:)), name: NSNotification.Name(rawValue: openChatControllerNotificationKey), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(switchToHomeTab(notification:)), name: NSNotification.Name(rawValue: logoutNotificationKey), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -171,6 +171,18 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                     }
                 }
             }
+        }
+    }
+    
+    @objc private func switchToHomeTab(notification: NSNotification) {
+        selectedIndex = 0
+        
+        // Move selection bar
+        if let views = interactionViews {
+            let selectedFrame = views[0].frame
+            UIView.animate(withDuration: 0.25, delay: 0.1, options: .curveEaseOut, animations: {
+                self.selectionBar!.frame = CGRect(x: selectedFrame.origin.x, y: selectedFrame.height - 1, width: self.selectionBar!.frame.width, height: self.selectionBar!.frame.height)
+            }, completion: nil)
         }
     }
 
