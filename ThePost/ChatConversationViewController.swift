@@ -33,6 +33,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     
     private var userIsViewingConversation: Conversation?
     
+    private var shouldUpdateConversationsOnNextView = false
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -46,6 +48,33 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         }
         
         observeConversations()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userHasLoggedOut(notification:)), name: NSNotification.Name(rawValue: logoutNotificationKey), object: nil)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if shouldUpdateConversationsOnNextView {
+            if let uid = FIRAuth.auth()?.currentUser?.uid {
+                chatRef = FIRDatabase.database().reference().child("user-chats").child(uid)
+                
+                conversations.removeAll()
+                chatRef.removeAllObservers()
+                for ref in conversationReferences {
+                    ref.removeAllObservers()
+                }
+                for ref in productReferences {
+                    ref.removeAllObservers()
+                }
+                for ref in userPresenceIndicatorReferences {
+                    ref.removeAllObservers()
+                }
+                
+                observeConversations()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -365,6 +394,12 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
             }
         })
         productReferences.append(productRef)
+    }
+    
+    // MARK: - Notifications
+    
+    @objc private func userHasLoggedOut(notification: NSNotification) {
+        shouldUpdateConversationsOnNextView = true
     }
     
 }

@@ -8,10 +8,6 @@
 
 import UIKit
 import Firebase
-import SwiftKeychainWrapper
-
-// TODO:
-import FBSDKLoginKit
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -60,6 +56,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     private var userProductsRef: FIRDatabaseReference?
     private var likesQuery: FIRDatabaseQuery?
     
+    private var shouldUpdateProfileOnNextView = false
+    
     private var amountOfStars = 0 {
         didSet {
             switch amountOfStars {
@@ -106,8 +104,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             bottomBarHeightConstraint.constant = tabBarController!.tabBar.frame.height
         }
         
-        getUserProfile(with: uid)
-        grabUsersReviewStats(with: uid)
+        updateProfileInformation(with: uid)
         
         let stars: [UIImageView] = [farLeftStar, leftMidStar, midStar, rightMidStar, farRightStar]
         for star in stars {
@@ -124,7 +121,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         closeButton.layer.borderWidth = 1.0
         closeButton.roundCorners(radius: 8.0)
         
-        previouslySelectedButton = sellingProductTypeButton
+        NotificationCenter.default.addObserver(self, selector: #selector(userHasLoggedOut(notification:)), name: NSNotification.Name(rawValue: logoutNotificationKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userHasChangedName(notification:)), name: NSNotification.Name(rawValue: nameChangeNotificationKey), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if shouldUpdateProfileOnNextView {
+            updateProfileInformation(with: FIRAuth.auth()!.currentUser!.uid)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -291,17 +297,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
-        KeychainWrapper.standard.removeObject(forKey: UserInfoKeys.UserPass)
-        
-        FBSDKLoginManager().logOut()
-        
-        KeychainWrapper.standard.removeObject(forKey: TwitterInfoKeys.token)
-        KeychainWrapper.standard.removeObject(forKey: TwitterInfoKeys.secret)
-        
-        do {
-            try FIRAuth.auth()?.signOut()
-        } catch {
-            print("Error signing out")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "settingsController") as? SettingsViewController {
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.fullName = profileNameLabel.text
+            
+            present(vc, animated: false, completion: nil)
         }
     }
     
@@ -338,6 +339,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let fullName = snapshot.value as? String {
                 DispatchQueue.main.async {
+                    self.settingsButton.isEnabled = true
                     self.profileNameLabel.text = fullName
                 }
             }
@@ -506,6 +508,23 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             index += 1
         }
         return -1
+    }
+    
+    private func updateProfileInformation(with uid: String) {
+        getUserProfile(with: uid)
+        grabUsersReviewStats(with: uid)
+        
+        previouslySelectedButton = sellingProductTypeButton
+    }
+    
+    // MARK: - Notifications
+    
+    @objc private func userHasLoggedOut(notification: NSNotification) {
+        shouldUpdateProfileOnNextView = true
+    }
+    
+    @objc private func userHasChangedName(notification: NSNotification) {
+        getUserProfile(with: FIRAuth.auth()!.currentUser!.uid)
     }
     
 }

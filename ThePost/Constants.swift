@@ -6,6 +6,11 @@
 //  Copyright © 2017 The Post. All rights reserved.
 //
 
+let openChatControllerNotificationKey = "kOpenChatControllerNotification"
+
+let logoutNotificationKey = "kLogoutNotificationKey"
+let nameChangeNotificationKey = "kNameChangeNotificationKey"
+
 struct UserInfoKeys {
     static let UserPass = "userPass"
     static let UserSelectedJeep = "userSelectedJeep"
