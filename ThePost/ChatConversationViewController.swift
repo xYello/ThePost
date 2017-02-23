@@ -73,6 +73,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                 }
                 
                 observeConversations()
+                
+                shouldUpdateConversationsOnNextView = false
             }
         }
     }

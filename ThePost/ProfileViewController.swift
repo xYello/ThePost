@@ -130,6 +130,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if shouldUpdateProfileOnNextView {
             updateProfileInformation(with: FIRAuth.auth()!.currentUser!.uid)
+            shouldUpdateProfileOnNextView = false
         }
     }
     
