@@ -17,15 +17,23 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
     
     private var shadowLayer: CALayer!
     
+    private var isViewingAddOptions = false
+    private var backgroundCover: UIView!
+    private var socialButton: UIButton!
+    private var socialLabel: UILabel!
+    private var productButton: UIButton!
+    private var productLabel: UILabel!
+    
+    private var animator: UIDynamicAnimator!
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.clipsToBounds = true
         tabBar.backgroundColor = UIColor.black
         delegate = self
-        
+                
         shadowLayer = CALayer()
         shadowLayer.frame = CGRect(x: -tabBar.frame.width / 2.0, y: tabBar.frame.origin.y, width: 2 * tabBar.frame.size.width, height: 10.0)
         shadowLayer.backgroundColor = #colorLiteral(red: 0.1411764706, green: 0.1647058824, blue: 0.2117647059, alpha: 1).cgColor
@@ -117,13 +125,17 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
             
             present(vc, animated: false, completion: nil)
         } else if viewController.title == "addNewPostTabBarViewController" {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "addNewPostViewController")
-            vc.modalPresentationStyle = .overCurrentContext
-            
-            present(vc, animated: false, completion: nil)
+            if !isViewingAddOptions {
+                createAndDisplayAddButtons()
+            } else {
+                dismissAddButtons()
+            }
         } else {
             shouldSelect = true
+            
+            if isViewingAddOptions {
+                dismissAddButtons()
+            }
         }
         
         return shouldSelect
@@ -184,6 +196,146 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                 self.selectionBar!.frame = CGRect(x: selectedFrame.origin.x, y: selectedFrame.height - 1, width: self.selectionBar!.frame.width, height: self.selectionBar!.frame.height)
             }, completion: nil)
         }
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func openProductPost() {
+        dismissAddButtons()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "addNewPostViewController")
+        vc.modalPresentationStyle = .overCurrentContext
+        
+        present(vc, animated: false, completion: nil)
+    }
+    
+    @objc private func openSocialPost() {
+        dismissAddButtons()
+    }
+    
+    // MARK: - Add Buttons
+    
+    private func createAndDisplayAddButtons() {
+        
+        isViewingAddOptions = true
+        
+        if let vc = selectedViewController {
+            backgroundCover = UIView()
+            backgroundCover.backgroundColor = #colorLiteral(red: 0.1411764706, green: 0.1647058824, blue: 0.2117647059, alpha: 0.98)
+            backgroundCover.frame = CGRect(x: 0, y: 0, width: vc.view.frame.width, height: vc.view.frame.height)
+            backgroundCover.alpha = 0.0
+            vc.view.addSubview(backgroundCover)
+        }
+        
+        if let views = interactionViews {
+            let middleButtonFrame = tabBar.convert(views[2].frame, to: view)
+            
+            socialButton = UIButton()
+            socialButton.frame = CGRect(x: middleButtonFrame.origin.x, y: middleButtonFrame.origin.y, width: 60, height: 60)
+            socialButton.alpha = 0.0
+            socialButton.setImage(#imageLiteral(resourceName: "NewPostSocial"), for: .normal)
+            socialButton.addTarget(self, action: #selector(openSocialPost), for: .touchUpInside)
+            socialButton.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI_2))
+            view.insertSubview(socialButton, belowSubview: tabBar)
+            
+            socialLabel = UILabel()
+            socialLabel.text = "Show off!"
+            socialLabel.font = UIFont(name: "Lato-Regular", size: 14.0)
+            socialLabel.textColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+            socialLabel.textAlignment = .center
+            socialLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 20)
+            socialLabel.center = CGPoint(x: views[2].center.x - middleButtonFrame.width, y: middleButtonFrame.origin.y - 2.0 * middleButtonFrame.height + 40)
+            socialLabel.alpha = 0.0
+            view.insertSubview(socialLabel, belowSubview: tabBar)
+            
+            productButton = UIButton()
+            productButton.frame = CGRect(x: middleButtonFrame.origin.x, y: middleButtonFrame.origin.y, width: 60, height: 60)
+            productButton.alpha = 0.0
+            productButton.setImage(#imageLiteral(resourceName: "NewPostProduct"), for: .normal)
+            productButton.addTarget(self, action: #selector(openProductPost), for: .touchUpInside)
+            view.insertSubview(productButton, belowSubview: tabBar)
+            
+            productLabel = UILabel()
+            productLabel.text = "Sell product"
+            productLabel.font = UIFont(name: "Lato-Regular", size: 14.0)
+            productLabel.textColor = #colorLiteral(red: 0.4078431373, green: 0.7490196078, blue: 0.4823529412, alpha: 1)
+            productLabel.textAlignment = .center
+            productLabel.frame = CGRect(x: 0, y: 0, width: 80, height: 20)
+            productLabel.center = CGPoint(x: views[2].center.x + middleButtonFrame.width, y: middleButtonFrame.origin.y - 2.0 * middleButtonFrame.height + 40)
+            productLabel.alpha = 0.0
+            view.insertSubview(productLabel, belowSubview: tabBar)
+            
+            animator = UIDynamicAnimator()
+            
+            let leftPoint = CGPoint(x: views[2].center.x - middleButtonFrame.width, y: middleButtonFrame.origin.y - 2.0 * middleButtonFrame.height)
+            let leftSnap = UISnapBehavior(item: socialButton, snapTo: leftPoint)
+            leftSnap.damping = 1.0
+            
+            let rightPoint = CGPoint(x: views[2].center.x + middleButtonFrame.width, y: middleButtonFrame.origin.y - 2.0 * middleButtonFrame.height)
+            let rightSnap = UISnapBehavior(item: productButton, snapTo: rightPoint)
+            rightSnap.damping = 1.0
+            
+            animator.addBehavior(leftSnap)
+            animator.addBehavior(rightSnap)
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.socialButton.alpha = 1.0
+                self.productButton.alpha = 1.0
+                
+                self.backgroundCover.alpha = 1.0
+                
+                self.socialButton.transform = CGAffineTransform(rotationAngle: 0.0)
+                views[2].transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+            }, completion: { done in
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.socialLabel.alpha = 1.0
+                    self.productLabel.alpha = 1.0
+                })
+            })
+        }
+        
+    }
+    
+    private func dismissAddButtons() {
+        isViewingAddOptions = false
+        animator.removeAllBehaviors()
+        
+        if let views = interactionViews {
+            let convertedPoint = tabBar.convert(views[2].center, to: view)
+            let point = CGPoint(x: convertedPoint.x, y: convertedPoint.y)
+            
+            let leftSnap = UISnapBehavior(item: socialButton, snapTo: point)
+            leftSnap.damping = 1.0
+            
+            let rightSnap = UISnapBehavior(item: productButton, snapTo: point)
+            rightSnap.damping = 1.0
+            
+            animator.addBehavior(leftSnap)
+            animator.addBehavior(rightSnap)
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.backgroundCover.alpha = 0.0
+                
+                self.socialButton.alpha = 0.0
+                self.socialLabel.alpha = 0.0
+                
+                self.productButton.alpha = 0.0
+                self.productLabel.alpha = 0.0
+                
+                views[2].transform = CGAffineTransform(rotationAngle: 0.0)
+            }, completion: { done in
+                self.backgroundCover.removeFromSuperview()
+                
+                self.socialButton.removeFromSuperview()
+                self.socialLabel.removeFromSuperview()
+                
+                self.productButton.removeFromSuperview()
+                self.productLabel.removeFromSuperview()
+            })
+            
+        }
+        
     }
 
 }
