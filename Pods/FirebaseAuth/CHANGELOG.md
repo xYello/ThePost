@@ -1,3 +1,10 @@
+# 2017-02-06 -- v3.1.1
+- Allows handling of additional errors when sending OOB action emails. The
+  server can respond with the following new error messages:
+  INVALID_MESSAGE_PAYLOAD,INVALID_SENDER and INVALID_RECIPIENT_EMAIL.
+- Removes incorrect reference to FIRAuthErrorCodeCredentialTooOld in FIRUser.h.
+- Provides additional error information from server if available.
+
 # 2016-12-13 -- v3.1.0
 - Adds FIRAuth methods that enable the app to follow up with user actions
   delivered by email, such as verifying email address or reset password.

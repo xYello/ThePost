@@ -5,80 +5,71 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - Crashlytics (3.8.3):
+  - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
-  - FBSDKCoreKit (4.19.0):
+  - FBSDKCoreKit (4.20.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.19.0):
+  - FBSDKLoginKit (4.20.0):
     - FBSDKCoreKit
-  - Firebase/Auth (3.12.0):
+  - Firebase/Auth (3.14.0):
     - Firebase/Core
-    - FirebaseAuth (= 3.1.0)
-  - Firebase/Core (3.12.0):
-    - FirebaseAnalytics (= 3.6.0)
-    - FirebaseCore (= 3.4.7)
-  - Firebase/Database (3.12.0):
+    - FirebaseAuth (= 3.1.1)
+  - Firebase/Core (3.14.0):
+    - FirebaseAnalytics (= 3.7.0)
+    - FirebaseCore (= 3.5.1)
+  - Firebase/Database (3.14.0):
     - Firebase/Core
-    - FirebaseDatabase (= 3.1.1)
-  - Firebase/Storage (3.12.0):
+    - FirebaseDatabase (= 3.1.2)
+  - Firebase/Storage (3.14.0):
     - Firebase/Core
-    - FirebaseStorage (= 1.0.5)
-  - FirebaseAnalytics (3.6.0):
-    - FirebaseCore (~> 3.4)
+    - FirebaseStorage (= 1.1.0)
+  - FirebaseAnalytics (3.7.0):
+    - FirebaseCore (~> 3.5)
     - FirebaseInstanceID (~> 1.0)
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseAuth (3.1.0):
-    - FirebaseAnalytics (~> 3.6)
+  - FirebaseAuth (3.1.1):
+    - FirebaseAnalytics (~> 3.7)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (3.4.7):
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
+  - FirebaseCore (3.5.1):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseDatabase (3.1.1):
-    - FirebaseAnalytics (~> 3.5)
-  - FirebaseInstanceID (1.0.8)
-  - FirebaseStorage (1.0.5):
-    - FirebaseAnalytics (~> 3.5)
+  - FirebaseDatabase (3.1.2):
+    - FirebaseAnalytics (~> 3.7)
+  - FirebaseInstanceID (1.0.9)
+  - FirebaseStorage (1.1.0):
+    - FirebaseAnalytics (~> 3.7)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseUI (2.0.3):
-    - FirebaseUI/All (= 2.0.3)
-  - FirebaseUI/All (2.0.3):
+  - FirebaseUI (3.1.0):
+    - FirebaseUI/All (= 3.1.0)
+  - FirebaseUI/All (3.1.0):
     - FirebaseUI/Auth
     - FirebaseUI/Database
     - FirebaseUI/Facebook
     - FirebaseUI/Google
     - FirebaseUI/Storage
     - FirebaseUI/Twitter
-  - FirebaseUI/Auth (2.0.3):
+  - FirebaseUI/Auth (3.1.0):
     - Firebase/Auth
-  - FirebaseUI/Database (2.0.3):
+  - FirebaseUI/Database (3.1.0):
     - Firebase/Database
-  - FirebaseUI/Facebook (2.0.3):
+  - FirebaseUI/Facebook (3.1.0):
     - FBSDKLoginKit (~> 4.0)
     - FirebaseUI/Auth
-  - FirebaseUI/Google (2.0.3):
+  - FirebaseUI/Google (3.1.0):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 4.0)
-  - FirebaseUI/Storage (2.0.3):
+  - FirebaseUI/Storage (3.1.0):
     - Firebase/Storage
     - SDWebImage (~> 4.0)
-  - FirebaseUI/Twitter (2.0.3):
+  - FirebaseUI/Twitter (3.1.0):
     - FirebaseUI/Auth
     - TwitterKit (~> 2.4)
-  - GoogleAppUtilities (1.1.2):
-    - GoogleSymbolUtilities (~> 1.1)
-  - GoogleInterchangeUtilities (1.2.2):
-    - GoogleSymbolUtilities (~> 1.1)
-  - GoogleSignIn (4.0.1):
-    - GoogleAppUtilities (~> 1.1)
+  - GoogleSignIn (4.0.2):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
     - GTMOAuth2 (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleSymbolUtilities (1.1.2)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -105,8 +96,8 @@ PODS:
   - SwiftKeychainWrapper (3.0.1)
   - TwitterCore (2.8.0):
     - Fabric
-  - TwitterKit (2.8.0):
-    - TwitterCore (= 2.8.0)
+  - TwitterKit (2.8.1):
+    - TwitterCore (>= 2.8)
   - UPCarouselFlowLayout (1.0.0)
 
 DEPENDENCIES:
@@ -130,22 +121,19 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
-  FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
-  Firebase: 8e99eb1ff553ad5bcc6072cc3d925bb89c1244d6
-  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
-  FirebaseAuth: b436e4ecebe068bf8e8c6e4e29de5756ffe7ee24
-  FirebaseCore: 46afaf2c2e0419ea7d3acfb08cf26a461a75fe85
-  FirebaseDatabase: 6de92187481ff0e8e124064f21742e95ee883b02
-  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  FirebaseStorage: 5738284835edb57f0e81d4ae5832bb17c1e4b5fa
-  FirebaseUI: 5178c00cc511e09b5b9d1eb03233d7f9a3834920
-  GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
-  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
-  GoogleSignIn: a8694c0a8e6d1b0ec77c58014de5bfd4ba2fa766
-  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
+  FBSDKCoreKit: 2d16979b28fe28c2b95af0d275ad5f9703c6c8de
+  FBSDKLoginKit: a9d9391506c687e2304a590bf9312837fce7f375
+  Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
+  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
+  FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
+  FirebaseCore: 225d40532489835a034b8f4e2c9c87fbf4f615a2
+  FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
+  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
+  FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
+  FirebaseUI: d9e83c4c22dd922c661d85f041a771d1953405a9
+  GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
@@ -154,7 +142,7 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
-  TwitterKit: f7b0a1adcb800f6446ff0ef70164797376522ff3
+  TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
   UPCarouselFlowLayout: adfa361c52315c0efc56dbe2555c494b8940f58a
 
 PODFILE CHECKSUM: ae2c53252701dcb86a97a6e9754a68cc5647d955
