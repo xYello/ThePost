@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import AVFoundation
 
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private enum ProductViewing {
         case selling
@@ -256,8 +257,68 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    // MARK: - ImagePicker delegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            let uid = FIRAuth.auth()!.currentUser!.uid
+            let storageRef = FIRStorage.storage().reference()
+            let imageData = UIImageJPEGRepresentation(image, 0.1)
+            let filePath = "profilePictures/" + "\(uid).jpg"
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            storageRef.child(filePath).put(imageData!, metadata: metadata, completion: { metadata, error in
+                if let error = error {
+                    print("Error uploading images: \(error.localizedDescription)")
+                } else {
+                    
+                    // Grab image url and store on user
+                    storageRef.child(filePath).downloadURL() { url, error in
+                        if let error = error {
+                            print("Error getting download url: \(error.localizedDescription)")
+                        } else {
+                            if let url = url {
+                                let stringUrl = url.absoluteString
+                                
+                                FIRDatabase.database().reference().child("users").child(uid).child("profileImage").setValue(stringUrl)
+                                self.profileImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
+                            }
+                        }
+                    }
+                    
+                }
+            })
+            
+        }
+    }
+    
     // MARK: - Actions
 
+    @IBAction func profileImageTapped(_ sender: UIButton) {
+        if userId == nil {
+            let options = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            let camera = UIAlertAction(title: "Take a photo", style: .default, handler: { alert in
+                self.presentCamera(withSource: .camera)
+            })
+            
+            let library = UIAlertAction(title: "Choose from library", style: .default, handler: { aler in
+                self.presentCamera(withSource: .photoLibrary)
+            })
+            
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            options.addAction(camera)
+            options.addAction(library)
+            options.addAction(cancel)
+            
+            present(options, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func reviewsButtonTapped(_ sender: UIButton) {
         var uid = ""
         if let id = userId {
@@ -313,6 +374,35 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - Helpers
     
+    private func presentCamera(withSource type: UIImagePickerControllerSourceType) {
+        
+        if type == .photoLibrary || UIImagePickerController.isSourceTypeAvailable(.camera) {
+            
+            let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = type
+            
+            if status == .notDetermined {
+                AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
+                    if granted {
+                        self.present(imagePicker, animated: true, completion: nil)
+                    }
+                })
+            } else if status == .authorized {
+                present(imagePicker, animated: true, completion: nil)
+            } else {
+                if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            }
+        }
+        
+    }
+    
     private func productArray() -> [Product] {
         var arrayToReturn: [Product]
         switch productViewType {
@@ -333,6 +423,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 parent.dismiss(animated: false, completion: nil)
             }
         }
+    }
+    
+    private func grabProfileImage(with uid: String) {
+        let ref = FIRDatabase.database().reference().child("users").child(uid).child("profileImage")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let urlString = snapshot.value as? String {
+                let url = URL(string: urlString)
+                self.profileImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
+            }
+        })
     }
     
     private func getUserProfile(with uid: String) {
@@ -514,6 +614,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     private func updateProfileInformation(with uid: String) {
         getUserProfile(with: uid)
         grabUsersReviewStats(with: uid)
+        grabProfileImage(with: uid)
         
         previouslySelectedButton = sellingProductTypeButton
     }

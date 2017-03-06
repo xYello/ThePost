@@ -12,7 +12,7 @@ class User: NSObject {
     
     var fullName: String = "Seller Name"
     
-    var profilePicture: UIImage?
+    var profileUrl: URL!
     
     var starRating = 0
     var totalNumberOfReviews = 0
