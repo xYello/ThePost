@@ -57,6 +57,8 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         interactionViews = tabBar.subviews.filter({$0.isUserInteractionEnabled})
         
         if selectionBar == nil {

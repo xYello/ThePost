@@ -14,6 +14,14 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     var jeepModel: Jeep!
 
+    @IBOutlet weak var jeepTypeLabel: UILabel!
+    @IBOutlet weak var numberOfProductsLabel: UILabel!
+    
+    @IBOutlet weak var productViewTypeView: UIView!
+    @IBOutlet weak var smallProductSortButton: UIButton!
+    @IBOutlet weak var wideProductSortButton: UIButton!
+    private var selectionBar: UIView?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var products: [Product] = []
@@ -21,13 +29,31 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     private var ref: FIRDatabaseReference!
     private var productRef: FIRDatabaseReference?
     
+    private var amountOfProducts = 0 {
+        didSet {
+            if amountOfProducts == 0 {
+            numberOfProductsLabel.text = "No products to display"
+            } else if amountOfProducts == 1 {
+                numberOfProductsLabel.text = "1 product"
+            } else {
+                numberOfProductsLabel.text = "\(amountOfProducts) products"
+            }
+        }
+    }
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ref = FIRDatabase.database().reference()
-                
+        
+        smallProductSortButton.setImage(#imageLiteral(resourceName: "SmallProducts").withRenderingMode(.alwaysTemplate), for: .normal)
+        smallProductSortButton.imageView!.tintColor = UIColor.white
+        
+        wideProductSortButton.setImage(#imageLiteral(resourceName: "WideProducts").withRenderingMode(.alwaysTemplate), for: .normal)
+        wideProductSortButton.imageView!.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)
+        
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: floor(view.frame.height * (235/736)))
         
@@ -35,12 +61,16 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         collectionView.delegate = self
         
         jeepModel = Jeep(withType: JeepModel.wranglerJK)
-        let selectedJeepDescription:String = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep)!
+        let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep)!
         
         jeepModel = Jeep(withType: JeepModel.enumFromString(string: selectedJeepDescription)!)
         
-        if let start = jeepModel.startYear, let end = jeepModel.endYear, let name = jeepModel.name {
-            navigationController!.navigationBar.topItem!.title = name + " \(start)-\(end)"
+        if let name = jeepModel.name {
+            jeepTypeLabel.text = name
+        }
+        
+        if let navBar = navigationController?.navigationBar {
+            navBar.clipsToBounds = true
         }
         
     }
@@ -85,6 +115,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                                 product.isSold = isSold
                             }
                             
+                            self.amountOfProducts += 1
+                            
                             self.products.insert(product, at: 0)
                             
                             self.collectionView.performBatchUpdates({
@@ -116,6 +148,17 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                     }
                 }
             })
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if selectionBar == nil {
+            selectionBar = UIView()
+            selectionBar!.frame = CGRect(x: smallProductSortButton.frame.origin.x, y: smallProductSortButton.frame.origin.y + smallProductSortButton.frame.height - 2, width: smallProductSortButton.frame.width, height: 2)
+            selectionBar!.backgroundColor = UIColor.white
+            productViewTypeView.addSubview(selectionBar!)
         }
     }
     
@@ -190,6 +233,28 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                 PresentationCenter.manager.present(viewController: vc, sender: tabController)
             }
         }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func showSmallProductViews(_ sender: UIButton) {
+        
+        smallProductSortButton.imageView!.tintColor = UIColor.white
+        wideProductSortButton.imageView!.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)
+        
+        UIView.animate(withDuration: 0.25, delay: 0.1, options: .curveEaseOut, animations: {
+            self.selectionBar!.frame = CGRect(x: self.smallProductSortButton.frame.origin.x, y: self.smallProductSortButton.frame.origin.y + self.smallProductSortButton.frame.height - 2, width: self.smallProductSortButton.frame.width, height: 2)
+        }, completion: nil)
+    }
+    
+    @IBAction func showWideProductViews(_ sender: UIButton) {
+        
+        smallProductSortButton.imageView!.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)
+        wideProductSortButton.imageView!.tintColor = UIColor.white
+        
+        UIView.animate(withDuration: 0.25, delay: 0.1, options: .curveEaseOut, animations: {
+            self.selectionBar!.frame = CGRect(x: self.wideProductSortButton.frame.origin.x, y: self.wideProductSortButton.frame.origin.y + self.wideProductSortButton.frame.height - 2, width: self.wideProductSortButton.frame.width, height: 2)
+        }, completion: nil)
     }
     
     // MARK: - Helpers
