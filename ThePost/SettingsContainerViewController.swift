@@ -118,6 +118,8 @@ class SettingsContainerViewController: UIViewController {
     }
     
     @IBAction func wantsToLogout(_ sender: UIButton) {
+        FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").removeValue()
+        
         do {
             try FIRAuth.auth()?.signOut()
             
@@ -132,6 +134,7 @@ class SettingsContainerViewController: UIViewController {
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: logoutNotificationKey), object: nil, userInfo: nil)
         } catch {
+            FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
             print("Error signing out")
         }
     }

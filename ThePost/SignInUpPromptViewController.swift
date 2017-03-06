@@ -107,6 +107,7 @@ class SignInUpPromptViewController: UIViewController {
                                                 email = e
                                             }
                                             
+                                            FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
                                             FIRDatabase.database().reference().child("users").child(user!.uid).setValue(["fullName": data["name"] as! String, "email": email])
                                             self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
                                         }
@@ -141,6 +142,7 @@ class SignInUpPromptViewController: UIViewController {
                         KeychainWrapper.standard.set(session.authToken, forKey: TwitterInfoKeys.token)
                         KeychainWrapper.standard.set(session.authTokenSecret, forKey: TwitterInfoKeys.secret)
                         
+                        FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
                         FIRDatabase.database().reference().child("users").child(user!.uid).setValue(["fullName": name])
                         self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
                     }

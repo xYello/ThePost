@@ -123,6 +123,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         print("Error signing in: \(error.localizedDescription)")
                     }
                 } else {
+                    FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
                     KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
                     self.performSegue(withIdentifier: "showAppServicesRequestViewController", sender: self)
                 }

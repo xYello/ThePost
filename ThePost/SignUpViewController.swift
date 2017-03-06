@@ -203,6 +203,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                         return
                     }
                     
+                    FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
                     KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
                     self.ref.child("users").child(user.uid).setValue(["fullName": self.usernameTextField.text, "email": self.emailTextField.text])
                     self.performSegue(withIdentifier: "walkthroughSegue", sender: self)
