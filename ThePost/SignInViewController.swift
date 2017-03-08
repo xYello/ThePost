@@ -19,6 +19,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: RoundedTextField!
     @IBOutlet weak var passwordTextField: RoundedTextField!
     
+    @IBOutlet weak var onePassswordButton: UIButton!
+    
     @IBOutlet weak var signInButton: UIButton!
     
     @IBOutlet weak var nameView: UIView!
@@ -33,6 +35,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        onePassswordButton.isHidden = (false == OnePasswordExtension.shared().isAppExtensionAvailable())
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -77,6 +81,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                 self.view.layoutIfNeeded()
                 self.nameView.alpha = 0.0
                 self.exitButton.alpha = 0.0
+                
+                self.onePassswordButton.alpha = 0.0
             })
         }
     }
@@ -92,11 +98,46 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                 self.view.layoutIfNeeded()
                 self.nameView.alpha = 1.0
                 self.exitButton.alpha = 1.0
+                
+                self.onePassswordButton.alpha = 1.0
             })
         }
     }
     
     // MARK: - Actions
+    
+    @IBAction func findLoginFrom1Password(_ sender: UIButton) {
+        OnePasswordExtension.shared().findLogin(forURLString: "http://thewaveapp.com/", for: self, sender: sender, completion: { loginDictionary, error in
+            if loginDictionary != nil {
+                self.emailTextField.text = loginDictionary?[AppExtensionUsernameKey] as? String
+                self.passwordTextField.text = loginDictionary?[AppExtensionPasswordKey] as? String
+                
+                FIRAuth.auth()?.signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion: { user, error in
+                    if let error = error {
+                        if error.localizedDescription == "The email address is badly formatted." {
+                            self.errorLabel.isHidden = false
+                            self.errorLabel.text = "Invalid email address. Please try again."
+                        } else if error.localizedDescription == "The password is invalid or the user does not have a password." {
+                            self.errorLabel.isHidden = false
+                            self.errorLabel.text = "Invalid email or password. Please try again."
+                        } else if error.localizedDescription == "There is no user record corresponding to this identifier. The user may have been deleted." {
+                            self.errorLabel.isHidden = false
+                            self.errorLabel.text = "Invalid email or password. Please try again."
+                        } else if error.localizedDescription == "We have blocked all requests from this device due to unusual activity. Try again later." {
+                            self.errorLabel.isHidden = false
+                            self.errorLabel.text = "Please stop."
+                        } else {
+                            print("Error signing in: \(error.localizedDescription)")
+                        }
+                    } else {
+                        FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
+                        KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
+                        self.performSegue(withIdentifier: "showAppServicesRequestViewController", sender: self)
+                    }
+                })
+            }
+        })
+    }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: UIButton) {
         dismissKeyboard()

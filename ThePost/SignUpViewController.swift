@@ -22,6 +22,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     private var passwordImageView: UIImageView!
     private var confirmPasswordImageView: UIImageView!
     
+    @IBOutlet weak var onePasswordButton: UIButton!
+    
     @IBOutlet weak var signUpButton: UIButton!
     
     @IBOutlet weak var welcomeLabelToViewTopConstraint: NSLayoutConstraint!
@@ -36,6 +38,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        onePasswordButton.isHidden = (false == OnePasswordExtension.shared().isAppExtensionAvailable())
         
         usernameImageView = UIImageView(image: UIImage(named: "UsernameAvatar")!.withRenderingMode(.alwaysTemplate))
         formatTextField(field: usernameTextField, withImageView: usernameImageView)
@@ -55,10 +59,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(gesture)
         
         ref = FIRDatabase.database().reference()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     // MARK: Textfield delegate
@@ -109,59 +109,53 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(false)
     }
     
+    @IBAction func saveLoginTo1Password(_ sender: UIButton) {
+        
+        let newLoginDetails: [String: Any] = [
+            AppExtensionTitleKey: "The Wave",
+            AppExtensionUsernameKey: emailTextField.text!,
+            AppExtensionPasswordKey: passwordTextField.text!,
+            AppExtensionNotesKey: "Saved with The Wave app!",
+            AppExtensionSectionTitleKey: "The Wave Browser",
+            AppExtensionFieldsKey: ["fullname" : usernameTextField.text!]
+        ]
+        
+        let passwordGenerationOptions: [String: Any] = [AppExtensionGeneratedPasswordMinLengthKey: (6), AppExtensionGeneratedPasswordMaxLengthKey: (50)]
+        
+        OnePasswordExtension.shared().storeLogin(forURLString: "http://thewaveapp.com/", loginDetails: newLoginDetails, passwordGenerationOptions: passwordGenerationOptions, for: self, sender: sender) { (loginDictionary, error) -> Void in
+            if loginDictionary != nil {
+                self.emailTextField.text = loginDictionary?[AppExtensionUsernameKey] as? String
+                self.passwordTextField.text = loginDictionary?[AppExtensionPasswordKey] as? String
+                self.confirmPasswordTextField.text = self.passwordTextField.text
+                
+                self.checkInputText(withField: "Email", withText: self.emailTextField.text)
+                self.checkInputText(withField: "Password", withText: self.passwordTextField.text)
+                self.checkInputText(withField: "Confirm Password", withText: self.confirmPasswordTextField.text)
+                
+                if let extras = loginDictionary?[AppExtensionReturnedFieldsKey] as? [String: Any] {
+                    self.usernameTextField.text = extras["fullname"] as? String
+                    self.checkInputText(withField: "Full Name", withText: self.usernameTextField.text)
+                }
+            }
+        }
+        
+    }
+    
     @IBAction func editingChanged(_ sender: RoundedTextField) {
         if sender.placeholder == "Full Name" {
-            if let text = sender.text {
-                if text.characters.count >= 4 {
-                    usernameImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
-                } else {
-                    usernameImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
-                }
-            } else {
-                usernameImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
-            }
+            checkInputText(withField: "Full Name", withText: sender.text)
         }
         
         else if sender.placeholder == "Email" {
-            if let text = sender.text {
-                if text.characters.count >= 5 && text.contains("@") && text.contains(".") {
-                    emailImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
-                } else {
-                    emailImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
-                }
-            } else {
-                emailImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
-            }
+            checkInputText(withField: "Email", withText: sender.text)
         }
         
         else if sender.placeholder == "Password" {
-            if let text = sender.text {
-                if text.characters.count > 5 {
-                    passwordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
-                } else {
-                    passwordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
-                }
-                
-                if text == confirmPasswordTextField.text {
-                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
-                } else {
-                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
-                }
-            } else {
-                passwordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
-            }
+            checkInputText(withField: "Password", withText: sender.text)
         }
         
         else if sender.placeholder == "Confirm Password" {
-            if let text = sender.text {
-                if text == passwordTextField.text {
-                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
-                } else {
-                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
-                }
-            } else {
-                confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
-            }
+            checkInputText(withField: "Confirm Password", withText: sender.text)
         }
     }
     
@@ -244,6 +238,62 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         animation.fromValue = NSValue(cgPoint: CGPoint(x: view.center.x - 10, y: view.center.y))
         animation.toValue = NSValue(cgPoint: CGPoint(x: view.center.x + 10, y: view.center.y))
         view.layer.add(animation, forKey: "position")
+    }
+    
+    private func checkInputText(withField field: String, withText text: String?) {
+        if field == "Full Name" {
+            if let text = text {
+                if text.characters.count >= 4 {
+                    usernameImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                } else {
+                    usernameImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                }
+            } else {
+                usernameImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            }
+        }
+            
+        else if field == "Email" {
+            if let text = text {
+                if text.characters.count >= 5 && text.contains("@") && text.contains(".") {
+                    emailImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                } else {
+                    emailImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                }
+            } else {
+                emailImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            }
+        }
+            
+        else if field == "Password" {
+            if let text = text {
+                if text.characters.count > 5 {
+                    passwordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                } else {
+                    passwordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                }
+                
+                if text == confirmPasswordTextField.text {
+                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                } else {
+                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                }
+            } else {
+                passwordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            }
+        }
+            
+        else if field == "Confirm Password" {
+            if let text = text {
+                if text == passwordTextField.text {
+                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                } else {
+                    confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                }
+            } else {
+                confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            }
+        }
     }
 
 }

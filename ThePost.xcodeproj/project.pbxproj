@@ -85,6 +85,8 @@
 		4DD3CCC31E14C59C00821C7C /* AddNewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */; };
 		4DD3CCC91E14DD8700821C7C /* NewProductTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCC81E14DD8700821C7C /* NewProductTextTableViewCell.swift */; };
 		4DE4D9EF1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */; };
+		4DE6622D1E6D12A100417EBB /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DE6622A1E6D12A100417EBB /* 1Password.xcassets */; };
+		4DE6622E1E6D12A100417EBB /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */; };
 		4DEB7A621E17724A00C23216 /* NewProductBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB7A611E17724A00C23216 /* NewProductBaseTableViewCell.swift */; };
 		4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */; };
 		4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */; };
@@ -190,6 +192,10 @@
 		4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
 		4DD3CCC81E14DD8700821C7C /* NewProductTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductTextTableViewCell.swift; sourceTree = "<group>"; };
 		4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
+		4DE662291E6D12A100417EBB /* ThePost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ThePost-Bridging-Header.h"; sourceTree = "<group>"; };
+		4DE6622A1E6D12A100417EBB /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
+		4DE6622B1E6D12A100417EBB /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
+		4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
 		4DEB7A611E17724A00C23216 /* NewProductBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductBaseTableViewCell.swift; sourceTree = "<group>"; };
 		4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorViewController.swift; sourceTree = "<group>"; };
 		4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -387,6 +393,7 @@
 				4DFB05AC1E118A4600BEACE2 /* Jeep Selector */,
 				4D5AB0AC1E24939F005BF23B /* Product Viewer */,
 				4D161BC91E2700BC001BEE9D /* Reviews */,
+				4DE662281E6D127D00417EBB /* 1Password */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
 				4D5643381E4EAF7600064948 /* SignInUp.storyboard */,
 				4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */,
@@ -533,6 +540,17 @@
 			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
+		4DE662281E6D127D00417EBB /* 1Password */ = {
+			isa = PBXGroup;
+			children = (
+				4DE6622A1E6D12A100417EBB /* 1Password.xcassets */,
+				4DE6622B1E6D12A100417EBB /* OnePasswordExtension.h */,
+				4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */,
+				4DE662291E6D12A100417EBB /* ThePost-Bridging-Header.h */,
+			);
+			name = 1Password;
+			sourceTree = "<group>";
+		};
 		4DFB05AC1E118A4600BEACE2 /* Jeep Selector */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +619,7 @@
 					4D58C4D01E0E1882004CA0E3 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2ZSZVH3P4S;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					4D58C4E41E0E1883004CA0E3 = {
@@ -635,6 +654,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DE6622D1E6D12A100417EBB /* 1Password.xcassets in Resources */,
 				4DD3CCC11E14688C00821C7C /* Assets.xcassets in Resources */,
 				4D04C5311E0EFCDD004B2264 /* Lato-Bold.ttf in Resources */,
 				4D04C5391E0EFCDD004B2264 /* Lato-LightItalic.ttf in Resources */,
@@ -836,6 +856,7 @@
 				4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */,
 				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
 				4DA153F51E22EB1300708543 /* Conversation.swift in Sources */,
+				4DE6622E1E6D12A100417EBB /* OnePasswordExtension.m in Sources */,
 				4D35A21E1E121E3800A115EB /* JeepModelButton.swift in Sources */,
 				4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */,
 				4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */,
@@ -980,6 +1001,7 @@
 			baseConfigurationReference = 4BB05D7DCF829521945D7A74 /* Pods-ThePost.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -988,6 +1010,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ThePost/ThePost-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -997,6 +1021,7 @@
 			baseConfigurationReference = 003D95A1F4EC93A459F3C5FB /* Pods-ThePost.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1007,6 +1032,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ThePost/ThePost-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
