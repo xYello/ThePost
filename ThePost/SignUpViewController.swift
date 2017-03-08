@@ -24,6 +24,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var onePasswordButton: UIButton!
     
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signUpButton: UIButton!
     
     @IBOutlet weak var welcomeLabelToViewTopConstraint: NSLayoutConstraint!
@@ -148,6 +149,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         else if sender.placeholder == "Email" {
             checkInputText(withField: "Email", withText: sender.text)
+            
+            if !errorLabel.isHidden {
+                errorLabel.isHidden = true
+            }
         }
         
         else if sender.placeholder == "Password" {
@@ -184,6 +189,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 guard let user = user, error == nil else {
                     // TODO: Update with error reporting.
                     print("Error signing up: \(error!.localizedDescription)")
+                    
+                    if error!.localizedDescription == "The email address is already in use by another account." {
+                        self.errorLabel.isHidden = false
+                        self.errorLabel.text = error!.localizedDescription
+                        self.emailImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                    }
+                    
                     return
                 }
                 

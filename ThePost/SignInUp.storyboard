@@ -376,10 +376,17 @@
                                     <action selector="saveLoginTo1Password:" destination="Zp2-Ob-1Vc" eventType="touchUpInside" id="mDC-ED-rkj"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Db2-qF-x4m">
+                                <rect key="frame" x="155" y="384" width="66" height="36"/>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
+                                <color key="textColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.1647058824" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2dk-3e-k0O" firstAttribute="centerX" secondItem="zcI-mK-vRZ" secondAttribute="centerX" id="175-PM-y7S"/>
+                            <constraint firstItem="Db2-qF-x4m" firstAttribute="top" secondItem="qLe-87-v8P" secondAttribute="bottom" constant="8" id="18b-fw-4ua"/>
                             <constraint firstItem="Ukd-iQ-TQm" firstAttribute="centerX" secondItem="zcI-mK-vRZ" secondAttribute="centerX" id="2dh-mA-Xkk"/>
                             <constraint firstItem="lAj-HZ-Hbz" firstAttribute="top" secondItem="HRf-JJ-vhm" secondAttribute="bottom" constant="39" id="6mA-LH-lWb"/>
                             <constraint firstAttribute="trailing" secondItem="Qc9-hO-uMn" secondAttribute="trailing" constant="19" id="BFq-ii-pSc"/>
@@ -387,6 +394,7 @@
                             <constraint firstItem="MuK-WM-kwO" firstAttribute="top" secondItem="FTq-nh-46H" secondAttribute="bottom" constant="41" id="F1F-Pg-SMy"/>
                             <constraint firstItem="FTq-nh-46H" firstAttribute="centerX" secondItem="zcI-mK-vRZ" secondAttribute="centerX" id="Frp-iW-1n0"/>
                             <constraint firstItem="2dk-3e-k0O" firstAttribute="top" secondItem="qLe-87-v8P" secondAttribute="bottom" constant="52" id="L8E-ed-s0q"/>
+                            <constraint firstItem="2dk-3e-k0O" firstAttribute="top" secondItem="Db2-qF-x4m" secondAttribute="bottom" constant="8" id="Mxx-dP-RA9"/>
                             <constraint firstItem="lAj-HZ-Hbz" firstAttribute="centerX" secondItem="zcI-mK-vRZ" secondAttribute="centerX" id="Rbl-u7-qWS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lAj-HZ-Hbz" secondAttribute="trailing" id="SRi-a2-83R"/>
                             <constraint firstItem="MuK-WM-kwO" firstAttribute="leading" secondItem="zcI-mK-vRZ" secondAttribute="leadingMargin" constant="27" id="Sp5-JH-rZZ"/>
@@ -394,8 +402,10 @@
                             <constraint firstItem="2jg-kM-wF3" firstAttribute="leading" secondItem="2dk-3e-k0O" secondAttribute="trailing" constant="8" id="TWY-6b-63l"/>
                             <constraint firstItem="Ukd-iQ-TQm" firstAttribute="top" secondItem="MuK-WM-kwO" secondAttribute="bottom" constant="15" id="TvO-ee-7K2"/>
                             <constraint firstItem="Qc9-hO-uMn" firstAttribute="top" secondItem="zcI-mK-vRZ" secondAttribute="topMargin" constant="23" id="Wpd-64-5Wh"/>
+                            <constraint firstItem="Db2-qF-x4m" firstAttribute="centerX" secondItem="2dk-3e-k0O" secondAttribute="centerX" id="X8w-K3-5wd"/>
                             <constraint firstItem="qLe-87-v8P" firstAttribute="centerX" secondItem="zcI-mK-vRZ" secondAttribute="centerX" id="XqM-zn-4SZ"/>
                             <constraint firstItem="2dk-3e-k0O" firstAttribute="leading" secondItem="zcI-mK-vRZ" secondAttribute="leadingMargin" constant="58" id="Y80-ud-PEH"/>
+                            <constraint firstItem="Db2-qF-x4m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zcI-mK-vRZ" secondAttribute="leading" constant="8" id="Ytf-NO-c7f"/>
                             <constraint firstItem="qLe-87-v8P" firstAttribute="top" secondItem="deo-xO-LaT" secondAttribute="bottom" constant="15" id="a4Y-7J-2gu"/>
                             <constraint firstItem="x1u-ef-21Y" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2dk-3e-k0O" secondAttribute="bottom" constant="8" id="gcy-ZP-Q4E"/>
                             <constraint firstItem="deo-xO-LaT" firstAttribute="top" secondItem="Ukd-iQ-TQm" secondAttribute="bottom" constant="15" id="jhi-4r-2zT"/>
@@ -410,6 +420,7 @@
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="qLe-87-v8P" id="bDY-wk-2Sm"/>
                         <outlet property="emailTextField" destination="Ukd-iQ-TQm" id="f7n-wi-4MV"/>
+                        <outlet property="errorLabel" destination="Db2-qF-x4m" id="K56-De-DKb"/>
                         <outlet property="onePasswordButton" destination="2jg-kM-wF3" id="QZR-JW-BwI"/>
                         <outlet property="passwordTextField" destination="deo-xO-LaT" id="mgN-FK-MMK"/>
                         <outlet property="signUpButton" destination="2dk-3e-k0O" id="sXb-UA-dYE"/>
@@ -710,7 +721,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TU-Ba-Z1W">
-                                <rect key="frame" x="155" y="272" width="66" height="17"/>
+                                <rect key="frame" x="155.5" y="272" width="66" height="17"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
                                 <color key="textColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
