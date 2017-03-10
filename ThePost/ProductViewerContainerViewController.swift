@@ -221,6 +221,8 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             
             sellerCell.amountOfStars = seller.starRating
             
+            sellerCell.sellerImageView.sd_setImage(with: seller.profileUrl, placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
+            
             cell = sellerCell
         } else if type == .exCheck {
             let exCheckCell = tableView.dequeueReusableCell(withIdentifier: "exCheckCell", for: indexPath) as! ProductViewerExCheckTableViewCell
@@ -408,10 +410,16 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     
     private func grabSellerInfo() {
         seller = User()
-        let userRef = FIRDatabase.database().reference().child("users").child(product.ownerId).child("fullName")
-        userRef.observeSingleEvent(of: .value, with: { snapshot in
-            if let name = snapshot.value as? String {
-                self.seller.fullName = name
+        let sellerRef = FIRDatabase.database().reference().child("users").child(product.ownerId)
+        sellerRef.observeSingleEvent(of: .value, with: { snapshot in
+            if let userDict = snapshot.value as? [String: Any] {
+                
+                if let fullName = userDict["fullName"] as? String {
+                    self.seller.fullName = fullName
+                }
+                if let profileUrl = userDict["profileImage"] as? String {
+                    self.seller.profileUrl = URL(string: profileUrl)
+                }
                 
                 let ref = FIRDatabase.database().reference().child("reviews").child(self.product.ownerId).child("reviewNumbers")
                 ref.observeSingleEvent(of: .value, with: { snapshot in

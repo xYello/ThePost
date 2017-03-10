@@ -8,12 +8,9 @@
 
 import UIKit
 import Firebase
-import SwiftKeychainWrapper
+import AVFoundation
 
-// TODO:
-import FBSDKLoginKit
-
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private enum ProductViewing {
         case selling
@@ -59,6 +56,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private var userProductsRef: FIRDatabaseReference?
     private var likesQuery: FIRDatabaseQuery?
+    
+    private var shouldUpdateProfileOnNextView = false
     
     private var amountOfStars = 0 {
         didSet {
@@ -106,8 +105,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             bottomBarHeightConstraint.constant = tabBarController!.tabBar.frame.height
         }
         
-        getUserProfile(with: uid)
-        grabUsersReviewStats(with: uid)
+        updateProfileInformation(with: uid)
         
         let stars: [UIImageView] = [farLeftStar, leftMidStar, midStar, rightMidStar, farRightStar]
         for star in stars {
@@ -124,7 +122,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         closeButton.layer.borderWidth = 1.0
         closeButton.roundCorners(radius: 8.0)
         
-        previouslySelectedButton = sellingProductTypeButton
+        NotificationCenter.default.addObserver(self, selector: #selector(userHasLoggedOut(notification:)), name: NSNotification.Name(rawValue: logoutNotificationKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userHasChangedName(notification:)), name: NSNotification.Name(rawValue: nameChangeNotificationKey), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if shouldUpdateProfileOnNextView {
+            updateProfileInformation(with: FIRAuth.auth()!.currentUser!.uid)
+            shouldUpdateProfileOnNextView = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -249,8 +257,68 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    // MARK: - ImagePicker delegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            let uid = FIRAuth.auth()!.currentUser!.uid
+            let storageRef = FIRStorage.storage().reference()
+            let imageData = UIImageJPEGRepresentation(image, 0.1)
+            let filePath = "profilePictures/" + "\(uid).jpg"
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            storageRef.child(filePath).put(imageData!, metadata: metadata, completion: { metadata, error in
+                if let error = error {
+                    print("Error uploading images: \(error.localizedDescription)")
+                } else {
+                    
+                    // Grab image url and store on user
+                    storageRef.child(filePath).downloadURL() { url, error in
+                        if let error = error {
+                            print("Error getting download url: \(error.localizedDescription)")
+                        } else {
+                            if let url = url {
+                                let stringUrl = url.absoluteString
+                                
+                                FIRDatabase.database().reference().child("users").child(uid).child("profileImage").setValue(stringUrl)
+                                self.profileImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
+                            }
+                        }
+                    }
+                    
+                }
+            })
+            
+        }
+    }
+    
     // MARK: - Actions
 
+    @IBAction func profileImageTapped(_ sender: UIButton) {
+        if userId == nil {
+            let options = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            let camera = UIAlertAction(title: "Take a photo", style: .default, handler: { alert in
+                self.presentCamera(withSource: .camera)
+            })
+            
+            let library = UIAlertAction(title: "Choose from library", style: .default, handler: { aler in
+                self.presentCamera(withSource: .photoLibrary)
+            })
+            
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            options.addAction(camera)
+            options.addAction(library)
+            options.addAction(cancel)
+            
+            present(options, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func reviewsButtonTapped(_ sender: UIButton) {
         var uid = ""
         if let id = userId {
@@ -291,17 +359,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
-        KeychainWrapper.standard.removeObject(forKey: UserInfoKeys.UserPass)
-        
-        FBSDKLoginManager().logOut()
-        
-        KeychainWrapper.standard.removeObject(forKey: TwitterInfoKeys.token)
-        KeychainWrapper.standard.removeObject(forKey: TwitterInfoKeys.secret)
-        
-        do {
-            try FIRAuth.auth()?.signOut()
-        } catch {
-            print("Error signing out")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "settingsController") as? SettingsViewController {
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.fullName = profileNameLabel.text
+            
+            present(vc, animated: false, completion: nil)
         }
     }
     
@@ -310,6 +373,35 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     // MARK: - Helpers
+    
+    private func presentCamera(withSource type: UIImagePickerControllerSourceType) {
+        
+        if type == .photoLibrary || UIImagePickerController.isSourceTypeAvailable(.camera) {
+            
+            let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = type
+            
+            if status == .notDetermined {
+                AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
+                    if granted {
+                        self.present(imagePicker, animated: true, completion: nil)
+                    }
+                })
+            } else if status == .authorized {
+                present(imagePicker, animated: true, completion: nil)
+            } else {
+                if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            }
+        }
+        
+    }
     
     private func productArray() -> [Product] {
         var arrayToReturn: [Product]
@@ -333,11 +425,22 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    private func grabProfileImage(with uid: String) {
+        let ref = FIRDatabase.database().reference().child("users").child(uid).child("profileImage")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let urlString = snapshot.value as? String {
+                let url = URL(string: urlString)
+                self.profileImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
+            }
+        })
+    }
+    
     private func getUserProfile(with uid: String) {
         let ref = FIRDatabase.database().reference().child("users").child(uid).child("fullName")
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let fullName = snapshot.value as? String {
                 DispatchQueue.main.async {
+                    self.settingsButton.isEnabled = true
                     self.profileNameLabel.text = fullName
                 }
             }
@@ -506,6 +609,24 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             index += 1
         }
         return -1
+    }
+    
+    private func updateProfileInformation(with uid: String) {
+        getUserProfile(with: uid)
+        grabUsersReviewStats(with: uid)
+        grabProfileImage(with: uid)
+        
+        previouslySelectedButton = sellingProductTypeButton
+    }
+    
+    // MARK: - Notifications
+    
+    @objc private func userHasLoggedOut(notification: NSNotification) {
+        shouldUpdateProfileOnNextView = true
+    }
+    
+    @objc private func userHasChangedName(notification: NSNotification) {
+        getUserProfile(with: FIRAuth.auth()!.currentUser!.uid)
     }
     
 }

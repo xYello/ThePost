@@ -13,6 +13,7 @@ class Conversation: NSObject {
     var id: String!
     
     var otherPersonId: String!
+    var otherPersonProfileImageUrl: URL!
     var otherPersonName: String!
     var isOtherPersonOnline = false
     

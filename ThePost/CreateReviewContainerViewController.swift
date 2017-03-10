@@ -350,11 +350,17 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     }
     
     private func grabProfileDetails() {
-        let userRef = FIRDatabase.database().reference().child("users").child(userId).child("fullName")
-        userRef.observeSingleEvent(of: .value, with: { snapshot in
-            if let name = snapshot.value as? String {
-                DispatchQueue.main.async {
-                    self.questionLabel.text = "Overall, how would you rate \(name) through the process of your purchase?"
+        let sellerRef = FIRDatabase.database().reference().child("users").child(userId)
+        sellerRef.observeSingleEvent(of: .value, with: { snapshot in
+            if let userDict = snapshot.value as? [String: Any] {
+                
+                if let fullName = userDict["fullName"] as? String {
+                    DispatchQueue.main.async {
+                        self.questionLabel.text = "Overall, how would you rate \(fullName) through the process of your purchase?"
+                    }
+                }
+                if let profileUrl = userDict["profileImage"] as? String {
+                    self.imageView.sd_setImage(with: URL(string: profileUrl), placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
                 }
             }
         })

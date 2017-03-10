@@ -33,6 +33,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     
     private var userIsViewingConversation: Conversation?
     
+    private var shouldUpdateConversationsOnNextView = false
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -46,6 +48,35 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         }
         
         observeConversations()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userHasLoggedOut(notification:)), name: NSNotification.Name(rawValue: logoutNotificationKey), object: nil)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if shouldUpdateConversationsOnNextView {
+            if let uid = FIRAuth.auth()?.currentUser?.uid {
+                chatRef = FIRDatabase.database().reference().child("user-chats").child(uid)
+                
+                conversations.removeAll()
+                chatRef.removeAllObservers()
+                for ref in conversationReferences {
+                    ref.removeAllObservers()
+                }
+                for ref in productReferences {
+                    ref.removeAllObservers()
+                }
+                for ref in userPresenceIndicatorReferences {
+                    ref.removeAllObservers()
+                }
+                
+                observeConversations()
+                
+                shouldUpdateConversationsOnNextView = false
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -115,7 +146,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         let cell = tableView.dequeueReusableCell(withIdentifier: "conversationCell", for: indexPath) as! ConversationTableViewCell
         let conversation = conversations[indexPath.row]
         
-        cell.profileImageView.image = #imageLiteral(resourceName: "ETHANPROFILESAMPLE")
+        cell.profileImageView.sd_setImage(with: conversation.otherPersonProfileImageUrl, placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
         
         cell.personNameLabel.text = conversation.otherPersonName
         
@@ -223,11 +254,17 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                     for (key, _) in participantsDict {
                         if key != FIRAuth.auth()!.currentUser!.uid {
                             
-                            let userRef = FIRDatabase.database().reference().child("users").child(key).child("fullName")
-                            userRef.observeSingleEvent(of: .value, with: { snapshot in
-                                if let name = snapshot.value as? String {
+                            let sellerRef = FIRDatabase.database().reference().child("users").child(key)
+                            sellerRef.observeSingleEvent(of: .value, with: { snapshot in
+                                if let userDict = snapshot.value as? [String: Any] {
+                                    
                                     newConvo.otherPersonId = key
-                                    newConvo.otherPersonName = name
+                                    if let fullName = userDict["fullName"] as? String {
+                                        newConvo.otherPersonName = fullName
+                                    }
+                                    if let profileUrl = userDict["profileImage"] as? String {
+                                        newConvo.otherPersonProfileImageUrl = URL(string: profileUrl)
+                                    }
                                     
                                     self.conversations.append(newConvo)
                                     self.tableView.reloadData()
@@ -365,6 +402,12 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
             }
         })
         productReferences.append(productRef)
+    }
+    
+    // MARK: - Notifications
+    
+    @objc private func userHasLoggedOut(notification: NSNotification) {
+        shouldUpdateConversationsOnNextView = true
     }
     
 }
