@@ -44,6 +44,8 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        imageView.clipsToBounds = true
+        
         if let image = likeButton.imageView?.image {
             likeButton.setImage(image.withRenderingMode(.alwaysTemplate), for: .normal)
             likeButton.imageView!.tintColor = #colorLiteral(red: 0.2235294118, green: 0.2235294118, blue: 0.2235294118, alpha: 0.2034658138)
