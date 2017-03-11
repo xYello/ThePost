@@ -31,6 +31,7 @@
 		4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */; };
 		4D04C54E1E0F2CD3004B2264 /* AppServicesRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */; };
 		4D1102061E2EAD7600ADF559 /* ProfileModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1102051E2EAD7600ADF559 /* ProfileModalViewController.swift */; };
+		4D11145F1E737B74001C274F /* ProductListingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D11145E1E737B74001C274F /* ProductListingCollectionReusableView.swift */; };
 		4D14F6D61E31A09400AF71F8 /* ModalPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14F6D51E31A09400AF71F8 /* ModalPresentationViewController.swift */; };
 		4D161BC81E26E97B001BEE9D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D161BC71E26E97B001BEE9D /* SignInViewController.swift */; };
 		4D161BCB1E2700EC001BEE9D /* CreateReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D161BCA1E2700EC001BEE9D /* CreateReviewViewController.swift */; };
@@ -134,6 +135,7 @@
 		4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+RoundedCorners.swift"; sourceTree = "<group>"; };
 		4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppServicesRequestViewController.swift; sourceTree = "<group>"; };
 		4D1102051E2EAD7600ADF559 /* ProfileModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModalViewController.swift; sourceTree = "<group>"; };
+		4D11145E1E737B74001C274F /* ProductListingCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingCollectionReusableView.swift; sourceTree = "<group>"; };
 		4D14F6D51E31A09400AF71F8 /* ModalPresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalPresentationViewController.swift; sourceTree = "<group>"; };
 		4D161BC71E26E97B001BEE9D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4D161BCA1E2700EC001BEE9D /* CreateReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateReviewViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			children = (
 				4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */,
 				4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */,
+				4D11145E1E737B74001C274F /* ProductListingCollectionReusableView.swift */,
 			);
 			name = "Product Listing";
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 				4D161BCD1E2710C2001BEE9D /* CreateReviewContainerViewController.swift in Sources */,
 				60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */,
 				4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */,
+				4D11145F1E737B74001C274F /* ProductListingCollectionReusableView.swift in Sources */,
 				4D239C441E131BBE00F2668E /* Product.swift in Sources */,
 				4D14F6D61E31A09400AF71F8 /* ModalPresentationViewController.swift in Sources */,
 				4D239C421E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift in Sources */,
