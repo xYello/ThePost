@@ -55,6 +55,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     }
     
     private var isSearching = false
+    private var isWideViewType = false
     
     // MARK: - View lifecycle
     
@@ -70,7 +71,13 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         wideProductSortButton.imageView!.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: floor(view.frame.height * (235/736)))
+        let viewType = KeychainWrapper.standard.string(forKey: ProductListingType.key)
+        if viewType == nil || viewType == ProductListingType.small {
+            layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: floor(view.frame.height * (235/736)))
+        } else {
+            isWideViewType = true
+            layout.itemSize = CGSize(width: floor(view.frame.width * (394/414)), height: floor(view.frame.height * (235/736)))
+        }
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -134,7 +141,12 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         
         if selectionBar == nil {
             selectionBar = UIView()
-            selectionBar!.frame = CGRect(x: smallProductSortButton.frame.origin.x, y: smallProductSortButton.frame.origin.y + smallProductSortButton.frame.height - 2, width: smallProductSortButton.frame.width, height: 2)
+            if isWideViewType {
+                selectionBar!.frame = CGRect(x: wideProductSortButton.frame.origin.x, y: wideProductSortButton.frame.origin.y + wideProductSortButton.frame.height - 2, width: wideProductSortButton.frame.width, height: 2)
+                wideProductSortButton.sendActions(for: .touchUpInside)
+            } else {
+                selectionBar!.frame = CGRect(x: smallProductSortButton.frame.origin.x, y: smallProductSortButton.frame.origin.y + smallProductSortButton.frame.height - 2, width: smallProductSortButton.frame.width, height: 2)
+            }
             selectionBar!.backgroundColor = UIColor.white
             productViewTypeView.addSubview(selectionBar!)
         }
@@ -157,12 +169,6 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plpContentCell", for: indexPath) as! ProductListingContentCollectionViewCell
         let product = productArray()[indexPath.row]
-        
-        if let likeCount = product.likeCount {
-            cell.likeCountLabel.text = "\(likeCount)"
-        } else {
-            cell.likeCountLabel.text = "0"
-        }
         
         cell.descriptionLabel.text = product.simplifiedDescription
         
@@ -191,14 +197,6 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let productCell = cell as? ProductListingContentCollectionViewCell {
-            if let likesListener = productCell.likesListenerRef {
-                likesListener.removeAllObservers()
-            }
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "viewProductInfo") as? ProductViewerViewController {
@@ -220,6 +218,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             
             header.searchBar.delegate = self
             header.filterButton.addTarget(self, action: #selector(filterButtonPressed), for: .touchUpInside)
+            
+            header.searchBar.layer.borderWidth = 1.0
+            header.searchBar.layer.borderColor = header.searchBar.barTintColor?.cgColor
             
             if isSearching {
                 header.filterButton.setImage(nil, for: .normal)
@@ -297,6 +298,11 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         smallProductSortButton.imageView!.tintColor = UIColor.white
         wideProductSortButton.imageView!.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)
         
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: floor(view.frame.height * (235/736)))
+        
+        KeychainWrapper.standard.set(ProductListingType.small, forKey: ProductListingType.key)
+        
         UIView.animate(withDuration: 0.25, delay: 0.1, options: .curveEaseOut, animations: {
             self.selectionBar!.frame = CGRect(x: self.smallProductSortButton.frame.origin.x, y: self.smallProductSortButton.frame.origin.y + self.smallProductSortButton.frame.height - 2, width: self.smallProductSortButton.frame.width, height: 2)
         }, completion: nil)
@@ -306,6 +312,11 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         
         smallProductSortButton.imageView!.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)
         wideProductSortButton.imageView!.tintColor = UIColor.white
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: floor(view.frame.width * (394/414)), height: floor(view.frame.height * (235/736)))
+        
+        KeychainWrapper.standard.set(ProductListingType.wide, forKey: ProductListingType.key)
         
         UIView.animate(withDuration: 0.25, delay: 0.1, options: .curveEaseOut, animations: {
             self.selectionBar!.frame = CGRect(x: self.wideProductSortButton.frame.origin.x, y: self.wideProductSortButton.frame.origin.y + self.wideProductSortButton.frame.height - 2, width: self.wideProductSortButton.frame.width, height: 2)

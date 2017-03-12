@@ -19,21 +19,17 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var likeCountLabel: UILabel!
+    
+    @IBOutlet weak var imageViewAspectRatioConstraint: NSLayoutConstraint!
     
     var ref: FIRDatabaseReference?
-    var likesListenerRef: FIRDatabaseReference?
     var productKey: String? {
         didSet {
             if let key = productKey {
                 ref = FIRDatabase.database().reference().child("products").child(key)
-                likesListenerRef = ref!
                 
                 // Grab product images
                 grabProductImages(forKey: key)
-                
-                // Setup the observer to listen for like count changes for this product
-                setupListenerForLikeCount()
                 
                 // Check to see if the current user likes this product
                 checkForCurrentUserLike(forKey: key)
@@ -46,25 +42,28 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
         
         imageView.clipsToBounds = true
         
-        if let image = likeButton.imageView?.image {
-            likeButton.setImage(image.withRenderingMode(.alwaysTemplate), for: .normal)
-            likeButton.imageView!.tintColor = #colorLiteral(red: 0.2235294118, green: 0.2235294118, blue: 0.2235294118, alpha: 0.2034658138)
+        likeButton.layer.shadowRadius = 2.0
+        likeButton.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        likeButton.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
+        likeButton.layer.shadowOpacity = 1.0
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        imageView.removeConstraint(imageViewAspectRatioConstraint)
+        if frame.width > frame.height {
+            imageViewAspectRatioConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .width, multiplier: 140/393, constant: 1.0)
+        } else {
+            imageViewAspectRatioConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .width, multiplier: 3024/4032, constant: 1.0)
         }
+        imageView.addConstraint(imageViewAspectRatioConstraint)
     }
     
     // MARK: - Actions
     
     @IBAction func likedProduct(_ sender: UIButton) {
         if let ref = ref {
-            
-            if let imageView = likeButton.imageView {
-                if imageView.tintColor == #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1) {
-                    imageView.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3)
-                } else {
-                    imageView.tintColor = #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
-                }
-            }
-            
             incrementLikes(forRef: ref)
             ref.observeSingleEvent(of: .value, with: { snapshot in
                 let value = snapshot.value as? NSDictionary
@@ -91,19 +90,23 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                     likeCount -= 1
                     likes.removeValue(forKey: uid)
                     userLikesRef.child(self.productKey!).removeValue()
+                    
+                    DispatchQueue.main.async {
+                        self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconNotLiked"), for: .normal)
+                    }
                 } else {
                     likeCount += 1
                     likes[uid] = true
                     
                     let userLikesUpdate = [self.productKey!: true]
                     userLikesRef.updateChildValues(userLikesUpdate)
+                    
+                    DispatchQueue.main.async {
+                        self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconLiked"), for: .normal)
+                    }
                 }
                 product["likeCount"] = likeCount as AnyObject?
                 product["likes"] = likes as AnyObject?
-                
-                DispatchQueue.main.sync {
-                    self.likeCountLabel.text = "\(likeCount)"
-                }
                 
                 currentData.value = product
                 
@@ -130,34 +133,28 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
         })
     }
     
-    private func setupListenerForLikeCount() {
-        likesListenerRef!.observe(.childChanged, with: { snapshot in
-            if snapshot.key == "likeCount" {
-                if let likeCount = snapshot.value as? Int {
-                    DispatchQueue.main.async {
-                        self.likeCountLabel.text = "\(likeCount)"
-                    }
-                }
-            }
-        })
-    }
-    
     private func checkForCurrentUserLike(forKey key: String) {
         if let uid = FIRAuth.auth()?.currentUser?.uid {
-            var color = #colorLiteral(red: 0.2235294118, green: 0.2235294118, blue: 0.2235294118, alpha: 0.2034658138)
             let likesRef = FIRDatabase.database().reference().child("products").child(key)
             likesRef.observeSingleEvent(of: .value, with: { snapshot in
+                var isLiked = false
                 if let product = snapshot.value as? [String: AnyObject] {
                     if let likes = product["likes"] as? [String: Bool] {
                         if let _ = likes[uid] {
-                            color = #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
+                            isLiked = true
                         }
                     }
                     
                 }
                 
-                DispatchQueue.main.async {
-                    self.likeButton.imageView!.tintColor = color
+                if isLiked {
+                    DispatchQueue.main.async {
+                        self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconLiked"), for: .normal)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconNotLiked"), for: .normal)
+                    }
                 }
                 
             })
