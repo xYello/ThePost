@@ -214,6 +214,12 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
     
     @objc private func openSocialPost() {
         dismissAddButtons()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "uploadSocialPostViewController")
+        vc.modalPresentationStyle = .overCurrentContext
+        
+        present(vc, animated: false, completion: nil)
     }
     
     // MARK: - Add Buttons
@@ -242,11 +248,11 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
             view.insertSubview(socialButton, belowSubview: tabBar)
             
             socialLabel = UILabel()
-            socialLabel.text = "Show off!"
+            socialLabel.text = "Post a photo"
             socialLabel.font = UIFont(name: "Lato-Regular", size: 14.0)
             socialLabel.textColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
             socialLabel.textAlignment = .center
-            socialLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 20)
+            socialLabel.frame = CGRect(x: 0, y: 0, width: 120, height: 20)
             socialLabel.center = CGPoint(x: views[2].center.x - middleButtonFrame.width, y: middleButtonFrame.origin.y - 2.0 * middleButtonFrame.height + 40)
             socialLabel.alpha = 0.0
             view.insertSubview(socialLabel, belowSubview: tabBar)

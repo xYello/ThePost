@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2557D85A6ACDEFC8A0EB3C6F /* Pods_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5034073F914D3333664873A4 /* Pods_ThePostTests.framework */; };
 		2F5450BB1E537433005A88A3 /* JeepSocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */; };
+		2FB607121E748E310053B41D /* UploadSocialPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */; };
 		4D04C52F1E0EFCDD004B2264 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */; };
 		4D04C5301E0EFCDD004B2264 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51D1E0EFCDD004B2264 /* Lato-BlackItalic.ttf */; };
 		4D04C5311E0EFCDD004B2264 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51E1E0EFCDD004B2264 /* Lato-Bold.ttf */; };
@@ -92,7 +92,8 @@
 		4DFE38681E2FDFE900A83EAE /* PresentationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */; };
 		5EC4A3CED303187827059407 /* Pods_ThePost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63AE588E5DF1112BCFB64512 /* Pods_ThePost.framework */; };
 		60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2ED5C1E29C6DA00ED83EA /* Constants.swift */; };
-		ADF2E2F7F322D7BFDF8EC302 /* Pods_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B6FA8DB52DADD10DE2460E /* Pods_ThePostTests.framework */; };
+		ADF2E2F7F322D7BFDF8EC302 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		D89F34369B57A268B7009A6F /* Pods_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2470422437B4EA1FBAA716 /* Pods_ThePostTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,12 +107,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		115D60087408F23246E2357E /* Pods-ThePost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.debug.xcconfig"; sourceTree = "<group>"; };
-		256704F50B1CE9685D86C69D /* Pods-ThePostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests.release.xcconfig"; sourceTree = "<group>"; };
 		2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSocialTableViewCell.swift; sourceTree = "<group>"; };
-		491CCC48649D090E390CB725 /* Pods-ThePost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.release.xcconfig"; sourceTree = "<group>"; };
-		4B09A96BE32B256DA705CD98 /* Pods_ThePost_ThePostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePost_ThePostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CFB889A2F4182A4FE7D89A8 /* Pods-ThePost-ThePostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost-ThePostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost-ThePostTests/Pods-ThePost-ThePostTests.release.xcconfig"; sourceTree = "<group>"; };
+		2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadSocialPostViewController.swift; sourceTree = "<group>"; };
+		30978BC6E6F818A1CEECDF91 /* Pods-ThePost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.release.xcconfig"; sourceTree = "<group>"; };
+		3F7EFD2CC482666CE29ABBC5 /* Pods-ThePost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.debug.xcconfig"; sourceTree = "<group>"; };
 		4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "Fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
 		4D04C51D1E0EFCDD004B2264 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "Fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		4D04C51E1E0EFCDD004B2264 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "Fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -203,6 +202,7 @@
 		60C2ED5C1E29C6DA00ED83EA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		63AE588E5DF1112BCFB64512 /* Pods_ThePost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C893FA9A5FCFF3581535CB /* Pods-ThePostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests.release.xcconfig"; sourceTree = "<group>"; };
+		CE2470422437B4EA1FBAA716 /* Pods_ThePostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,7 +218,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADF2E2F7F322D7BFDF8EC302 /* Pods_ThePostTests.framework in Frameworks */,
+				ADF2E2F7F322D7BFDF8EC302 /* (null) in Frameworks */,
+				D89F34369B57A268B7009A6F /* Pods_ThePostTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,10 +229,10 @@
 		3338193B4FD98EB5823532E7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4BB05D7DCF829521945D7A74 /* Pods-ThePost.debug.xcconfig */,
-				003D95A1F4EC93A459F3C5FB /* Pods-ThePost.release.xcconfig */,
 				507095285936BB872350682F /* Pods-ThePostTests.debug.xcconfig */,
 				A3C893FA9A5FCFF3581535CB /* Pods-ThePostTests.release.xcconfig */,
+				3F7EFD2CC482666CE29ABBC5 /* Pods-ThePost.debug.xcconfig */,
+				30978BC6E6F818A1CEECDF91 /* Pods-ThePost.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -240,7 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				63AE588E5DF1112BCFB64512 /* Pods_ThePost.framework */,
-				10B6FA8DB52DADD10DE2460E /* Pods_ThePostTests.framework */,
+				CE2470422437B4EA1FBAA716 /* Pods_ThePostTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -484,6 +485,7 @@
 			children = (
 				4DC30D511E39A6AB0087B447 /* Table View Cells */,
 				4DC30D4F1E399E050087B447 /* ActivityViewController.swift */,
+				2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -615,7 +617,7 @@
 				TargetAttributes = {
 					4D58C4D01E0E1882004CA0E3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 2ZSZVH3P4S;
+						DevelopmentTeam = S228NG5K95;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -806,6 +808,7 @@
 				4DD3CCC31E14C59C00821C7C /* AddNewProductViewController.swift in Sources */,
 				4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */,
 				4D1667311E4FBFBB0092FDFB /* SettingsViewController.swift in Sources */,
+				2FB607121E748E310053B41D /* UploadSocialPostViewController.swift in Sources */,
 				4D5AB0B21E249418005BF23B /* ProductViewerContainerViewController.swift in Sources */,
 				4D161BCB1E2700EC001BEE9D /* CreateReviewViewController.swift in Sources */,
 				4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */,
@@ -828,7 +831,6 @@
 				4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
 				4D1102061E2EAD7600ADF559 /* ProfileModalViewController.swift in Sources */,
-				4DC30D571E39A70B0087B447 /* LikedProductActivityTableViewCell.swift in Sources */,
 				4D1667351E4FC06F0092FDFB /* SettingsContainerViewController.swift in Sources */,
 				4D161BC81E26E97B001BEE9D /* SignInViewController.swift in Sources */,
 				4D23EC751E1F86130001C045 /* ConversationTableViewCell.swift in Sources */,
@@ -994,14 +996,14 @@
 		};
 		4D58C4EF1E0E1883004CA0E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4BB05D7DCF829521945D7A74 /* Pods-ThePost.debug.xcconfig */;
+			baseConfigurationReference = 3F7EFD2CC482666CE29ABBC5 /* Pods-ThePost.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
+				DEVELOPMENT_TEAM = S228NG5K95;
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
@@ -1015,14 +1017,14 @@
 		};
 		4D58C4F01E0E1883004CA0E3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 003D95A1F4EC93A459F3C5FB /* Pods-ThePost.release.xcconfig */;
+			baseConfigurationReference = 30978BC6E6F818A1CEECDF91 /* Pods-ThePost.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
+				DEVELOPMENT_TEAM = S228NG5K95;
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
