@@ -398,11 +398,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             previouslySelectedButton.setTitleColor(#colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1), for: .normal)
             previouslySelectedButton = sender
             
-            if sender.currentTitle == "Selling" {
+            if sender.currentTitle == "SELLING" {
                 productViewType = .selling
-            } else if sender.currentTitle == "Sold" {
+            } else if sender.currentTitle == "SOLD" {
                 productViewType = .sold
-            } else if sender.currentTitle == "Liked" {
+            } else if sender.currentTitle == "LIKED" {
                 productViewType = .liked
             }
             
