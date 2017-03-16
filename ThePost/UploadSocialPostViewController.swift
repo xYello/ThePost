@@ -84,7 +84,7 @@ UINavigationControllerDelegate {
                         
                         
                         // Compress stored image
-                        let imageData = UIImageJPEGRepresentation(self.PreviewImageView.image!, 0.2)
+                        let imageData = UIImageJPEGRepresentation(self.PreviewImageView.image!, 0.05)
                         
                         // Upload image
                         let filePath = "social-posts/" + key + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"

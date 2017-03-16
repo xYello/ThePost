@@ -620,7 +620,7 @@
 				TargetAttributes = {
 					4D58C4D01E0E1882004CA0E3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = F92T972GML;
+						DevelopmentTeam = S228NG5K95;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -1007,7 +1007,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = F92T972GML;
+				DEVELOPMENT_TEAM = S228NG5K95;
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
@@ -1028,7 +1028,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = F92T972GML;
+				DEVELOPMENT_TEAM = S228NG5K95;
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
