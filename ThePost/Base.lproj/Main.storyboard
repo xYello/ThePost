@@ -3739,6 +3739,10 @@ for the global feed!</string>
                         <outlet property="PreviewImageView" destination="NuI-Wh-CwD" id="NUl-Wt-ATe"/>
                         <outlet property="SubmitButton" destination="Db7-z3-EQt" id="F2R-Cu-iwf"/>
                         <outlet property="TitleLabel" destination="Iz1-Jp-WxP" id="xlr-00-81t"/>
+                        <outletCollection property="photosButtons" destination="qx6-Je-IeS" collectionClass="NSMutableArray" id="ysm-Kp-PUD"/>
+                        <outletCollection property="photosButtons" destination="AA5-2h-T5Q" collectionClass="NSMutableArray" id="6A1-vC-z8G"/>
+                        <outletCollection property="photosButtons" destination="M4u-oE-I71" collectionClass="NSMutableArray" id="3FU-eT-9bp"/>
+                        <outletCollection property="photosButtons" destination="oJP-zj-IFL" collectionClass="NSMutableArray" id="tkU-HA-hW9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="46M-1v-b5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
