@@ -20,3 +20,10 @@ struct TwitterInfoKeys {
     static let token = "twitterToken"
     static let secret = "twitterTokenSecret"
 }
+
+struct ProductListingType {
+    static let small = "kProductListingTypeSmall"
+    static let wide = "kProductListingTypeWide"
+    
+    static let key = "kProductListingViewType"
+}

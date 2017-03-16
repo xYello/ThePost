@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class ProductListingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ProductListingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     var jeepModel: Jeep!
 
@@ -25,6 +25,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var products: [Product] = []
+    private var searchedProducts: [Product] = []
     
     private var ref: FIRDatabaseReference!
     private var productRef: FIRDatabaseReference?
@@ -41,6 +42,21 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         }
     }
     
+    private var searchedAmountOfProducts = 0 {
+        didSet {
+            if searchedAmountOfProducts == 0 {
+                numberOfProductsLabel.text = "No products to display"
+            } else if searchedAmountOfProducts == 1 {
+                numberOfProductsLabel.text = "1 product"
+            } else {
+                numberOfProductsLabel.text = "\(searchedAmountOfProducts) products"
+            }
+        }
+    }
+    
+    private var isSearching = false
+    private var isWideViewType = false
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -55,7 +71,13 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         wideProductSortButton.imageView!.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: floor(view.frame.height * (235/736)))
+        let viewType = KeychainWrapper.standard.string(forKey: ProductListingType.key)
+        if viewType == nil || viewType == ProductListingType.small {
+            layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: floor(view.frame.height * (235/736)))
+        } else {
+            isWideViewType = true
+            layout.itemSize = CGSize(width: floor(view.frame.width * (394/414)), height: floor(view.frame.height * (235/736)))
+        }
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -82,43 +104,13 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             productRef = ref.child("products")
             
             productRef!.observe(.childAdded, with: { snapshot in
-                if let productDict = snapshot.value as? [String: Any] {
-                    if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
-                        if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
-                            let product = Product(withName: productDict["name"] as! String,
-                                                  model: jeepModel,
-                                                  price: productDict["price"] as! Float,
-                                                  condition: condition)
-                            
-                            product.uid = snapshot.key
-                            product.ownerId = productDict["owner"] as! String
-                            
-                            product.dateString = productDict["datePosted"] as! String
-                            
-                            if let likeCount = productDict["likeCount"] as? Int {
-                                product.likeCount = likeCount
-                            }
-                            
-                            product.originalBox = productDict["originalBox"] as! Bool
-                            if let year = productDict["releaseYear"] as? Int {
-                                product.releaseYear = year
-                            }
-                            if let desc = productDict["detailedDescription"] as? String {
-                                product.detailedDescription = desc
-                            }
-                            
-                            product.willingToShip = productDict["willingToShip"] as! Bool
-                            product.acceptsPayPal = productDict["acceptsPayPal"] as! Bool
-                            product.acceptsCash = productDict["acceptsCash"] as! Bool
-                            
-                            if let isSold = productDict["isSold"] as? Bool {
-                                product.isSold = isSold
-                            }
-                            
-                            self.amountOfProducts += 1
-                            
-                            self.products.insert(product, at: 0)
-                            
+                if let productDict = snapshot.value as? [String: AnyObject] {
+                    if let product = self.createProduct(with: productDict, with: snapshot.key) {
+                        self.amountOfProducts += 1
+                        
+                        self.products.insert(product, at: 0)
+                        
+                        if !self.isSearching {
                             self.collectionView.performBatchUpdates({
                                 self.collectionView.reloadSections(IndexSet(integer: 0))
                             }, completion: nil)
@@ -128,19 +120,12 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             })
             
             productRef!.observe(.childRemoved, with: { snapshot in
-                if let productDict = snapshot.value as? [String: Any] {
-                    if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
-                        if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
-                            let product = Product(withName: productDict["name"] as! String,
-                                                  model: jeepModel,
-                                                  price: productDict["price"] as! Float,
-                                                  condition: condition)
-                            
-                            product.uid = snapshot.key
-                            
-                            let index = self.indexOfMessage(product)
-                            self.products.remove(at: index)
-                            
+                if let productDict = snapshot.value as? [String: AnyObject] {
+                    if let product = self.createProduct(with: productDict, with: snapshot.key) {
+                        let index = self.indexOfMessage(product)
+                        self.products.remove(at: index)
+                        
+                        if !self.isSearching {
                             self.collectionView.performBatchUpdates({
                                 self.collectionView.reloadSections(IndexSet(integer: 0))
                             }, completion: nil)
@@ -156,7 +141,12 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         
         if selectionBar == nil {
             selectionBar = UIView()
-            selectionBar!.frame = CGRect(x: smallProductSortButton.frame.origin.x, y: smallProductSortButton.frame.origin.y + smallProductSortButton.frame.height - 2, width: smallProductSortButton.frame.width, height: 2)
+            if isWideViewType {
+                selectionBar!.frame = CGRect(x: wideProductSortButton.frame.origin.x, y: wideProductSortButton.frame.origin.y + wideProductSortButton.frame.height - 2, width: wideProductSortButton.frame.width, height: 2)
+                wideProductSortButton.sendActions(for: .touchUpInside)
+            } else {
+                selectionBar!.frame = CGRect(x: smallProductSortButton.frame.origin.x, y: smallProductSortButton.frame.origin.y + smallProductSortButton.frame.height - 2, width: smallProductSortButton.frame.width, height: 2)
+            }
             selectionBar!.backgroundColor = UIColor.white
             productViewTypeView.addSubview(selectionBar!)
         }
@@ -173,18 +163,12 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     // MARK: - CollectionView datasource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return products.count
+        return productArray().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plpContentCell", for: indexPath) as! ProductListingContentCollectionViewCell
-        let product = products[indexPath.row]
-        
-        if let likeCount = product.likeCount {
-            cell.likeCountLabel.text = "\(likeCount)"
-        } else {
-            cell.likeCountLabel.text = "0"
-        }
+        let product = productArray()[indexPath.row]
         
         cell.descriptionLabel.text = product.simplifiedDescription
         
@@ -209,15 +193,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let productCell = cell as? ProductListingContentCollectionViewCell {
-            productCell.productKey = products[indexPath.row].uid
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let productCell = cell as? ProductListingContentCollectionViewCell {
-            if let likesListener = productCell.likesListenerRef {
-                likesListener.removeAllObservers()
-            }
+            productCell.productKey = productArray()[indexPath.row].uid
         }
     }
     
@@ -226,12 +202,92 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         if let vc = storyboard.instantiateViewController(withIdentifier: "viewProductInfo") as? ProductViewerViewController {
             vc.modalPresentationStyle = .overCurrentContext
             
-            let product = products[indexPath.row]
+            let product = productArray()[indexPath.row]
             vc.product = product
             
             if let tabController = tabBarController {
                 PresentationCenter.manager.present(viewController: vc, sender: tabController)
             }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "productListingSearchBarHeader", for: indexPath) as! ProductListingCollectionReusableView
+            
+            header.searchBar.delegate = self
+            header.filterButton.addTarget(self, action: #selector(filterButtonPressed), for: .touchUpInside)
+            
+            header.searchBar.layer.borderWidth = 1.0
+            header.searchBar.layer.borderColor = header.searchBar.barTintColor?.cgColor
+            
+            if isSearching {
+                header.filterButton.setImage(nil, for: .normal)
+                header.filterButton.setTitle("Cancel", for: .normal)
+            }
+            
+            return header
+        default:
+            assert(false, "Supplementary view type not configured.")
+        }
+    }
+    
+    // MARK: - SearchBar delegate
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        let header = collectionView.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as! ProductListingCollectionReusableView
+        
+        header.filterButton.setImage(nil, for: .normal)
+        header.filterButton.setTitle("Cancel", for: .normal)
+        
+        isSearching = true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        let header = collectionView.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as! ProductListingCollectionReusableView
+        
+        header.searchBar.resignFirstResponder()
+        
+        self.searchedProducts.removeAll()
+        self.searchedAmountOfProducts = 0
+        
+        if let text = header.searchBar.text {
+            let query = FIRDatabase.database().reference().child("products").queryOrdered(byChild: "name").queryStarting(atValue: text).queryEnding(atValue: text + "\u{f8ff}").queryLimited(toFirst: 500)
+            query.observeSingleEvent(of: .value, with: { snapshot in
+                if let productsDict = snapshot.value as? [String: AnyObject] {
+                    for (key, value) in productsDict {
+                        if let productDict = value as? [String: AnyObject] {
+                            
+                            if let product = self.createProduct(with: productDict, with: key) {
+                                self.searchedProducts.append(product)
+                                self.searchedAmountOfProducts += 1
+                            }
+                            
+                        }
+                    }
+                    
+                    self.collectionView.performBatchUpdates({
+                        self.collectionView.reloadSections(IndexSet(integer: 0))
+                    }, completion: { done in
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        let header = self.collectionView.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as! ProductListingCollectionReusableView
+                        
+                        header.searchBar.text = text
+                    })
+                } else {
+                    self.collectionView.performBatchUpdates({
+                        self.collectionView.reloadSections(IndexSet(integer: 0))
+                    }, completion: { done in
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        let header = self.collectionView.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as! ProductListingCollectionReusableView
+                        
+                        header.searchBar.text = text
+                    })
+                }
+            })
         }
     }
     
@@ -241,6 +297,11 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         
         smallProductSortButton.imageView!.tintColor = UIColor.white
         wideProductSortButton.imageView!.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: floor(view.frame.height * (235/736)))
+        
+        KeychainWrapper.standard.set(ProductListingType.small, forKey: ProductListingType.key)
         
         UIView.animate(withDuration: 0.25, delay: 0.1, options: .curveEaseOut, animations: {
             self.selectionBar!.frame = CGRect(x: self.smallProductSortButton.frame.origin.x, y: self.smallProductSortButton.frame.origin.y + self.smallProductSortButton.frame.height - 2, width: self.smallProductSortButton.frame.width, height: 2)
@@ -252,9 +313,42 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         smallProductSortButton.imageView!.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)
         wideProductSortButton.imageView!.tintColor = UIColor.white
         
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: floor(view.frame.width * (394/414)), height: floor(view.frame.height * (235/736)))
+        
+        KeychainWrapper.standard.set(ProductListingType.wide, forKey: ProductListingType.key)
+        
         UIView.animate(withDuration: 0.25, delay: 0.1, options: .curveEaseOut, animations: {
             self.selectionBar!.frame = CGRect(x: self.wideProductSortButton.frame.origin.x, y: self.wideProductSortButton.frame.origin.y + self.wideProductSortButton.frame.height - 2, width: self.wideProductSortButton.frame.width, height: 2)
         }, completion: nil)
+    }
+    
+    @objc private func filterButtonPressed() {
+        if isSearching {
+            searchedProducts.removeAll()
+            
+            isSearching = false
+            
+            collectionView.performBatchUpdates({
+                self.collectionView.reloadSections(IndexSet(integer: 0))
+            }, completion: { done in
+                let indexPath = IndexPath(row: 0, section: 0)
+                let header = self.collectionView.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as! ProductListingCollectionReusableView
+                
+                header.searchBar.resignFirstResponder()
+                header.searchBar.text = ""
+                
+                header.filterButton.setTitle("", for: .normal)
+                header.filterButton.setImage(#imageLiteral(resourceName: "PLPFilters"), for: .normal)
+                
+                self.searchedAmountOfProducts = 0
+                
+                // Reset the counter to the counter of the feed.
+                let productCount = self.amountOfProducts
+                self.amountOfProducts = productCount
+            })
+            
+        }
     }
     
     // MARK: - Helpers
@@ -269,6 +363,57 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             index += 1
         }
         return -1
+    }
+    
+    private func createProduct(with productDict: [String: AnyObject], with key: String) -> Product? {
+        var product: Product?
+        
+        if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
+            if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
+                product = Product(withName: productDict["name"] as! String,
+                                      model: jeepModel,
+                                      price: productDict["price"] as! Float,
+                                      condition: condition)
+                
+                product!.uid = key
+                product!.ownerId = productDict["owner"] as! String
+                
+                product!.dateString = productDict["datePosted"] as! String
+                
+                if let likeCount = productDict["likeCount"] as? Int {
+                    product!.likeCount = likeCount
+                }
+                
+                product!.originalBox = productDict["originalBox"] as! Bool
+                if let year = productDict["releaseYear"] as? Int {
+                    product!.releaseYear = year
+                }
+                if let desc = productDict["detailedDescription"] as? String {
+                    product!.detailedDescription = desc
+                }
+                
+                product!.willingToShip = productDict["willingToShip"] as! Bool
+                product!.acceptsPayPal = productDict["acceptsPayPal"] as! Bool
+                product!.acceptsCash = productDict["acceptsCash"] as! Bool
+                
+                if let isSold = productDict["isSold"] as? Bool {
+                    product!.isSold = isSold
+                }
+            }
+        }
+        
+        return product
+    }
+    
+    private func productArray() -> [Product] {
+        var arrayToReturn: [Product]
+        if searchedProducts.count > 0 {
+            arrayToReturn = searchedProducts
+        } else {
+            arrayToReturn = products
+        }
+        
+        return arrayToReturn
     }
 
 }
