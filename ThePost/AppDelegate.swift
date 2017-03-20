@@ -13,6 +13,7 @@ import Crashlytics
 import TwitterKit
 import SwiftKeychainWrapper
 import FBSDKCoreKit
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         Fabric.with([Answers.self, Crashlytics.self, Twitter.self])
+        
+        OneSignal.initWithLaunchOptions(launchOptions, appId: "***REMOVED***", handleNotificationAction: nil, settings: ["kOSSettingsKeyAutoPrompt": false])
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

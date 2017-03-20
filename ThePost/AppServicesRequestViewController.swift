@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import SwiftKeychainWrapper
+import OneSignal
 
 class AppServicesRequestViewController: UIViewController {
 
@@ -21,8 +22,6 @@ class AppServicesRequestViewController: UIViewController {
     
     @IBOutlet weak var requestButton: UIButton!
     
-    private var originalContainerFrame: CGRect!
-    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -30,16 +29,13 @@ class AppServicesRequestViewController: UIViewController {
         
         requestButton.roundCorners()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        originalContainerFrame = containerView.frame
-    }
 
     // MARK: - Actions
 
     @IBAction func requestButtonPressed(_ sender: UIButton) {
+        
+        OneSignal.registerForPushNotifications()
+        
         performSegue(withIdentifier: "unwindToPresenting", sender: self)
     }
     

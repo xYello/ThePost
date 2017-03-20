@@ -132,7 +132,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
                         KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
-                        self.performSegue(withIdentifier: "showAppServicesRequestViewController", sender: self)
+                        if UIApplication.shared.isRegisteredForRemoteNotifications {
+                            self.performSegue(withIdentifier: "unwindToPresenting", sender: self)
+                        } else {
+                            self.performSegue(withIdentifier: "showAppServicesRequestViewController", sender: self)
+                        }
                     }
                 })
             }

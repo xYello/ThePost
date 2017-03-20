@@ -104,7 +104,12 @@ class WalkthroughViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     @objc func finishedButtonPressed() {
-        self.performSegue(withIdentifier: "appServicesRequestSegue", sender: nil)
+        
+        if UIApplication.shared.isRegisteredForRemoteNotifications {
+            performSegue(withIdentifier: "unwindToPresenting", sender: self)
+        } else {
+            performSegue(withIdentifier: "appServicesRequestSegue", sender: nil)
+        }
     }
 
 }
