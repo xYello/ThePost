@@ -378,6 +378,20 @@
 			name = "Product Listing";
 			sourceTree = "<group>";
 		};
+		4D23BC731E7F739900AE542F /* SignInUp */ = {
+			isa = PBXGroup;
+			children = (
+				4D5643381E4EAF7600064948 /* SignInUp.storyboard */,
+				4DE662281E6D127D00417EBB /* 1Password */,
+				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
+				4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */,
+				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
+				4D161BC71E26E97B001BEE9D /* SignInViewController.swift */,
+				4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */,
+			);
+			name = SignInUp;
+			sourceTree = "<group>";
+		};
 		4D23EC711E1F85B40001C045 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,17 +450,11 @@
 				4DD3CCC41E14DC8200821C7C /* Add New Product */,
 				4DC30D4E1E399DEF0087B447 /* Activity */,
 				4D34358B1E203E1900E031D7 /* Profile */,
-				4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */,
-				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
-				4D161BC71E26E97B001BEE9D /* SignInViewController.swift */,
-				4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */,
-				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
 				4DFB05AC1E118A4600BEACE2 /* Jeep Selector */,
 				4D5AB0AC1E24939F005BF23B /* Product Viewer */,
 				4D161BC91E2700BC001BEE9D /* Reviews */,
-				4DE662281E6D127D00417EBB /* 1Password */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
-				4D5643381E4EAF7600064948 /* SignInUp.storyboard */,
+				4D23BC731E7F739900AE542F /* SignInUp */,
 				4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */,
 				4D58C4DD1E0E1882004CA0E3 /* LaunchScreen.storyboard */,
 				4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */,
