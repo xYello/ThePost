@@ -280,13 +280,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         
         let productRef = FIRDatabase.database().reference().child("products").child(product.uid)
         incrementLikes(forRef: productRef)
-        productRef.observeSingleEvent(of: .value, with: { snapshot in
-            let value = snapshot.value as? NSDictionary
-            if let uid = value?["owner"] as? String {
-                let userProductRef = FIRDatabase.database().reference().child("user-products").child(uid).child(self.product.uid)
-                self.incrementLikes(forRef: userProductRef)
-            }
-        })
+
     }
     
     @IBAction func orangeButtonTapped(_ sender: UIButton) {
@@ -296,7 +290,6 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
                 // TODO: Delete the product for everywhere.
 //                FIRDatabase.database().reference().child("products").child(self.product.uid).removeValue()
-//                FIRDatabase.database().reference().child("user-products").child(FIRAuth.auth()!.currentUser!.uid).child(self.product.uid)
 //                FIRDatabase.database().reference().child("products-location").child(self.product.uid).removeValue()
 //                self.dismissParent()
             }))
@@ -399,13 +392,6 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         // Increment views
         let productRef = FIRDatabase.database().reference().child("products").child(product.uid)
         incrementViews(forRef: productRef.child("viewCount"))
-        productRef.observeSingleEvent(of: .value, with: { snapshot in
-            let value = snapshot.value as? NSDictionary
-            if let uid = value?["owner"] as? String {
-                let userProductRef = FIRDatabase.database().reference().child("user-products").child(uid).child(self.product.uid).child("viewCount")
-                self.incrementViews(forRef: userProductRef)
-            }
-        })
     }
     
     private func grabSellerInfo() {

@@ -673,7 +673,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                                                     
                                                     if imageOrder == self.storedPictures.count {
                                                         dbProduct["images"] = imageDictionary
-                                                        let productUpdates = ["/products/\(key)": dbProduct, "/user-products/\(userID)/\(key)": dbProduct]
+                                                        let productUpdates = ["/products/\(key)": dbProduct]
                                                         
                                                         // Save the completed product at the very end
                                                         self.ref.updateChildValues(productUpdates)

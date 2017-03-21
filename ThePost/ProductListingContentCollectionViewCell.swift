@@ -65,13 +65,6 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     @IBAction func likedProduct(_ sender: UIButton) {
         if let ref = ref {
             incrementLikes(forRef: ref)
-            ref.observeSingleEvent(of: .value, with: { snapshot in
-                let value = snapshot.value as? NSDictionary
-                if let uid = value?["owner"] as? String {
-                    let userProductRef = FIRDatabase.database().reference().child("user-products").child(uid).child(self.productKey!)
-                    self.incrementLikes(forRef: userProductRef)
-                }
-            })
         }
     }
     

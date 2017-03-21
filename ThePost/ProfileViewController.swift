@@ -57,7 +57,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     private var soldProducts: [Product] = []
     private var likedProducts: [Product] = []
     
-    private var userProductsRef: FIRDatabaseReference?
+    private var userProductsRef: FIRDatabaseQuery?
     private var likesQuery: FIRDatabaseQuery?
     
     private var badgeColor: UIColor = #colorLiteral(red: 0.9600599408, green: 0.6655590534, blue: 0.09231746942, alpha: 1)
@@ -202,7 +202,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             sellingProducts.removeAll()
             soldProducts.removeAll()
             
-            userProductsRef = FIRDatabase.database().reference().child("user-products").child(uid)
+            userProductsRef = FIRDatabase.database().reference().child("products").queryOrdered(byChild: "owner").queryStarting(atValue: uid).queryEnding(atValue: uid)
             setupProductListeners()
         }
         if likesQuery == nil {

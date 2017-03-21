@@ -301,8 +301,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     @objc private func greenButtonPressed() {
         if greenButton.currentTitle == "Mark Sold" {
             let productRef = FIRDatabase.database().reference()
-            let childUpdates = ["products/\(conversation.productID!)/isSold": true,
-                                "user-products/\(senderId!)/\(conversation.productID!)/isSold": true]
+            let childUpdates = ["products/\(conversation.productID!)/isSold": true]
             productRef.updateChildValues(childUpdates)
         } else if greenButton.currentTitle == "View Profile" {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
