@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
-        
+    
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         Fabric.with([Answers.self, Crashlytics.self, Twitter.self])
         
@@ -108,6 +108,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Error signing out")
             }
         }
+        
+        let rc = FIRRemoteConfig.remoteConfig()
+        rc.fetch(completionHandler: { status, error in
+            if let er = error {
+                // TODO: Update with error reporting.
+                print("Error getting remote config: \(er.localizedDescription)")
+            }
+            rc.activateFetched()
+        })
         
         return true
     }

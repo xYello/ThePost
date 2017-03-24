@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseStorageUI
+import OneSignal
 
 class ProductListingContentCollectionViewCell: UICollectionViewCell {
     
@@ -93,6 +94,8 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                     
                     let userLikesUpdate = [self.productKey!: true]
                     userLikesRef.updateChildValues(userLikesUpdate)
+                    
+                    PushNotification.sender.pushLiked(withProductName: product["name"] as! String, withRecipientId: product["owner"] as! String)
                     
                     DispatchQueue.main.async {
                         self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconLiked"), for: .normal)

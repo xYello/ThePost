@@ -282,6 +282,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         
         let messageItem = ["senderId": senderId, "senderName": senderDisplayName, "text": text, "time": now] as [String: String]
         
+        PushNotification.sender.pushChat(withMessage: text, withRecipientId: conversation.otherPersonId)
         itemRef.setValue(messageItem)
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         

@@ -39,6 +39,7 @@
 		4D161BCD1E2710C2001BEE9D /* CreateReviewContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D161BCC1E2710C2001BEE9D /* CreateReviewContainerViewController.swift */; };
 		4D1667311E4FBFBB0092FDFB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1667301E4FBFBB0092FDFB /* SettingsViewController.swift */; };
 		4D1667351E4FC06F0092FDFB /* SettingsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */; };
+		4D17F2031E85911F000BEAAB /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17F2021E85911F000BEAAB /* PushNotification.swift */; };
 		4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */; };
 		4D239C421E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */; };
 		4D239C441E131BBE00F2668E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C431E131BBE00F2668E /* Product.swift */; };
@@ -168,6 +169,7 @@
 		4D161BCC1E2710C2001BEE9D /* CreateReviewContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateReviewContainerViewController.swift; sourceTree = "<group>"; };
 		4D1667301E4FBFBB0092FDFB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsContainerViewController.swift; sourceTree = "<group>"; };
+		4D17F2021E85911F000BEAAB /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		4D1BC6621E7DBEE50068EAF9 /* ThePost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThePost.entitlements; sourceTree = "<group>"; };
 		4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingViewController.swift; sourceTree = "<group>"; };
 		4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingContentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				60C2ED5C1E29C6DA00ED83EA /* Constants.swift */,
 				4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */,
+				4D17F2021E85911F000BEAAB /* PushNotification.swift */,
 				4D14F6D81E31B4F800AF71F8 /* Extensions */,
 				4D14F6D71E31B4E500AF71F8 /* Models */,
 				4DD1BC9B1E0E251E005F4800 /* Sub Classes */,
@@ -954,6 +957,7 @@
 				4D581B5E1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift in Sources */,
 				4DD3CCC31E14C59C00821C7C /* AddNewProductViewController.swift in Sources */,
 				4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */,
+				4D17F2031E85911F000BEAAB /* PushNotification.swift in Sources */,
 				4D1667311E4FBFBB0092FDFB /* SettingsViewController.swift in Sources */,
 				4D5AB0B21E249418005BF23B /* ProductViewerContainerViewController.swift in Sources */,
 				4D161BCB1E2700EC001BEE9D /* CreateReviewViewController.swift in Sources */,
