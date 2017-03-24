@@ -456,6 +456,8 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                     likeCount += 1
                     likes[uid] = true
                     
+                    PushNotification.sender.pushLiked(withProductName: product["name"] as! String, withRecipientId: product["owner"] as! String)
+                    
                     let userLikesUpdate = [self.product.uid: true]
                     userLikesRef.updateChildValues(userLikesUpdate)
                 }
