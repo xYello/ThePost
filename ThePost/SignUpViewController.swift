@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import OneSignal
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
 
@@ -212,6 +213,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
                     self.ref.child("users").child(user.uid).setValue(["fullName": self.usernameTextField.text, "email": self.emailTextField.text])
                     self.ref.child("users").child(user.uid).child("isOnline").setValue(true)
+                    self.saveOneSignalId()
                     self.performSegue(withIdentifier: "walkthroughSegue", sender: self)
                 }
             })
@@ -304,6 +306,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 }
             } else {
                 confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            }
+        }
+    }
+    
+    // MARK: - Firebase
+    
+    private func saveOneSignalId() {
+        OneSignal.idsAvailable() { userId, pushToken in
+            if let id = userId {
+                let ref = self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
+                ref.observeSingleEvent(of: .value, with: { snapshot in
+                    if var ids = snapshot.value as? [String: Bool] {
+                        ids[id] = true
+                        ref.updateChildValues(ids)
+                    } else {
+                        let ids = [id: true]
+                        ref.updateChildValues(ids)
+                    }
+                })
             }
         }
     }
