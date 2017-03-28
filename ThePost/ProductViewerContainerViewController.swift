@@ -221,7 +221,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             
             sellerCell.amountOfStars = seller.starRating
             
-            sellerCell.sellerImageView.sd_setImage(with: seller.profileUrl, placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
+            sellerCell.sellerImageView.sd_setImage(with: seller.profileUrl, placeholderImage: #imageLiteral(resourceName: "DefaultProfilePicture"))
             
             cell = sellerCell
         } else if type == .exCheck {

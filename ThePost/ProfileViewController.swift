@@ -339,7 +339,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                                 let stringUrl = url.absoluteString
                                 
                                 FIRDatabase.database().reference().child("users").child(uid).child("profileImage").setValue(stringUrl)
-                                self.profileImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
+                                self.profileImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultProfilePicture"))
                             }
                         }
                     }
@@ -485,7 +485,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let urlString = snapshot.value as? String {
                 let url = URL(string: urlString)
-                self.profileImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
+                self.profileImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultProfilePicture"))
             }
         })
     }

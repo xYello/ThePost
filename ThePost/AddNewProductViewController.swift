@@ -491,7 +491,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         animator.addBehavior(gravity)
         
         let item = UIDynamicItemBehavior(items: [container])
-        item.addAngularVelocity(-CGFloat(M_PI_2), for: container)
+        item.addAngularVelocity(-CGFloat.pi / 2, for: container)
         animator.addBehavior(item)
         
         UIView.animate(withDuration: 0.25, animations: {

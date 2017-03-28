@@ -44,19 +44,19 @@ class ActivityViewController: UIViewController, UITableViewDataSource {
         if activityType == .review {
             let reviewCell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as! NewReviewActivityTableViewCell
             
-            reviewCell.profileImageView.image = #imageLiteral(resourceName: "ETHANPROFILESAMPLE")
+            reviewCell.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")
             
             cell = reviewCell
         } else if activityType == .sold {
             let soldCell = tableView.dequeueReusableCell(withIdentifier: "soldCell", for: indexPath) as! SoldActivityTableViewCell
             
-            soldCell.profileImageView.image = #imageLiteral(resourceName: "ETHANPROFILESAMPLE")
+            soldCell.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")
             
             cell = soldCell
         } else if activityType == .like {
             let likeCell = tableView.dequeueReusableCell(withIdentifier: "likeCell", for: indexPath) as! LikedProductActivityTableViewCell
             
-            likeCell.profileImageView.image = #imageLiteral(resourceName: "ETHANPROFILESAMPLE")
+            likeCell.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")
             
             likeCell.nameLabel.text = "CALEB ANDREWS"
             

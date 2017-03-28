@@ -259,7 +259,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
                                 senderId: true]
             conversationRef!.child("participants").updateChildValues(participants)
             
-            let productID = ["productID": conversation.productID]
+            let productID = ["productID": conversation.productID] as [String: String]
             conversationRef!.updateChildValues(productID)
             
             let userChatsRef = FIRDatabase.database().reference().child("user-chats")

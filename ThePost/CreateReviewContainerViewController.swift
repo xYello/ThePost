@@ -360,7 +360,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                     }
                 }
                 if let profileUrl = userDict["profileImage"] as? String {
-                    self.imageView.sd_setImage(with: URL(string: profileUrl), placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
+                    self.imageView.sd_setImage(with: URL(string: profileUrl), placeholderImage: #imageLiteral(resourceName: "DefaultProfilePicture"))
                 }
             }
         })
