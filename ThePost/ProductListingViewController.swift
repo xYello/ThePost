@@ -95,6 +95,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             navBar.clipsToBounds = true
         }
         
+        FIRAuth.auth()?.addStateDidChangeListener() { auth, user in
+            self.collectionView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

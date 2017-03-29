@@ -52,6 +52,12 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        if FIRAuth.auth()?.currentUser == nil {
+            likeButton.isHidden = true
+        } else {
+            likeButton.isHidden = false
+        }
+        
         imageView.removeConstraint(imageViewAspectRatioConstraint)
         if frame.width > frame.height {
             imageViewAspectRatioConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .width, multiplier: 140/393, constant: 1.0)
