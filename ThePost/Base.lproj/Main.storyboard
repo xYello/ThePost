@@ -991,10 +991,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWV-7K-tOG">
-                                                    <rect key="frame" x="182" y="5" width="25" height="25"/>
+                                                    <rect key="frame" x="176" y="5" width="31" height="31"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="25" id="TGH-fj-LdW"/>
-                                                        <constraint firstAttribute="height" constant="25" id="UrO-xB-y3s"/>
+                                                        <constraint firstAttribute="width" constant="31" id="TGH-fj-LdW"/>
+                                                        <constraint firstAttribute="height" constant="31" id="UrO-xB-y3s"/>
                                                     </constraints>
                                                     <state key="normal" image="LikeIconNotLiked"/>
                                                     <connections>
