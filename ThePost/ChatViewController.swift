@@ -347,7 +347,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     }
     
     private func observeMessages() {
-        messageQueryRef = messageRef.queryLimited(toLast: 25)
+        messageQueryRef = messageRef.queryLimited(toLast: 200)
         
         messageQueryRef!.observe(.childAdded, with: { snapshot in
             if let messageDict = snapshot.value as? [String: String] {
