@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B391E0B6F16F06AFE90E4E1 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3F20F3926EF5DBA8071722 /* libPods-OneSignalNotificationServiceExtension.a */; };
 		2F5450BB1E537433005A88A3 /* JeepSocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */; };
 		2FB607121E748E310053B41D /* UploadSocialPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */; };
 		4D04C52F1E0EFCDD004B2264 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */; };
@@ -40,6 +41,7 @@
 		4D161BCD1E2710C2001BEE9D /* CreateReviewContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D161BCC1E2710C2001BEE9D /* CreateReviewContainerViewController.swift */; };
 		4D1667311E4FBFBB0092FDFB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1667301E4FBFBB0092FDFB /* SettingsViewController.swift */; };
 		4D1667351E4FC06F0092FDFB /* SettingsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */; };
+		4D17F2031E85911F000BEAAB /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17F2021E85911F000BEAAB /* PushNotification.swift */; };
 		4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */; };
 		4D239C421E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */; };
 		4D239C441E131BBE00F2668E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C431E131BBE00F2668E /* Product.swift */; };
@@ -72,6 +74,8 @@
 		4D907B561E13824D00F9FD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D907B551E13824D00F9FD8B /* User.swift */; };
 		4DA153F31E22EA6D00708543 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA153F21E22EA6D00708543 /* ChatViewController.swift */; };
 		4DA153F51E22EB1300708543 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA153F41E22EB1300708543 /* Conversation.swift */; };
+		4DA2343E1E7DB709006B5192 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA2343D1E7DB709006B5192 /* NotificationService.swift */; };
+		4DA234421E7DB709006B5192 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4DA2343B1E7DB709006B5192 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4DBF61E31E29C26600D07AD5 /* ReviewsSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61E21E29C26600D07AD5 /* ReviewsSummaryViewController.swift */; };
 		4DBF61E51E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61E41E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift */; };
 		4DBF61E71E29CA3100D07AD5 /* PercentageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61E61E29CA3100D07AD5 /* PercentageBar.swift */; };
@@ -105,13 +109,37 @@
 			remoteGlobalIDString = 4D58C4D01E0E1882004CA0E3;
 			remoteInfo = ThePost;
 		};
+		4DA234401E7DB709006B5192 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4D58C4C91E0E1882004CA0E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4DA2343A1E7DB709006B5192;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4DA234461E7DB709006B5192 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4DA234421E7DB709006B5192 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSocialTableViewCell.swift; sourceTree = "<group>"; };
 		2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadSocialPostViewController.swift; sourceTree = "<group>"; };
-		30978BC6E6F818A1CEECDF91 /* Pods-ThePost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.release.xcconfig"; sourceTree = "<group>"; };
-		3F7EFD2CC482666CE29ABBC5 /* Pods-ThePost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.debug.xcconfig"; sourceTree = "<group>"; };
+		2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSocialTableViewCell.swift; sourceTree = "<group>"; };
+		003D95A1F4EC93A459F3C5FB /* Pods-ThePost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.release.xcconfig"; sourceTree = "<group>"; };
+		10B6FA8DB52DADD10DE2460E /* Pods_ThePostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AFDBA5990DDCDE5DE135C8A /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		4B3F20F3926EF5DBA8071722 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BB05D7DCF829521945D7A74 /* Pods-ThePost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.debug.xcconfig"; sourceTree = "<group>"; };
 		4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "Fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
 		4D04C51D1E0EFCDD004B2264 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "Fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		4D04C51E1E0EFCDD004B2264 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "Fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -143,6 +171,8 @@
 		4D161BCC1E2710C2001BEE9D /* CreateReviewContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateReviewContainerViewController.swift; sourceTree = "<group>"; };
 		4D1667301E4FBFBB0092FDFB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsContainerViewController.swift; sourceTree = "<group>"; };
+		4D17F2021E85911F000BEAAB /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
+		4D1BC6621E7DBEE50068EAF9 /* ThePost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThePost.entitlements; sourceTree = "<group>"; };
 		4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingViewController.swift; sourceTree = "<group>"; };
 		4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D239C431E131BBE00F2668E /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -180,6 +210,9 @@
 		4D907B551E13824D00F9FD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4DA153F21E22EA6D00708543 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		4DA153F41E22EB1300708543 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		4DA2343B1E7DB709006B5192 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DA2343D1E7DB709006B5192 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		4DA2343F1E7DB709006B5192 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DBF61E21E29C26600D07AD5 /* ReviewsSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsSummaryViewController.swift; sourceTree = "<group>"; };
 		4DBF61E41E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsSummaryContainerViewController.swift; sourceTree = "<group>"; };
 		4DBF61E61E29CA3100D07AD5 /* PercentageBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentageBar.swift; sourceTree = "<group>"; };
@@ -203,7 +236,10 @@
 		507095285936BB872350682F /* Pods-ThePostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests.debug.xcconfig"; sourceTree = "<group>"; };
 		60C2ED5C1E29C6DA00ED83EA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		63AE588E5DF1112BCFB64512 /* Pods_ThePost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74C0BA0DD496C8EA8733E705 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		97815500D137A396FE8B373F /* Pods-ThePost-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost-OneSignalNotificationServiceExtension/Pods-ThePost-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		A3C893FA9A5FCFF3581535CB /* Pods-ThePostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests.release.xcconfig"; sourceTree = "<group>"; };
+		F30F149387422EC087DE74BA /* Pods-ThePost-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost-OneSignalNotificationServiceExtension/Pods-ThePost-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		CE2470422437B4EA1FBAA716 /* Pods_ThePostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -225,6 +261,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4DA234381E7DB709006B5192 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B391E0B6F16F06AFE90E4E1 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -233,6 +277,10 @@
 			children = (
 				507095285936BB872350682F /* Pods-ThePostTests.debug.xcconfig */,
 				A3C893FA9A5FCFF3581535CB /* Pods-ThePostTests.release.xcconfig */,
+				F30F149387422EC087DE74BA /* Pods-ThePost-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				97815500D137A396FE8B373F /* Pods-ThePost-OneSignalNotificationServiceExtension.release.xcconfig */,
+				74C0BA0DD496C8EA8733E705 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				4AFDBA5990DDCDE5DE135C8A /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
 				3F7EFD2CC482666CE29ABBC5 /* Pods-ThePost.debug.xcconfig */,
 				30978BC6E6F818A1CEECDF91 /* Pods-ThePost.release.xcconfig */,
 			);
@@ -243,7 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				63AE588E5DF1112BCFB64512 /* Pods_ThePost.framework */,
-				CE2470422437B4EA1FBAA716 /* Pods_ThePostTests.framework */,
+				10B6FA8DB52DADD10DE2460E /* Pods_ThePostTests.framework */,
+				4B3F20F3926EF5DBA8071722 /* libPods-OneSignalNotificationServiceExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -332,6 +381,20 @@
 			name = "Product Listing";
 			sourceTree = "<group>";
 		};
+		4D23BC731E7F739900AE542F /* SignInUp */ = {
+			isa = PBXGroup;
+			children = (
+				4D5643381E4EAF7600064948 /* SignInUp.storyboard */,
+				4DE662281E6D127D00417EBB /* 1Password */,
+				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
+				4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */,
+				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
+				4D161BC71E26E97B001BEE9D /* SignInViewController.swift */,
+				4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */,
+			);
+			name = SignInUp;
+			sourceTree = "<group>";
+		};
 		4D23EC711E1F85B40001C045 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +421,7 @@
 			children = (
 				4D58C4D31E0E1882004CA0E3 /* ThePost */,
 				4D58C4E81E0E1883004CA0E3 /* ThePostTests */,
+				4DA2343C1E7DB709006B5192 /* OneSignalNotificationServiceExtension */,
 				4D58C4D21E0E1882004CA0E3 /* Products */,
 				4D04C51B1E0EFCD1004B2264 /* Fonts */,
 				3338193B4FD98EB5823532E7 /* Pods */,
@@ -370,6 +434,7 @@
 			children = (
 				4D58C4D11E0E1882004CA0E3 /* ThePost.app */,
 				4D58C4E51E0E1883004CA0E3 /* ThePostTests.xctest */,
+				4DA2343B1E7DB709006B5192 /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -380,6 +445,7 @@
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				60C2ED5C1E29C6DA00ED83EA /* Constants.swift */,
 				4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */,
+				4D17F2021E85911F000BEAAB /* PushNotification.swift */,
 				4D14F6D81E31B4F800AF71F8 /* Extensions */,
 				4D14F6D71E31B4E500AF71F8 /* Models */,
 				4DD1BC9B1E0E251E005F4800 /* Sub Classes */,
@@ -388,21 +454,16 @@
 				4DD3CCC41E14DC8200821C7C /* Add New Product */,
 				4DC30D4E1E399DEF0087B447 /* Activity */,
 				4D34358B1E203E1900E031D7 /* Profile */,
-				4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */,
-				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
-				4D161BC71E26E97B001BEE9D /* SignInViewController.swift */,
-				4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */,
-				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
 				4DFB05AC1E118A4600BEACE2 /* Jeep Selector */,
 				4D5AB0AC1E24939F005BF23B /* Product Viewer */,
 				4D161BC91E2700BC001BEE9D /* Reviews */,
-				4DE662281E6D127D00417EBB /* 1Password */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
-				4D5643381E4EAF7600064948 /* SignInUp.storyboard */,
+				4D23BC731E7F739900AE542F /* SignInUp */,
 				4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */,
 				4D58C4DD1E0E1882004CA0E3 /* LaunchScreen.storyboard */,
 				4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */,
 				4D58C4E01E0E1882004CA0E3 /* Info.plist */,
+				4D1BC6621E7DBEE50068EAF9 /* ThePost.entitlements */,
 			);
 			path = ThePost;
 			sourceTree = "<group>";
@@ -462,6 +523,15 @@
 				4DA153F21E22EA6D00708543 /* ChatViewController.swift */,
 			);
 			name = "Individual Conversation";
+			sourceTree = "<group>";
+		};
+		4DA2343C1E7DB709006B5192 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				4DA2343D1E7DB709006B5192 /* NotificationService.swift */,
+				4DA2343F1E7DB709006B5192 /* Info.plist */,
+			);
+			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		4DBF61E81E29DED500D07AD5 /* Summary */ = {
@@ -577,10 +647,12 @@
 				4D907B571E1397FB00F9FD8B /* Fabric Run Script */,
 				D88F1244ED4A79B931C2C532 /* [CP] Embed Pods Frameworks */,
 				1C4DDA71AF72728357EB4EDC /* [CP] Copy Pods Resources */,
+				4DA234461E7DB709006B5192 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4DA234411E7DB709006B5192 /* PBXTargetDependency */,
 			);
 			name = ThePost;
 			productName = ThePost;
@@ -608,6 +680,25 @@
 			productReference = 4D58C4E51E0E1883004CA0E3 /* ThePostTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		4DA2343A1E7DB709006B5192 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4DA234431E7DB709006B5192 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				23AF2CCCEB3972C029F60421 /* [CP] Check Pods Manifest.lock */,
+				4DA234371E7DB709006B5192 /* Sources */,
+				4DA234381E7DB709006B5192 /* Frameworks */,
+				4DA234391E7DB709006B5192 /* Resources */,
+				1E80E40FEDF12A919E044691 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneSignalNotificationServiceExtension;
+			productName = OneSignalNotificationServiceExtension;
+			productReference = 4DA2343B1E7DB709006B5192 /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -623,12 +714,30 @@
 						DevelopmentTeam = S228NG5K95;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					4D58C4E41E0E1883004CA0E3 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = ZP73CTVZZ8;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 4D58C4D01E0E1882004CA0E3;
+					};
+					4DA2343A1E7DB709006B5192 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 2ZSZVH3P4S;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -647,6 +756,7 @@
 			targets = (
 				4D58C4D01E0E1882004CA0E3 /* ThePost */,
 				4D58C4E41E0E1883004CA0E3 /* ThePostTests */,
+				4DA2343A1E7DB709006B5192 /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -691,6 +801,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4DA234391E7DB709006B5192 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -707,6 +824,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ThePost/Pods-ThePost-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E80E40FEDF12A919E044691 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		23AF2CCCEB3972C029F60421 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		27AC154F402845359994E82F /* [CP] Copy Pods Resources */ = {
@@ -810,6 +957,7 @@
 				4D581B5E1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift in Sources */,
 				4DD3CCC31E14C59C00821C7C /* AddNewProductViewController.swift in Sources */,
 				4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */,
+				4D17F2031E85911F000BEAAB /* PushNotification.swift in Sources */,
 				4D1667311E4FBFBB0092FDFB /* SettingsViewController.swift in Sources */,
 				2FB607121E748E310053B41D /* UploadSocialPostViewController.swift in Sources */,
 				4D5AB0B21E249418005BF23B /* ProductViewerContainerViewController.swift in Sources */,
@@ -875,6 +1023,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4DA234371E7DB709006B5192 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DA2343E1E7DB709006B5192 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -882,6 +1038,11 @@
 			isa = PBXTargetDependency;
 			target = 4D58C4D01E0E1882004CA0E3 /* ThePost */;
 			targetProxy = 4D58C4E61E0E1883004CA0E3 /* PBXContainerItemProxy */;
+		};
+		4DA234411E7DB709006B5192 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4DA2343A1E7DB709006B5192 /* OneSignalNotificationServiceExtension */;
+			targetProxy = 4DA234401E7DB709006B5192 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1002,8 +1163,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F7EFD2CC482666CE29ABBC5 /* Pods-ThePost.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ThePost/ThePost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1023,8 +1186,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30978BC6E6F818A1CEECDF91 /* Pods-ThePost.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ThePost/ThePost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1071,6 +1236,38 @@
 			};
 			name = Release;
 		};
+		4DA234441E7DB709006B5192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74C0BA0DD496C8EA8733E705 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		4DA234451E7DB709006B5192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AFDBA5990DDCDE5DE135C8A /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1097,6 +1294,15 @@
 			buildConfigurations = (
 				4D58C4F21E0E1883004CA0E3 /* Debug */,
 				4D58C4F31E0E1883004CA0E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4DA234431E7DB709006B5192 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4DA234441E7DB709006B5192 /* Debug */,
+				4DA234451E7DB709006B5192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

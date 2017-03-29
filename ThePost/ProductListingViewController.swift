@@ -35,9 +35,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             if amountOfProducts == 0 {
             numberOfProductsLabel.text = "No products to display"
             } else if amountOfProducts == 1 {
-                numberOfProductsLabel.text = "1 product"
+                numberOfProductsLabel.text = "Viewing 1 product"
             } else {
-                numberOfProductsLabel.text = "\(amountOfProducts) products"
+                numberOfProductsLabel.text = "Viewing \(amountOfProducts) products"
             }
         }
     }
@@ -47,9 +47,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             if searchedAmountOfProducts == 0 {
                 numberOfProductsLabel.text = "No products to display"
             } else if searchedAmountOfProducts == 1 {
-                numberOfProductsLabel.text = "1 product"
+                numberOfProductsLabel.text = "Viewing 1 product"
             } else {
-                numberOfProductsLabel.text = "\(searchedAmountOfProducts) products"
+                numberOfProductsLabel.text = "Viewing \(searchedAmountOfProducts) products"
             }
         }
     }
@@ -95,6 +95,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             navBar.clipsToBounds = true
         }
         
+        FIRAuth.auth()?.addStateDidChangeListener() { auth, user in
+            self.collectionView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,18 +106,23 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         if productRef == nil {
             productRef = ref.child("products")
             
-            productRef!.observe(.childAdded, with: { snapshot in
+            let query = productRef!.queryOrdered(byChild: "jeepModel").queryStarting(atValue: jeepModel.type.description).queryEnding(atValue: jeepModel.type.description).queryLimited(toLast: 200)
+            query.observe(.childAdded, with: { snapshot in
                 if let productDict = snapshot.value as? [String: AnyObject] {
                     if let product = self.createProduct(with: productDict, with: snapshot.key) {
-                        self.amountOfProducts += 1
                         
-                        self.products.insert(product, at: 0)
-                        
-                        if !self.isSearching {
-                            self.collectionView.performBatchUpdates({
-                                self.collectionView.reloadSections(IndexSet(integer: 0))
-                            }, completion: nil)
+                        if self.indexOfProduct(product) == -1 {
+                            self.amountOfProducts += 1
+                            
+                            self.products.insert(product, at: 0)
+                            
+                            if !self.isSearching {
+                                self.collectionView.performBatchUpdates({
+                                    self.collectionView.reloadSections(IndexSet(integer: 0))
+                                }, completion: nil)
+                            }
                         }
+                        
                     }
                 }
             })
@@ -122,14 +130,19 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             productRef!.observe(.childRemoved, with: { snapshot in
                 if let productDict = snapshot.value as? [String: AnyObject] {
                     if let product = self.createProduct(with: productDict, with: snapshot.key) {
-                        let index = self.indexOfMessage(product)
-                        self.products.remove(at: index)
+                        let index = self.indexOfProduct(product)
                         
-                        if !self.isSearching {
-                            self.collectionView.performBatchUpdates({
-                                self.collectionView.reloadSections(IndexSet(integer: 0))
-                            }, completion: nil)
+                        if index != -1 {
+                            self.amountOfProducts -= 1
+                            self.products.remove(at: index)
+                            
+                            if !self.isSearching {
+                                self.collectionView.performBatchUpdates({
+                                    self.collectionView.reloadSections(IndexSet(integer: 0))
+                                }, completion: nil)
+                            }
                         }
+                        
                     }
                 }
             })
@@ -353,7 +366,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     // MARK: - Helpers
     
-    private func indexOfMessage(_ snapshot: Product) -> Int {
+    private func indexOfProduct(_ snapshot: Product) -> Int {
         var index = 0
         for product in self.products {
             
@@ -378,7 +391,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                 product!.uid = key
                 product!.ownerId = productDict["owner"] as! String
                 
-                product!.dateString = productDict["datePosted"] as! String
+                product!.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval)
                 
                 if let likeCount = productDict["likeCount"] as? Int {
                     product!.likeCount = likeCount

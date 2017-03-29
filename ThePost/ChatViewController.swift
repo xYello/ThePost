@@ -259,7 +259,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
                                 senderId: true]
             conversationRef!.child("participants").updateChildValues(participants)
             
-            let productID = ["productID": conversation.productID]
+            let productID = ["productID": conversation.productID] as [String: String]
             conversationRef!.updateChildValues(productID)
             
             let userChatsRef = FIRDatabase.database().reference().child("user-chats")
@@ -282,6 +282,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         
         let messageItem = ["senderId": senderId, "senderName": senderDisplayName, "text": text, "time": now] as [String: String]
         
+        PushNotification.sender.pushChat(withMessage: text, withRecipientId: conversation.otherPersonId)
         itemRef.setValue(messageItem)
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
@@ -301,8 +302,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     @objc private func greenButtonPressed() {
         if greenButton.currentTitle == "Mark Sold" {
             let productRef = FIRDatabase.database().reference()
-            let childUpdates = ["products/\(conversation.productID!)/isSold": true,
-                                "user-products/\(senderId!)/\(conversation.productID!)/isSold": true]
+            let childUpdates = ["products/\(conversation.productID!)/isSold": true]
             productRef.updateChildValues(childUpdates)
         } else if greenButton.currentTitle == "View Profile" {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -347,7 +347,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     }
     
     private func observeMessages() {
-        messageQueryRef = messageRef.queryLimited(toLast: 25)
+        messageQueryRef = messageRef.queryLimited(toLast: 200)
         
         messageQueryRef!.observe(.childAdded, with: { snapshot in
             if let messageDict = snapshot.value as? [String: String] {
@@ -386,7 +386,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
                         product.uid = snapshot.key
                         product.ownerId = productDict["owner"] as! String
                         
-                        product.dateString = productDict["datePosted"] as! String
+                        product.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval)
                         
                         if let likeCount = productDict["likeCount"] as? Int {
                             product.likeCount = likeCount

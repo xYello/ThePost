@@ -244,7 +244,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
             socialButton.alpha = 0.0
             socialButton.setImage(#imageLiteral(resourceName: "NewPostSocial"), for: .normal)
             socialButton.addTarget(self, action: #selector(openSocialPost), for: .touchUpInside)
-            socialButton.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI_2))
+            socialButton.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
             view.insertSubview(socialButton, belowSubview: tabBar)
             
             socialLabel = UILabel()
@@ -294,7 +294,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                 self.backgroundCover.alpha = 1.0
                 
                 self.socialButton.transform = CGAffineTransform(rotationAngle: 0.0)
-                views[2].transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+                views[2].transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
             }, completion: { done in
                 UIView.animate(withDuration: 0.25, animations: {
                     self.socialLabel.alpha = 1.0

@@ -46,20 +46,12 @@ class Product: NSObject {
     var price: Float!
     var condition: Condition!
     var likeCount: Int?
-    var dateString: String!
-    var date: Date! {
-        get {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MM/dd/yy HH:mm:ss"
-            formatter.timeZone = TimeZone(identifier: "America/New_York")
-            return formatter.date(from: dateString)
-        }
-    }
+    var postedDate: Date!
     var relativeDate: String! {
         get {
             let now = Date()
             
-            let components = Calendar.current.dateComponents([.year, .month, .weekOfYear, .day, .hour, .minute, .second], from: date, to: now)
+            let components = Calendar.current.dateComponents([.year, .month, .weekOfYear, .day, .hour, .minute, .second], from: postedDate, to: now)
             
             if let years = components.year, years > 0 {
                 return "\(years) year\(years == 1 ? "" : "s") ago"

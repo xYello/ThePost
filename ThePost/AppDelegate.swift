@@ -13,6 +13,7 @@ import Crashlytics
 import TwitterKit
 import SwiftKeychainWrapper
 import FBSDKCoreKit
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,8 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
+    
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         Fabric.with([Answers.self, Crashlytics.self, Twitter.self])
+        
+        OneSignal.initWithLaunchOptions(launchOptions, appId: "***REMOVED***", handleNotificationAction: nil, settings: ["kOSSettingsKeyAutoPrompt": false])
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -103,6 +108,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Error signing out")
             }
         }
+        
+        let rc = FIRRemoteConfig.remoteConfig()
+        rc.fetch(completionHandler: { status, error in
+            if let er = error {
+                // TODO: Update with error reporting.
+                print("Error getting remote config: \(er.localizedDescription)")
+            }
+            rc.activateFetched()
+        })
         
         return true
     }

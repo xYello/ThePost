@@ -12,20 +12,28 @@ target 'ThePost' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/RemoteConfig'
   pod 'FirebaseUI'
 
   # Fabric
   pod 'Crashlytics'
-  
+
   # SwiftKeychainWrapper
   pod 'SwiftKeychainWrapper'
-  
+
   # JSQMessagesViewController
   pod 'JSQMessagesViewController'
-  
+
+  # OneSignal
+  pod 'OneSignal', '~> 2.0'
+
   target 'ThePostTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
+end
+
+target 'OneSignalNotificationServiceExtension' do
+  pod 'OneSignal', '~> 2.0'
 end

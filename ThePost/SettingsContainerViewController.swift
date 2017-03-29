@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 import FBSDKLoginKit
+import OneSignal
 
 class SettingsContainerViewController: UIViewController {
     
@@ -118,7 +119,14 @@ class SettingsContainerViewController: UIViewController {
     }
     
     @IBAction func wantsToLogout(_ sender: UIButton) {
-        FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").removeValue()
+        let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid)
+        ref.child("isOnline").removeValue()
+        
+        OneSignal.idsAvailable() { userId, pushToken in
+            if let id = userId {
+                ref.child("pushNotificationIds").child(id).removeValue()
+            }
+        }
         
         do {
             try FIRAuth.auth()?.signOut()

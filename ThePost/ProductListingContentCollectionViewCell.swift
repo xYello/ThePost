@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseStorageUI
+import OneSignal
 
 class ProductListingContentCollectionViewCell: UICollectionViewCell {
     
@@ -51,6 +52,12 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        if FIRAuth.auth()?.currentUser == nil {
+            likeButton.isHidden = true
+        } else {
+            likeButton.isHidden = false
+        }
+        
         imageView.removeConstraint(imageViewAspectRatioConstraint)
         if frame.width > frame.height {
             imageViewAspectRatioConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .width, multiplier: 140/393, constant: 1.0)
@@ -65,13 +72,6 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     @IBAction func likedProduct(_ sender: UIButton) {
         if let ref = ref {
             incrementLikes(forRef: ref)
-            ref.observeSingleEvent(of: .value, with: { snapshot in
-                let value = snapshot.value as? NSDictionary
-                if let uid = value?["owner"] as? String {
-                    let userProductRef = FIRDatabase.database().reference().child("user-products").child(uid).child(self.productKey!)
-                    self.incrementLikes(forRef: userProductRef)
-                }
-            })
         }
     }
     
@@ -100,6 +100,8 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                     
                     let userLikesUpdate = [self.productKey!: true]
                     userLikesRef.updateChildValues(userLikesUpdate)
+                    
+                    PushNotification.sender.pushLiked(withProductName: product["name"] as! String, withRecipientId: product["owner"] as! String)
                     
                     DispatchQueue.main.async {
                         self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconLiked"), for: .normal)

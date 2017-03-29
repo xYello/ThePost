@@ -11,6 +11,7 @@ import Firebase
 import FBSDKLoginKit
 import TwitterKit
 import SwiftKeychainWrapper
+import OneSignal
 
 class SignInUpPromptViewController: UIViewController {
 
@@ -23,10 +24,14 @@ class SignInUpPromptViewController: UIViewController {
     private var animator: UIDynamicAnimator!
     private var containerOriginalFrame: CGRect!
     
+    private var ref: FIRDatabaseReference!
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = FIRDatabase.database().reference().child("users")
         
         container.alpha = 0.0
         container.roundCorners(radius: 8.0)
@@ -107,8 +112,10 @@ class SignInUpPromptViewController: UIViewController {
                                                 email = e
                                             }
                                             
-                                            FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
-                                            FIRDatabase.database().reference().child("users").child(user!.uid).setValue(["fullName": data["name"] as! String, "email": email])
+                                            self.ref.child(user!.uid).child("isOnline").setValue(true)
+                                            self.ref.child(user!.uid).child("fullName").setValue(data["name"] as! String)
+                                            self.ref.child(user!.uid).child("email").setValue(email)
+                                            self.saveOneSignalId()
                                             self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
                                         }
                                     }
@@ -142,8 +149,9 @@ class SignInUpPromptViewController: UIViewController {
                         KeychainWrapper.standard.set(session.authToken, forKey: TwitterInfoKeys.token)
                         KeychainWrapper.standard.set(session.authTokenSecret, forKey: TwitterInfoKeys.secret)
                         
-                        FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
-                        FIRDatabase.database().reference().child("users").child(user!.uid).setValue(["fullName": name])
+                        self.ref.child(user!.uid).child("isOnline").setValue(true)
+                        self.ref.child(user!.uid).child("fullName").setValue(name)
+                        self.saveOneSignalId()
                         self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
                     }
                 })
@@ -167,7 +175,7 @@ class SignInUpPromptViewController: UIViewController {
         animator.addBehavior(gravity)
         
         let item = UIDynamicItemBehavior(items: [container])
-        item.addAngularVelocity(-CGFloat(M_PI_2), for: container)
+        item.addAngularVelocity(-CGFloat.pi / 2, for: container)
         animator.addBehavior(item)
         
         UIView.animate(withDuration: 0.25, animations: {
@@ -183,6 +191,25 @@ class SignInUpPromptViewController: UIViewController {
     @IBAction func unwindToSignInUpPrompt(_ segue: UIStoryboardSegue) {
         prepareForDismissal {
             self.dismiss(animated: false, completion: nil)
+        }
+    }
+    
+    // MARK: - Firebase
+    
+    private func saveOneSignalId() {
+        OneSignal.idsAvailable() { userId, pushToken in
+            if let id = userId {
+                let ref = self.ref.child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
+                ref.observeSingleEvent(of: .value, with: { snapshot in
+                    if var ids = snapshot.value as? [String: Bool] {
+                        ids[id] = true
+                        ref.updateChildValues(ids)
+                    } else {
+                        let ids = [id: true]
+                        ref.updateChildValues(ids)
+                    }
+                })
+            }
         }
     }
 

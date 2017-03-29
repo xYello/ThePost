@@ -146,7 +146,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         let cell = tableView.dequeueReusableCell(withIdentifier: "conversationCell", for: indexPath) as! ConversationTableViewCell
         let conversation = conversations[indexPath.row]
         
-        cell.profileImageView.sd_setImage(with: conversation.otherPersonProfileImageUrl, placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
+        cell.profileImageView.sd_setImage(with: conversation.otherPersonProfileImageUrl, placeholderImage: #imageLiteral(resourceName: "DefaultProfilePicture"))
         
         cell.personNameLabel.text = conversation.otherPersonName
         

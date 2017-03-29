@@ -491,7 +491,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         animator.addBehavior(gravity)
         
         let item = UIDynamicItemBehavior(items: [container])
-        item.addAngularVelocity(-CGFloat(M_PI_2), for: container)
+        item.addAngularVelocity(-CGFloat.pi / 2, for: container)
         animator.addBehavior(item)
         
         UIView.animate(withDuration: 0.25, animations: {
@@ -612,11 +612,6 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                             
                             let key = self.ref.child("products").childByAutoId().key
                             
-                            let formatter = DateFormatter()
-                            formatter.dateFormat = "MM/dd/yy HH:mm:ss"
-                            formatter.timeZone = TimeZone(identifier: "America/New_York")
-                            let now = formatter.string(from: Date())
-                            
                             var dbProduct: [String: Any] = ["owner": userID,
                                            "author": fullName,
                                            "name": product.name,
@@ -629,7 +624,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                                            "acceptsCash": product.acceptsCash,
                                            "likeCount": 0,
                                            "viewCount": 0,
-                                           "datePosted": now]
+                                           "datePosted": FIRServerValue.timestamp()]
                             
                             if let releaseYear = product.releaseYear {
                                 dbProduct["releaseYear"] = releaseYear
@@ -673,7 +668,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                                                     
                                                     if imageOrder == self.storedPictures.count {
                                                         dbProduct["images"] = imageDictionary
-                                                        let productUpdates = ["/products/\(key)": dbProduct, "/user-products/\(userID)/\(key)": dbProduct]
+                                                        let productUpdates = ["/products/\(key)": dbProduct]
                                                         
                                                         // Save the completed product at the very end
                                                         self.ref.updateChildValues(productUpdates)

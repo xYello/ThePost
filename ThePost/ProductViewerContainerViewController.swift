@@ -221,7 +221,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             
             sellerCell.amountOfStars = seller.starRating
             
-            sellerCell.sellerImageView.sd_setImage(with: seller.profileUrl, placeholderImage: #imageLiteral(resourceName: "ETHANPROFILESAMPLE"))
+            sellerCell.sellerImageView.sd_setImage(with: seller.profileUrl, placeholderImage: #imageLiteral(resourceName: "DefaultProfilePicture"))
             
             cell = sellerCell
         } else if type == .exCheck {
@@ -280,13 +280,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         
         let productRef = FIRDatabase.database().reference().child("products").child(product.uid)
         incrementLikes(forRef: productRef)
-        productRef.observeSingleEvent(of: .value, with: { snapshot in
-            let value = snapshot.value as? NSDictionary
-            if let uid = value?["owner"] as? String {
-                let userProductRef = FIRDatabase.database().reference().child("user-products").child(uid).child(self.product.uid)
-                self.incrementLikes(forRef: userProductRef)
-            }
-        })
+
     }
     
     @IBAction func orangeButtonTapped(_ sender: UIButton) {
@@ -296,7 +290,6 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
                 // TODO: Delete the product for everywhere.
 //                FIRDatabase.database().reference().child("products").child(self.product.uid).removeValue()
-//                FIRDatabase.database().reference().child("user-products").child(FIRAuth.auth()!.currentUser!.uid).child(self.product.uid)
 //                FIRDatabase.database().reference().child("products-location").child(self.product.uid).removeValue()
 //                self.dismissParent()
             }))
@@ -399,13 +392,6 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         // Increment views
         let productRef = FIRDatabase.database().reference().child("products").child(product.uid)
         incrementViews(forRef: productRef.child("viewCount"))
-        productRef.observeSingleEvent(of: .value, with: { snapshot in
-            let value = snapshot.value as? NSDictionary
-            if let uid = value?["owner"] as? String {
-                let userProductRef = FIRDatabase.database().reference().child("user-products").child(uid).child(self.product.uid).child("viewCount")
-                self.incrementViews(forRef: userProductRef)
-            }
-        })
     }
     
     private func grabSellerInfo() {
@@ -469,6 +455,8 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                 } else {
                     likeCount += 1
                     likes[uid] = true
+                    
+                    PushNotification.sender.pushLiked(withProductName: product["name"] as! String, withRecipientId: product["owner"] as! String)
                     
                     let userLikesUpdate = [self.product.uid: true]
                     userLikesRef.updateChildValues(userLikesUpdate)

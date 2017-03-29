@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import OneSignal
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
 
@@ -131,8 +132,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         }
                     } else {
                         FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
+                        self.saveOneSignalId()
                         KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
-                        self.performSegue(withIdentifier: "showAppServicesRequestViewController", sender: self)
+                        if UIApplication.shared.isRegisteredForRemoteNotifications {
+                            self.performSegue(withIdentifier: "unwindToPresenting", sender: self)
+                        } else {
+                            self.performSegue(withIdentifier: "showAppServicesRequestViewController", sender: self)
+                        }
                     }
                 })
             }
@@ -165,6 +171,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     }
                 } else {
                     FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
+                    self.saveOneSignalId()
                     KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
                     self.performSegue(withIdentifier: "showAppServicesRequestViewController", sender: self)
                 }
@@ -202,6 +209,25 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         if let vc = segue.destination as? RecoverPasswordViewController {
             vc.preloadedEmailAddress = emailTextField.text
+        }
+    }
+    
+    // MARK: - Firebase
+    
+    private func saveOneSignalId() {
+        OneSignal.idsAvailable() { userId, pushToken in
+            if let id = userId {
+                let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
+                ref.observeSingleEvent(of: .value, with: { snapshot in
+                    if var ids = snapshot.value as? [String: Bool] {
+                        ids[id] = true
+                        ref.updateChildValues(ids)
+                    } else {
+                        let ids = [id: true]
+                        ref.updateChildValues(ids)
+                    }
+                })
+            }
         }
     }
     
