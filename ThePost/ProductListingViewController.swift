@@ -106,7 +106,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         if productRef == nil {
             productRef = ref.child("products")
             
-            productRef!.queryLimited(toLast: 200).observe(.childAdded, with: { snapshot in
+            let query = productRef!.queryOrdered(byChild: "jeepModel").queryStarting(atValue: jeepModel.type.description).queryEnding(atValue: jeepModel.type.description).queryLimited(toLast: 200)
+            query.observe(.childAdded, with: { snapshot in
                 if let productDict = snapshot.value as? [String: AnyObject] {
                     if let product = self.createProduct(with: productDict, with: snapshot.key) {
                         
