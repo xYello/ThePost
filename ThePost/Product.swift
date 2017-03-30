@@ -95,14 +95,14 @@ class Product: NSObject {
             var string = "\(condition.description) - "
             
             switch jeepModel! {
+            case .all:
+                string = string.replacingOccurrences(of: " - ", with: "")
             case .wranglerJK:
                 string.append("JK")
             case .wranglerTJ:
                 string.append("TJ")
             case .wranglerYJ:
                 string.append("YJ")
-            case .cherokeeXJ:
-                string.append("XJ")
             }
             
             return string

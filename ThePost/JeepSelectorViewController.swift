@@ -37,7 +37,7 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         jeeps.append(Jeep(withType: JeepModel.wranglerJK))
         jeeps.append(Jeep(withType: JeepModel.wranglerTJ))
         jeeps.append(Jeep(withType: JeepModel.wranglerYJ))
-        jeeps.append(Jeep(withType: JeepModel.cherokeeXJ))
+        jeeps.append(Jeep(withType: JeepModel.all))
         
         // These ratios that are defined here are values defined in the Sketch file. Cell size / screen size
         layout.itemSize = CGSize(width: floor(view.frame.width * (350/414)), height: floor(view.frame.height * (326/736)))
@@ -73,11 +73,15 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         if let image = jeeps[indexPath.row].image {
             cell.modelImage.image = image
         }
+        
         if let name = jeeps[indexPath.row].name {
             cell.modelLabel.text = name
         }
+        
         if let start = jeeps[indexPath.row].startYear, let end = jeeps[indexPath.row].endYear {
             cell.modelYearLabel.text = "\(start)-\(end)"
+        } else if jeeps[indexPath.row].type == .all {
+            cell.modelYearLabel.text = "Any year"
         }
         
         cell.selectButton.jeepModel = jeeps[indexPath.row]

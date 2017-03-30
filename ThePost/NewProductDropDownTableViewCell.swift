@@ -77,10 +77,10 @@ class NewProductDropDownTableViewCell: NewProductBaseTableViewCell, UIPickerView
         data.removeAll()
         
         if pickerType == .jeep {
+            data.append(JeepModel.all.description)
             data.append(JeepModel.wranglerJK.description)
             data.append(JeepModel.wranglerTJ.description)
             data.append(JeepModel.wranglerYJ.description)
-            data.append(JeepModel.cherokeeXJ.description)
         } else if pickerType == .condition {
             data.append(Condition.used.description)
             data.append(Condition.new.description)
