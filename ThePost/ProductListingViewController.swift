@@ -394,7 +394,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                 product!.uid = key
                 product!.ownerId = productDict["owner"] as! String
                 
-                product!.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval)
+                product!.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval / 1000)
                 
                 if let likeCount = productDict["likeCount"] as? Int {
                     product!.likeCount = likeCount
