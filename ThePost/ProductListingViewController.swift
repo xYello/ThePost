@@ -105,7 +105,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             amountOfProducts = 0
             
             // Reload the collectionView just in case there are no products
-            self.collectionView.performBatchUpdates({
+            collectionView.performBatchUpdates({
                 self.collectionView.reloadSections(IndexSet(integer: 0))
             }, completion: nil)
             
