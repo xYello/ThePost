@@ -104,6 +104,11 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             products.removeAll()
             amountOfProducts = 0
             
+            // Reload the collectionView just in case there are no products
+            self.collectionView.performBatchUpdates({
+                self.collectionView.reloadSections(IndexSet(integer: 0))
+            }, completion: nil)
+            
             jeepModel = Jeep(withType: jeepType!)
             
             if let name = jeepModel.name {
