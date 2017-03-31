@@ -33,7 +33,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     private var amountOfProducts = 0 {
         didSet {
             if amountOfProducts == 0 {
-            numberOfProductsLabel.text = "No products to display"
+                numberOfProductsLabel.text = "No products to display"
             } else if amountOfProducts == 1 {
                 numberOfProductsLabel.text = "Viewing 1 product"
             } else {
@@ -82,9 +82,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        jeepModel = Jeep(withType: JeepModel.wranglerJK)
         let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep)!
-        
         jeepModel = Jeep(withType: JeepModel.enumFromString(string: selectedJeepDescription)!)
         
         if let name = jeepModel.name {
