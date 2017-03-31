@@ -115,36 +115,32 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                 if let productDict = snapshot.value as? [String: AnyObject] {
                     if let product = self.createProduct(with: productDict, with: snapshot.key) {
                         
-                        if self.indexOfProduct(product) == -1 {
-                            self.amountOfProducts += 1
-                            
-                            self.products.insert(product, at: 0)
-                            
-                            if !self.isSearching {
-                                self.collectionView.performBatchUpdates({
-                                    self.collectionView.reloadSections(IndexSet(integer: 0))
-                                }, completion: nil)
-                            }
+                        self.amountOfProducts += 1
+                        
+                        self.products.insert(product, at: 0)
+                        
+                        if !self.isSearching {
+                            self.collectionView.performBatchUpdates({
+                                self.collectionView.reloadSections(IndexSet(integer: 0))
+                            }, completion: nil)
                         }
                         
                     }
                 }
             })
             
-            productRef!.observe(.childRemoved, with: { snapshot in
+            query.observe(.childRemoved, with: { snapshot in
                 if let productDict = snapshot.value as? [String: AnyObject] {
                     if let product = self.createProduct(with: productDict, with: snapshot.key) {
                         let index = self.indexOfProduct(product)
                         
-                        if index != -1 {
-                            self.amountOfProducts -= 1
-                            self.products.remove(at: index)
-                            
-                            if !self.isSearching {
-                                self.collectionView.performBatchUpdates({
-                                    self.collectionView.reloadSections(IndexSet(integer: 0))
-                                }, completion: nil)
-                            }
+                        self.amountOfProducts -= 1
+                        self.products.remove(at: index)
+                        
+                        if !self.isSearching {
+                            self.collectionView.performBatchUpdates({
+                                self.collectionView.reloadSections(IndexSet(integer: 0))
+                            }, completion: nil)
                         }
                         
                     }
