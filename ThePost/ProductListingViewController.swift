@@ -97,7 +97,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep)!
+        let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? ""
         let jeepType = JeepModel.enumFromString(string: selectedJeepDescription)
         
         if productRef == nil || jeepType != jeepModel.type {
@@ -109,7 +109,12 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                 self.collectionView.reloadSections(IndexSet(integer: 0))
             }, completion: nil)
             
-            jeepModel = Jeep(withType: jeepType!)
+            if let type = jeepType {
+                jeepModel = Jeep(withType: type)
+            } else {
+                jeepModel = Jeep(withType: JeepModel.all)
+            }
+            
             
             if let name = jeepModel.name {
                 jeepTypeLabel.text = name
