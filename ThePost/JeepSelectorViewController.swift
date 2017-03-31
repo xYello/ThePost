@@ -57,6 +57,17 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         collectionView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let currentlySelected = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) {
+            if let jeepType = JeepModel.enumFromString(string: currentlySelected) {
+                view.layoutIfNeeded()
+                collectionView.scrollToItem(at: findEnum(forType: jeepType), at: .centeredHorizontally, animated: false)
+            }
+        }
+    }
+    
     // MARK: - CollectionView datasource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -104,7 +115,27 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     @objc private func selectedJeepCategory(sender: JeepModelButton) {
         selectedJeepModel = sender.jeepModel
         KeychainWrapper.standard.set(selectedJeepModel.type.description, forKey: UserInfoKeys.UserSelectedJeep)
-        performSegue(withIdentifier: "showSlidingSelectionTabBarController", sender: self)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func closeButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Helpers
+    
+    private func findEnum(forType type: JeepModel) -> IndexPath {
+        var index = 0
+        
+        var indexPath = IndexPath(row: 0, section: 0)
+        for jeep in jeeps {
+            if type.description == jeep.type.description {
+                indexPath = IndexPath(row: index, section: 0)
+            }
+            index += 1
+        }
+        
+        return indexPath
     }
 
 }

@@ -85,13 +85,6 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep)!
-        jeepModel = Jeep(withType: JeepModel.enumFromString(string: selectedJeepDescription)!)
-        
-        if let name = jeepModel.name {
-            jeepTypeLabel.text = name
-        }
-        
         if let navBar = navigationController?.navigationBar {
             navBar.clipsToBounds = true
         }
@@ -104,7 +97,19 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if productRef == nil {
+        let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep)!
+        let jeepType = JeepModel.enumFromString(string: selectedJeepDescription)
+        
+        if productRef == nil || jeepType != jeepModel.type {
+            products.removeAll()
+            amountOfProducts = 0
+            
+            jeepModel = Jeep(withType: jeepType!)
+            
+            if let name = jeepModel.name {
+                jeepTypeLabel.text = name
+            }
+            
             productRef = ref.child("products")
             
             var query = productRef!.queryLimited(toLast: 200)
@@ -134,13 +139,15 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                     if let product = self.createProduct(with: productDict, with: snapshot.key) {
                         let index = self.indexOfProduct(product)
                         
-                        self.amountOfProducts -= 1
-                        self.products.remove(at: index)
-                        
-                        if !self.isSearching {
-                            self.collectionView.performBatchUpdates({
-                                self.collectionView.reloadSections(IndexSet(integer: 0))
-                            }, completion: nil)
+                        if index != -1 {
+                            self.amountOfProducts -= 1
+                            self.products.remove(at: index)
+                            
+                            if !self.isSearching {
+                                self.collectionView.performBatchUpdates({
+                                    self.collectionView.reloadSections(IndexSet(integer: 0))
+                                }, completion: nil)
+                            }
                         }
                         
                     }
@@ -369,6 +376,11 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                 self.amountOfProducts = productCount
             })
             
+        } else {
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = mainStoryboard.instantiateViewController(withIdentifier: "jeepSelectorViewController") as! JeepSelectorViewController
+            
+            present(vc, animated: true, completion: nil)
         }
     }
     
