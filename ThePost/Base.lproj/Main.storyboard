@@ -1076,11 +1076,51 @@
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6OL-0N-ka6">
+                                <rect key="frame" x="16" y="162" width="343" height="279"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O ||||||| O" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPp-GL-EFD">
+                                        <rect key="frame" x="132.5" y="128" width="79" height="24"/>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="20"/>
+                                        <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No products have been found for the filter you have chosen!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="18" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5o-In-opq">
+                                        <rect key="frame" x="44" y="168" width="254" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="254" id="5LH-rw-dBU"/>
+                                            <constraint firstAttribute="height" constant="49" id="y7g-I3-bua"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
+                                        <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want to be the first? Click the + below!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5g3-Y7-mEn">
+                                        <rect key="frame" x="41.5" y="234" width="260.5" height="18"/>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
+                                        <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="sPp-GL-EFD" firstAttribute="centerY" secondItem="6OL-0N-ka6" secondAttribute="centerY" id="E76-va-HSq"/>
+                                    <constraint firstAttribute="height" constant="279" id="GYY-3M-0GX"/>
+                                    <constraint firstItem="sPp-GL-EFD" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="TKS-6v-G7k"/>
+                                    <constraint firstItem="5g3-Y7-mEn" firstAttribute="top" secondItem="w5o-In-opq" secondAttribute="bottom" constant="17" id="WM6-hb-bxV"/>
+                                    <constraint firstItem="5g3-Y7-mEn" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="kvu-J1-zbu"/>
+                                    <constraint firstItem="w5o-In-opq" firstAttribute="top" secondItem="sPp-GL-EFD" secondAttribute="bottom" constant="16" id="qs3-zC-1LX"/>
+                                    <constraint firstItem="w5o-In-opq" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="zrs-I6-rAx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.18823529411764706" green="0.2196078431372549" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6OL-0N-ka6" firstAttribute="centerY" secondItem="1TW-Le-DYq" secondAttribute="centerY" id="05d-fO-hSx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6OL-0N-ka6" secondAttribute="trailing" id="3jg-VA-M0s"/>
                             <constraint firstItem="FDR-cf-xRl" firstAttribute="leading" secondItem="1TW-Le-DYq" secondAttribute="leadingMargin" constant="-16" id="6SL-ju-6VG"/>
                             <constraint firstItem="FDR-cf-xRl" firstAttribute="centerY" secondItem="1TW-Le-DYq" secondAttribute="centerY" constant="-5.5" id="90C-WB-cf7"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="6OL-0N-ka6" secondAttribute="leading" id="ARu-fG-GpS"/>
                             <constraint firstItem="vel-P0-P0Y" firstAttribute="leading" secondItem="1TW-Le-DYq" secondAttribute="leading" id="Oah-wV-Sht"/>
                             <constraint firstAttribute="trailing" secondItem="vel-P0-P0Y" secondAttribute="trailing" id="Zqd-eB-OlI"/>
                             <constraint firstItem="FDR-cf-xRl" firstAttribute="top" secondItem="vel-P0-P0Y" secondAttribute="bottom" id="em2-wK-nWz"/>
@@ -1119,6 +1159,7 @@
                     <connections>
                         <outlet property="collectionView" destination="FDR-cf-xRl" id="Dav-gN-yJ3"/>
                         <outlet property="jeepTypeLabel" destination="5OC-Ov-TLj" id="C49-CT-NWc"/>
+                        <outlet property="noProductView" destination="6OL-0N-ka6" id="0x0-Nb-Cgo"/>
                         <outlet property="numberOfProductsLabel" destination="eRx-uC-8od" id="Ibd-CR-AQa"/>
                         <outlet property="productViewTypeView" destination="vel-P0-P0Y" id="fu6-0i-rKU"/>
                         <outlet property="smallProductSortButton" destination="0gd-uT-OVD" id="fy7-84-xje"/>
@@ -1956,7 +1997,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.63921568627450975" green="0.29803921568627451" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1980,7 +2021,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="icS-JB-eAG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="MessagesTabBarIcon" id="gR2-QB-zbc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8D-YI-vEB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="T8D-YI-vEB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3506,7 +3547,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ey7-I1-ngI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="ActivityTabBarIcon" id="hrl-HZ-3sD"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PXY-oV-xsh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="PXY-oV-xsh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019610000001" green="0.16078431369999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3572,7 +3613,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiK-PH-VOl">
-                                <rect key="frame" x="121" y="13" width="103" height="26"/>
+                                <rect key="frame" x="120" y="13" width="103" height="26"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="22"/>
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

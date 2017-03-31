@@ -20,6 +20,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var productViewTypeView: UIView!
     @IBOutlet weak var smallProductSortButton: UIButton!
     @IBOutlet weak var wideProductSortButton: UIButton!
+    
+    @IBOutlet weak var noProductView: UIView!
+    
     private var selectionBar: UIView?
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -177,6 +180,14 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     // MARK: - CollectionView datasource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if productArray().count == 0 {
+            UIView.animate(withDuration: 0.25, animations: { done in
+                self.noProductView.alpha = 1.0
+            })
+        } else {
+            self.noProductView.alpha = 0.0
+        }
+        
         return productArray().count
     }
     
