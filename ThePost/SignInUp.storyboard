@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -379,7 +379,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Db2-qF-x4m">
-                                <rect key="frame" x="155" y="384" width="66" height="36"/>
+                                <rect key="frame" x="154.5" y="384" width="66" height="36"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
                                 <color key="textColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -420,6 +420,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="Qc9-hO-uMn" id="9Y0-OK-dcv"/>
                         <outlet property="confirmPasswordTextField" destination="qLe-87-v8P" id="bDY-wk-2Sm"/>
                         <outlet property="emailTextField" destination="Ukd-iQ-TQm" id="f7n-wi-4MV"/>
                         <outlet property="errorLabel" destination="Db2-qF-x4m" id="K56-De-DKb"/>
@@ -614,9 +615,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="HTS-bn-7p8" id="z4S-Eo-h8A"/>
                         <outlet property="container" destination="F9s-KD-yxV" id="46k-5G-9dK"/>
+                        <outlet property="emailButton" destination="S6d-Za-rwO" id="imn-lx-mNr"/>
+                        <outlet property="facebookButton" destination="yvL-tB-aNX" id="lC8-hf-zM4"/>
                         <outlet property="signInButton" destination="Zcm-x3-NRk" id="UBh-Zi-HmI"/>
                         <outlet property="signUpText" destination="qew-uc-Rce" id="bOg-yT-4AE"/>
+                        <outlet property="twitterButton" destination="jsA-m5-9yy" id="tbM-93-56n"/>
                         <segue destination="USI-uM-9PA" kind="show" identifier="promptToWalkthroughSegue" id="4CE-Ba-g4T">
                             <nil key="action"/>
                         </segue>
@@ -723,7 +728,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TU-Ba-Z1W">
-                                <rect key="frame" x="155" y="272" width="66" height="17"/>
+                                <rect key="frame" x="154.5" y="272" width="66" height="17"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
                                 <color key="textColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

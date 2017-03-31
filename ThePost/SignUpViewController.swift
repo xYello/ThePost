@@ -30,6 +30,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var welcomeLabelToViewTopConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var closeButton: UIButton!
+    
     private var ref: FIRDatabaseReference!
     
     private var welcomeLabelToViewTopConstant: CGFloat = 0.0
@@ -186,6 +188,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         if viewsToShake.isEmpty {
             // Sign up
             
+            disableButtons()
+            
             FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { user, error in
                 guard let user = user, error == nil else {
                     // TODO: Update with error reporting.
@@ -197,6 +201,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                         self.emailImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
                     }
                     
+                    self.disableButtons()
+                    
                     return
                 }
                 
@@ -207,6 +213,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     guard error == nil else {
                         // TODO: Update with error reporting.
                         print("Error saving changes: \(error!.localizedDescription)")
+                        self.disableButtons()
                         return
                     }
                     
@@ -307,6 +314,26 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             } else {
                 confirmPasswordImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
             }
+        }
+    }
+    
+    private func disableButtons() {
+        if signUpButton.isEnabled {
+            onePasswordButton.alpha = 0.75
+            closeButton.alpha = 0.75
+            signUpButton.alpha = 0.75
+            
+            onePasswordButton.isEnabled = false
+            closeButton.isEnabled = false
+            signUpButton.isEnabled = false
+        } else {
+            onePasswordButton.alpha = 1.0
+            closeButton.alpha = 1.0
+            signUpButton.alpha = 1.0
+            
+            onePasswordButton.isEnabled = true
+            closeButton.isEnabled = true
+            signUpButton.isEnabled = true
         }
     }
     

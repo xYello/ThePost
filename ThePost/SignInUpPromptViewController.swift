@@ -19,7 +19,12 @@ class SignInUpPromptViewController: UIViewController {
     
     @IBOutlet weak var signUpText: UILabel!
     
+    @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
+    
+    @IBOutlet weak var closeButton: UIButton!
     
     private var animator: UIDynamicAnimator!
     private var containerOriginalFrame: CGRect!
@@ -86,10 +91,13 @@ class SignInUpPromptViewController: UIViewController {
     // MARK: - Sign up helpers
     
     private func signUpFacebook() {
+        disableButtons()
+        
         FBSDKLoginManager().logIn(withReadPermissions: ["public_profile", "email"], from: self, handler: { result, error in
             if let error = error {
                 // TODO: Update with error reporting.
                 print("Error signing up: \(error.localizedDescription)")
+                self.disableButtons()
             } else {
                 if FBSDKAccessToken.current() != nil {
                     let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,name"], tokenString: FBSDKAccessToken.current().tokenString, version: nil, httpMethod: "GET")
@@ -99,12 +107,14 @@ class SignInUpPromptViewController: UIViewController {
                             if let error = error {
                                 // TODO: Update with error reporting.
                                 print("Error signing up: \(error.localizedDescription)")
+                                self.disableButtons()
                             } else {
                                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                                 FIRAuth.auth()?.signIn(with: credential, completion: { user, firError in
                                     if let firError = firError {
                                         // TODO: Update with error reporting.
                                         print("Error signing up: \(firError.localizedDescription)")
+                                        self.disableButtons()
                                     } else {
                                         if let data = result as? [String: AnyObject] {
                                             var email = ""
@@ -126,12 +136,15 @@ class SignInUpPromptViewController: UIViewController {
                 } else {
                     // TODO: Update with error reporting.
                     print("Did not actually sign up with Facebook.")
+                    self.disableButtons()
                 }
             }
         })
     }
     
     private func signUpTwitter() {
+        disableButtons()
+        
         Twitter.sharedInstance().logIn() { session, error in
             if let session = session {
                 
@@ -140,6 +153,7 @@ class SignInUpPromptViewController: UIViewController {
                     if let firError = firError {
                         // TODO: Update with error reporting.
                         print("Error signing up: \(firError.localizedDescription)")
+                        self.disableButtons()
                     } else {
                         var name = ""
                         if let n = user?.displayName {
@@ -159,6 +173,7 @@ class SignInUpPromptViewController: UIViewController {
             } else if let error = error {
                 // TODO: Update with error reporting.
                 print("Error signing up: \(error.localizedDescription)")
+                self.disableButtons()
             }
         
         }
@@ -191,6 +206,36 @@ class SignInUpPromptViewController: UIViewController {
     @IBAction func unwindToSignInUpPrompt(_ segue: UIStoryboardSegue) {
         prepareForDismissal {
             self.dismiss(animated: false, completion: nil)
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func disableButtons() {
+        if facebookButton.isEnabled {
+            closeButton.alpha = 0.75
+            facebookButton.alpha = 0.75
+            twitterButton.alpha = 0.75
+            emailButton.alpha = 0.75
+            signInButton.alpha = 0.75
+            
+            closeButton.isEnabled = false
+            facebookButton.isEnabled = false
+            twitterButton.isEnabled = false
+            emailButton.isEnabled = false
+            signInButton.isEnabled = false
+        } else {
+            closeButton.alpha = 1.0
+            facebookButton.alpha = 1.0
+            twitterButton.alpha = 1.0
+            emailButton.alpha = 1.0
+            signInButton.alpha = 1.0
+            
+            closeButton.isEnabled = true
+            facebookButton.isEnabled = true
+            twitterButton.isEnabled = true
+            emailButton.isEnabled = true
+            signInButton.isEnabled = true
         }
     }
     

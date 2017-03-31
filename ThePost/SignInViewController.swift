@@ -108,6 +108,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Actions
     
     @IBAction func findLoginFrom1Password(_ sender: UIButton) {
+        disableButtons()
+        
         OnePasswordExtension.shared().findLogin(forURLString: "http://thewaveapp.com/", for: self, sender: sender, completion: { loginDictionary, error in
             if loginDictionary != nil {
                 self.emailTextField.text = loginDictionary?[AppExtensionUsernameKey] as? String
@@ -130,6 +132,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         } else {
                             print("Error signing in: \(error.localizedDescription)")
                         }
+                        
+                        self.disableButtons()
                     } else {
                         FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
                         self.saveOneSignalId()
@@ -152,6 +156,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
+            disableButtons()
+            
             FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { user, error in
                 if let error = error {
                     if error.localizedDescription == "The email address is badly formatted." {
@@ -169,6 +175,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         print("Error signing in: \(error.localizedDescription)")
                     }
+                    
+                    self.disableButtons()
                 } else {
                     FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
                     self.saveOneSignalId()
@@ -200,6 +208,26 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         field.rightViewMode = .always
         field.rightView = imageView
+    }
+    
+    private func disableButtons() {
+        if signInButton.isEnabled {
+            onePassswordButton.alpha = 0.75
+            exitButton.alpha = 0.75
+            signInButton.alpha = 0.75
+            
+            onePassswordButton.isEnabled = false
+            exitButton.isEnabled = false
+            signInButton.isEnabled = false
+        } else {
+            onePassswordButton.alpha = 1.0
+            exitButton.alpha = 1.0
+            signInButton.alpha = 1.0
+            
+            onePassswordButton.isEnabled = true
+            exitButton.isEnabled = true
+            signInButton.isEnabled = true
+        }
     }
     
     // MARK: - Segue
