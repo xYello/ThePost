@@ -100,10 +100,6 @@ Copyright 2017 Google
 
 Copyright 2017 Google
 
-## FirebaseCrash
-
-Copyright 2017 Google
-
 ## FirebaseDatabase
 
 Copyright 2017 Google
