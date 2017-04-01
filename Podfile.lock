@@ -18,6 +18,9 @@ PODS:
   - Firebase/Core (3.15.0):
     - FirebaseAnalytics (= 3.7.0)
     - FirebaseCore (= 3.5.2)
+  - Firebase/Crash (3.15.0):
+    - Firebase/Core
+    - FirebaseCrash (= 1.1.6)
   - Firebase/Database (3.15.0):
     - Firebase/Core
     - FirebaseDatabase (= 3.1.2)
@@ -37,6 +40,12 @@ PODS:
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseCore (3.5.2):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCrash (1.1.6):
+    - FirebaseAnalytics (~> 3.7)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - Protobuf (~> 3.1)
   - FirebaseDatabase (3.1.2):
     - FirebaseAnalytics (~> 3.7)
   - FirebaseInstanceID (1.0.9)
@@ -48,29 +57,29 @@ PODS:
   - FirebaseStorage (1.1.0):
     - FirebaseAnalytics (~> 3.7)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseUI (3.1.0):
-    - FirebaseUI/All (= 3.1.0)
-  - FirebaseUI/All (3.1.0):
+  - FirebaseUI (3.1.1):
+    - FirebaseUI/All (= 3.1.1)
+  - FirebaseUI/All (3.1.1):
     - FirebaseUI/Auth
     - FirebaseUI/Database
     - FirebaseUI/Facebook
     - FirebaseUI/Google
     - FirebaseUI/Storage
     - FirebaseUI/Twitter
-  - FirebaseUI/Auth (3.1.0):
+  - FirebaseUI/Auth (3.1.1):
     - Firebase/Auth
-  - FirebaseUI/Database (3.1.0):
+  - FirebaseUI/Database (3.1.1):
     - Firebase/Database
-  - FirebaseUI/Facebook (3.1.0):
+  - FirebaseUI/Facebook (3.1.1):
     - FBSDKLoginKit (~> 4.0)
     - FirebaseUI/Auth
-  - FirebaseUI/Google (3.1.0):
+  - FirebaseUI/Google (3.1.1):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 4.0)
-  - FirebaseUI/Storage (3.1.0):
+  - FirebaseUI/Storage (3.1.1):
     - Firebase/Storage
     - SDWebImage (~> 4.0)
-  - FirebaseUI/Twitter (3.1.0):
+  - FirebaseUI/Twitter (3.1.1):
     - FirebaseUI/Auth
     - TwitterKit (~> 2.4)
   - GoogleSignIn (4.0.2):
@@ -81,6 +90,8 @@ PODS:
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/Logger (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1):
@@ -98,7 +109,7 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - OneSignal (2.4.2)
+  - OneSignal (2.5.0)
   - Protobuf (3.2.0)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
@@ -114,6 +125,7 @@ DEPENDENCIES:
   - Crashlytics
   - Firebase/Auth
   - Firebase/Core
+  - Firebase/Crash
   - Firebase/Database
   - Firebase/RemoteConfig
   - FirebaseUI
@@ -141,18 +153,19 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
   FirebaseCore: a024587e43778508700af8c6b1209f7c4516ba02
+  FirebaseCrash: db4c05d9c75baa050744d31b36357c8f1efba481
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   FirebaseRemoteConfig: af3003f4e8daa2bd1d5cf90d3cccc1fe224f8ed9
   FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
-  FirebaseUI: d9e83c4c22dd922c661d85f041a771d1953405a9
+  FirebaseUI: 6e99ff95e369f5858232e4f65bff215458fe8469
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  OneSignal: a94d1ca53d05c29de4f4b150bad8ff9c4cc34f67
+  OneSignal: e0aca144fbf1be69e870419cea52e8fdbcb25808
   Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
@@ -160,6 +173,6 @@ SPEC CHECKSUMS:
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
   UPCarouselFlowLayout: adfa361c52315c0efc56dbe2555c494b8940f58a
 
-PODFILE CHECKSUM: 714a7e7266e47e6adc9dd59849dc4f1584c37d7c
+PODFILE CHECKSUM: 02041c06c853c3a6fbbf5b6de1ecda602e1759ff
 
 COCOAPODS: 1.2.0

@@ -14,6 +14,7 @@
 #import "GTMDebugThreadValidation.h"
 #import "GTMMethodCheck.h"
 #import "GTMDefines.h"
+#import "GTMLogger.h"
 #import "GTMNSData+zlib.h"
 #import "GTMNSDictionary+URLArguments.h"
 #import "GTMNSString+URLArguments.h"

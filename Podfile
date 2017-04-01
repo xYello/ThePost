@@ -13,6 +13,7 @@ target 'ThePost' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Crash'
   pod 'FirebaseUI'
 
   # Fabric
