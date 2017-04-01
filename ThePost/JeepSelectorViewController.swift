@@ -42,7 +42,7 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         // These ratios that are defined here are values defined in the Sketch file. Cell size / screen size
         layout.itemSize = CGSize(width: floor(view.frame.width * (350/414)), height: floor(view.frame.height * (326/736)))
         
-        layout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 120)
+        layout.spacingMode = .overlap(visibleOffset: 120)
         layout.scrollDirection = .horizontal
         layout.sideItemScale = 1.0
         layout.sideItemAlpha = 0.3

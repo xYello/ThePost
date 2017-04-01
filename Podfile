@@ -6,7 +6,7 @@ target 'ThePost' do
   use_frameworks!
 
   # Collection View custom scrolling
-  pod 'UPCarouselFlowLayout', :git => 'https://github.com/SirArkimedes/UPCarouselFlowLayout.git'
+  pod 'UPCarouselFlowLayout'
 
   # Firebase
   pod 'Firebase/Core'

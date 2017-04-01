@@ -119,7 +119,7 @@ PODS:
     - Fabric
   - TwitterKit (2.8.1):
     - TwitterCore (>= 2.8)
-  - UPCarouselFlowLayout (1.0.0)
+  - UPCarouselFlowLayout (1.1.1)
 
 DEPENDENCIES:
   - Crashlytics
@@ -132,16 +132,7 @@ DEPENDENCIES:
   - JSQMessagesViewController
   - OneSignal (~> 2.0)
   - SwiftKeychainWrapper
-  - UPCarouselFlowLayout (from `https://github.com/SirArkimedes/UPCarouselFlowLayout.git`)
-
-EXTERNAL SOURCES:
-  UPCarouselFlowLayout:
-    :git: https://github.com/SirArkimedes/UPCarouselFlowLayout.git
-
-CHECKOUT OPTIONS:
-  UPCarouselFlowLayout:
-    :commit: 741fd74b962f1775039dae29ac562e85004c8eb0
-    :git: https://github.com/SirArkimedes/UPCarouselFlowLayout.git
+  - UPCarouselFlowLayout
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -171,8 +162,8 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
-  UPCarouselFlowLayout: adfa361c52315c0efc56dbe2555c494b8940f58a
+  UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
 
-PODFILE CHECKSUM: 02041c06c853c3a6fbbf5b6de1ecda602e1759ff
+PODFILE CHECKSUM: c4cd4fb6d09d6a1d32f6ee3a3de2aceeb479b638
 
 COCOAPODS: 1.2.0

@@ -20,6 +20,14 @@ it, simply add the following line to your Podfile:
 pod "UPCarouselFlowLayout"
 ```
 
+### Carthage
+
+Users can simply add to their Cartfile:
+
+```
+github "ink-spot/UPCarouselFlowLayout"
+```
+
 ### Manual
 
 Simply copy the folder `UPCarouselFlowLayout` to your project and import it in XCode.
@@ -59,6 +67,10 @@ The shrinking ratio for collection items which are not in the center.
 * `sideItemAlpha` (between 0 and 1, default is 0.6)
 *Can be set through code or via Interface Builder.*
 The opacity ratio for collection items which are not in the center.
+
+* `sideItemShift` (value in pixels, default is 0)
+*Can be set through code or via Interface Builder.*
+A vertical/horizontal offset (depending on the collectionView scroll direction) for collection items which are not in the center.
 
 * `spacingMode` (default is fixed spacing of 40 pts)
 *Can be set only through code.*
