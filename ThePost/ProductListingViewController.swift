@@ -224,6 +224,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         
         cell.nameLabel.text = product.name
         
+        cell.imageView.image = nil
+        
         return cell
     }
     

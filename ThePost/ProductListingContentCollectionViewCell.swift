@@ -123,9 +123,8 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
         
     }
     
-    private func grabProductImages(forKey key: String) {
+    private func grabProductImages(forKey key: String) {        
         let firstImageRef = FIRDatabase.database().reference().child("products").child(key).child("images").child("1")
-        imageView.image = nil
         firstImageRef.observeSingleEvent(of: .value, with: { snapshot in
             if let urlString = snapshot.value as? String {
                 let url = URL(string: urlString)
