@@ -35,20 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        // UnComment this to load jeep selector on starup everytime.
-//        KeychainWrapper.standard.removeObject(forKey: UserInfoKeys.UserSelectedJeep)
-        
-        let selectedJeep = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep)
-        var mainViewController:UIViewController
-        if selectedJeep == nil {
-            mainViewController = mainStoryboard.instantiateViewController(withIdentifier: "jeepSelectorViewController") as! JeepSelectorViewController
-        } else {
-            mainViewController = mainStoryboard.instantiateViewController(withIdentifier: "slidingSelectionTabBarController") as! SlidingSelectionTabBarController
-        }
-        
-        self.window?.rootViewController = mainViewController
-        
-        self.window?.makeKeyAndVisible()
+        self.window!.rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "slidingSelectionTabBarController") as! SlidingSelectionTabBarController
+        self.window!.makeKeyAndVisible()
         
         if let pass = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserPass), let email = FIRAuth.auth()?.currentUser?.email {
             let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)

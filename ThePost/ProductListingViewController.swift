@@ -20,6 +20,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var productViewTypeView: UIView!
     @IBOutlet weak var smallProductSortButton: UIButton!
     @IBOutlet weak var wideProductSortButton: UIButton!
+    
+    @IBOutlet weak var noProductView: UIView!
+    
     private var selectionBar: UIView?
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -33,7 +36,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     private var amountOfProducts = 0 {
         didSet {
             if amountOfProducts == 0 {
-            numberOfProductsLabel.text = "No products to display"
+                numberOfProductsLabel.text = "No products to display"
             } else if amountOfProducts == 1 {
                 numberOfProductsLabel.text = "Viewing 1 product"
             } else {
@@ -82,15 +85,6 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        jeepModel = Jeep(withType: JeepModel.wranglerJK)
-        let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep)!
-        
-        jeepModel = Jeep(withType: JeepModel.enumFromString(string: selectedJeepDescription)!)
-        
-        if let name = jeepModel.name {
-            jeepTypeLabel.text = name
-        }
-        
         if let navBar = navigationController?.navigationBar {
             navBar.clipsToBounds = true
         }
@@ -103,31 +97,54 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if productRef == nil {
+        let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? ""
+        let jeepType = JeepModel.enumFromString(string: selectedJeepDescription)
+        
+        if productRef == nil || jeepType != jeepModel.type {
+            products.removeAll()
+            amountOfProducts = 0
+            
+            // Reload the collectionView just in case there are no products
+            collectionView.performBatchUpdates({
+                self.collectionView.reloadSections(IndexSet(integer: 0))
+            }, completion: nil)
+            
+            if let type = jeepType {
+                jeepModel = Jeep(withType: type)
+            } else {
+                jeepModel = Jeep(withType: JeepModel.all)
+            }
+            
+            
+            if let name = jeepModel.name {
+                jeepTypeLabel.text = name
+            }
+            
             productRef = ref.child("products")
             
-            let query = productRef!.queryOrdered(byChild: "jeepModel").queryStarting(atValue: jeepModel.type.description).queryEnding(atValue: jeepModel.type.description).queryLimited(toLast: 200)
+            var query = productRef!.queryLimited(toLast: 200)
+            if jeepModel.type != .all {
+                query = productRef!.queryOrdered(byChild: "jeepModel").queryStarting(atValue: jeepModel.type.description).queryEnding(atValue: jeepModel.type.description).queryLimited(toLast: 200)
+            }
             query.observe(.childAdded, with: { snapshot in
                 if let productDict = snapshot.value as? [String: AnyObject] {
                     if let product = self.createProduct(with: productDict, with: snapshot.key) {
                         
-                        if self.indexOfProduct(product) == -1 {
-                            self.amountOfProducts += 1
-                            
-                            self.products.insert(product, at: 0)
-                            
-                            if !self.isSearching {
-                                self.collectionView.performBatchUpdates({
-                                    self.collectionView.reloadSections(IndexSet(integer: 0))
-                                }, completion: nil)
-                            }
+                        self.amountOfProducts += 1
+                        
+                        self.products.insert(product, at: 0)
+                        
+                        if !self.isSearching {
+                            self.collectionView.performBatchUpdates({
+                                self.collectionView.reloadSections(IndexSet(integer: 0))
+                            }, completion: nil)
                         }
                         
                     }
                 }
             })
             
-            productRef!.observe(.childRemoved, with: { snapshot in
+            query.observe(.childRemoved, with: { snapshot in
                 if let productDict = snapshot.value as? [String: AnyObject] {
                     if let product = self.createProduct(with: productDict, with: snapshot.key) {
                         let index = self.indexOfProduct(product)
@@ -176,6 +193,14 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     // MARK: - CollectionView datasource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if productArray().count == 0 {
+            UIView.animate(withDuration: 0.25, animations: { done in
+                self.noProductView.alpha = 1.0
+            })
+        } else {
+            self.noProductView.alpha = 0.0
+        }
+        
         return productArray().count
     }
     
@@ -198,6 +223,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         }
         
         cell.nameLabel.text = product.name
+        
+        cell.imageView.image = nil
         
         return cell
     }
@@ -361,6 +388,11 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                 self.amountOfProducts = productCount
             })
             
+        } else {
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = mainStoryboard.instantiateViewController(withIdentifier: "jeepSelectorViewController") as! JeepSelectorViewController
+            
+            present(vc, animated: true, completion: nil)
         }
     }
     
@@ -391,7 +423,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                 product!.uid = key
                 product!.ownerId = productDict["owner"] as! String
                 
-                product!.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval)
+                product!.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval / 1000)
                 
                 if let likeCount = productDict["likeCount"] as? Int {
                     product!.likeCount = likeCount

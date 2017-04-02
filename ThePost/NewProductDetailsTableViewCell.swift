@@ -24,7 +24,7 @@ class NewProductDetailsTableViewCell: NewProductBaseTableViewCell, UITextFieldDe
         
         let components = Calendar.current.dateComponents([.year], from: Date())
         if let year = components.year {
-            releaseYearTextField.attributedPlaceholder = NSAttributedString(string: "\(year)", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)])
+            releaseYearTextField.attributedPlaceholder = NSAttributedString(string: "\(year)", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.2531197567)])
         }
         
         releaseYearTextField.delegate = self

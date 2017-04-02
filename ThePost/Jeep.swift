@@ -9,18 +9,18 @@
 import UIKit
 
 enum JeepModel: Int {
-    case wranglerJK = 0, wranglerTJ, wranglerYJ, cherokeeXJ
+    case all = 0, wranglerJK, wranglerTJ, wranglerYJ
     
     var description : String {
         switch self {
-        case .wranglerJK: return "Jeep Wrangler JK";
-        case .wranglerTJ: return "Jeep Wrangler TJ";
-        case .wranglerYJ: return "Jeep Wrangler YJ";
-        case .cherokeeXJ: return "Jeep Cherokee XJ";
+        case .all: return "General"
+        case .wranglerJK: return "Jeep Wrangler JK"
+        case .wranglerTJ: return "Jeep Wrangler TJ"
+        case .wranglerYJ: return "Jeep Wrangler YJ"
         }
     }
     
-    static var count: Int { return JeepModel.cherokeeXJ.hashValue + 1 }
+    static var count: Int { return JeepModel.wranglerYJ.hashValue + 1 }
     
     static func enumFromString(string: String) -> JeepModel? {
         var i = 0
@@ -63,6 +63,9 @@ class Jeep: NSObject {
     
     private func evaluateType(type: JeepModel) {
         switch type {
+        case .all:
+            image = #imageLiteral(resourceName: "WranglerJK")
+            name = "All Jeeps"
         case .wranglerJK:
             image = UIImage(named: "WranglerJK")!
             name = "Jeep Wrangler JK"
@@ -78,11 +81,6 @@ class Jeep: NSObject {
             name = "Jeep Wrangler YJ"
             startYear = 1987
             endYear = 1995
-        case .cherokeeXJ:
-            image = UIImage(named: "CherokeeXJ")!
-            name = "Jeep Cherokee XJ"
-            startYear = 1984
-            endYear = 2001
         }
     }
 

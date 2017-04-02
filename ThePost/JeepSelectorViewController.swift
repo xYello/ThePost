@@ -37,12 +37,12 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         jeeps.append(Jeep(withType: JeepModel.wranglerJK))
         jeeps.append(Jeep(withType: JeepModel.wranglerTJ))
         jeeps.append(Jeep(withType: JeepModel.wranglerYJ))
-        jeeps.append(Jeep(withType: JeepModel.cherokeeXJ))
+        jeeps.append(Jeep(withType: JeepModel.all))
         
         // These ratios that are defined here are values defined in the Sketch file. Cell size / screen size
         layout.itemSize = CGSize(width: floor(view.frame.width * (350/414)), height: floor(view.frame.height * (326/736)))
         
-        layout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 120)
+        layout.spacingMode = .overlap(visibleOffset: 120)
         layout.scrollDirection = .horizontal
         layout.sideItemScale = 1.0
         layout.sideItemAlpha = 0.3
@@ -55,6 +55,17 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let currentlySelected = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) {
+            if let jeepType = JeepModel.enumFromString(string: currentlySelected) {
+                view.layoutIfNeeded()
+                collectionView.scrollToItem(at: findEnum(forType: jeepType), at: .centeredHorizontally, animated: false)
+            }
+        }
     }
     
     // MARK: - CollectionView datasource
@@ -73,11 +84,15 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         if let image = jeeps[indexPath.row].image {
             cell.modelImage.image = image
         }
+        
         if let name = jeeps[indexPath.row].name {
             cell.modelLabel.text = name
         }
+        
         if let start = jeeps[indexPath.row].startYear, let end = jeeps[indexPath.row].endYear {
             cell.modelYearLabel.text = "\(start)-\(end)"
+        } else if jeeps[indexPath.row].type == .all {
+            cell.modelYearLabel.text = "Any year"
         }
         
         cell.selectButton.jeepModel = jeeps[indexPath.row]
@@ -100,7 +115,27 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     @objc private func selectedJeepCategory(sender: JeepModelButton) {
         selectedJeepModel = sender.jeepModel
         KeychainWrapper.standard.set(selectedJeepModel.type.description, forKey: UserInfoKeys.UserSelectedJeep)
-        performSegue(withIdentifier: "showSlidingSelectionTabBarController", sender: self)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func closeButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Helpers
+    
+    private func findEnum(forType type: JeepModel) -> IndexPath {
+        var index = 0
+        
+        var indexPath = IndexPath(row: 0, section: 0)
+        for jeep in jeeps {
+            if type.description == jeep.type.description {
+                indexPath = IndexPath(row: index, section: 0)
+            }
+            index += 1
+        }
+        
+        return indexPath
     }
 
 }

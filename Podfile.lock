@@ -49,29 +49,29 @@ PODS:
   - FirebaseStorage (1.1.0):
     - FirebaseAnalytics (~> 3.7)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseUI (3.1.0):
-    - FirebaseUI/All (= 3.1.0)
-  - FirebaseUI/All (3.1.0):
+  - FirebaseUI (3.1.1):
+    - FirebaseUI/All (= 3.1.1)
+  - FirebaseUI/All (3.1.1):
     - FirebaseUI/Auth
     - FirebaseUI/Database
     - FirebaseUI/Facebook
     - FirebaseUI/Google
     - FirebaseUI/Storage
     - FirebaseUI/Twitter
-  - FirebaseUI/Auth (3.1.0):
+  - FirebaseUI/Auth (3.1.1):
     - Firebase/Auth
-  - FirebaseUI/Database (3.1.0):
+  - FirebaseUI/Database (3.1.1):
     - Firebase/Database
-  - FirebaseUI/Facebook (3.1.0):
+  - FirebaseUI/Facebook (3.1.1):
     - FBSDKLoginKit (~> 4.0)
     - FirebaseUI/Auth
-  - FirebaseUI/Google (3.1.0):
+  - FirebaseUI/Google (3.1.1):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 4.0)
-  - FirebaseUI/Storage (3.1.0):
+  - FirebaseUI/Storage (3.1.1):
     - Firebase/Storage
     - SDWebImage (~> 4.0)
-  - FirebaseUI/Twitter (3.1.0):
+  - FirebaseUI/Twitter (3.1.1):
     - FirebaseUI/Auth
     - TwitterKit (~> 2.4)
   - GoogleSignIn (4.0.2):
@@ -99,7 +99,7 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - OneSignal (2.4.2)
+  - OneSignal (2.5.0)
   - Protobuf (3.2.0)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
@@ -109,7 +109,7 @@ PODS:
     - Fabric
   - TwitterKit (2.8.1):
     - TwitterCore (>= 2.8)
-  - UPCarouselFlowLayout (1.0.0)
+  - UPCarouselFlowLayout (1.1.1)
 
 DEPENDENCIES:
   - Crashlytics
@@ -122,16 +122,7 @@ DEPENDENCIES:
   - JSQMessagesViewController
   - OneSignal (~> 2.0)
   - SwiftKeychainWrapper
-  - UPCarouselFlowLayout (from `https://github.com/SirArkimedes/UPCarouselFlowLayout.git`)
-
-EXTERNAL SOURCES:
-  UPCarouselFlowLayout:
-    :git: https://github.com/SirArkimedes/UPCarouselFlowLayout.git
-
-CHECKOUT OPTIONS:
-  UPCarouselFlowLayout:
-    :commit: 741fd74b962f1775039dae29ac562e85004c8eb0
-    :git: https://github.com/SirArkimedes/UPCarouselFlowLayout.git
+  - UPCarouselFlowLayout
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -148,21 +139,21 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   FirebaseRemoteConfig: af3003f4e8daa2bd1d5cf90d3cccc1fe224f8ed9
   FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
-  FirebaseUI: d9e83c4c22dd922c661d85f041a771d1953405a9
+  FirebaseUI: 6e99ff95e369f5858232e4f65bff215458fe8469
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  OneSignal: a94d1ca53d05c29de4f4b150bad8ff9c4cc34f67
+  OneSignal: e0aca144fbf1be69e870419cea52e8fdbcb25808
   Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
-  UPCarouselFlowLayout: adfa361c52315c0efc56dbe2555c494b8940f58a
+  UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
 
-PODFILE CHECKSUM: be720f25d28df21ba58593d4cfb895a46c124825
+PODFILE CHECKSUM: e2676210771de7c1ce005ea485f38ef0e6784c01
 
 COCOAPODS: 1.2.0

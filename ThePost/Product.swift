@@ -65,7 +65,7 @@ class Product: NSObject {
                 return "\(weeks) week\(weeks == 1 ? "" : "s") ago"
             }
             if let days = components.day, days > 0 {
-                guard days > 1 else { return "yesterday" }
+                guard days > 1 else { return "Yesterday" }
                 
                 return "\(days) day\(days == 1 ? "" : "s") ago"
             }
@@ -82,7 +82,7 @@ class Product: NSObject {
                 return "\(seconds) second\(seconds == 1 ? "" : "s") ago"
             }
             
-            return "just now"
+            return "Just now"
         }
     }
     
@@ -95,14 +95,14 @@ class Product: NSObject {
             var string = "\(condition.description) - "
             
             switch jeepModel! {
+            case .all:
+                string = string.replacingOccurrences(of: " - ", with: "")
             case .wranglerJK:
                 string.append("JK")
             case .wranglerTJ:
                 string.append("TJ")
             case .wranglerYJ:
                 string.append("YJ")
-            case .cherokeeXJ:
-                string.append("XJ")
             }
             
             return string
