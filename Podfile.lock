@@ -7,6 +7,7 @@ PODS:
   - Bolts/Tasks (1.8.4)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
+  - DateToolsSwift (2.0.3)
   - Fabric (1.6.11)
   - FBSDKCoreKit (4.20.2):
     - Bolts (~> 1.7)
@@ -112,6 +113,7 @@ PODS:
 
 DEPENDENCIES:
   - Crashlytics
+  - DateToolsSwift
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -134,6 +136,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FBSDKCoreKit: 82eac696eb6157da5f4266c3a241f00e9bd72471
   FBSDKLoginKit: 2211bede07c83391349eacc1fd86cf6d9289ce38
@@ -160,6 +163,6 @@ SPEC CHECKSUMS:
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
   UPCarouselFlowLayout: adfa361c52315c0efc56dbe2555c494b8940f58a
 
-PODFILE CHECKSUM: 714a7e7266e47e6adc9dd59849dc4f1584c37d7c
+PODFILE CHECKSUM: be720f25d28df21ba58593d4cfb895a46c124825
 
 COCOAPODS: 1.2.0

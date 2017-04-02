@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2234ECADE1812710C16C7085 /* Pods_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B6FA8DB52DADD10DE2460E /* Pods_ThePostTests.framework */; };
 		2B391E0B6F16F06AFE90E4E1 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3F20F3926EF5DBA8071722 /* libPods-OneSignalNotificationServiceExtension.a */; };
+		2F2CF3391E8E316C00E6EBF7 /* SocialPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2CF3381E8E316C00E6EBF7 /* SocialPost.swift */; };
 		2F5450BB1E537433005A88A3 /* JeepSocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */; };
 		2FB607121E748E310053B41D /* UploadSocialPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */; };
 		4D04C52F1E0EFCDD004B2264 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */; };
@@ -98,7 +99,7 @@
 		4DFE38681E2FDFE900A83EAE /* PresentationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */; };
 		5EC4A3CED303187827059407 /* Pods_ThePost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63AE588E5DF1112BCFB64512 /* Pods_ThePost.framework */; };
 		60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2ED5C1E29C6DA00ED83EA /* Constants.swift */; };
-		ADF2E2F7F322D7BFDF8EC302 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		ADF2E2F7F322D7BFDF8EC302 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D89F34369B57A268B7009A6F /* Pods_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2470422437B4EA1FBAA716 /* Pods_ThePostTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +137,7 @@
 /* Begin PBXFileReference section */
 		064994EFACBFCE58368ACCB8 /* Pods-ThePost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.debug.xcconfig"; sourceTree = "<group>"; };
 		10B6FA8DB52DADD10DE2460E /* Pods_ThePostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F2CF3381E8E316C00E6EBF7 /* SocialPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialPost.swift; sourceTree = "<group>"; };
 		2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSocialTableViewCell.swift; sourceTree = "<group>"; };
 		2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadSocialPostViewController.swift; sourceTree = "<group>"; };
 		4AFDBA5990DDCDE5DE135C8A /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
@@ -257,7 +259,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADF2E2F7F322D7BFDF8EC302 /* BuildFile in Frameworks */,
+				ADF2E2F7F322D7BFDF8EC302 /* (null) in Frameworks */,
 				D89F34369B57A268B7009A6F /* Pods_ThePostTests.framework in Frameworks */,
 				2234ECADE1812710C16C7085 /* Pods_ThePostTests.framework in Frameworks */,
 			);
@@ -340,6 +342,7 @@
 			children = (
 				4D35A21B1E12126300A115EB /* Jeep.swift */,
 				4D239C431E131BBE00F2668E /* Product.swift */,
+				2F2CF3381E8E316C00E6EBF7 /* SocialPost.swift */,
 				4D907B551E13824D00F9FD8B /* User.swift */,
 			);
 			name = Models;
@@ -713,9 +716,9 @@
 				TargetAttributes = {
 					4D58C4D01E0E1882004CA0E3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = S228NG5K95;
+						DevelopmentTeam = 2ZSZVH3P4S;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -982,6 +985,7 @@
 				4DA153F31E22EA6D00708543 /* ChatViewController.swift in Sources */,
 				4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */,
 				4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */,
+				2F2CF3391E8E316C00E6EBF7 /* SocialPost.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
 				4D1102061E2EAD7600ADF559 /* ProfileModalViewController.swift in Sources */,
 				4D1667351E4FC06F0092FDFB /* SettingsContainerViewController.swift in Sources */,
@@ -1170,13 +1174,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ThePost/ThePost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = S228NG5K95;
+				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "31f02222-08b6-41d1-85fe-fbb6e5fb31e9";
+				PROVISIONING_PROFILE_SPECIFIER = "The Wave";
 				SWIFT_OBJC_BRIDGING_HEADER = "ThePost/ThePost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1195,7 +1201,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = S228NG5K95;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;

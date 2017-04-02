@@ -27,6 +27,9 @@ target 'ThePost' do
   # OneSignal
   pod 'OneSignal', '~> 2.0'
 
+  # Date Tools
+  pod 'DateToolsSwift'
+
   target 'ThePostTests' do
     inherit! :search_paths
     # Pods for testing

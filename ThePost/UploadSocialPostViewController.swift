@@ -69,6 +69,8 @@ UINavigationControllerDelegate {
     @IBAction func SubmitButtonAction(_ sender: Any) {
         //Send to Firebase
         
+        SubmitButton.isEnabled = false
+        
         if let userID = FIRAuth.auth()?.currentUser?.uid {
             ref.child("users").child(userID).observeSingleEvent(of: .value, with: { snapshot in
                 
@@ -80,7 +82,7 @@ UINavigationControllerDelegate {
                         var dbPost: [String: Any] = ["userid": userID,
                                                      "name": fullName,
                                                      "likes": [],
-                                                     "datePosted": Date().timeIntervalSince1970]
+                                                     "datePosted": FIRServerValue.timestamp()]
                         
                         
                         // Compress stored image
