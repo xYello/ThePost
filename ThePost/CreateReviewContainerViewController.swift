@@ -368,7 +368,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     
     private func checkIfPreviouslyReviewed() {
         if let uid = FIRAuth.auth()?.currentUser?.uid {
-            let ref = FIRDatabase.database().reference().child("reviews").child(userId).queryOrdered(byChild: "reviewerId").queryStarting(atValue: uid).queryEnding(atValue: uid)
+            let ref = FIRDatabase.database().reference().child("reviews").child(userId).queryOrdered(byChild: "reviewerId").queryStarting(atValue: uid)
             ref.observeSingleEvent(of: .value, with: { snapshot in
                 if let userReviewsDict = snapshot.value as? [String: AnyObject] {
                     
