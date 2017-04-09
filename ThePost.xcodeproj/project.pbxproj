@@ -97,6 +97,7 @@
 		4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */; };
 		4DFE38681E2FDFE900A83EAE /* PresentationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */; };
 		5EC4A3CED303187827059407 /* Pods_ThePost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63AE588E5DF1112BCFB64512 /* Pods_ThePost.framework */; };
+		6085D7B21E8F6C19002405BD /* ProfileTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6085D7B11E8F6C19002405BD /* ProfileTagView.swift */; };
 		60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2ED5C1E29C6DA00ED83EA /* Constants.swift */; };
 		ADF2E2F7F322D7BFDF8EC302 /* Pods_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B6FA8DB52DADD10DE2460E /* Pods_ThePostTests.framework */; };
 /* End PBXBuildFile section */
@@ -235,6 +236,7 @@
 		4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorCollectionViewCell.swift; sourceTree = "<group>"; };
 		4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationCenter.swift; sourceTree = "<group>"; };
 		507095285936BB872350682F /* Pods-ThePostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6085D7B11E8F6C19002405BD /* ProfileTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTagView.swift; sourceTree = "<group>"; };
 		60C2ED5C1E29C6DA00ED83EA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		63AE588E5DF1112BCFB64512 /* Pods_ThePost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C0BA0DD496C8EA8733E705 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 			children = (
 				4D16672F1E4FBFAC0092FDFB /* Settings */,
 				4D34358C1E203E2800E031D7 /* ProfileViewController.swift */,
+				6085D7B11E8F6C19002405BD /* ProfileTagView.swift */,
 				4D2A38DB1E2180A3003D42CA /* ProductListingTableViewCell.swift */,
 				4D1102051E2EAD7600ADF559 /* ProfileModalViewController.swift */,
 			);
@@ -713,7 +716,7 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2ZSZVH3P4S;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1005,6 +1008,7 @@
 				4DE4D9EF1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift in Sources */,
 				4DC30D531E39A6D60087B447 /* NewReviewActivityTableViewCell.swift in Sources */,
 				4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */,
+				6085D7B21E8F6C19002405BD /* ProfileTagView.swift in Sources */,
 				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
 				4DA153F51E22EB1300708543 /* Conversation.swift in Sources */,
 				4DE6622E1E6D12A100417EBB /* OnePasswordExtension.m in Sources */,
@@ -1169,15 +1173,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ThePost/ThePost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "bf370c21-64a4-487a-8a76-75f779d10136";
+				PROVISIONING_PROFILE_SPECIFIER = "The Wave";
 				SWIFT_OBJC_BRIDGING_HEADER = "ThePost/ThePost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1194,15 +1198,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ThePost/ThePost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
 				INFOPLIST_FILE = ThePost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "bf370c21-64a4-487a-8a76-75f779d10136";
+				PROVISIONING_PROFILE_SPECIFIER = "The Wave";
 				SWIFT_OBJC_BRIDGING_HEADER = "ThePost/ThePost-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
