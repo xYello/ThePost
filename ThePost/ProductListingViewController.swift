@@ -271,6 +271,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         default:
             assert(false, "Supplementary view type not configured.")
         }
+        return UICollectionReusableView()
     }
     
     // MARK: - SearchBar delegate
