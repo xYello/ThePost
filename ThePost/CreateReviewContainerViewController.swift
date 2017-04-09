@@ -288,8 +288,10 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                     let childUpdates = [ref.childByAutoId().key: review]
                     ref.updateChildValues(childUpdates)
                     
+                    PushNotification.sender.pushReview(withRating: amountOfStars, withRecipientId: userId)
+                    
                     var starCountString = ""
-                    switch self.amountOfStars {
+                    switch amountOfStars {
                     case 1:
                         starCountString = "oneStars"
                     case 2:
