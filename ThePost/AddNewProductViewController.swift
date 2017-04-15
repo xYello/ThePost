@@ -617,18 +617,20 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                             let key = self.ref.child("products").childByAutoId().key
                             
                             var dbProduct: [String: Any] = ["owner": userID,
-                                           "author": fullName,
-                                           "name": product.name,
-                                           "jeepModel": product.jeepModel.description,
-                                           "price": product.price,
-                                           "condition": product.condition.description,
-                                           "originalBox": product.originalBox,
-                                           "willingToShip": product.willingToShip,
-                                           "acceptsPayPal": product.acceptsPayPal,
-                                           "acceptsCash": product.acceptsCash,
-                                           "likeCount": 0,
-                                           "viewCount": 0,
-                                           "datePosted": FIRServerValue.timestamp()]
+                                                            "author": fullName,
+                                                            "name": product.name,
+                                                            "jeepModel": product.jeepModel.description,
+                                                            "isSold": false,
+                                                            "soldModel": "SELLING" + product.jeepModel.description,
+                                                            "price": product.price,
+                                                            "condition": product.condition.description,
+                                                            "originalBox": product.originalBox,
+                                                            "willingToShip": product.willingToShip,
+                                                            "acceptsPayPal": product.acceptsPayPal,
+                                                            "acceptsCash": product.acceptsCash,
+                                                            "likeCount": 0,
+                                                            "viewCount": 0,
+                                                            "datePosted": FIRServerValue.timestamp()]
                             
                             if let releaseYear = product.releaseYear {
                                 dbProduct["releaseYear"] = releaseYear
