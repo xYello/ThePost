@@ -104,52 +104,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         buildTrustView.roundCorners(radius: 5.0)
         buildTrustView.clipsToBounds = true
-        
-        
-//        //// Rectangle Drawing
-//        let rectanglePath = UIBezierPath()
-//        rectanglePath.move(to: CGPoint(x: -26, y: 10))
-//        rectanglePath.addLine(to: CGPoint(x: 19, y: 10))
-//        rectanglePath.addLine(to: CGPoint(x: 19, y: -8))
-//        rectanglePath.addLine(to: CGPoint(x: -26, y: -8))
-//        rectanglePath.addLine(to: CGPoint(x: -26, y: 10))
-//        badgeColor.setFill()
-//        rectanglePath.fill()
-//        let rectangleShape = CAShapeLayer()
-//        rectangleShape.path = rectanglePath.cgPath
-//        rectangleShape.fillColor = badgeColor.cgColor
-//        rectangleShape.position = CGPoint(x: profileNameLabel.center.x - profileNameLabel.bounds.width/2 - rectangleShape.bounds.width, y: profileNameLabel.center.y)
-//        badgeView.layer.addSublayer(rectangleShape)
-//        
-//        
-//        //// Polygon Drawing
-//        let polygonPath = UIBezierPath()
-//        polygonPath.move(to: CGPoint(x: 28, y: 0.79))
-//        polygonPath.addLine(to: CGPoint(x: 20.34, y: 10))
-//        polygonPath.addLine(to: CGPoint(x: 6.94, y: 7.37))
-//        polygonPath.addLine(to: CGPoint(x: 6.66, y: -5.43))
-//        polygonPath.addLine(to: CGPoint(x: 20.34, y: -8))
-//        polygonPath.addLine(to: CGPoint(x: 28, y: 0.79))
-//        polygonPath.close()
-//        badgeColor.setFill()
-//        polygonPath.fill()
-//        let polyShape = CAShapeLayer()
-//        polyShape.path = polygonPath.cgPath
-//        polyShape.fillColor = badgeColor.cgColor
-//        polyShape.position = CGPoint(x: rectangleShape.position.x + rectangleShape.bounds.width / 2, y: 100)
-//        badgeView.layer.addSublayer(polyShape)
-//        
-//        
-//        rectangleShape.bounds.size = CGSize.init(width: profileNameLabel.bounds.width, height: profileNameLabel.bounds.height)
-//        polyShape.bounds.size = CGSize.init(width: profileNameLabel.bounds.width, height: profileNameLabel.bounds.height)
-//        
-//        rectangleShape.position = CGPoint(x: badgeView.center.x, y: badgeView.center.y - rectangleShape.bounds.size.height / 2)
-//        polyShape.position = CGPoint(x: badgeView.center.x, y: rectangleShape.position.y)
-//        
-//        badgeView.bringSubview(toFront: badgeLabel)
-        
-        
-        
+
         var uid = ""
         if let id = userId {
             uid = id
@@ -486,6 +441,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             if let urlString = snapshot.value as? String {
                 let url = URL(string: urlString)
                 self.profileImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultProfilePicture"))
+            } else {
+                self.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")
             }
         })
     }
