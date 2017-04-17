@@ -24,6 +24,56 @@ class JeepSocialTableViewCell: UITableViewCell {
         
         self.profileImageView.roundCorners()
         self.profileImageView.clipsToBounds = true
+        
+        self.postImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.likeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let imageWidth = NSLayoutConstraint(item: self.postImageView,
+                                            attribute: .width,
+                                            relatedBy: .equal,
+                                            toItem: self,
+                                            attribute: .width,
+                                            multiplier: 1,
+                                            constant: 0)
+        
+        let imageHeight = NSLayoutConstraint(item: self.postImageView,
+                                             attribute: .height,
+                                             relatedBy: .equal,
+                                             toItem: self,
+                                             attribute: .height,
+                                             multiplier: 0.75,
+                                             constant: 0)
+        
+        let imageTrailing = NSLayoutConstraint(item: self.postImageView,
+                                               attribute: .bottom,
+                                               relatedBy: .equal,
+                                               toItem: self,
+                                               attribute: .bottom,
+                                               multiplier: 1,
+                                               constant: 0)
+        
+        self.addConstraints([imageWidth, imageHeight, imageTrailing])
+        
+        let buttonYPosition = NSLayoutConstraint(item: self.likeButton,
+                                                 attribute: .centerY,
+                                                 relatedBy: .equal,
+                                                 toItem: self,
+                                                 attribute: .centerY,
+                                                 multiplier: 0.25,
+                                                 constant: 0)
+        
+        let buttonXPosition = NSLayoutConstraint(item: self.likeButton,
+                                                 attribute: .right,
+                                                 relatedBy: .equal,
+                                                 toItem: self,
+                                                 attribute: .right,
+                                                 multiplier: 0.95,
+                                                 constant: 0)
+        
+        self.addConstraints([buttonYPosition, buttonXPosition])
+        
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

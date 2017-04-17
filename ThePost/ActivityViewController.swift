@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorageUI
 import DateToolsSwift
 
 class ActivityViewController: UIViewController, UITableViewDataSource {
@@ -69,12 +70,31 @@ class ActivityViewController: UIViewController, UITableViewDataSource {
         
         socialCell.likeCountLabel.text = socialPosts[indexPath.row].likeCount.description
         socialCell.postNameLabel.text = socialPosts[indexPath.row].username
-        
-        let url = URL(string: socialPosts[indexPath.row].imageUrl)
 //        socialCell.profileImageView.sd_setImage(with: url)
         socialCell.timeLabel.text = socialPosts[indexPath.row].datePosted.timeAgoSinceNow
-        socialCell.postImageView.sd_setImage(with: url)
-    
+        
+        let imageUrl = URL(string: socialPosts[indexPath.row].imageUrl)
+        // Load from cache or download.
+        SDWebImageManager.shared().diskImageExists(for: imageUrl, completion: { exists in
+            if exists {
+                SDWebImageManager.shared().loadImage(with: imageUrl, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
+                    if let i = image {
+                        DispatchQueue.main.async {
+                            socialCell.postImageView.image = i
+                        }
+                    }
+                })
+            } else {
+                SDWebImageDownloader.shared().downloadImage(with: imageUrl, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
+                    if let i = image {
+                        DispatchQueue.main.async {
+                            socialCell.postImageView.image = i
+                        }
+                    }
+                })
+            }
+        })
+
 //        socialCell.likeCountLabel.text = "125,857,323 likes"
 //        socialCell.postNameLabel.text = "Ethan Andrews"
 //        socialCell.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")
