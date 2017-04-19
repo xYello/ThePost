@@ -123,7 +123,14 @@ class SignInUpPromptViewController: UIViewController {
                                             }
                                             
                                             self.ref.child(user!.uid).child("isOnline").setValue(true)
-                                            self.ref.child(user!.uid).child("fullName").setValue(data["name"] as! String)
+                                            
+                                            // Check if fullname already exists.
+                                            self.ref.child(user!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
+                                                if snapshot.value == nil {
+                                                    self.ref.child(user!.uid).child("fullName").setValue(data["name"] as! String)
+                                                }
+                                            })
+                                            
                                             self.ref.child(user!.uid).child("email").setValue(email)
                                             self.saveOneSignalId()
                                             self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
@@ -164,7 +171,14 @@ class SignInUpPromptViewController: UIViewController {
                         KeychainWrapper.standard.set(session.authTokenSecret, forKey: TwitterInfoKeys.secret)
                         
                         self.ref.child(user!.uid).child("isOnline").setValue(true)
-                        self.ref.child(user!.uid).child("fullName").setValue(name)
+                        
+                        // Check if fullname already exists
+                        self.ref.child(user!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
+                            if snapshot.value == nil {
+                                self.ref.child(user!.uid).child("fullName").setValue(name)
+                            }
+                        })
+                        
                         self.saveOneSignalId()
                         self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
                     }

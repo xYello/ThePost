@@ -109,8 +109,6 @@ class ReviewsSummaryContainerViewController: UIViewController, UITableViewDataSo
             star.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
         }
         
-        farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-        
         closeButton.layer.borderColor = closeButton.titleLabel!.textColor.cgColor
         closeButton.layer.borderWidth = 1.0
         closeButton.roundCorners(radius: 8.0)

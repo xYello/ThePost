@@ -87,6 +87,39 @@ class PushNotification: NSObject {
         
     }
     
+    func pushReview(withRating rating: Int, withRecipientId id: String) {
+        let rc = FIRRemoteConfig.remoteConfig()
+        let headerValue = rc.configValue(forKey: "review_push_notification_heading")
+        let messageValue = rc.configValue(forKey: "review_push_notification_message")
+        let header = headerValue.stringValue
+        let message = messageValue.stringValue
+        if var m = message, var h = header {
+            
+            let userRef = FIRDatabase.database().reference().child("users")
+            userRef.child(FIRAuth.auth()!.currentUser!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
+                if let name = snapshot.value as? String {
+                    
+                    userRef.child(id).child("pushNotificationIds").observeSingleEvent(of: .value, with: { snapshot in
+                        if let ids = snapshot.value as? [String: Bool] {
+                            h = h.replacingOccurrences(of: "%USER%", with: name)
+                            
+                            var stars = ""
+                            for _ in 1...rating {
+                                stars += "⭐️"
+                            }
+                            
+                            m = m.replacingOccurrences(of: "%USER%", with: name)
+                            m = m.replacingOccurrences(of: "%STARS%", with: stars)
+                            
+                            self.pushNotification(withHeading: h, withMessage: m, withPlayerIds: ids)
+                        }
+                    })
+                    
+                }
+            })
+        }
+    }
+    
     private func pushNotification(withHeading heading: String, withMessage message: String, withPlayerIds ids: [String: Bool]) {
         OneSignal.idsAvailable() { userId, pushToken in
             for (key, _) in ids {

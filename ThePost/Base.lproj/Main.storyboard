@@ -994,14 +994,14 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$00,000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dor-dV-FEf">
-                                                    <rect key="frame" x="159.5" y="162" width="44.5" height="14"/>
+                                                    <rect key="frame" x="159" y="162" width="45" height="14"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                     <color key="textColor" red="0.34509803921568627" green="0.69019607843137254" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="IHo-JY-abA">
-                                                    <rect key="frame" x="8" y="163" width="85.5" height="13"/>
+                                                    <rect key="frame" x="8" y="162.5" width="85.5" height="13"/>
                                                     <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1018,7 +1018,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="FSy-jX-hSv">
-                                                    <rect key="frame" x="8" y="175" width="196" height="14"/>
+                                                    <rect key="frame" x="8" y="174.5" width="196" height="14"/>
                                                     <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="12"/>
                                                     <color key="textColor" red="0.63921568627450975" green="0.29803921568627451" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1718,23 +1718,9 @@
                                             <action selector="reviewsButtonTapped:" destination="anJ-nv-bkZ" eventType="touchUpInside" id="WzD-Bc-ZU1"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKl-gT-yoN">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKl-gT-yoN" customClass="ProfileTagView" customModule="ThePost" customModuleProvider="target">
                                         <rect key="frame" x="63" y="22" width="60" height="32"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADMIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cOt-ty-ZLQ">
-                                                <rect key="frame" x="11" y="4" width="42" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="r7t-PF-ik8"/>
-                                                    <constraint firstAttribute="width" constant="42" id="xnZ-fJ-BqV"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="9"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
                                         <constraints>
-                                            <constraint firstItem="cOt-ty-ZLQ" firstAttribute="top" secondItem="xKl-gT-yoN" secondAttribute="top" constant="4" id="EfJ-a6-jzS"/>
-                                            <constraint firstItem="cOt-ty-ZLQ" firstAttribute="leading" secondItem="xKl-gT-yoN" secondAttribute="leading" constant="11" id="Xc3-Rh-nwu"/>
                                             <constraint firstAttribute="width" constant="60" id="ifE-8e-nhg"/>
                                         </constraints>
                                     </view>
@@ -1878,7 +1864,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" image="ProfileTabBarIcon" id="Us2-ff-0Ip"/>
                     <connections>
-                        <outlet property="badgeLabel" destination="cOt-ty-ZLQ" id="2QR-Yw-gU0"/>
                         <outlet property="badgeView" destination="xKl-gT-yoN" id="lyc-g7-4dm"/>
                         <outlet property="bottomBarHeightConstraint" destination="yzb-a2-agD" id="Ssm-lh-TEh"/>
                         <outlet property="bottomMostSeperator" destination="8di-Bh-5bf" id="tx3-T0-QZ8"/>
@@ -3645,6 +3630,9 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24f-eh-Unb">
                                         <rect key="frame" x="8" y="12.5" width="72" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="G4t-cb-mr0"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                                         <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>

@@ -118,13 +118,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").removeValue()
+        if let uid = FIRAuth.auth()?.currentUser?.uid {
+            FIRDatabase.database().reference().child("users").child(uid).child("isOnline").removeValue()
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         
-        FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
+        if let uid = FIRAuth.auth()?.currentUser?.uid {
+            FIRDatabase.database().reference().child("users").child(uid).child("isOnline").setValue(true)
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

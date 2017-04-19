@@ -38,5 +38,8 @@ target 'ThePost' do
 end
 
 target 'OneSignalNotificationServiceExtension' do
+
+use_frameworks!
+
   pod 'OneSignal', '~> 2.0'
 end

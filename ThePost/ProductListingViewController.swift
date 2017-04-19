@@ -122,9 +122,12 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             
             productRef = ref.child("products")
             
-            var query = productRef!.queryLimited(toLast: 200)
+            var query = productRef!.queryOrdered(byChild: "soldModel").queryStarting(atValue: "SELLING").queryEnding(atValue: "SELLING\u{f8ff}").queryLimited(toLast: 200)
             if jeepModel.type != .all {
-                query = productRef!.queryOrdered(byChild: "jeepModel").queryStarting(atValue: jeepModel.type.description).queryEnding(atValue: jeepModel.type.description).queryLimited(toLast: 200)
+                query = productRef!.queryOrdered(byChild: "soldModel")
+                    .queryStarting(atValue: "SELLING" + jeepModel.type.description)
+                    .queryEnding(atValue: "SELLING" + jeepModel.type.description)
+                    .queryLimited(toLast: 200)
             }
             query.observe(.childAdded, with: { snapshot in
                 if let productDict = snapshot.value as? [String: AnyObject] {
@@ -132,7 +135,11 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                         
                         self.amountOfProducts += 1
                         
-                        self.products.insert(product, at: 0)
+                        if self.jeepModel.type != .all {
+                            self.products.insert(product, at: 0)
+                        } else {
+                            self.products.append(product)
+                        }
                         
                         if !self.isSearching {
                             self.collectionView.performBatchUpdates({
@@ -163,6 +170,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                     }
                 }
             })
+            
         }
     }
     
@@ -271,6 +279,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         default:
             assert(false, "Supplementary view type not configured.")
         }
+        return UICollectionReusableView()
     }
     
     // MARK: - SearchBar delegate

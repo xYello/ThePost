@@ -1,1 +1,0 @@
-../../../../OneSignal/iOS_SDK/OneSignalSDK/Framework/OneSignal.framework/Versions/A/Headers/OneSignal.h
