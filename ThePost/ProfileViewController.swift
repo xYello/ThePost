@@ -23,6 +23,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var settingsButton: UIButton!
     
     @IBOutlet weak var buildTrustView: UIView!
+    @IBOutlet weak var buildTrustLabel: UILabel!
+    @IBOutlet weak var buildTrustButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var farLeftStar: UIImageView!
     @IBOutlet weak var leftMidStar: UIImageView!
@@ -99,18 +101,22 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         profileImageView.roundCorners()
         profileImageView.clipsToBounds = true
         
-        buildTrustView.roundCorners(radius: 5.0)
-        buildTrustView.clipsToBounds = true
-
         var uid = ""
         if let id = userId {
             uid = id
             settingsButton.isHidden = true
+            buildTrustView.isHidden = true
+            buildTrustButton.isHidden = true
+            
             profileImageViewTopConstraint.constant = 0.0
         } else {
+            buildTrustView.roundCorners(radius: 5.0)
+            buildTrustView.clipsToBounds = true
+            
             uid = FIRAuth.auth()!.currentUser!.uid
             bottomBarHeightConstraint.constant = tabBarController!.tabBar.frame.height
         }
@@ -376,6 +382,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
             present(vc, animated: false, completion: nil)
         }
+    }
+    
+    @IBAction func buildTrustButtonTapped(_ sender: UIButton) {
+        print("Hey")
     }
     
     @IBAction func wantsToClose(_ sender: UIButton) {
