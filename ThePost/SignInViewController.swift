@@ -138,11 +138,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
                         self.saveOneSignalId()
                         KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
-                        if UIApplication.shared.isRegisteredForRemoteNotifications {
-                            self.performSegue(withIdentifier: "unwindToPresenting", sender: self)
-                        } else {
-                            self.performSegue(withIdentifier: "showAppServicesRequestViewController", sender: self)
-                        }
+                        self.sendToNextViewController()
                     }
                 })
             }
@@ -181,7 +177,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
                     self.saveOneSignalId()
                     KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
-                    self.performSegue(withIdentifier: "showAppServicesRequestViewController", sender: self)
+                    self.sendToNextViewController()
                 }
             })
         }
@@ -227,6 +223,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             onePassswordButton.isEnabled = true
             exitButton.isEnabled = true
             signInButton.isEnabled = true
+        }
+    }
+    
+    private func sendToNextViewController() {
+        if OneSignal.getPermissionSubscriptionState().permissionStatus.status != .notDetermined {
+            performSegue(withIdentifier: "unwindToPresenting", sender: self)
+        } else {
+            performSegue(withIdentifier: "showAppServicesRequestViewController", sender: self)
         }
     }
     
