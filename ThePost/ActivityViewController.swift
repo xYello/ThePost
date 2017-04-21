@@ -94,7 +94,36 @@ class ActivityViewController: UIViewController, UITableViewDataSource {
                 })
             }
         })
-
+        
+        let userID = socialPosts[indexPath.row].userid
+        let ref = FIRDatabase.database().reference().child("users").child(userID!).child("profileImage")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let urlString = snapshot.value as? String {
+                let profileImageUrl = URL(string: urlString)
+                // Load from cache or download.
+                SDWebImageManager.shared().diskImageExists(for: imageUrl, completion: { exists in
+                    if exists {
+                        SDWebImageManager.shared().loadImage(with: profileImageUrl, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
+                            if let i = image {
+                                DispatchQueue.main.async {
+                                    socialCell.profileImageView.image = i
+                                }
+                            }
+                        })
+                    } else {
+                        SDWebImageDownloader.shared().downloadImage(with: profileImageUrl, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
+                            if let i = image {
+                                DispatchQueue.main.async {
+                                    socialCell.profileImageView.image = i
+                                }
+                            }
+                        })
+                    }
+                })
+            } else {
+                socialCell.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")
+            }
+        })
 //        socialCell.likeCountLabel.text = "125,857,323 likes"
 //        socialCell.postNameLabel.text = "Ethan Andrews"
 //        socialCell.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")

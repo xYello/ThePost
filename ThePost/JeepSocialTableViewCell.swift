@@ -22,11 +22,11 @@ class JeepSocialTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        self.profileImageView.roundCorners()
         self.profileImageView.clipsToBounds = true
         
         self.postImageView.translatesAutoresizingMaskIntoConstraints = false
         self.likeButton.translatesAutoresizingMaskIntoConstraints = false
+        self.profileImageView.translatesAutoresizingMaskIntoConstraints = false
         
         let imageWidth = NSLayoutConstraint(item: self.postImageView,
                                             attribute: .width,
@@ -73,7 +73,47 @@ class JeepSocialTableViewCell: UITableViewCell {
         self.addConstraints([buttonYPosition, buttonXPosition])
         
         
+        let profileImageWidth = NSLayoutConstraint(item: self.profileImageView,
+                                            attribute: .width,
+                                            relatedBy: .equal,
+                                            toItem: self,
+                                            attribute: .width,
+                                            multiplier: 0.15,
+                                            constant: 0)
         
+        let profileImageHeight = NSLayoutConstraint(item: self.profileImageView,
+                                             attribute: .height,
+                                             relatedBy: .equal,
+                                             toItem: self,
+                                             attribute: .width,
+                                             multiplier: 0.15,
+                                             constant: 0)
+        
+        let profileImageX = NSLayoutConstraint(item: self.profileImageView,
+                                                    attribute: .top,
+                                                    relatedBy: .equal,
+                                                    toItem: self,
+                                                    attribute: .top,
+                                                    multiplier: 1,
+                                                    constant: 20)
+        
+        let profileImageY = NSLayoutConstraint(item: self.profileImageView,
+                                               attribute: .leading,
+                                               relatedBy: .equal,
+                                               toItem: self,
+                                               attribute: .leading,
+                                               multiplier: 1,
+                                               constant: 20)
+        
+        self.addConstraints([profileImageWidth, profileImageHeight, profileImageX, profileImageY])
+        
+
+    }
+    
+    override func layoutSubviews() {
+        super .layoutSubviews()
+        self.profileImageView.roundCorners()
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
