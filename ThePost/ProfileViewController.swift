@@ -23,6 +23,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var settingsButton: UIButton!
     
     @IBOutlet weak var buildTrustView: UIView!
+    @IBOutlet weak var buildTrustLabel: UILabel!
+    @IBOutlet weak var buildTrustButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var farLeftStar: UIImageView!
     @IBOutlet weak var leftMidStar: UIImageView!
@@ -99,18 +101,22 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         profileImageView.roundCorners()
         profileImageView.clipsToBounds = true
         
-        buildTrustView.roundCorners(radius: 5.0)
-        buildTrustView.clipsToBounds = true
-
         var uid = ""
         if let id = userId {
             uid = id
             settingsButton.isHidden = true
+            buildTrustView.isHidden = true
+            buildTrustButton.isHidden = true
+            
             profileImageViewTopConstraint.constant = 0.0
         } else {
+            buildTrustView.roundCorners(radius: 5.0)
+            buildTrustView.clipsToBounds = true
+            
             uid = FIRAuth.auth()!.currentUser!.uid
             bottomBarHeightConstraint.constant = tabBarController!.tabBar.frame.height
         }
@@ -134,6 +140,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         NotificationCenter.default.addObserver(self, selector: #selector(userHasLoggedOut(notification:)), name: NSNotification.Name(rawValue: logoutNotificationKey), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(userHasChangedName(notification:)), name: NSNotification.Name(rawValue: nameChangeNotificationKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userBuiltTrust(notification:)), name: NSNotification.Name(rawValue: buildTrustChangeNotificationKey), object: nil)
+        
+        previouslySelectedButton = sellingProductTypeButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -374,6 +383,15 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             vc.modalPresentationStyle = .overCurrentContext
             vc.fullName = profileNameLabel.text
             
+            present(vc, animated: false, completion: nil)
+        }
+    }
+    
+    @IBAction func buildTrustButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "buildTrustViewController") as? BuildTrustModalViewController {
+            vc.modalPresentationStyle = .overCurrentContext
+
             present(vc, animated: false, completion: nil)
         }
     }
@@ -628,7 +646,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         grabUsersReviewStats(with: uid)
         grabProfileImage(with: uid)
         
-        previouslySelectedButton = sellingProductTypeButton
+        userBuiltTrust(notification: nil)
     }
     
     // MARK: - Notifications
@@ -639,6 +657,35 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @objc private func userHasChangedName(notification: NSNotification) {
         getUserProfile(with: FIRAuth.auth()!.currentUser!.uid)
+    }
+    
+    @objc private func userBuiltTrust(notification: NSNotification?) {
+        if let user = FIRAuth.auth()?.currentUser {
+            if !buildTrustView.isHidden {
+                
+                let hasEmail = (user.isEmailVerified)
+                var hasFacebook = false
+                var hasTwitter = false
+                
+                for provider in user.providerData {
+                    if provider.providerID == "facebook.com" {
+                        hasFacebook = true
+                    } else if provider.providerID == "twitter.com" {
+                        hasTwitter = true
+                    }
+                }
+                
+                if hasEmail && hasFacebook && hasTwitter {
+                    buildTrustView.backgroundColor = #colorLiteral(red: 0.3330563009, green: 0.6850114465, blue: 0.4460556507, alpha: 1)
+                    buildTrustLabel.text = "Trust Built"
+                    buildTrustButton.isEnabled = false
+                } else {
+                    buildTrustView.backgroundColor = #colorLiteral(red: 0.6447251439, green: 0.2988195121, blue: 0.2212364674, alpha: 1)
+                    buildTrustLabel.text = "Build Trust"
+                    buildTrustButton.isEnabled = true
+                }
+            }
+        }
     }
     
 }
