@@ -10,6 +10,7 @@ let openChatControllerNotificationKey = "kOpenChatControllerNotification"
 
 let logoutNotificationKey = "kLogoutNotificationKey"
 let nameChangeNotificationKey = "kNameChangeNotificationKey"
+let buildTrustChangeNotificationKey = "kBuildTrustHasUpdateNotificationKey"
 
 struct UserInfoKeys {
     static let UserPass = "userPass"

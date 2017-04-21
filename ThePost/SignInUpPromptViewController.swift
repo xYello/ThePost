@@ -126,7 +126,8 @@ class SignInUpPromptViewController: UIViewController {
                                             
                                             // Check if fullname already exists.
                                             self.ref.child(user!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
-                                                if snapshot.value == nil {
+                                                if let _ = snapshot.value as? String {
+                                                } else {
                                                     self.ref.child(user!.uid).child("fullName").setValue(data["name"] as! String)
                                                 }
                                             })
@@ -174,7 +175,8 @@ class SignInUpPromptViewController: UIViewController {
                         
                         // Check if fullname already exists
                         self.ref.child(user!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
-                            if snapshot.value == nil {
+                            if let _ = snapshot.value as? String {
+                            } else {
                                 self.ref.child(user!.uid).child("fullName").setValue(name)
                             }
                         })

@@ -31,6 +31,8 @@
 		4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */; };
 		4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */; };
 		4D04C54E1E0F2CD3004B2264 /* AppServicesRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */; };
+		4D0541111EA968CA0033526C /* BuildTrustModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0541101EA968CA0033526C /* BuildTrustModalViewController.swift */; };
+		4D0541131EA969780033526C /* BuildTrustViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0541121EA969780033526C /* BuildTrustViewController.swift */; };
 		4D1102061E2EAD7600ADF559 /* ProfileModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1102051E2EAD7600ADF559 /* ProfileModalViewController.swift */; };
 		4D11145F1E737B74001C274F /* ProductListingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D11145E1E737B74001C274F /* ProductListingCollectionReusableView.swift */; };
 		4D14F6D61E31A09400AF71F8 /* ModalPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14F6D51E31A09400AF71F8 /* ModalPresentationViewController.swift */; };
@@ -162,6 +164,8 @@
 		4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+RoundedCorners.swift"; sourceTree = "<group>"; };
 		4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppServicesRequestViewController.swift; sourceTree = "<group>"; };
+		4D0541101EA968CA0033526C /* BuildTrustModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildTrustModalViewController.swift; sourceTree = "<group>"; };
+		4D0541121EA969780033526C /* BuildTrustViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildTrustViewController.swift; sourceTree = "<group>"; };
 		4D1102051E2EAD7600ADF559 /* ProfileModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModalViewController.swift; sourceTree = "<group>"; };
 		4D11145E1E737B74001C274F /* ProductListingCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingCollectionReusableView.swift; sourceTree = "<group>"; };
 		4D14F6D51E31A09400AF71F8 /* ModalPresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalPresentationViewController.swift; sourceTree = "<group>"; };
@@ -334,6 +338,15 @@
 			name = Walkthrough;
 			sourceTree = "<group>";
 		};
+		4D05410F1EA968A10033526C /* Buid Trust */ = {
+			isa = PBXGroup;
+			children = (
+				4D0541101EA968CA0033526C /* BuildTrustModalViewController.swift */,
+				4D0541121EA969780033526C /* BuildTrustViewController.swift */,
+			);
+			name = "Buid Trust";
+			sourceTree = "<group>";
+		};
 		4D14F6D71E31B4E500AF71F8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +422,7 @@
 		4D34358B1E203E1900E031D7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				4D05410F1EA968A10033526C /* Buid Trust */,
 				4D16672F1E4FBFAC0092FDFB /* Settings */,
 				4D34358C1E203E2800E031D7 /* ProfileViewController.swift */,
 				6085D7B11E8F6C19002405BD /* ProfileTagView.swift */,
@@ -965,6 +979,7 @@
 				4D5AB0B21E249418005BF23B /* ProductViewerContainerViewController.swift in Sources */,
 				4D161BCB1E2700EC001BEE9D /* CreateReviewViewController.swift in Sources */,
 				4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */,
+				4D0541131EA969780033526C /* BuildTrustViewController.swift in Sources */,
 				4D5AB0B01E249404005BF23B /* ProductViewerViewController.swift in Sources */,
 				4D24E8CB1E15C79900E524FD /* NewProductDetailsTableViewCell.swift in Sources */,
 				4D24E8C91E15C48600E524FD /* NewProductSwitchTableViewCell.swift in Sources */,
@@ -992,6 +1007,7 @@
 				4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */,
 				4DC30D501E399E050087B447 /* ActivityViewController.swift in Sources */,
 				4D161BCD1E2710C2001BEE9D /* CreateReviewContainerViewController.swift in Sources */,
+				4D0541111EA968CA0033526C /* BuildTrustModalViewController.swift in Sources */,
 				60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */,
 				4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */,
 				4D11145F1E737B74001C274F /* ProductListingCollectionReusableView.swift in Sources */,
