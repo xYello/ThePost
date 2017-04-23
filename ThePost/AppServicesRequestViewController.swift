@@ -34,9 +34,10 @@ class AppServicesRequestViewController: UIViewController {
 
     @IBAction func requestButtonPressed(_ sender: UIButton) {
         
-        OneSignal.registerForPushNotifications()
+        OneSignal.promptForPushNotifications() { accepted in
+            self.performSegue(withIdentifier: "unwindToPresenting", sender: self)
+        }
         
-        performSegue(withIdentifier: "unwindToPresenting", sender: self)
     }
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {

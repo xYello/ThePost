@@ -121,9 +121,10 @@ class PushNotification: NSObject {
     }
     
     private func pushNotification(withHeading heading: String, withMessage message: String, withPlayerIds ids: [String: Bool]) {
-        OneSignal.idsAvailable() { userId, pushToken in
+        
+        if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
             for (key, _) in ids {
-                if key != userId {
+                if key != id {
                     OneSignal.postNotification(["headings": ["en": heading], "contents": ["en": message], "include_player_ids": [key]])
                 }
             }

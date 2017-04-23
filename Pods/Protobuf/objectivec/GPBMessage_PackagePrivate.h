@@ -70,7 +70,6 @@ typedef struct GPBMessage_Storage *GPBMessage_StoragePtr;
   // Use of readOnlySemaphore_ must be prefaced by a call to
   // GPBPrepareReadOnlySemaphore to ensure it has been created. This allows
   // readOnlySemaphore_ to be only created when actually needed.
-  dispatch_once_t readOnlySemaphoreCreationOnce_;
   dispatch_semaphore_t readOnlySemaphore_;
 }
 
@@ -105,14 +104,7 @@ CF_EXTERN_C_BEGIN
 
 
 // Call this before using the readOnlySemaphore_. This ensures it is created only once.
-NS_INLINE void GPBPrepareReadOnlySemaphore(GPBMessage *self) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdirect-ivar-access"
-  dispatch_once(&self->readOnlySemaphoreCreationOnce_, ^{
-    self->readOnlySemaphore_ = dispatch_semaphore_create(1);
-  });
-#pragma clang diagnostic pop
-}
+void GPBPrepareReadOnlySemaphore(GPBMessage *self);
 
 // Returns a new instance that was automatically created by |autocreator| for
 // its field |field|.

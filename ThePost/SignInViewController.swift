@@ -247,19 +247,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Firebase
     
     private func saveOneSignalId() {
-        OneSignal.idsAvailable() { userId, pushToken in
-            if let id = userId {
-                let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
-                ref.observeSingleEvent(of: .value, with: { snapshot in
-                    if var ids = snapshot.value as? [String: Bool] {
-                        ids[id] = true
-                        ref.updateChildValues(ids)
-                    } else {
-                        let ids = [id: true]
-                        ref.updateChildValues(ids)
-                    }
-                })
-            }
+        if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
+            let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
+            ref.observeSingleEvent(of: .value, with: { snapshot in
+                if var ids = snapshot.value as? [String: Bool] {
+                    ids[id] = true
+                    ref.updateChildValues(ids)
+                } else {
+                    let ids = [id: true]
+                    ref.updateChildValues(ids)
+                }
+            })
         }
     }
     
