@@ -663,7 +663,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         if let user = FIRAuth.auth()?.currentUser {
             if !buildTrustView.isHidden {
                 
-                let hasEmail = (user.isEmailVerified)
                 var hasFacebook = false
                 var hasTwitter = false
                 
@@ -675,7 +674,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     }
                 }
                 
-                if hasEmail && hasFacebook && hasTwitter {
+                if hasFacebook && hasTwitter {
                     buildTrustView.backgroundColor = #colorLiteral(red: 0.3330563009, green: 0.6850114465, blue: 0.4460556507, alpha: 1)
                     buildTrustLabel.text = "Trust Built"
                     buildTrustButton.isEnabled = false

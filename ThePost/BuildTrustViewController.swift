@@ -19,7 +19,6 @@ class BuildTrustViewController: UIViewController {
     
     @IBOutlet weak var facebookView: UIView!
     @IBOutlet weak var twitterView: UIView!
-    @IBOutlet weak var emailView: UIView!
     
     // MARK: - View lifecyle
     
@@ -31,7 +30,6 @@ class BuildTrustViewController: UIViewController {
         backgroundView.roundCorners(radius: 8.0)
         facebookView.roundCorners(radius: 8.0)
         twitterView.roundCorners(radius: 8.0)
-        emailView.roundCorners(radius: 8.0)
         
         if let user = FIRAuth.auth()?.currentUser {
             for provider in user.providerData {
@@ -40,14 +38,6 @@ class BuildTrustViewController: UIViewController {
                 } else if provider.providerID == "twitter.com" {
                     twitterView.isHidden = true
                 }
-            }
-            
-            if user.email == nil {
-                emailView.isHidden = true
-            }
-            
-            if user.isEmailVerified {
-                emailView.isHidden = true
             }
         }
         
@@ -81,7 +71,7 @@ class BuildTrustViewController: UIViewController {
                                             }
                                         }
                                         
-                                        if self.twitterView.isHidden && self.emailView.isHidden {
+                                        if self.twitterView.isHidden {
                                             self.dismissParent()
                                         } else {
                                             UIView.animate(withDuration: 0.25, animations: {
@@ -111,7 +101,7 @@ class BuildTrustViewController: UIViewController {
                         print("Error in Twitter auth: \(error.localizedDescription)")
                     } else {
                         UIView.animate(withDuration: 0.25, animations: {
-                            if self.facebookView.isHidden && self.emailView.isHidden {
+                            if self.facebookView.isHidden {
                                 self.dismissParent()
                             } else {
                                 UIView.animate(withDuration: 0.25, animations: {
@@ -127,14 +117,6 @@ class BuildTrustViewController: UIViewController {
                 print("Error signing up: \(error.localizedDescription)")
             }
             
-        }
-    }
-    
-    @IBAction func emailButtonPressed(_ sender: UIButton) {
-        FIRAuth.auth()?.currentUser?.sendEmailVerification() { error in
-            if let error = error {
-                print("Error in sending verification email: \(error.localizedDescription)")
-            }
         }
     }
     

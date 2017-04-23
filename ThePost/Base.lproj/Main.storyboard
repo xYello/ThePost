@@ -1157,7 +1157,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-uC-8od">
-                                    <rect key="frame" x="146" y="20" width="47.5" height="12"/>
+                                    <rect key="frame" x="146.5" y="20" width="47.5" height="12"/>
                                     <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="10"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -2006,7 +2006,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.63921568627450975" green="0.29803921568627451" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2030,7 +2030,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="icS-JB-eAG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="MessagesTabBarIcon" id="gR2-QB-zbc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="T8D-YI-vEB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8D-YI-vEB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3556,7 +3556,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ey7-I1-ngI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="ActivityTabBarIcon" id="hrl-HZ-3sD"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="PXY-oV-xsh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PXY-oV-xsh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019610000001" green="0.16078431369999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3622,7 +3622,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiK-PH-VOl">
-                                <rect key="frame" x="120.5" y="13" width="103" height="26"/>
+                                <rect key="frame" x="121" y="13" width="103" height="26"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="22"/>
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3847,9 +3847,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhE-ll-gss">
-                                <rect key="frame" x="37" y="118" width="300" height="363"/>
+                                <rect key="frame" x="37" y="143" width="300" height="320"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="363" id="gvN-3x-Sve"/>
+                                    <constraint firstAttribute="height" constant="320" id="gvN-3x-Sve"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="Gtp-zb-T8y" kind="embed" identifier="rewiewsSummary_embed" id="Qgh-lV-iFj"/>
@@ -3859,7 +3859,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="RhE-ll-gss" secondAttribute="leading" constant="-21" id="HUI-SC-Wdq"/>
-                            <constraint firstItem="RhE-ll-gss" firstAttribute="centerY" secondItem="1Hn-Pl-2iI" secondAttribute="centerY" constant="-34" id="aCk-Ju-bBa"/>
+                            <constraint firstItem="RhE-ll-gss" firstAttribute="centerY" secondItem="1Hn-Pl-2iI" secondAttribute="centerY" constant="-30.5" id="aCk-Ju-bBa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RhE-ll-gss" secondAttribute="trailing" constant="22" id="xug-gw-FkN"/>
                         </constraints>
                     </view>
@@ -3880,11 +3880,11 @@
                         <viewControllerLayoutGuide type="bottom" id="1b0-3T-cUW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7mr-U2-ItU">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="363"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3a-80-0uX">
-                                <rect key="frame" x="0.0" y="72" width="300" height="291"/>
+                                <rect key="frame" x="0.0" y="72" width="300" height="249"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You still haven't verified the following accounts:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUS-Fw-6N3">
                                         <rect key="frame" x="69" y="88" width="161" height="34"/>
@@ -3903,13 +3903,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="349-Pe-hU1">
-                                        <rect key="frame" x="59" y="144" width="182" height="118"/>
+                                        <rect key="frame" x="59" y="144" width="182" height="76"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Be-gQ-2uy" userLabel="FacebookView">
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-7e-Uov">
-                                                        <rect key="frame" x="61.5" y="8" width="60" height="17"/>
+                                                        <rect key="frame" x="61" y="8" width="60" height="17"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -3977,42 +3977,6 @@
                                                     <constraint firstItem="zWa-cA-z5w" firstAttribute="centerY" secondItem="L8o-A3-qhu" secondAttribute="centerY" id="y9x-qx-0bv"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxK-fA-Q3n" userLabel="EmailView">
-                                                <rect key="frame" x="0.0" y="84" width="182" height="34"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1B3-i4-qjG">
-                                                        <rect key="frame" x="57.5" y="8" width="68.5" height="17"/>
-                                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmailSmall" translatesAutoresizingMaskIntoConstraints="NO" id="Tkn-2r-G20">
-                                                        <rect key="frame" x="8" y="8" width="20" height="19"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="19" id="6X3-jE-qUH"/>
-                                                            <constraint firstAttribute="width" constant="20" id="NwU-jA-b4u"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71c-nS-a2H">
-                                                        <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
-                                                        <connections>
-                                                            <action selector="emailButtonPressed:" destination="Gtp-zb-T8y" eventType="touchUpInside" id="kbb-SW-mGx"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.64472514390945435" green="0.29881951212882996" blue="0.2212364673614502" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="Tkn-2r-G20" firstAttribute="centerY" secondItem="bxK-fA-Q3n" secondAttribute="centerY" id="8aO-xS-fOw"/>
-                                                    <constraint firstAttribute="bottom" secondItem="71c-nS-a2H" secondAttribute="bottom" id="9W7-zR-Qsj"/>
-                                                    <constraint firstAttribute="height" constant="34" id="HYa-Ir-4pe"/>
-                                                    <constraint firstItem="1B3-i4-qjG" firstAttribute="centerX" secondItem="bxK-fA-Q3n" secondAttribute="centerX" id="NWg-07-MSO"/>
-                                                    <constraint firstItem="71c-nS-a2H" firstAttribute="leading" secondItem="bxK-fA-Q3n" secondAttribute="leading" id="Tmb-Oa-F5w"/>
-                                                    <constraint firstItem="Tkn-2r-G20" firstAttribute="leading" secondItem="bxK-fA-Q3n" secondAttribute="leading" constant="8" id="bIU-ft-eql"/>
-                                                    <constraint firstItem="71c-nS-a2H" firstAttribute="top" secondItem="bxK-fA-Q3n" secondAttribute="top" id="gqe-s2-GGT"/>
-                                                    <constraint firstAttribute="trailing" secondItem="71c-nS-a2H" secondAttribute="trailing" id="pIR-yc-jRk"/>
-                                                    <constraint firstItem="1B3-i4-qjG" firstAttribute="top" secondItem="bxK-fA-Q3n" secondAttribute="top" constant="8" id="zZr-qB-SlG"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -4055,7 +4019,6 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="F3a-80-0uX" id="AP4-xx-Kb0"/>
-                        <outlet property="emailView" destination="bxK-fA-Q3n" id="LOd-ED-c7q"/>
                         <outlet property="facebookView" destination="6Be-gQ-2uy" id="wBH-5k-Z4b"/>
                         <outlet property="shieldView" destination="V52-NQ-dcq" id="PtU-wX-Wzr"/>
                         <outlet property="twitterView" destination="L8o-A3-qhu" id="HrI-Ps-sL1"/>
@@ -4070,7 +4033,6 @@
         <image name="ActivityTabBarIcon" width="20" height="24"/>
         <image name="DefaultProfilePicture" width="250" height="250"/>
         <image name="DropdownArrow" width="14" height="7"/>
-        <image name="EmailSmall" width="20" height="15"/>
         <image name="FacebookSmallRounded" width="20" height="20"/>
         <image name="HomeTabBarIcon" width="21" height="23"/>
         <image name="LikeIcon" width="15" height="14"/>
