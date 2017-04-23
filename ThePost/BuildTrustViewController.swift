@@ -65,15 +65,20 @@ class BuildTrustViewController: UIViewController {
                                     if let error = error {
                                         print("Error in Facebook auth: \(error.localizedDescription)")
                                     } else {
+                                        
                                         if let data = result as? [String: AnyObject] {
                                             if let e = data["email"] as? String {
-                                                FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("email").setValue(e)
+                                                FIRDatabase.database().reference().child("users").child(user!.uid).child("email").setValue(e)
                                             }
                                         }
+                                        
+                                        FIRDatabase.database().reference().child("users").child(user!.uid).child("verifiedWith").child("Facebook").setValue(true)
                                         
                                         if self.twitterView.isHidden {
                                             self.dismissParent()
                                         } else {
+                                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: buildTrustChangeNotificationKey), object: nil, userInfo: nil)
+                                            
                                             UIView.animate(withDuration: 0.25, animations: {
                                                 self.facebookView.isHidden = true
                                             })
@@ -100,15 +105,17 @@ class BuildTrustViewController: UIViewController {
                     if let error = error {
                         print("Error in Twitter auth: \(error.localizedDescription)")
                     } else {
-                        UIView.animate(withDuration: 0.25, animations: {
-                            if self.facebookView.isHidden {
-                                self.dismissParent()
-                            } else {
-                                UIView.animate(withDuration: 0.25, animations: {
-                                    self.twitterView.isHidden = true
-                                })
-                            }
-                        })
+                        FIRDatabase.database().reference().child("users").child(user!.uid).child("verifiedWith").child("Twitter").setValue(true)
+                        
+                        if self.facebookView.isHidden {
+                            self.dismissParent()
+                        } else {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: buildTrustChangeNotificationKey), object: nil, userInfo: nil)
+                            
+                            UIView.animate(withDuration: 0.25, animations: {
+                                self.twitterView.isHidden = true
+                            })
+                        }
                     }
                 }
                 

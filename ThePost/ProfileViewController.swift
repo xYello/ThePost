@@ -35,6 +35,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var numberOfReviewsLabel: UILabel!
     
+    @IBOutlet weak var twitterVerifiedWithImage: UIImageView!
+    @IBOutlet weak var facebookVerifiedWithImage: UIImageView!
+    
     @IBOutlet weak var sellingProductTypeButton: UIButton!
     @IBOutlet weak var bottomMostSeperator: UIView!
     @IBOutlet weak var badgeView: UIView!
@@ -130,6 +133,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         numberOfReviewsLabel.text = "\(0) reviews"
+        
+        twitterVerifiedWithImage.alpha = 0.0
+        facebookVerifiedWithImage.alpha = 0.0
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -453,6 +459,35 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    private func grabVerifiedWithInformation(with uid: String) {
+        let ref = FIRDatabase.database().reference().child("users").child(uid).child("verifiedWith")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let verified = snapshot.value as? [String: Bool] {
+                let verifiedTwitter = verified["Twitter"] ?? false
+                let verifiedFacebook = verified["Facebook"] ?? false
+                
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.25, animations: {
+                        if verifiedTwitter {
+                            self.twitterVerifiedWithImage.alpha = 1.0
+                        } else {
+                            self.twitterVerifiedWithImage.alpha = 0.0
+                        }
+                        
+                        if verifiedFacebook {
+                            self.facebookVerifiedWithImage.alpha = 1.0
+                        } else {
+                            self.facebookVerifiedWithImage.alpha = 0.0
+                        }
+                    })
+                }
+            } else {
+                self.twitterVerifiedWithImage.alpha = 0.0
+                self.facebookVerifiedWithImage.alpha = 0.0
+            }
+        })
+    }
+    
     private func grabProfileImage(with uid: String) {
         let ref = FIRDatabase.database().reference().child("users").child(uid).child("profileImage")
         ref.observeSingleEvent(of: .value, with: { snapshot in
@@ -662,6 +697,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @objc private func userBuiltTrust(notification: NSNotification?) {
         if let user = FIRAuth.auth()?.currentUser {
             if !buildTrustView.isHidden {
+                grabVerifiedWithInformation(with: user.uid)
                 
                 var hasFacebook = false
                 var hasTwitter = false
