@@ -72,7 +72,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                 circle.roundCorners()
                 circle.alpha = 0.0
                 circle.layer.borderColor = #colorLiteral(red: 0.9100467563, green: 0.9073620439, blue: 0.819750607, alpha: 1).cgColor
-                circle.layer.borderWidth = 2.0
+                circle.layer.borderWidth = 2.5
                 tabBar.insertSubview(circle, belowSubview: views[2])
                 
                 selectionBar = UIView()
@@ -86,10 +86,12 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                     self.selectionBar!.alpha = 1.0
                     self.selectionBar!.frame = CGRect(x: 0, y: self.tabBar.frame.height - 2, width: views[0].frame.width, height: 2)
                     
-                    circle.frame = CGRect(x: views[2].frame.origin.x + 7.5,
-                                          y: views[2].frame.origin.y - 7.5,
-                                          width: views[2].frame.height + 15,
-                                          height: views[2].frame.height + 15)
+                    let size = views[2].frame.height + 15
+                    
+                    circle.frame = CGRect(x: views[2].frame.midX - size / 2,
+                                          y: views[2].frame.midY - size / 2,
+                                          width: size,
+                                          height: size)
                     
                     circle.roundCorners()
                     circle.alpha = 1.0
