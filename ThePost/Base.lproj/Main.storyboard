@@ -1157,7 +1157,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-uC-8od">
-                                    <rect key="frame" x="146.5" y="20" width="47.5" height="12"/>
+                                    <rect key="frame" x="146" y="20" width="47.5" height="12"/>
                                     <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="10"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -1989,7 +1989,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gar-Tn-OcQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="HomeTabBarIcon" id="hyP-Uw-OGH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ll3-yS-Yex">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ll3-yS-Yex">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.63921568627450975" green="0.29803921568627451" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2013,7 +2013,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="icS-JB-eAG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="MessagesTabBarIcon" id="gR2-QB-zbc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8D-YI-vEB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="T8D-YI-vEB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019607843137" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2653,22 +2653,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrY-jH-RRf" userLabel="Bottom Container">
                                 <rect key="frame" x="0.0" y="560" width="343" height="53"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PtQ-xq-0Ye">
-                                        <rect key="frame" x="260" y="8" width="75" height="36"/>
-                                        <color key="backgroundColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="75" id="7TV-Sg-BWJ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
-                                        <state key="normal">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="orangeButtonTapped:" destination="OL0-SV-hFV" eventType="touchUpInside" id="t97-pj-gDC"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ug0-wk-xMV">
-                                        <rect key="frame" x="66" y="8" width="82" height="36"/>
+                                        <rect key="frame" x="253" y="8" width="82" height="36"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                         <state key="normal" title="Close">
@@ -2689,21 +2675,35 @@
                                             <action selector="greenButtonTapped:" destination="OL0-SV-hFV" eventType="touchUpInside" id="zGf-hU-2P1"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PtQ-xq-0Ye">
+                                        <rect key="frame" x="73" y="8" width="82" height="36"/>
+                                        <color key="backgroundColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="82" id="7TV-Sg-BWJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="orangeButtonTapped:" destination="OL0-SV-hFV" eventType="touchUpInside" id="t97-pj-gDC"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.14117647059999999" green="0.1647058824" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Ug0-wk-xMV" firstAttribute="bottom" secondItem="S6K-Gm-ZFh" secondAttribute="bottom" id="3Ve-15-WqA"/>
-                                    <constraint firstItem="PtQ-xq-0Ye" firstAttribute="width" secondItem="S6K-Gm-ZFh" secondAttribute="width" constant="-7" id="Ah4-Ub-MXI"/>
+                                    <constraint firstItem="PtQ-xq-0Ye" firstAttribute="width" secondItem="S6K-Gm-ZFh" secondAttribute="width" id="Ah4-Ub-MXI"/>
                                     <constraint firstAttribute="bottom" secondItem="PtQ-xq-0Ye" secondAttribute="bottom" constant="9" id="Cnx-yz-Cs0"/>
                                     <constraint firstItem="Ug0-wk-xMV" firstAttribute="top" secondItem="S6K-Gm-ZFh" secondAttribute="top" id="CqL-aN-eED"/>
-                                    <constraint firstItem="S6K-Gm-ZFh" firstAttribute="leading" secondItem="Ug0-wk-xMV" secondAttribute="trailing" constant="15" id="IjP-aL-C6H"/>
-                                    <constraint firstItem="PtQ-xq-0Ye" firstAttribute="leading" secondItem="S6K-Gm-ZFh" secondAttribute="trailing" constant="15" id="MOf-qr-qFU"/>
+                                    <constraint firstItem="Ug0-wk-xMV" firstAttribute="leading" secondItem="S6K-Gm-ZFh" secondAttribute="trailing" constant="8" id="JXJ-Fn-TlX"/>
                                     <constraint firstItem="S6K-Gm-ZFh" firstAttribute="top" secondItem="PtQ-xq-0Ye" secondAttribute="top" id="Mpj-UI-0cD"/>
-                                    <constraint firstAttribute="trailing" secondItem="PtQ-xq-0Ye" secondAttribute="trailing" constant="8" id="PVM-2H-TDf"/>
-                                    <constraint firstItem="Ug0-wk-xMV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nrY-jH-RRf" secondAttribute="leading" constant="8" id="im0-lC-A0M"/>
+                                    <constraint firstItem="PtQ-xq-0Ye" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nrY-jH-RRf" secondAttribute="leading" constant="8" id="bPx-RH-bU5"/>
                                     <constraint firstItem="S6K-Gm-ZFh" firstAttribute="width" secondItem="Ug0-wk-xMV" secondAttribute="width" id="jDO-Gy-jCb"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ug0-wk-xMV" secondAttribute="trailing" constant="8" id="p7S-eq-jef"/>
                                     <constraint firstItem="PtQ-xq-0Ye" firstAttribute="top" secondItem="nrY-jH-RRf" secondAttribute="top" constant="8" id="pQD-0s-mDi"/>
                                     <constraint firstAttribute="height" constant="53" id="sgC-09-gYR"/>
+                                    <constraint firstItem="S6K-Gm-ZFh" firstAttribute="leading" secondItem="PtQ-xq-0Ye" secondAttribute="trailing" constant="8" id="xhw-vr-EhF"/>
                                     <constraint firstItem="S6K-Gm-ZFh" firstAttribute="bottom" secondItem="PtQ-xq-0Ye" secondAttribute="bottom" id="xvt-68-i7h"/>
                                 </constraints>
                             </view>
@@ -3539,7 +3539,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ey7-I1-ngI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="ActivityTabBarIcon" id="hrl-HZ-3sD"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PXY-oV-xsh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="PXY-oV-xsh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12549019610000001" green="0.16078431369999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3605,7 +3605,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiK-PH-VOl">
-                                <rect key="frame" x="120" y="13" width="103" height="26"/>
+                                <rect key="frame" x="120.5" y="13" width="103" height="26"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="22"/>
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3892,7 +3892,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-7e-Uov">
-                                                        <rect key="frame" x="61" y="8" width="60" height="17"/>
+                                                        <rect key="frame" x="61.5" y="8" width="60" height="17"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -4021,7 +4021,7 @@
         <image name="LikeIcon" width="15" height="14"/>
         <image name="LikeIconNotLiked" width="30" height="30"/>
         <image name="MessagesTabBarIcon" width="23" height="23"/>
-        <image name="NewPostTabBarIcon" width="29" height="29"/>
+        <image name="NewPostTabBarIcon" width="34" height="34"/>
         <image name="PIPBackgroundImage" width="385" height="265"/>
         <image name="PIPCamera" width="79" height="79"/>
         <image name="PLPFilters" width="20" height="21"/>

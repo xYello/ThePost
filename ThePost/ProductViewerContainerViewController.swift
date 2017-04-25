@@ -104,12 +104,15 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         
         if let uid = FIRAuth.auth()?.currentUser?.uid {
             if uid == product.ownerId {
-                orangeButton.setTitle("Delete", for: .normal)
-                greenButton.setTitle("Edit", for: .normal)
+                orangeButton.isHidden = true
+                greenButton.isHidden = true
             } else {
                 orangeButton.setTitle("Make Offer", for: .normal)
                 greenButton.setTitle("Message", for: .normal)
             }
+        } else {
+            orangeButton.isHidden = true
+            greenButton.isHidden = true
         }
         
         let formatter = NumberFormatter()
