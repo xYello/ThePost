@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Answers.self, Crashlytics.self, Twitter.self])
         
         OneSignal.initWithLaunchOptions(launchOptions, appId: "***REMOVED***", handleNotificationAction: nil, settings: ["kOSSettingsKeyAutoPrompt": false])
+        OneSignal.inFocusDisplayType = .none
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
