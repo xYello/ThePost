@@ -193,13 +193,13 @@
 		4D35A21D1E121E3800A115EB /* JeepModelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepModelButton.swift; sourceTree = "<group>"; };
 		4D5643381E4EAF7600064948 /* SignInUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignInUp.storyboard; sourceTree = "<group>"; };
 		4D581B5D1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewerImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		4D58C4D11E0E1882004CA0E3 /* ThePost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePost.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D58C4D11E0E1882004CA0E3 /* The Wave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Wave.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D58C4D91E0E1882004CA0E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D58C4DE1E0E1882004CA0E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D58C4E01E0E1882004CA0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D58C4E51E0E1883004CA0E3 /* ThePostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThePostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D58C4E51E0E1883004CA0E3 /* The Wave Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The Wave Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D58C4E91E0E1883004CA0E3 /* ThePostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThePostTests.swift; sourceTree = "<group>"; };
 		4D58C4EB1E0E1883004CA0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -448,8 +448,8 @@
 		4D58C4D21E0E1882004CA0E3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4D58C4D11E0E1882004CA0E3 /* ThePost.app */,
-				4D58C4E51E0E1883004CA0E3 /* ThePostTests.xctest */,
+				4D58C4D11E0E1882004CA0E3 /* The Wave.app */,
+				4D58C4E51E0E1883004CA0E3 /* The Wave Tests.xctest */,
 				4DA2343B1E7DB709006B5192 /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
@@ -653,9 +653,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4D58C4D01E0E1882004CA0E3 /* ThePost */ = {
+		4D58C4D01E0E1882004CA0E3 /* The Wave */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4D58C4EE1E0E1883004CA0E3 /* Build configuration list for PBXNativeTarget "ThePost" */;
+			buildConfigurationList = 4D58C4EE1E0E1883004CA0E3 /* Build configuration list for PBXNativeTarget "The Wave" */;
 			buildPhases = (
 				D8E4E53172D0FB10157853EE /* [CP] Check Pods Manifest.lock */,
 				4D58C4CD1E0E1882004CA0E3 /* Sources */,
@@ -671,14 +671,14 @@
 			dependencies = (
 				4DA234411E7DB709006B5192 /* PBXTargetDependency */,
 			);
-			name = ThePost;
+			name = "The Wave";
 			productName = ThePost;
-			productReference = 4D58C4D11E0E1882004CA0E3 /* ThePost.app */;
+			productReference = 4D58C4D11E0E1882004CA0E3 /* The Wave.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4D58C4E41E0E1883004CA0E3 /* ThePostTests */ = {
+		4D58C4E41E0E1883004CA0E3 /* The Wave Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4D58C4F11E0E1883004CA0E3 /* Build configuration list for PBXNativeTarget "ThePostTests" */;
+			buildConfigurationList = 4D58C4F11E0E1883004CA0E3 /* Build configuration list for PBXNativeTarget "The Wave Tests" */;
 			buildPhases = (
 				D046166AFF8E28515004EDFF /* [CP] Check Pods Manifest.lock */,
 				4D58C4E11E0E1883004CA0E3 /* Sources */,
@@ -692,9 +692,9 @@
 			dependencies = (
 				4D58C4E71E0E1883004CA0E3 /* PBXTargetDependency */,
 			);
-			name = ThePostTests;
+			name = "The Wave Tests";
 			productName = ThePostTests;
-			productReference = 4D58C4E51E0E1883004CA0E3 /* ThePostTests.xctest */;
+			productReference = 4D58C4E51E0E1883004CA0E3 /* The Wave Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		4DA2343A1E7DB709006B5192 /* OneSignalNotificationServiceExtension */ = {
@@ -771,8 +771,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4D58C4D01E0E1882004CA0E3 /* ThePost */,
-				4D58C4E41E0E1883004CA0E3 /* ThePostTests */,
+				4D58C4D01E0E1882004CA0E3 /* The Wave */,
+				4D58C4E41E0E1883004CA0E3 /* The Wave Tests */,
 				4DA2343A1E7DB709006B5192 /* OneSignalNotificationServiceExtension */,
 			);
 		};
@@ -1057,7 +1057,7 @@
 /* Begin PBXTargetDependency section */
 		4D58C4E71E0E1883004CA0E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4D58C4D01E0E1882004CA0E3 /* ThePost */;
+			target = 4D58C4D01E0E1882004CA0E3 /* The Wave */;
 			targetProxy = 4D58C4E61E0E1883004CA0E3 /* PBXContainerItemProxy */;
 		};
 		4DA234411E7DB709006B5192 /* PBXTargetDependency */ = {
@@ -1305,7 +1305,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4D58C4EE1E0E1883004CA0E3 /* Build configuration list for PBXNativeTarget "ThePost" */ = {
+		4D58C4EE1E0E1883004CA0E3 /* Build configuration list for PBXNativeTarget "The Wave" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D58C4EF1E0E1883004CA0E3 /* Debug */,
@@ -1314,7 +1314,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4D58C4F11E0E1883004CA0E3 /* Build configuration list for PBXNativeTarget "ThePostTests" */ = {
+		4D58C4F11E0E1883004CA0E3 /* Build configuration list for PBXNativeTarget "The Wave Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D58C4F21E0E1883004CA0E3 /* Debug */,
