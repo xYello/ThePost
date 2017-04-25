@@ -17,4 +17,7 @@ class User: NSObject {
     var starRating = 0
     var totalNumberOfReviews = 0
     
+    var twitterVerified = false
+    var facebookVerified = false
+    
 }

@@ -226,6 +226,13 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             
             sellerCell.sellerImageView.sd_setImage(with: seller.profileUrl, placeholderImage: #imageLiteral(resourceName: "DefaultProfilePicture"))
             
+            if !seller.twitterVerified {
+                sellerCell.twitterVerifiedWithImage.isHidden = true
+            }
+            if !seller.facebookVerified {
+                sellerCell.facebookVerifiedWithImage.isHidden = true
+            }
+            
             cell = sellerCell
         } else if type == .exCheck {
             let exCheckCell = tableView.dequeueReusableCell(withIdentifier: "exCheckCell", for: indexPath) as! ProductViewerExCheckTableViewCell
@@ -408,6 +415,11 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                 }
                 if let profileUrl = userDict["profileImage"] as? String {
                     self.seller.profileUrl = URL(string: profileUrl)
+                }
+                
+                if let verifiedWith = userDict["verifiedWith"] as? [String: Bool] {
+                    self.seller.twitterVerified = verifiedWith["Twitter"] ?? false
+                    self.seller.facebookVerified = verifiedWith["Facebook"] ?? false
                 }
                 
                 let ref = FIRDatabase.database().reference().child("reviews").child(self.product.ownerId).child("reviewNumbers")

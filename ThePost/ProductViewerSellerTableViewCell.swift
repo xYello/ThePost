@@ -22,6 +22,9 @@ class ProductViewerSellerTableViewCell: UITableViewCell {
     @IBOutlet weak var rightMidStar: UIImageView!
     @IBOutlet weak var farRightStar: UIImageView!
     
+    @IBOutlet weak var twitterVerifiedWithImage: UIImageView!
+    @IBOutlet weak var facebookVerifiedWithImage: UIImageView!
+    
     var amountOfStars = 0 {
         didSet {
             switch amountOfStars {
