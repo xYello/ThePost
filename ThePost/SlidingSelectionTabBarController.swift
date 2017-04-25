@@ -71,8 +71,6 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                 circle.backgroundColor = #colorLiteral(red: 0.645365417, green: 0.2968381643, blue: 0.2095199227, alpha: 1)
                 circle.roundCorners()
                 circle.alpha = 0.0
-                circle.layer.borderColor = #colorLiteral(red: 0.9100467563, green: 0.9073620439, blue: 0.819750607, alpha: 1).cgColor
-                circle.layer.borderWidth = 2.5
                 tabBar.insertSubview(circle, belowSubview: views[2])
                 
                 selectionBar = UIView()
