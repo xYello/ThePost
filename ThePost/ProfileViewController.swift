@@ -419,11 +419,15 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             imagePicker.sourceType = type
             
             if status == .notDetermined {
-                AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
-                    if granted {
-                        self.present(imagePicker, animated: true, completion: nil)
-                    }
-                })
+                if type != .photoLibrary {
+                    AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
+                        if granted {
+                            self.present(imagePicker, animated: true, completion: nil)
+                        }
+                    })
+                } else {
+                    present(imagePicker, animated: true, completion: nil)
+                }
             } else if status == .authorized {
                 present(imagePicker, animated: true, completion: nil)
             } else {
@@ -434,6 +438,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         }
+
         
     }
     
