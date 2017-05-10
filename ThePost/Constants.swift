@@ -28,3 +28,7 @@ struct ProductListingType {
     
     static let key = "kProductListingViewType"
 }
+
+struct OneSignalKeys {
+    static let appId = "***REMOVED***"
+}

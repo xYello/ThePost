@@ -340,7 +340,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Firebase
     
     private func saveOneSignalId() {
-        if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId  {
+        if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
             let ref = self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
             ref.observeSingleEvent(of: .value, with: { snapshot in
                 if var ids = snapshot.value as? [String: Bool] {
