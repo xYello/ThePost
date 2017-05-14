@@ -32,7 +32,7 @@
         <!--Jeep Selector View Controller-->
         <scene sceneID="RJg-qb-mtk">
             <objects>
-                <viewController storyboardIdentifier="jeepSelectorViewController" id="akQ-8e-u87" customClass="JeepSelectorViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="jeepSelectorViewController" id="akQ-8e-u87" customClass="JeepSelectorViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F6y-Gx-fnl"/>
                         <viewControllerLayoutGuide type="bottom" id="jUJ-aL-aRG"/>
@@ -84,7 +84,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="jeepSelectorCell" id="lKS-Yd-LfQ" customClass="JeepSelectorCollectionViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="jeepSelectorCell" id="lKS-Yd-LfQ" customClass="JeepSelectorCollectionViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="46" y="0.0" width="283" height="269"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -109,7 +109,7 @@
                                                     <color key="textColor" red="0.36078431372549019" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HF3-Xb-1uX" customClass="JeepModelButton" customModule="ThePost" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HF3-Xb-1uX" customClass="JeepModelButton" customModule="The_Wave" customModuleProvider="target">
                                                     <rect key="frame" x="63" y="205" width="157" height="37"/>
                                                     <color key="backgroundColor" red="0.63921568627450975" green="0.29803921568627451" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -207,7 +207,7 @@
         <!--Add New Product View Controller-->
         <scene sceneID="agu-Ej-1sd">
             <objects>
-                <viewController storyboardIdentifier="addNewPostViewController" id="NCn-ah-941" customClass="AddNewProductViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addNewPostViewController" id="NCn-ah-941" customClass="AddNewProductViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qGw-Qt-bUT"/>
                         <viewControllerLayoutGuide type="bottom" id="rVo-Ml-v3O"/>
@@ -235,7 +235,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="Y8W-CR-xhp" customClass="ProductImageCollectionViewCell" customModule="ThePost" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="Y8W-CR-xhp" customClass="ProductImageCollectionViewCell" customModule="The_Wave" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="39.5" width="282" height="179"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -282,11 +282,11 @@
                                         <color key="separatorColor" red="0.35686274509999999" green="0.35686274509999999" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" rowHeight="35" id="zCa-W9-V9g" customClass="NewProductTextTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" rowHeight="35" id="zCa-W9-V9g" customClass="NewProductTextTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="343" height="35"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zCa-W9-V9g" id="DBg-z7-6CX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="35"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="34.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Wv-4f-JXe">
@@ -296,13 +296,13 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-pw-eQ7">
-                                                            <rect key="frame" x="35" y="7.5" width="83" height="19"/>
+                                                            <rect key="frame" x="35" y="7.5" width="81.5" height="19"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="OEM Jeep Grille" textAlignment="right" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="2LO-ri-bfP">
-                                                            <rect key="frame" x="124" y="0.0" width="211" height="34"/>
+                                                            <rect key="frame" x="122.5" y="0.0" width="212.5" height="34"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="16"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="next"/>
@@ -327,11 +327,11 @@
                                                     <outlet property="sideImageView" destination="9Wv-4f-JXe" id="QTX-JZ-rJh"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dropDownCell" rowHeight="221" id="dMS-Kz-4SC" customClass="NewProductDropDownTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dropDownCell" rowHeight="221" id="dMS-Kz-4SC" customClass="NewProductDropDownTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="63" width="343" height="221"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dMS-Kz-4SC" id="mQO-u8-pcK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="221"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="220.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xfz-Rr-eg6">
@@ -348,7 +348,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="content" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="SUA-bb-BQt">
-                                                            <rect key="frame" x="261.5" y="7" width="54.5" height="19"/>
+                                                            <rect key="frame" x="263" y="7" width="53" height="19"/>
                                                             <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -361,7 +361,7 @@
                                                             </constraints>
                                                         </pickerView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vbt-b3-Vne">
-                                                            <rect key="frame" x="33" y="7" width="83" height="19"/>
+                                                            <rect key="frame" x="33" y="7" width="81.5" height="19"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="2" id="FBD-s7-Or5"/>
                                                             </constraints>
@@ -395,11 +395,11 @@
                                                     <outlet property="sideImageView" destination="xfz-Rr-eg6" id="hov-To-tI6"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" rowHeight="221" id="Z7o-PZ-twX" customClass="NewProductDetailsTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" rowHeight="221" id="Z7o-PZ-twX" customClass="NewProductDetailsTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="284" width="343" height="221"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z7o-PZ-twX" id="1XM-G5-VWS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="221"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="220.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gkb-Gv-fz4">
@@ -412,7 +412,7 @@
                                                             <rect key="frame" x="0.0" y="35" width="343" height="186"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Original Box" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="cQd-sX-Fym">
-                                                                    <rect key="frame" x="33" y="8" width="88" height="19"/>
+                                                                    <rect key="frame" x="33" y="8" width="86.5" height="19"/>
                                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -501,7 +501,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="wcF-df-tIY">
-                                                            <rect key="frame" x="34" y="8" width="83" height="19"/>
+                                                            <rect key="frame" x="34" y="8" width="81.5" height="19"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="2" id="br8-AO-Emu"/>
                                                             </constraints>
@@ -531,11 +531,11 @@
                                                     <outlet property="sideImageView" destination="gkb-Gv-fz4" id="dT6-dj-Ica"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="controlCell" rowHeight="35" id="zim-FK-aZl" customClass="NewProductSwitchTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="controlCell" rowHeight="35" id="zim-FK-aZl" customClass="NewProductSwitchTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="505" width="343" height="35"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zim-FK-aZl" id="bec-IA-v3X">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="35"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="34.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hlc-9e-1OQ">
@@ -545,7 +545,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="NyU-RR-9ca">
-                                                            <rect key="frame" x="33" y="7.5" width="83" height="19"/>
+                                                            <rect key="frame" x="33" y="7.5" width="81.5" height="19"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -672,7 +672,7 @@
         <!--Your chats-->
         <scene sceneID="8a6-7X-2FF">
             <objects>
-                <viewController id="C80-yy-GNU" customClass="ChatConversationViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="C80-yy-GNU" customClass="ChatConversationViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pi4-lr-a7h"/>
                         <viewControllerLayoutGuide type="bottom" id="i0q-Tx-eae"/>
@@ -687,11 +687,11 @@
                                 <color key="separatorColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="0.05096476510067114" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="90" minY="0.0" maxX="13" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="conversationCell" rowHeight="100" id="EcZ-rp-zHs" customClass="ConversationTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="conversationCell" rowHeight="100" id="EcZ-rp-zHs" customClass="ConversationTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EcZ-rp-zHs" id="awg-YX-9YY">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V5o-O6-TbL">
@@ -704,13 +704,13 @@
                                                     <rect key="frame" x="19" y="26" width="53" height="48"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Person Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="eYG-Sc-uCT">
-                                                    <rect key="frame" x="104" y="12" width="97.5" height="19"/>
+                                                    <rect key="frame" x="104" y="12" width="95.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GcG-77-XE4" userLabel="Presence Indicator">
-                                                    <rect key="frame" x="209.5" y="16.5" width="11" height="11"/>
+                                                    <rect key="frame" x="207.5" y="16.5" width="11" height="11"/>
                                                     <color key="backgroundColor" red="0.39215686274509803" green="0.792156862745098" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="11" id="3sB-oi-bg3"/>
@@ -813,7 +813,7 @@
         <!--Chat Container View Controller-->
         <scene sceneID="TXT-Vi-abr">
             <objects>
-                <viewController id="UA3-Yi-KfX" customClass="ChatContainerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UA3-Yi-KfX" customClass="ChatContainerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="awu-38-jWO"/>
                         <viewControllerLayoutGuide type="bottom" id="hDB-ty-kiA"/>
@@ -926,7 +926,7 @@
         <!--Product Listing View Controller-->
         <scene sceneID="M69-kX-baG">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="eb5-1Y-8Mf" customClass="ProductListingViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="eb5-1Y-8Mf" customClass="ProductListingViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rmV-5e-953"/>
                         <viewControllerLayoutGuide type="bottom" id="X3T-O6-AJx"/>
@@ -980,7 +980,7 @@
                                     <inset key="sectionInset" minX="8" minY="10" maxX="8" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="plpContentCell" id="eoB-qG-Hcs" customClass="ProductListingContentCollectionViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="plpContentCell" id="eoB-qG-Hcs" customClass="ProductListingContentCollectionViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="81.5" y="50" width="212" height="252"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1053,7 +1053,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="productListingSearchBarHeader" id="EcL-1q-kvZ" customClass="ProductListingCollectionReusableView" customModule="ThePost" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="productListingSearchBarHeader" id="EcL-1q-kvZ" customClass="ProductListingCollectionReusableView" customModule="The_Wave" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -1157,7 +1157,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-uC-8od">
-                                    <rect key="frame" x="146" y="20" width="47.5" height="12"/>
+                                    <rect key="frame" x="146.5" y="20" width="47.5" height="12"/>
                                     <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="10"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -1189,7 +1189,7 @@
         <!--Product Viewer View Controller-->
         <scene sceneID="kAv-O9-1u7">
             <objects>
-                <viewController storyboardIdentifier="viewProductInfo" id="R40-HT-vga" customClass="ProductViewerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewProductInfo" id="R40-HT-vga" customClass="ProductViewerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vse-FW-mGO"/>
                         <viewControllerLayoutGuide type="bottom" id="62z-QQ-dfe"/>
@@ -1224,7 +1224,7 @@
         <!--Sliding Selection Tab Bar Controller-->
         <scene sceneID="3pT-7z-kF9">
             <objects>
-                <tabBarController storyboardIdentifier="slidingSelectionTabBarController" id="Bv8-tW-FXm" customClass="SlidingSelectionTabBarController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="slidingSelectionTabBarController" id="Bv8-tW-FXm" customClass="SlidingSelectionTabBarController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="iIe-sb-Xqo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1247,7 +1247,7 @@
         <!--Notifications-->
         <scene sceneID="o5O-e6-fmd">
             <objects>
-                <viewController id="byy-RR-jng" customClass="ActivityViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="byy-RR-jng" customClass="ActivityViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CZT-og-cbE"/>
                         <viewControllerLayoutGuide type="bottom" id="c9H-5c-DwM"/>
@@ -1262,11 +1262,11 @@
                                 <color key="separatorColor" red="0.35686274509999999" green="0.35686274509999999" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reviewCell" rowHeight="73" id="m8T-ln-b0O" customClass="NewReviewActivityTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reviewCell" rowHeight="73" id="m8T-ln-b0O" customClass="NewReviewActivityTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m8T-ln-b0O" id="Rug-hd-uDd">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="73"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="72.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jqU-Zg-nmz">
@@ -1276,13 +1276,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW REVIEW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOU-Jv-KHa">
-                                                    <rect key="frame" x="72" y="8" width="87.5" height="17"/>
+                                                    <rect key="frame" x="72" y="8" width="91" height="17"/>
                                                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                     <color key="textColor" red="0.72156862745098038" green="0.30980392156862746" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="30 minutes ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="faz-ni-hbV">
-                                                    <rect key="frame" x="164.5" y="10" width="76" height="13"/>
+                                                    <rect key="frame" x="168" y="10" width="73.5" height="13"/>
                                                     <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="11"/>
                                                     <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1315,11 +1315,11 @@
                                             <outlet property="profileImageView" destination="jqU-Zg-nmz" id="3Nh-dS-EAA"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="soldCell" rowHeight="73" id="FXb-EW-ob1" customClass="SoldActivityTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="soldCell" rowHeight="73" id="FXb-EW-ob1" customClass="SoldActivityTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="101" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FXb-EW-ob1" id="4ua-K8-bb6">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="73"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="72.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ffo-z7-4wp">
@@ -1335,7 +1335,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="30 minutes ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="bbB-x5-FFs">
-                                                    <rect key="frame" x="118" y="10" width="76" height="13"/>
+                                                    <rect key="frame" x="118" y="10" width="73.5" height="13"/>
                                                     <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="11"/>
                                                     <color key="textColor" red="0.46666666670000001" green="0.46666666670000001" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1368,11 +1368,11 @@
                                             <outlet property="profileImageView" destination="ffo-z7-4wp" id="m4l-PU-49v"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="likeCell" rowHeight="73" id="v16-3s-zvU" customClass="LikedProductActivityTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="likeCell" rowHeight="73" id="v16-3s-zvU" customClass="LikedProductActivityTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="174" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v16-3s-zvU" id="mOV-cK-fsw">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="73"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="72.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iOz-2M-2Jc">
@@ -1388,7 +1388,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="30 minutes ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="tLE-ep-AG9">
-                                                    <rect key="frame" x="158" y="10" width="76" height="13"/>
+                                                    <rect key="frame" x="158" y="10" width="73.5" height="13"/>
                                                     <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="11"/>
                                                     <color key="textColor" red="0.46666666670000001" green="0.46666666670000001" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1453,7 +1453,7 @@
         <!--Profile View Controller-->
         <scene sceneID="7zf-QE-Kby">
             <objects>
-                <viewController id="anJ-nv-bkZ" customClass="ProfileViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="anJ-nv-bkZ" customClass="ProfileViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7ej-Er-nNF"/>
                         <viewControllerLayoutGuide type="bottom" id="9bJ-wf-6zM"/>
@@ -1524,21 +1524,21 @@
                                 <color key="separatorColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="0.10054005872483221" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="productListingTableCell" rowHeight="80" id="Q2b-ni-bSq" customClass="ProductListingTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="productListingTableCell" rowHeight="80" id="Q2b-ni-bSq" customClass="ProductListingTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q2b-ni-bSq" id="Pkg-OL-95I">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLM-cf-Vz7">
-                                                    <rect key="frame" x="108" y="7" width="91" height="17"/>
+                                                    <rect key="frame" x="108" y="7" width="88.5" height="17"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simplified Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sA-Ne-oYs">
-                                                    <rect key="frame" x="108" y="26" width="137" height="17"/>
+                                                    <rect key="frame" x="108" y="26" width="132" height="17"/>
                                                     <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1643,7 +1643,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUH-9E-NTp">
                                 <rect key="frame" x="0.0" y="20" width="381" height="162"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKl-gT-yoN" customClass="ProfileTagView" customModule="ThePost" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKl-gT-yoN" customClass="ProfileTagView" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="63" y="22" width="60" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="ifE-8e-nhg"/>
@@ -1789,7 +1789,7 @@
                                     <action selector="buildTrustButtonTapped:" destination="anJ-nv-bkZ" eventType="touchUpInside" id="qd2-La-1kA"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileFacebookIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ciJ-nn-kfG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FacebookSmallRounded" translatesAutoresizingMaskIntoConstraints="NO" id="ciJ-nn-kfG">
                                 <rect key="frame" x="309" y="214" width="18" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="e4R-aU-AWJ"/>
@@ -1881,7 +1881,7 @@
         <!--Profile Modal View Controller-->
         <scene sceneID="i3T-eA-f7L">
             <objects>
-                <viewController storyboardIdentifier="profileModalViewController" id="QFi-z0-nM9" customClass="ProfileModalViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profileModalViewController" id="QFi-z0-nM9" customClass="ProfileModalViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mm5-I3-9Am"/>
                         <viewControllerLayoutGuide type="bottom" id="QFR-58-w5h"/>
@@ -1916,7 +1916,7 @@
         <!--Reviews Summary View Controller-->
         <scene sceneID="nj6-68-PHf">
             <objects>
-                <viewController storyboardIdentifier="reviewsSummaryController" id="CHB-oZ-NkC" customClass="ReviewsSummaryViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="reviewsSummaryController" id="CHB-oZ-NkC" customClass="ReviewsSummaryViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2qg-SY-YxJ"/>
                         <viewControllerLayoutGuide type="bottom" id="yVi-mt-pcu"/>
@@ -1951,7 +1951,7 @@
         <!--Create Review View Controller-->
         <scene sceneID="R5m-WX-Rjz">
             <objects>
-                <viewController storyboardIdentifier="createAReviewController" id="T36-66-tUT" customClass="CreateReviewViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createAReviewController" id="T36-66-tUT" customClass="CreateReviewViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pmP-Kq-bMO"/>
                         <viewControllerLayoutGuide type="bottom" id="cia-nc-RSE"/>
@@ -2052,7 +2052,7 @@
         <!--Chat View Controller-->
         <scene sceneID="5q4-ye-xtG">
             <objects>
-                <viewController id="1KK-ln-WHj" customClass="ChatViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1KK-ln-WHj" customClass="ChatViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vDO-Ar-t0j"/>
                         <viewControllerLayoutGuide type="bottom" id="Xo2-UZ-QJG"/>
@@ -2070,7 +2070,7 @@
         <!--Product Viewer Container View Controller-->
         <scene sceneID="Zch-8y-Ymn">
             <objects>
-                <viewController id="OL0-SV-hFV" customClass="ProductViewerContainerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OL0-SV-hFV" customClass="ProductViewerContainerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5dz-iF-FhK"/>
                         <viewControllerLayoutGuide type="bottom" id="Fw9-AO-AEK"/>
@@ -2092,7 +2092,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="U9e-7r-9cq" customClass="ProductViewerImageCollectionViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="U9e-7r-9cq" customClass="ProductViewerImageCollectionViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="8" width="280" height="241"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2205,11 +2205,11 @@
                                 <color key="separatorColor" white="1" alpha="0.098416526845637578" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" rowHeight="35" id="McF-jo-RS9" customClass="ProductViewerTextTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" rowHeight="35" id="McF-jo-RS9" customClass="ProductViewerTextTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="McF-jo-RS9" id="RKt-Fa-VgD">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="35"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="34.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ZF-WJ-GEa">
@@ -2219,13 +2219,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="detail text" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="E56-ef-Y16">
-                                                    <rect key="frame" x="264.5" y="7.5" width="70.5" height="19"/>
+                                                    <rect key="frame" x="266.5" y="7.5" width="68.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="16"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHW-Ry-uzI">
-                                                    <rect key="frame" x="33" y="7.5" width="83" height="19"/>
+                                                    <rect key="frame" x="33" y="7.5" width="81.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2250,11 +2250,11 @@
                                             <outlet property="textDetailLabel" destination="E56-ef-Y16" id="TAc-q4-fE3"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" rowHeight="237" id="UVb-XW-FP5" customClass="ProductViewerDetailsTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" rowHeight="237" id="UVb-XW-FP5" customClass="ProductViewerDetailsTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="63" width="343" height="237"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UVb-XW-FP5" id="eA2-m1-Yy7">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="237"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="236.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RsF-Hh-0pX">
@@ -2264,7 +2264,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3fp-9e-pYc">
-                                                    <rect key="frame" x="33" y="8" width="83" height="19"/>
+                                                    <rect key="frame" x="33" y="8" width="81.5" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="2" id="Zut-zy-5ol"/>
                                                     </constraints>
@@ -2276,7 +2276,7 @@
                                                     <rect key="frame" x="0.0" y="35" width="343" height="202"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Original Box" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GjE-nw-PCp">
-                                                            <rect key="frame" x="33" y="8" width="88" height="19"/>
+                                                            <rect key="frame" x="33" y="8" width="86.5" height="19"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -2295,7 +2295,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="jjl-ch-aVx">
-                                                            <rect key="frame" x="33" y="44" width="51" height="19"/>
+                                                            <rect key="frame" x="33" y="44" width="48.5" height="19"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -2323,7 +2323,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tde-IF-BPf">
-                                                            <rect key="frame" x="287.5" y="80" width="31.5" height="20"/>
+                                                            <rect key="frame" x="289" y="80" width="30" height="20"/>
                                                             <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -2401,11 +2401,11 @@
                                             <outlet property="sideImageView" destination="RsF-Hh-0pX" id="LHC-6C-XQa"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sellerCell" rowHeight="146" id="aJw-Zl-NqU" customClass="ProductViewerSellerTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sellerCell" rowHeight="146" id="aJw-Zl-NqU" customClass="ProductViewerSellerTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="300" width="343" height="146"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aJw-Zl-NqU" id="TJb-hv-gET">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="146"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="145.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cfF-Bo-d6F">
@@ -2415,7 +2415,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H83-Cu-aLg">
-                                                    <rect key="frame" x="33" y="8" width="83" height="19"/>
+                                                    <rect key="frame" x="33" y="8" width="81.5" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="2" id="Dhj-Ia-yZB"/>
                                                     </constraints>
@@ -2427,7 +2427,7 @@
                                                     <rect key="frame" x="0.0" y="35" width="343" height="111"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="kk1-RX-B0A">
-                                                            <rect key="frame" x="33" y="8" width="87" height="19"/>
+                                                            <rect key="frame" x="33" y="8" width="84.5" height="19"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                             <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -2597,11 +2597,11 @@
                                             <outlet property="twitterVerifiedWithImage" destination="yho-L9-edB" id="HLA-QH-SwB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="exCheckCell" rowHeight="35" id="R09-Wm-Pg8" customClass="ProductViewerExCheckTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="exCheckCell" rowHeight="35" id="R09-Wm-Pg8" customClass="ProductViewerExCheckTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="446" width="343" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R09-Wm-Pg8" id="kGQ-oJ-iBk">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="35"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="34.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c8Q-S1-sgD">
@@ -2611,7 +2611,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUC-YP-cW1">
-                                                    <rect key="frame" x="33" y="7.5" width="83" height="19"/>
+                                                    <rect key="frame" x="33" y="7.5" width="81.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2740,7 +2740,7 @@
         <!--Create Review Container View Controller-->
         <scene sceneID="Rnr-cE-r6k">
             <objects>
-                <viewController id="I3N-CM-mR7" customClass="CreateReviewContainerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="I3N-CM-mR7" customClass="CreateReviewContainerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y80-yx-PZJ"/>
                         <viewControllerLayoutGuide type="bottom" id="qc2-7D-9MD"/>
@@ -3041,7 +3041,7 @@
         <!--Reviews Summary Container View Controller-->
         <scene sceneID="ssd-i6-bE6">
             <objects>
-                <viewController id="5S2-r5-kbi" customClass="ReviewsSummaryContainerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5S2-r5-kbi" customClass="ReviewsSummaryContainerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rlT-dH-neT"/>
                         <viewControllerLayoutGuide type="bottom" id="f7e-Ss-UrG"/>
@@ -3087,7 +3087,7 @@
                                     <constraint firstAttribute="width" secondItem="gMt-PE-gAv" secondAttribute="height" multiplier="22:21" id="6H7-FX-Tsp"/>
                                 </constraints>
                             </imageView>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zu5-kT-FBP" customClass="PercentageBar" customModule="ThePost" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zu5-kT-FBP" customClass="PercentageBar" customModule="The_Wave" customModuleProvider="target">
                                 <rect key="frame" x="168" y="96" width="7" height="83"/>
                                 <color key="backgroundColor" red="0.18706843256950378" green="0.22109025716781616" blue="0.28035354614257812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -3111,7 +3111,7 @@
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CtL-J5-nG6" customClass="PercentageBar" customModule="ThePost" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CtL-J5-nG6" customClass="PercentageBar" customModule="The_Wave" customModuleProvider="target">
                                 <rect key="frame" x="129" y="96" width="7" height="83"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHg-j4-Zam">
@@ -3145,7 +3145,7 @@
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8c4-k0-Ccp" customClass="PercentageBar" customModule="ThePost" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8c4-k0-Ccp" customClass="PercentageBar" customModule="The_Wave" customModuleProvider="target">
                                 <rect key="frame" x="89" y="96" width="7" height="83"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPT-9m-JOQ">
@@ -3179,7 +3179,7 @@
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LZ-8d-YIX" customClass="PercentageBar" customModule="ThePost" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LZ-8d-YIX" customClass="PercentageBar" customModule="The_Wave" customModuleProvider="target">
                                 <rect key="frame" x="248" y="96" width="7" height="83"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJR-4V-cId">
@@ -3213,7 +3213,7 @@
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSP-dR-c14" customClass="PercentageBar" customModule="ThePost" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSP-dR-c14" customClass="PercentageBar" customModule="The_Wave" customModuleProvider="target">
                                 <rect key="frame" x="208" y="96" width="7" height="83"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M01-1Y-peM">
@@ -3290,21 +3290,21 @@
                                 <color key="separatorColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="0.045826342281879193" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reviewCell" rowHeight="150" id="aRE-uo-gth" customClass="ReviewSummaryTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reviewCell" rowHeight="150" id="aRE-uo-gth" customClass="ReviewSummaryTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aRE-uo-gth" id="1U2-7Z-gag">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Reviewer Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="BzH-n7-sOk">
-                                                    <rect key="frame" x="8" y="8" width="113" height="19"/>
+                                                    <rect key="frame" x="8" y="8" width="112" height="19"/>
                                                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFN-gM-bdy">
-                                                    <rect key="frame" x="304" y="8" width="31" height="19"/>
+                                                    <rect key="frame" x="305" y="8" width="30" height="19"/>
                                                     <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -3553,7 +3553,7 @@
         <!--Settings View Controller-->
         <scene sceneID="I0i-qb-5Wj">
             <objects>
-                <viewController storyboardIdentifier="settingsController" id="Uzu-JS-lEX" customClass="SettingsViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsController" id="Uzu-JS-lEX" customClass="SettingsViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nhj-OY-HdD"/>
                         <viewControllerLayoutGuide type="bottom" id="RLS-lP-Uxs"/>
@@ -3588,7 +3588,7 @@
         <!--Settings Container View Controller-->
         <scene sceneID="O2h-bL-4sW">
             <objects>
-                <viewController id="IRB-Ud-IIt" customClass="SettingsContainerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IRB-Ud-IIt" customClass="SettingsContainerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2oQ-Xu-aQu"/>
                         <viewControllerLayoutGuide type="bottom" id="n7B-lD-PQB"/>
@@ -3598,7 +3598,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiK-PH-VOl">
-                                <rect key="frame" x="120.5" y="13" width="103" height="26"/>
+                                <rect key="frame" x="120" y="13" width="103" height="26"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="22"/>
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3813,7 +3813,7 @@
         <!--Build Trust Modal View Controller-->
         <scene sceneID="pj1-et-eFJ">
             <objects>
-                <viewController storyboardIdentifier="buildTrustViewController" id="NOf-L8-GBv" customClass="BuildTrustModalViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="buildTrustViewController" id="NOf-L8-GBv" customClass="BuildTrustModalViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NyQ-0i-yM0"/>
                         <viewControllerLayoutGuide type="bottom" id="VwY-Ph-acE"/>
@@ -3850,7 +3850,7 @@
         <!--Build Trust View Controller-->
         <scene sceneID="Jdy-Ha-3OF">
             <objects>
-                <viewController id="Gtp-zb-T8y" customClass="BuildTrustViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Gtp-zb-T8y" customClass="BuildTrustViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MCw-4v-qpI"/>
                         <viewControllerLayoutGuide type="bottom" id="1b0-3T-cUW"/>
@@ -3885,7 +3885,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-7e-Uov">
-                                                        <rect key="frame" x="61.5" y="8" width="60" height="17"/>
+                                                        <rect key="frame" x="61" y="8" width="60" height="17"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>

@@ -134,8 +134,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         numberOfReviewsLabel.text = "\(0) reviews"
         
-        twitterVerifiedWithImage.alpha = 0.0
-        facebookVerifiedWithImage.alpha = 0.0
+        twitterVerifiedWithImage.image = #imageLiteral(resourceName: "twitter").withRenderingMode(.alwaysTemplate)
+        twitterVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
+        
+        facebookVerifiedWithImage.image = #imageLiteral(resourceName: "FacebookSmallRounded").withRenderingMode(.alwaysTemplate)
+        facebookVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -474,21 +477,21 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 DispatchQueue.main.async {
                     UIView.animate(withDuration: 0.25, animations: {
                         if verifiedTwitter {
-                            self.twitterVerifiedWithImage.alpha = 1.0
+                            self.twitterVerifiedWithImage.tintColor = #colorLiteral(red: 0.4623369575, green: 0.6616973877, blue: 0.9191944003, alpha: 1)
                         } else {
-                            self.twitterVerifiedWithImage.alpha = 0.0
+                            self.twitterVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
                         }
                         
                         if verifiedFacebook {
-                            self.facebookVerifiedWithImage.alpha = 1.0
+                            self.facebookVerifiedWithImage.tintColor = #colorLiteral(red: 0.2784313725, green: 0.3490196078, blue: 0.5764705882, alpha: 1)
                         } else {
-                            self.facebookVerifiedWithImage.alpha = 0.0
+                            self.facebookVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
                         }
                     })
                 }
             } else {
-                self.twitterVerifiedWithImage.alpha = 0.0
-                self.facebookVerifiedWithImage.alpha = 0.0
+                self.twitterVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
+                self.facebookVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
             }
         })
     }
