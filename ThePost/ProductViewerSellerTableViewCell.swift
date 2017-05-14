@@ -65,6 +65,12 @@ class ProductViewerSellerTableViewCell: UITableViewCell {
             star.image = UIImage(named: "ProfileReviewsStar")!.withRenderingMode(.alwaysTemplate)
             star.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
         }
+        
+        twitterVerifiedWithImage.image = #imageLiteral(resourceName: "twitter").withRenderingMode(.alwaysTemplate)
+        twitterVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
+        
+        facebookVerifiedWithImage.image = #imageLiteral(resourceName: "FacebookSmallRounded").withRenderingMode(.alwaysTemplate)
+        facebookVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
     }
 
 }

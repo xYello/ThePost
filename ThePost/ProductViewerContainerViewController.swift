@@ -226,11 +226,11 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             
             sellerCell.sellerImageView.sd_setImage(with: seller.profileUrl, placeholderImage: #imageLiteral(resourceName: "DefaultProfilePicture"))
             
-            if !seller.twitterVerified {
-                sellerCell.twitterVerifiedWithImage.isHidden = true
+            if seller.twitterVerified {
+                sellerCell.twitterVerifiedWithImage.tintColor = #colorLiteral(red: 0.4623369575, green: 0.6616973877, blue: 0.9191944003, alpha: 1)
             }
-            if !seller.facebookVerified {
-                sellerCell.facebookVerifiedWithImage.isHidden = true
+            if seller.facebookVerified {
+                sellerCell.facebookVerifiedWithImage.tintColor = #colorLiteral(red: 0.2784313725, green: 0.3490196078, blue: 0.5764705882, alpha: 1)
             }
             
             cell = sellerCell
