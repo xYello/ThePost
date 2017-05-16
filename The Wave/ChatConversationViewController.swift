@@ -13,6 +13,7 @@ let tabBarSwitchedToChatConversationNotification = "ktabBarSwitchedToChatConvers
 
 class ChatConversationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var noChatsView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     var newConversation: Conversation?
@@ -139,7 +140,18 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     // MARK: - TableView datasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return conversations.count
+        
+        let count = conversations.count
+        
+        if count == 0 {
+            tableView.isHidden = true
+            noChatsView.isHidden = false
+        } else {
+            noChatsView.isHidden = true
+            tableView.isHidden = false
+        }
+        
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

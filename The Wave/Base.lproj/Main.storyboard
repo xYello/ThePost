@@ -791,10 +791,39 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8M4-oV-dXa">
+                                <rect key="frame" x="45" y="188" width="286" height="262"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatpaperplane" translatesAutoresizingMaskIntoConstraints="NO" id="VuN-Po-Xig">
+                                        <rect key="frame" x="35" y="30" width="216" height="131"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="131" id="4s9-dt-Jbk"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any messages." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mw3-Vi-fM2">
+                                        <rect key="frame" x="12.5" y="193" width="261.5" height="24"/>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="20"/>
+                                        <color key="textColor" red="0.91004675629999998" green="0.90736204389999997" blue="0.81975060700000002" alpha="0.19638737416107382" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="VuN-Po-Xig" firstAttribute="top" secondItem="8M4-oV-dXa" secondAttribute="top" constant="30" id="7YU-B9-JvH"/>
+                                    <constraint firstItem="mw3-Vi-fM2" firstAttribute="centerX" secondItem="VuN-Po-Xig" secondAttribute="centerX" id="8fy-ET-HTD"/>
+                                    <constraint firstAttribute="height" constant="262" id="Hr0-Nd-nhJ"/>
+                                    <constraint firstItem="mw3-Vi-fM2" firstAttribute="top" secondItem="VuN-Po-Xig" secondAttribute="bottom" constant="32" id="PDV-lN-zfX"/>
+                                    <constraint firstAttribute="width" constant="286" id="R6r-m6-Awr"/>
+                                    <constraint firstAttribute="trailing" secondItem="VuN-Po-Xig" secondAttribute="trailing" constant="35" id="fT8-RU-MKb"/>
+                                    <constraint firstItem="VuN-Po-Xig" firstAttribute="leading" secondItem="8M4-oV-dXa" secondAttribute="leading" constant="35" id="lLS-2w-sIg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.18823529411764706" green="0.2196078431372549" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Y6Q-dy-h6k" secondAttribute="trailing" id="0Oj-ZI-UUZ"/>
+                            <constraint firstItem="8M4-oV-dXa" firstAttribute="centerY" secondItem="dSE-XU-rGH" secondAttribute="centerY" constant="-14.5" id="2bj-vW-t2i"/>
+                            <constraint firstItem="8M4-oV-dXa" firstAttribute="centerX" secondItem="dSE-XU-rGH" secondAttribute="centerX" id="PA5-R7-tAx"/>
                             <constraint firstItem="Y6Q-dy-h6k" firstAttribute="leading" secondItem="dSE-XU-rGH" secondAttribute="leading" id="QKi-jL-phP"/>
                             <constraint firstAttribute="bottom" secondItem="Y6Q-dy-h6k" secondAttribute="bottom" id="edQ-xO-CoC"/>
                             <constraint firstItem="Y6Q-dy-h6k" firstAttribute="top" secondItem="dSE-XU-rGH" secondAttribute="top" id="xQQ-8X-Gjp"/>
@@ -802,6 +831,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Your chats" id="tCc-nJ-xpF"/>
                     <connections>
+                        <outlet property="noChatsView" destination="8M4-oV-dXa" id="bfp-gw-oYQ"/>
                         <outlet property="tableView" destination="Y6Q-dy-h6k" id="DrX-X1-1pV"/>
                         <segue destination="UA3-Yi-KfX" kind="show" identifier="chatViewController" id="pg0-Tf-guU"/>
                     </connections>
@@ -1157,7 +1187,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-uC-8od">
-                                    <rect key="frame" x="146.5" y="20" width="47.5" height="12"/>
+                                    <rect key="frame" x="146" y="20" width="47.5" height="12"/>
                                     <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="10"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -3392,7 +3422,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiK-PH-VOl">
-                                <rect key="frame" x="121" y="13" width="103" height="26"/>
+                                <rect key="frame" x="120.5" y="13" width="103" height="26"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="22"/>
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3898,7 +3928,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-7e-Uov">
-                                                        <rect key="frame" x="61.5" y="8" width="60" height="17"/>
+                                                        <rect key="frame" x="62" y="8" width="60" height="17"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -4049,6 +4079,7 @@
         <image name="TwitterSmall" width="20" height="17"/>
         <image name="WideProducts" width="20" height="20"/>
         <image name="WranglerJK" width="207" height="147"/>
+        <image name="chatpaperplane" width="130" height="127"/>
         <image name="twitter" width="20" height="17"/>
     </resources>
     <inferredMetricsTieBreakers>
