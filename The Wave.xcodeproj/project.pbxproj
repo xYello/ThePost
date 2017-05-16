@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2234ECADE1812710C16C7085 /* Pods_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B6FA8DB52DADD10DE2460E /* Pods_ThePostTests.framework */; };
 		2680D368281AFE9AFBCF63CE /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDBB1A6D64EB4E3A8CC83F4 /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		2F2CF3391E8E316C00E6EBF7 /* SocialPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2CF3381E8E316C00E6EBF7 /* SocialPost.swift */; };
 		2F5450BB1E537433005A88A3 /* JeepSocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */; };
@@ -100,7 +99,6 @@
 		4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */; };
 		4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */; };
 		4DFE38681E2FDFE900A83EAE /* PresentationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */; };
-		5EC4A3CED303187827059407 /* Pods_ThePost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63AE588E5DF1112BCFB64512 /* Pods_ThePost.framework */; };
 		6085D7B21E8F6C19002405BD /* ProfileTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6085D7B11E8F6C19002405BD /* ProfileTagView.swift */; };
 		60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2ED5C1E29C6DA00ED83EA /* Constants.swift */; };
 		64D20E87D49AFE3FE11F2B87 /* Pods_The_Wave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CCF87EF14103CE40FA9607C /* Pods_The_Wave.framework */; };
@@ -141,7 +139,6 @@
 
 /* Begin PBXFileReference section */
 		064994EFACBFCE58368ACCB8 /* Pods-ThePost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePost/Pods-ThePost.debug.xcconfig"; sourceTree = "<group>"; };
-		10B6FA8DB52DADD10DE2460E /* Pods_ThePostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26FBD37BB0AE2B9D47F9F7E3 /* Pods-The Wave Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Wave Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-The Wave Tests/Pods-The Wave Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		2CCF87EF14103CE40FA9607C /* Pods_The_Wave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_Wave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE2EB1BDCC5C74DE2E7018D /* Pods-The Wave Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Wave Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-The Wave Tests/Pods-The Wave Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -248,7 +245,6 @@
 		507095285936BB872350682F /* Pods-ThePostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6085D7B11E8F6C19002405BD /* ProfileTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTagView.swift; sourceTree = "<group>"; };
 		60C2ED5C1E29C6DA00ED83EA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		63AE588E5DF1112BCFB64512 /* Pods_ThePost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C0BA0DD496C8EA8733E705 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		7FDBB1A6D64EB4E3A8CC83F4 /* Pods_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E6297B4D70B986A58945734 /* Pods_The_Wave_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_Wave_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,7 +261,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EC4A3CED303187827059407 /* Pods_ThePost.framework in Frameworks */,
 				64D20E87D49AFE3FE11F2B87 /* Pods_The_Wave.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +271,6 @@
 			files = (
 				ADF2E2F7F322D7BFDF8EC302 /* (null) in Frameworks */,
 				D89F34369B57A268B7009A6F /* Pods_ThePostTests.framework in Frameworks */,
-				2234ECADE1812710C16C7085 /* Pods_ThePostTests.framework in Frameworks */,
 				317F8312604FAE3B60BC7E56 /* Pods_The_Wave_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,8 +308,6 @@
 		33619F814575872FACDDD86E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				63AE588E5DF1112BCFB64512 /* Pods_ThePost.framework */,
-				10B6FA8DB52DADD10DE2460E /* Pods_ThePostTests.framework */,
 				7FDBB1A6D64EB4E3A8CC83F4 /* Pods_OneSignalNotificationServiceExtension.framework */,
 				2CCF87EF14103CE40FA9607C /* Pods_The_Wave.framework */,
 				8E6297B4D70B986A58945734 /* Pods_The_Wave_Tests.framework */,
