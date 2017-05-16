@@ -1,5 +1,5 @@
 //
-//  ActivityViewController.swift
+//  SocialViewController.swift
 //  ThePost
 //
 //  Created by Andrew Robinson on 1/25/17.
@@ -11,7 +11,7 @@ import Firebase
 import FirebaseStorageUI
 import DateToolsSwift
 
-class ActivityViewController: UIViewController, UITableViewDataSource {
+class SocialViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,7 +23,6 @@ class ActivityViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         tableView.dataSource = self
         ref = FIRDatabase.database().reference()
