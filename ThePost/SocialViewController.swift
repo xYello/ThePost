@@ -76,14 +76,12 @@ class SocialViewController: UIViewController, UITableViewDataSource {
         
         let socialCell = tableView.dequeueReusableCell(withIdentifier: "socialCell", for: indexPath) as! JeepSocialTableViewCell
         
-        print(socialPosts[indexPath.row])
-        
         socialCell.likeCountLabel.text = socialPosts[indexPath.row].likeCount.description
         socialCell.postNameLabel.text = socialPosts[indexPath.row].username
-//        socialCell.profileImageView.sd_setImage(with: url)
         socialCell.timeLabel.text = socialPosts[indexPath.row].datePosted.timeAgoSinceNow
         
         let imageUrl = URL(string: socialPosts[indexPath.row].imageUrl)
+        
         // Load from cache or download.
         SDWebImageManager.shared().diskImageExists(for: imageUrl, completion: { exists in
             if exists {
@@ -110,6 +108,7 @@ class SocialViewController: UIViewController, UITableViewDataSource {
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let urlString = snapshot.value as? String {
                 let profileImageUrl = URL(string: urlString)
+                
                 // Load from cache or download.
                 SDWebImageManager.shared().diskImageExists(for: imageUrl, completion: { exists in
                     if exists {
@@ -134,11 +133,6 @@ class SocialViewController: UIViewController, UITableViewDataSource {
                 socialCell.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")
             }
         })
-//        socialCell.likeCountLabel.text = "125,857,323 likes"
-//        socialCell.postNameLabel.text = "Ethan Andrews"
-//        socialCell.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")
-//        socialCell.timeLabel.text = "5 hours ago"
-//        socialCell.postImageView.image = #imageLiteral(resourceName: "jeepImage")
         
         return socialCell
     }
