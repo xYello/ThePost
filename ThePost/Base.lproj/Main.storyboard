@@ -1157,7 +1157,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-uC-8od">
-                                    <rect key="frame" x="146" y="20" width="47.5" height="12"/>
+                                    <rect key="frame" x="146.5" y="20" width="47.5" height="12"/>
                                     <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="10"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -3598,7 +3598,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiK-PH-VOl">
-                                <rect key="frame" x="120.5" y="13" width="103" height="26"/>
+                                <rect key="frame" x="121" y="13" width="103" height="26"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="22"/>
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3813,7 +3813,7 @@
         <!--Upload Social Post View Controller-->
         <scene sceneID="Vjq-hC-Ebc">
             <objects>
-                <viewController storyboardIdentifier="uploadSocialPostViewController" id="4Re-cP-Oz2" customClass="UploadSocialPostViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="uploadSocialPostViewController" id="4Re-cP-Oz2" customClass="UploadSocialPostViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PsS-Hr-nAr"/>
                         <viewControllerLayoutGuide type="bottom" id="E0b-k0-YCh"/>
@@ -3921,7 +3921,7 @@ for the global feed!</string>
         <!--My Feed-->
         <scene sceneID="1o6-9s-cEN">
             <objects>
-                <viewController id="8Yd-Wj-ynn" customClass="ActivityViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8Yd-Wj-ynn" customClass="ActivityViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QOb-nt-apu"/>
                         <viewControllerLayoutGuide type="bottom" id="Dsl-Qc-wZt"/>
@@ -3936,7 +3936,7 @@ for the global feed!</string>
                                 <color key="separatorColor" red="0.35686274509999999" green="0.35686274509999999" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="socialCell" id="SXf-4Z-Wgh" customClass="JeepSocialTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="socialCell" id="SXf-4Z-Wgh" customClass="JeepSocialTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="316"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SXf-4Z-Wgh" id="uDc-DQ-OMP">
@@ -4021,6 +4021,7 @@ for the global feed!</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qs0-jU-pZz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2560.8000000000002" y="2657.7211394302849"/>
+        </scene>
         <!--Build Trust Modal View Controller-->
         <scene sceneID="pj1-et-eFJ">
             <objects>
@@ -4096,7 +4097,7 @@ for the global feed!</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-7e-Uov">
-                                                        <rect key="frame" x="61" y="8" width="60" height="17"/>
+                                                        <rect key="frame" x="61.5" y="8" width="60" height="17"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -4217,7 +4218,7 @@ for the global feed!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="ActivityTabBarIcon" width="20" height="24"/>
+        <image name="ActivityTabBarIcon" width="25" height="25"/>
         <image name="DefaultProfilePicture" width="250" height="250"/>
         <image name="DropdownArrow" width="14" height="7"/>
         <image name="FacebookSmallRounded" width="20" height="20"/>
