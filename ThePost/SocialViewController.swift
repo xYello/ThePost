@@ -84,46 +84,23 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
         socialCell.timeLabel.text = post.datePosted.timeAgoSinceNow
         
         socialCell.postKey = post.uid
-        
-        let ref = FIRDatabase.database().reference().child("users").child(post.userid)
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            if let userDict = snapshot.value as? [String: AnyObject] {
-                if let url = URL(string: userDict["profileImage"] as! String) {
-                    
-                    // Load from cache or download.
-                    SDWebImageManager.shared().diskImageExists(for: url, completion: { exists in
-                        if exists {
-                            SDWebImageManager.shared().loadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
-                                if let i = image {
-                                    DispatchQueue.main.async {
-                                        socialCell.profileImageView.image = i
-                                    }
-                                }
-                            })
-                        } else {
-                            SDWebImageDownloader.shared().downloadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
-                                if let i = image {
-                                    DispatchQueue.main.async {
-                                        socialCell.profileImageView.image = i
-                                    }
-                                }
-                            })
-                        }
-                    })
-                }
-                
-                if let name = userDict["fullName"] as? String {
-                    socialCell.postNameLabel.text = name
-                }
-            }
-        })
+        socialCell.ownerKey = post.userid
         
         return socialCell
     }
     
+    // MARK: - TableView delegate
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let socialCell = cell as? JeepSocialTableViewCell {
             socialCell.grabPostImage(forKey: socialPosts[indexPath.row].uid, withURL: socialPosts[indexPath.row].imageUrl)
+            socialCell.grabProfile(forKey: socialPosts[indexPath.row].userid)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let socialCell = cell as? JeepSocialTableViewCell {
+            socialCell.likesRef.removeAllObservers()
         }
     }
     
