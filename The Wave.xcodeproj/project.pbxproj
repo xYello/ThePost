@@ -104,7 +104,7 @@
 		6085D7B21E8F6C19002405BD /* ProfileTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6085D7B11E8F6C19002405BD /* ProfileTagView.swift */; };
 		60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2ED5C1E29C6DA00ED83EA /* Constants.swift */; };
 		64D20E87D49AFE3FE11F2B87 /* Pods_The_Wave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CCF87EF14103CE40FA9607C /* Pods_The_Wave.framework */; };
-		ADF2E2F7F322D7BFDF8EC302 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		ADF2E2F7F322D7BFDF8EC302 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D89F34369B57A268B7009A6F /* Pods_ThePostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2470422437B4EA1FBAA716 /* Pods_ThePostTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -184,7 +184,7 @@
 		4D1667301E4FBFBB0092FDFB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsContainerViewController.swift; sourceTree = "<group>"; };
 		4D17F2021E85911F000BEAAB /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
-		4D1BC6621E7DBEE50068EAF9 /* ThePost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThePost.entitlements; sourceTree = "<group>"; };
+		4D1BC6621E7DBEE50068EAF9 /* The Wave.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "The Wave.entitlements"; sourceTree = "<group>"; };
 		4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingViewController.swift; sourceTree = "<group>"; };
 		4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D239C431E131BBE00F2668E /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 		4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
 		4DD3CCC81E14DD8700821C7C /* NewProductTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductTextTableViewCell.swift; sourceTree = "<group>"; };
 		4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
-		4DE662291E6D12A100417EBB /* ThePost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ThePost-Bridging-Header.h"; sourceTree = "<group>"; };
+		4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "The Wave-Bridging-Header.h"; sourceTree = "<group>"; };
 		4DE6622A1E6D12A100417EBB /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
 		4DE6622B1E6D12A100417EBB /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADF2E2F7F322D7BFDF8EC302 /* BuildFile in Frameworks */,
+				ADF2E2F7F322D7BFDF8EC302 /* (null) in Frameworks */,
 				D89F34369B57A268B7009A6F /* Pods_ThePostTests.framework in Frameworks */,
 				2234ECADE1812710C16C7085 /* Pods_ThePostTests.framework in Frameworks */,
 				317F8312604FAE3B60BC7E56 /* Pods_The_Wave_Tests.framework in Frameworks */,
@@ -457,7 +457,7 @@
 		4D58C4C81E0E1882004CA0E3 = {
 			isa = PBXGroup;
 			children = (
-				4D58C4D31E0E1882004CA0E3 /* ThePost */,
+				4D58C4D31E0E1882004CA0E3 /* The Wave */,
 				4D58C4E81E0E1883004CA0E3 /* ThePostTests */,
 				4DA2343C1E7DB709006B5192 /* OneSignalNotificationServiceExtension */,
 				4D58C4D21E0E1882004CA0E3 /* Products */,
@@ -477,7 +477,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4D58C4D31E0E1882004CA0E3 /* ThePost */ = {
+		4D58C4D31E0E1882004CA0E3 /* The Wave */ = {
 			isa = PBXGroup;
 			children = (
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
@@ -501,9 +501,9 @@
 				4D58C4DD1E0E1882004CA0E3 /* LaunchScreen.storyboard */,
 				4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */,
 				4D58C4E01E0E1882004CA0E3 /* Info.plist */,
-				4D1BC6621E7DBEE50068EAF9 /* ThePost.entitlements */,
+				4D1BC6621E7DBEE50068EAF9 /* The Wave.entitlements */,
 			);
-			path = ThePost;
+			path = "The Wave";
 			sourceTree = "<group>";
 		};
 		4D58C4E81E0E1883004CA0E3 /* ThePostTests */ = {
@@ -656,7 +656,7 @@
 				4DE6622A1E6D12A100417EBB /* 1Password.xcassets */,
 				4DE6622B1E6D12A100417EBB /* OnePasswordExtension.h */,
 				4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */,
-				4DE662291E6D12A100417EBB /* ThePost-Bridging-Header.h */,
+				4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */,
 			);
 			name = 1Password;
 			sourceTree = "<group>";
@@ -779,7 +779,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4D58C4CC1E0E1882004CA0E3 /* Build configuration list for PBXProject "ThePost" */;
+			buildConfigurationList = 4D58C4CC1E0E1882004CA0E3 /* Build configuration list for PBXProject "The Wave" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1208,19 +1208,19 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ThePost/ThePost.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "The Wave/The Wave.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
-				INFOPLIST_FILE = ThePost/Info.plist;
+				INFOPLIST_FILE = "The Wave/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "ThePost/ThePost-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "The Wave/The Wave-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1234,19 +1234,19 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ThePost/ThePost.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "The Wave/The Wave.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = ThePost/Info.plist;
+				INFOPLIST_FILE = "The Wave/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePostApp.ThePost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "ThePost/ThePost-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "The Wave/The Wave-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1263,7 +1263,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePost.ThePostTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThePost.app/ThePost";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/The Wave.app/The Wave";
 			};
 			name = Debug;
 		};
@@ -1278,7 +1278,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePost.ThePostTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThePost.app/ThePost";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/The Wave.app/The Wave";
 			};
 			name = Release;
 		};
@@ -1317,7 +1317,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4D58C4CC1E0E1882004CA0E3 /* Build configuration list for PBXProject "ThePost" */ = {
+		4D58C4CC1E0E1882004CA0E3 /* Build configuration list for PBXProject "The Wave" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D58C4EC1E0E1883004CA0E3 /* Debug */,
