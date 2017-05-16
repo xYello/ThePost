@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import FirebaseStorageUI
-import DateToolsSwift
 
 class SocialViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -79,7 +78,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
         socialCell.profileImageView.image = nil
         
         socialCell.likeCountLabel.text = "0 likes"
-        socialCell.timeLabel.text = post.datePosted.timeAgoSinceNow
+        socialCell.timeLabel.text = post.relativeDate
         
         socialCell.postKey = post.uid
         socialCell.ownerKey = post.userid

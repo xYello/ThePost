@@ -1,0 +1,6 @@
+framework module Pods_The_Wave {
+  umbrella header "Pods-The Wave-umbrella.h"
+
+  export *
+  module * { export * }
+}
