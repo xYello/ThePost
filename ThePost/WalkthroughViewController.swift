@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OneSignal
 
 class WalkthroughViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -104,11 +105,10 @@ class WalkthroughViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     @objc func finishedButtonPressed() {
-        
-        if UIApplication.shared.isRegisteredForRemoteNotifications {
+        if OneSignal.getPermissionSubscriptionState().permissionStatus.status != .notDetermined {
             performSegue(withIdentifier: "unwindToPresenting", sender: self)
         } else {
-            performSegue(withIdentifier: "appServicesRequestSegue", sender: nil)
+            performSegue(withIdentifier: "appServicesRequestSegue", sender: self)
         }
     }
 

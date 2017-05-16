@@ -104,12 +104,15 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         
         if let uid = FIRAuth.auth()?.currentUser?.uid {
             if uid == product.ownerId {
-                orangeButton.setTitle("Delete", for: .normal)
-                greenButton.setTitle("Edit", for: .normal)
+                orangeButton.isHidden = true
+                greenButton.isHidden = true
             } else {
                 orangeButton.setTitle("Make Offer", for: .normal)
                 greenButton.setTitle("Message", for: .normal)
             }
+        } else {
+            orangeButton.isHidden = true
+            greenButton.isHidden = true
         }
         
         let formatter = NumberFormatter()
@@ -222,6 +225,13 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             sellerCell.amountOfStars = seller.starRating
             
             sellerCell.sellerImageView.sd_setImage(with: seller.profileUrl, placeholderImage: #imageLiteral(resourceName: "DefaultProfilePicture"))
+            
+            if seller.twitterVerified {
+                sellerCell.twitterVerifiedWithImage.tintColor = #colorLiteral(red: 0.4623369575, green: 0.6616973877, blue: 0.9191944003, alpha: 1)
+            }
+            if seller.facebookVerified {
+                sellerCell.facebookVerifiedWithImage.tintColor = #colorLiteral(red: 0.2784313725, green: 0.3490196078, blue: 0.5764705882, alpha: 1)
+            }
             
             cell = sellerCell
         } else if type == .exCheck {
@@ -405,6 +415,11 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                 }
                 if let profileUrl = userDict["profileImage"] as? String {
                     self.seller.profileUrl = URL(string: profileUrl)
+                }
+                
+                if let verifiedWith = userDict["verifiedWith"] as? [String: Bool] {
+                    self.seller.twitterVerified = verifiedWith["Twitter"] ?? false
+                    self.seller.facebookVerified = verifiedWith["Facebook"] ?? false
                 }
                 
                 let ref = FIRDatabase.database().reference().child("reviews").child(self.product.ownerId).child("reviewNumbers")

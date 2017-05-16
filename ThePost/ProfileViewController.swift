@@ -35,6 +35,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var numberOfReviewsLabel: UILabel!
     
+    @IBOutlet weak var twitterVerifiedWithImage: UIImageView!
+    @IBOutlet weak var facebookVerifiedWithImage: UIImageView!
+    
     @IBOutlet weak var sellingProductTypeButton: UIButton!
     @IBOutlet weak var bottomMostSeperator: UIView!
     @IBOutlet weak var badgeView: UIView!
@@ -130,6 +133,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         numberOfReviewsLabel.text = "\(0) reviews"
+        
+        twitterVerifiedWithImage.image = #imageLiteral(resourceName: "twitter").withRenderingMode(.alwaysTemplate)
+        twitterVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
+        
+        facebookVerifiedWithImage.image = #imageLiteral(resourceName: "FacebookSmallRounded").withRenderingMode(.alwaysTemplate)
+        facebookVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -413,11 +422,15 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             imagePicker.sourceType = type
             
             if status == .notDetermined {
-                AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
-                    if granted {
-                        self.present(imagePicker, animated: true, completion: nil)
-                    }
-                })
+                if type != .photoLibrary {
+                    AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
+                        if granted {
+                            self.present(imagePicker, animated: true, completion: nil)
+                        }
+                    })
+                } else {
+                    present(imagePicker, animated: true, completion: nil)
+                }
             } else if status == .authorized {
                 present(imagePicker, animated: true, completion: nil)
             } else {
@@ -428,6 +441,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         }
+
         
     }
     
@@ -451,6 +465,35 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 parent.dismiss(animated: false, completion: nil)
             }
         }
+    }
+    
+    private func grabVerifiedWithInformation(with uid: String) {
+        let ref = FIRDatabase.database().reference().child("users").child(uid).child("verifiedWith")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let verified = snapshot.value as? [String: Bool] {
+                let verifiedTwitter = verified["Twitter"] ?? false
+                let verifiedFacebook = verified["Facebook"] ?? false
+                
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.25, animations: {
+                        if verifiedTwitter {
+                            self.twitterVerifiedWithImage.tintColor = #colorLiteral(red: 0.4623369575, green: 0.6616973877, blue: 0.9191944003, alpha: 1)
+                        } else {
+                            self.twitterVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
+                        }
+                        
+                        if verifiedFacebook {
+                            self.facebookVerifiedWithImage.tintColor = #colorLiteral(red: 0.2784313725, green: 0.3490196078, blue: 0.5764705882, alpha: 1)
+                        } else {
+                            self.facebookVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
+                        }
+                    })
+                }
+            } else {
+                self.twitterVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
+                self.facebookVerifiedWithImage.tintColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
+            }
+        })
     }
     
     private func grabProfileImage(with uid: String) {
@@ -662,8 +705,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @objc private func userBuiltTrust(notification: NSNotification?) {
         if let user = FIRAuth.auth()?.currentUser {
             if !buildTrustView.isHidden {
+                grabVerifiedWithInformation(with: user.uid)
                 
-                let hasEmail = (user.isEmailVerified)
                 var hasFacebook = false
                 var hasTwitter = false
                 
@@ -675,7 +718,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     }
                 }
                 
-                if hasEmail && hasFacebook && hasTwitter {
+                if hasFacebook && hasTwitter {
                     buildTrustView.backgroundColor = #colorLiteral(red: 0.3330563009, green: 0.6850114465, blue: 0.4460556507, alpha: 1)
                     buildTrustLabel.text = "Trust Built"
                     buildTrustButton.isEnabled = false

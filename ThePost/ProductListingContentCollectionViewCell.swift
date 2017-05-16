@@ -123,7 +123,7 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
         
     }
     
-    private func grabProductImages(forKey key: String) {        
+    private func grabProductImages(forKey key: String) {
         let firstImageRef = FIRDatabase.database().reference().child("products").child(key).child("images").child("1")
         firstImageRef.observeSingleEvent(of: .value, with: { snapshot in
             if let urlString = snapshot.value as? String {
@@ -133,17 +133,21 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                 SDWebImageManager.shared().diskImageExists(for: url, completion: { exists in
                     if exists {
                         SDWebImageManager.shared().loadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
-                            if let i = image {
-                                DispatchQueue.main.async {
-                                    self.imageView.image = i
+                            if key == self.productKey {
+                                if let i = image {
+                                    DispatchQueue.main.async {
+                                        self.imageView.image = i
+                                    }
                                 }
                             }
                         })
                     } else {
                         SDWebImageDownloader.shared().downloadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
-                            if let i = image {
-                                DispatchQueue.main.async {
-                                    self.imageView.image = i
+                            if key == self.productKey {
+                                if let i = image {
+                                    DispatchQueue.main.async {
+                                        self.imageView.image = i
+                                    }
                                 }
                             }
                         })

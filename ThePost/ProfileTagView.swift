@@ -48,7 +48,7 @@ class ProfileTagView: UIView {
         
         let badgeText = UILabel(frame: CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
         badgeText.text = "Admin"
-        badgeText.font = badgeText.font.withSize(15)
+        badgeText.font = badgeText.font.withSize(14)
         badgeText.textColor = UIColor.black
         self.addSubview(badgeText)
         self.bringSubview(toFront: badgeText)
@@ -59,7 +59,7 @@ class ProfileTagView: UIView {
         
         rectangleShape.position = CGPoint(x: self.center.x - rectangleShape.bounds.size.width / 2, y: (self.center.y - rectangleShape.bounds.size.height / 2) + 5)
         polyShape.position = CGPoint(x: self.center.x - rectangleShape.bounds.size.width / 2, y: rectangleShape.position.y)
-        badgeText.center = CGPoint.init(x: rectangleShape.position.x - (rectangleShape.bounds.size.width / 2 - 5), y: rectangleShape.position.y - rectangleShape.bounds.size.height / 2)
+        badgeText.center = CGPoint.init(x: (rectangleShape.position.x - (badgeText.bounds.size.width / 2 ) + polyShape.bounds.width / 4) - 6, y: rectangleShape.position.y - rectangleShape.bounds.size.height / 2)
         
     }
 

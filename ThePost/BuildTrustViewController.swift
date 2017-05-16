@@ -19,7 +19,6 @@ class BuildTrustViewController: UIViewController {
     
     @IBOutlet weak var facebookView: UIView!
     @IBOutlet weak var twitterView: UIView!
-    @IBOutlet weak var emailView: UIView!
     
     // MARK: - View lifecyle
     
@@ -31,7 +30,6 @@ class BuildTrustViewController: UIViewController {
         backgroundView.roundCorners(radius: 8.0)
         facebookView.roundCorners(radius: 8.0)
         twitterView.roundCorners(radius: 8.0)
-        emailView.roundCorners(radius: 8.0)
         
         if let user = FIRAuth.auth()?.currentUser {
             for provider in user.providerData {
@@ -40,14 +38,6 @@ class BuildTrustViewController: UIViewController {
                 } else if provider.providerID == "twitter.com" {
                     twitterView.isHidden = true
                 }
-            }
-            
-            if user.email == nil {
-                emailView.isHidden = true
-            }
-            
-            if user.isEmailVerified {
-                emailView.isHidden = true
             }
         }
         
@@ -75,15 +65,20 @@ class BuildTrustViewController: UIViewController {
                                     if let error = error {
                                         print("Error in Facebook auth: \(error.localizedDescription)")
                                     } else {
+                                        
                                         if let data = result as? [String: AnyObject] {
                                             if let e = data["email"] as? String {
-                                                FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("email").setValue(e)
+                                                FIRDatabase.database().reference().child("users").child(user!.uid).child("email").setValue(e)
                                             }
                                         }
                                         
-                                        if self.twitterView.isHidden && self.emailView.isHidden {
+                                        FIRDatabase.database().reference().child("users").child(user!.uid).child("verifiedWith").child("Facebook").setValue(true)
+                                        
+                                        if self.twitterView.isHidden {
                                             self.dismissParent()
                                         } else {
+                                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: buildTrustChangeNotificationKey), object: nil, userInfo: nil)
+                                            
                                             UIView.animate(withDuration: 0.25, animations: {
                                                 self.facebookView.isHidden = true
                                             })
@@ -110,15 +105,17 @@ class BuildTrustViewController: UIViewController {
                     if let error = error {
                         print("Error in Twitter auth: \(error.localizedDescription)")
                     } else {
-                        UIView.animate(withDuration: 0.25, animations: {
-                            if self.facebookView.isHidden && self.emailView.isHidden {
-                                self.dismissParent()
-                            } else {
-                                UIView.animate(withDuration: 0.25, animations: {
-                                    self.twitterView.isHidden = true
-                                })
-                            }
-                        })
+                        FIRDatabase.database().reference().child("users").child(user!.uid).child("verifiedWith").child("Twitter").setValue(true)
+                        
+                        if self.facebookView.isHidden {
+                            self.dismissParent()
+                        } else {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: buildTrustChangeNotificationKey), object: nil, userInfo: nil)
+                            
+                            UIView.animate(withDuration: 0.25, animations: {
+                                self.twitterView.isHidden = true
+                            })
+                        }
                     }
                 }
                 
@@ -127,14 +124,6 @@ class BuildTrustViewController: UIViewController {
                 print("Error signing up: \(error.localizedDescription)")
             }
             
-        }
-    }
-    
-    @IBAction func emailButtonPressed(_ sender: UIButton) {
-        FIRAuth.auth()?.currentUser?.sendEmailVerification() { error in
-            if let error = error {
-                print("Error in sending verification email: \(error.localizedDescription)")
-            }
         }
     }
     

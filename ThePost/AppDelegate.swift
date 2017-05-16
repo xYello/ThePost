@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         Fabric.with([Answers.self, Crashlytics.self, Twitter.self])
         
-        OneSignal.initWithLaunchOptions(launchOptions, appId: "***REMOVED***", handleNotificationAction: nil, settings: ["kOSSettingsKeyAutoPrompt": false])
+        OneSignal.initWithLaunchOptions(launchOptions, appId: OneSignalKeys.appId, handleNotificationAction: nil, settings: ["kOSSettingsKeyAutoPrompt": false])
+        OneSignal.inFocusDisplayType = .none
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -52,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
+                    self.checkForFirstRunOneSignalId()
                 }
                 
             })
@@ -69,6 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
+                    self.checkForFirstRunOneSignalId()
                 }
                 
             })
@@ -86,6 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
+                    self.checkForFirstRunOneSignalId()
                 }
                 
             })
@@ -142,6 +146,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         Twitter.sharedInstance().application(app, open: url, options: options)
         return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String!, annotation: options[.annotation])
+    }
+    
+    // MARK: - OneSignal && Firebase
+    
+    private func checkForFirstRunOneSignalId() {
+        if UserDefaults.standard.bool(forKey: "hasFirstLaunched") == false && FIRAuth.auth()?.currentUser != nil && OneSignal.getPermissionSubscriptionState().permissionStatus.status == .notDetermined {
+            OneSignal.promptForPushNotifications() { accepted in
+                if accepted {
+                    self.saveOneSignalId()
+                }
+            }
+            UserDefaults.standard.set(true, forKey: "hasFirstLaunched")
+        }
+    }
+    
+    private func saveOneSignalId() {
+        if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
+            let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
+            ref.observeSingleEvent(of: .value, with: { snapshot in
+                if var ids = snapshot.value as? [String: Bool] {
+                    ids[id] = true
+                    ref.updateChildValues(ids)
+                } else {
+                    let ids = [id: true]
+                    ref.updateChildValues(ids)
+                }
+            })
+        }
     }
     
 }

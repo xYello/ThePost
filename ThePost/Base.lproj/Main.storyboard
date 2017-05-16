@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -32,7 +32,7 @@
         <!--Jeep Selector View Controller-->
         <scene sceneID="RJg-qb-mtk">
             <objects>
-                <viewController storyboardIdentifier="jeepSelectorViewController" id="akQ-8e-u87" customClass="JeepSelectorViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="jeepSelectorViewController" id="akQ-8e-u87" customClass="JeepSelectorViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F6y-Gx-fnl"/>
                         <viewControllerLayoutGuide type="bottom" id="jUJ-aL-aRG"/>
@@ -84,7 +84,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="jeepSelectorCell" id="lKS-Yd-LfQ" customClass="JeepSelectorCollectionViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="jeepSelectorCell" id="lKS-Yd-LfQ" customClass="JeepSelectorCollectionViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="46" y="0.0" width="283" height="269"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -109,7 +109,7 @@
                                                     <color key="textColor" red="0.36078431372549019" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HF3-Xb-1uX" customClass="JeepModelButton" customModule="ThePost" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HF3-Xb-1uX" customClass="JeepModelButton" customModule="The_Wave" customModuleProvider="target">
                                                     <rect key="frame" x="63" y="205" width="157" height="37"/>
                                                     <color key="backgroundColor" red="0.63921568627450975" green="0.29803921568627451" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -207,7 +207,7 @@
         <!--Add New Product View Controller-->
         <scene sceneID="agu-Ej-1sd">
             <objects>
-                <viewController storyboardIdentifier="addNewPostViewController" id="NCn-ah-941" customClass="AddNewProductViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addNewPostViewController" id="NCn-ah-941" customClass="AddNewProductViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qGw-Qt-bUT"/>
                         <viewControllerLayoutGuide type="bottom" id="rVo-Ml-v3O"/>
@@ -235,7 +235,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="Y8W-CR-xhp" customClass="ProductImageCollectionViewCell" customModule="ThePost" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="Y8W-CR-xhp" customClass="ProductImageCollectionViewCell" customModule="The_Wave" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="39.5" width="282" height="179"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -282,7 +282,7 @@
                                         <color key="separatorColor" red="0.35686274509999999" green="0.35686274509999999" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" rowHeight="35" id="zCa-W9-V9g" customClass="NewProductTextTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" rowHeight="35" id="zCa-W9-V9g" customClass="NewProductTextTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="343" height="35"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zCa-W9-V9g" id="DBg-z7-6CX">
@@ -327,7 +327,7 @@
                                                     <outlet property="sideImageView" destination="9Wv-4f-JXe" id="QTX-JZ-rJh"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dropDownCell" rowHeight="221" id="dMS-Kz-4SC" customClass="NewProductDropDownTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dropDownCell" rowHeight="221" id="dMS-Kz-4SC" customClass="NewProductDropDownTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="63" width="343" height="221"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dMS-Kz-4SC" id="mQO-u8-pcK">
@@ -395,7 +395,7 @@
                                                     <outlet property="sideImageView" destination="xfz-Rr-eg6" id="hov-To-tI6"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" rowHeight="221" id="Z7o-PZ-twX" customClass="NewProductDetailsTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" rowHeight="221" id="Z7o-PZ-twX" customClass="NewProductDetailsTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="284" width="343" height="221"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z7o-PZ-twX" id="1XM-G5-VWS">
@@ -531,7 +531,7 @@
                                                     <outlet property="sideImageView" destination="gkb-Gv-fz4" id="dT6-dj-Ica"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="controlCell" rowHeight="35" id="zim-FK-aZl" customClass="NewProductSwitchTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="controlCell" rowHeight="35" id="zim-FK-aZl" customClass="NewProductSwitchTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="505" width="343" height="35"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zim-FK-aZl" id="bec-IA-v3X">
@@ -672,7 +672,7 @@
         <!--Your chats-->
         <scene sceneID="8a6-7X-2FF">
             <objects>
-                <viewController id="C80-yy-GNU" customClass="ChatConversationViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="C80-yy-GNU" customClass="ChatConversationViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pi4-lr-a7h"/>
                         <viewControllerLayoutGuide type="bottom" id="i0q-Tx-eae"/>
@@ -687,7 +687,7 @@
                                 <color key="separatorColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="0.05096476510067114" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="90" minY="0.0" maxX="13" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="conversationCell" rowHeight="100" id="EcZ-rp-zHs" customClass="ConversationTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="conversationCell" rowHeight="100" id="EcZ-rp-zHs" customClass="ConversationTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EcZ-rp-zHs" id="awg-YX-9YY">
@@ -813,7 +813,7 @@
         <!--Chat Container View Controller-->
         <scene sceneID="TXT-Vi-abr">
             <objects>
-                <viewController id="UA3-Yi-KfX" customClass="ChatContainerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UA3-Yi-KfX" customClass="ChatContainerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="awu-38-jWO"/>
                         <viewControllerLayoutGuide type="bottom" id="hDB-ty-kiA"/>
@@ -926,7 +926,7 @@
         <!--Product Listing View Controller-->
         <scene sceneID="M69-kX-baG">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="eb5-1Y-8Mf" customClass="ProductListingViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="eb5-1Y-8Mf" customClass="ProductListingViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rmV-5e-953"/>
                         <viewControllerLayoutGuide type="bottom" id="X3T-O6-AJx"/>
@@ -980,7 +980,7 @@
                                     <inset key="sectionInset" minX="8" minY="10" maxX="8" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="plpContentCell" id="eoB-qG-Hcs" customClass="ProductListingContentCollectionViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="plpContentCell" id="eoB-qG-Hcs" customClass="ProductListingContentCollectionViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="81.5" y="50" width="212" height="252"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1053,7 +1053,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="productListingSearchBarHeader" id="EcL-1q-kvZ" customClass="ProductListingCollectionReusableView" customModule="ThePost" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="productListingSearchBarHeader" id="EcL-1q-kvZ" customClass="ProductListingCollectionReusableView" customModule="The_Wave" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -1189,7 +1189,7 @@
         <!--Product Viewer View Controller-->
         <scene sceneID="kAv-O9-1u7">
             <objects>
-                <viewController storyboardIdentifier="viewProductInfo" id="R40-HT-vga" customClass="ProductViewerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewProductInfo" id="R40-HT-vga" customClass="ProductViewerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vse-FW-mGO"/>
                         <viewControllerLayoutGuide type="bottom" id="62z-QQ-dfe"/>
@@ -1224,7 +1224,7 @@
         <!--Sliding Selection Tab Bar Controller-->
         <scene sceneID="3pT-7z-kF9">
             <objects>
-                <tabBarController storyboardIdentifier="slidingSelectionTabBarController" id="Bv8-tW-FXm" customClass="SlidingSelectionTabBarController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="slidingSelectionTabBarController" id="Bv8-tW-FXm" customClass="SlidingSelectionTabBarController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="iIe-sb-Xqo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1247,7 +1247,7 @@
         <!--Notifications-->
         <scene sceneID="o5O-e6-fmd">
             <objects>
-                <viewController id="byy-RR-jng" customClass="ActivityViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="byy-RR-jng" customClass="ActivityViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CZT-og-cbE"/>
                         <viewControllerLayoutGuide type="bottom" id="c9H-5c-DwM"/>
@@ -1262,7 +1262,7 @@
                                 <color key="separatorColor" red="0.35686274509999999" green="0.35686274509999999" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reviewCell" rowHeight="73" id="m8T-ln-b0O" customClass="NewReviewActivityTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reviewCell" rowHeight="73" id="m8T-ln-b0O" customClass="NewReviewActivityTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m8T-ln-b0O" id="Rug-hd-uDd">
@@ -1315,7 +1315,7 @@
                                             <outlet property="profileImageView" destination="jqU-Zg-nmz" id="3Nh-dS-EAA"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="soldCell" rowHeight="73" id="FXb-EW-ob1" customClass="SoldActivityTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="soldCell" rowHeight="73" id="FXb-EW-ob1" customClass="SoldActivityTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="101" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FXb-EW-ob1" id="4ua-K8-bb6">
@@ -1368,7 +1368,7 @@
                                             <outlet property="profileImageView" destination="ffo-z7-4wp" id="m4l-PU-49v"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="likeCell" rowHeight="73" id="v16-3s-zvU" customClass="LikedProductActivityTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="likeCell" rowHeight="73" id="v16-3s-zvU" customClass="LikedProductActivityTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="174" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v16-3s-zvU" id="mOV-cK-fsw">
@@ -1453,7 +1453,7 @@
         <!--Profile View Controller-->
         <scene sceneID="7zf-QE-Kby">
             <objects>
-                <viewController id="anJ-nv-bkZ" customClass="ProfileViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="anJ-nv-bkZ" customClass="ProfileViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7ej-Er-nNF"/>
                         <viewControllerLayoutGuide type="bottom" id="9bJ-wf-6zM"/>
@@ -1462,36 +1462,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileCellPhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="AWp-NQ-eXn">
-                                <rect key="frame" x="314" y="229" width="18" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="18" id="3lQ-DF-bnF"/>
-                                    <constraint firstAttribute="height" constant="25" id="nen-lw-bQT"/>
-                                </constraints>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter" translatesAutoresizingMaskIntoConstraints="NO" id="eAS-tb-xCW">
-                                <rect key="frame" x="288" y="229" width="18" height="25"/>
+                                <rect key="frame" x="276.5" y="214" width="18" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="FzN-0m-7jO"/>
                                     <constraint firstAttribute="width" constant="18" id="YCj-vH-lhe"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileMailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7Kj-BB-aDv">
-                                <rect key="frame" x="253" y="230" width="26" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="B8P-bf-mMG"/>
-                                    <constraint firstAttribute="height" constant="23" id="uAy-v1-1by"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileFacebookIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ciJ-nn-kfG">
-                                <rect key="frame" x="341" y="229" width="18" height="26"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="e4R-aU-AWJ"/>
-                                    <constraint firstAttribute="width" constant="18" id="pfD-Zh-iU9"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bca-yI-BUy">
-                                <rect key="frame" x="53" y="262" width="51" height="21"/>
+                                <rect key="frame" x="53" y="247" width="51" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="4mp-Yi-q88"/>
                                     <constraint firstAttribute="width" constant="51" id="9qh-Md-ufP"/>
@@ -1505,7 +1484,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmP-WB-rZG">
-                                <rect key="frame" x="167" y="262" width="42" height="21"/>
+                                <rect key="frame" x="167" y="247" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="A2T-Un-Ion"/>
                                     <constraint firstAttribute="width" constant="42" id="TAm-VX-RKW"/>
@@ -1519,7 +1498,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5S-Hq-m4p">
-                                <rect key="frame" x="271" y="262" width="42" height="21"/>
+                                <rect key="frame" x="271" y="247" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="T4I-T1-L91"/>
                                     <constraint firstAttribute="height" constant="21" id="mV5-lu-eb7"/>
@@ -1533,19 +1512,19 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8di-Bh-5bf" userLabel="Seperator">
-                                <rect key="frame" x="0.0" y="285" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="270" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.98638339846489254" green="0.98682203187118955" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="7vm-qs-Yd7"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fms-GR-BrI">
-                                <rect key="frame" x="0.0" y="286" width="375" height="331"/>
+                                <rect key="frame" x="0.0" y="271" width="375" height="346"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="0.10054005872483221" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="productListingTableCell" rowHeight="80" id="Q2b-ni-bSq" customClass="ProductListingTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="productListingTableCell" rowHeight="80" id="Q2b-ni-bSq" customClass="ProductListingTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q2b-ni-bSq" id="Pkg-OL-95I">
@@ -1664,7 +1643,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUH-9E-NTp">
                                 <rect key="frame" x="0.0" y="20" width="381" height="162"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKl-gT-yoN" customClass="ProfileTagView" customModule="ThePost" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKl-gT-yoN" customClass="ProfileTagView" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="63" y="22" width="60" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="ifE-8e-nhg"/>
@@ -1768,10 +1747,10 @@
                                     <action selector="profileImageTapped:" destination="anJ-nv-bkZ" eventType="touchUpInside" id="eNy-Dl-M39"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verified With:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="RCH-CJ-ctW">
-                                <rect key="frame" x="257" y="187" width="89" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verified With:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="RCH-CJ-ctW">
+                                <rect key="frame" x="257" y="187" width="89" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="xLG-94-lDf"/>
+                                    <constraint firstAttribute="height" constant="21" id="xLG-94-lDf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1787,7 +1766,7 @@
                                             <constraint firstAttribute="height" constant="22" id="zTN-Hz-b9O"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build Trust" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="RtW-ls-vZz">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build Trust" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="RtW-ls-vZz">
                                         <rect key="frame" x="34" y="11" width="66.5" height="17"/>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                         <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1810,24 +1789,25 @@
                                     <action selector="buildTrustButtonTapped:" destination="anJ-nv-bkZ" eventType="touchUpInside" id="qd2-La-1kA"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FacebookSmallRounded" translatesAutoresizingMaskIntoConstraints="NO" id="ciJ-nn-kfG">
+                                <rect key="frame" x="309" y="214" width="18" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="e4R-aU-AWJ"/>
+                                    <constraint firstAttribute="width" constant="18" id="pfD-Zh-iU9"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.18706843256950378" green="0.22109025716781616" blue="0.28035354614257812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ciJ-nn-kfG" secondAttribute="trailing" constant="16" id="5WV-5g-bhi"/>
                             <constraint firstItem="f5S-Hq-m4p" firstAttribute="centerY" secondItem="tmP-WB-rZG" secondAttribute="centerY" id="66L-lj-lIO"/>
-                            <constraint firstItem="7Kj-BB-aDv" firstAttribute="centerY" secondItem="ciJ-nn-kfG" secondAttribute="centerY" id="8Fo-ex-NDv"/>
-                            <constraint firstItem="ciJ-nn-kfG" firstAttribute="leading" secondItem="7Kj-BB-aDv" secondAttribute="trailing" constant="62" id="8yv-fz-743"/>
                             <constraint firstItem="8di-Bh-5bf" firstAttribute="top" secondItem="tmP-WB-rZG" secondAttribute="bottom" constant="2" id="AHW-OW-5E7"/>
                             <constraint firstItem="ggU-Ox-S3C" firstAttribute="top" secondItem="f3a-wY-Pma" secondAttribute="bottom" constant="66" id="BDP-2K-3oR"/>
                             <constraint firstItem="FaA-s8-lYo" firstAttribute="trailing" secondItem="ggU-Ox-S3C" secondAttribute="trailing" id="DGP-a2-9zU"/>
-                            <constraint firstItem="7Kj-BB-aDv" firstAttribute="top" secondItem="RCH-CJ-ctW" secondAttribute="bottom" constant="-1" id="EDR-vd-thc"/>
                             <constraint firstItem="iSk-Mv-MJa" firstAttribute="top" secondItem="Z2f-Qs-a6A" secondAttribute="top" id="FGu-CU-aLa"/>
                             <constraint firstItem="tmP-WB-rZG" firstAttribute="centerX" secondItem="gCE-Tb-MKQ" secondAttribute="centerX" id="FRa-TX-Hfy"/>
                             <constraint firstItem="Z2f-Qs-a6A" firstAttribute="leading" secondItem="gCE-Tb-MKQ" secondAttribute="leading" constant="18" id="HZq-RW-lWq"/>
                             <constraint firstItem="FaA-s8-lYo" firstAttribute="top" secondItem="ggU-Ox-S3C" secondAttribute="bottom" constant="-92" id="Hxe-S0-C2w"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DPz-Qj-xWT" secondAttribute="trailing" constant="-7" id="IJm-Kn-3T7"/>
-                            <constraint firstItem="f5S-Hq-m4p" firstAttribute="top" secondItem="7Kj-BB-aDv" secondAttribute="bottom" constant="9" id="JLm-dr-n2d"/>
-                            <constraint firstItem="7Kj-BB-aDv" firstAttribute="top" secondItem="RCH-CJ-ctW" secondAttribute="bottom" constant="-1" id="Kgq-jB-pxq"/>
                             <constraint firstItem="RCH-CJ-ctW" firstAttribute="leading" secondItem="ggU-Ox-S3C" secondAttribute="trailing" constant="24" id="MkH-qo-09J"/>
                             <constraint firstAttribute="bottomMargin" secondItem="ySR-wV-gcy" secondAttribute="bottom" id="NmE-al-1AW"/>
                             <constraint firstAttribute="bottom" secondItem="fms-GR-BrI" secondAttribute="bottom" constant="50" id="Pxg-QB-jlA"/>
@@ -1835,13 +1815,15 @@
                             <constraint firstItem="FaA-s8-lYo" firstAttribute="bottom" secondItem="ggU-Ox-S3C" secondAttribute="bottom" id="RiH-7a-HeF"/>
                             <constraint firstItem="bca-yI-BUy" firstAttribute="centerY" secondItem="tmP-WB-rZG" secondAttribute="centerY" id="XIc-Ug-Loz"/>
                             <constraint firstItem="Z2f-Qs-a6A" firstAttribute="top" secondItem="SUH-9E-NTp" secondAttribute="bottom" constant="13" id="XPq-QA-iB5"/>
+                            <constraint firstItem="f5S-Hq-m4p" firstAttribute="top" secondItem="eAS-tb-xCW" secondAttribute="bottom" constant="8" id="XRX-tw-lWl"/>
                             <constraint firstItem="iSk-Mv-MJa" firstAttribute="bottom" secondItem="Z2f-Qs-a6A" secondAttribute="bottom" id="Xcc-db-hRY"/>
                             <constraint firstItem="tmP-WB-rZG" firstAttribute="leading" secondItem="bca-yI-BUy" secondAttribute="trailing" constant="63" id="aWW-vj-S2L"/>
                             <constraint firstItem="ySR-wV-gcy" firstAttribute="leading" secondItem="gCE-Tb-MKQ" secondAttribute="leading" id="adi-x2-n7W"/>
+                            <constraint firstItem="ciJ-nn-kfG" firstAttribute="top" secondItem="RCH-CJ-ctW" secondAttribute="bottom" constant="6" id="bcd-mw-lmO"/>
                             <constraint firstItem="SUH-9E-NTp" firstAttribute="leading" secondItem="gCE-Tb-MKQ" secondAttribute="leading" id="erm-hg-mCp"/>
                             <constraint firstItem="SUH-9E-NTp" firstAttribute="top" secondItem="gCE-Tb-MKQ" secondAttribute="topMargin" constant="20" id="fIX-Th-NkO"/>
+                            <constraint firstItem="ciJ-nn-kfG" firstAttribute="centerX" secondItem="RCH-CJ-ctW" secondAttribute="centerX" constant="16.5" id="fgP-FP-WpT"/>
                             <constraint firstItem="f3a-wY-Pma" firstAttribute="centerX" secondItem="gCE-Tb-MKQ" secondAttribute="centerX" id="fo3-zk-vvP"/>
-                            <constraint firstItem="eAS-tb-xCW" firstAttribute="top" secondItem="AWp-NQ-eXn" secondAttribute="top" id="gXk-la-0SP"/>
                             <constraint firstItem="fms-GR-BrI" firstAttribute="top" secondItem="8di-Bh-5bf" secondAttribute="bottom" id="h7C-rQ-Hch"/>
                             <constraint firstAttribute="trailing" secondItem="ySR-wV-gcy" secondAttribute="trailing" id="hFT-on-fXs"/>
                             <constraint firstItem="fms-GR-BrI" firstAttribute="leading" secondItem="gCE-Tb-MKQ" secondAttribute="leading" id="jHN-SX-acI"/>
@@ -1853,11 +1835,9 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Uzu-u3-X1A" secondAttribute="trailing" constant="8" id="mnB-Z9-BYO"/>
                             <constraint firstItem="FaA-s8-lYo" firstAttribute="leading" secondItem="ggU-Ox-S3C" secondAttribute="trailing" constant="-92" id="naE-oa-D2t"/>
                             <constraint firstItem="RCH-CJ-ctW" firstAttribute="top" secondItem="SUH-9E-NTp" secondAttribute="bottom" constant="5" id="nns-Qb-vqB"/>
-                            <constraint firstItem="AWp-NQ-eXn" firstAttribute="centerY" secondItem="7Kj-BB-aDv" secondAttribute="centerY" id="oUO-Za-vut"/>
-                            <constraint firstItem="AWp-NQ-eXn" firstAttribute="leading" secondItem="eAS-tb-xCW" secondAttribute="trailing" constant="8" symbolic="YES" id="pNQ-Ih-46m"/>
                             <constraint firstItem="iSk-Mv-MJa" firstAttribute="leading" secondItem="Z2f-Qs-a6A" secondAttribute="leading" id="qOu-dn-fJ5"/>
                             <constraint firstItem="DPz-Qj-xWT" firstAttribute="top" secondItem="f3a-wY-Pma" secondAttribute="top" constant="-15" id="qmq-XC-3hC"/>
-                            <constraint firstItem="7Kj-BB-aDv" firstAttribute="leading" secondItem="AWp-NQ-eXn" secondAttribute="trailing" constant="-79" id="r4a-FW-w1r"/>
+                            <constraint firstItem="eAS-tb-xCW" firstAttribute="top" secondItem="RCH-CJ-ctW" secondAttribute="bottom" constant="6" id="rjK-XJ-J9s"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RCH-CJ-ctW" secondAttribute="trailing" constant="13" id="rpB-8I-Du8"/>
                             <constraint firstItem="DPz-Qj-xWT" firstAttribute="top" secondItem="7ej-Er-nNF" secondAttribute="bottom" constant="8" symbolic="YES" id="ryN-1o-7ls"/>
                             <constraint firstItem="xKl-gT-yoN" firstAttribute="centerY" secondItem="f3a-wY-Pma" secondAttribute="centerY" constant="3" id="s5E-wD-CHb"/>
@@ -1865,6 +1845,7 @@
                             <constraint firstItem="8di-Bh-5bf" firstAttribute="leading" secondItem="gCE-Tb-MKQ" secondAttribute="leading" id="vqv-hm-zUO"/>
                             <constraint firstAttribute="trailing" secondItem="fms-GR-BrI" secondAttribute="trailing" id="xq7-RV-YTj"/>
                             <constraint firstItem="xKl-gT-yoN" firstAttribute="top" secondItem="7ej-Er-nNF" secondAttribute="bottom" constant="22" id="zdM-zA-nIB"/>
+                            <constraint firstItem="eAS-tb-xCW" firstAttribute="centerX" secondItem="RCH-CJ-ctW" secondAttribute="centerX" constant="-16" id="zgl-OH-ph7"/>
                             <constraint firstItem="ggU-Ox-S3C" firstAttribute="centerX" secondItem="gCE-Tb-MKQ" secondAttribute="centerX" id="zhK-uJ-KDY"/>
                         </constraints>
                     </view>
@@ -1877,6 +1858,7 @@
                         <outlet property="buildTrustLabel" destination="RtW-ls-vZz" id="Mea-Zj-qPX"/>
                         <outlet property="buildTrustView" destination="Z2f-Qs-a6A" id="JJg-ex-w7H"/>
                         <outlet property="closeButton" destination="HL6-53-4fU" id="JvO-kQ-0au"/>
+                        <outlet property="facebookVerifiedWithImage" destination="ciJ-nn-kfG" id="47a-Lz-TXr"/>
                         <outlet property="farLeftStar" destination="fhA-hy-RAa" id="DsC-YL-we3"/>
                         <outlet property="farRightStar" destination="Ic5-IA-fth" id="qfE-aj-TWV"/>
                         <outlet property="leftMidStar" destination="6OR-rf-NHO" id="9xG-OG-abj"/>
@@ -1889,6 +1871,7 @@
                         <outlet property="sellingProductTypeButton" destination="bca-yI-BUy" id="wdz-2k-pYJ"/>
                         <outlet property="settingsButton" destination="DPz-Qj-xWT" id="1PX-cE-Nde"/>
                         <outlet property="tableView" destination="fms-GR-BrI" id="ArE-uO-hrc"/>
+                        <outlet property="twitterVerifiedWithImage" destination="eAS-tb-xCW" id="VTu-KW-PjD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHm-QY-fYy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1898,7 +1881,7 @@
         <!--Profile Modal View Controller-->
         <scene sceneID="i3T-eA-f7L">
             <objects>
-                <viewController storyboardIdentifier="profileModalViewController" id="QFi-z0-nM9" customClass="ProfileModalViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profileModalViewController" id="QFi-z0-nM9" customClass="ProfileModalViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mm5-I3-9Am"/>
                         <viewControllerLayoutGuide type="bottom" id="QFR-58-w5h"/>
@@ -1933,7 +1916,7 @@
         <!--Reviews Summary View Controller-->
         <scene sceneID="nj6-68-PHf">
             <objects>
-                <viewController storyboardIdentifier="reviewsSummaryController" id="CHB-oZ-NkC" customClass="ReviewsSummaryViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="reviewsSummaryController" id="CHB-oZ-NkC" customClass="ReviewsSummaryViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2qg-SY-YxJ"/>
                         <viewControllerLayoutGuide type="bottom" id="yVi-mt-pcu"/>
@@ -1968,7 +1951,7 @@
         <!--Create Review View Controller-->
         <scene sceneID="R5m-WX-Rjz">
             <objects>
-                <viewController storyboardIdentifier="createAReviewController" id="T36-66-tUT" customClass="CreateReviewViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createAReviewController" id="T36-66-tUT" customClass="CreateReviewViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pmP-Kq-bMO"/>
                         <viewControllerLayoutGuide type="bottom" id="cia-nc-RSE"/>
@@ -2069,7 +2052,7 @@
         <!--Chat View Controller-->
         <scene sceneID="5q4-ye-xtG">
             <objects>
-                <viewController id="1KK-ln-WHj" customClass="ChatViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1KK-ln-WHj" customClass="ChatViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vDO-Ar-t0j"/>
                         <viewControllerLayoutGuide type="bottom" id="Xo2-UZ-QJG"/>
@@ -2087,7 +2070,7 @@
         <!--Product Viewer Container View Controller-->
         <scene sceneID="Zch-8y-Ymn">
             <objects>
-                <viewController id="OL0-SV-hFV" customClass="ProductViewerContainerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OL0-SV-hFV" customClass="ProductViewerContainerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5dz-iF-FhK"/>
                         <viewControllerLayoutGuide type="bottom" id="Fw9-AO-AEK"/>
@@ -2109,7 +2092,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="U9e-7r-9cq" customClass="ProductViewerImageCollectionViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="U9e-7r-9cq" customClass="ProductViewerImageCollectionViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="8" width="280" height="241"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2222,7 +2205,7 @@
                                 <color key="separatorColor" white="1" alpha="0.098416526845637578" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" rowHeight="35" id="McF-jo-RS9" customClass="ProductViewerTextTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" rowHeight="35" id="McF-jo-RS9" customClass="ProductViewerTextTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="McF-jo-RS9" id="RKt-Fa-VgD">
@@ -2267,7 +2250,7 @@
                                             <outlet property="textDetailLabel" destination="E56-ef-Y16" id="TAc-q4-fE3"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" rowHeight="237" id="UVb-XW-FP5" customClass="ProductViewerDetailsTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" rowHeight="237" id="UVb-XW-FP5" customClass="ProductViewerDetailsTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="63" width="343" height="237"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UVb-XW-FP5" id="eA2-m1-Yy7">
@@ -2418,7 +2401,7 @@
                                             <outlet property="sideImageView" destination="RsF-Hh-0pX" id="LHC-6C-XQa"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sellerCell" rowHeight="146" id="aJw-Zl-NqU" customClass="ProductViewerSellerTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sellerCell" rowHeight="146" id="aJw-Zl-NqU" customClass="ProductViewerSellerTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="300" width="343" height="146"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aJw-Zl-NqU" id="TJb-hv-gET">
@@ -2519,25 +2502,18 @@
                                                                 <constraint firstAttribute="height" constant="16" id="UgX-tT-XWw"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileCellPhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vJv-Pe-34m">
-                                                            <rect key="frame" x="232" y="78" width="18" height="25"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="18" id="bV2-6C-LfX"/>
-                                                                <constraint firstAttribute="height" constant="25" id="m3z-aw-4m6"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileMailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gJY-dc-9Xq">
-                                                            <rect key="frame" x="262" y="79" width="26" height="23"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="26" id="2mp-wS-bYy"/>
-                                                                <constraint firstAttribute="height" constant="23" id="ujp-sZ-Es6"/>
-                                                            </constraints>
-                                                        </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileFacebookIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bTb-aT-K3a">
                                                             <rect key="frame" x="297" y="77" width="18" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="26" id="UQ1-07-vkE"/>
                                                                 <constraint firstAttribute="width" constant="18" id="jlz-OJ-nZQ"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter" translatesAutoresizingMaskIntoConstraints="NO" id="yho-L9-edB">
+                                                            <rect key="frame" x="269" y="78" width="20" height="26"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="26" id="i4v-HB-k5C"/>
+                                                                <constraint firstAttribute="width" constant="20" id="n08-15-gy2"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -2553,6 +2529,7 @@
                                                         <constraint firstItem="o2E-id-ryT" firstAttribute="top" secondItem="RHC-eo-2zI" secondAttribute="bottom" constant="8" id="HrK-zB-Csr"/>
                                                         <constraint firstItem="kk1-RX-B0A" firstAttribute="leading" secondItem="jua-5k-Nrw" secondAttribute="leading" constant="33" id="Hsv-qu-twK"/>
                                                         <constraint firstItem="3w4-X9-9Kf" firstAttribute="leading" secondItem="d8Q-yl-Po6" secondAttribute="trailing" constant="3" id="I8s-JY-qVp"/>
+                                                        <constraint firstItem="yho-L9-edB" firstAttribute="centerY" secondItem="bTb-aT-K3a" secondAttribute="centerY" constant="1" id="JaB-50-6Nf"/>
                                                         <constraint firstItem="d8Q-yl-Po6" firstAttribute="top" secondItem="5dd-ly-EL8" secondAttribute="top" id="JcS-bz-8kx"/>
                                                         <constraint firstItem="d8Q-yl-Po6" firstAttribute="width" secondItem="d8Q-yl-Po6" secondAttribute="height" multiplier="22:21" id="N4f-MZ-diV"/>
                                                         <constraint firstItem="5dd-ly-EL8" firstAttribute="width" secondItem="5dd-ly-EL8" secondAttribute="height" multiplier="22:21" id="NxK-Tg-N3a"/>
@@ -2561,25 +2538,22 @@
                                                         <constraint firstAttribute="trailing" secondItem="o2E-id-ryT" secondAttribute="trailing" constant="20" id="PpF-mH-Pwh"/>
                                                         <constraint firstItem="0xA-nK-XPe" firstAttribute="leading" secondItem="3w4-X9-9Kf" secondAttribute="trailing" constant="3" id="Qgh-Q3-aUh"/>
                                                         <constraint firstItem="d8Q-yl-Po6" firstAttribute="bottom" secondItem="5dd-ly-EL8" secondAttribute="bottom" id="Qgj-Jf-5AF"/>
-                                                        <constraint firstItem="gJY-dc-9Xq" firstAttribute="leading" secondItem="vJv-Pe-34m" secondAttribute="trailing" constant="12" id="TC3-JL-wtY"/>
                                                         <constraint firstItem="3He-xP-5D1" firstAttribute="trailing" secondItem="BXN-Rq-4uv" secondAttribute="trailing" constant="-8" id="WmW-t7-H6b"/>
                                                         <constraint firstItem="sLr-uH-lCT" firstAttribute="width" secondItem="sLr-uH-lCT" secondAttribute="height" multiplier="22:21" id="XBd-Fw-CPt"/>
                                                         <constraint firstItem="d8Q-yl-Po6" firstAttribute="leading" secondItem="5dd-ly-EL8" secondAttribute="trailing" constant="3" id="YDX-uo-TwH"/>
                                                         <constraint firstItem="o2E-id-ryT" firstAttribute="leading" secondItem="jua-5k-Nrw" secondAttribute="leading" constant="19" id="YrN-zg-mKt"/>
                                                         <constraint firstItem="bTb-aT-K3a" firstAttribute="top" secondItem="o2E-id-ryT" secondAttribute="bottom" constant="5" id="bwW-dT-lkS"/>
-                                                        <constraint firstItem="bTb-aT-K3a" firstAttribute="leading" secondItem="gJY-dc-9Xq" secondAttribute="trailing" constant="9" id="dQ4-zN-JL6"/>
                                                         <constraint firstAttribute="trailing" secondItem="BXN-Rq-4uv" secondAttribute="trailing" constant="20" id="dhe-PO-AAR"/>
                                                         <constraint firstItem="3w4-X9-9Kf" firstAttribute="bottom" secondItem="d8Q-yl-Po6" secondAttribute="bottom" id="fWm-Va-epg"/>
                                                         <constraint firstItem="0xA-nK-XPe" firstAttribute="top" secondItem="3w4-X9-9Kf" secondAttribute="top" id="hyE-2T-zlS"/>
                                                         <constraint firstItem="RHC-eo-2zI" firstAttribute="leading" secondItem="kk1-RX-B0A" secondAttribute="leading" id="i5u-oS-gBI"/>
                                                         <constraint firstItem="0xA-nK-XPe" firstAttribute="bottom" secondItem="3w4-X9-9Kf" secondAttribute="bottom" id="ihv-Kg-c46"/>
                                                         <constraint firstItem="sLr-uH-lCT" firstAttribute="top" secondItem="0xA-nK-XPe" secondAttribute="top" id="kY7-ok-MJi"/>
-                                                        <constraint firstItem="vJv-Pe-34m" firstAttribute="centerY" secondItem="gJY-dc-9Xq" secondAttribute="centerY" id="kaA-Em-Nb3"/>
                                                         <constraint firstItem="3w4-X9-9Kf" firstAttribute="top" secondItem="d8Q-yl-Po6" secondAttribute="top" id="nWQ-tm-y9s"/>
                                                         <constraint firstItem="3w4-X9-9Kf" firstAttribute="width" secondItem="3w4-X9-9Kf" secondAttribute="height" multiplier="22:21" id="neE-5B-uLB"/>
                                                         <constraint firstItem="XrZ-1Z-91t" firstAttribute="top" secondItem="o2E-id-ryT" secondAttribute="bottom" constant="8" id="pL5-hZ-WAQ"/>
                                                         <constraint firstItem="bTb-aT-K3a" firstAttribute="trailing" secondItem="sLr-uH-lCT" secondAttribute="trailing" id="prR-g0-KxE"/>
-                                                        <constraint firstItem="gJY-dc-9Xq" firstAttribute="centerY" secondItem="bTb-aT-K3a" secondAttribute="centerY" id="tIL-5e-rTO"/>
+                                                        <constraint firstItem="bTb-aT-K3a" firstAttribute="leading" secondItem="yho-L9-edB" secondAttribute="trailing" constant="8" id="sZJ-qX-eeM"/>
                                                         <constraint firstItem="BXN-Rq-4uv" firstAttribute="leading" secondItem="jua-5k-Nrw" secondAttribute="leading" constant="19" id="ucf-ek-beC"/>
                                                         <constraint firstItem="kk1-RX-B0A" firstAttribute="top" secondItem="jua-5k-Nrw" secondAttribute="top" constant="8" id="x2e-ba-nN3"/>
                                                         <constraint firstItem="0xA-nK-XPe" firstAttribute="width" secondItem="0xA-nK-XPe" secondAttribute="height" multiplier="22:21" id="zJr-gR-I6E"/>
@@ -2610,6 +2584,7 @@
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.21960784310000001" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="detailNameLabel" destination="H83-Cu-aLg" id="1Bp-HB-xv5"/>
+                                            <outlet property="facebookVerifiedWithImage" destination="bTb-aT-K3a" id="Dwe-WX-PxF"/>
                                             <outlet property="farLeftStar" destination="5dd-ly-EL8" id="L9J-Rb-OzA"/>
                                             <outlet property="farRightStar" destination="sLr-uH-lCT" id="7NC-Fc-E8m"/>
                                             <outlet property="leftMidStar" destination="d8Q-yl-Po6" id="BEo-Oa-81A"/>
@@ -2619,9 +2594,10 @@
                                             <outlet property="sellerImageView" destination="3He-xP-5D1" id="tpm-8V-KkV"/>
                                             <outlet property="sellerNameLabel" destination="kk1-RX-B0A" id="3qu-pP-asY"/>
                                             <outlet property="sideImageView" destination="cfF-Bo-d6F" id="ftr-8E-DvS"/>
+                                            <outlet property="twitterVerifiedWithImage" destination="yho-L9-edB" id="HLA-QH-SwB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="exCheckCell" rowHeight="35" id="R09-Wm-Pg8" customClass="ProductViewerExCheckTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="exCheckCell" rowHeight="35" id="R09-Wm-Pg8" customClass="ProductViewerExCheckTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="446" width="343" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R09-Wm-Pg8" id="kGQ-oJ-iBk">
@@ -2670,22 +2646,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrY-jH-RRf" userLabel="Bottom Container">
                                 <rect key="frame" x="0.0" y="560" width="343" height="53"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PtQ-xq-0Ye">
-                                        <rect key="frame" x="260" y="8" width="75" height="36"/>
-                                        <color key="backgroundColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="75" id="7TV-Sg-BWJ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
-                                        <state key="normal">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="orangeButtonTapped:" destination="OL0-SV-hFV" eventType="touchUpInside" id="t97-pj-gDC"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ug0-wk-xMV">
-                                        <rect key="frame" x="66" y="8" width="82" height="36"/>
+                                        <rect key="frame" x="253" y="8" width="82" height="36"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                         <state key="normal" title="Close">
@@ -2706,21 +2668,35 @@
                                             <action selector="greenButtonTapped:" destination="OL0-SV-hFV" eventType="touchUpInside" id="zGf-hU-2P1"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PtQ-xq-0Ye">
+                                        <rect key="frame" x="73" y="8" width="82" height="36"/>
+                                        <color key="backgroundColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="82" id="7TV-Sg-BWJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="orangeButtonTapped:" destination="OL0-SV-hFV" eventType="touchUpInside" id="t97-pj-gDC"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.14117647059999999" green="0.1647058824" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Ug0-wk-xMV" firstAttribute="bottom" secondItem="S6K-Gm-ZFh" secondAttribute="bottom" id="3Ve-15-WqA"/>
-                                    <constraint firstItem="PtQ-xq-0Ye" firstAttribute="width" secondItem="S6K-Gm-ZFh" secondAttribute="width" constant="-7" id="Ah4-Ub-MXI"/>
+                                    <constraint firstItem="PtQ-xq-0Ye" firstAttribute="width" secondItem="S6K-Gm-ZFh" secondAttribute="width" id="Ah4-Ub-MXI"/>
                                     <constraint firstAttribute="bottom" secondItem="PtQ-xq-0Ye" secondAttribute="bottom" constant="9" id="Cnx-yz-Cs0"/>
                                     <constraint firstItem="Ug0-wk-xMV" firstAttribute="top" secondItem="S6K-Gm-ZFh" secondAttribute="top" id="CqL-aN-eED"/>
-                                    <constraint firstItem="S6K-Gm-ZFh" firstAttribute="leading" secondItem="Ug0-wk-xMV" secondAttribute="trailing" constant="15" id="IjP-aL-C6H"/>
-                                    <constraint firstItem="PtQ-xq-0Ye" firstAttribute="leading" secondItem="S6K-Gm-ZFh" secondAttribute="trailing" constant="15" id="MOf-qr-qFU"/>
+                                    <constraint firstItem="Ug0-wk-xMV" firstAttribute="leading" secondItem="S6K-Gm-ZFh" secondAttribute="trailing" constant="8" id="JXJ-Fn-TlX"/>
                                     <constraint firstItem="S6K-Gm-ZFh" firstAttribute="top" secondItem="PtQ-xq-0Ye" secondAttribute="top" id="Mpj-UI-0cD"/>
-                                    <constraint firstAttribute="trailing" secondItem="PtQ-xq-0Ye" secondAttribute="trailing" constant="8" id="PVM-2H-TDf"/>
-                                    <constraint firstItem="Ug0-wk-xMV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nrY-jH-RRf" secondAttribute="leading" constant="8" id="im0-lC-A0M"/>
+                                    <constraint firstItem="PtQ-xq-0Ye" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nrY-jH-RRf" secondAttribute="leading" constant="8" id="bPx-RH-bU5"/>
                                     <constraint firstItem="S6K-Gm-ZFh" firstAttribute="width" secondItem="Ug0-wk-xMV" secondAttribute="width" id="jDO-Gy-jCb"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ug0-wk-xMV" secondAttribute="trailing" constant="8" id="p7S-eq-jef"/>
                                     <constraint firstItem="PtQ-xq-0Ye" firstAttribute="top" secondItem="nrY-jH-RRf" secondAttribute="top" constant="8" id="pQD-0s-mDi"/>
                                     <constraint firstAttribute="height" constant="53" id="sgC-09-gYR"/>
+                                    <constraint firstItem="S6K-Gm-ZFh" firstAttribute="leading" secondItem="PtQ-xq-0Ye" secondAttribute="trailing" constant="8" id="xhw-vr-EhF"/>
                                     <constraint firstItem="S6K-Gm-ZFh" firstAttribute="bottom" secondItem="PtQ-xq-0Ye" secondAttribute="bottom" id="xvt-68-i7h"/>
                                 </constraints>
                             </view>
@@ -2764,7 +2740,7 @@
         <!--Create Review Container View Controller-->
         <scene sceneID="Rnr-cE-r6k">
             <objects>
-                <viewController id="I3N-CM-mR7" customClass="CreateReviewContainerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="I3N-CM-mR7" customClass="CreateReviewContainerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y80-yx-PZJ"/>
                         <viewControllerLayoutGuide type="bottom" id="qc2-7D-9MD"/>
@@ -3065,7 +3041,7 @@
         <!--Reviews Summary Container View Controller-->
         <scene sceneID="ssd-i6-bE6">
             <objects>
-                <viewController id="5S2-r5-kbi" customClass="ReviewsSummaryContainerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5S2-r5-kbi" customClass="ReviewsSummaryContainerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rlT-dH-neT"/>
                         <viewControllerLayoutGuide type="bottom" id="f7e-Ss-UrG"/>
@@ -3111,7 +3087,7 @@
                                     <constraint firstAttribute="width" secondItem="gMt-PE-gAv" secondAttribute="height" multiplier="22:21" id="6H7-FX-Tsp"/>
                                 </constraints>
                             </imageView>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zu5-kT-FBP" customClass="PercentageBar" customModule="ThePost" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zu5-kT-FBP" customClass="PercentageBar" customModule="The_Wave" customModuleProvider="target">
                                 <rect key="frame" x="168" y="96" width="7" height="83"/>
                                 <color key="backgroundColor" red="0.18706843256950378" green="0.22109025716781616" blue="0.28035354614257812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -3135,7 +3111,7 @@
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CtL-J5-nG6" customClass="PercentageBar" customModule="ThePost" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CtL-J5-nG6" customClass="PercentageBar" customModule="The_Wave" customModuleProvider="target">
                                 <rect key="frame" x="129" y="96" width="7" height="83"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHg-j4-Zam">
@@ -3169,7 +3145,7 @@
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8c4-k0-Ccp" customClass="PercentageBar" customModule="ThePost" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8c4-k0-Ccp" customClass="PercentageBar" customModule="The_Wave" customModuleProvider="target">
                                 <rect key="frame" x="89" y="96" width="7" height="83"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPT-9m-JOQ">
@@ -3203,7 +3179,7 @@
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LZ-8d-YIX" customClass="PercentageBar" customModule="ThePost" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LZ-8d-YIX" customClass="PercentageBar" customModule="The_Wave" customModuleProvider="target">
                                 <rect key="frame" x="248" y="96" width="7" height="83"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJR-4V-cId">
@@ -3237,7 +3213,7 @@
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSP-dR-c14" customClass="PercentageBar" customModule="ThePost" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSP-dR-c14" customClass="PercentageBar" customModule="The_Wave" customModuleProvider="target">
                                 <rect key="frame" x="208" y="96" width="7" height="83"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M01-1Y-peM">
@@ -3314,7 +3290,7 @@
                                 <color key="separatorColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="0.045826342281879193" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reviewCell" rowHeight="150" id="aRE-uo-gth" customClass="ReviewSummaryTableViewCell" customModule="ThePost" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reviewCell" rowHeight="150" id="aRE-uo-gth" customClass="ReviewSummaryTableViewCell" customModule="The_Wave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aRE-uo-gth" id="1U2-7Z-gag">
@@ -3577,7 +3553,7 @@
         <!--Settings View Controller-->
         <scene sceneID="I0i-qb-5Wj">
             <objects>
-                <viewController storyboardIdentifier="settingsController" id="Uzu-JS-lEX" customClass="SettingsViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsController" id="Uzu-JS-lEX" customClass="SettingsViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nhj-OY-HdD"/>
                         <viewControllerLayoutGuide type="bottom" id="RLS-lP-Uxs"/>
@@ -3612,7 +3588,7 @@
         <!--Settings Container View Controller-->
         <scene sceneID="O2h-bL-4sW">
             <objects>
-                <viewController id="IRB-Ud-IIt" customClass="SettingsContainerViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IRB-Ud-IIt" customClass="SettingsContainerViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2oQ-Xu-aQu"/>
                         <viewControllerLayoutGuide type="bottom" id="n7B-lD-PQB"/>
@@ -4048,7 +4024,7 @@ for the global feed!</string>
         <!--Build Trust Modal View Controller-->
         <scene sceneID="pj1-et-eFJ">
             <objects>
-                <viewController storyboardIdentifier="buildTrustViewController" id="NOf-L8-GBv" customClass="BuildTrustModalViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="buildTrustViewController" id="NOf-L8-GBv" customClass="BuildTrustModalViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NyQ-0i-yM0"/>
                         <viewControllerLayoutGuide type="bottom" id="VwY-Ph-acE"/>
@@ -4058,9 +4034,9 @@ for the global feed!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhE-ll-gss">
-                                <rect key="frame" x="37" y="118" width="300" height="363"/>
+                                <rect key="frame" x="37" y="143" width="300" height="320"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="363" id="gvN-3x-Sve"/>
+                                    <constraint firstAttribute="height" constant="320" id="gvN-3x-Sve"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="Gtp-zb-T8y" kind="embed" identifier="rewiewsSummary_embed" id="Qgh-lV-iFj"/>
@@ -4070,7 +4046,7 @@ for the global feed!</string>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="RhE-ll-gss" secondAttribute="leading" constant="-21" id="HUI-SC-Wdq"/>
-                            <constraint firstItem="RhE-ll-gss" firstAttribute="centerY" secondItem="1Hn-Pl-2iI" secondAttribute="centerY" constant="-34" id="aCk-Ju-bBa"/>
+                            <constraint firstItem="RhE-ll-gss" firstAttribute="centerY" secondItem="1Hn-Pl-2iI" secondAttribute="centerY" constant="-30.5" id="aCk-Ju-bBa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RhE-ll-gss" secondAttribute="trailing" constant="22" id="xug-gw-FkN"/>
                         </constraints>
                     </view>
@@ -4085,17 +4061,17 @@ for the global feed!</string>
         <!--Build Trust View Controller-->
         <scene sceneID="Jdy-Ha-3OF">
             <objects>
-                <viewController id="Gtp-zb-T8y" customClass="BuildTrustViewController" customModule="ThePost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Gtp-zb-T8y" customClass="BuildTrustViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MCw-4v-qpI"/>
                         <viewControllerLayoutGuide type="bottom" id="1b0-3T-cUW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7mr-U2-ItU">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="363"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3a-80-0uX">
-                                <rect key="frame" x="0.0" y="72" width="300" height="291"/>
+                                <rect key="frame" x="0.0" y="72" width="300" height="249"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You still haven't verified the following accounts:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUS-Fw-6N3">
                                         <rect key="frame" x="69" y="88" width="161" height="34"/>
@@ -4114,13 +4090,13 @@ for the global feed!</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="349-Pe-hU1">
-                                        <rect key="frame" x="59" y="144" width="182" height="118"/>
+                                        <rect key="frame" x="59" y="144" width="182" height="76"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Be-gQ-2uy" userLabel="FacebookView">
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-7e-Uov">
-                                                        <rect key="frame" x="61.5" y="8" width="60" height="17"/>
+                                                        <rect key="frame" x="61" y="8" width="60" height="17"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -4188,42 +4164,6 @@ for the global feed!</string>
                                                     <constraint firstItem="zWa-cA-z5w" firstAttribute="centerY" secondItem="L8o-A3-qhu" secondAttribute="centerY" id="y9x-qx-0bv"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxK-fA-Q3n" userLabel="EmailView">
-                                                <rect key="frame" x="0.0" y="84" width="182" height="34"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1B3-i4-qjG">
-                                                        <rect key="frame" x="57.5" y="8" width="68.5" height="17"/>
-                                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmailSmall" translatesAutoresizingMaskIntoConstraints="NO" id="Tkn-2r-G20">
-                                                        <rect key="frame" x="8" y="8" width="20" height="19"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="19" id="6X3-jE-qUH"/>
-                                                            <constraint firstAttribute="width" constant="20" id="NwU-jA-b4u"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71c-nS-a2H">
-                                                        <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
-                                                        <connections>
-                                                            <action selector="emailButtonPressed:" destination="Gtp-zb-T8y" eventType="touchUpInside" id="kbb-SW-mGx"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.64472514390945435" green="0.29881951212882996" blue="0.2212364673614502" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="Tkn-2r-G20" firstAttribute="centerY" secondItem="bxK-fA-Q3n" secondAttribute="centerY" id="8aO-xS-fOw"/>
-                                                    <constraint firstAttribute="bottom" secondItem="71c-nS-a2H" secondAttribute="bottom" id="9W7-zR-Qsj"/>
-                                                    <constraint firstAttribute="height" constant="34" id="HYa-Ir-4pe"/>
-                                                    <constraint firstItem="1B3-i4-qjG" firstAttribute="centerX" secondItem="bxK-fA-Q3n" secondAttribute="centerX" id="NWg-07-MSO"/>
-                                                    <constraint firstItem="71c-nS-a2H" firstAttribute="leading" secondItem="bxK-fA-Q3n" secondAttribute="leading" id="Tmb-Oa-F5w"/>
-                                                    <constraint firstItem="Tkn-2r-G20" firstAttribute="leading" secondItem="bxK-fA-Q3n" secondAttribute="leading" constant="8" id="bIU-ft-eql"/>
-                                                    <constraint firstItem="71c-nS-a2H" firstAttribute="top" secondItem="bxK-fA-Q3n" secondAttribute="top" id="gqe-s2-GGT"/>
-                                                    <constraint firstAttribute="trailing" secondItem="71c-nS-a2H" secondAttribute="trailing" id="pIR-yc-jRk"/>
-                                                    <constraint firstItem="1B3-i4-qjG" firstAttribute="top" secondItem="bxK-fA-Q3n" secondAttribute="top" constant="8" id="zZr-qB-SlG"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -4266,7 +4206,6 @@ for the global feed!</string>
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="F3a-80-0uX" id="AP4-xx-Kb0"/>
-                        <outlet property="emailView" destination="bxK-fA-Q3n" id="LOd-ED-c7q"/>
                         <outlet property="facebookView" destination="6Be-gQ-2uy" id="wBH-5k-Z4b"/>
                         <outlet property="shieldView" destination="V52-NQ-dcq" id="PtU-wX-Wzr"/>
                         <outlet property="twitterView" destination="L8o-A3-qhu" id="HrI-Ps-sL1"/>
@@ -4281,13 +4220,12 @@ for the global feed!</string>
         <image name="ActivityTabBarIcon" width="20" height="24"/>
         <image name="DefaultProfilePicture" width="250" height="250"/>
         <image name="DropdownArrow" width="14" height="7"/>
-        <image name="EmailSmall" width="20" height="15"/>
         <image name="FacebookSmallRounded" width="20" height="20"/>
         <image name="HomeTabBarIcon" width="21" height="23"/>
         <image name="LikeIcon" width="15" height="14"/>
         <image name="LikeIconNotLiked" width="30" height="30"/>
         <image name="MessagesTabBarIcon" width="23" height="23"/>
-        <image name="NewPostTabBarIcon" width="29" height="29"/>
+        <image name="NewPostTabBarIcon" width="34" height="34"/>
         <image name="PIPBackgroundImage" width="385" height="265"/>
         <image name="PIPCamera" width="79" height="79"/>
         <image name="PLPFilters" width="20" height="21"/>
@@ -4295,9 +4233,7 @@ for the global feed!</string>
         <image name="PVEx" width="17" height="17"/>
         <image name="PVMoreOptions" width="28" height="6"/>
         <image name="PVViewsIcon" width="15" height="10"/>
-        <image name="ProfileCellPhoneIcon" width="18" height="31"/>
         <image name="ProfileFacebookIcon" width="17" height="33"/>
-        <image name="ProfileMailIcon" width="31" height="23"/>
         <image name="ProfileReviewsStar" width="22" height="21"/>
         <image name="ProfileSettingsIcon" width="27" height="27"/>
         <image name="ProfileTabBarIcon" width="23" height="23"/>

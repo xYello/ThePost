@@ -122,10 +122,8 @@ class SettingsContainerViewController: UIViewController {
         let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid)
         ref.child("isOnline").removeValue()
         
-        OneSignal.idsAvailable() { userId, pushToken in
-            if let id = userId {
-                ref.child("pushNotificationIds").child(id).removeValue()
-            }
+        if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
+            ref.child("pushNotificationIds").child(id).removeValue()
         }
         
         do {
