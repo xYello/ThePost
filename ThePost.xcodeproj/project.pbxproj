@@ -474,7 +474,7 @@
 				4D239C401E12DF9300F2668E /* Product Listing */,
 				4D23EC711E1F85B40001C045 /* Chat */,
 				4DD3CCC41E14DC8200821C7C /* Add New Product */,
-				4DC30D4E1E399DEF0087B447 /* Activity */,
+				4DC30D4E1E399DEF0087B447 /* Social */,
 				4D34358B1E203E1900E031D7 /* Profile */,
 				4DFB05AC1E118A4600BEACE2 /* Jeep Selector */,
 				4D5AB0AC1E24939F005BF23B /* Product Viewer */,
@@ -575,14 +575,14 @@
 			name = Create;
 			sourceTree = "<group>";
 		};
-		4DC30D4E1E399DEF0087B447 /* Activity */ = {
+		4DC30D4E1E399DEF0087B447 /* Social */ = {
 			isa = PBXGroup;
 			children = (
 				4DC30D511E39A6AB0087B447 /* Table View Cells */,
 				4DC30D4F1E399E050087B447 /* SocialViewController.swift */,
 				2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */,
 			);
-			name = Activity;
+			name = Social;
 			sourceTree = "<group>";
 		};
 		4DC30D511E39A6AB0087B447 /* Table View Cells */ = {

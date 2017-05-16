@@ -3622,62 +3622,33 @@
                                     <constraint firstAttribute="width" secondItem="cFO-7a-D9l" secondAttribute="height" multiplier="337:212" id="Xwz-8e-BEn"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWz-N9-jK2">
-                                <rect key="frame" x="342" y="28" width="17" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWz-N9-jK2">
+                                <rect key="frame" x="322" y="24" width="41" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="41" id="4th-98-XzY"/>
+                                    <constraint firstAttribute="height" constant="34" id="vTP-Gt-9FO"/>
+                                </constraints>
                                 <state key="normal" image="PVEx"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bB-g1-iUM">
-                                <rect key="frame" x="53" y="457" width="79" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="SocialCameraPhotoButton"/>
                                 <connections>
-                                    <action selector="CameraPhotoButtonAction:" destination="4Re-cP-Oz2" eventType="touchUpInside" id="Kwq-Cz-TSk"/>
+                                    <action selector="exButtonPressed:" destination="4Re-cP-Oz2" eventType="touchUpInside" id="acO-JX-pdN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMb-ev-PVt">
-                                <rect key="frame" x="238" y="457" width="79" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="SocialCameraRollButton"/>
-                                <connections>
-                                    <action selector="CameraRollButtonAction:" destination="4Re-cP-Oz2" eventType="touchUpInside" id="pr2-pY-z52"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaR-54-FKz">
-                                <rect key="frame" x="54" y="550" width="76" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Take a
-photo
-</string>
-                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35i-yb-O2W">
-                                <rect key="frame" x="239" y="550" width="76" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Camera
-Roll</string>
-                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3J0-Qf-WP5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an option, or cancel!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3J0-Qf-WP5">
                                 <rect key="frame" x="37" y="45" width="300" height="99"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="KT7-hU-ZsB"/>
                                     <constraint firstAttribute="height" constant="99" id="WO4-hx-Mog"/>
                                 </constraints>
-                                <string key="text">Choose a photo of your Jeep
-for the global feed!</string>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="23"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ej0-hJ-fwp">
-                                <rect key="frame" x="37" y="617" width="300" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ej0-hJ-fwp">
+                                <rect key="frame" x="37" y="604" width="300" height="43"/>
                                 <color key="backgroundColor" red="0.54946666960000001" green="0.27504032849999999" blue="0.2274846435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="DRU-5W-2Af"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="17"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3690,22 +3661,22 @@ for the global feed!</string>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.1647058824" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="cFO-7a-D9l" firstAttribute="top" secondItem="QVs-7q-dr7" secondAttribute="topMargin" constant="175" id="58z-BF-uIy"/>
+                            <constraint firstItem="gWz-N9-jK2" firstAttribute="top" secondItem="QVs-7q-dr7" secondAttribute="topMargin" constant="24" id="BEc-SN-wyX"/>
                             <constraint firstItem="3J0-Qf-WP5" firstAttribute="top" secondItem="PsS-Hr-nAr" secondAttribute="bottom" constant="25" id="HsE-8K-xg0"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Ej0-hJ-fwp" secondAttribute="bottom" constant="20" id="I3I-Oe-o9Z"/>
+                            <constraint firstAttribute="trailing" secondItem="Ej0-hJ-fwp" secondAttribute="trailing" constant="38" id="KDe-7T-8RB"/>
                             <constraint firstAttribute="trailing" secondItem="cFO-7a-D9l" secondAttribute="trailing" constant="19" id="LSq-Lb-5M9"/>
+                            <constraint firstItem="Ej0-hJ-fwp" firstAttribute="leading" secondItem="QVs-7q-dr7" secondAttribute="leading" constant="37" id="Omt-Vh-f8A"/>
+                            <constraint firstAttribute="trailing" secondItem="gWz-N9-jK2" secondAttribute="trailing" constant="12" id="dmF-jb-i2r"/>
                             <constraint firstItem="3J0-Qf-WP5" firstAttribute="centerX" secondItem="QVs-7q-dr7" secondAttribute="centerXWithinMargins" id="jmm-XT-Gpr"/>
                             <constraint firstItem="cFO-7a-D9l" firstAttribute="leading" secondItem="QVs-7q-dr7" secondAttribute="leading" constant="19" id="sis-xp-i61"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="CameraPhotoButton" destination="2bB-g1-iUM" id="Xpm-tw-hgY"/>
-                        <outlet property="CameraRollButton" destination="kMb-ev-PVt" id="YKT-Ap-W8c"/>
                         <outlet property="PreviewImageView" destination="cFO-7a-D9l" id="icR-yb-Q0f"/>
                         <outlet property="SubmitButton" destination="Ej0-hJ-fwp" id="De1-zW-yXI"/>
                         <outlet property="TitleLabel" destination="3J0-Qf-WP5" id="W3y-Fx-UDK"/>
-                        <outletCollection property="photosButtons" destination="2bB-g1-iUM" collectionClass="NSMutableArray" id="rA7-Gg-dr1"/>
-                        <outletCollection property="photosButtons" destination="kMb-ev-PVt" collectionClass="NSMutableArray" id="HOF-zm-tvI"/>
-                        <outletCollection property="photosButtons" destination="IaR-54-FKz" collectionClass="NSMutableArray" id="1x4-9h-Bah"/>
-                        <outletCollection property="photosButtons" destination="35i-yb-O2W" collectionClass="NSMutableArray" id="KPi-sy-QZz"/>
+                        <outlet property="exButton" destination="gWz-N9-jK2" id="muc-Dy-6St"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LGI-jt-Okf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4071,8 +4042,6 @@ for the global feed!</string>
         <image name="ReviewStarButtonSize" width="39" height="38"/>
         <image name="Shield" width="64" height="76"/>
         <image name="SmallProducts" width="20" height="20"/>
-        <image name="SocialCameraPhotoButton" width="79" height="79"/>
-        <image name="SocialCameraRollButton" width="79" height="79"/>
         <image name="SocialLikeImage" width="13" height="11"/>
         <image name="SocialTimeImage" width="13" height="13"/>
         <image name="SoldSign" width="50" height="45"/>

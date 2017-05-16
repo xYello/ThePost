@@ -39,8 +39,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     let date = Date.init(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
                     
-                    socialPost = SocialPost.init(withUsername: socialDict["name"] as! String, imageUrl: socialDict["image"] as! String, likeCount: 0, userid: socialDict["userid"] as! String, date:date)
-                    socialPost.uid = snapshot.key
+                    socialPost = SocialPost(withUid: snapshot.key, imageUrl: socialDict["image"] as! String, userid: socialDict["userid"] as! String, date: date)
                     
                     self.socialPosts.insert(socialPost, at: 0)
                     self.tableView.reloadData()
@@ -51,8 +50,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
                 if let socialDict = snapshot.value as? [String: AnyObject] {
                     
                     let date = Date(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
-                    let post = SocialPost(withUsername: socialDict["name"] as! String, imageUrl: socialDict["image"] as! String, likeCount: 0, userid: socialDict["userid"] as! String, date:date)
-                    post.uid = snapshot.key
+                    let post = SocialPost(withUid: snapshot.key, imageUrl: socialDict["image"] as! String, userid: socialDict["userid"] as! String, date: date)
                     let index = self.indexOfPost(post)
                     
                     if index != -1 {
@@ -80,7 +78,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
         socialCell.postImageView.image = nil
         socialCell.profileImageView.image = nil
         
-        socialCell.likeCountLabel.text = "\(post.likeCount!) likes"
+        socialCell.likeCountLabel.text = "0 likes"
         socialCell.timeLabel.text = post.datePosted.timeAgoSinceNow
         
         socialCell.postKey = post.uid

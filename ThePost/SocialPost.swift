@@ -14,18 +14,15 @@ class SocialPost : NSObject {
     var uid: String!
     
     var imageUrl: String!
-    var username: String!
-    var likeCount: Int!
     var userid: String!
     var datePosted: Date!
     
-    init(withUsername username: String, imageUrl: String, likeCount: Int, userid: String, date: Date) {
+    init(withUid uid: String, imageUrl: String, userid: String, date: Date) {
         super.init()
         
         defer {
+            self.uid = uid
             self.imageUrl = imageUrl
-            self.username = username
-            self.likeCount = likeCount
             self.userid = userid
             self.datePosted = date
         }

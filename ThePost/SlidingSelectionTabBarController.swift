@@ -221,7 +221,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         let vc = storyboard.instantiateViewController(withIdentifier: "uploadSocialPostViewController")
         vc.modalPresentationStyle = .overCurrentContext
         
-        present(vc, animated: false, completion: nil)
+        present(vc, animated: true, completion: nil)
     }
     
     // MARK: - Add Buttons
