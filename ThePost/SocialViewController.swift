@@ -26,7 +26,7 @@ class SocialViewController: UIViewController, UITableViewDataSource {
         
         tableView.dataSource = self
         ref = FIRDatabase.database().reference()
-        self.socialPosts = []
+        socialPosts = []
         
         if socialRef == nil {
             socialRef = ref.child("social-posts")
@@ -39,6 +39,7 @@ class SocialViewController: UIViewController, UITableViewDataSource {
                     let date = Date.init(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
                     
                     socialPost = SocialPost.init(withUsername: socialDict["name"] as! String, imageUrl: socialDict["image"] as! String, likeCount: 0, userid: socialDict["userid"] as! String, date:date)
+                    socialPost.uid = snapshot.key
                     
                     self.socialPosts.insert(socialPost, at: 0)
                     self.tableView.reloadData()
@@ -47,7 +48,17 @@ class SocialViewController: UIViewController, UITableViewDataSource {
             
             socialRef!.observe(.childRemoved, with: { snapshot in
                 if let socialDict = snapshot.value as? [String: AnyObject] {
-                    print(socialDict)
+                    
+                    let date = Date(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
+                    let post = SocialPost(withUsername: socialDict["name"] as! String, imageUrl: socialDict["image"] as! String, likeCount: 0, userid: socialDict["userid"] as! String, date:date)
+                    post.uid = snapshot.key
+                    let index = self.indexOfPost(post)
+                    
+                    if index != -1 {
+                        self.socialPosts.remove(at: index)
+                        self.tableView.reloadData()
+                    }
+                    
                 }
             })
         }
@@ -130,6 +141,20 @@ class SocialViewController: UIViewController, UITableViewDataSource {
 //        socialCell.postImageView.image = #imageLiteral(resourceName: "jeepImage")
         
         return socialCell
+    }
+    
+    // MARK: - Helpers
+    
+    private func indexOfPost(_ snapshot: SocialPost) -> Int {
+        var index = 0
+        for post in socialPosts {
+            
+            if snapshot.uid == post.uid {
+                return index
+            }
+            index += 1
+        }
+        return -1
     }
 
 }

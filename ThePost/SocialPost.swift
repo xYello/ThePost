@@ -11,6 +11,8 @@ import Firebase
 
 class SocialPost : NSObject {
     
+    var uid: String!
+    
     var imageUrl: String!
     var username: String!
     var likeCount: Int!
