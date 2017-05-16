@@ -143,7 +143,7 @@ class JeepSocialTableViewCell: UITableViewCell {
                         likeCount += 1
                         likes[uid] = true
                         
-//                        PushNotification.sender.pushLiked(withProductName: post["name"] as! String, withRecipientId: product["owner"] as! String)
+                        PushNotification.sender.pushLikedSocialPost(withRecipientId: post["owner"] as! String)
                         
                         DispatchQueue.main.async {
                             self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconLiked"), for: .normal)

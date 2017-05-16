@@ -12,9 +12,9 @@ import Firebase
 class SocialPost : NSObject {
     
     var uid: String!
+    var ownerId: String!
     
     var imageUrl: String!
-    var userid: String!
     var datePosted: Date!
     
     var relativeDate: String! {
@@ -56,13 +56,13 @@ class SocialPost : NSObject {
         }
     }
     
-    init(withUid uid: String, imageUrl: String, userid: String, date: Date) {
+    init(withUid uid: String, imageUrl: String, ownerId: String, date: Date) {
         super.init()
         
         defer {
             self.uid = uid
             self.imageUrl = imageUrl
-            self.userid = userid
+            self.ownerId = ownerId
             self.datePosted = date
         }
     }

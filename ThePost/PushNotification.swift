@@ -15,6 +15,9 @@ class PushNotification: NSObject {
     static let sender = PushNotification()
     
     private var likeTimer: Timer?
+    private var socialLikeTimer: Timer?
+    
+    private let kLikeTimerInvertal = 2.0
     
     func pushLiked(withProductName productName: String, withRecipientId id: String) {
         
@@ -26,7 +29,7 @@ class PushNotification: NSObject {
         DispatchQueue.main.async {
             
             // Force a delay, so a user can't spam notifications.
-            self.likeTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { timer in
+            self.likeTimer = Timer.scheduledTimer(withTimeInterval: self.kLikeTimerInvertal, repeats: false, block: { timer in
                 
                 let rc = FIRRemoteConfig.remoteConfig()
                 let headerValue = rc.configValue(forKey: "like_push_notification_heading")
@@ -47,6 +50,44 @@ class PushNotification: NSObject {
                                     m = m.replacingOccurrences(of: "%USER%", with: name)
                                     
                                     self.pushNotification(withHeading: h, withMessage: m, withPlayerIds: ids)
+                                }
+                            })
+                            
+                        }
+                    })
+                }
+                
+            })
+        }
+    }
+    
+    func pushLikedSocialPost(withRecipientId id: String) {
+        
+        if let timer = socialLikeTimer {
+            timer.invalidate()
+        }
+        
+        // Timers must be called on the main thread.
+        DispatchQueue.main.async {
+            
+            // Force a delay, so a user can't spam notifications.
+            self.socialLikeTimer = Timer.scheduledTimer(withTimeInterval: self.kLikeTimerInvertal, repeats: false, block: { timer in
+                
+                let rc = FIRRemoteConfig.remoteConfig()
+                let messageValue = rc.configValue(forKey: "social_like_push_notification_message")
+                let message = messageValue.stringValue
+                if var m = message {
+                    
+                    let userRef = FIRDatabase.database().reference().child("users")
+                    userRef.child(FIRAuth.auth()!.currentUser!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
+                        if let name = snapshot.value as? String {
+                            
+                            userRef.child(id).child("pushNotificationIds").observeSingleEvent(of: .value, with: { snapshot in
+                                if let ids = snapshot.value as? [String: Bool] {
+                                    
+                                    m = m.replacingOccurrences(of: "%USER%", with: name)
+                                    
+                                    self.pushNotification(withHeading: nil, withMessage: m, withPlayerIds: ids)
                                 }
                             })
                             
@@ -120,12 +161,16 @@ class PushNotification: NSObject {
         }
     }
     
-    private func pushNotification(withHeading heading: String, withMessage message: String, withPlayerIds ids: [String: Bool]) {
+    private func pushNotification(withHeading heading: String?, withMessage message: String, withPlayerIds ids: [String: Bool]) {
         
         if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
             for (key, _) in ids {
                 if key != id {
-                    OneSignal.postNotification(["headings": ["en": heading], "contents": ["en": message], "include_player_ids": [key]])
+                    if heading == nil {
+                        OneSignal.postNotification(["contents": ["en": message], "include_player_ids": [key]])
+                    } else {
+                        OneSignal.postNotification(["headings": ["en": heading], "contents": ["en": message], "include_player_ids": [key]])
+                    }
                 }
             }
         }

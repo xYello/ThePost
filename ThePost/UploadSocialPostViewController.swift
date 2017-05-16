@@ -53,7 +53,7 @@ UINavigationControllerDelegate {
         if let userID = FIRAuth.auth()?.currentUser?.uid {
             let key = self.ref.child("social-posts").childByAutoId().key
             
-            var dbPost: [String: Any] = ["userid": userID,
+            var dbPost: [String: Any] = ["owner": userID,
                                          "datePosted": FIRServerValue.timestamp()]
             
             // Compress stored image

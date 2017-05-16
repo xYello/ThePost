@@ -38,7 +38,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     let date = Date(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
                     
-                    socialPost = SocialPost(withUid: snapshot.key, imageUrl: socialDict["image"] as! String, userid: socialDict["userid"] as! String, date: date)
+                    socialPost = SocialPost(withUid: snapshot.key, imageUrl: socialDict["image"] as! String, ownerId: socialDict["owner"] as! String, date: date)
                     
                     self.socialPosts.insert(socialPost, at: 0)
                     self.tableView.reloadData()
@@ -49,7 +49,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
                 if let socialDict = snapshot.value as? [String: AnyObject] {
                     
                     let date = Date(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
-                    let post = SocialPost(withUid: snapshot.key, imageUrl: socialDict["image"] as! String, userid: socialDict["userid"] as! String, date: date)
+                    let post = SocialPost(withUid: snapshot.key, imageUrl: socialDict["image"] as! String, ownerId: socialDict["owner"] as! String, date: date)
                     let index = self.indexOfPost(post)
                     
                     if index != -1 {
@@ -81,7 +81,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
         socialCell.timeLabel.text = post.relativeDate
         
         socialCell.postKey = post.uid
-        socialCell.ownerKey = post.userid
+        socialCell.ownerKey = post.ownerId
         
         return socialCell
     }
@@ -91,7 +91,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let socialCell = cell as? JeepSocialTableViewCell {
             socialCell.grabPostImage(forKey: socialPosts[indexPath.row].uid, withURL: socialPosts[indexPath.row].imageUrl)
-            socialCell.grabProfile(forKey: socialPosts[indexPath.row].userid)
+            socialCell.grabProfile(forKey: socialPosts[indexPath.row].ownerId)
         }
     }
     
