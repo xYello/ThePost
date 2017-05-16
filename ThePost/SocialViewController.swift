@@ -73,14 +73,14 @@ class SocialViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let socialCell = tableView.dequeueReusableCell(withIdentifier: "socialCell", for: indexPath) as! JeepSocialTableViewCell
+        let post = socialPosts[indexPath.row]
         
-        socialCell.likeCountLabel.text = socialPosts[indexPath.row].likeCount.description
-        socialCell.postNameLabel.text = socialPosts[indexPath.row].username
-        socialCell.timeLabel.text = socialPosts[indexPath.row].datePosted.timeAgoSinceNow
+        socialCell.likeCountLabel.text = "\(post.likeCount!) likes"
+        socialCell.postNameLabel.text = post.username
+        socialCell.timeLabel.text = post.datePosted.timeAgoSinceNow
         
-        let imageUrl = URL(string: socialPosts[indexPath.row].imageUrl)
+        let imageUrl = URL(string: post.imageUrl)
         
         // Load from cache or download.
         SDWebImageManager.shared().diskImageExists(for: imageUrl, completion: { exists in
@@ -103,7 +103,7 @@ class SocialViewController: UIViewController, UITableViewDataSource {
             }
         })
         
-        let userID = socialPosts[indexPath.row].userid
+        let userID = post.userid
         let ref = FIRDatabase.database().reference().child("users").child(userID!).child("profileImage")
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let urlString = snapshot.value as? String {
