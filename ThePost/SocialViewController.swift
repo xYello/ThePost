@@ -11,7 +11,7 @@ import Firebase
 import FirebaseStorageUI
 import DateToolsSwift
 
-class SocialViewController: UIViewController, UITableViewDataSource {
+class SocialViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,6 +25,7 @@ class SocialViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         tableView.dataSource = self
+        tableView.delegate = self
         ref = FIRDatabase.database().reference()
         socialPosts = []
         
@@ -76,65 +77,54 @@ class SocialViewController: UIViewController, UITableViewDataSource {
         let socialCell = tableView.dequeueReusableCell(withIdentifier: "socialCell", for: indexPath) as! JeepSocialTableViewCell
         let post = socialPosts[indexPath.row]
         
+        socialCell.postImageView.image = nil
+        socialCell.profileImageView.image = nil
+        
         socialCell.likeCountLabel.text = "\(post.likeCount!) likes"
-        socialCell.postNameLabel.text = post.username
         socialCell.timeLabel.text = post.datePosted.timeAgoSinceNow
         
-        let imageUrl = URL(string: post.imageUrl)
+        socialCell.postKey = post.uid
         
-        // Load from cache or download.
-        SDWebImageManager.shared().diskImageExists(for: imageUrl, completion: { exists in
-            if exists {
-                SDWebImageManager.shared().loadImage(with: imageUrl, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
-                    if let i = image {
-                        DispatchQueue.main.async {
-                            socialCell.postImageView.image = i
-                        }
-                    }
-                })
-            } else {
-                SDWebImageDownloader.shared().downloadImage(with: imageUrl, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
-                    if let i = image {
-                        DispatchQueue.main.async {
-                            socialCell.postImageView.image = i
-                        }
-                    }
-                })
-            }
-        })
-        
-        let userID = post.userid
-        let ref = FIRDatabase.database().reference().child("users").child(userID!).child("profileImage")
+        let ref = FIRDatabase.database().reference().child("users").child(post.userid)
         ref.observeSingleEvent(of: .value, with: { snapshot in
-            if let urlString = snapshot.value as? String {
-                let profileImageUrl = URL(string: urlString)
+            if let userDict = snapshot.value as? [String: AnyObject] {
+                if let url = URL(string: userDict["profileImage"] as! String) {
+                    
+                    // Load from cache or download.
+                    SDWebImageManager.shared().diskImageExists(for: url, completion: { exists in
+                        if exists {
+                            SDWebImageManager.shared().loadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
+                                if let i = image {
+                                    DispatchQueue.main.async {
+                                        socialCell.profileImageView.image = i
+                                    }
+                                }
+                            })
+                        } else {
+                            SDWebImageDownloader.shared().downloadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
+                                if let i = image {
+                                    DispatchQueue.main.async {
+                                        socialCell.profileImageView.image = i
+                                    }
+                                }
+                            })
+                        }
+                    })
+                }
                 
-                // Load from cache or download.
-                SDWebImageManager.shared().diskImageExists(for: imageUrl, completion: { exists in
-                    if exists {
-                        SDWebImageManager.shared().loadImage(with: profileImageUrl, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
-                            if let i = image {
-                                DispatchQueue.main.async {
-                                    socialCell.profileImageView.image = i
-                                }
-                            }
-                        })
-                    } else {
-                        SDWebImageDownloader.shared().downloadImage(with: profileImageUrl, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
-                            if let i = image {
-                                DispatchQueue.main.async {
-                                    socialCell.profileImageView.image = i
-                                }
-                            }
-                        })
-                    }
-                })
-            } else {
-                socialCell.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")
+                if let name = userDict["fullName"] as? String {
+                    socialCell.postNameLabel.text = name
+                }
             }
         })
         
         return socialCell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let socialCell = cell as? JeepSocialTableViewCell {
+            socialCell.grabPostImage(forKey: socialPosts[indexPath.row].uid, withURL: socialPosts[indexPath.row].imageUrl)
+        }
     }
     
     // MARK: - Helpers

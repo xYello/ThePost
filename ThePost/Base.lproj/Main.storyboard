@@ -3743,18 +3743,20 @@ for the global feed!</string>
                                                         <constraint firstAttribute="height" constant="238" id="k6B-4e-Ub3"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BfD-HF-Cee">
-                                                    <rect key="frame" x="15" y="18" width="45" height="43"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="45" id="OpU-Je-tSr"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SocialLikeImage" translatesAutoresizingMaskIntoConstraints="NO" id="rHM-sb-dMm">
                                                     <rect key="frame" x="75" y="46" width="10" height="10"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="53w-lm-XzZ"/>
                                                         <constraint firstAttribute="height" constant="10" id="r7w-8y-NJs"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SocialTimeImage" translatesAutoresizingMaskIntoConstraints="NO" id="PcE-59-HM0">
+                                                    <rect key="frame" x="183" y="46" width="10" height="10"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="10" id="YyG-5R-HwW"/>
+                                                        <constraint firstAttribute="width" constant="10" id="lsd-NE-Qk8"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="125,999,999 likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="nGR-lB-KGQ">
@@ -3766,7 +3768,13 @@ for the global feed!</string>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ethan Andrews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHy-bE-CAn">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 Minutes ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="yyK-5e-d2w">
+                                                    <rect key="frame" x="198" y="40" width="75" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ethan Andrews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="zHy-bE-CAn">
                                                     <rect key="frame" x="75" y="13" width="113" height="20"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -3774,36 +3782,31 @@ for the global feed!</string>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yY-vJ-7cC">
                                                     <rect key="frame" x="309" y="18" width="42" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="42" id="hfF-gE-GRZ"/>
+                                                    </constraints>
                                                     <state key="normal" image="SocialFavoriteButtonImage"/>
                                                     <connections>
                                                         <action selector="likeButtonPressed:" destination="SXf-4Z-Wgh" eventType="touchUpInside" id="csJ-UN-j46"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SocialTimeImage" translatesAutoresizingMaskIntoConstraints="NO" id="PcE-59-HM0">
-                                                    <rect key="frame" x="183" y="46" width="10" height="10"/>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BfD-HF-Cee">
+                                                    <rect key="frame" x="8" y="14" width="54" height="51"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="10" id="YyG-5R-HwW"/>
-                                                        <constraint firstAttribute="width" constant="10" id="lsd-NE-Qk8"/>
+                                                        <constraint firstAttribute="width" constant="54" id="OpU-Je-tSr"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 Minutes ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="yyK-5e-d2w">
-                                                    <rect key="frame" x="198" y="40" width="75" height="21"/>
-                                                    <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="11"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="trh-YC-f9f" firstAttribute="leading" secondItem="uDc-DQ-OMP" secondAttribute="leading" id="7bA-UF-TTB"/>
-                                                <constraint firstItem="BfD-HF-Cee" firstAttribute="leading" secondItem="uDc-DQ-OMP" secondAttribute="leading" constant="15" id="AUX-sk-tBF"/>
+                                                <constraint firstItem="BfD-HF-Cee" firstAttribute="leading" secondItem="uDc-DQ-OMP" secondAttribute="leading" constant="8" id="AUX-sk-tBF"/>
                                                 <constraint firstItem="PcE-59-HM0" firstAttribute="top" secondItem="zHy-bE-CAn" secondAttribute="bottom" constant="13" id="Jgd-Cq-aKw"/>
                                                 <constraint firstItem="1yY-vJ-7cC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yyK-5e-d2w" secondAttribute="trailing" constant="8" id="NBe-Oj-bVV"/>
                                                 <constraint firstAttribute="trailing" secondItem="1yY-vJ-7cC" secondAttribute="trailing" constant="24" id="Ooj-iN-kV2"/>
-                                                <constraint firstItem="rHM-sb-dMm" firstAttribute="leading" secondItem="BfD-HF-Cee" secondAttribute="trailing" constant="15" id="Rbz-1G-XXW"/>
+                                                <constraint firstItem="rHM-sb-dMm" firstAttribute="leading" secondItem="BfD-HF-Cee" secondAttribute="trailing" constant="13" id="Rbz-1G-XXW"/>
                                                 <constraint firstItem="nGR-lB-KGQ" firstAttribute="leading" secondItem="rHM-sb-dMm" secondAttribute="trailing" constant="5" id="RqK-MA-Jhq"/>
                                                 <constraint firstItem="yyK-5e-d2w" firstAttribute="leading" secondItem="PcE-59-HM0" secondAttribute="trailing" constant="5" id="SaL-Im-rcj"/>
-                                                <constraint firstItem="trh-YC-f9f" firstAttribute="top" secondItem="BfD-HF-Cee" secondAttribute="bottom" constant="17" id="Sca-Ow-N46"/>
+                                                <constraint firstItem="trh-YC-f9f" firstAttribute="top" secondItem="BfD-HF-Cee" secondAttribute="bottom" constant="13" id="Sca-Ow-N46"/>
                                                 <constraint firstItem="yyK-5e-d2w" firstAttribute="top" secondItem="nGR-lB-KGQ" secondAttribute="top" id="VVX-ZS-hhr"/>
                                                 <constraint firstItem="PcE-59-HM0" firstAttribute="leading" secondItem="nGR-lB-KGQ" secondAttribute="trailing" constant="7.5" id="WPi-eK-MyH"/>
                                                 <constraint firstItem="rHM-sb-dMm" firstAttribute="top" secondItem="zHy-bE-CAn" secondAttribute="bottom" constant="13" id="aLP-AV-AUq"/>
@@ -3811,12 +3814,12 @@ for the global feed!</string>
                                                 <constraint firstItem="nGR-lB-KGQ" firstAttribute="top" secondItem="zHy-bE-CAn" secondAttribute="bottom" constant="7" id="cxT-vo-GBg"/>
                                                 <constraint firstAttribute="trailing" secondItem="trh-YC-f9f" secondAttribute="trailing" id="ejg-k7-7AP"/>
                                                 <constraint firstItem="1yY-vJ-7cC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zHy-bE-CAn" secondAttribute="trailing" constant="8" id="emc-G9-oe2"/>
-                                                <constraint firstItem="BfD-HF-Cee" firstAttribute="top" secondItem="uDc-DQ-OMP" secondAttribute="top" constant="18" id="hy7-GF-VBN"/>
+                                                <constraint firstItem="BfD-HF-Cee" firstAttribute="top" secondItem="uDc-DQ-OMP" secondAttribute="top" constant="14" id="hy7-GF-VBN"/>
                                                 <constraint firstItem="1yY-vJ-7cC" firstAttribute="top" secondItem="uDc-DQ-OMP" secondAttribute="top" constant="18" id="qcg-gg-y2q"/>
                                                 <constraint firstItem="zHy-bE-CAn" firstAttribute="top" secondItem="uDc-DQ-OMP" secondAttribute="top" constant="13" id="qiz-9O-wkl"/>
                                                 <constraint firstItem="trh-YC-f9f" firstAttribute="top" secondItem="1yY-vJ-7cC" secondAttribute="bottom" constant="17" id="uYN-TO-C69"/>
                                                 <constraint firstAttribute="bottom" secondItem="trh-YC-f9f" secondAttribute="bottom" id="wLo-Zl-2BH"/>
-                                                <constraint firstItem="zHy-bE-CAn" firstAttribute="leading" secondItem="BfD-HF-Cee" secondAttribute="trailing" constant="15" id="wO5-46-FvU"/>
+                                                <constraint firstItem="zHy-bE-CAn" firstAttribute="leading" secondItem="BfD-HF-Cee" secondAttribute="trailing" constant="13" id="wO5-46-FvU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

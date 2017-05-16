@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseStorageUI
 
 class JeepSocialTableViewCell: UITableViewCell {
 
@@ -18,20 +19,53 @@ class JeepSocialTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     
+    var postKey: String?
+    
+    // MARK: - View lifecycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.profileImageView.clipsToBounds = true
+        profileImageView.clipsToBounds = true
+        profileImageView.roundCorners()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.profileImageView.roundCorners()
-    }
+    // MARK: - Actions
 
     @IBAction func likeButtonPressed(_ sender: Any) {
  
+    }
+    
+    // MARK: - Firebase
+    
+    func grabPostImage(forKey key: String, withURL urlString: String) {
+        let url = URL(string: urlString)
+        
+        // Load from cache or download.
+        SDWebImageManager.shared().diskImageExists(for: url, completion: { exists in
+            if exists {
+                SDWebImageManager.shared().loadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
+                    if key == self.postKey {
+                        if let i = image {
+                            DispatchQueue.main.async {
+                                self.postImageView.image = i
+                            }
+                        }
+                    }
+                })
+            } else {
+                SDWebImageDownloader.shared().downloadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
+                    if key == self.postKey {
+                        if let i = image {
+                            DispatchQueue.main.async {
+                                self.postImageView.image = i
+                            }
+                        }
+                    }
+                })
+            }
+        })
+        
     }
     
 }
