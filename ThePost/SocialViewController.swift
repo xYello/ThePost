@@ -36,7 +36,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
                 if let socialDict = snapshot.value as? [String: AnyObject] {
                     var socialPost: SocialPost!
                     
-                    let date = Date.init(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
+                    let date = Date(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
                     
                     socialPost = SocialPost(withUid: snapshot.key, imageUrl: socialDict["image"] as! String, userid: socialDict["userid"] as! String, date: date)
                     
