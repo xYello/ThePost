@@ -88,32 +88,36 @@ class JeepSocialTableViewCell: UITableViewCell {
         let ref = FIRDatabase.database().reference().child("users").child(key)
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let userDict = snapshot.value as? [String: AnyObject] {
-                if let url = URL(string: userDict["profileImage"] as! String) {
-                    
-                    // Load from cache or download.
-                    SDWebImageManager.shared().diskImageExists(for: url, completion: { exists in
-                        if exists {
-                            SDWebImageManager.shared().loadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
-                                if key == self.ownerKey {
-                                    if let i = image {
-                                        DispatchQueue.main.async {
-                                            self.profileImageView.image = i
+                if let imageUrl = userDict["profileImage"] as? String {
+                    if let url = URL(string: imageUrl) {
+                        
+                        // Load from cache or download.
+                        SDWebImageManager.shared().diskImageExists(for: url, completion: { exists in
+                            if exists {
+                                SDWebImageManager.shared().loadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
+                                    if key == self.ownerKey {
+                                        if let i = image {
+                                            DispatchQueue.main.async {
+                                                self.profileImageView.image = i
+                                            }
                                         }
                                     }
-                                }
-                            })
-                        } else {
-                            SDWebImageDownloader.shared().downloadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
-                                if key == self.ownerKey {
-                                    if let i = image {
-                                        DispatchQueue.main.async {
-                                            self.profileImageView.image = i
+                                })
+                            } else {
+                                SDWebImageDownloader.shared().downloadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
+                                    if key == self.ownerKey {
+                                        if let i = image {
+                                            DispatchQueue.main.async {
+                                                self.profileImageView.image = i
+                                            }
                                         }
                                     }
-                                }
-                            })
-                        }
-                    })
+                                })
+                            }
+                        })
+                    }
+                } else {
+                    self.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")
                 }
                 
                 if let name = userDict["fullName"] as? String {
