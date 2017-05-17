@@ -34,6 +34,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     private var isTypingInTextField = false
     
     // MARK: - View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

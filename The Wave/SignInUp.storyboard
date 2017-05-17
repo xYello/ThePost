@@ -16,6 +16,9 @@
         <array key="Lato-Light.ttf">
             <string>Lato-Light</string>
         </array>
+        <array key="Lato-LightItalic.ttf">
+            <string>Lato-LightItalic</string>
+        </array>
         <array key="Lato-Regular.ttf">
             <string>Lato-Regular</string>
         </array>
@@ -170,10 +173,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ro-Oy-MVA">
-                                <rect key="frame" x="16" y="28" width="343" height="610"/>
+                                <rect key="frame" x="16" y="28" width="343" height="611"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Push Notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENg-cY-foK">
-                                        <rect key="frame" x="0.0" y="62" width="343" height="31"/>
+                                        <rect key="frame" x="0.0" y="62.5" width="343" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="Rz6-QV-aPG"/>
                                         </constraints>
@@ -182,10 +185,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneRing" translatesAutoresizingMaskIntoConstraints="NO" id="EVM-H2-HFk">
-                                        <rect key="frame" x="51" y="218" width="240" height="174"/>
+                                        <rect key="frame" x="51" y="218.5" width="240" height="174"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PhQ-iA-Bew">
-                                        <rect key="frame" x="66" y="452" width="211" height="47"/>
+                                        <rect key="frame" x="66" y="452.5" width="211" height="47"/>
                                         <color key="backgroundColor" red="0.7776756883" green="0.35553953049999998" blue="0.24578282239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="211" id="q0q-8s-83g"/>
@@ -200,7 +203,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDk-91-yed">
-                                        <rect key="frame" x="148" y="507" width="46" height="30"/>
+                                        <rect key="frame" x="148" y="507.5" width="46" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="46" id="72v-0t-sUK"/>
                                             <constraint firstAttribute="height" constant="30" id="Ic3-Yb-Q5G"/>
@@ -214,7 +217,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stay up to date with all that happens in The Wave. Enable your notifcations." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aP-Ut-0pa">
-                                        <rect key="frame" x="15" y="89" width="312" height="78"/>
+                                        <rect key="frame" x="15" y="89.5" width="312" height="78"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="78" id="bLd-zr-HWK"/>
                                         </constraints>
@@ -294,7 +297,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MuK-WM-kwO" customClass="RoundedTextField" customModule="The_Wave" customModuleProvider="target">
-                                <rect key="frame" x="43" y="159" width="288" height="43"/>
+                                <rect key="frame" x="43" y="159" width="289" height="43"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.25117973989999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="qCQ-FM-28v"/>
@@ -307,7 +310,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ukd-iQ-TQm" customClass="RoundedTextField" customModule="The_Wave" customModuleProvider="target">
-                                <rect key="frame" x="43" y="217" width="288" height="43"/>
+                                <rect key="frame" x="43" y="217" width="289" height="43"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.25117973989999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="s6c-D9-wr7"/>
@@ -320,7 +323,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="deo-xO-LaT" customClass="RoundedTextField" customModule="The_Wave" customModuleProvider="target">
-                                <rect key="frame" x="43" y="275" width="288" height="43"/>
+                                <rect key="frame" x="43" y="275" width="289" height="43"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.25117973989999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Q3s-Wd-SZx"/>
@@ -333,7 +336,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qLe-87-v8P" customClass="RoundedTextField" customModule="The_Wave" customModuleProvider="target">
-                                <rect key="frame" x="43" y="333" width="288" height="43"/>
+                                <rect key="frame" x="43" y="333" width="289" height="43"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.25117973989999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="eyZ-bY-7E1"/>
@@ -383,17 +386,29 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Db2-qF-x4m">
-                                <rect key="frame" x="155" y="384" width="66" height="36"/>
+                                <rect key="frame" x="154.5" y="384" width="66" height="36"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
                                 <color key="textColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="By tapping &quot;Sign Up,&quot; you agree to our Terms of Use &amp; Privacy Policy." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4D9-G3-CSL">
+                                <rect key="frame" x="74" y="483" width="227" height="57"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="NaQ-g9-Rww"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Lato-LightItalic" family="Lato" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.1647058824" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2dk-3e-k0O" firstAttribute="centerX" secondItem="zcI-mK-vRZ" secondAttribute="centerX" id="175-PM-y7S"/>
                             <constraint firstItem="Db2-qF-x4m" firstAttribute="top" secondItem="qLe-87-v8P" secondAttribute="bottom" constant="8" id="18b-fw-4ua"/>
+                            <constraint firstItem="4D9-G3-CSL" firstAttribute="top" secondItem="2dk-3e-k0O" secondAttribute="bottom" constant="8" id="1wd-uI-g52"/>
                             <constraint firstItem="Ukd-iQ-TQm" firstAttribute="centerX" secondItem="zcI-mK-vRZ" secondAttribute="centerX" id="2dh-mA-Xkk"/>
+                            <constraint firstItem="4D9-G3-CSL" firstAttribute="leading" secondItem="2dk-3e-k0O" secondAttribute="leading" id="3FK-uR-KMF"/>
                             <constraint firstItem="lAj-HZ-Hbz" firstAttribute="top" secondItem="HRf-JJ-vhm" secondAttribute="bottom" constant="39" id="6mA-LH-lWb"/>
                             <constraint firstAttribute="trailing" secondItem="Qc9-hO-uMn" secondAttribute="trailing" id="BFq-ii-pSc"/>
                             <constraint firstItem="deo-xO-LaT" firstAttribute="centerX" secondItem="zcI-mK-vRZ" secondAttribute="centerX" id="D3Q-JT-Hty"/>
@@ -414,6 +429,7 @@
                             <constraint firstItem="Db2-qF-x4m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zcI-mK-vRZ" secondAttribute="leading" constant="8" id="Ytf-NO-c7f"/>
                             <constraint firstItem="qLe-87-v8P" firstAttribute="top" secondItem="deo-xO-LaT" secondAttribute="bottom" constant="15" id="a4Y-7J-2gu"/>
                             <constraint firstItem="x1u-ef-21Y" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2dk-3e-k0O" secondAttribute="bottom" constant="8" id="gcy-ZP-Q4E"/>
+                            <constraint firstItem="4D9-G3-CSL" firstAttribute="trailing" secondItem="2dk-3e-k0O" secondAttribute="trailing" id="jLa-RW-QI4"/>
                             <constraint firstItem="deo-xO-LaT" firstAttribute="top" secondItem="Ukd-iQ-TQm" secondAttribute="bottom" constant="15" id="jhi-4r-2zT"/>
                             <constraint firstItem="FTq-nh-46H" firstAttribute="top" secondItem="lAj-HZ-Hbz" secondAttribute="bottom" constant="17" id="l8c-Jn-Xvv"/>
                             <constraint firstItem="2jg-kM-wF3" firstAttribute="centerY" secondItem="2dk-3e-k0O" secondAttribute="centerY" id="lvC-IP-sed"/>
@@ -430,6 +446,7 @@
                         <outlet property="errorLabel" destination="Db2-qF-x4m" id="K56-De-DKb"/>
                         <outlet property="onePasswordButton" destination="2jg-kM-wF3" id="QZR-JW-BwI"/>
                         <outlet property="passwordTextField" destination="deo-xO-LaT" id="mgN-FK-MMK"/>
+                        <outlet property="policyTextView" destination="4D9-G3-CSL" id="qkK-e3-1Je"/>
                         <outlet property="signUpButton" destination="2dk-3e-k0O" id="sXb-UA-dYE"/>
                         <outlet property="usernameTextField" destination="MuK-WM-kwO" id="dgd-OY-1y8"/>
                         <outlet property="welcomeLabelToViewTopConstraint" destination="6mA-LH-lWb" id="EyP-lX-ETA"/>
@@ -463,7 +480,22 @@
                                     </imageView>
                                     <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOf-GD-TmA">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="613"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="By tapping &quot;Connect With Facebook&quot; or &quot;Connect with Twitter,&quot; you agree to our Terms of Use &amp; Privacy Policy." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4PS-QC-w8C">
+                                                <rect key="frame" x="35" y="294" width="273" height="67"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="67" id="zv0-sr-PoW"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="4PS-QC-w8C" firstAttribute="leading" secondItem="nOf-GD-TmA" secondAttribute="leading" constant="35" id="kVd-Gw-Ejv"/>
+                                            <constraint firstAttribute="trailing" secondItem="4PS-QC-w8C" secondAttribute="trailing" constant="35" id="lvD-3N-PlC"/>
+                                        </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qew-uc-Rce">
                                         <rect key="frame" x="12" y="-4" width="318" height="178"/>
@@ -589,6 +621,7 @@
                                     <constraint firstAttribute="trailing" secondItem="yvL-tB-aNX" secondAttribute="trailing" constant="8" id="BHx-tP-B4g"/>
                                     <constraint firstItem="nOf-GD-TmA" firstAttribute="top" secondItem="F9s-KD-yxV" secondAttribute="top" id="IMr-65-dPY"/>
                                     <constraint firstAttribute="trailing" secondItem="qew-uc-Rce" secondAttribute="trailing" constant="13" id="OPj-6O-hMM"/>
+                                    <constraint firstItem="yvL-tB-aNX" firstAttribute="top" secondItem="4PS-QC-w8C" secondAttribute="bottom" constant="8" id="R8e-nQ-wMo"/>
                                     <constraint firstItem="S6d-Za-rwO" firstAttribute="leading" secondItem="F9s-KD-yxV" secondAttribute="leading" constant="8" id="Rp4-ed-0za"/>
                                     <constraint firstAttribute="trailing" secondItem="jsA-m5-9yy" secondAttribute="trailing" constant="8" id="TgX-1V-kbb"/>
                                     <constraint firstAttribute="trailing" secondItem="Zcm-x3-NRk" secondAttribute="trailing" constant="8" id="Thu-sE-dfV"/>
@@ -623,6 +656,7 @@
                         <outlet property="container" destination="F9s-KD-yxV" id="46k-5G-9dK"/>
                         <outlet property="emailButton" destination="S6d-Za-rwO" id="imn-lx-mNr"/>
                         <outlet property="facebookButton" destination="yvL-tB-aNX" id="lC8-hf-zM4"/>
+                        <outlet property="policyTextView" destination="4PS-QC-w8C" id="cmI-58-7WK"/>
                         <outlet property="signInButton" destination="Zcm-x3-NRk" id="UBh-Zi-HmI"/>
                         <outlet property="signUpText" destination="qew-uc-Rce" id="bOg-yT-4AE"/>
                         <outlet property="twitterButton" destination="jsA-m5-9yy" id="tbM-93-56n"/>
@@ -679,7 +713,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pAp-PC-GuA" customClass="RoundedTextField" customModule="The_Wave" customModuleProvider="target">
-                                <rect key="frame" x="43" y="291" width="288" height="43"/>
+                                <rect key="frame" x="43" y="291" width="289" height="43"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.25117973989999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="75m-xf-onX"/>
@@ -692,7 +726,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CpZ-YB-rgb" customClass="RoundedTextField" customModule="The_Wave" customModuleProvider="target">
-                                <rect key="frame" x="43" y="349" width="288" height="43"/>
+                                <rect key="frame" x="43" y="349" width="289" height="43"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.25117973989999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="9oL-dm-aSo"/>
@@ -718,7 +752,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2u-Kw-Gdz">
-                                <rect key="frame" x="97" y="468" width="180" height="49"/>
+                                <rect key="frame" x="97.5" y="468" width="180" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="cJS-ue-Cfr"/>
                                     <constraint firstAttribute="height" constant="49" id="mZM-gN-VjZ"/>
@@ -749,7 +783,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O35-tY-v4J">
-                                <rect key="frame" x="335" y="297" width="30" height="30"/>
+                                <rect key="frame" x="336" y="297" width="29" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="53x-zW-es9"/>
                                 </constraints>
@@ -840,7 +874,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Did you lose your password? No fret. Just enter the email address associated with the account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3CO-jD-Zmc">
-                                <rect key="frame" x="31" y="213" width="312" height="78"/>
+                                <rect key="frame" x="31" y="213" width="313" height="78"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="78" id="cEm-jI-D2a"/>
                                 </constraints>
@@ -878,7 +912,7 @@
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Password" translatesAutoresizingMaskIntoConstraints="NO" id="nGk-3c-Vt6">
-                                <rect key="frame" x="156" y="128" width="62" height="50"/>
+                                <rect key="frame" x="156.5" y="128" width="62" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="EP0-ab-kCI"/>
                                     <constraint firstAttribute="width" constant="62" id="UGh-id-paX"/>

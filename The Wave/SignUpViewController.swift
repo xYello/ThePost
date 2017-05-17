@@ -32,6 +32,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var closeButton: UIButton!
     
+    @IBOutlet weak var policyTextView: UITextView!
+    
     private var ref: FIRDatabaseReference!
     
     private var welcomeLabelToViewTopConstant: CGFloat = 0.0
@@ -63,6 +65,30 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(gesture)
         
         ref = FIRDatabase.database().reference()
+        
+        let touRange = (policyTextView.text as NSString).range(of: "Terms of Use")
+        let privacyRange = (policyTextView.text as NSString).range(of: "Privacy Policy")
+        
+        let string = NSMutableAttributedString(string: policyTextView.text!)
+        string.addAttribute(NSLinkAttributeName, value: PolicyLinks.termsOfUse, range: touRange)
+        string.addAttribute(NSLinkAttributeName, value: PolicyLinks.privacy, range: privacyRange)
+        
+        
+        let wholeRange = NSMakeRange(0, string.length)
+        let font = UIFont(name: "Lato-LightItalic", size: 14.0)!
+        string.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: wholeRange)
+        string.addAttribute(NSFontAttributeName, value: font, range: wholeRange)
+        
+        let style = NSMutableParagraphStyle()
+        style.alignment = .center
+        string.addAttribute(NSParagraphStyleAttributeName, value: style, range: wholeRange)
+        
+        policyTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
+                                             NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue,
+                                             NSUnderlineColorAttributeName: UIColor.white,
+                                             NSFontAttributeName: font]
+        policyTextView.attributedText = string
+        
     }
     
     // MARK: Textfield delegate

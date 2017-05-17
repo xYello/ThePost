@@ -26,6 +26,8 @@ class SignInUpPromptViewController: UIViewController {
     
     @IBOutlet weak var closeButton: UIButton!
     
+    @IBOutlet weak var policyTextView: UITextView!
+    
     private var animator: UIDynamicAnimator!
     private var containerOriginalFrame: CGRect!
     
@@ -52,6 +54,29 @@ class SignInUpPromptViewController: UIViewController {
         attributedString.addAttributes([NSForegroundColorAttributeName: #colorLiteral(red: 0.1411764706, green: 0.1647058824, blue: 0.2117647059, alpha: 1)], range: NSRange(location: 8, length: 59))
         attributedString.addAttributes([NSFontAttributeName: UIFont(name: "Lato-BoldItalic", size: 30)!], range: NSRange(location: 14, length: 8))
         signUpText.attributedText = attributedString
+        
+        
+        let string = NSMutableAttributedString(string: policyTextView.text)
+        let touRange = (policyTextView.text as NSString).range(of: "Terms of Use")
+        let privacyRange = (policyTextView.text as NSString).range(of: "Privacy Policy")
+        
+        string.addAttribute(NSLinkAttributeName, value: PolicyLinks.termsOfUse, range: touRange)
+        string.addAttribute(NSLinkAttributeName, value: PolicyLinks.privacy, range: privacyRange)
+        
+        let wholeRange = NSMakeRange(0, string.length)
+        let font = UIFont(name: "Lato-LightItalic", size: 12.0)!
+        string.addAttribute(NSForegroundColorAttributeName, value: UIColor.black, range: wholeRange)
+        string.addAttribute(NSFontAttributeName, value: font, range: wholeRange)
+        
+        let style = NSMutableParagraphStyle()
+        style.alignment = .center
+        string.addAttribute(NSParagraphStyleAttributeName, value: style, range: wholeRange)
+        
+        policyTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.black,
+                                             NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue,
+                                             NSUnderlineColorAttributeName: UIColor.black,
+                                             NSFontAttributeName: font]
+        policyTextView.attributedText = string
     }
     
     override func viewDidAppear(_ animated: Bool) {
