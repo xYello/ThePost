@@ -157,6 +157,7 @@ class SignInUpPromptViewController: UIViewController {
                                                 }
                                             })
                                             
+                                            self.ref.child(user!.uid).child("verifiedWith").child("Facebook").setValue(true)
                                             self.ref.child(user!.uid).child("email").setValue(email)
                                             self.saveOneSignalId()
                                             self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
@@ -196,6 +197,7 @@ class SignInUpPromptViewController: UIViewController {
                         KeychainWrapper.standard.set(session.authToken, forKey: TwitterInfoKeys.token)
                         KeychainWrapper.standard.set(session.authTokenSecret, forKey: TwitterInfoKeys.secret)
                         
+                        self.ref.child(user!.uid).child("verifiedWith").child("Twitter").setValue(true)
                         self.ref.child(user!.uid).child("isOnline").setValue(true)
                         
                         // Check if fullname already exists
