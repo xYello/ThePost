@@ -142,6 +142,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         self.sendToNextViewController()
                     }
                 })
+            } else {
+                self.disableButtons()
             }
         })
     }
