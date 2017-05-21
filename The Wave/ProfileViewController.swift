@@ -214,6 +214,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListingTableCell", for: indexPath) as! ProductListingTableViewCell
+        cell.selectionStyle = .none
+        
         let product = productArray()[indexPath.row]
         
         if let likeCount = product.likeCount {
@@ -281,6 +283,22 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         if let productCell = cell as? ProductListingTableViewCell {
             if let likesListener = productCell.likesListenerRef {
                 likesListener.removeAllObservers()
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "viewProductInfo") as? ProductViewerViewController {
+            vc.modalPresentationStyle = .overCurrentContext
+            
+            let product = productArray()[indexPath.row]
+            vc.product = product
+            
+            if let tabController = tabBarController {
+                PresentationCenter.manager.present(viewController: vc, sender: tabController)
+            } else {
+                PresentationCenter.manager.present(viewController: vc, sender: self)
             }
         }
     }
@@ -555,65 +573,37 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private func setupProductListeners() {
         userProductsRef!.observe(.childAdded, with: { snapshot in
-            if let productDict = snapshot.value as? [String: Any] {
-                if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
-                    if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
-                        let product = Product(withName: productDict["name"] as! String,
-                                              model: jeepModel,
-                                              price: productDict["price"] as! Float,
-                                              condition: condition)
-                        
-                        product.uid = snapshot.key
-                        
-                        if let likeCount = productDict["likeCount"] as? Int {
-                            product.likeCount = likeCount
-                        }
-                        
-                        if let isSold = productDict["isSold"] as? Bool {
-                            product.isSold = isSold
-                            if isSold {
-                                self.soldProducts.insert(product, at: 0)
-                            } else {
-                                self.sellingProducts.insert(product, at: 0)
-                            }
-                        } else {
-                            self.sellingProducts.insert(product, at: 0)
-                        }
-                        
-                        if self.productViewType == .selling || self.productViewType == .sold {
-                            self.tableView.reloadData()
-                        }
+            if let productDict = snapshot.value as? [String: AnyObject] {
+                if let product = Product.createProduct(with: productDict, with: snapshot.key) {
+                    
+                    if product.isSold {
+                        self.soldProducts.insert(product, at: 0)
+                    } else {
+                        self.sellingProducts.insert(product, at: 0)
                     }
+                    
+                    if self.productViewType == .selling || self.productViewType == .sold {
+                        self.tableView.reloadData()
+                    }
+                    
                 }
             }
         })
         
         userProductsRef!.observe(.childRemoved, with: { snapshot in
-            if let productDict = snapshot.value as? [String: Any] {
-                if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
-                    if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
-                        let product = Product(withName: productDict["name"] as! String,
-                                              model: jeepModel,
-                                              price: productDict["price"] as! Float,
-                                              condition: condition)
-                        product.uid = snapshot.key
-                        
-                        if let isSold = productDict["isSold"] as? Bool {
-                            if isSold {
-                                let index = self.indexOf(product: product, in: self.soldProducts)
-                                self.soldProducts.remove(at: index)
-                            } else {
-                                let index = self.indexOf(product: product, in: self.sellingProducts)
-                                self.sellingProducts.remove(at: index)
-                            }
-                        } else {
-                            let index = self.indexOf(product: product, in: self.sellingProducts)
-                            self.sellingProducts.remove(at: index)
-                        }
-                        
-                        if self.productViewType == .selling || self.productViewType == .sold {
-                            self.tableView.reloadData()
-                        }
+            if let productDict = snapshot.value as? [String: AnyObject] {
+                if let product = Product.createProduct(with: productDict, with: snapshot.key) {
+                    
+                    if product.isSold {
+                        let index = self.indexOf(product: product, in: self.soldProducts)
+                        self.soldProducts.remove(at: index)
+                    } else {
+                        let index = self.indexOf(product: product, in: self.sellingProducts)
+                        self.sellingProducts.remove(at: index)
+                    }
+                    
+                    if self.productViewType == .selling || self.productViewType == .sold {
+                        self.tableView.reloadData()
                     }
                 }
             }
@@ -624,23 +614,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         likesQuery!.observe(.childAdded, with: { snapshot in
             let productQuery = FIRDatabase.database().reference().child("products").child(snapshot.key)
             productQuery.observeSingleEvent(of: .value, with: { snapshot in
-                if let productDict = snapshot.value as? [String: Any] {
-                    if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
-                        if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
-                            let product = Product(withName: productDict["name"] as! String,
-                                                  model: jeepModel,
-                                                  price: productDict["price"] as! Float,
-                                                  condition: condition)
-                            product.uid = snapshot.key
-                            
-                            if let isSold = productDict["isSold"] as? Bool {
-                                product.isSold = isSold
-                            }
-                            
-                            self.likedProducts.insert(product, at: 0)
-                            if self.productViewType == .liked {
-                                self.tableView.reloadData()
-                            }
+                if let productDict = snapshot.value as? [String: AnyObject] {
+                    if let product = Product.createProduct(with: productDict, with: snapshot.key) {
+                        self.likedProducts.insert(product, at: 0)
+                        if self.productViewType == .liked {
+                            self.tableView.reloadData()
                         }
                     }
                 }
@@ -650,21 +628,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         likesQuery!.observe(.childRemoved, with: { snapshot in
             let productQuery = FIRDatabase.database().reference().child("products").child(snapshot.key)
             productQuery.observeSingleEvent(of: .value, with: { snapshot in
-                if let productDict = snapshot.value as? [String: Any] {
-                    if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
-                        if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
-                            let product = Product(withName: productDict["name"] as! String,
-                                                  model: jeepModel,
-                                                  price: productDict["price"] as! Float,
-                                                  condition: condition)
-                            product.uid = snapshot.key
-                            
-                            let index = self.indexOf(product: product, in: self.likedProducts)
-                            self.likedProducts.remove(at: index)
-                            
-                            if self.productViewType == .liked {
-                                self.tableView.reloadData()
-                            }
+                if let productDict = snapshot.value as? [String: AnyObject] {
+                    if let product = Product.createProduct(with: productDict, with: snapshot.key) {
+                        let index = self.indexOf(product: product, in: self.likedProducts)
+                        self.likedProducts.remove(at: index)
+                        
+                        if self.productViewType == .liked {
+                            self.tableView.reloadData()
                         }
                     }
                 }

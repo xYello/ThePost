@@ -129,5 +129,45 @@ class Product: NSObject {
             self.condition = condition
         }
     }
+    
+    static func createProduct(with productDict: [String: AnyObject], with key: String) -> Product? {
+        var product: Product?
+        
+        if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
+            if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
+                product = Product(withName: productDict["name"] as! String,
+                                  model: jeepModel,
+                                  price: productDict["price"] as! Float,
+                                  condition: condition)
+                
+                product!.uid = key
+                product!.ownerId = productDict["owner"] as! String
+                
+                product!.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval / 1000)
+                
+                if let likeCount = productDict["likeCount"] as? Int {
+                    product!.likeCount = likeCount
+                }
+                
+                product!.originalBox = productDict["originalBox"] as! Bool
+                if let year = productDict["releaseYear"] as? Int {
+                    product!.releaseYear = year
+                }
+                if let desc = productDict["detailedDescription"] as? String {
+                    product!.detailedDescription = desc
+                }
+                
+                product!.willingToShip = productDict["willingToShip"] as! Bool
+                product!.acceptsPayPal = productDict["acceptsPayPal"] as! Bool
+                product!.acceptsCash = productDict["acceptsCash"] as! Bool
+                
+                if let isSold = productDict["isSold"] as? Bool {
+                    product!.isSold = isSold
+                }
+            }
+        }
+        
+        return product
+    }
 
 }

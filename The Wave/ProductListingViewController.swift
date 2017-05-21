@@ -131,7 +131,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             }
             query.observe(.childAdded, with: { snapshot in
                 if let productDict = snapshot.value as? [String: AnyObject] {
-                    if let product = self.createProduct(with: productDict, with: snapshot.key) {
+                    if let product = Product.createProduct(with: productDict, with: snapshot.key) {
                         
                         self.amountOfProducts += 1
                         
@@ -153,7 +153,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             
             query.observe(.childRemoved, with: { snapshot in
                 if let productDict = snapshot.value as? [String: AnyObject] {
-                    if let product = self.createProduct(with: productDict, with: snapshot.key) {
+                    if let product = Product.createProduct(with: productDict, with: snapshot.key) {
                         let index = self.indexOfProduct(product)
                         
                         if index != -1 {
@@ -310,7 +310,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                     for (key, value) in productsDict {
                         if let productDict = value as? [String: AnyObject] {
                             
-                            if let product = self.createProduct(with: productDict, with: key) {
+                            if let product = Product.createProduct(with: productDict, with: key) {
                                 self.searchedProducts.append(product)
                                 self.searchedAmountOfProducts += 1
                             }
@@ -417,46 +417,6 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             index += 1
         }
         return -1
-    }
-    
-    private func createProduct(with productDict: [String: AnyObject], with key: String) -> Product? {
-        var product: Product?
-        
-        if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
-            if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
-                product = Product(withName: productDict["name"] as! String,
-                                      model: jeepModel,
-                                      price: productDict["price"] as! Float,
-                                      condition: condition)
-                
-                product!.uid = key
-                product!.ownerId = productDict["owner"] as! String
-                
-                product!.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval / 1000)
-                
-                if let likeCount = productDict["likeCount"] as? Int {
-                    product!.likeCount = likeCount
-                }
-                
-                product!.originalBox = productDict["originalBox"] as! Bool
-                if let year = productDict["releaseYear"] as? Int {
-                    product!.releaseYear = year
-                }
-                if let desc = productDict["detailedDescription"] as? String {
-                    product!.detailedDescription = desc
-                }
-                
-                product!.willingToShip = productDict["willingToShip"] as! Bool
-                product!.acceptsPayPal = productDict["acceptsPayPal"] as! Bool
-                product!.acceptsCash = productDict["acceptsCash"] as! Bool
-                
-                if let isSold = productDict["isSold"] as? Bool {
-                    product!.isSold = isSold
-                }
-            }
-        }
-        
-        return product
     }
     
     private func productArray() -> [Product] {
