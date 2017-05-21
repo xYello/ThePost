@@ -103,7 +103,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                        ["Accepts Cash": .exCheck]]
         
         if let uid = FIRAuth.auth()?.currentUser?.uid {
-            if uid == product.ownerId {
+            if uid == product.ownerId || product.isSold {
                 orangeButton.isHidden = true
                 greenButton.isHidden = true
             } else {
