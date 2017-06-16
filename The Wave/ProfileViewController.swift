@@ -308,6 +308,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         picker.dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+
+            profileImageView.image = image
             
             let uid = FIRAuth.auth()!.currentUser!.uid
             let storageRef = FIRStorage.storage().reference()
@@ -330,7 +332,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                                 let stringUrl = url.absoluteString
                                 
                                 FIRDatabase.database().reference().child("users").child(uid).child("profileImage").setValue(stringUrl)
-                                self.profileImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultProfilePicture"))
                             }
                         }
                     }
