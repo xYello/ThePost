@@ -16,6 +16,8 @@ class SocialPost : NSObject {
     
     var imageUrl: String!
     var datePosted: Date!
+
+    var likes: Int = 0
     
     var relativeDate: String! {
         get {
@@ -56,7 +58,7 @@ class SocialPost : NSObject {
         }
     }
     
-    init(withUid uid: String, imageUrl: String, ownerId: String, date: Date) {
+    init(withUid uid: String, imageUrl: String, ownerId: String, date: Date, amountOfLikes: Int) {
         super.init()
         
         defer {
@@ -64,6 +66,7 @@ class SocialPost : NSObject {
             self.imageUrl = imageUrl
             self.ownerId = ownerId
             self.datePosted = date
+            self.likes = amountOfLikes
         }
     }
 

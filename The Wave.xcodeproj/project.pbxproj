@@ -46,6 +46,7 @@
 		4D1667311E4FBFBB0092FDFB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1667301E4FBFBB0092FDFB /* SettingsViewController.swift */; };
 		4D1667351E4FC06F0092FDFB /* SettingsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */; };
 		4D17F2031E85911F000BEAAB /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17F2021E85911F000BEAAB /* PushNotification.swift */; };
+		4D20C1E41EF374AE0090AEBE /* Date+StartOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C1E31EF374AE0090AEBE /* Date+StartOfWeek.swift */; };
 		4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */; };
 		4D239C421E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */; };
 		4D239C441E131BBE00F2668E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C431E131BBE00F2668E /* Product.swift */; };
@@ -182,6 +183,7 @@
 		4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsContainerViewController.swift; sourceTree = "<group>"; };
 		4D17F2021E85911F000BEAAB /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		4D1BC6621E7DBEE50068EAF9 /* The Wave.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "The Wave.entitlements"; sourceTree = "<group>"; };
+		4D20C1E31EF374AE0090AEBE /* Date+StartOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StartOfWeek.swift"; sourceTree = "<group>"; };
 		4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingViewController.swift; sourceTree = "<group>"; };
 		4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D239C431E131BBE00F2668E /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 			children = (
 				4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */,
 				4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */,
+				4D20C1E31EF374AE0090AEBE /* Date+StartOfWeek.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1054,6 +1057,7 @@
 				4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */,
 				4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */,
 				4D907B561E13824D00F9FD8B /* User.swift in Sources */,
+				4D20C1E41EF374AE0090AEBE /* Date+StartOfWeek.swift in Sources */,
 				4DD3CCC91E14DD8700821C7C /* NewProductTextTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -30,17 +30,25 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
         
         if socialRef == nil {
             socialRef = ref.child("social-posts")
-            
-            let query = socialRef!.queryOrdered(byChild: "datePosted").queryLimited(toLast: 200)
+
+            let firstOfWeek = Date().startOfWeek.timeIntervalSince1970 * 1000
+            let endOfWeek = firstOfWeek + 604800000 // Add a week in milliseconds.
+            let query = socialRef!.queryOrdered(byChild: "datePosted")
+                .queryStarting(atValue: firstOfWeek).queryEnding(atValue: endOfWeek).queryLimited(toLast: 200)
+
             query.observe(.childAdded, with: { snapshot in
                 if let socialDict = snapshot.value as? [String: AnyObject] {
-                    var socialPost: SocialPost!
                     
                     let date = Date(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
+                    var likes = socialDict["likeCount"] as? Int
+                    if let _ = likes {
+                    } else {
+                        likes = 0
+                    }
+
+                    let post = SocialPost(withUid: snapshot.key, imageUrl: socialDict["image"] as! String, ownerId: socialDict["owner"] as! String, date: date, amountOfLikes: likes!)
                     
-                    socialPost = SocialPost(withUid: snapshot.key, imageUrl: socialDict["image"] as! String, ownerId: socialDict["owner"] as! String, date: date)
-                    
-                    self.socialPosts.insert(socialPost, at: 0)
+                    self.placeInOrder(post: post)
                     self.tableView.reloadData()
                 }
             })
@@ -49,7 +57,13 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
                 if let socialDict = snapshot.value as? [String: AnyObject] {
                     
                     let date = Date(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
-                    let post = SocialPost(withUid: snapshot.key, imageUrl: socialDict["image"] as! String, ownerId: socialDict["owner"] as! String, date: date)
+                    var likes = socialDict["likeCount"] as? Int
+                    if let _ = likes {
+                    } else {
+                        likes = 0
+                    }
+
+                    let post = SocialPost(withUid: snapshot.key, imageUrl: socialDict["image"] as! String, ownerId: socialDict["owner"] as! String, date: date, amountOfLikes: likes!)
                     let index = self.indexOfPost(post)
                     
                     if index != -1 {
@@ -102,7 +116,31 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // MARK: - Helpers
-    
+
+    private func placeInOrder(post: SocialPost) {
+        if socialPosts.count == 0 {
+            socialPosts.append(post)
+        } else {
+            var iteratorIndex = 0
+            var indexToPlaceAt = -1
+            for oldPost in socialPosts {
+                if indexToPlaceAt == -1 {
+                    if post.likes >= oldPost.likes {
+                        indexToPlaceAt = iteratorIndex
+                    }
+                }
+
+                iteratorIndex += 1
+            }
+
+            if indexToPlaceAt == -1 {
+                indexToPlaceAt = socialPosts.count
+            }
+
+            socialPosts.insert(post, at: indexToPlaceAt)
+        }
+    }
+
     private func indexOfPost(_ snapshot: SocialPost) -> Int {
         var index = 0
         for post in socialPosts {
