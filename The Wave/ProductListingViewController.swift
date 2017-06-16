@@ -115,14 +115,14 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                 jeepModel = Jeep(withType: JeepModel.all)
             }
             
-            
             if let name = jeepModel.name {
                 jeepTypeLabel.text = name
             }
             
             productRef = ref.child("products")
             
-            var query = productRef!.queryOrdered(byChild: "soldModel").queryStarting(atValue: "SELLING").queryEnding(atValue: "SELLING\u{f8ff}").queryLimited(toLast: 200)
+            var query = productRef!.queryOrdered(byChild: "soldModel")
+                .queryStarting(atValue: "SELLING").queryEnding(atValue: "SELLING\u{f8ff}").queryLimited(toLast: 200)
             if jeepModel.type != .all {
                 query = productRef!.queryOrdered(byChild: "soldModel")
                     .queryStarting(atValue: "SELLING" + jeepModel.type.description)
@@ -135,11 +135,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                         
                         self.amountOfProducts += 1
                         
-                        if self.jeepModel.type != .all {
-                            self.products.insert(product, at: 0)
-                        } else {
-                            self.products.append(product)
-                        }
+                        self.placeInOrder(product: product)
                         
                         if !self.isSearching {
                             self.collectionView.performBatchUpdates({
@@ -406,7 +402,31 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     }
     
     // MARK: - Helpers
-    
+
+    private func placeInOrder(product: Product) {
+        if products.count == 0 {
+            products.append(product)
+        } else {
+            var iteratorIndex = 0
+            var indexToPlaceAt = -1
+            for prod in products {
+                if indexToPlaceAt == -1 {
+                    if product.postedDate >= prod.postedDate {
+                        indexToPlaceAt = iteratorIndex
+                    }
+                }
+
+                iteratorIndex += 1
+            }
+
+            if indexToPlaceAt == -1 {
+                indexToPlaceAt = products.count
+            }
+
+            products.insert(product, at: indexToPlaceAt)
+        }
+    }
+
     private func indexOfProduct(_ snapshot: Product) -> Int {
         var index = 0
         for product in self.products {
