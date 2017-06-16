@@ -104,7 +104,10 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                        ["Accepts Cash": .exCheck]]
         
         if let uid = FIRAuth.auth()?.currentUser?.uid {
-            if uid == product.ownerId || product.isSold {
+            if uid == product.ownerId {
+                orangeButton.setTitle("Delete", for: .normal)
+                greenButton.isHidden = true
+            } else if product.isSold {
                 orangeButton.isHidden = true
                 greenButton.isHidden = true
             } else {
@@ -303,10 +306,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             let alert = UIAlertController(title: "Delete \(product.name!)?", message: "Are you sure you want to delete \(product.name!)?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
-                // TODO: Delete the product for everywhere.
-//                FIRDatabase.database().reference().child("products").child(self.product.uid).removeValue()
-//                FIRDatabase.database().reference().child("products-location").child(self.product.uid).removeValue()
-//                self.dismissParent()
+                self.deleteProduct()
             }))
             
             present(alert, animated: true, completion: nil)
@@ -538,6 +538,51 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                 
             })
         }
+    }
+
+    private func deleteProduct() {
+        let basicRef = FIRDatabase.database().reference()
+
+        // Grab the chat to delete the user-chats.
+        var ref = basicRef.child("chats").queryOrdered(byChild: "productID").queryStarting(atValue: product.uid).queryEnding(atValue: product.uid)
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let chats = snapshot.value as? [String: AnyObject] {
+                for (key, _) in chats {
+                    print(key)
+
+                    // Delete all user-chats associated with this chat.
+                    let chatContent = chats[key] as! [String: AnyObject]
+                    let participants = chatContent["participants"] as! [String: AnyObject]
+
+                    for (userId, _) in participants {
+                        basicRef.child("user-chats").child(userId).child(key).removeValue()
+                    }
+
+                    // Then delete the chat.
+                    basicRef.child("chats").child(key).removeValue()
+                }
+            }
+        })
+
+        // Grab the products likers to delete from their likes.
+        ref = basicRef.child("products").child(product.uid)
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let productDict = snapshot.value as? [String: AnyObject] {
+                if let likers = productDict["likes"] as? [String: Bool] {
+
+                    for (userId, _) in likers {
+                        print(userId)
+                        basicRef.child("user-likes").child(userId).child(self.product.uid).removeValue()
+                    }
+
+                }
+            }
+
+            // Finally, delete the product.
+            basicRef.child("products").child(self.product.uid).removeValue()
+        })
+
+        dismissParent()
     }
 
 }
