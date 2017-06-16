@@ -236,6 +236,9 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
             backgroundCover.frame = CGRect(x: 0, y: 0, width: vc.view.frame.width, height: vc.view.frame.height)
             backgroundCover.alpha = 0.0
             vc.view.addSubview(backgroundCover)
+
+            let tap = UITapGestureRecognizer(target: self, action: #selector(dismissAddButtons))
+            backgroundCover.addGestureRecognizer(tap)
         }
         
         if let views = interactionViews {
@@ -307,7 +310,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         
     }
     
-    private func dismissAddButtons() {
+    @objc private func dismissAddButtons() {
         isViewingAddOptions = false
         animator.removeAllBehaviors()
         
