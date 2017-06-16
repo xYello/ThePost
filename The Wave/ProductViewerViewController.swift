@@ -15,6 +15,7 @@ class ProductViewerViewController: ModalPresentationViewController {
     private var animator: UIDynamicAnimator!
     
     var product: Product!
+    var chatOpen:Bool?
     
     // MARK: - View lifecycle
     
@@ -80,6 +81,9 @@ class ProductViewerViewController: ModalPresentationViewController {
         super.prepare(for: segue, sender: sender)
         
         if let destination = segue.destination as? ProductViewerContainerViewController {
+            if let chatOpen = chatOpen {
+                destination.chatOpen = chatOpen
+            }
             destination.product = product
         }
     }
