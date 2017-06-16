@@ -456,6 +456,7 @@
 				4D04C51B1E0EFCD1004B2264 /* Fonts */,
 				3338193B4FD98EB5823532E7 /* Pods */,
 				33619F814575872FACDDD86E /* Frameworks */,
+				60ABEB211EF35F2F00C7799B /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -663,6 +664,14 @@
 			name = "Jeep Selector";
 			sourceTree = "<group>";
 		};
+		60ABEB211EF35F2F00C7799B /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				CE2470422437B4EA1FBAA716 /* Pods_ThePostTests.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -741,7 +750,7 @@
 				TargetAttributes = {
 					4D58C4D01E0E1882004CA0E3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 2ZSZVH3P4S;
+						DevelopmentTeam = F92T972GML;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1203,8 +1212,9 @@
 				CODE_SIGN_ENTITLEMENTS = "The Wave/The Wave.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2ZSZVH3P4S;
+				DEVELOPMENT_TEAM = F92T972GML;
 				INFOPLIST_FILE = "The Wave/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1229,8 +1239,9 @@
 				CODE_SIGN_ENTITLEMENTS = "The Wave/The Wave.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = F92T972GML;
 				INFOPLIST_FILE = "The Wave/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

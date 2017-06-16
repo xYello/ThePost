@@ -60,6 +60,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     }
     
     var product: Product!
+    var chatOpen: Bool = false
     
     // MARK: - View lifecycle
     
@@ -111,6 +112,10 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                 greenButton.setTitle("Message", for: .normal)
             }
         } else {
+            orangeButton.isHidden = true
+            greenButton.isHidden = true
+        }
+        if chatOpen {
             orangeButton.isHidden = true
             greenButton.isHidden = true
         }
@@ -319,10 +324,12 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         if sender.currentTitle == "Edit" {
             
         } else if sender.currentTitle == "Message" {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: openChatControllerNotificationKey), object: nil, userInfo:
-                ["productID": product.uid,
-                 "productOwnerID": product.ownerId,
-                 "productOwnerName": seller.fullName])
+            if !chatOpen {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: openChatControllerNotificationKey), object: nil, userInfo:
+                    ["productID": product.uid,
+                     "productOwnerID": product.ownerId,
+                     "productOwnerName": seller.fullName])
+            }
             dismissParent()
         }
     }

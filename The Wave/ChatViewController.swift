@@ -323,6 +323,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
             if let vc = storyboard.instantiateViewController(withIdentifier: "viewProductInfo") as? ProductViewerViewController {
                 vc.modalPresentationStyle = .overCurrentContext
                 vc.product = product
+                vc.chatOpen = true
                 
                 PresentationCenter.manager.present(viewController: vc, sender: self)
             }
