@@ -12,6 +12,7 @@ import FirebaseStorageUI
 
 class SocialViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var noPostsView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     private var ref: FIRDatabaseReference!
@@ -81,7 +82,17 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - TableView datasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return socialPosts.count
+        let count = socialPosts.count
+
+        if count == 0 {
+            tableView.isHidden = true
+            noPostsView.isHidden = false
+        } else {
+            noPostsView.isHidden = true
+            tableView.isHidden = false
+        }
+
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
