@@ -19,7 +19,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBOutlet weak var profileNameLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var settingsButton: UIButton!
     
     @IBOutlet weak var buildTrustView: UIView!
@@ -31,8 +30,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var midStar: UIImageView!
     @IBOutlet weak var rightMidStar: UIImageView!
     @IBOutlet weak var farRightStar: UIImageView!
-    @IBOutlet weak var badgeLabel: UILabel!
-    
+
     @IBOutlet weak var numberOfReviewsLabel: UILabel!
     
     @IBOutlet weak var twitterVerifiedWithImage: UIImageView!
@@ -44,11 +42,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var closeContainer: UIView!
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var profileImageViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
-    
+
     private var previouslySelectedButton: UIButton!
     private var selectionBar: UIView?
     
@@ -64,8 +62,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private var userProductsRef: FIRDatabaseQuery?
     private var likesQuery: FIRDatabaseQuery?
-    
-    private var badgeColor: UIColor = #colorLiteral(red: 0.9600599408, green: 0.6655590534, blue: 0.09231746942, alpha: 1)
     
     private var shouldUpdateProfileOnNextView = false
     
@@ -121,7 +117,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             buildTrustView.clipsToBounds = true
             
             uid = FIRAuth.auth()!.currentUser!.uid
-            bottomBarHeightConstraint.constant = tabBarController!.tabBar.frame.height
+            closeContainer.isHidden = true
         }
         
         updateProfileInformation(with: uid)
