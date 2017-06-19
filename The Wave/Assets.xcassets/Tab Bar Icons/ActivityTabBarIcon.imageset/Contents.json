@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Shape.png",
+      "filename" : "SocialTabBarIcon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Shape@2x.png",
+      "filename" : "SocialTabBarIcon@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Shape@3x.png",
+      "filename" : "SocialTabBarIcon@3x.png",
       "scale" : "3x"
     }
   ],
