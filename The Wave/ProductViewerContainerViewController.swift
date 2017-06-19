@@ -321,9 +321,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     }
     
     @IBAction func greenButtonTapped(_ sender: UIButton) {
-        if sender.currentTitle == "Edit" {
-            
-        } else if sender.currentTitle == "Message" {
+        if sender.currentTitle == "Message" {
             if !chatOpen {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: openChatControllerNotificationKey), object: nil, userInfo:
                     ["productID": product.uid,
