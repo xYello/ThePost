@@ -62,34 +62,52 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private var userProductsRef: FIRDatabaseQuery?
     private var likesQuery: FIRDatabaseQuery?
+    private var reviewNumbersRef: FIRDatabaseReference?
     
     private var shouldUpdateProfileOnNextView = false
+
+    private let on = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+    private let off = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
     
     private var amountOfStars = 0 {
         didSet {
             switch amountOfStars {
             case 0:
-                break
+                farLeftStar.tintColor = off
+                leftMidStar.tintColor = off
+                midStar.tintColor = off
+                rightMidStar.tintColor = off
+                farRightStar.tintColor = off
             case 1:
-                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                farLeftStar.tintColor = on
+                leftMidStar.tintColor = off
+                midStar.tintColor = off
+                rightMidStar.tintColor = off
+                farRightStar.tintColor = off
             case 2:
-                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                farLeftStar.tintColor = on
+                leftMidStar.tintColor = on
+                midStar.tintColor = off
+                rightMidStar.tintColor = off
+                farRightStar.tintColor = off
             case 3:
-                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-                midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                farLeftStar.tintColor = on
+                leftMidStar.tintColor = on
+                midStar.tintColor = on
+                rightMidStar.tintColor = off
+                farRightStar.tintColor = off
             case 4:
-                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-                midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-                rightMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                farLeftStar.tintColor = on
+                leftMidStar.tintColor = on
+                midStar.tintColor = on
+                rightMidStar.tintColor = on
+                farRightStar.tintColor = off
             default:
-                farLeftStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-                leftMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-                midStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-                rightMidStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
-                farRightStar.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
+                farLeftStar.tintColor = on
+                leftMidStar.tintColor = on
+                midStar.tintColor = on
+                rightMidStar.tintColor = on
+                farRightStar.tintColor = on
             }
         }
     }
@@ -125,7 +143,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         let stars: [UIImageView] = [farLeftStar, leftMidStar, midStar, rightMidStar, farRightStar]
         for star in stars {
             star.image = UIImage(named: "ProfileReviewsStar")!.withRenderingMode(.alwaysTemplate)
-            star.tintColor = #colorLiteral(red: 0.7215686275, green: 0.7607843137, blue: 0.7803921569, alpha: 1)
+            star.tintColor = off
         }
         
         numberOfReviewsLabel.text = "\(0) reviews"
@@ -179,6 +197,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             likesQuery = FIRDatabase.database().reference().child("user-likes").child(uid).queryLimited(toLast: 100)
             grabLikedPosts()
         }
+        if reviewNumbersRef == nil {
+            grabUsersReviewStats(with: uid)
+        }
         
         if selectionBar == nil {
             selectionBar = UIView()
@@ -199,6 +220,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         if let ref = likesQuery {
             ref.removeAllObservers()
             likesQuery = nil
+        }
+        if let ref = reviewNumbersRef {
+            ref.removeAllObservers()
+            reviewNumbersRef = nil
         }
     }
     
@@ -534,26 +559,34 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         })
     }
-    
-    private func grabUsersReviewStats(with uid: String) {
-        let ref = FIRDatabase.database().reference().child("reviews").child(uid).child("reviewNumbers")
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            if let numbers = snapshot.value as? [String: Int] {
-                let count = numbers["count"]!
-                let number = Double(numbers["sum"]!) / Double(count)
-                let roundedNumber = number.roundTo(places: 1)
-                
-                self.determineStarsfor(number: roundedNumber)
-                
-                var reviewsCountString = "\(count) reviews"
-                if count == 1 {
-                    reviewsCountString = "\(count) review"
-                }
-                
-                DispatchQueue.main.async {
-                    self.numberOfReviewsLabel.text = reviewsCountString
-                }
+
+    fileprivate func updateReviewCounts(with snapshot: FIRDataSnapshot) {
+        if let numbers = snapshot.value as? [String: Int] {
+            let count = numbers["count"]!
+            let number = Double(numbers["sum"]!) / Double(count)
+            let roundedNumber = number.roundTo(places: 1)
+
+            self.determineStarsfor(number: roundedNumber)
+
+            var reviewsCountString = "\(count) reviews"
+            if count == 1 {
+                reviewsCountString = "\(count) review"
             }
+
+            DispatchQueue.main.async {
+                self.numberOfReviewsLabel.text = reviewsCountString
+            }
+        }
+    }
+
+    private func grabUsersReviewStats(with uid: String) {
+        reviewNumbersRef = FIRDatabase.database().reference().child("reviews").child(uid)
+        reviewNumbersRef!.child("reviewNumbers").observeSingleEvent(of: .value, with: { snapshot in
+            self.updateReviewCounts(with: snapshot)
+        })
+
+        reviewNumbersRef!.observe(.childChanged, with: { snapshot in
+            self.updateReviewCounts(with: snapshot)
         })
     }
     
