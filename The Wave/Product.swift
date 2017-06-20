@@ -103,6 +103,10 @@ class Product: NSObject {
                 string.append("TJ")
             case .wranglerYJ:
                 string.append("YJ")
+            case .cherokeeCJ:
+                string.append("CJ")
+            case .cherokeeXJ:
+                string.append("XJ")
             }
             
             return string

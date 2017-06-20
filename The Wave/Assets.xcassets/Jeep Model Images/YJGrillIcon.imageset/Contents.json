@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Gen_Wrangler_JKpng.png",
+      "filename" : "YJGrillIcon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Gen_Wrangler_JKpng@2x.png",
+      "filename" : "YJGrillIcon@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Gen_Wrangler_JKpng@3x.png",
+      "filename" : "YJGrillIcon@3x.png",
       "scale" : "3x"
     }
   ],

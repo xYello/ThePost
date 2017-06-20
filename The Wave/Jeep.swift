@@ -9,7 +9,12 @@
 import UIKit
 
 enum JeepModel: Int {
-    case all = 0, wranglerJK, wranglerTJ, wranglerYJ
+    case all = 0
+    case wranglerJK
+    case wranglerTJ
+    case wranglerYJ
+    case cherokeeCJ
+    case cherokeeXJ
     
     var description : String {
         switch self {
@@ -17,6 +22,8 @@ enum JeepModel: Int {
         case .wranglerJK: return "Jeep Wrangler JK"
         case .wranglerTJ: return "Jeep Wrangler TJ"
         case .wranglerYJ: return "Jeep Wrangler YJ"
+        case .cherokeeCJ: return "Jeep Cherokee CJ"
+        case .cherokeeXJ: return "Jeep Cherokee XJ"
         }
     }
     
@@ -64,24 +71,35 @@ class Jeep: NSObject {
     private func evaluateType(type: JeepModel) {
         switch type {
         case .all:
-            image = #imageLiteral(resourceName: "WranglerJK")
+            image = UIImage(named: "AllDuhJeeps")!
             name = "All Jeeps"
         case .wranglerJK:
-            image = UIImage(named: "WranglerJK")!
-            name = "Jeep Wrangler JK"
+            image = UIImage(named: "JKGrillIcon")!
+            name = JeepModel.wranglerJK.description
             startYear = 2007
             isInProduction = true
         case .wranglerTJ:
-            image = UIImage(named: "WranglerTJ")!
-            name = "Jeep Wrangler TJ"
+            image = UIImage(named: "TJGrillIcon")!
+            name = JeepModel.wranglerTJ.description
             startYear = 1997
             endYear = 2006
         case .wranglerYJ:
-            image = UIImage(named: "WranglerYJ")!
-            name = "Jeep Wrangler YJ"
+            image = UIImage(named: "YJGrillIcon")!
+            name = JeepModel.wranglerYJ.description
             startYear = 1987
             endYear = 1995
+        case .cherokeeCJ:
+            image = UIImage(named: "CJGrillIcon")!
+            name = JeepModel.cherokeeCJ.description
+            startYear = 1944
+            endYear = 1986
+        case .cherokeeXJ:
+            image = UIImage(named: "XJGrillIcon")!
+            name = JeepModel.cherokeeXJ.description
+            startYear = 1984
+            endYear = 1996
         }
+        
     }
 
 }

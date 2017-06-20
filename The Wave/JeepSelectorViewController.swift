@@ -33,10 +33,12 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         super.viewDidLoad()
         
         let layout = UPCarouselFlowLayout()
-        
-        jeeps.append(Jeep(withType: JeepModel.wranglerJK))
-        jeeps.append(Jeep(withType: JeepModel.wranglerTJ))
+
+        jeeps.append(Jeep(withType: JeepModel.cherokeeCJ))
         jeeps.append(Jeep(withType: JeepModel.wranglerYJ))
+        jeeps.append(Jeep(withType: JeepModel.wranglerTJ))
+        jeeps.append(Jeep(withType: JeepModel.wranglerJK))
+        jeeps.append(Jeep(withType: JeepModel.cherokeeXJ))
         jeeps.append(Jeep(withType: JeepModel.all))
         
         // These ratios that are defined here are values defined in the Sketch file. Cell size / screen size
@@ -48,11 +50,8 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         layout.sideItemAlpha = 0.3
         layout.sideItemShift = 25.0
         collectionView.collectionViewLayout = layout
-        
-        if #available(iOS 10.0, *) {
-            collectionView.isPrefetchingEnabled = false
-        }
-        
+
+        collectionView.isPrefetchingEnabled = false
         collectionView.dataSource = self
         collectionView.delegate = self
     }
