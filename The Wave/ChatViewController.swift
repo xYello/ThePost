@@ -280,7 +280,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         formatter.timeZone = TimeZone(identifier: "America/New_York")
         let now = formatter.string(from: Date())
         
-        let messageItem = ["senderId": senderId, "senderName": senderDisplayName, "text": text, "time": now] as [String: String]
+        let messageItem = ["senderId": senderId, "text": text, "time": now] as [String: String]
         
         PushNotification.sender.pushChat(withMessage: text, withRecipientId: conversation.otherPersonId)
         itemRef.setValue(messageItem)
@@ -354,8 +354,8 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         
         messageQueryRef!.observe(.childAdded, with: { snapshot in
             if let messageDict = snapshot.value as? [String: String] {
-                if let id = messageDict["senderId"], let name = messageDict["senderName"], let text = messageDict["text"] {
-                    self.addMessage(withId: id, name: name, text: text)
+                if let id = messageDict["senderId"], let text = messageDict["text"] {
+                    self.addMessage(withId: id, name: "", text: text)
                     self.finishReceivingMessage()
                 }
             }
