@@ -546,7 +546,6 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let chats = snapshot.value as? [String: AnyObject] {
                 for (key, _) in chats {
-                    print(key)
 
                     // Delete all user-chats associated with this chat.
                     let chatContent = chats[key] as! [String: AnyObject]
@@ -569,7 +568,6 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                 if let likers = productDict["likes"] as? [String: Bool] {
 
                     for (userId, _) in likers {
-                        print(userId)
                         basicRef.child("user-likes").child(userId).child(self.product.uid).removeValue()
                     }
 
