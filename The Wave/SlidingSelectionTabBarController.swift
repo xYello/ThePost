@@ -23,6 +23,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
     private var socialLabel: UILabel!
     private var productButton: UIButton!
     private var productLabel: UILabel!
+    private var plusButton: UIButton!
     
     private var animator: UIDynamicAnimator!
     
@@ -244,6 +245,16 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         
         if let views = interactionViews {
             let middleButtonFrame = tabBar.convert(views[2].frame, to: view)
+            let middleButtonCenter = tabBar.convert(views[2].center, to: view)
+            
+            
+            plusButton = UIButton()
+            plusButton.frame = middleButtonFrame
+            plusButton.center = middleButtonCenter
+            plusButton.alpha = 1.0
+            plusButton.addTarget(self, action: #selector(dismissAddButtons), for: .touchUpInside)
+            plusButton.backgroundColor = .clear
+            view.insertSubview(plusButton, aboveSubview: views[2])
             
             socialButton = UIButton()
             socialButton.frame = CGRect(x: middleButtonFrame.origin.x, y: middleButtonFrame.origin.y, width: 60, height: 60)
@@ -316,6 +327,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         animator.removeAllBehaviors()
         
         if let views = interactionViews {
+            plusButton.removeFromSuperview()
             let convertedPoint = tabBar.convert(views[2].center, to: view)
             let point = CGPoint(x: convertedPoint.x, y: convertedPoint.y)
             
