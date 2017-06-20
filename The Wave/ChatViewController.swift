@@ -379,75 +379,74 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         productRef.observeSingleEvent(of: .value, with: { snapshot in
             if let productDict = snapshot.value as? [String: Any] {
                 
-                if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
-                    if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
-                        let product = Product(withName: productDict["name"] as! String,
-                                              model: jeepModel,
-                                              price: productDict["price"] as! Float,
-                                              condition: condition)
-                        
-                        product.uid = snapshot.key
-                        product.ownerId = productDict["owner"] as! String
-                        
-                        product.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval / 1000)
-                        
-                        if let likeCount = productDict["likeCount"] as? Int {
-                            product.likeCount = likeCount
-                        }
-                        
-                        product.originalBox = productDict["originalBox"] as! Bool
-                        if let year = productDict["releaseYear"] as? Int {
-                            product.releaseYear = year
-                        }
-                        if let desc = productDict["detailedDescription"] as? String {
-                            product.detailedDescription = desc
-                        }
-                        
-                        product.willingToShip = productDict["willingToShip"] as! Bool
-                        product.acceptsPayPal = productDict["acceptsPayPal"] as! Bool
-                        product.acceptsCash = productDict["acceptsCash"] as! Bool
-                        
-                        if let isSold = productDict["isSold"] as? Bool {
-                            product.isSold = isSold
-                        }
-                        
-                        var greenText = ""
-                        var outlineText = ""
-                        if product.ownerId == self.senderId {
-                            greenText = "Mark Sold"
-                            outlineText = "View Product"
-                            self.isProductOwner = true
-                        } else {
-                            greenText = "View Profile"
-                            outlineText = "View Product"
-                        }
-                        
-                        if let isSold = productDict["isSold"] as? Bool {
-                            if isSold {
-                                self.isProductSold = true
-                            } else {
-                                self.isProductSold = false
-                            }
+                let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String)
+                if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
+                    let product = Product(withName: productDict["name"] as! String,
+                                          model: jeepModel,
+                                          price: productDict["price"] as! Float,
+                                          condition: condition)
+                    
+                    product.uid = snapshot.key
+                    product.ownerId = productDict["owner"] as! String
+
+                    product.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval / 1000)
+
+                    if let likeCount = productDict["likeCount"] as? Int {
+                        product.likeCount = likeCount
+                    }
+
+                    product.originalBox = productDict["originalBox"] as! Bool
+                    if let year = productDict["releaseYear"] as? Int {
+                        product.releaseYear = year
+                    }
+                    if let desc = productDict["detailedDescription"] as? String {
+                        product.detailedDescription = desc
+                    }
+
+                    product.willingToShip = productDict["willingToShip"] as! Bool
+                    product.acceptsPayPal = productDict["acceptsPayPal"] as! Bool
+                    product.acceptsCash = productDict["acceptsCash"] as! Bool
+
+                    if let isSold = productDict["isSold"] as? Bool {
+                        product.isSold = isSold
+                    }
+
+                    var greenText = ""
+                    var outlineText = ""
+                    if product.ownerId == self.senderId {
+                        greenText = "Mark Sold"
+                        outlineText = "View Product"
+                        self.isProductOwner = true
+                    } else {
+                        greenText = "View Profile"
+                        outlineText = "View Product"
+                    }
+
+                    if let isSold = productDict["isSold"] as? Bool {
+                        if isSold {
+                            self.isProductSold = true
                         } else {
                             self.isProductSold = false
                         }
-                        
-                        if !self.isProductSold {
-                            self.setupIsSoldObserver()
-                        }
-                        
-                        self.greenButton.addTarget(self, action: #selector(self.greenButtonPressed), for: .touchUpInside)
-                        self.outlineButton.addTarget(self, action: #selector(self.outlinedButtonPressed), for: .touchUpInside)
-                        
-                        self.outlineButton.isEnabled = true
-                        self.product = product
-                        
-                        DispatchQueue.main.async {
-                            self.greenButton.setTitle(greenText, for: .normal)
-                            self.outlineButton.setTitle(outlineText, for: .normal)
-                        }
-                        
+                    } else {
+                        self.isProductSold = false
                     }
+
+                    if !self.isProductSold {
+                        self.setupIsSoldObserver()
+                    }
+
+                    self.greenButton.addTarget(self, action: #selector(self.greenButtonPressed), for: .touchUpInside)
+                    self.outlineButton.addTarget(self, action: #selector(self.outlinedButtonPressed), for: .touchUpInside)
+
+                    self.outlineButton.isEnabled = true
+                    self.product = product
+
+                    DispatchQueue.main.async {
+                        self.greenButton.setTitle(greenText, for: .normal)
+                        self.outlineButton.setTitle(outlineText, for: .normal)
+                    }
+
                 }
             }
         })

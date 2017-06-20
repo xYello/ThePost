@@ -98,7 +98,7 @@ class Product: NSObject {
             case .all:
                 string = string.replacingOccurrences(of: " - ", with: "")
             case .wranglerJK:
-                string.append("JK")
+                string.append("JK/JKU")
             case .wranglerTJ:
                 string.append("TJ")
             case .wranglerYJ:
@@ -137,37 +137,36 @@ class Product: NSObject {
     static func createProduct(with productDict: [String: AnyObject], with key: String) -> Product? {
         var product: Product?
         
-        if let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String) {
-            if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
-                product = Product(withName: productDict["name"] as! String,
-                                  model: jeepModel,
-                                  price: productDict["price"] as! Float,
-                                  condition: condition)
-                
-                product!.uid = key
-                product!.ownerId = productDict["owner"] as! String
-                
-                product!.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval / 1000)
-                
-                if let likeCount = productDict["likeCount"] as? Int {
-                    product!.likeCount = likeCount
-                }
-                
-                product!.originalBox = productDict["originalBox"] as! Bool
-                if let year = productDict["releaseYear"] as? Int {
-                    product!.releaseYear = year
-                }
-                if let desc = productDict["detailedDescription"] as? String {
-                    product!.detailedDescription = desc
-                }
-                
-                product!.willingToShip = productDict["willingToShip"] as! Bool
-                product!.acceptsPayPal = productDict["acceptsPayPal"] as! Bool
-                product!.acceptsCash = productDict["acceptsCash"] as! Bool
-                
-                if let isSold = productDict["isSold"] as? Bool {
-                    product!.isSold = isSold
-                }
+        let jeepModel = JeepModel.enumFromString(string: productDict["jeepModel"] as! String)
+        if let condition = Condition.enumFromString(string: productDict["condition"] as! String) {
+            product = Product(withName: productDict["name"] as! String,
+                              model: jeepModel,
+                              price: productDict["price"] as! Float,
+                              condition: condition)
+
+            product!.uid = key
+            product!.ownerId = productDict["owner"] as! String
+
+            product!.postedDate = Date(timeIntervalSince1970: productDict["datePosted"] as! TimeInterval / 1000)
+
+            if let likeCount = productDict["likeCount"] as? Int {
+                product!.likeCount = likeCount
+            }
+
+            product!.originalBox = productDict["originalBox"] as! Bool
+            if let year = productDict["releaseYear"] as? Int {
+                product!.releaseYear = year
+            }
+            if let desc = productDict["detailedDescription"] as? String {
+                product!.detailedDescription = desc
+            }
+
+            product!.willingToShip = productDict["willingToShip"] as! Bool
+            product!.acceptsPayPal = productDict["acceptsPayPal"] as! Bool
+            product!.acceptsCash = productDict["acceptsCash"] as! Bool
+
+            if let isSold = productDict["isSold"] as? Bool {
+                product!.isSold = isSold
             }
         }
         

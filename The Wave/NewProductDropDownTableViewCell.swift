@@ -101,7 +101,7 @@ class NewProductDropDownTableViewCell: NewProductBaseTableViewCell, UIPickerView
         
         switch pickerType {
         case .jeep:
-            pushValue = JeepModel.enumFromString(string: value)!
+            pushValue = JeepModel.enumFromString(string: value)
         case .condition:
             pushValue = Condition.enumFromString(string: value)!
         }

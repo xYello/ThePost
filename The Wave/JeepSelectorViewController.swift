@@ -60,10 +60,9 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         super.viewWillAppear(animated)
         
         if let currentlySelected = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) {
-            if let jeepType = JeepModel.enumFromString(string: currentlySelected) {
-                view.layoutIfNeeded()
-                collectionView.scrollToItem(at: findEnum(forType: jeepType), at: .centeredHorizontally, animated: false)
-            }
+            let jeepType = JeepModel.enumFromString(string: currentlySelected)
+            view.layoutIfNeeded()
+            collectionView.scrollToItem(at: findEnum(forType: jeepType), at: .centeredHorizontally, animated: false)
         }
     }
     

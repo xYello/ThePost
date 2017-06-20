@@ -108,13 +108,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             collectionView.performBatchUpdates({
                 self.collectionView.reloadSections(IndexSet(integer: 0))
             }, completion: nil)
-            
-            if let type = jeepType {
-                jeepModel = Jeep(withType: type)
-            } else {
-                jeepModel = Jeep(withType: JeepModel.all)
-            }
-            
+
+            jeepModel = Jeep(withType: jeepType)
+
             if let name = jeepModel.name {
                 jeepTypeLabel.text = name
             }
