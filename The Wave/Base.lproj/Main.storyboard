@@ -1940,6 +1940,22 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RaD-g3-UmJ">
+                                <rect key="frame" x="23" y="37" width="76" height="36"/>
+                                <color key="backgroundColor" red="0.34509803919999998" green="0.69019607839999997" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="CjD-o0-h2d"/>
+                                    <constraint firstAttribute="width" constant="76" id="nhd-xN-r3M"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
+                                <state key="normal" title="Mark as Sold">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="greenButtonTapped:" destination="OL0-SV-hFV" eventType="touchUpInside" id="fNz-tk-MMQ"/>
+                                    <action selector="markAsSoldPressed:" destination="OL0-SV-hFV" eventType="touchUpInside" id="NeR-Eu-YVP"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1s5-7y-Nxs">
                                 <rect key="frame" x="241" y="36" width="71" height="38"/>
                                 <subviews>
@@ -2528,6 +2544,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Fgf-ZP-VcA" secondAttribute="trailing" id="2cx-QV-Kwt"/>
                             <constraint firstAttribute="trailing" secondItem="snK-7f-ZrE" secondAttribute="trailing" id="BHd-rD-Uwv"/>
+                            <constraint firstItem="RaD-g3-UmJ" firstAttribute="centerY" secondItem="akD-zt-4Ge" secondAttribute="centerY" id="Egw-mx-7it"/>
                             <constraint firstItem="Fgf-ZP-VcA" firstAttribute="leading" secondItem="4FN-xO-var" secondAttribute="leading" id="Ghg-BD-uLI"/>
                             <constraint firstAttribute="bottom" secondItem="nrY-jH-RRf" secondAttribute="bottom" id="JvP-X2-1oR"/>
                             <constraint firstItem="Fgf-ZP-VcA" firstAttribute="top" secondItem="4FN-xO-var" secondAttribute="top" id="Krt-ct-lKN"/>
@@ -2540,6 +2557,7 @@
                             <constraint firstItem="1s5-7y-Nxs" firstAttribute="top" secondItem="5dz-iF-FhK" secondAttribute="bottom" constant="16" id="hNJ-ug-ca5"/>
                             <constraint firstItem="mvj-U5-D7z" firstAttribute="top" secondItem="Fgf-ZP-VcA" secondAttribute="bottom" id="lce-76-4LT"/>
                             <constraint firstItem="mvj-U5-D7z" firstAttribute="leading" secondItem="4FN-xO-var" secondAttribute="leading" id="p8a-Un-GoB"/>
+                            <constraint firstItem="RaD-g3-UmJ" firstAttribute="leading" secondItem="4FN-xO-var" secondAttribute="leading" constant="23" id="p9f-tJ-NaB"/>
                             <constraint firstItem="nrY-jH-RRf" firstAttribute="top" secondItem="snK-7f-ZrE" secondAttribute="bottom" id="vjS-Uq-yE2"/>
                         </constraints>
                     </view>
@@ -2549,6 +2567,7 @@
                         <outlet property="greenButton" destination="S6K-Gm-ZFh" id="P9W-uT-t3c"/>
                         <outlet property="likeCountLabel" destination="5hW-0n-MEw" id="EF8-QR-APD"/>
                         <outlet property="likeImageView" destination="VzE-eM-wc5" id="uSc-oT-4Ma"/>
+                        <outlet property="markAsSoldButton" destination="RaD-g3-UmJ" id="nJI-hn-mkk"/>
                         <outlet property="orangeButton" destination="PtQ-xq-0Ye" id="ztn-xJ-it5"/>
                         <outlet property="priceContainer" destination="1s5-7y-Nxs" id="qMw-8N-5Qf"/>
                         <outlet property="priceLabel" destination="akD-zt-4Ge" id="dKb-HK-GWG"/>

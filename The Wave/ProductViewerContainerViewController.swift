@@ -18,6 +18,8 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         case exCheck
     }
 
+    @IBOutlet weak var markAsSoldButton: UIButton!
+
     @IBOutlet weak var priceContainer: UIView!
     @IBOutlet weak var priceLabel: UILabel!
     
@@ -71,6 +73,8 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         view.clipsToBounds = true
         
         product.images.removeAll()
+
+        markAsSoldButton.roundCorners(radius: 8.0)
         
         priceContainer.layer.shadowRadius = 3.0
         priceContainer.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
@@ -108,13 +112,16 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                 orangeButton.setTitle("Delete", for: .normal)
                 greenButton.isHidden = true
             } else if product.isSold {
+                markAsSoldButton.isHidden = true
                 orangeButton.isHidden = true
                 greenButton.isHidden = true
             } else {
+                markAsSoldButton.isHidden = true
                 orangeButton.setTitle("Make Offer", for: .normal)
                 greenButton.setTitle("Message", for: .normal)
             }
         } else {
+            markAsSoldButton.isHidden = true
             orangeButton.isHidden = true
             greenButton.isHidden = true
         }
@@ -289,6 +296,16 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     
     // MARK: - Actions
     
+    @IBAction func markAsSoldPressed(_ sender: UIButton) {
+        let productRef = FIRDatabase.database().reference()
+        let childUpdates: [String: Any] = ["products/\(product.uid!)/isSold": true,
+                                           "products/\(product.uid!)/soldModel": "SOLD" + product.jeepModel.description]
+
+        productRef.updateChildValues(childUpdates)
+
+        dismiss(animated: true, completion: nil)
+    }
+
     @IBAction func likeButtonTapped(_ sender: UIButton) {
         if likeImageView.tintColor == #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1) {
             likeImageView.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3)
