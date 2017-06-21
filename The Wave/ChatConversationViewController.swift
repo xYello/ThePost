@@ -213,30 +213,70 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     
     // MARK: - Helpers
     
-    private func findAndSetIndex(forPreviousIndex index: Int) {
-        if conversations.count > 1 {
+    private func findAndSetIndex(forPreviousIndex index: Int, conversation: Conversation) -> Int {
+        var indexToReturn = compareDates(withConversation: conversation)
+
+        if index != -1 {
             let conversation = conversations.remove(at: index)
+
             tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-            
-            var iteratorIndex = 0
-            var indexToPlaceAt = -1
-            for iteratorConversation in conversations {
-                if indexToPlaceAt == -1 {
-                    if let date = iteratorConversation.date {
-                        if conversation.date! >= date {
-                            indexToPlaceAt = iteratorIndex
-                        }
-                    } else {
-                        indexToPlaceAt = iteratorIndex
-                    }
-                }
-                
-                iteratorIndex += 1
+            conversations.insert(conversation, at: indexToReturn)
+        } else {
+            if conversations.count > 1 {
+                conversations.insert(conversation, at: indexToReturn)
+            } else {
+                conversations.append(conversation)
+                indexToReturn = 0
             }
-            
-            conversations.insert(conversation, at: indexToPlaceAt)
-            tableView.insertRows(at: [IndexPath(row: indexToPlaceAt, section: 0)], with: .automatic)
         }
+        tableView.insertRows(at: [IndexPath(row: indexToReturn, section: 0)], with: .automatic)
+
+        if index != -1 && index != indexToReturn {
+            let presenence = userPresenceIndicatorReferences.remove(at: index)
+            let conversationRef = conversationReferences.remove(at: index)
+            let product = productReferences.remove(at: index)
+
+            userPresenceIndicatorReferences.insert(presenence, at: indexToReturn)
+            conversationReferences.insert(conversationRef, at: indexToReturn)
+            productReferences.insert(product, at: indexToReturn)
+        }
+
+        return indexToReturn
+    }
+
+    private func compareDates(withConversation conversation: Conversation) -> Int {
+        var iteratorIndex = 0
+        var indexToReturn = -1
+
+        for iteratorConversation in conversations {
+            if indexToReturn == -1 {
+                if let date = iteratorConversation.date {
+                    if conversation.date! >= date {
+                        indexToReturn = iteratorIndex
+                    }
+                } else {
+                    indexToReturn = iteratorIndex
+                }
+            }
+
+            iteratorIndex += 1
+        }
+
+        return indexToReturn
+    }
+
+    private func indexOfConversation(conversation: Conversation) -> Int {
+        var i = 0
+        var indexOfConversation = -1
+        for convo in conversations {
+            if convo.id != conversation.id {
+                i += 1
+            } else {
+                indexOfConversation = i
+            }
+        }
+
+        return indexOfConversation
     }
     
     // MARK: - Firebase observers
@@ -244,6 +284,31 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     private func observeConversations() {
         chatRef.observe(.childAdded, with: { snapshot in
             self.createChatObserver(forKey: snapshot.key)
+        })
+
+        chatRef.observe(.childRemoved, with: { snapshot in
+            let convo = Conversation()
+            convo.id = snapshot.key
+
+            let index = self.indexOfConversation(conversation: convo)
+            if index != -1 {
+                let presenence = self.userPresenceIndicatorReferences.remove(at: index)
+                let conversationRef = self.conversationReferences.remove(at: index)
+                let product = self.productReferences.remove(at: index)
+
+                presenence.removeAllObservers()
+                conversationRef.removeAllObservers()
+                product.removeAllObservers()
+
+                if let viewingConvo = self.userIsViewingConversation {
+                    if viewingConvo.id == convo.id {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+
+                self.conversations.remove(at: index)
+                self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+            }
         })
     }
     
@@ -277,14 +342,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                                     if let profileUrl = userDict["profileImage"] as? String {
                                         newConvo.otherPersonProfileImageUrl = URL(string: profileUrl)
                                     }
-                                    
-                                    self.conversations.append(newConvo)
-                                    self.tableView.reloadData()
-                                    
-                                    let index = self.conversations.count - 1
-                                    self.createPresenceListener(forKey: key, withConversation: newConvo)
+
                                     self.createLastMessageListener(forRef: ref, withConversation: newConvo)
-                                    self.getProductDetailsWith(conversationIndex: index, withConversation: newConvo)
                                     
                                     if let preLaunchConvo = self.newConversation {
                                         if newConvo.otherPersonId == preLaunchConvo.otherPersonId && newConvo.productID == preLaunchConvo.productID {
@@ -347,16 +406,6 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
             if let messageDict = snapshot.value as? [String: AnyObject] {
                 if let messageData = messageDict.values.first as? [String: String] {
                     if let text = messageData["text"] {
-                        var iteratorIndex = 0
-                        var conversationIndex = -1
-                        for convo in self.conversations {
-                            if convo.id == conversation.id {
-                                conversationIndex = iteratorIndex
-                            }
-                            
-                            iteratorIndex += 1
-                        }
-                        
                         conversation.lastSentMessage = text
                         
                         if let sender = messageData["senderId"] {
@@ -367,15 +416,19 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                                 }
                             }
                         }
-                        
+
+
+                        var previousIndex = self.indexOfConversation(conversation: conversation)
+
                         if let time = messageData["time"] {
                             conversation.lastSentMessageTime = time
-                            
-                            // Order conversations based on last sent
-                            self.findAndSetIndex(forPreviousIndex: conversationIndex)
+
+                            previousIndex = self.findAndSetIndex(forPreviousIndex: previousIndex, conversation: conversation)
+                            self.createPresenceListener(forKey: conversation.otherPersonId, withConversation: conversation)
+                            self.getProductDetailsWith(conversationIndex: self.conversations.count - 1, withConversation: conversation)
                         }
                         
-                        let indexPath = IndexPath(row: conversationIndex, section: 0)
+                        let indexPath = IndexPath(row: previousIndex, section: 0)
                         self.tableView.reloadRows(at: [indexPath], with: .automatic)
                     }
                 }
@@ -399,7 +452,6 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                 }
                 
                 if let name = productDict["name"] as? String {
-                    // TODO: Product Name?
                     conversation.productName = name
                 }
                 
