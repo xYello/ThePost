@@ -10,6 +10,10 @@ import UIKit
 import Firebase
 import FirebaseStorageUI
 
+protocol SocialTableViewCellDelegate {
+    func profileButtonTapped(withProfileId id: String)
+}
+
 class JeepSocialTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -31,6 +35,8 @@ class JeepSocialTableViewCell: UITableViewCell {
         }
     }
     var ownerKey: String?
+
+    var delegate: SocialTableViewCellDelegate?
     
     // MARK: - View lifecycle
     
@@ -51,7 +57,13 @@ class JeepSocialTableViewCell: UITableViewCell {
     @IBAction func likeButtonPressed(_ sender: Any) {
         incrementLikes()
     }
-    
+
+    @IBAction func profileButtonPressed(_ sender: UIButton) {
+        if let key = ownerKey {
+            delegate?.profileButtonTapped(withProfileId: key)
+        }
+    }
+
     // MARK: - Firebase
     
     func grabPostImage(forKey key: String, withURL urlString: String) {

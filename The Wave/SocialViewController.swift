@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorageUI
 
-class SocialViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SocialViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SocialTableViewCellDelegate {
 
     @IBOutlet weak var noPostsView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -107,7 +107,9 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
         
         socialCell.postKey = post.uid
         socialCell.ownerKey = post.ownerId
-        
+
+        socialCell.delegate = self
+
         return socialCell
     }
     
@@ -123,6 +125,18 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let socialCell = cell as? JeepSocialTableViewCell {
             socialCell.likesRef.removeAllObservers()
+        }
+    }
+
+    // MARK: - SocialTableViewCell delegate
+
+    func profileButtonTapped(withProfileId id: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "profileModalViewController") as? ProfileModalViewController {
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.idToPass = id
+
+            PresentationCenter.manager.present(viewController: vc, sender: tabBarController!)
         }
     }
     
