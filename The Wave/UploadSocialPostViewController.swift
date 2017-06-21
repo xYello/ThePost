@@ -22,6 +22,7 @@ UINavigationControllerDelegate {
     private var storageRef : FIRStorageReference!
     
     private var firstLaunch = false
+    private var didPickPhoto = false
     
     // MARK: - View Lifecycle
     
@@ -36,7 +37,7 @@ UINavigationControllerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !firstLaunch {
+        if !firstLaunch || !didPickPhoto {
             presentCameraOptions()
             firstLaunch = true
         }
@@ -48,6 +49,7 @@ UINavigationControllerDelegate {
         //Send to Firebase
         
         SubmitButton.isEnabled = false
+        SubmitButton.isHidden = true
         exButton.isEnabled = false
         
         if let userID = FIRAuth.auth()?.currentUser?.uid {
@@ -154,6 +156,7 @@ UINavigationControllerDelegate {
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        didPickPhoto = true
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         updateImageViewWith(Image: chosenImage)
         dismiss(animated: true, completion: nil)
