@@ -1,0 +1,3 @@
+language: swift
+xcode_workspace: The Wave.xcworkspace
+xcode_scheme: The Wave
