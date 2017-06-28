@@ -99,11 +99,24 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - KSCrash/Core (1.15.11):
+    - KSCrash/Reporting/Filters/Basic
+  - KSCrash/Recording (1.15.11):
+    - KSCrash/Recording/Tools (= 1.15.11)
+  - KSCrash/Recording/Tools (1.15.11)
+  - KSCrash/Reporting/Filters/Base (1.15.11):
+    - KSCrash/Recording
+  - KSCrash/Reporting/Filters/Basic (1.15.11):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
   - OneSignal (2.5.2)
   - Protobuf (3.2.1)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
+  - Sentry/Core (3.1.2)
+  - Sentry/KSCrash (3.1.2):
+    - KSCrash/Core (~> 1.15.9)
   - SwiftKeychainWrapper (3.0.1)
   - TwitterCore (2.8.0):
     - Fabric
@@ -120,8 +133,20 @@ DEPENDENCIES:
   - FirebaseUI
   - JSQMessagesViewController
   - OneSignal (~> 2.0)
+  - Sentry/Core (from `https://github.com/getsentry/sentry-cocoa.git`, tag `3.1.2`)
+  - Sentry/KSCrash (from `https://github.com/getsentry/sentry-cocoa.git`, tag `3.1.2`)
   - SwiftKeychainWrapper
   - UPCarouselFlowLayout
+
+EXTERNAL SOURCES:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 3.1.2
+
+CHECKOUT OPTIONS:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 3.1.2
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -144,14 +169,16 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  KSCrash: 7bd106ca4a2247774deeeb587c740ce0207de8f3
   OneSignal: 66d08b6b1e3c3858cbf28207ed20f1fa865ab2a2
   Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  Sentry: 5a578891f177e994d89d57effc70adb97bfb29db
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
   UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
 
-PODFILE CHECKSUM: f59b68019f211584048d55408d39f4fde2e5af5a
+PODFILE CHECKSUM: 89a0373fe4cc70ba12a36abe4659e4818d896c2f
 
 COCOAPODS: 1.2.0

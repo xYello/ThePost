@@ -93,6 +93,7 @@
 		4DD3CCC11E14688C00821C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */; };
 		4DD3CCC31E14C59C00821C7C /* AddNewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */; };
 		4DD3CCC91E14DD8700821C7C /* NewProductTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCC81E14DD8700821C7C /* NewProductTextTableViewCell.swift */; };
+		4DD8CB251F034ADE004546F7 /* SentryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8CB241F034ADE004546F7 /* SentryManager.swift */; };
 		4DE4D9EF1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */; };
 		4DE6622D1E6D12A100417EBB /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DE6622A1E6D12A100417EBB /* 1Password.xcassets */; };
 		4DE6622E1E6D12A100417EBB /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */; };
@@ -235,6 +236,7 @@
 		4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSelectionTabBarController.swift; sourceTree = "<group>"; };
 		4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
 		4DD3CCC81E14DD8700821C7C /* NewProductTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductTextTableViewCell.swift; sourceTree = "<group>"; };
+		4DD8CB241F034ADE004546F7 /* SentryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentryManager.swift; sourceTree = "<group>"; };
 		4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "The Wave-Bridging-Header.h"; sourceTree = "<group>"; };
 		4DE6622A1E6D12A100417EBB /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
@@ -478,8 +480,7 @@
 			children = (
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				60C2ED5C1E29C6DA00ED83EA /* Constants.swift */,
-				4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */,
-				4D17F2021E85911F000BEAAB /* PushNotification.swift */,
+				4DD8CB261F034AE9004546F7 /* Managers */,
 				4D14F6D81E31B4F800AF71F8 /* Extensions */,
 				4D14F6D71E31B4E500AF71F8 /* Models */,
 				4DD1BC9B1E0E251E005F4800 /* Sub Classes */,
@@ -646,6 +647,16 @@
 			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
+		4DD8CB261F034AE9004546F7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */,
+				4D17F2021E85911F000BEAAB /* PushNotification.swift */,
+				4DD8CB241F034ADE004546F7 /* SentryManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		4DE662281E6D127D00417EBB /* 1Password */ = {
 			isa = PBXGroup;
 			children = (
@@ -690,6 +701,7 @@
 				D88F1244ED4A79B931C2C532 /* [CP] Embed Pods Frameworks */,
 				1C4DDA71AF72728357EB4EDC /* [CP] Copy Pods Resources */,
 				4DA234461E7DB709006B5192 /* Embed App Extensions */,
+				4DD8CB231F034586004546F7 /* Sentry */,
 			);
 			buildRules = (
 			);
@@ -942,6 +954,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" ae444d788fc59ec99bb999f227056a93cb2264dc b6c80eec07f2189d1231e7e7950b60f268778a73e5670055dd55d810dc261e5c";
 		};
+		4DD8CB231F034586004546F7 /* Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Sentry;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which sentry-cli >/dev/null; then\nexport SENTRY_ORG=andrew-robinson\nexport SENTRY_PROJECT=the-wave\nexport SENTRY_AUTH_TOKEN=YOUR_AUTH_TOKEN\nERROR=$(sentry-cli upload-dsym 2>&1 >/dev/null)\nif [ ! $? -eq 0 ]; then\necho \"warning: sentry-cli - $ERROR\"\nfi\nelse\necho \"warning: sentry-cli not installed, download from https://github.com/getsentry/sentry-cli/releases\"\nfi";
+		};
 		D046166AFF8E28515004EDFF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1044,6 +1070,7 @@
 				4DBF61ED1E29E05100D07AD5 /* Review.swift in Sources */,
 				4D23EC701E1ECE0C0001C045 /* SignInUpPromptViewController.swift in Sources */,
 				4D5AB0BA1E24B512005BF23B /* ProductViewerExCheckTableViewCell.swift in Sources */,
+				4DD8CB251F034ADE004546F7 /* SentryManager.swift in Sources */,
 				4D23EC771E1F86360001C045 /* ChatConversationViewController.swift in Sources */,
 				4DBF61E31E29C26600D07AD5 /* ReviewsSummaryViewController.swift in Sources */,
 				4D5AB0B81E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift in Sources */,

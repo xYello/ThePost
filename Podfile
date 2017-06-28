@@ -27,6 +27,9 @@ target 'The Wave' do
   # OneSignal
   pod 'OneSignal', '~> 2.0'
 
+  # Sentry
+  pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :subspecs => ['Core', 'KSCrash'], :tag => '3.1.2'
+
   target 'The Wave Tests' do
     inherit! :search_paths
     # Pods for testing

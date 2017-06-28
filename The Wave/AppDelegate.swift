@@ -31,7 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         OneSignal.initWithLaunchOptions(launchOptions, appId: OneSignalKeys.appId, handleNotificationAction: nil, settings: ["kOSSettingsKeyAutoPrompt": false])
         OneSignal.inFocusDisplayType = .none
-        
+
+        SentryManager.shared.registerWithSentry()
+
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
