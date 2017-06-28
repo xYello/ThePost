@@ -1,3 +1,2 @@
 language: swift
-xcode_workspace: "The Wave.xcworkspace"
-xcode_scheme: "The Wave"
+script: xcodebuild -workspace "The Wave.xcworkspace" -scheme "The Wave" -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
