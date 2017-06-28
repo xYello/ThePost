@@ -1,2 +1,3 @@
 language: swift
-script: xctool -workspace "The Wave.xcworkspace" -scheme "The Wave" -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+osx_image: xcode8
+script: xcodebuild clean build -workspace "The Wave.xcworkspace" -scheme "The Wave" -destination "platform=iOS Simulator,name=iPhone 6S"
