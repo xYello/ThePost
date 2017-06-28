@@ -1,3 +1,5 @@
 language: swift
 osx_image: xcode8.3
-script: xcodebuild clean build -workspace "The Wave.xcworkspace" -scheme "The Wave" -destination "platform=iOS Simulator,name=iPhone 6S"
+
+install: gem install xcpretty
+script: xcodebuild clean build -workspace "The Wave.xcworkspace" -scheme "The Wave" -destination "platform=iOS Simulator,name=iPhone 6S" | xcpretty && exit ${PIPESTATUS[0]}
