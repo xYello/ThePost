@@ -217,9 +217,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             disableButtons()
             
             FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { user, error in
-                guard let user = user, error == nil else {
+                guard let _ = user, error == nil else {
                     // TODO: Update with error reporting.
                     print("Error signing up: \(error!.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error!)
                     
                     if error!.localizedDescription == "The email address is already in use by another account." {
                         self.errorLabel.isHidden = false
@@ -239,9 +240,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     guard error == nil else {
                         // TODO: Update with error reporting.
                         print("Error saving changes: \(error!.localizedDescription)")
+                        SentryManager.shared.sendEvent(withError: error!)
                         self.disableButtons()
                         return
                     }
+
+                    let user = User()
+                    user.uid = FIRAuth.auth()!.currentUser!.uid
+                    user.email = self.emailTextField.text!
+                    SentryManager.shared.addUserCrediantials(withUser: user)
                     
                     KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
                     self.ref.child("users").child(user.uid).setValue(["fullName": self.usernameTextField.text, "email": self.emailTextField.text])

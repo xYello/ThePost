@@ -282,6 +282,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                     }) { (error, committed, snapshot) in
                         if let error = error {
                             print("Error while updating reviews: \(error.localizedDescription)")
+                            SentryManager.shared.sendEvent(withError: error)
                         }
                     }
                 } else {
@@ -322,6 +323,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                     }) { (error, committed, snapshot) in
                         if let error = error {
                             print("Error while updating reviews: \(error.localizedDescription)")
+                            SentryManager.shared.sendEvent(withError: error)
                         }
                     }
                 }

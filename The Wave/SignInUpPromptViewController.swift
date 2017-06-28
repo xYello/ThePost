@@ -122,6 +122,7 @@ class SignInUpPromptViewController: UIViewController {
             if let error = error {
                 // TODO: Update with error reporting.
                 print("Error signing up: \(error.localizedDescription)")
+                SentryManager.shared.sendEvent(withError: error)
                 self.disableButtons()
             } else {
                 if FBSDKAccessToken.current() != nil {
@@ -132,6 +133,7 @@ class SignInUpPromptViewController: UIViewController {
                             if let error = error {
                                 // TODO: Update with error reporting.
                                 print("Error signing up: \(error.localizedDescription)")
+                                SentryManager.shared.sendEvent(withError: error)
                                 self.disableButtons()
                             } else {
                                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
@@ -139,6 +141,7 @@ class SignInUpPromptViewController: UIViewController {
                                     if let firError = firError {
                                         // TODO: Update with error reporting.
                                         print("Error signing up: \(firError.localizedDescription)")
+                                        SentryManager.shared.sendEvent(withError: firError)
                                         self.disableButtons()
                                     } else {
                                         if let data = result as? [String: AnyObject] {
@@ -159,6 +162,12 @@ class SignInUpPromptViewController: UIViewController {
                                             
                                             self.ref.child(user!.uid).child("verifiedWith").child("Facebook").setValue(true)
                                             self.ref.child(user!.uid).child("email").setValue(email)
+
+                                            let user = User()
+                                            user.uid = FIRAuth.auth()!.currentUser!.uid
+                                            user.email = email
+                                            SentryManager.shared.addUserCrediantials(withUser: user)
+
                                             self.saveOneSignalId()
                                             self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
                                         }
@@ -168,8 +177,9 @@ class SignInUpPromptViewController: UIViewController {
                         }
                     }
                 } else {
-                    // TODO: Update with error reporting.
-                    print("Did not actually sign up with Facebook.")
+                    let message = "Did not actually sign up with Facebook."
+                    print(message)
+                    SentryManager.shared.sendEvent(withMessage: message)
                     self.disableButtons()
                 }
             }
@@ -187,6 +197,7 @@ class SignInUpPromptViewController: UIViewController {
                     if let firError = firError {
                         // TODO: Update with error reporting.
                         print("Error signing up: \(firError.localizedDescription)")
+                        SentryManager.shared.sendEvent(withError: error!)
                         self.disableButtons()
                     } else {
                         var name = ""
@@ -207,6 +218,10 @@ class SignInUpPromptViewController: UIViewController {
                                 self.ref.child(user!.uid).child("fullName").setValue(name)
                             }
                         })
+
+                        let user = User()
+                        user.uid = FIRAuth.auth()!.currentUser!.uid
+                        SentryManager.shared.addUserCrediantials(withUser: user)
                         
                         self.saveOneSignalId()
                         self.performSegue(withIdentifier: "promptToWalkthroughSegue", sender: self)
@@ -216,6 +231,7 @@ class SignInUpPromptViewController: UIViewController {
             } else if let error = error {
                 // TODO: Update with error reporting.
                 print("Error signing up: \(error.localizedDescription)")
+                SentryManager.shared.sendEvent(withError: error)
                 self.disableButtons()
             }
         

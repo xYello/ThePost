@@ -45,10 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
                 if let error = error {
                     print("Error reauthenticating: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
                     do {
                         try FIRAuth.auth()?.signOut()
                     } catch {
                         print("Error signing out")
+                        SentryManager.shared.sendEvent(withError: error)
                     }
                 } else {
                     self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
@@ -63,10 +65,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
                 if let error = error {
                     print("Error reauthenticating: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
                     do {
                         try FIRAuth.auth()?.signOut()
                     } catch {
                         print("Error signing out")
+                        SentryManager.shared.sendEvent(withError: error)
                     }
                 } else {
                     self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
@@ -81,10 +85,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
                 if let error = error {
                     print("Error reauthenticating: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
                     do {
                         try FIRAuth.auth()?.signOut()
                     } catch {
                         print("Error signing out")
+                        SentryManager.shared.sendEvent(withError: error)
                     }
                 } else {
                     self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
@@ -99,6 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 try FIRAuth.auth()?.signOut()
             } catch {
                 print("Error signing out")
+                SentryManager.shared.sendEvent(withError: error)
             }
         }
         
@@ -107,6 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let er = error {
                 // TODO: Update with error reporting.
                 print("Error getting remote config: \(er.localizedDescription)")
+                SentryManager.shared.sendEvent(withError: er)
             }
             rc.activateFetched()
         })

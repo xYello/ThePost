@@ -342,12 +342,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             storageRef.child(filePath).put(imageData!, metadata: metadata, completion: { metadata, error in
                 if let error = error {
                     print("Error uploading images: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
                 } else {
                     
                     // Grab image url and store on user
                     storageRef.child(filePath).downloadURL() { url, error in
                         if let error = error {
                             print("Error getting download url: \(error.localizedDescription)")
+                            SentryManager.shared.sendEvent(withError: error)
                         } else {
                             if let url = url {
                                 let stringUrl = url.absoluteString

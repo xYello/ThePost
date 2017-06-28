@@ -118,6 +118,7 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
         }) { (error, committed, snapshot) in
             if let error = error {
                 print(error.localizedDescription)
+                SentryManager.shared.sendEvent(withError: error)
             }
         }
         

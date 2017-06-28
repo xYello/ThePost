@@ -659,12 +659,14 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                                 self.storageRef.child(filePath).put(imageData, metadata: metadata, completion: { metadata, error in
                                     if let error = error {
                                         print("Error uploading images: \(error.localizedDescription)")
+                                        SentryManager.shared.sendEvent(withError: error)
                                     } else {
                                         
                                         // Grab image url and store in product dictionary
                                         self.storageRef.child(filePath).downloadURL() { url, error in
                                             if let error = error {
                                                 print("Error getting download url: \(error.localizedDescription)")
+                                                SentryManager.shared.sendEvent(withError: error)
                                             } else {
                                                 if let url = url {
                                                     let stringUrl = url.absoluteString
@@ -691,6 +693,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                     
                 }, withCancel: { error in
                     print("Error saving new product: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
                 })
             }
         }

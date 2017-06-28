@@ -132,11 +132,18 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                             self.errorLabel.text = "Please stop."
                         } else {
                             print("Error signing in: \(error.localizedDescription)")
+                            SentryManager.shared.sendEvent(withError: error)
                         }
                         
                         self.disableButtons()
                     } else {
                         FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
+
+                        let user = User()
+                        user.uid = FIRAuth.auth()!.currentUser!.uid
+                        user.email = self.emailTextField.text!
+                        SentryManager.shared.addUserCrediantials(withUser: user)
+
                         self.saveOneSignalId()
                         KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
                         self.sendToNextViewController()
@@ -173,6 +180,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         self.errorLabel.text = "Please stop."
                     } else {
                         print("Error signing in: \(error.localizedDescription)")
+                        SentryManager.shared.sendEvent(withError: error)
                     }
                     
                     self.disableButtons()

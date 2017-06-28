@@ -121,6 +121,8 @@ class SettingsContainerViewController: UIViewController {
     @IBAction func wantsToLogout(_ sender: UIButton) {
         let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid)
         ref.child("isOnline").removeValue()
+
+        SentryManager.shared.clearUserCredentials()
         
         if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
             ref.child("pushNotificationIds").child(id).removeValue()
@@ -142,6 +144,7 @@ class SettingsContainerViewController: UIViewController {
         } catch {
             FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
             print("Error signing out")
+            SentryManager.shared.sendEvent(withError: error)
         }
     }
     
@@ -151,6 +154,7 @@ class SettingsContainerViewController: UIViewController {
             FIRAuth.auth()!.currentUser!.updatePassword(passwordTextField.text!, completion: { error in
                 if let error = error {
                     print("Error saving password: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
                 } else {
                     KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
                 }
@@ -163,6 +167,7 @@ class SettingsContainerViewController: UIViewController {
             ref.updateChildValues(updates) { error, ref in
                 if let error = error {
                     print("Error saving name: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
                 } else {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: nameChangeNotificationKey), object: nil, userInfo: nil)
                 }

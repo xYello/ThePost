@@ -50,6 +50,7 @@ class BuildTrustViewController: UIViewController {
             if let error = error {
                 // TODO: Update with error reporting.
                 print("Error signing up: \(error.localizedDescription)")
+                SentryManager.shared.sendEvent(withError: error)
             } else {
                 if FBSDKAccessToken.current() != nil {
                     let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,name"], tokenString: FBSDKAccessToken.current().tokenString, version: nil, httpMethod: "GET")
@@ -59,11 +60,13 @@ class BuildTrustViewController: UIViewController {
                             if let error = error {
                                 // TODO: Update with error reporting.
                                 print("Error signing up: \(error.localizedDescription)")
+                                SentryManager.shared.sendEvent(withError: error)
                             } else {
                                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                                 FIRAuth.auth()?.currentUser?.link(with: credential) { user, error in
                                     if let error = error {
                                         print("Error in Facebook auth: \(error.localizedDescription)")
+                                        SentryManager.shared.sendEvent(withError: error)
                                     } else {
                                         
                                         if let data = result as? [String: AnyObject] {
@@ -89,8 +92,9 @@ class BuildTrustViewController: UIViewController {
                         }
                     }
                 } else {
-                    // TODO: Update with error reporting.
-                    print("Did not actually sign up with Facebook.")
+                    let message = "Did not actually sign up with Facebook."
+                    print(message)
+                    SentryManager.shared.sendEvent(withMessage: message)
                 }
             }
         })
@@ -104,6 +108,7 @@ class BuildTrustViewController: UIViewController {
                 FIRAuth.auth()?.currentUser?.link(with: credential) { user, error in
                     if let error = error {
                         print("Error in Twitter auth: \(error.localizedDescription)")
+                        SentryManager.shared.sendEvent(withError: error)
                     } else {
                         FIRDatabase.database().reference().child("users").child(user!.uid).child("verifiedWith").child("Twitter").setValue(true)
                         
@@ -122,6 +127,7 @@ class BuildTrustViewController: UIViewController {
             } else if let error = error {
                 // TODO: Update with error reporting.
                 print("Error signing up: \(error.localizedDescription)")
+                SentryManager.shared.sendEvent(withError: error)
             }
             
         }

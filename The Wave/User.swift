@@ -9,9 +9,11 @@
 import UIKit
 
 class User: NSObject {
+
+    var uid: String!
     
     var fullName: String = "Seller Name"
-    
+    var email: String?
     var profileUrl: URL!
     
     var starRating = 0

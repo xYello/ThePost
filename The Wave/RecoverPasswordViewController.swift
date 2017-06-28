@@ -85,6 +85,7 @@ class RecoverPasswordViewController: UIViewController, UITextFieldDelegate {
             FIRAuth.auth()?.sendPasswordReset(withEmail: text) { error in
                 if let error = error {
                     print("Error resetting password: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
                 } else {
                     self.dismiss(animated: true, completion: nil)
                 }

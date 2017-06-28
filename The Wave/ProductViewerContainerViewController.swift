@@ -513,6 +513,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         }) { (error, committed, snapshot) in
             if let error = error {
                 print(error.localizedDescription)
+                SentryManager.shared.sendEvent(withError: error)
             }
         }
         
@@ -529,6 +530,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         }) { (error, committed, snapshot) in
             if let error = error {
                 print(error.localizedDescription)
+                SentryManager.shared.sendEvent(withError: error)
             }
         }
     }
