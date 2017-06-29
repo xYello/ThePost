@@ -136,6 +136,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         
         if let message = conversation.firstMessage, message != "" {
             inputToolbar.contentView.textView.text = message
+            inputToolbar.toggleSendButtonEnabled()
             
             inputBarDefaultHeight = inputToolbar.preferredDefaultHeight
             inputToolbar.preferredDefaultHeight = 120.0
