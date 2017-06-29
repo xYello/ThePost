@@ -417,7 +417,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 productViewType = .selling
             } else if sender.currentTitle == "SOLD" {
                 productViewType = .sold
-            } else if sender.currentTitle == "LIKED" {
+            } else if sender.currentTitle == "FAVORITES" {
                 productViewType = .liked
             }
             
