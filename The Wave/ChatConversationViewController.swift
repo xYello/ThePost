@@ -181,6 +181,21 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         
         return cell
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if let currentUserID = FIRAuth.auth()?.currentUser?.uid {
+                let conversation = conversations[indexPath.row]
+                let basicRef = FIRDatabase.database().reference()
+
+                basicRef.child("user-chats").child(conversation.otherPersonId).child(conversation.id).removeValue()
+                basicRef.child("user-chats").child(currentUserID).child(conversation.id).removeValue()
+                basicRef.child("chats").child(conversation.id).removeValue()
+
+            }
+
+        }
+    }
     
     // MARK: - TableView delegate
     
