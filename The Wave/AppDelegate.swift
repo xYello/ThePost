@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         } else if FBSDKAccessToken.current() != nil {
             let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-            FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
+            FIRAuth.auth()?.currentUser?.reauthenticate(with: credential, completion: { error in
                 if let error = error {
                     print("Error reauthenticating: \(error.localizedDescription)")
                     SentryManager.shared.sendEvent(withError: error)
@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         } else if let token = KeychainWrapper.standard.string(forKey: TwitterInfoKeys.token), let secret = KeychainWrapper.standard.string(forKey: TwitterInfoKeys.secret) {
             let credential = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
-            FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
+            FIRAuth.auth()?.currentUser?.reauthenticate(with: credential, completion: { error in
                 if let error = error {
                     print("Error reauthenticating: \(error.localizedDescription)")
                     SentryManager.shared.sendEvent(withError: error)
