@@ -2,7 +2,6 @@
 # platform :ios, '9.0'
 
 target 'The Wave' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
   # Collection View custom scrolling
@@ -30,6 +29,9 @@ target 'The Wave' do
   # Sentry
   pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :subspecs => ['Core', 'KSCrash'], :tag => '3.1.2'
 
+  # Reachability
+  pod 'ReachabilitySwift', '~> 3'
+
   target 'The Wave Tests' do
     inherit! :search_paths
     # Pods for testing
@@ -38,8 +40,6 @@ target 'The Wave' do
 end
 
 target 'OneSignalNotificationServiceExtension' do
-
-use_frameworks!
-
+  use_frameworks!
   pod 'OneSignal', '~> 2.0'
 end

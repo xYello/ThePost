@@ -111,6 +111,7 @@ PODS:
     - KSCrash/Reporting/Filters/Base
   - OneSignal (2.5.2)
   - Protobuf (3.2.1)
+  - ReachabilitySwift (3)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -133,6 +134,7 @@ DEPENDENCIES:
   - FirebaseUI
   - JSQMessagesViewController
   - OneSignal (~> 2.0)
+  - ReachabilitySwift (~> 3)
   - Sentry/Core (from `https://github.com/getsentry/sentry-cocoa.git`, tag `3.1.2`)
   - Sentry/KSCrash (from `https://github.com/getsentry/sentry-cocoa.git`, tag `3.1.2`)
   - SwiftKeychainWrapper
@@ -172,6 +174,7 @@ SPEC CHECKSUMS:
   KSCrash: 7bd106ca4a2247774deeeb587c740ce0207de8f3
   OneSignal: 66d08b6b1e3c3858cbf28207ed20f1fa865ab2a2
   Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Sentry: 5a578891f177e994d89d57effc70adb97bfb29db
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
@@ -179,6 +182,6 @@ SPEC CHECKSUMS:
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
   UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
 
-PODFILE CHECKSUM: 89a0373fe4cc70ba12a36abe4659e4818d896c2f
+PODFILE CHECKSUM: cc57e923f036f90cb01e22efb9f8a045db99d8c7
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

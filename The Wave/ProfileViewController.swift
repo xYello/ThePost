@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import AVFoundation
+import ReachabilitySwift
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -55,6 +56,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             tableView.reloadData()
         }
     }
+
+    private let reachability = Reachability()!
     
     private var sellingProducts: [Product] = []
     private var soldProducts: [Product] = []
@@ -687,11 +690,24 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     private func updateProfileInformation(with uid: String) {
-        getUserProfile(with: uid)
-        grabUsersReviewStats(with: uid)
-        grabProfileImage(with: uid)
-        
-        userBuiltTrust(notification: nil)
+        if reachability.isReachable {
+            getUserProfile(with: uid)
+            grabUsersReviewStats(with: uid)
+            grabProfileImage(with: uid)
+
+            userBuiltTrust(notification: nil)
+        } else {
+            reachability.whenReachable = { reachability in
+                self.getUserProfile(with: uid)
+                self.grabUsersReviewStats(with: uid)
+                self.grabProfileImage(with: uid)
+
+                self.userBuiltTrust(notification: nil)
+            }
+            do { try reachability.startNotifier() } catch {
+                SentryManager.shared.sendEvent(withMessage: "Reachability has failed to initiazlied its notifications!")
+            }
+        }
     }
     
     // MARK: - Notifications

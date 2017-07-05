@@ -14,6 +14,7 @@ import TwitterKit
 import SwiftKeychainWrapper
 import FBSDKCoreKit
 import OneSignal
+import ReachabilitySwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     private var userRef: FIRDatabaseReference?
+    private let reachability = Reachability()!
+
+    // MARK: - Application delegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
@@ -40,84 +44,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "slidingSelectionTabBarController") as! SlidingSelectionTabBarController
         self.window!.makeKeyAndVisible()
         
-        if let pass = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserPass), let email = FIRAuth.auth()?.currentUser?.email {
-            let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)
-            FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
-                if let error = error {
-                    print("Error reauthenticating: \(error.localizedDescription)")
-                    SentryManager.shared.sendEvent(withError: error)
-                    do {
-                        try FIRAuth.auth()?.signOut()
-                    } catch {
-                        print("Error signing out")
-                        SentryManager.shared.sendEvent(withError: error)
-                    }
-                } else {
-                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
-                    self.userRef!.onDisconnectRemoveValue()
-                    self.userRef!.setValue(true)
-                    self.checkForFirstRunOneSignalId()
-                }
-                
-            })
-        } else if FBSDKAccessToken.current() != nil {
-            let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-            FIRAuth.auth()?.currentUser?.reauthenticate(with: credential, completion: { error in
-                if let error = error {
-                    print("Error reauthenticating: \(error.localizedDescription)")
-                    SentryManager.shared.sendEvent(withError: error)
-                    do {
-                        try FIRAuth.auth()?.signOut()
-                    } catch {
-                        print("Error signing out")
-                        SentryManager.shared.sendEvent(withError: error)
-                    }
-                } else {
-                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
-                    self.userRef!.onDisconnectRemoveValue()
-                    self.userRef!.setValue(true)
-                    self.checkForFirstRunOneSignalId()
-                }
-                
-            })
-        } else if let token = KeychainWrapper.standard.string(forKey: TwitterInfoKeys.token), let secret = KeychainWrapper.standard.string(forKey: TwitterInfoKeys.secret) {
-            let credential = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
-            FIRAuth.auth()?.currentUser?.reauthenticate(with: credential, completion: { error in
-                if let error = error {
-                    print("Error reauthenticating: \(error.localizedDescription)")
-                    SentryManager.shared.sendEvent(withError: error)
-                    do {
-                        try FIRAuth.auth()?.signOut()
-                    } catch {
-                        print("Error signing out")
-                        SentryManager.shared.sendEvent(withError: error)
-                    }
-                } else {
-                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
-                    self.userRef!.onDisconnectRemoveValue()
-                    self.userRef!.setValue(true)
-                    self.checkForFirstRunOneSignalId()
-                }
-                
-            })
+        if reachability.isReachable {
+            reauthenticate()
         } else {
-            do {
-                try FIRAuth.auth()?.signOut()
-            } catch {
-                print("Error signing out")
-                SentryManager.shared.sendEvent(withError: error)
+            reachability.whenReachable = { reachability in
+                self.reauthenticate()
+            }
+            do { try reachability.startNotifier() } catch {
+                SentryManager.shared.sendEvent(withMessage: "Reachability has failed to initiazlied its notifications!")
             }
         }
-        
-        let rc = FIRRemoteConfig.remoteConfig()
-        rc.fetch(completionHandler: { status, error in
-            if let er = error {
-                // TODO: Update with error reporting.
-                print("Error getting remote config: \(er.localizedDescription)")
-                SentryManager.shared.sendEvent(withError: er)
-            }
-            rc.activateFetched()
-        })
         
         return true
     }
@@ -183,6 +119,87 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             })
         }
+    }
+
+    private func reauthenticate() {
+        if let pass = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserPass), let email = FIRAuth.auth()?.currentUser?.email {
+            let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)
+            FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
+                if let error = error {
+                    print("Error reauthenticating: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
+                    do {
+                        try FIRAuth.auth()?.signOut()
+                    } catch {
+                        print("Error signing out")
+                        SentryManager.shared.sendEvent(withError: error)
+                    }
+                } else {
+                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
+                    self.userRef!.onDisconnectRemoveValue()
+                    self.userRef!.setValue(true)
+                    self.checkForFirstRunOneSignalId()
+                }
+
+            })
+        } else if FBSDKAccessToken.current() != nil {
+            let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            FIRAuth.auth()?.currentUser?.reauthenticate(with: credential, completion: { error in
+                if let error = error {
+                    print("Error reauthenticating: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
+                    do {
+                        try FIRAuth.auth()?.signOut()
+                    } catch {
+                        print("Error signing out")
+                        SentryManager.shared.sendEvent(withError: error)
+                    }
+                } else {
+                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
+                    self.userRef!.onDisconnectRemoveValue()
+                    self.userRef!.setValue(true)
+                    self.checkForFirstRunOneSignalId()
+                }
+
+            })
+        } else if let token = KeychainWrapper.standard.string(forKey: TwitterInfoKeys.token), let secret = KeychainWrapper.standard.string(forKey: TwitterInfoKeys.secret) {
+            let credential = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
+            FIRAuth.auth()?.currentUser?.reauthenticate(with: credential, completion: { error in
+                if let error = error {
+                    print("Error reauthenticating: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
+                    do {
+                        try FIRAuth.auth()?.signOut()
+                    } catch {
+                        print("Error signing out")
+                        SentryManager.shared.sendEvent(withError: error)
+                    }
+                } else {
+                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
+                    self.userRef!.onDisconnectRemoveValue()
+                    self.userRef!.setValue(true)
+                    self.checkForFirstRunOneSignalId()
+                }
+
+            })
+        } else {
+            do {
+                try FIRAuth.auth()?.signOut()
+            } catch {
+                print("Error signing out")
+                SentryManager.shared.sendEvent(withError: error)
+            }
+        }
+
+        let rc = FIRRemoteConfig.remoteConfig()
+        rc.fetch(completionHandler: { status, error in
+            if let er = error {
+                // TODO: Update with error reporting.
+                print("Error getting remote config: \(er.localizedDescription)")
+                SentryManager.shared.sendEvent(withError: er)
+            }
+            rc.activateFetched()
+        })
     }
     
 }
