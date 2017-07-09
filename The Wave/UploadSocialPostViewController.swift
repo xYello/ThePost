@@ -14,9 +14,9 @@ class UploadSocialPostViewController: UIViewController, UIImagePickerControllerD
 UINavigationControllerDelegate {
     
     @IBOutlet weak var exButton: UIButton!
-    @IBOutlet weak var SubmitButton: UIButton!
-    @IBOutlet weak var TitleLabel: UILabel!
-    @IBOutlet weak var PreviewImageView: UIImageView!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var previewImageView: UIImageView!
     
     private var ref: FIRDatabaseReference!
     private var storageRef : FIRStorageReference!
@@ -31,7 +31,8 @@ UINavigationControllerDelegate {
         
         ref = FIRDatabase.database().reference()
         storageRef = FIRStorage.storage().reference()
-        
+
+        submitButton.roundCorners(radius: 8.0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,11 +46,11 @@ UINavigationControllerDelegate {
     
     // MARK: - Actions
     
-    @IBAction func SubmitButtonAction(_ sender: Any) {
+    @IBAction func submitButtonAction(_ sender: Any) {
         //Send to Firebase
         
-        SubmitButton.isEnabled = false
-        SubmitButton.isHidden = true
+        submitButton.isEnabled = false
+        submitButton.isHidden = true
         exButton.isEnabled = false
         
         if let userID = FIRAuth.auth()?.currentUser?.uid {
@@ -59,7 +60,7 @@ UINavigationControllerDelegate {
                                          "datePosted": FIRServerValue.timestamp()]
             
             // Compress stored image
-            let imageData = UIImageJPEGRepresentation(self.PreviewImageView.image!, 0.1)
+            let imageData = UIImageJPEGRepresentation(self.previewImageView.image!, 0.1)
             
             // Upload image
             let filePath = "social-posts/" + key + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
@@ -165,9 +166,9 @@ UINavigationControllerDelegate {
     }
     
     func updateImageViewWith(Image image: UIImage) {
-        self.PreviewImageView.image = image
-        self.TitleLabel.text = "Here's a preview of what it will look like in the feed!"
-        self.SubmitButton.isHidden = false
+        self.previewImageView.image = image
+        self.titleLabel.text = "Here's a preview of what it will look like in the feed!"
+        self.submitButton.isHidden = false
     }
     
 }

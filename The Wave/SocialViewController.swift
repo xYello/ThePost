@@ -77,7 +77,6 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
 
     }
     
-    
     // MARK: - TableView datasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
