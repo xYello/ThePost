@@ -3665,13 +3665,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PIPBackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="cFO-7a-D9l">
-                                <rect key="frame" x="19" y="195" width="337" height="212"/>
+                                <rect key="frame" x="19" y="228" width="337" height="212"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cFO-7a-D9l" secondAttribute="height" multiplier="337:212" id="Xwz-8e-BEn"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWz-N9-jK2">
-                                <rect key="frame" x="322" y="44" width="41" height="34"/>
+                                <rect key="frame" x="322" y="28" width="41" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="41" id="4th-98-XzY"/>
                                     <constraint firstAttribute="height" constant="34" id="vTP-Gt-9FO"/>
@@ -3681,10 +3681,9 @@
                                     <action selector="exButtonPressed:" destination="4Re-cP-Oz2" eventType="touchUpInside" id="acO-JX-pdN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an option, or cancel!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3J0-Qf-WP5">
-                                <rect key="frame" x="37" y="45" width="300" height="99"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an option or cancel!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3J0-Qf-WP5">
+                                <rect key="frame" x="19" y="106" width="337" height="99"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="KT7-hU-ZsB"/>
                                     <constraint firstAttribute="height" constant="99" id="WO4-hx-Mog"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="23"/>
@@ -3693,34 +3692,53 @@
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ej0-hJ-fwp">
                                 <rect key="frame" x="37" y="604" width="300" height="43"/>
-                                <color key="backgroundColor" red="0.54946666960000001" green="0.27504032849999999" blue="0.2274846435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.43541029095649719" green="0.68122416734695435" blue="0.47849032282829285" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="DRU-5W-2Af"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="17"/>
-                                <state key="normal" title="Submit">
+                                <state key="normal" title="Good to go!">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="submitButtonAction" destination="4Re-cP-Oz2" eventType="touchUpInside" id="l0g-Xi-46T"/>
+                                    <action selector="submitButtonAction:" destination="4Re-cP-Oz2" eventType="touchUpInside" id="bjX-ks-GpF"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ze0-PN-pDw">
+                                <rect key="frame" x="37" y="545" width="300" height="43"/>
+                                <color key="backgroundColor" red="0.54946666960000001" green="0.27504032849999999" blue="0.2274846435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="XtS-mD-Ozf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="17"/>
+                                <state key="normal" title="Edit the image again?">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="editImageButtonPressed:" destination="4Re-cP-Oz2" eventType="touchUpInside" id="LTo-Bg-cpz"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.1647058824" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="cFO-7a-D9l" firstAttribute="top" secondItem="QVs-7q-dr7" secondAttribute="topMargin" constant="175" id="58z-BF-uIy"/>
-                            <constraint firstItem="gWz-N9-jK2" firstAttribute="top" secondItem="QVs-7q-dr7" secondAttribute="topMargin" constant="24" id="BEc-SN-wyX"/>
-                            <constraint firstItem="3J0-Qf-WP5" firstAttribute="top" secondItem="PsS-Hr-nAr" secondAttribute="bottom" constant="25" id="HsE-8K-xg0"/>
+                            <constraint firstItem="Ze0-PN-pDw" firstAttribute="leading" secondItem="Ej0-hJ-fwp" secondAttribute="leading" id="6wa-Qm-9Ru"/>
+                            <constraint firstItem="gWz-N9-jK2" firstAttribute="top" secondItem="QVs-7q-dr7" secondAttribute="topMargin" constant="8" id="BEc-SN-wyX"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Ej0-hJ-fwp" secondAttribute="bottom" constant="20" id="I3I-Oe-o9Z"/>
                             <constraint firstAttribute="trailing" secondItem="Ej0-hJ-fwp" secondAttribute="trailing" constant="38" id="KDe-7T-8RB"/>
-                            <constraint firstAttribute="trailing" secondItem="cFO-7a-D9l" secondAttribute="trailing" constant="19" id="LSq-Lb-5M9"/>
+                            <constraint firstItem="Ze0-PN-pDw" firstAttribute="trailing" secondItem="Ej0-hJ-fwp" secondAttribute="trailing" id="L0O-rj-FVv"/>
                             <constraint firstItem="Ej0-hJ-fwp" firstAttribute="leading" secondItem="QVs-7q-dr7" secondAttribute="leading" constant="37" id="Omt-Vh-f8A"/>
+                            <constraint firstItem="cFO-7a-D9l" firstAttribute="centerX" secondItem="QVs-7q-dr7" secondAttribute="centerX" id="PAl-XC-NAl"/>
+                            <constraint firstItem="3J0-Qf-WP5" firstAttribute="leading" secondItem="QVs-7q-dr7" secondAttribute="leading" constant="19" id="XFp-Yk-Ko8"/>
+                            <constraint firstItem="Ej0-hJ-fwp" firstAttribute="top" secondItem="Ze0-PN-pDw" secondAttribute="bottom" constant="16" id="aQg-kp-Pbb"/>
                             <constraint firstAttribute="trailing" secondItem="gWz-N9-jK2" secondAttribute="trailing" constant="12" id="dmF-jb-i2r"/>
+                            <constraint firstItem="cFO-7a-D9l" firstAttribute="centerY" secondItem="QVs-7q-dr7" secondAttribute="centerY" id="ejE-pm-6Zu"/>
                             <constraint firstItem="3J0-Qf-WP5" firstAttribute="centerX" secondItem="QVs-7q-dr7" secondAttribute="centerXWithinMargins" id="jmm-XT-Gpr"/>
+                            <constraint firstItem="cFO-7a-D9l" firstAttribute="top" secondItem="3J0-Qf-WP5" secondAttribute="bottom" constant="23" id="mGe-rf-jiR"/>
                             <constraint firstItem="cFO-7a-D9l" firstAttribute="leading" secondItem="QVs-7q-dr7" secondAttribute="leading" constant="19" id="sis-xp-i61"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="editImageButton" destination="Ze0-PN-pDw" id="0SU-95-m6L"/>
                         <outlet property="exButton" destination="gWz-N9-jK2" id="muc-Dy-6St"/>
                         <outlet property="previewImageView" destination="cFO-7a-D9l" id="icR-yb-Q0f"/>
                         <outlet property="submitButton" destination="Ej0-hJ-fwp" id="De1-zW-yXI"/>
@@ -3729,7 +3747,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LGI-jt-Okf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2560.8000000000002" y="3318.8905547226391"/>
+            <point key="canvasLocation" x="2561" y="3388"/>
         </scene>
         <!--👋-->
         <scene sceneID="1o6-9s-cEN">
@@ -3983,7 +4001,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-7e-Uov">
-                                                        <rect key="frame" x="61" y="8" width="60" height="17"/>
+                                                        <rect key="frame" x="62" y="8" width="60" height="17"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>

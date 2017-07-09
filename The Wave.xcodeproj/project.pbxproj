@@ -478,6 +478,7 @@
 			children = (
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				60C2ED5C1E29C6DA00ED83EA /* Constants.swift */,
+				4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */,
 				4DD8CB261F034AE9004546F7 /* Managers */,
 				4D14F6D81E31B4F800AF71F8 /* Extensions */,
 				4D14F6D71E31B4E500AF71F8 /* Models */,
@@ -661,7 +662,6 @@
 				4DE6622A1E6D12A100417EBB /* 1Password.xcassets */,
 				4DE6622B1E6D12A100417EBB /* OnePasswordExtension.h */,
 				4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */,
-				4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */,
 			);
 			name = 1Password;
 			sourceTree = "<group>";

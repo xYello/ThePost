@@ -9,20 +9,26 @@
 import UIKit
 import AVFoundation
 import Firebase
+import TOCropViewController
 
-class UploadSocialPostViewController: UIViewController, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
+class UploadSocialPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TOCropViewControllerDelegate {
     
     @IBOutlet weak var exButton: UIButton!
-    @IBOutlet weak var submitButton: UIButton!
+
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var previewImageView: UIImageView!
+
+    @IBOutlet weak var editImageButton: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
     
     private var ref: FIRDatabaseReference!
     private var storageRef : FIRStorageReference!
     
     private var firstLaunch = false
     private var didPickPhoto = false
+
+    private var originalImage: UIImage?
     
     // MARK: - View Lifecycle
     
@@ -32,6 +38,7 @@ UINavigationControllerDelegate {
         ref = FIRDatabase.database().reference()
         storageRef = FIRStorage.storage().reference()
 
+        editImageButton.roundCorners(radius: 8.0)
         submitButton.roundCorners(radius: 8.0)
     }
     
@@ -46,12 +53,19 @@ UINavigationControllerDelegate {
     
     // MARK: - Actions
     
+    @IBAction func editImageButtonPressed(_ sender: UIButton) {
+        if let ogImage = originalImage {
+            presentCrop(withImage: ogImage)
+        }
+    }
+    
     @IBAction func submitButtonAction(_ sender: Any) {
-        //Send to Firebase
-        
-        submitButton.isEnabled = false
-        submitButton.isHidden = true
-        exButton.isEnabled = false
+        UIView.animate(withDuration: 0.25, animations: {
+            self.submitButton.isEnabled = false
+            self.editImageButton.isEnabled = false
+            self.exButton.isEnabled = false
+            self.titleLabel.text = "Uploading image! Please wait..."
+        })
         
         if let userID = FIRAuth.auth()?.currentUser?.uid {
             let key = self.ref.child("social-posts").childByAutoId().key
@@ -93,7 +107,6 @@ UINavigationControllerDelegate {
                 }
             })
         }
-    
     }
     
     @IBAction func exButtonPressed(_ sender: UIButton) {
@@ -157,18 +170,51 @@ UINavigationControllerDelegate {
         }
         
     }
+
+    func updateImage(_ image: UIImage) {
+        self.previewImageView.image = image
+        self.titleLabel.text = "Here's a preview of what it will look like in the feed!"
+        self.submitButton.isHidden = false
+        self.editImageButton.isHidden = false
+    }
+
+    private func presentCrop(withImage image: UIImage) {
+        let cropVc = TOCropViewController(image: image)
+        cropVc.imageCropFrame = previewImageView.frame
+        cropVc.aspectRatioLockEnabled = true
+        cropVc.resetAspectRatioEnabled = false
+        cropVc.delegate = self
+
+        present(cropVc, animated: true, completion: nil)
+    }
+
+    // MARK: - ImagePicker delegate
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         didPickPhoto = true
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        updateImageViewWith(Image: chosenImage)
-        dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
+
+        originalImage = chosenImage
+        presentCrop(withImage: chosenImage)
     }
-    
-    func updateImageViewWith(Image image: UIImage) {
-        self.previewImageView.image = image
-        self.titleLabel.text = "Here's a preview of what it will look like in the feed!"
-        self.submitButton.isHidden = false
+
+    // MARK: - TOViewController delegate
+
+    func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle: Int) {
+        updateImage(image)
+        cropViewController.dismiss(animated: true, completion: nil)
+    }
+
+    func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
+        if cancelled {
+            if let image = originalImage {
+                updateImage(image)
+            } else {
+                presentCameraOptions()
+                firstLaunch = true
+            }
+        }
     }
     
 }

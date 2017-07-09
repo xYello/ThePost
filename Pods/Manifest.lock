@@ -119,6 +119,7 @@ PODS:
   - Sentry/KSCrash (3.1.2):
     - KSCrash/Core (~> 1.15.9)
   - SwiftKeychainWrapper (3.0.1)
+  - TOCropViewController (2.0.12)
   - TwitterCore (2.8.0):
     - Fabric
   - TwitterKit (2.8.1):
@@ -138,6 +139,7 @@ DEPENDENCIES:
   - Sentry/Core (from `https://github.com/getsentry/sentry-cocoa.git`, tag `3.1.2`)
   - Sentry/KSCrash (from `https://github.com/getsentry/sentry-cocoa.git`, tag `3.1.2`)
   - SwiftKeychainWrapper
+  - TOCropViewController
   - UPCarouselFlowLayout
 
 EXTERNAL SOURCES:
@@ -178,10 +180,11 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Sentry: 5a578891f177e994d89d57effc70adb97bfb29db
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  TOCropViewController: e6e31b38d785a901e5651a1e7fff71bcda6c5214
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
   UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
 
-PODFILE CHECKSUM: cc57e923f036f90cb01e22efb9f8a045db99d8c7
+PODFILE CHECKSUM: 872c41bc7fe15ecca25a554d746d333c5f4c0ef7
 
 COCOAPODS: 1.2.1
