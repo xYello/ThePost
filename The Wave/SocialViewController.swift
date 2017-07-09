@@ -32,10 +32,9 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
         if socialRef == nil {
             socialRef = ref.child("social-posts")
 
-            let firstOfWeek = Date().startOfWeek.timeIntervalSince1970 * 1000
-            let endOfWeek = firstOfWeek + 604800000 // Add a week in milliseconds.
+            let lastWeek = (Date().timeIntervalSince1970 * 1000) - 604800000 // Subtract a week in milliseconds.
             let query = socialRef!.queryOrdered(byChild: "datePosted")
-                .queryStarting(atValue: firstOfWeek).queryEnding(atValue: endOfWeek).queryLimited(toLast: 200)
+                .queryStarting(atValue: lastWeek).queryLimited(toLast: 200)
 
             query.observe(.childAdded, with: { snapshot in
                 if let socialDict = snapshot.value as? [String: AnyObject] {
