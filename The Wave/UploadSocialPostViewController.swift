@@ -214,6 +214,8 @@ class UploadSocialPostViewController: UIViewController, UIImagePickerControllerD
                 presentCameraOptions()
                 firstLaunch = true
             }
+
+            cropViewController.dismiss(animated: true, completion: nil)
         }
     }
     
