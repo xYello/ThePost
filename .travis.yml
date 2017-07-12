@@ -1,5 +1,8 @@
 language: swift
 osx_image: xcode8.3
-
 install: gem install xcpretty
-script: xcodebuild clean build -workspace "The Wave.xcworkspace" -scheme "The Wave" -destination "platform=iOS Simulator,name=iPhone 6S" | xcpretty && exit ${PIPESTATUS[0]}
+script: xcodebuild clean build -workspace "The Wave.xcworkspace" -scheme "The Wave"
+  -destination "platform=iOS Simulator,name=iPhone 6S" | xcpretty && exit ${PIPESTATUS[0]}
+notifications:
+  slack:
+    secure: UKtX0VfOSNSaagkp1mFgTHYAbpEZWxhD9W1qi4OPWurfsib8wo+vwrNohHOQbKedEtUXruOndWMC61kmNW99wEbrBHEOwWNVbhtBW3El7+q6LNd9+sRGhW41yCN++l2O0C0Lux9TAQYHttXF/cZUs1lLuNvhLiIMilXaF767n4HbklNjafLcizVBuQCZLriSf6lDY5fwMiOyvwOaGq6zWW+E+Th4RmsENmDI/VYn0+WZc5vLt1qAx6J1X5xh6CaubMUM6M60FWLSKtL1zyAUAnaG5GzhpY/vNleZGiCLMQHqSnMxOAYDuJVgeODh4b7PbvLz5gQyBQP0jQMuOfuyU3CQZGq9tg8Q5L7SUjpMk7avZZOs01xCs98HZgGWim6SPJxltM0P3e2m7uY5AuG/uF7BtEHudXDnzt6+bwN7eQQoXgXm5IqAPitePt4cWUUl8eBls5DRot2UpCLk6oG+cZhSrgQxa6c9YjYtZWypu2GuUV3KYga8yttGqBHDMzjVMJiNZTsZ8T3AGyuFG1ATL2PH2T0+vxYamJ9tsG1CvBADqgG35+mLEX7TnElv+x5k7bd/Sj4qtdSquYSgMdKPhSvyrvyMuCH8p2EviSLL9r5sV3dEOv+JD7KnqMqV6yZOwGT0McMM+b912ZZhPdAB6K11nKdWnqSNlEQGsg/YRBA=
