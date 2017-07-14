@@ -157,7 +157,7 @@ class JeepSocialTableViewCell: UITableViewCell {
                         likes.removeValue(forKey: uid)
                         
                         DispatchQueue.main.async {
-                            self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconNotLiked"), for: .normal)
+                            self.likeButton.setImage(#imageLiteral(resourceName: "SocialLikeIcon"), for: .normal)
                         }
                     } else {
                         likeCount += 1
@@ -166,7 +166,7 @@ class JeepSocialTableViewCell: UITableViewCell {
                         PushNotification.sender.pushLikedSocialPost(withRecipientId: post["owner"] as! String)
                         
                         DispatchQueue.main.async {
-                            self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconLiked"), for: .normal)
+                            self.likeButton.setImage(#imageLiteral(resourceName: "SocialLikeOnIcon"), for: .normal)
                         }
                     }
                     post["likeCount"] = likeCount as AnyObject?
@@ -204,11 +204,11 @@ class JeepSocialTableViewCell: UITableViewCell {
                 
                 if isLiked {
                     DispatchQueue.main.async {
-                        self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconLiked"), for: .normal)
+                        self.likeButton.setImage(#imageLiteral(resourceName: "SocialLikeOnIcon"), for: .normal)
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconNotLiked"), for: .normal)
+                        self.likeButton.setImage(#imageLiteral(resourceName: "SocialLikeIcon"), for: .normal)
                     }
                 }
                 
