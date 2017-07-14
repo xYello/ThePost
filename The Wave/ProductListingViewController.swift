@@ -208,7 +208,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plpContentCell", for: indexPath) as! ProductListingContentCollectionViewCell
         let product = productArray()[indexPath.row]
         
-        cell.descriptionLabel.text = product.simplifiedDescription
+        cell.descriptionLabel.text = product.jeepModel.description
         
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency

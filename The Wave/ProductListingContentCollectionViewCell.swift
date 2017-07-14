@@ -14,6 +14,8 @@ import OneSignal
 class ProductListingContentCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
+
+    @IBOutlet weak var priceContainer: UIView!
     @IBOutlet weak var priceLabel: UILabel!
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -47,6 +49,8 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
         likeButton.layer.shadowOffset = CGSize(width: 0, height: 2.0)
         likeButton.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
         likeButton.layer.shadowOpacity = 1.0
+
+        priceContainer.roundCorners(radius: 8.0)
     }
     
     override func layoutSubviews() {
