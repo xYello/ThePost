@@ -177,9 +177,6 @@ class SignInUpPromptViewController: UIViewController {
                         }
                     }
                 } else {
-                    let message = "Did not actually sign up with Facebook."
-                    print(message)
-                    SentryManager.shared.sendEvent(withMessage: message)
                     self.disableButtons()
                 }
             }
