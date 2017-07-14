@@ -49,7 +49,7 @@ class ProductListingTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         likeImageView.image = #imageLiteral(resourceName: "LikeIcon").withRenderingMode(.alwaysTemplate)
-        likeImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+        likeImageView.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
         
         soldImageView.isHidden = true
     }

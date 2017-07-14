@@ -307,10 +307,10 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     }
 
     @IBAction func likeButtonTapped(_ sender: UIButton) {
-        if likeImageView.tintColor == #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1) {
+        if likeImageView.tintColor == #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1) {
             likeImageView.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3)
         } else {
-            likeImageView.tintColor = #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
+            likeImageView.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
         }
         
         let productRef = FIRDatabase.database().reference().child("products").child(product.uid)
@@ -543,7 +543,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                 if let product = snapshot.value as? [String: AnyObject] {
                     if let likes = product["likes"] as? [String: Bool] {
                         if let _ = likes[uid] {
-                            color = #colorLiteral(red: 0.9019607843, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
+                            color = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
                         }
                     }
                     

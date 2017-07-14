@@ -281,7 +281,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.nameLabel.alpha = 1.0
             cell.priceLabel.alpha = 1.0
             cell.simplifiedDescriptionLabel.alpha = 1.0
-            cell.likeImageView.tintColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            cell.likeImageView.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
             cell.likeImageView.alpha = 1.0
             cell.likeCountLabel.alpha = 1.0
             
