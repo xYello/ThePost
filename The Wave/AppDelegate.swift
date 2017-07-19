@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.reauthenticate()
             }
             do { try reachability.startNotifier() } catch {
-                SentryManager.shared.sendEvent(withMessage: "Reachability has failed to initiazlied its notifications!")
+                SentryManager.shared.sendEvent(withMessage: "Reachability has failed to initialize its notifications!")
             }
         }
         
