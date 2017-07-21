@@ -699,9 +699,5 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
         }
         
     }
-    
-    private func generateCompressedImage() {
-        
-    }
 
 }

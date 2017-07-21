@@ -16,7 +16,7 @@ enum JeepModel: Int {
     case cherokeeCJ
     case cherokeeXJ
     
-    var description : String {
+    var description: String {
         switch self {
         case .all: return "General"
         case .wranglerJK: return "Jeep Wrangler JK/JKU"
@@ -27,7 +27,7 @@ enum JeepModel: Int {
         }
     }
     
-    static var count: Int { return JeepModel.wranglerYJ.hashValue + 1 }
+    static var count: Int { return JeepModel.cherokeeXJ.hashValue + 1 }
     
     static func enumFromString(string: String) -> JeepModel {
         switch string {
@@ -36,9 +36,17 @@ enum JeepModel: Int {
         case JeepModel.wranglerYJ.description: return JeepModel.wranglerYJ
         case JeepModel.cherokeeCJ.description: return JeepModel.cherokeeCJ
         case JeepModel.cherokeeXJ.description: return JeepModel.cherokeeXJ
-        case "Jeep Wrangler JK": return JeepModel.wranglerJK // TODO: Remove this, eventually...
         default: return JeepModel.all
         }
+    }
+
+    static func arrayOfStrings() -> [String] {
+        return [JeepModel.all.description,
+                JeepModel.wranglerJK.description,
+                JeepModel.wranglerTJ.description,
+                JeepModel.wranglerYJ.description,
+                JeepModel.cherokeeCJ.description,
+                JeepModel.cherokeeXJ.description]
     }
 }
 
