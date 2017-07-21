@@ -950,7 +950,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" ae444d788fc59ec99bb999f227056a93cb2264dc b6c80eec07f2189d1231e7e7950b60f268778a73e5670055dd55d810dc261e5c";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" ***REMOVED*** 49dc3a97cebb4d092aa64ba544fbb29c57e4f0a42aa46a399fff1e95fafa3e7d";
 		};
 		4DD8CB231F034586004546F7 /* Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
