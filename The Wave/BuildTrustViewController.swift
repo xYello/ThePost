@@ -147,7 +147,8 @@ class BuildTrustViewController: UIViewController {
     }
 
     private func updateText(withError error: Error) {
-        if (error as NSError).code == 17025 {
+        let error = error as NSError
+        if error.code == 17025 || error.code == 17015 {
             DispatchQueue.main.async {
                 self.messageLabel.textColor = .red
                 self.messageLabel.text = "Another profile already has that paired!"
