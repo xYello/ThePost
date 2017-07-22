@@ -17,6 +17,8 @@ class BuildTrustViewController: UIViewController {
     
     @IBOutlet weak var backgroundView: UIView!
     
+    @IBOutlet weak var messageLabel: UILabel!
+    
     @IBOutlet weak var facebookView: UIView!
     @IBOutlet weak var twitterView: UIView!
     
@@ -58,14 +60,15 @@ class BuildTrustViewController: UIViewController {
                         
                         req.start() { connection, result, error in
                             if let error = error {
-                                // TODO: Update with error reporting.
                                 print("Error signing up: \(error.localizedDescription)")
+                                self.updateText(withError: error)
                                 SentryManager.shared.sendEvent(withError: error)
                             } else {
                                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                                 FIRAuth.auth()?.currentUser?.link(with: credential) { user, error in
                                     if let error = error {
                                         print("Error in Facebook auth: \(error.localizedDescription)")
+                                        self.updateText(withError: error)
                                         SentryManager.shared.sendEvent(withError: error)
                                     } else {
                                         
@@ -108,6 +111,7 @@ class BuildTrustViewController: UIViewController {
                 FIRAuth.auth()?.currentUser?.link(with: credential) { user, error in
                     if let error = error {
                         print("Error in Twitter auth: \(error.localizedDescription)")
+                        self.updateText(withError: error)
                         SentryManager.shared.sendEvent(withError: error)
                     } else {
                         FIRDatabase.database().reference().child("users").child(user!.uid).child("verifiedWith").child("Twitter").setValue(true)
@@ -127,6 +131,7 @@ class BuildTrustViewController: UIViewController {
             } else if let error = error {
                 // TODO: Update with error reporting.
                 print("Error signing up: \(error.localizedDescription)")
+                self.updateText(withError: error)
                 SentryManager.shared.sendEvent(withError: error)
             }
             
@@ -141,6 +146,15 @@ class BuildTrustViewController: UIViewController {
         if let parent = parent as? BuildTrustModalViewController {
             parent.prepareForDismissal {
                 parent.dismiss(animated: false, completion: nil)
+            }
+        }
+    }
+
+    private func updateText(withError error: Error) {
+        if (error as NSError).code == 17025 {
+            DispatchQueue.main.async {
+                self.messageLabel.textColor = .red
+                self.messageLabel.text = "Another profile already has that paired!"
             }
         }
     }
