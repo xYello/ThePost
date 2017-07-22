@@ -4166,9 +4166,6 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="We’re improving our app daily and would love your feedback. Please let us know what you think of The Wave." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZj-TJ-uX9">
                                         <rect key="frame" x="24" y="111" width="252.5" height="98.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" priority="750" id="dHI-3T-VW4"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                         <color key="textColor" red="0.14117647059999999" green="0.1647058824" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -4178,7 +4175,6 @@
                                         <color key="backgroundColor" red="0.79215686269999996" green="0.78823529410000004" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HxT-I5-Mot">
                                         <rect key="frame" x="39" y="369" width="222" height="52"/>
@@ -4225,8 +4221,6 @@
                     </view>
                     <connections>
                         <outlet property="container" destination="I66-2v-PPG" id="VKS-fS-574"/>
-                        <outlet property="containerMidConstraint" destination="dwm-t0-uqZ" id="eW7-Ea-YSQ"/>
-                        <outlet property="messageLabelHeightConstraint" destination="dHI-3T-VW4" id="cLT-EE-VlU"/>
                         <outlet property="submitButton" destination="HxT-I5-Mot" id="A6C-4O-gca"/>
                         <outlet property="textView" destination="L8k-0f-qfO" id="3ZX-6v-YnS"/>
                     </connections>

@@ -13,6 +13,8 @@
 		2FB607121E748E310053B41D /* UploadSocialPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */; };
 		317F8312604FAE3B60BC7E56 /* Pods_The_Wave_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6297B4D70B986A58945734 /* Pods_The_Wave_Tests.framework */; };
 		49A162201F22E6D7004D3C6D /* FeedbackModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */; };
+		49B33EDB1F2325A8005FF03E /* KeyboardHelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B33EDA1F2325A8005FF03E /* KeyboardHelperViewController.swift */; };
+		49B33EDE1F2325CE005FF03E /* KeyboardHelperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B33EDD1F2325CE005FF03E /* KeyboardHelperViewController.xib */; };
 		4D04C52F1E0EFCDD004B2264 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */; };
 		4D04C5301E0EFCDD004B2264 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51D1E0EFCDD004B2264 /* Lato-BlackItalic.ttf */; };
 		4D04C5311E0EFCDD004B2264 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51E1E0EFCDD004B2264 /* Lato-Bold.ttf */; };
@@ -148,6 +150,8 @@
 		2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadSocialPostViewController.swift; sourceTree = "<group>"; };
 		4375007B15C08C7978EE6C10 /* Pods-The Wave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Wave.release.xcconfig"; path = "Pods/Target Support Files/Pods-The Wave/Pods-The Wave.release.xcconfig"; sourceTree = "<group>"; };
 		49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackModalViewController.swift; sourceTree = "<group>"; };
+		49B33EDA1F2325A8005FF03E /* KeyboardHelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelperViewController.swift; sourceTree = "<group>"; };
+		49B33EDD1F2325CE005FF03E /* KeyboardHelperViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyboardHelperViewController.xib; sourceTree = "<group>"; };
 		4AFDBA5990DDCDE5DE135C8A /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "Fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
 		4D04C51D1E0EFCDD004B2264 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "Fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -325,6 +329,15 @@
 			path = "Provide feedback";
 			sourceTree = "<group>";
 		};
+		49B33EDC1F2325B6005FF03E /* Keyboard Helper */ = {
+			isa = PBXGroup;
+			children = (
+				49B33EDA1F2325A8005FF03E /* KeyboardHelperViewController.swift */,
+				49B33EDD1F2325CE005FF03E /* KeyboardHelperViewController.xib */,
+			);
+			path = "Keyboard Helper";
+			sourceTree = "<group>";
+		};
 		4D04C51B1E0EFCD1004B2264 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +499,7 @@
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				60C2ED5C1E29C6DA00ED83EA /* Constants.swift */,
 				4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */,
+				49B33EDC1F2325B6005FF03E /* Keyboard Helper */,
 				4DD8CB261F034AE9004546F7 /* Managers */,
 				4D14F6D81E31B4F800AF71F8 /* Extensions */,
 				4D14F6D71E31B4E500AF71F8 /* Models */,
@@ -844,6 +858,7 @@
 				4D04C5411E0EFCDD004B2264 /* Traveler.ttf in Resources */,
 				4D5643391E4EAF7600064948 /* SignInUp.storyboard in Resources */,
 				4D04C53C1E0EFCDD004B2264 /* Lato-Regular.ttf in Resources */,
+				49B33EDE1F2325CE005FF03E /* KeyboardHelperViewController.xib in Resources */,
 				4D04C52F1E0EFCDD004B2264 /* Lato-Black.ttf in Resources */,
 				4D04C53F1E0EFCDD004B2264 /* Lato-Thin.ttf in Resources */,
 				4D58C4DA1E0E1882004CA0E3 /* Main.storyboard in Resources */,
@@ -1041,6 +1056,7 @@
 				4D5AB0B01E249404005BF23B /* ProductViewerViewController.swift in Sources */,
 				4D24E8CB1E15C79900E524FD /* NewProductDetailsTableViewCell.swift in Sources */,
 				4D24E8C91E15C48600E524FD /* NewProductSwitchTableViewCell.swift in Sources */,
+				49B33EDB1F2325A8005FF03E /* KeyboardHelperViewController.swift in Sources */,
 				4D04C54E1E0F2CD3004B2264 /* AppServicesRequestViewController.swift in Sources */,
 				4DBF61EB1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift in Sources */,
 				4DBF61E51E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift in Sources */,

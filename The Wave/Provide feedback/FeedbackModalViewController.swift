@@ -15,9 +15,6 @@ class FeedbackModalViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var submitButton: UIButton!
 
-    @IBOutlet weak var messageLabelHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var containerMidConstraint: NSLayoutConstraint!
-
     private var animator: UIDynamicAnimator!
 
     // MARK: - View lifecycle
@@ -57,13 +54,23 @@ class FeedbackModalViewController: UIViewController, UITextViewDelegate {
         }
     }
 
-    // MARK: - Textview delegate
+    // MARK: - TextView delegate
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-        messageLabelHeightConstraint.priority = 999
-        textView.text = ""
+        textView.resignFirstResponder()
 
-        UIView.animate(withDuration: 0.25, animations: { self.view.layoutIfNeeded() })
+        if textView.text == "Type here..." {
+            textView.text = ""
+        }
+
+        let vc = KeyboardHelperViewController.getVc(with: textView.text) { string in
+            if string == "" {
+                self.textView.text = "Type here..."
+            } else {
+                self.textView.text = string
+            }
+        }
+        present(vc, animated: false, completion: nil)
     }
 
     // MARK: - Actions
