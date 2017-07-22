@@ -39,7 +39,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var sellingProductTypeButton: UIButton!
     @IBOutlet weak var bottomMostSeperator: UIView!
-    @IBOutlet weak var badgeView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -47,7 +46,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var profileImageViewTopConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var profileBadge: UIImageView!
+    
     private var previouslySelectedButton: UIButton!
     private var selectionBar: UIView?
     
