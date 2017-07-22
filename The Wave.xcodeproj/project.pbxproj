@@ -12,6 +12,7 @@
 		2F5450BB1E537433005A88A3 /* JeepSocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */; };
 		2FB607121E748E310053B41D /* UploadSocialPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */; };
 		317F8312604FAE3B60BC7E56 /* Pods_The_Wave_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6297B4D70B986A58945734 /* Pods_The_Wave_Tests.framework */; };
+		49A162201F22E6D7004D3C6D /* FeedbackModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */; };
 		4D04C52F1E0EFCDD004B2264 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */; };
 		4D04C5301E0EFCDD004B2264 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51D1E0EFCDD004B2264 /* Lato-BlackItalic.ttf */; };
 		4D04C5311E0EFCDD004B2264 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51E1E0EFCDD004B2264 /* Lato-Bold.ttf */; };
@@ -146,6 +147,7 @@
 		2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSocialTableViewCell.swift; sourceTree = "<group>"; };
 		2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadSocialPostViewController.swift; sourceTree = "<group>"; };
 		4375007B15C08C7978EE6C10 /* Pods-The Wave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Wave.release.xcconfig"; path = "Pods/Target Support Files/Pods-The Wave/Pods-The Wave.release.xcconfig"; sourceTree = "<group>"; };
+		49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackModalViewController.swift; sourceTree = "<group>"; };
 		4AFDBA5990DDCDE5DE135C8A /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "Fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
 		4D04C51D1E0EFCDD004B2264 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "Fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -313,6 +315,14 @@
 				8E6297B4D70B986A58945734 /* Pods_The_Wave_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		49A1621E1F22E6B4004D3C6D /* Provide feedback */ = {
+			isa = PBXGroup;
+			children = (
+				49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */,
+			);
+			path = "Provide feedback";
 			sourceTree = "<group>";
 		};
 		4D04C51B1E0EFCD1004B2264 /* Fonts */ = {
@@ -484,6 +494,7 @@
 				4D23EC711E1F85B40001C045 /* Chat */,
 				4DD3CCC41E14DC8200821C7C /* Add New Product */,
 				4DC30D4E1E399DEF0087B447 /* Social */,
+				49A1621E1F22E6B4004D3C6D /* Provide feedback */,
 				4D34358B1E203E1900E031D7 /* Profile */,
 				4DFB05AC1E118A4600BEACE2 /* Jeep Selector */,
 				4D5AB0AC1E24939F005BF23B /* Product Viewer */,
@@ -1048,6 +1059,7 @@
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
 				4D1102061E2EAD7600ADF559 /* ProfileModalViewController.swift in Sources */,
 				4D1667351E4FC06F0092FDFB /* SettingsContainerViewController.swift in Sources */,
+				49A162201F22E6D7004D3C6D /* FeedbackModalViewController.swift in Sources */,
 				4D161BC81E26E97B001BEE9D /* SignInViewController.swift in Sources */,
 				4D23EC751E1F86130001C045 /* ConversationTableViewCell.swift in Sources */,
 				4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */,

@@ -26,6 +26,8 @@ class SettingsContainerViewController: UIViewController {
     @IBOutlet weak var confirmPasswordLabel: UILabel!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
+    @IBOutlet weak var giveFeedbackButton: UIButton!
+
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     
@@ -49,6 +51,9 @@ class SettingsContainerViewController: UIViewController {
             passwordContainer.isHidden = true
             confirmPasswordContainer.isHidden = true
         }
+
+        giveFeedbackButton.layer.borderColor = giveFeedbackButton.titleLabel!.textColor.cgColor
+        giveFeedbackButton.layer.borderWidth = 1.0
         
         saveButton.roundCorners(radius: 8.0)
         saveButton.alpha = 0.0
@@ -117,7 +122,16 @@ class SettingsContainerViewController: UIViewController {
     @objc private func tapped() {
         view.endEditing(false)
     }
-    
+
+    @IBAction func giveFeedbackPressed(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "feedbackViewController") as? FeedbackModalViewController {
+            vc.modalPresentationStyle = .overCurrentContext
+
+            present(vc, animated: false, completion: nil)
+        }
+    }
+
     @IBAction func wantsToLogout(_ sender: UIButton) {
         let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid)
         ref.child("isOnline").removeValue()
