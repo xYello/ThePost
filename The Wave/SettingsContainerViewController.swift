@@ -3,7 +3,7 @@
 //  ThePost
 //
 //  Created by Andrew Robinson on 2/11/17.
-//  Copyright © 2017 The Post. All rights reserved.
+//  Copyright © 2017 XYello, Inc. All rights reserved.
 //
 
 import UIKit

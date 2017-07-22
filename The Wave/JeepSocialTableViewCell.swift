@@ -3,7 +3,7 @@
 //  ThePost
 //
 //  Created by Tyler Flowers on 2/14/17.
-//  Copyright © 2017 The Post. All rights reserved.
+//  Copyright © 2017 XYello, Inc. All rights reserved.
 //
 
 import UIKit

@@ -3,7 +3,7 @@
 //  ThePost
 //
 //  Created by Michael Blades on 1/13/17.
-//  Copyright © 2017 The Post. All rights reserved.
+//  Copyright © 2017 XYello, Inc. All rights reserved.
 //
 
 let openChatControllerNotificationKey = "kOpenChatControllerNotification"
