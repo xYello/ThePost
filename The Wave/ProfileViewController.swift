@@ -11,6 +11,12 @@ import Firebase
 import AVFoundation
 import ReachabilitySwift
 
+private enum BadgeStatus: String {
+    case verified = "verified"
+    case admin = "admin"
+    case unicorn = "unicorn"
+}
+
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private enum ProductViewing {
@@ -124,6 +130,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         profileImageView.roundCorners()
         profileImageView.clipsToBounds = true
+        profileBadge.isHidden = true
         
         var uid = ""
         if let id = userId {
@@ -594,6 +601,26 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             self.updateReviewCounts(with: snapshot)
         })
     }
+
+    private func grabUserBadgeState(with uid: String) {
+        let ref = FIRDatabase.database().reference().child("users").child(uid).child("badge")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let stateString = snapshot.value as? String {
+                if let state = BadgeStatus(rawValue: stateString) {
+                    self.profileBadge.isHidden = false
+
+                    switch state {
+                    case .verified:
+                        self.profileBadge.image = #imageLiteral(resourceName: "VerifiedBadge")
+                    case .admin:
+                        self.profileBadge.image = #imageLiteral(resourceName: "AdminBadge")
+                    case .unicorn:
+                        self.profileBadge.image = #imageLiteral(resourceName: "AndrewBadge")
+                    }
+                }
+            }
+        })
+    }
     
     private func determineStarsfor(number: Double) {
         let wholeNumber = Int(number)
@@ -694,6 +721,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             getUserProfile(with: uid)
             grabUsersReviewStats(with: uid)
             grabProfileImage(with: uid)
+            grabUserBadgeState(with: uid)
 
             userBuiltTrust(notification: nil)
         } else {
@@ -701,6 +729,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.getUserProfile(with: uid)
                 self.grabUsersReviewStats(with: uid)
                 self.grabProfileImage(with: uid)
+                self.grabUserBadgeState(with: uid)
 
                 self.userBuiltTrust(notification: nil)
             }
