@@ -288,47 +288,48 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let indexPath = IndexPath(row: 0, section: 0)
-        let header = collectionView.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as! ProductListingCollectionReusableView
-        
-        header.searchBar.resignFirstResponder()
-        
-        self.searchedProducts.removeAll()
-        self.searchedAmountOfProducts = 0
-        
-        if let text = header.searchBar.text {
-            let query = FIRDatabase.database().reference().child("products").queryOrdered(byChild: "name").queryStarting(atValue: text).queryEnding(atValue: text + "\u{f8ff}").queryLimited(toFirst: 500)
-            query.observeSingleEvent(of: .value, with: { snapshot in
-                if let productsDict = snapshot.value as? [String: AnyObject] {
-                    for (key, value) in productsDict {
-                        if let productDict = value as? [String: AnyObject] {
-                            
-                            if let product = Product.createProduct(with: productDict, with: key) {
-                                self.searchedProducts.append(product)
-                                self.searchedAmountOfProducts += 1
+        if let header = collectionView.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as? ProductListingCollectionReusableView {
+
+            header.searchBar.resignFirstResponder()
+
+            self.searchedProducts.removeAll()
+            self.searchedAmountOfProducts = 0
+
+            if let text = header.searchBar.text {
+                let query = FIRDatabase.database().reference().child("products").queryOrdered(byChild: "name").queryStarting(atValue: text).queryEnding(atValue: text + "\u{f8ff}").queryLimited(toFirst: 500)
+                query.observeSingleEvent(of: .value, with: { snapshot in
+                    if let productsDict = snapshot.value as? [String: AnyObject] {
+                        for (key, value) in productsDict {
+                            if let productDict = value as? [String: AnyObject] {
+
+                                if let product = Product.createProduct(with: productDict, with: key) {
+                                    self.searchedProducts.append(product)
+                                    self.searchedAmountOfProducts += 1
+                                }
+
                             }
-                            
                         }
+
+                        self.collectionView.performBatchUpdates({
+                            self.collectionView.reloadSections(IndexSet(integer: 0))
+                        }, completion: { done in
+                            let indexPath = IndexPath(row: 0, section: 0)
+                            let header = self.collectionView.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as! ProductListingCollectionReusableView
+
+                            header.searchBar.text = text
+                        })
+                    } else {
+                        self.collectionView.performBatchUpdates({
+                            self.collectionView.reloadSections(IndexSet(integer: 0))
+                        }, completion: { done in
+                            let indexPath = IndexPath(row: 0, section: 0)
+                            let header = self.collectionView.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as! ProductListingCollectionReusableView
+
+                            header.searchBar.text = text
+                        })
                     }
-                    
-                    self.collectionView.performBatchUpdates({
-                        self.collectionView.reloadSections(IndexSet(integer: 0))
-                    }, completion: { done in
-                        let indexPath = IndexPath(row: 0, section: 0)
-                        let header = self.collectionView.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as! ProductListingCollectionReusableView
-                        
-                        header.searchBar.text = text
-                    })
-                } else {
-                    self.collectionView.performBatchUpdates({
-                        self.collectionView.reloadSections(IndexSet(integer: 0))
-                    }, completion: { done in
-                        let indexPath = IndexPath(row: 0, section: 0)
-                        let header = self.collectionView.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as! ProductListingCollectionReusableView
-                        
-                        header.searchBar.text = text
-                    })
-                }
-            })
+                })
+            }
         }
     }
     
