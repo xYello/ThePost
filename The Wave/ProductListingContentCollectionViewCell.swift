@@ -150,6 +150,8 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                         SDWebImageDownloader.shared().downloadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
                             if key == self.productKey {
                                 if let i = image {
+                                    SDWebImageManager.shared().saveImage(toCache: image, for: url)
+                                    
                                     DispatchQueue.main.async {
                                         self.imageView.image = i
                                     }
