@@ -606,7 +606,6 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
     }
     
     private func createNewProductListing() {
-        
         if let product = newProduct {
             if let userID = FIRAuth.auth()?.currentUser?.uid {
                 ref.child("users").child(userID).observeSingleEvent(of: .value, with: { snapshot in
