@@ -718,6 +718,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private func updateProfileInformation(with uid: String) {
         if reachability.isReachable {
+            grabVerifiedWithInformation(with: uid)
             getUserProfile(with: uid)
             grabUsersReviewStats(with: uid)
             grabProfileImage(with: uid)
@@ -726,6 +727,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             userBuiltTrust(notification: nil)
         } else {
             reachability.whenReachable = { reachability in
+                self.grabVerifiedWithInformation(with: uid)
                 self.getUserProfile(with: uid)
                 self.grabUsersReviewStats(with: uid)
                 self.grabProfileImage(with: uid)
