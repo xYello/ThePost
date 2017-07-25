@@ -95,17 +95,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - OneSignal && Firebase
     
-    private func checkForFirstRunOneSignalId() {
-        if UserDefaults.standard.bool(forKey: "hasFirstLaunched") == false && FIRAuth.auth()?.currentUser != nil && OneSignal.getPermissionSubscriptionState().permissionStatus.status == .notDetermined {
-            OneSignal.promptForPushNotifications() { accepted in
-                if accepted {
-                    self.saveOneSignalId()
-                }
-            }
-            UserDefaults.standard.set(true, forKey: "hasFirstLaunched")
-        }
-    }
-    
     private func saveOneSignalId() {
         if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
             let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
@@ -138,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
-                    self.checkForFirstRunOneSignalId()
+                    self.saveOneSignalId()
                 }
 
             })
@@ -158,7 +147,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
-                    self.checkForFirstRunOneSignalId()
+                    self.saveOneSignalId()
                 }
 
             })
@@ -178,7 +167,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
-                    self.checkForFirstRunOneSignalId()
+                    self.saveOneSignalId()
                 }
 
             })
