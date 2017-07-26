@@ -101,6 +101,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                        ["Make & Model": .text],
                        ["Price": .text],
                        ["Condition": .text],
+                       ["Location": .text],
                        ["Details": .details],
                        ["Seller": .seller],
                        ["Willing to Ship Item": .exCheck],
@@ -137,7 +138,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         let truncated = string!.substring(to: endIndex) // Remove the .00 from the price.
         priceLabel.text = truncated
         
-        textCellLayout = [product.name, product.jeepModel.description, truncated, product.condition.description]
+        textCellLayout = [product.name, product.jeepModel.description, truncated, product.condition.description, product.location ?? "None provided"]
         checkCellLayout = [product.willingToShip, product.acceptsPayPal, product.acceptsCash]
         
         grabProductImages()
@@ -373,6 +374,8 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             imageName = "PIPPrice"
         case "Condition":
             imageName = "PIPCondition"
+        case "Location":
+            imageName = "PIPLocation"
         case "Details":
             imageName = "PIPDetails"
         case "Seller":

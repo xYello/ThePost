@@ -161,6 +161,9 @@ class Product: NSObject {
             if let desc = productDict["detailedDescription"] as? String {
                 product!.detailedDescription = desc
             }
+            if let location = productDict["location"] as? String {
+                product!.location = location
+            }
 
             product!.willingToShip = productDict["willingToShip"] as! Bool
             product!.acceptsPayPal = productDict["acceptsPayPal"] as! Bool
