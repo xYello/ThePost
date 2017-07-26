@@ -804,7 +804,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any messages." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mw3-Vi-fM2">
-                                        <rect key="frame" x="7" y="193" width="273" height="24"/>
+                                        <rect key="frame" x="7.5" y="193" width="273" height="24"/>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="20"/>
                                         <color key="textColor" red="0.91004675629999998" green="0.90736204389999997" blue="0.81975060700000002" alpha="0.19638737416107382" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1202,7 +1202,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-uC-8od">
-                                    <rect key="frame" x="146" y="20" width="49" height="12"/>
+                                    <rect key="frame" x="145.5" y="20" width="49" height="12"/>
                                     <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="10"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -2023,17 +2023,9 @@
                                             <constraint firstAttribute="width" constant="23" id="myt-Zg-KHf"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwz-2Y-xnu" userLabel="More Button">
-                                        <rect key="frame" x="303" y="6" width="32" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="D9q-zg-gq7"/>
-                                        </constraints>
-                                        <state key="normal" image="PVMoreOptions"/>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="rwz-2Y-xnu" firstAttribute="centerY" secondItem="mvj-U5-D7z" secondAttribute="centerY" id="4MS-jE-r0U"/>
                                     <constraint firstItem="VzE-eM-wc5" firstAttribute="leading" secondItem="mvj-U5-D7z" secondAttribute="leading" constant="8" id="4NA-x1-BAj"/>
                                     <constraint firstItem="usP-pE-pZB" firstAttribute="top" secondItem="mvj-U5-D7z" secondAttribute="top" constant="10" id="5jZ-dZ-mT4"/>
                                     <constraint firstItem="VzE-eM-wc5" firstAttribute="centerY" secondItem="mvj-U5-D7z" secondAttribute="centerY" id="9sG-Gj-aub"/>
@@ -2041,11 +2033,9 @@
                                     <constraint firstItem="usP-pE-pZB" firstAttribute="leading" secondItem="h55-cO-f5e" secondAttribute="trailing" constant="1" id="Q7d-MD-Gcf"/>
                                     <constraint firstAttribute="bottom" secondItem="aIN-zC-Alk" secondAttribute="bottom" id="VvS-pE-ifb"/>
                                     <constraint firstItem="5hW-0n-MEw" firstAttribute="top" secondItem="mvj-U5-D7z" secondAttribute="top" constant="10" id="Wwi-iV-4ie"/>
-                                    <constraint firstAttribute="trailing" secondItem="rwz-2Y-xnu" secondAttribute="trailing" constant="8" id="ZM2-oo-oIN"/>
                                     <constraint firstAttribute="height" constant="34" id="ZUm-uR-Qnv"/>
                                     <constraint firstItem="h55-cO-f5e" firstAttribute="centerY" secondItem="mvj-U5-D7z" secondAttribute="centerY" id="bUn-ZM-C0z"/>
                                     <constraint firstItem="h55-cO-f5e" firstAttribute="leading" secondItem="5hW-0n-MEw" secondAttribute="trailing" constant="7.5" id="ckm-rW-Yl2"/>
-                                    <constraint firstItem="rwz-2Y-xnu" firstAttribute="top" secondItem="mvj-U5-D7z" secondAttribute="top" constant="6" id="fRa-r6-Hib"/>
                                     <constraint firstItem="VzE-eM-wc5" firstAttribute="top" secondItem="mvj-U5-D7z" secondAttribute="top" constant="8" id="hvr-yY-0CY"/>
                                     <constraint firstItem="VzE-eM-wc5" firstAttribute="leading" secondItem="aIN-zC-Alk" secondAttribute="leading" id="kXE-M0-72H"/>
                                     <constraint firstItem="5hW-0n-MEw" firstAttribute="trailing" secondItem="aIN-zC-Alk" secondAttribute="trailing" id="sv7-jb-d4x"/>
@@ -4032,7 +4022,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-7e-Uov">
-                                                        <rect key="frame" x="60.5" y="8" width="62.5" height="16.5"/>
+                                                        <rect key="frame" x="60" y="8" width="62.5" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -4260,7 +4250,6 @@
         <image name="PLPFilters" width="20" height="21"/>
         <image name="PVArrow" width="7" height="14"/>
         <image name="PVEx" width="17" height="17"/>
-        <image name="PVMoreOptions" width="28" height="6"/>
         <image name="PVViewsIcon" width="15" height="10"/>
         <image name="ProfileFacebookIcon" width="17" height="33"/>
         <image name="ProfileReviewsStar" width="22" height="21"/>
