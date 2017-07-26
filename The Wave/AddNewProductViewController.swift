@@ -87,6 +87,7 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                        ["Make & Model": .dropDown],
                        ["Price": .price],
                        ["Condition": .dropDown],
+                       ["Location": .textField],
                        ["Details (optional)": .details],
                        ["Willing to Ship Item": .controlSwitch],
                        ["Do you accept PayPal?": .controlSwitch],
@@ -166,6 +167,12 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             
             textCell.sideImageView.tintColor = textCell.detailNameLabel.textColor
             textCell.detailNameLabel.text = descriptionName
+
+            if descriptionName == "Item Name" {
+                textCell.placeHolder = "e.g. OEM Grill"
+            } else if descriptionName == "Location" {
+                textCell.placeHolder = "e.g. Atlanta, GA"
+            }
             
             cell = textCell
         } else if type == .dropDown {
@@ -326,6 +333,10 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             } else if textCell.detailNameLabel.text == "Item Name" {
                 if let name = value as? String {
                     newProduct!.name = name
+                }
+            } else if textCell.detailNameLabel.text == "Location" {
+                if let location = value as? String {
+                    newProduct!.location = location
                 }
             }
             
@@ -512,6 +523,8 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
             imageName = "PIPPrice"
         case "Condition":
             imageName = "PIPCondition"
+        case "Location":
+            imageName = "PIPLocation"
         case "Details (optional)":
             imageName = "PIPDetails"
         case "Willing to Ship Item":
@@ -636,6 +649,9 @@ class AddNewProductViewController: UIViewController, UICollectionViewDataSource,
                             }
                             if let description = product.detailedDescription {
                                 dbProduct["detailedDescription"] = description
+                            }
+                            if let location = product.location {
+                                dbProduct["location"] = location
                             }
                             
                             // Compress stored images

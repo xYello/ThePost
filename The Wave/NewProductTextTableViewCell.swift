@@ -13,11 +13,16 @@ class NewProductTextTableViewCell: NewProductBaseTableViewCell, UITextFieldDeleg
     @IBOutlet weak var sideImageView: UIImageView!
     @IBOutlet weak var detailNameLabel: UILabel!
     @IBOutlet weak var contentTextField: UITextField!
+
+    var placeHolder: String = "" {
+        didSet {
+            contentTextField.attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)])
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        contentTextField.attributedPlaceholder = NSAttributedString(string: "OEM Jeep Grille", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)])
         contentTextField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         contentTextField.delegate = self
     }
