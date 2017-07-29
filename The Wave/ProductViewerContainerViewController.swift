@@ -284,7 +284,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     // MARK: - TableView delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 5 {
+        if indexPath.row == 6 {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let vc = storyboard.instantiateViewController(withIdentifier: "profileModalViewController") as? ProfileModalViewController {
                 vc.modalPresentationStyle = .overCurrentContext
