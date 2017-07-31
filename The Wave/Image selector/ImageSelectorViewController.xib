@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+            <string>Avenir-Heavy</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageSelectorViewController" customModule="The_Wave" customModuleProvider="target">
             <connections>
+                <outlet property="cancelButton" destination="jse-rA-CCL" id="kLC-3Z-ec6"/>
                 <outlet property="controlsContainer" destination="8eF-en-9PW" id="ugN-a8-Q37"/>
+                <outlet property="photoPreviewImageView" destination="F8f-KL-v8E" id="jVS-qo-7Sy"/>
+                <outlet property="pictureTakeButton" destination="kYZ-0L-3gf" id="G1h-Ad-WFK"/>
                 <outlet property="savedImagesButton" destination="FUc-O6-b9J" id="Uuy-e1-tJs"/>
+                <outlet property="uploadPictureButton" destination="EYV-57-Md9" id="APm-Gv-B53"/>
                 <outlet property="view" destination="iN0-l3-epB" id="UVU-t1-y6t"/>
             </connections>
         </placeholder>
@@ -21,6 +31,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F8f-KL-v8E">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8eF-en-9PW">
                     <rect key="frame" x="0.0" y="556" width="375" height="111"/>
                     <subviews>
@@ -46,19 +60,37 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jse-rA-CCL">
-                            <rect key="frame" x="24" y="40" width="48" height="30"/>
+                            <rect key="frame" x="24" y="37" width="52" height="36"/>
+                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                             <state key="normal" title="Cancel">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.90981578829999998" green="0.90719991919999998" blue="0.82353508470000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="8J5-AF-Rhf"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYV-57-Md9">
+                            <rect key="frame" x="195" y="37.5" width="160" height="36"/>
+                            <color key="backgroundColor" red="0.63921568627450975" green="0.29803921568627451" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="160" id="Xl3-Zo-rGN"/>
+                                <constraint firstAttribute="height" constant="36" id="e7x-Ih-xQD"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                            <state key="normal" title="Upload Picture">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="uploadPicture:" destination="-1" eventType="touchUpInside" id="ZNS-Vj-j0L"/>
                             </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="111" id="3KH-VT-IOl"/>
+                        <constraint firstAttribute="trailing" secondItem="EYV-57-Md9" secondAttribute="trailing" constant="20" id="61u-qf-ql6"/>
                         <constraint firstItem="FUc-O6-b9J" firstAttribute="centerY" secondItem="8eF-en-9PW" secondAttribute="centerY" id="96f-UF-l6w"/>
+                        <constraint firstItem="EYV-57-Md9" firstAttribute="centerY" secondItem="8eF-en-9PW" secondAttribute="centerY" id="ASy-Xd-8wv"/>
                         <constraint firstAttribute="trailing" secondItem="FUc-O6-b9J" secondAttribute="trailing" constant="24" id="Hop-2n-x6X"/>
                         <constraint firstItem="jse-rA-CCL" firstAttribute="centerY" secondItem="8eF-en-9PW" secondAttribute="centerY" id="IOj-KA-VrW"/>
                         <constraint firstItem="kYZ-0L-3gf" firstAttribute="top" secondItem="8eF-en-9PW" secondAttribute="top" id="Qgs-fH-beO"/>
@@ -71,6 +103,10 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="8eF-en-9PW" secondAttribute="trailing" id="4hz-rw-yZr"/>
+                <constraint firstAttribute="trailing" secondItem="F8f-KL-v8E" secondAttribute="trailing" id="6Fj-gr-RsN"/>
+                <constraint firstAttribute="bottom" secondItem="F8f-KL-v8E" secondAttribute="bottom" id="LUT-IM-9ca"/>
+                <constraint firstItem="F8f-KL-v8E" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VRo-tX-4l3"/>
+                <constraint firstItem="F8f-KL-v8E" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="v8s-HC-mxk"/>
                 <constraint firstItem="8eF-en-9PW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yN8-l1-8Lm"/>
                 <constraint firstAttribute="bottom" secondItem="8eF-en-9PW" secondAttribute="bottom" id="ysR-xK-03g"/>
             </constraints>
