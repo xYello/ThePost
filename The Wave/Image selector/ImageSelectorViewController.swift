@@ -178,14 +178,15 @@ extension ImageSelectorViewController: AVCapturePhotoCaptureDelegate {
         }
     }
 
-    @available(iOS 11.0, *)
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        if let data = photo.fileDataRepresentation() {
-            captured(image: UIImage(data: data), error: nil)
-        } else {
-            captured(image: nil, error: error)
-        }
-    }
+    // TODO: Uncomment.
+//    @available(iOS 11.0, *)
+//    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+//        if let data = photo.fileDataRepresentation() {
+//            captured(image: UIImage(data: data), error: nil)
+//        } else {
+//            captured(image: nil, error: error)
+//        }
+//    }
 
 }
 
