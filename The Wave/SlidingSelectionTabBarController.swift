@@ -209,12 +209,8 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
     @objc private func openProductPost() {
         dismissAddButtons()
         
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "addNewPostViewController")
-//        vc.modalPresentationStyle = .overCurrentContext
-//
-//        present(vc, animated: false, completion: nil)
-        present(ImageSelectorViewController(), animated: true, completion: nil)
+        let postVc = PriceChooseViewController()
+        present(ImageSelectorViewController(vcToPresentAfterUpload: postVc), animated: true, completion: nil)
     }
     
     @objc private func openSocialPost() {

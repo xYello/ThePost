@@ -11,6 +11,15 @@ import Photos
 import AVFoundation
 import TOCropViewController
 
+// This class is to be subclassed by view controllers that take this view controller's selected image.
+class SeletectedImageViewController: UIViewController {
+    var image: UIImage!
+
+    func present(fromVc: UIViewController) {
+        fromVc.present(self, animated: true, completion: nil)
+    }
+}
+
 class ImageSelectorViewController: UIViewController {
 
     fileprivate enum CameraState {
@@ -25,6 +34,8 @@ class ImageSelectorViewController: UIViewController {
     @IBOutlet weak var savedImagesButton: UIButton!
     @IBOutlet weak var uploadPictureButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+
+    private var vcToPresent: SeletectedImageViewController
     
     private var session: AVCaptureSession!
     fileprivate var photoOutput: AVCapturePhotoOutput!
@@ -50,6 +61,19 @@ class ImageSelectorViewController: UIViewController {
             }
         }
     }
+
+    // MARK: - Init
+
+    init(vcToPresentAfterUpload vc: SeletectedImageViewController) {
+        vcToPresent = vc
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,7 +156,10 @@ class ImageSelectorViewController: UIViewController {
                 presentCropController(withImage: image)
             }
         } else {
-            print("Upload")
+            controlsContainer.isHidden = true
+            
+            vcToPresent.image = photoPreviewImageView.image
+            vcToPresent.present(fromVc: self)
         }
     }
 
