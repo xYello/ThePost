@@ -101,7 +101,8 @@ class ImageSelectorViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
+        #if !(IOS_SIMULATOR)
         // Camera Setup
         session = AVCaptureSession()
         session.sessionPreset = AVCaptureSessionPresetPhoto
@@ -131,11 +132,16 @@ class ImageSelectorViewController: UIViewController {
         videoPreviewLayer.connection?.videoOrientation = .portrait
         view.layer.addSublayer(videoPreviewLayer)
         session.startRunning()
+        #endif
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        #if !(IOS_SIMULATOR)
         videoPreviewLayer.frame = view.frame
+        #endif
+
         view.bringSubview(toFront: photoPreviewImageView)
         view.bringSubview(toFront: controlsContainer)
     }
@@ -143,7 +149,9 @@ class ImageSelectorViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func takeImageButtonPressed(_ sender: UIButton) {
+        #if !(IOS_SIMULATOR)
         photoOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+        #endif
     }
 
     @IBAction func savedImagesButtonPressed(_ sender: UIButton) {
