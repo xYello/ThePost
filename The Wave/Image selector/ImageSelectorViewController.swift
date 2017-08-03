@@ -83,21 +83,26 @@ class ImageSelectorViewController: UIViewController {
         state = .takingImage
         savedImagesButton.setImage(nil, for: .normal)
 
-        // Last photo setup
-        let options = PHFetchOptions()
-        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
 
-        let result = PHAsset.fetchAssets(with: .image, options: options)
-        if let asset = result.firstObject {
-            PHImageManager.default().requestImage(for: asset,
-                                                  targetSize: CGSize(width: 50, height: 50),
-                                                  contentMode: .aspectFill,
-                                                  options: nil,
-                                                  resultHandler: { image, info in
-                                                    DispatchQueue.main.async {
-                                                        self.savedImagesButton.setImage(image, for: .normal)
-                                                    }
-            })
+
+        PHPhotoLibrary.requestAuthorization() { status in
+            if status == .authorized {
+                let options = PHFetchOptions()
+                options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+
+                let result = PHAsset.fetchAssets(with: .image, options: options)
+                if let asset = result.firstObject {
+                    PHImageManager.default().requestImage(for: asset,
+                                                          targetSize: CGSize(width: 50, height: 50),
+                                                          contentMode: .aspectFill,
+                                                          options: nil,
+                                                          resultHandler: { image, info in
+                                                            DispatchQueue.main.async {
+                                                                self.savedImagesButton.setImage(image, for: .normal)
+                                                            }
+                    })
+                }
+            }
         }
     }
 
