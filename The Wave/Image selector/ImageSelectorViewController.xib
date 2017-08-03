@@ -69,9 +69,8 @@
                                 <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="8J5-AF-Rhf"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYV-57-Md9">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYV-57-Md9" customClass="BigRedShadowButton" customModule="The_Wave" customModuleProvider="target">
                             <rect key="frame" x="195" y="37.5" width="160" height="36"/>
-                            <color key="backgroundColor" red="0.63921568627450975" green="0.29803921568627451" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="160" id="Xl3-Zo-rGN"/>
                                 <constraint firstAttribute="height" constant="36" id="e7x-Ih-xQD"/>

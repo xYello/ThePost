@@ -171,7 +171,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ProductViewerImageCollectionViewCell
         
-        let url = URL(string: product.images[indexPath.row])
+        let url = URL(string: product.imageUrls[indexPath.row])
         cell.imageView.sd_setImage(with: url)
         
         return cell
@@ -399,7 +399,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         let imagesRef = FIRDatabase.database().reference().child("products").child(product.uid).child("images")
         imagesRef.observeSingleEvent(of: .value, with: { snapshot in
             for image in snapshot.children.allObjects as! [FIRDataSnapshot] {
-                self.product.images.append(image.value as! String)
+                self.product.imageUrls.append(image.value as! String)
             }
             self.collectionView.reloadData()
         })

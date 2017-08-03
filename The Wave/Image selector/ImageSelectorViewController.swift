@@ -16,7 +16,9 @@ class SeletectedImageViewController: UIViewController {
     var image: UIImage!
 
     func present(fromVc: UIViewController) {
-        fromVc.present(self, animated: true, completion: nil)
+        let nav = UINavigationController(rootViewController: self)
+        nav.isNavigationBarHidden = true
+        fromVc.present(nav, animated: true, completion: nil)
     }
 }
 

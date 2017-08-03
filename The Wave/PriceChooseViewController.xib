@@ -8,17 +8,78 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Heavy</string>
+            <string>Avenir-Light</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PriceChooseViewController" customModule="The_Wave" customModuleProvider="target">
             <connections>
+                <outlet property="nextButton" destination="Zse-y2-NTQ" id="Hqt-gJ-iMZ"/>
+                <outlet property="priceTextField" destination="eUT-VT-DRV" id="wvx-Fr-TOm"/>
                 <outlet property="view" destination="iN0-l3-epB" id="vWl-is-Pf8"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view alpha="0.90000000000000002" contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ThumbsUp" translatesAutoresizingMaskIntoConstraints="NO" id="ZCf-mG-ZZa">
+                    <rect key="frame" x="143" y="56" width="88" height="97"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nice, photo uploaded!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ypd-8q-BYV">
+                    <rect key="frame" x="103.5" y="179" width="169" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's add a price to the product:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8x-SM-dkB">
+                    <rect key="frame" x="87.5" y="240" width="200" height="19.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="$0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eUT-VT-DRV">
+                    <rect key="frame" x="60" y="275" width="255" height="65"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="pwr-ta-cU8"/>
+                    </constraints>
+                    <color key="textColor" red="0.435410291" green="0.68122416730000002" blue="0.47849032279999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zse-y2-NTQ" customClass="BigRedShadowButton" customModule="The_Wave" customModuleProvider="target">
+                    <rect key="frame" x="108" y="360" width="160" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="Cpr-yA-46b"/>
+                    </constraints>
+                    <state key="normal" title="Next"/>
+                    <connections>
+                        <action selector="nextPressed:" destination="-1" eventType="touchUpInside" id="Gpd-w9-a3M"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="0.904571963028169" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="eUT-VT-DRV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="3d9-3H-nHY"/>
+                <constraint firstItem="eUT-VT-DRV" firstAttribute="top" secondItem="h8x-SM-dkB" secondAttribute="bottom" constant="15.5" id="7ZH-IP-oWZ"/>
+                <constraint firstItem="ZCf-mG-ZZa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dbo-pA-0g3"/>
+                <constraint firstItem="ZCf-mG-ZZa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="56" id="FOy-Yh-A7l"/>
+                <constraint firstItem="h8x-SM-dkB" firstAttribute="top" secondItem="Ypd-8q-BYV" secondAttribute="bottom" constant="39" id="VJw-tB-Mel"/>
+                <constraint firstItem="eUT-VT-DRV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ZOV-LF-0CM"/>
+                <constraint firstItem="h8x-SM-dkB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bag-t1-Bby"/>
+                <constraint firstItem="Ypd-8q-BYV" firstAttribute="top" secondItem="ZCf-mG-ZZa" secondAttribute="bottom" constant="26" id="cDe-JC-tug"/>
+                <constraint firstItem="Zse-y2-NTQ" firstAttribute="top" secondItem="eUT-VT-DRV" secondAttribute="bottom" constant="20" id="gAk-rK-CKd"/>
+                <constraint firstItem="Ypd-8q-BYV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iUL-Oq-xs6"/>
+                <constraint firstItem="Zse-y2-NTQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tIE-pi-e1G"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="ThumbsUp" width="88" height="97"/>
+    </resources>
 </document>
