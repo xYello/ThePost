@@ -12,17 +12,25 @@ import AVFoundation
 import TOCropViewController
 
 // This class is to be subclassed by view controllers that take this view controller's selected image.
+protocol ImageSelectorClose {
+    func dismiss()
+}
+
 class SeletectedImageViewController: UIViewController {
     var image: UIImage!
+    var handler: ImageSelectorClose!
 
-    func present(fromVc: UIViewController) {
+    func present(fromVc: UIViewController, withDismissHandler handler: ImageSelectorClose) {
+        self.handler = handler
+
         let nav = UINavigationController(rootViewController: self)
         nav.isNavigationBarHidden = true
+        nav.modalPresentationStyle = .overCurrentContext
         fromVc.present(nav, animated: true, completion: nil)
     }
 }
 
-class ImageSelectorViewController: UIViewController {
+class ImageSelectorViewController: UIViewController, ImageSelectorClose {
 
     fileprivate enum CameraState {
         case takingImage
@@ -82,8 +90,6 @@ class ImageSelectorViewController: UIViewController {
 
         state = .takingImage
         savedImagesButton.setImage(nil, for: .normal)
-
-
 
         PHPhotoLibrary.requestAuthorization() { status in
             if status == .authorized {
@@ -174,7 +180,7 @@ class ImageSelectorViewController: UIViewController {
             controlsContainer.isHidden = true
             
             vcToPresent.image = photoPreviewImageView.image
-            vcToPresent.present(fromVc: self)
+            vcToPresent.present(fromVc: self, withDismissHandler: self)
         }
     }
 
@@ -207,6 +213,14 @@ class ImageSelectorViewController: UIViewController {
         cropVc.delegate = self
 
         present(cropVc, animated: true, completion: nil)
+    }
+
+    // MARK: - ImageSelectorClose protocol
+
+    func dismiss() {
+        vcToPresent.navigationController?.dismiss(animated: true, completion: {
+            self.dismiss(animated: true, completion: nil)
+        })
     }
 }
 

@@ -41,9 +41,9 @@ class PriceChooseViewController: SeletectedImageViewController, UITextFieldDeleg
         view.hideKeyboardWhenTappedAround()
     }
 
-    override func present(fromVc: UIViewController) {
+    override func present(fromVc: UIViewController, withDismissHandler handler: ImageSelectorClose) {
         modalPresentationStyle = .overCurrentContext
-        super.present(fromVc: fromVc)
+        super.present(fromVc: fromVc, withDismissHandler: handler)
     }
 
     // MARK: - Actions
@@ -74,6 +74,10 @@ class PriceChooseViewController: SeletectedImageViewController, UITextFieldDeleg
         let vc = mainStoryboard.instantiateViewController(withIdentifier: "jeepSelectorViewController") as! JeepSelectorViewController
 
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    @IBAction func xButtonPressed(_ sender: UIButton) {
+        handler.dismiss()
     }
 
     // MARK: - Textfield delegate

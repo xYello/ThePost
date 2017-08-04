@@ -61,9 +61,21 @@
                         <action selector="nextPressed:" destination="-1" eventType="touchUpInside" id="Gpd-w9-a3M"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44t-22-Acf">
+                    <rect key="frame" x="295" y="0.0" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="F3E-U8-qz5"/>
+                        <constraint firstAttribute="height" constant="80" id="WXI-Qi-Rhz"/>
+                    </constraints>
+                    <state key="normal" image="Close"/>
+                    <connections>
+                        <action selector="xButtonPressed:" destination="-1" eventType="touchUpInside" id="VWL-Yd-GGP"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="0.904571963028169" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="44t-22-Acf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2hD-kw-nwG"/>
                 <constraint firstItem="eUT-VT-DRV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="3d9-3H-nHY"/>
                 <constraint firstItem="eUT-VT-DRV" firstAttribute="top" secondItem="h8x-SM-dkB" secondAttribute="bottom" constant="15.5" id="7ZH-IP-oWZ"/>
                 <constraint firstItem="ZCf-mG-ZZa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dbo-pA-0g3"/>
@@ -74,12 +86,14 @@
                 <constraint firstItem="Ypd-8q-BYV" firstAttribute="top" secondItem="ZCf-mG-ZZa" secondAttribute="bottom" constant="26" id="cDe-JC-tug"/>
                 <constraint firstItem="Zse-y2-NTQ" firstAttribute="top" secondItem="eUT-VT-DRV" secondAttribute="bottom" constant="20" id="gAk-rK-CKd"/>
                 <constraint firstItem="Ypd-8q-BYV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iUL-Oq-xs6"/>
+                <constraint firstAttribute="trailing" secondItem="44t-22-Acf" secondAttribute="trailing" id="nHJ-XC-fbg"/>
                 <constraint firstItem="Zse-y2-NTQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tIE-pi-e1G"/>
             </constraints>
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
     </objects>
     <resources>
+        <image name="Close" width="19" height="19"/>
         <image name="ThumbsUp" width="88" height="97"/>
     </resources>
 </document>
