@@ -26,8 +26,7 @@ class PriceChooseViewController: SeletectedImageViewController, UITextFieldDeleg
         super.viewDidLoad()
 
         product.images.append(image)
-
-        priceTextField.becomeFirstResponder()
+        
         priceTextField.addTarget(self, action: #selector(textFieldTextChanged(_:)), for: .editingChanged)
         priceTextField.delegate = self
 
@@ -70,9 +69,8 @@ class PriceChooseViewController: SeletectedImageViewController, UITextFieldDeleg
     }
     
     @IBAction func nextPressed(_ sender: BigRedShadowButton) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = mainStoryboard.instantiateViewController(withIdentifier: "jeepSelectorViewController") as! JeepSelectorViewController
-
+        let vc = JeepModelChooserViewController(withProduct: product)
+        vc.handler = handler
         navigationController?.pushViewController(vc, animated: true)
     }
 

@@ -99,16 +99,8 @@ class Product: NSObject {
             switch jeepModel! {
             case .all:
                 string = string.replacingOccurrences(of: " - ", with: "")
-            case .wranglerJK:
-                string.append("JK/JKU")
-            case .wranglerTJ:
-                string.append("TJ")
-            case .wranglerYJ:
-                string.append("YJ")
-            case .cherokeeCJ:
-                string.append("CJ")
-            case .cherokeeXJ:
-                string.append("XJ")
+            default:
+                string.append(jeepModel.shortDescription)
             }
             
             return string

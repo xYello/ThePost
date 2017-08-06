@@ -15,6 +15,9 @@
 		4952DDC71F313C9400AB159E /* PriceChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4952DDC61F313C9400AB159E /* PriceChooseViewController.swift */; };
 		4952DDC91F313CE900AB159E /* PriceChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4952DDC81F313CE900AB159E /* PriceChooseViewController.xib */; };
 		4952DDCB1F3144EC00AB159E /* BigRedShadowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4952DDCA1F3144EC00AB159E /* BigRedShadowButton.swift */; };
+		496944BF1F33FA3F00AEC0D1 /* JeepModelChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496944BE1F33FA3F00AEC0D1 /* JeepModelChooserViewController.swift */; };
+		496944C11F33FA5A00AEC0D1 /* JeepModelChooserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 496944C01F33FA5A00AEC0D1 /* JeepModelChooserViewController.xib */; };
+		496944C31F34026E00AEC0D1 /* JeepTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496944C21F34026E00AEC0D1 /* JeepTypeView.swift */; };
 		49714F0F1F32C94700A7B4FC /* UIView+TappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49714F0E1F32C94700A7B4FC /* UIView+TappedAround.swift */; };
 		497BFC4F1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */; };
 		49A162201F22E6D7004D3C6D /* FeedbackModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */; };
@@ -159,6 +162,9 @@
 		4952DDC61F313C9400AB159E /* PriceChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceChooseViewController.swift; sourceTree = "<group>"; };
 		4952DDC81F313CE900AB159E /* PriceChooseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PriceChooseViewController.xib; sourceTree = "<group>"; };
 		4952DDCA1F3144EC00AB159E /* BigRedShadowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigRedShadowButton.swift; sourceTree = "<group>"; };
+		496944BE1F33FA3F00AEC0D1 /* JeepModelChooserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeepModelChooserViewController.swift; sourceTree = "<group>"; };
+		496944C01F33FA5A00AEC0D1 /* JeepModelChooserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JeepModelChooserViewController.xib; sourceTree = "<group>"; };
+		496944C21F34026E00AEC0D1 /* JeepTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeepTypeView.swift; sourceTree = "<group>"; };
 		49714F0E1F32C94700A7B4FC /* UIView+TappedAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TappedAround.swift"; sourceTree = "<group>"; };
 		497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PhotoPermissions.swift"; sourceTree = "<group>"; };
 		49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackModalViewController.swift; sourceTree = "<group>"; };
@@ -723,6 +729,9 @@
 				4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */,
 				4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */,
 				4D35A21D1E121E3800A115EB /* JeepModelButton.swift */,
+				496944BE1F33FA3F00AEC0D1 /* JeepModelChooserViewController.swift */,
+				496944C01F33FA5A00AEC0D1 /* JeepModelChooserViewController.xib */,
+				496944C21F34026E00AEC0D1 /* JeepTypeView.swift */,
 			);
 			name = "Jeep Selector";
 			sourceTree = "<group>";
@@ -869,6 +878,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				496944C11F33FA5A00AEC0D1 /* JeepModelChooserViewController.xib in Resources */,
 				4DE6622D1E6D12A100417EBB /* 1Password.xcassets in Resources */,
 				4DD3CCC11E14688C00821C7C /* Assets.xcassets in Resources */,
 				4D04C5311E0EFCDD004B2264 /* Lato-Bold.ttf in Resources */,
@@ -1106,6 +1116,7 @@
 				49714F0F1F32C94700A7B4FC /* UIView+TappedAround.swift in Sources */,
 				4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */,
 				4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */,
+				496944C31F34026E00AEC0D1 /* JeepTypeView.swift in Sources */,
 				2F2CF3391E8E316C00E6EBF7 /* SocialPost.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
 				4D1102061E2EAD7600ADF559 /* ProfileModalViewController.swift in Sources */,
@@ -1116,6 +1127,7 @@
 				4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */,
 				4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */,
 				4952DDC71F313C9400AB159E /* PriceChooseViewController.swift in Sources */,
+				496944BF1F33FA3F00AEC0D1 /* JeepModelChooserViewController.swift in Sources */,
 				4DC30D501E399E050087B447 /* SocialViewController.swift in Sources */,
 				4D161BCD1E2710C2001BEE9D /* CreateReviewContainerViewController.swift in Sources */,
 				4D0541111EA968CA0033526C /* BuildTrustModalViewController.swift in Sources */,

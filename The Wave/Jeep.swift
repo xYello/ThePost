@@ -26,6 +26,17 @@ enum JeepModel: Int {
         case .cherokeeXJ: return "Jeep Cherokee XJ"
         }
     }
+
+    var shortDescription: String {
+        switch self {
+        case .all: return "General"
+        case .wranglerJK: return "JK/JKU"
+        case .wranglerTJ: return "TJ"
+        case .wranglerYJ: return "YJ"
+        case .cherokeeCJ: return "CJ"
+        case .cherokeeXJ: return "XJ"
+        }
+    }
     
     static var count: Int { return JeepModel.cherokeeXJ.hashValue + 1 }
     
