@@ -9,12 +9,19 @@
 import UIKit
 import SwiftKeychainWrapper
 
+protocol JeepModelChooserDelegate {
+    func didChange(model: JeepModel)
+}
+
 class JeepModelChooserViewController: SeletectedImageViewController, JeepTypeViewDelegate {
 
     @IBOutlet var typeViews: [JeepTypeView]!
     
     private var product: Product!
     private var options = [JeepModel]()
+
+    var delegate: JeepModelChooserDelegate?
+    var selectedProduct: JeepModel?
 
     // MARK: - Init
 
@@ -46,7 +53,10 @@ class JeepModelChooserViewController: SeletectedImageViewController, JeepTypeVie
             i += 1
         }
 
-        if let currentlySelected = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) {
+        if let model = selectedProduct {
+            let index = options.index(of: model)
+            typeViews[index!].selected = true
+        } else if let currentlySelected = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) {
             let model = JeepModel.enumFromString(string: currentlySelected)
             let index = options.index(of: model)
             typeViews[index!].selected = true
@@ -60,13 +70,22 @@ class JeepModelChooserViewController: SeletectedImageViewController, JeepTypeVie
     // MARK: - Actions
 
     @IBAction func nextButtonPressed(_ sender: BigRedShadowButton) {
-        let vc = ProductExtraDetailsViewController(withProduct: product)
-        vc.handler = handler
-        navigationController?.pushViewController(vc, animated: true)
+        if let delegate = delegate {
+            delegate.didChange(model: product.jeepModel)
+            dismiss(animated: true, completion: nil)
+        } else {
+            let vc = ProductExtraDetailsViewController(withProduct: product)
+            vc.handler = handler
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     @IBAction func xButtonPressed(_ sender: UIButton) {
-        handler.dismiss()
+        if let _ = delegate {
+            dismiss(animated: true, completion: nil)
+        } else {
+            handler.dismiss()
+        }
     }
 
     // MARK: - JeepTypeView delegate

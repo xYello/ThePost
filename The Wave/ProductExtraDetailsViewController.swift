@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductExtraDetailsViewController: SeletectedImageViewController, UITextViewDelegate {
+class ProductExtraDetailsViewController: SeletectedImageViewController, JeepModelChooserDelegate, UITextViewDelegate {
 
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var bottomBackgroundView: UIView!
@@ -113,9 +113,20 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, UITextVi
         present(vc, animated: false, completion: nil)
     }
 
+    // MARK: - JeepModelChooser delegate
+
+    func didChange(model: JeepModel) {
+        jeepTypeLabel.text = model.name
+    }
+
     // MARK: - Actions
 
     @IBAction func jeepTypeButtonPressed(_ sender: UIButton) {
+        let vc = JeepModelChooserViewController(withProduct: product)
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.delegate = self
+        vc.selectedProduct = product.jeepModel
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func locationButtonPressed(_ sender: UIButton) {
