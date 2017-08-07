@@ -110,7 +110,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, UITextVi
                 self.descriptionTextView.textColor = #colorLiteral(red: 0.6980392157, green: 0.6980392157, blue: 0.6980392157, alpha: 1)
             }
         }
-        navigationController?.present(vc, animated: false, completion: nil)
+        present(vc, animated: false, completion: nil)
     }
 
     // MARK: - Actions
