@@ -138,7 +138,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         let truncated = string!.substring(to: endIndex) // Remove the .00 from the price.
         priceLabel.text = truncated
         
-        textCellLayout = [product.name, product.jeepModel.description, truncated, product.condition.description, product.location ?? "None provided"]
+        textCellLayout = [product.name, product.jeepModel.name, truncated, product.condition.description, product.location ?? "None provided"]
         checkCellLayout = [product.willingToShip, product.acceptsPayPal, product.acceptsCash]
         
         grabProductImages()
@@ -300,7 +300,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     @IBAction func markAsSoldPressed(_ sender: UIButton) {
         let productRef = FIRDatabase.database().reference()
         let childUpdates: [String: Any] = ["products/\(product.uid!)/isSold": true,
-                                           "products/\(product.uid!)/soldModel": "SOLD" + product.jeepModel.description]
+                                           "products/\(product.uid!)/soldModel": "SOLD" + product.jeepModel.name]
 
         productRef.updateChildValues(childUpdates)
 

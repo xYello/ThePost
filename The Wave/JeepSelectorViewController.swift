@@ -112,7 +112,7 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
     
     @objc private func selectedJeepCategory(sender: JeepModelButton) {
         selectedJeepModel = sender.jeepModel
-        KeychainWrapper.standard.set(selectedJeepModel.type.description, forKey: UserInfoKeys.UserSelectedJeep)
+        KeychainWrapper.standard.set(selectedJeepModel.type.name, forKey: UserInfoKeys.UserSelectedJeep)
         dismiss(animated: true, completion: nil)
     }
     
@@ -127,7 +127,7 @@ class JeepSelectorViewController: UIViewController, UICollectionViewDataSource, 
         
         var indexPath = IndexPath(row: 0, section: 0)
         for jeep in jeeps {
-            if type.description == jeep.type.description {
+            if type.name == jeep.type.name {
                 indexPath = IndexPath(row: index, section: 0)
             }
             index += 1

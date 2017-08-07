@@ -73,7 +73,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         string.addAttribute(NSLinkAttributeName, value: PolicyLinks.termsOfUse, range: touRange)
         string.addAttribute(NSLinkAttributeName, value: PolicyLinks.privacy, range: privacyRange)
         
-        
         let wholeRange = NSMakeRange(0, string.length)
         let font = UIFont(name: "Lato-LightItalic", size: 14.0)!
         string.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: wholeRange)

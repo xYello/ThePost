@@ -41,9 +41,6 @@ class SettingsContainerViewController: UIViewController {
         view.roundCorners(radius: 8.0)
         view.clipsToBounds = true
         
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        view.addGestureRecognizer(gesture)
-        
         fullNameTextField.text = fullName
         
         if KeychainWrapper.standard.string(forKey: UserInfoKeys.UserPass) == nil {
@@ -61,6 +58,8 @@ class SettingsContainerViewController: UIViewController {
         closeButton.layer.borderColor = closeButton.titleLabel!.textColor.cgColor
         closeButton.layer.borderWidth = 1.0
         closeButton.roundCorners(radius: 8.0)
+
+        view.hideKeyboardWhenTappedAround()
     }
     
     // MARK: - Actions
@@ -117,10 +116,6 @@ class SettingsContainerViewController: UIViewController {
         } else {
             confirmPasswordLabel.textColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
         }
-    }
-    
-    @objc private func tapped() {
-        view.endEditing(false)
     }
 
     @IBAction func giveFeedbackPressed(_ sender: UIButton) {

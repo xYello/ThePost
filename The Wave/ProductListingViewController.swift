@@ -121,8 +121,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                 .queryStarting(atValue: "SELLING").queryEnding(atValue: "SELLING\u{f8ff}").queryLimited(toLast: 200)
             if jeepModel.type != .all {
                 query = productRef!.queryOrdered(byChild: "soldModel")
-                    .queryStarting(atValue: "SELLING" + jeepModel.type.description)
-                    .queryEnding(atValue: "SELLING" + jeepModel.type.description)
+                    .queryStarting(atValue: "SELLING" + jeepModel.type.name)
+                    .queryEnding(atValue: "SELLING" + jeepModel.type.name)
                     .queryLimited(toLast: 200)
             }
             query.observe(.childAdded, with: { snapshot in
@@ -208,7 +208,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plpContentCell", for: indexPath) as! ProductListingContentCollectionViewCell
         let product = productArray()[indexPath.row]
         
-        cell.descriptionLabel.text = product.jeepModel.description
+        cell.descriptionLabel.text = product.jeepModel.name
         
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency

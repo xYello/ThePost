@@ -304,7 +304,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         if greenButton.currentTitle == "Mark Sold" {
             let productRef = FIRDatabase.database().reference()
             let childUpdates: [String: Any] = ["products/\(conversation.productID!)/isSold": true,
-                                               "products/\(conversation.productID!)/soldModel": "SOLD" + product.jeepModel.description]
+                                               "products/\(conversation.productID!)/soldModel": "SOLD" + product.jeepModel.name]
             
             productRef.updateChildValues(childUpdates)
         } else if greenButton.currentTitle == "View Profile" {

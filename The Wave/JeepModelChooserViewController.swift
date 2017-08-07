@@ -60,6 +60,9 @@ class JeepModelChooserViewController: SeletectedImageViewController, JeepTypeVie
     // MARK: - Actions
 
     @IBAction func nextButtonPressed(_ sender: BigRedShadowButton) {
+        let vc = ProductExtraDetailsViewController(withProduct: product)
+        vc.handler = handler
+        navigationController?.pushViewController(vc, animated: false)
     }
 
     @IBAction func xButtonPressed(_ sender: UIButton) {

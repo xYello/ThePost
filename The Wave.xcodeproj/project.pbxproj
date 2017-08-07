@@ -12,6 +12,10 @@
 		2F5450BB1E537433005A88A3 /* JeepSocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */; };
 		2FB607121E748E310053B41D /* UploadSocialPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */; };
 		317F8312604FAE3B60BC7E56 /* Pods_The_Wave_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6297B4D70B986A58945734 /* Pods_The_Wave_Tests.framework */; };
+		491FEF8E1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491FEF8C1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift */; };
+		491FEF8F1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491FEF8D1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib */; };
+		4943ED891F37EFBE00C758F8 /* UIView+Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4943ED881F37EFBE00C758F8 /* UIView+Borders.swift */; };
+		4943ED8B1F37F6DD00C758F8 /* ExtendedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4943ED8A1F37F6DD00C758F8 /* ExtendedTextField.swift */; };
 		4952DDC71F313C9400AB159E /* PriceChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4952DDC61F313C9400AB159E /* PriceChooseViewController.swift */; };
 		4952DDC91F313CE900AB159E /* PriceChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4952DDC81F313CE900AB159E /* PriceChooseViewController.xib */; };
 		4952DDCB1F3144EC00AB159E /* BigRedShadowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4952DDCA1F3144EC00AB159E /* BigRedShadowButton.swift */; };
@@ -159,6 +163,10 @@
 		2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSocialTableViewCell.swift; sourceTree = "<group>"; };
 		2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadSocialPostViewController.swift; sourceTree = "<group>"; };
 		4375007B15C08C7978EE6C10 /* Pods-The Wave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Wave.release.xcconfig"; path = "Pods/Target Support Files/Pods-The Wave/Pods-The Wave.release.xcconfig"; sourceTree = "<group>"; };
+		491FEF8C1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductExtraDetailsViewController.swift; sourceTree = "<group>"; };
+		491FEF8D1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductExtraDetailsViewController.xib; sourceTree = "<group>"; };
+		4943ED881F37EFBE00C758F8 /* UIView+Borders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Borders.swift"; sourceTree = "<group>"; };
+		4943ED8A1F37F6DD00C758F8 /* ExtendedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTextField.swift; sourceTree = "<group>"; };
 		4952DDC61F313C9400AB159E /* PriceChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceChooseViewController.swift; sourceTree = "<group>"; };
 		4952DDC81F313CE900AB159E /* PriceChooseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PriceChooseViewController.xib; sourceTree = "<group>"; };
 		4952DDCA1F3144EC00AB159E /* BigRedShadowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigRedShadowButton.swift; sourceTree = "<group>"; };
@@ -422,6 +430,7 @@
 				497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */,
 				4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */,
 				49714F0E1F32C94700A7B4FC /* UIView+TappedAround.swift */,
+				4943ED881F37EFBE00C758F8 /* UIView+Borders.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -675,6 +684,7 @@
 				4DBF61E61E29CA3100D07AD5 /* PercentageBar.swift */,
 				4D14F6D51E31A09400AF71F8 /* ModalPresentationViewController.swift */,
 				4952DDCA1F3144EC00AB159E /* BigRedShadowButton.swift */,
+				4943ED8A1F37F6DD00C758F8 /* ExtendedTextField.swift */,
 			);
 			name = "Sub Classes";
 			sourceTree = "<group>";
@@ -684,6 +694,8 @@
 			children = (
 				4952DDC61F313C9400AB159E /* PriceChooseViewController.swift */,
 				4952DDC81F313CE900AB159E /* PriceChooseViewController.xib */,
+				491FEF8C1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift */,
+				491FEF8D1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib */,
 				4DC6C6701E1609AA00431D3A /* Collection View Cells */,
 				4DD3CCC71E14DD3800821C7C /* Table View Cells */,
 				4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */,
@@ -878,6 +890,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				491FEF8F1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib in Resources */,
 				496944C11F33FA5A00AEC0D1 /* JeepModelChooserViewController.xib in Resources */,
 				4DE6622D1E6D12A100417EBB /* 1Password.xcassets in Resources */,
 				4DD3CCC11E14688C00821C7C /* Assets.xcassets in Resources */,
@@ -1094,6 +1107,7 @@
 				4D5AB0B21E249418005BF23B /* ProductViewerContainerViewController.swift in Sources */,
 				4D161BCB1E2700EC001BEE9D /* CreateReviewViewController.swift in Sources */,
 				4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */,
+				491FEF8E1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift in Sources */,
 				4D0541131EA969780033526C /* BuildTrustViewController.swift in Sources */,
 				4D5AB0B01E249404005BF23B /* ProductViewerViewController.swift in Sources */,
 				4D24E8CB1E15C79900E524FD /* NewProductDetailsTableViewCell.swift in Sources */,
@@ -1113,6 +1127,7 @@
 				4D5AB0AB1E242765005BF23B /* ChatContainerViewController.swift in Sources */,
 				4D34358D1E203E2800E031D7 /* ProfileViewController.swift in Sources */,
 				4DA153F31E22EA6D00708543 /* ChatViewController.swift in Sources */,
+				4943ED8B1F37F6DD00C758F8 /* ExtendedTextField.swift in Sources */,
 				49714F0F1F32C94700A7B4FC /* UIView+TappedAround.swift in Sources */,
 				4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */,
 				4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */,
@@ -1129,6 +1144,7 @@
 				4952DDC71F313C9400AB159E /* PriceChooseViewController.swift in Sources */,
 				496944BF1F33FA3F00AEC0D1 /* JeepModelChooserViewController.swift in Sources */,
 				4DC30D501E399E050087B447 /* SocialViewController.swift in Sources */,
+				4943ED891F37EFBE00C758F8 /* UIView+Borders.swift in Sources */,
 				4D161BCD1E2710C2001BEE9D /* CreateReviewContainerViewController.swift in Sources */,
 				4D0541111EA968CA0033526C /* BuildTrustModalViewController.swift in Sources */,
 				60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */,

@@ -37,3 +37,7 @@ struct PolicyLinks {
     static let privacy = "https://www.iubenda.com/privacy-policy/8125887"
     static let termsOfUse = "https://termsfeed.com/terms-conditions/51d3180f8e157ed280d55d34bc6b5d41"
 }
+
+struct CornerRadius {
+    static let constant: CGFloat = 8.0
+}

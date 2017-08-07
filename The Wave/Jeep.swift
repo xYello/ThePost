@@ -16,7 +16,7 @@ enum JeepModel: Int {
     case cherokeeCJ
     case cherokeeXJ
     
-    var description: String {
+    var name: String {
         switch self {
         case .all: return "General"
         case .wranglerJK: return "Jeep Wrangler JK/JKU"
@@ -42,22 +42,22 @@ enum JeepModel: Int {
     
     static func enumFromString(string: String) -> JeepModel {
         switch string {
-        case JeepModel.wranglerJK.description: return JeepModel.wranglerJK
-        case JeepModel.wranglerTJ.description: return JeepModel.wranglerTJ
-        case JeepModel.wranglerYJ.description: return JeepModel.wranglerYJ
-        case JeepModel.cherokeeCJ.description: return JeepModel.cherokeeCJ
-        case JeepModel.cherokeeXJ.description: return JeepModel.cherokeeXJ
+        case JeepModel.wranglerJK.name: return JeepModel.wranglerJK
+        case JeepModel.wranglerTJ.name: return JeepModel.wranglerTJ
+        case JeepModel.wranglerYJ.name: return JeepModel.wranglerYJ
+        case JeepModel.cherokeeCJ.name: return JeepModel.cherokeeCJ
+        case JeepModel.cherokeeXJ.name: return JeepModel.cherokeeXJ
         default: return JeepModel.all
         }
     }
 
     static func arrayOfStrings() -> [String] {
-        return [JeepModel.all.description,
-                JeepModel.wranglerJK.description,
-                JeepModel.wranglerTJ.description,
-                JeepModel.wranglerYJ.description,
-                JeepModel.cherokeeCJ.description,
-                JeepModel.cherokeeXJ.description]
+        return [JeepModel.all.name,
+                JeepModel.wranglerJK.name,
+                JeepModel.wranglerTJ.name,
+                JeepModel.wranglerYJ.name,
+                JeepModel.cherokeeCJ.name,
+                JeepModel.cherokeeXJ.name]
     }
 }
 
@@ -97,27 +97,27 @@ class Jeep: NSObject {
             name = "All Jeeps"
         case .wranglerJK:
             image = UIImage(named: "JKGrillIcon")!
-            name = JeepModel.wranglerJK.description
+            name = JeepModel.wranglerJK.name
             startYear = 2007
             isInProduction = true
         case .wranglerTJ:
             image = UIImage(named: "TJGrillIcon")!
-            name = JeepModel.wranglerTJ.description
+            name = JeepModel.wranglerTJ.name
             startYear = 1997
             endYear = 2006
         case .wranglerYJ:
             image = UIImage(named: "YJGrillIcon")!
-            name = JeepModel.wranglerYJ.description
+            name = JeepModel.wranglerYJ.name
             startYear = 1987
             endYear = 1995
         case .cherokeeCJ:
             image = UIImage(named: "CJGrillIcon")!
-            name = JeepModel.cherokeeCJ.description
+            name = JeepModel.cherokeeCJ.name
             startYear = 1944
             endYear = 1986
         case .cherokeeXJ:
             image = UIImage(named: "XJGrillIcon")!
-            name = JeepModel.cherokeeXJ.description
+            name = JeepModel.cherokeeXJ.name
             startYear = 1984
             endYear = 1996
         }
