@@ -45,7 +45,8 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
     @IBOutlet weak var uploadPictureButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
 
-    private var vcToPresent: SeletectedImageViewController
+    private var vcToPresent: SeletectedImageViewController?
+    private var dismissHandler: ((UIImage?) -> ())?
     
     private var session: AVCaptureSession!
     fileprivate var photoOutput: AVCapturePhotoOutput!
@@ -76,6 +77,11 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
 
     init(vcToPresentAfterUpload vc: SeletectedImageViewController) {
         vcToPresent = vc
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    init(dismissHandler: @escaping ((UIImage?) -> ())) {
+        self.dismissHandler = dismissHandler
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -178,9 +184,14 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
             }
         } else {
             controlsContainer.isHidden = true
-            
-            vcToPresent.image = photoPreviewImageView.image
-            vcToPresent.present(fromVc: self, withDismissHandler: self)
+
+            if let vc = vcToPresent {
+                vc.image = photoPreviewImageView.image
+                vc.present(fromVc: self, withDismissHandler: self)
+            } else {
+                dismissHandler?(photoPreviewImageView.image)
+                dismiss(animated: true, completion: nil)
+            }
         }
     }
 
@@ -218,7 +229,7 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
     // MARK: - ImageSelectorClose protocol
 
     func dismiss() {
-        vcToPresent.navigationController?.dismiss(animated: true, completion: {
+        vcToPresent?.navigationController?.dismiss(animated: true, completion: {
             self.dismiss(animated: true, completion: nil)
         })
     }

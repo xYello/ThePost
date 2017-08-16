@@ -57,7 +57,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         format(button: rightMostButton)
 
         leftMostButton.setImage(product.images[0], for: .normal)
-        leftMidButton.setImage(#imageLiteral(resourceName: "NewImageProduct"), for: .normal)
+        leftMidButton.setBackgroundImage(#imageLiteral(resourceName: "NewImageProduct"), for: .normal)
 
         // Bottom background view
         productNameTextField.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
@@ -120,6 +120,15 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
 
     // MARK: - Actions
 
+    @IBAction func cameraButtonPressed(_ sender: UIButton) {
+        let vc = ImageSelectorViewController { image in
+            if let image = image {
+                self.updateButtonImage(for: image, from: sender)
+            }
+        }
+        present(vc, animated: true, completion: nil)
+    }
+    
     @IBAction func jeepTypeButtonPressed(_ sender: UIButton) {
         let vc = JeepModelChooserViewController(withProduct: product)
         vc.modalPresentationStyle = .overCurrentContext
@@ -139,6 +148,50 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     }
 
     // MARK: - Helpers
+
+    private func updateButtonImage(for image: UIImage, from sender: UIButton) {
+        if sender === leftMostButton {
+            product.images[0] = image
+            sender.setImage(image, for: .normal)
+        } else if sender === leftMidButton {
+            if product.images.count >= 2 {
+                product.images[1] = image
+            } else {
+                product.images.append(image)
+                rightMidButton.setBackgroundImage(#imageLiteral(resourceName: "NewImageProduct"), for: .normal)
+            }
+            sender.setImage(image, for: .normal)
+        } else if sender === rightMidButton {
+            if product.images.count >= 3 {
+                product.images[2] = image
+                sender.setImage(image, for: .normal)
+            } else if product.images.count == 2 {
+                product.images.append(image)
+                sender.setImage(image, for: .normal)
+                rightMostButton.setBackgroundImage(#imageLiteral(resourceName: "NewImageProduct"), for: .normal)
+            } else if product.images.count == 1 {
+                product.images.append(image)
+                leftMidButton.setImage(image, for: .normal)
+                sender.setBackgroundImage(#imageLiteral(resourceName: "NewImageProduct"), for: .normal)
+            }
+        } else if sender === rightMostButton {
+            if product.images.count == 4 {
+                product.images[3] = image
+                sender.setImage(image, for: .normal)
+            } else if product.images.count == 3 {
+                product.images.append(image)
+                sender.setImage(image, for: .normal)
+            } else if product.images.count == 2 {
+                product.images.append(image)
+                rightMidButton.setImage(image, for: .normal)
+                sender.setBackgroundImage(#imageLiteral(resourceName: "NewImageProduct"), for: .normal)
+            } else if product.images.count == 1 {
+                product.images.append(image)
+                leftMidButton.setImage(image, for: .normal)
+                rightMidButton.setBackgroundImage(#imageLiteral(resourceName: "NewImageProduct"), for: .normal)
+            }
+        }
+    }
 
     private func format(button: UIButton) {
         button.clipsToBounds = true

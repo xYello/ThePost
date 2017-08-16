@@ -62,6 +62,9 @@
                                 <constraint firstAttribute="width" secondItem="3HK-Fv-UrP" secondAttribute="height" multiplier="1:1" id="OdK-ih-uD7"/>
                             </constraints>
                             <state key="normal" image="NewImageProduct"/>
+                            <connections>
+                                <action selector="cameraButtonPressed:" destination="-1" eventType="touchUpInside" id="fEI-4k-WXz"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08O-We-7gA">
                             <rect key="frame" x="104" y="89" width="78.5" height="79"/>
@@ -70,6 +73,9 @@
                                 <constraint firstAttribute="width" secondItem="08O-We-7gA" secondAttribute="height" multiplier="1:1" id="phK-B4-Y4b"/>
                             </constraints>
                             <state key="normal" image="NewImageProduct"/>
+                            <connections>
+                                <action selector="cameraButtonPressed:" destination="-1" eventType="touchUpInside" id="c4b-Ur-3j7"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRt-BR-883">
                             <rect key="frame" x="192.5" y="89" width="79" height="79"/>
@@ -78,6 +84,9 @@
                                 <constraint firstAttribute="width" secondItem="JRt-BR-883" secondAttribute="height" multiplier="1:1" id="LwQ-HU-Nxm"/>
                             </constraints>
                             <state key="normal" image="NewImageProduct"/>
+                            <connections>
+                                <action selector="cameraButtonPressed:" destination="-1" eventType="touchUpInside" id="X6m-uw-rOW"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5q-Mp-PcO">
                             <rect key="frame" x="281.5" y="89" width="78.5" height="79"/>
@@ -86,6 +95,9 @@
                                 <constraint firstAttribute="width" secondItem="k5q-Mp-PcO" secondAttribute="height" multiplier="1:1" id="lBm-Ab-P0G"/>
                             </constraints>
                             <state key="normal" image="NewImageProduct"/>
+                            <connections>
+                                <action selector="cameraButtonPressed:" destination="-1" eventType="touchUpInside" id="Gaw-Ms-vr9"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsi-JH-gcK">
                             <rect key="frame" x="307" y="12" width="60" height="80"/>
