@@ -128,6 +128,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
                     self.saveOneSignalId()
+
+                    let user = User()
+                    user.uid = FIRAuth.auth()!.currentUser!.uid
+                    SentryManager.shared.addUserCrediantials(withUser: user)
                 }
 
             })
@@ -148,6 +152,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
                     self.saveOneSignalId()
+
+                    let user = User()
+                    user.uid = FIRAuth.auth()!.currentUser!.uid
+                    SentryManager.shared.addUserCrediantials(withUser: user)
                 }
 
             })
@@ -168,6 +176,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
                     self.saveOneSignalId()
+
+                    let user = User()
+                    user.uid = FIRAuth.auth()!.currentUser!.uid
+                    SentryManager.shared.addUserCrediantials(withUser: user)
                 }
 
             })
