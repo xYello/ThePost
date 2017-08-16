@@ -89,7 +89,6 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         bottomBackgroundView.roundCorners(radius: 8.0)
-        view.bringSubview(toFront: bottomBackgroundView)
     }
 
     // MARK: - UITextView delegate
