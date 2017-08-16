@@ -62,8 +62,8 @@ class JeepModelChooserViewController: SeletectedImageViewController, JeepTypeVie
             typeViews[index!].selected = true
             product.jeepModel = model
         } else {
-            typeViews[0].selected = true
-            product.jeepModel = typeViews[0].type
+            typeViews.last!.selected = true
+            product.jeepModel = typeViews.last!.type
         }
     }
 
