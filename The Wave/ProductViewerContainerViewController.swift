@@ -551,7 +551,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                     }
                     
                 }
-                
+
                 DispatchQueue.main.async {
                     self.likeImageView.tintColor = color
                 }
@@ -599,6 +599,13 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             // Finally, delete the product.
             basicRef.child("products").child(self.product.uid).removeValue()
         })
+
+        // Delete the associated product images. (Attempt to delete all. May error, but best we can do)
+        let storage = FIRStorage.storage().reference().child("products").child(product.uid)
+        storage.child("1").delete(completion: nil)
+        storage.child("2").delete(completion: nil)
+        storage.child("3").delete(completion: nil)
+        storage.child("4").delete(completion: nil)
 
         dismissParent()
     }
