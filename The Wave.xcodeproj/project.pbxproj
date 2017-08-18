@@ -61,6 +61,8 @@
 		4D1667311E4FBFBB0092FDFB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1667301E4FBFBB0092FDFB /* SettingsViewController.swift */; };
 		4D1667351E4FC06F0092FDFB /* SettingsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */; };
 		4D17F2031E85911F000BEAAB /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17F2021E85911F000BEAAB /* PushNotification.swift */; };
+		4D1FB3841F44A2EB008055DE /* ProductUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1FB3831F44A2EB008055DE /* ProductUploadViewController.swift */; };
+		4D1FB3861F44A302008055DE /* ProductUploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D1FB3851F44A302008055DE /* ProductUploadViewController.xib */; };
 		4D20C1E41EF374AE0090AEBE /* Date+StartOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C1E31EF374AE0090AEBE /* Date+StartOfWeek.swift */; };
 		4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */; };
 		4D239C421E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */; };
@@ -214,6 +216,8 @@
 		4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsContainerViewController.swift; sourceTree = "<group>"; };
 		4D17F2021E85911F000BEAAB /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		4D1BC6621E7DBEE50068EAF9 /* The Wave.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "The Wave.entitlements"; sourceTree = "<group>"; };
+		4D1FB3831F44A2EB008055DE /* ProductUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUploadViewController.swift; sourceTree = "<group>"; };
+		4D1FB3851F44A302008055DE /* ProductUploadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductUploadViewController.xib; sourceTree = "<group>"; };
 		4D20C1E31EF374AE0090AEBE /* Date+StartOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StartOfWeek.swift"; sourceTree = "<group>"; };
 		4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingViewController.swift; sourceTree = "<group>"; };
 		4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingContentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -696,6 +700,8 @@
 				4952DDC81F313CE900AB159E /* PriceChooseViewController.xib */,
 				491FEF8C1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift */,
 				491FEF8D1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib */,
+				4D1FB3831F44A2EB008055DE /* ProductUploadViewController.swift */,
+				4D1FB3851F44A302008055DE /* ProductUploadViewController.xib */,
 				4DC6C6701E1609AA00431D3A /* Collection View Cells */,
 				4DD3CCC71E14DD3800821C7C /* Table View Cells */,
 				4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */,
@@ -908,6 +914,7 @@
 				4D04C5301E0EFCDD004B2264 /* Lato-BlackItalic.ttf in Resources */,
 				4D04C53A1E0EFCDD004B2264 /* Lato-Medium.ttf in Resources */,
 				4D04C5331E0EFCDD004B2264 /* Lato-Hairline.ttf in Resources */,
+				4D1FB3861F44A302008055DE /* ProductUploadViewController.xib in Resources */,
 				4D04C5411E0EFCDD004B2264 /* Traveler.ttf in Resources */,
 				4D5643391E4EAF7600064948 /* SignInUp.storyboard in Resources */,
 				4D04C53C1E0EFCDD004B2264 /* Lato-Regular.ttf in Resources */,
@@ -1108,6 +1115,7 @@
 				4D161BCB1E2700EC001BEE9D /* CreateReviewViewController.swift in Sources */,
 				4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */,
 				491FEF8E1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift in Sources */,
+				4D1FB3841F44A2EB008055DE /* ProductUploadViewController.swift in Sources */,
 				4D0541131EA969780033526C /* BuildTrustViewController.swift in Sources */,
 				4D5AB0B01E249404005BF23B /* ProductViewerViewController.swift in Sources */,
 				4D24E8CB1E15C79900E524FD /* NewProductDetailsTableViewCell.swift in Sources */,

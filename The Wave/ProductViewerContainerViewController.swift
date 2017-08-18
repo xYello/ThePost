@@ -165,7 +165,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     // MARK: - CollectionView datasource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return product.images.count
+        return product.imageUrls.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

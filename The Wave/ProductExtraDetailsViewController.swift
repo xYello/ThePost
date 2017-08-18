@@ -128,7 +128,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         }
         present(vc, animated: true, completion: nil)
     }
-    
+
     @IBAction func jeepTypeButtonPressed(_ sender: UIButton) {
         let vc = JeepModelChooserViewController(withProduct: product)
         vc.modalPresentationStyle = .overCurrentContext
@@ -141,6 +141,15 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     }
 
     @IBAction func postProductButtonPressed(_ sender: BigRedShadowButton) {
+        product.name = productNameTextField.text
+        product.acceptsCash = cashSwitch.isOn
+        product.acceptsPayPal = paypalSwitch.isOn
+        product.willingToShip = shippingSwitch.isOn
+        product.detailedDescription = descriptionTextView.text
+
+        let vc = ProductUploadViewController(withProduct: product)
+        vc.handler = handler
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func xButonPressed(_ sender: UIButton) {
