@@ -142,6 +142,9 @@
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="namePriceTextFieldChanged:" destination="-1" eventType="editingChanged" id="LLs-XH-Vxn"/>
+                            </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hvu-cT-Vks" userLabel="Jeep Type View">
                             <rect key="frame" x="50" y="68" width="274" height="43"/>
@@ -216,6 +219,9 @@
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="namePriceTextFieldChanged:" destination="-1" eventType="editingChanged" id="6FH-LP-cRN"/>
+                            </connections>
                         </textField>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write a description..." translatesAutoresizingMaskIntoConstraints="NO" id="j2X-vR-rFT">
                             <rect key="frame" x="50" y="216.5" width="274" height="57.5"/>

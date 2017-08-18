@@ -61,6 +61,7 @@
 		4D1667311E4FBFBB0092FDFB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1667301E4FBFBB0092FDFB /* SettingsViewController.swift */; };
 		4D1667351E4FC06F0092FDFB /* SettingsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */; };
 		4D17F2031E85911F000BEAAB /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17F2021E85911F000BEAAB /* PushNotification.swift */; };
+		4D1842371F46BFC800B2AEF2 /* UIView+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1842361F46BFC800B2AEF2 /* UIView+Shake.swift */; };
 		4D1FB3841F44A2EB008055DE /* ProductUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1FB3831F44A2EB008055DE /* ProductUploadViewController.swift */; };
 		4D1FB3861F44A302008055DE /* ProductUploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D1FB3851F44A302008055DE /* ProductUploadViewController.xib */; };
 		4D20C1E41EF374AE0090AEBE /* Date+StartOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C1E31EF374AE0090AEBE /* Date+StartOfWeek.swift */; };
@@ -215,6 +216,7 @@
 		4D1667301E4FBFBB0092FDFB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsContainerViewController.swift; sourceTree = "<group>"; };
 		4D17F2021E85911F000BEAAB /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
+		4D1842361F46BFC800B2AEF2 /* UIView+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shake.swift"; sourceTree = "<group>"; };
 		4D1BC6621E7DBEE50068EAF9 /* The Wave.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "The Wave.entitlements"; sourceTree = "<group>"; };
 		4D1FB3831F44A2EB008055DE /* ProductUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUploadViewController.swift; sourceTree = "<group>"; };
 		4D1FB3851F44A302008055DE /* ProductUploadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductUploadViewController.xib; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */,
 				49714F0E1F32C94700A7B4FC /* UIView+TappedAround.swift */,
 				4943ED881F37EFBE00C758F8 /* UIView+Borders.swift */,
+				4D1842361F46BFC800B2AEF2 /* UIView+Shake.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1156,6 +1159,7 @@
 				4D161BCD1E2710C2001BEE9D /* CreateReviewContainerViewController.swift in Sources */,
 				4D0541111EA968CA0033526C /* BuildTrustModalViewController.swift in Sources */,
 				60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */,
+				4D1842371F46BFC800B2AEF2 /* UIView+Shake.swift in Sources */,
 				4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */,
 				4D11145F1E737B74001C274F /* ProductListingCollectionReusableView.swift in Sources */,
 				4D239C441E131BBE00F2668E /* Product.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductExtraDetailsViewController: SeletectedImageViewController, JeepModelChooserDelegate, UITextViewDelegate {
+class ProductExtraDetailsViewController: SeletectedImageViewController, JeepModelChooserDelegate, UITextViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var bottomBackgroundView: UIView!
@@ -66,12 +66,15 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         jeepTypeView.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
         jeepTypeView.roundCorners(radius: 3.0)
         jeepTypeLabel.text = product.jeepModel.name
+
         if let price = product.price {
             priceTextField.text = "$\(Int(price))"
         }
         priceTextField.textColor = #colorLiteral(red: 0.2353003025, green: 0.5520883203, blue: 0.3824126124, alpha: 1)
         priceTextField.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
         priceTextField.roundCorners(radius: 3.0)
+        priceTextField.delegate = self
+        priceTextField.keyboardType = .numberPad
 
         locationView.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
         locationView.roundCorners(radius: 3.0)
@@ -89,6 +92,22 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         bottomBackgroundView.roundCorners(radius: 8.0)
+    }
+
+    // MARK: - UITextField delegate
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var shouldAllowCharacter = true
+
+        if let text = textField.text {
+            if text.characters.count > 6 && string != "" {
+                shouldAllowCharacter = false
+            } else {
+
+            }
+        }
+
+        return shouldAllowCharacter
     }
 
     // MARK: - UITextView delegate
@@ -129,6 +148,33 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         present(vc, animated: true, completion: nil)
     }
 
+    @IBAction func namePriceTextFieldChanged(_ sender: UITextField) {
+        if sender === productNameTextField {
+            productNameTextField.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
+        } else if sender === priceTextField {
+            if let text = sender.text {
+                if text != "" {
+
+                    let noCommas = text.replacingOccurrences(of: ",", with: "")
+                    let noSymbol = noCommas.replacingOccurrences(of: "$", with: "")
+
+                    if let price = Int(noSymbol) {
+                        let formatter = NumberFormatter()
+                        formatter.numberStyle = .currency
+                        formatter.maximumFractionDigits = 0
+
+                        product.price = Float(price)
+
+                        let string = formatter.string(from: price as NSNumber)
+                        sender.text = string
+                    }
+                }
+            }
+
+            priceTextField.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
+        }
+    }
+
     @IBAction func jeepTypeButtonPressed(_ sender: UIButton) {
         let vc = JeepModelChooserViewController(withProduct: product)
         vc.modalPresentationStyle = .overCurrentContext
@@ -141,15 +187,17 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     }
 
     @IBAction func postProductButtonPressed(_ sender: BigRedShadowButton) {
-        product.name = productNameTextField.text
-        product.acceptsCash = cashSwitch.isOn
-        product.acceptsPayPal = paypalSwitch.isOn
-        product.willingToShip = shippingSwitch.isOn
-        product.detailedDescription = descriptionTextView.text
+        if isRequiredTextFieldsFilled() {
+            product.name = productNameTextField.text
+            product.acceptsCash = cashSwitch.isOn
+            product.acceptsPayPal = paypalSwitch.isOn
+            product.willingToShip = shippingSwitch.isOn
+            product.detailedDescription = descriptionTextView.text
 
-        let vc = ProductUploadViewController(withProduct: product)
-        vc.handler = handler
-        navigationController?.pushViewController(vc, animated: true)
+            let vc = ProductUploadViewController(withProduct: product)
+            vc.handler = handler
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func xButonPressed(_ sender: UIButton) {
@@ -157,6 +205,12 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     }
 
     // MARK: - Helpers
+
+    private func format(button: UIButton) {
+        button.clipsToBounds = true
+        button.roundCorners(radius: CornerRadius.constant)
+        button.setImage(nil, for: .normal)
+    }
 
     private func updateButtonImage(for image: UIImage, from sender: UIButton) {
         if sender === leftMostButton {
@@ -202,10 +256,42 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         }
     }
 
-    private func format(button: UIButton) {
-        button.clipsToBounds = true
-        button.roundCorners(radius: CornerRadius.constant)
-        button.setImage(nil, for: .normal)
+    private func isRequiredTextFieldsFilled() -> Bool {
+        var viewsToShake = [UIView]()
+        if let text = productNameTextField.text {
+            if text.characters.count == 0 {
+                indicateTextFieldIsRequired(textField: productNameTextField)
+                viewsToShake.append(productNameTextField)
+            }
+        } else {
+            indicateTextFieldIsRequired(textField: productNameTextField)
+            viewsToShake.append(productNameTextField)
+        }
+
+        if let text = priceTextField.text {
+            let priceString = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
+            if text.characters.count <= 1 || "$" + priceString != text {
+                indicateTextFieldIsRequired(textField: priceTextField)
+                viewsToShake.append(priceTextField)
+            }
+        } else {
+            indicateTextFieldIsRequired(textField: priceTextField)
+            viewsToShake.append(priceTextField)
+        }
+
+        if viewsToShake.count > 0 {
+            for view in viewsToShake {
+                view.shake()
+            }
+
+            return false
+        } else {
+            return true
+        }
+    }
+
+    private func indicateTextFieldIsRequired(textField: UITextField) {
+        textField.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.6392156863, green: 0.2980392157, blue: 0.2235294118, alpha: 1))
     }
 
 }
