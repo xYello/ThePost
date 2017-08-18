@@ -71,9 +71,6 @@
 		4D23EC701E1ECE0C0001C045 /* SignInUpPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */; };
 		4D23EC751E1F86130001C045 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D23EC741E1F86130001C045 /* ConversationTableViewCell.swift */; };
 		4D23EC771E1F86360001C045 /* ChatConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D23EC761E1F86360001C045 /* ChatConversationViewController.swift */; };
-		4D24E8C51E157F5000E524FD /* NewProductDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D24E8C41E157F5000E524FD /* NewProductDropDownTableViewCell.swift */; };
-		4D24E8C91E15C48600E524FD /* NewProductSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D24E8C81E15C48600E524FD /* NewProductSwitchTableViewCell.swift */; };
-		4D24E8CB1E15C79900E524FD /* NewProductDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D24E8CA1E15C79900E524FD /* NewProductDetailsTableViewCell.swift */; };
 		4D27D5D61F2D82C3007D10B2 /* ImageSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D27D5D51F2D82C3007D10B2 /* ImageSelectorViewController.swift */; };
 		4D27D5D81F2D8445007D10B2 /* ImageSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D27D5D71F2D8445007D10B2 /* ImageSelectorViewController.xib */; };
 		4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A38DB1E2180A3003D42CA /* ProductListingTableViewCell.swift */; };
@@ -107,17 +104,13 @@
 		4DBF61EB1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61EA1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift */; };
 		4DBF61ED1E29E05100D07AD5 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF61EC1E29E05100D07AD5 /* Review.swift */; };
 		4DC30D501E399E050087B447 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC30D4F1E399E050087B447 /* SocialViewController.swift */; };
-		4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */; };
 		4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */; };
 		4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */; };
 		4DD3CCC11E14688C00821C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */; };
-		4DD3CCC31E14C59C00821C7C /* AddNewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */; };
-		4DD3CCC91E14DD8700821C7C /* NewProductTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3CCC81E14DD8700821C7C /* NewProductTextTableViewCell.swift */; };
 		4DD8CB251F034ADE004546F7 /* SentryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8CB241F034ADE004546F7 /* SentryManager.swift */; };
 		4DE4D9EF1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */; };
 		4DE6622D1E6D12A100417EBB /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DE6622A1E6D12A100417EBB /* 1Password.xcassets */; };
 		4DE6622E1E6D12A100417EBB /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */; };
-		4DEB7A621E17724A00C23216 /* NewProductBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB7A611E17724A00C23216 /* NewProductBaseTableViewCell.swift */; };
 		4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */; };
 		4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */; };
 		4DFE38681E2FDFE900A83EAE /* PresentationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */; };
@@ -227,9 +220,6 @@
 		4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUpPromptViewController.swift; sourceTree = "<group>"; };
 		4D23EC741E1F86130001C045 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		4D23EC761E1F86360001C045 /* ChatConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationViewController.swift; sourceTree = "<group>"; };
-		4D24E8C41E157F5000E524FD /* NewProductDropDownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductDropDownTableViewCell.swift; sourceTree = "<group>"; };
-		4D24E8C81E15C48600E524FD /* NewProductSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductSwitchTableViewCell.swift; sourceTree = "<group>"; };
-		4D24E8CA1E15C79900E524FD /* NewProductDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		4D27D5D51F2D82C3007D10B2 /* ImageSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectorViewController.swift; sourceTree = "<group>"; };
 		4D27D5D71F2D8445007D10B2 /* ImageSelectorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSelectorViewController.xib; sourceTree = "<group>"; };
 		4D2A38DB1E2180A3003D42CA /* ProductListingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingTableViewCell.swift; sourceTree = "<group>"; };
@@ -269,18 +259,14 @@
 		4DBF61EA1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		4DBF61EC1E29E05100D07AD5 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		4DC30D4F1E399E050087B447 /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
-		4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSelectionTabBarController.swift; sourceTree = "<group>"; };
-		4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
-		4DD3CCC81E14DD8700821C7C /* NewProductTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductTextTableViewCell.swift; sourceTree = "<group>"; };
 		4DD8CB241F034ADE004546F7 /* SentryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentryManager.swift; sourceTree = "<group>"; };
 		4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "The Wave-Bridging-Header.h"; sourceTree = "<group>"; };
 		4DE6622A1E6D12A100417EBB /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
 		4DE6622B1E6D12A100417EBB /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
-		4DEB7A611E17724A00C23216 /* NewProductBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductBaseTableViewCell.swift; sourceTree = "<group>"; };
 		4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorViewController.swift; sourceTree = "<group>"; };
 		4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorCollectionViewCell.swift; sourceTree = "<group>"; };
 		4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationCenter.swift; sourceTree = "<group>"; };
@@ -675,14 +661,6 @@
 			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
-		4DC6C6701E1609AA00431D3A /* Collection View Cells */ = {
-			isa = PBXGroup;
-			children = (
-				4DC6C6711E1609E200431D3A /* ProductImageCollectionViewCell.swift */,
-			);
-			name = "Collection View Cells";
-			sourceTree = "<group>";
-		};
 		4DD1BC9B1E0E251E005F4800 /* Sub Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,23 +683,8 @@
 				491FEF8D1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib */,
 				4D1FB3831F44A2EB008055DE /* ProductUploadViewController.swift */,
 				4D1FB3851F44A302008055DE /* ProductUploadViewController.xib */,
-				4DC6C6701E1609AA00431D3A /* Collection View Cells */,
-				4DD3CCC71E14DD3800821C7C /* Table View Cells */,
-				4DD3CCC21E14C59C00821C7C /* AddNewProductViewController.swift */,
 			);
 			name = "Add New Product";
-			sourceTree = "<group>";
-		};
-		4DD3CCC71E14DD3800821C7C /* Table View Cells */ = {
-			isa = PBXGroup;
-			children = (
-				4DEB7A611E17724A00C23216 /* NewProductBaseTableViewCell.swift */,
-				4DD3CCC81E14DD8700821C7C /* NewProductTextTableViewCell.swift */,
-				4D24E8C41E157F5000E524FD /* NewProductDropDownTableViewCell.swift */,
-				4D24E8CA1E15C79900E524FD /* NewProductDetailsTableViewCell.swift */,
-				4D24E8C81E15C48600E524FD /* NewProductSwitchTableViewCell.swift */,
-			);
-			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
 		4DD8CB261F034AE9004546F7 /* Managers */ = {
@@ -1107,9 +1070,7 @@
 			files = (
 				4D5AB0BC1E24B54A005BF23B /* ProductViewerTextTableViewCell.swift in Sources */,
 				4D27D5D61F2D82C3007D10B2 /* ImageSelectorViewController.swift in Sources */,
-				4D24E8C51E157F5000E524FD /* NewProductDropDownTableViewCell.swift in Sources */,
 				4D581B5E1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift in Sources */,
-				4DD3CCC31E14C59C00821C7C /* AddNewProductViewController.swift in Sources */,
 				4D04C5471E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift in Sources */,
 				4D17F2031E85911F000BEAAB /* PushNotification.swift in Sources */,
 				4D1667311E4FBFBB0092FDFB /* SettingsViewController.swift in Sources */,
@@ -1121,15 +1082,12 @@
 				4D1FB3841F44A2EB008055DE /* ProductUploadViewController.swift in Sources */,
 				4D0541131EA969780033526C /* BuildTrustViewController.swift in Sources */,
 				4D5AB0B01E249404005BF23B /* ProductViewerViewController.swift in Sources */,
-				4D24E8CB1E15C79900E524FD /* NewProductDetailsTableViewCell.swift in Sources */,
-				4D24E8C91E15C48600E524FD /* NewProductSwitchTableViewCell.swift in Sources */,
 				49B33EDB1F2325A8005FF03E /* KeyboardHelperViewController.swift in Sources */,
 				4D04C54E1E0F2CD3004B2264 /* AppServicesRequestViewController.swift in Sources */,
 				4DBF61EB1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift in Sources */,
 				4DBF61E51E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift in Sources */,
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
 				497BFC4F1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift in Sources */,
-				4DEB7A621E17724A00C23216 /* NewProductBaseTableViewCell.swift in Sources */,
 				4DBF61E71E29CA3100D07AD5 /* PercentageBar.swift in Sources */,
 				4D5AB0B61E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift in Sources */,
 				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
@@ -1174,7 +1132,6 @@
 				4DBF61E31E29C26600D07AD5 /* ReviewsSummaryViewController.swift in Sources */,
 				4D5AB0B81E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift in Sources */,
 				4DE4D9EF1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift in Sources */,
-				4DC6C6721E1609E200431D3A /* ProductImageCollectionViewCell.swift in Sources */,
 				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
 				4DA153F51E22EB1300708543 /* Conversation.swift in Sources */,
 				4DE6622E1E6D12A100417EBB /* OnePasswordExtension.m in Sources */,
@@ -1183,7 +1140,6 @@
 				4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */,
 				4D907B561E13824D00F9FD8B /* User.swift in Sources */,
 				4D20C1E41EF374AE0090AEBE /* Date+StartOfWeek.swift in Sources */,
-				4DD3CCC91E14DD8700821C7C /* NewProductTextTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
