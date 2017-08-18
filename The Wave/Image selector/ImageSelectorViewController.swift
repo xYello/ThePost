@@ -47,6 +47,7 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
 
     private var vcToPresent: SeletectedImageViewController?
     private var dismissHandler: ((UIImage?) -> ())?
+    private var prefilledImage: UIImage?
     
     private var session: AVCaptureSession!
     fileprivate var photoOutput: AVCapturePhotoOutput!
@@ -80,8 +81,9 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
         super.init(nibName: nil, bundle: nil)
     }
 
-    init(dismissHandler: @escaping ((UIImage?) -> ())) {
+    init(prefilledImage: UIImage? = nil, dismissHandler: @escaping ((UIImage?) -> ())) {
         self.dismissHandler = dismissHandler
+        self.prefilledImage = prefilledImage
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -96,6 +98,14 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
 
         state = .takingImage
         savedImagesButton.setImage(nil, for: .normal)
+
+        if let image = prefilledImage {
+            photoPreviewImageView.contentMode = .scaleAspectFit
+            photoPreviewImageView.image = image
+            state = .tookImage
+
+            uploadPictureButton.setTitle("Finish", for: .normal)
+        }
 
         PHPhotoLibrary.requestAuthorization() { status in
             if status == .authorized {

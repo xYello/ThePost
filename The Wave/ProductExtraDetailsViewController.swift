@@ -140,7 +140,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     // MARK: - Actions
 
     @IBAction func cameraButtonPressed(_ sender: UIButton) {
-        let vc = ImageSelectorViewController { image in
+        let vc = ImageSelectorViewController(prefilledImage: sender.image(for: .normal)) { image in
             if let image = image {
                 self.updateButtonImage(for: image, from: sender)
             }
