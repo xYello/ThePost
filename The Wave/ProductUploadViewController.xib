@@ -8,10 +8,20 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Light</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductUploadViewController" customModule="The_Wave" customModuleProvider="target">
             <connections>
+                <outlet property="linkButton" destination="393-YN-n3m" id="vft-iJ-Ai6"/>
+                <outlet property="linkInfoLabel" destination="BbB-IZ-9Of" id="TDq-Ta-Nlj"/>
+                <outlet property="mainButton" destination="fob-d4-hcV" id="uC1-ZV-maU"/>
+                <outlet property="secondaryButton" destination="wIJ-uR-ddw" id="ez2-Wb-nNf"/>
                 <outlet property="statusLabel" destination="0sY-mm-Unj" id="pML-am-bLh"/>
+                <outlet property="successView" destination="2JS-0a-gXX" id="9LF-M2-ctW"/>
                 <outlet property="view" destination="iN0-l3-epB" id="OEO-gT-U04"/>
             </connections>
         </placeholder>
@@ -21,17 +31,78 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating new product..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sY-mm-Unj">
-                    <rect key="frame" x="97.5" y="177" width="180" height="21"/>
+                    <rect key="frame" x="97.5" y="267.5" width="180" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fob-d4-hcV" customClass="BigRedShadowButton" customModule="The_Wave" customModuleProvider="target">
+                    <rect key="frame" x="107" y="318.5" width="160" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="gAf-QB-HF4"/>
+                    </constraints>
+                    <state key="normal" title="View Listing"/>
+                    <connections>
+                        <action selector="viewListingPressed:" destination="-1" eventType="touchUpInside" id="c3O-h6-soz"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2JS-0a-gXX">
+                    <rect key="frame" x="10" y="378.5" width="354" height="278.5"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="393-YN-n3m">
+                            <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
+                            <color key="backgroundColor" red="0.83137254901960778" green="0.84313725490196079" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="1DR-Vd-PLN"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                            <state key="normal" title="thewaveapp.com/product/-KppEH4qB3XZnPC8oFOD">
+                                <color key="titleColor" red="0.19215686274509802" green="0.21568627450980393" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="linkButtonPressed:" destination="-1" eventType="touchUpInside" id="dRS-ii-gPD"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap above to copy to clipboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbB-IZ-9Of">
+                            <rect key="frame" x="101.5" y="40" width="152.5" height="15.5"/>
+                            <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="11"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="393-YN-n3m" firstAttribute="leading" secondItem="2JS-0a-gXX" secondAttribute="leading" id="9rI-sY-1XK"/>
+                        <constraint firstItem="BbB-IZ-9Of" firstAttribute="centerX" secondItem="2JS-0a-gXX" secondAttribute="centerX" id="Eqo-U2-5dF"/>
+                        <constraint firstItem="393-YN-n3m" firstAttribute="centerX" secondItem="2JS-0a-gXX" secondAttribute="centerX" id="WOb-JF-iOm"/>
+                        <constraint firstItem="393-YN-n3m" firstAttribute="top" secondItem="2JS-0a-gXX" secondAttribute="top" id="jyn-rA-Ari"/>
+                        <constraint firstItem="BbB-IZ-9Of" firstAttribute="top" secondItem="393-YN-n3m" secondAttribute="bottom" constant="10" id="neI-k0-wUa"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIJ-uR-ddw">
+                    <rect key="frame" x="164" y="378" width="48" height="30"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="secondaryButtonPressed:" destination="-1" eventType="touchUpInside" id="q1V-cN-ecL"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="wIJ-uR-ddw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5Bx-bj-QgM"/>
+                <constraint firstAttribute="bottom" secondItem="2JS-0a-gXX" secondAttribute="bottom" constant="10" id="G9z-U5-MEw"/>
+                <constraint firstItem="2JS-0a-gXX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IA3-Oj-cEj"/>
+                <constraint firstItem="fob-d4-hcV" firstAttribute="top" secondItem="0sY-mm-Unj" secondAttribute="bottom" constant="30" id="Kh1-Df-FKo"/>
+                <constraint firstItem="wIJ-uR-ddw" firstAttribute="top" secondItem="2JS-0a-gXX" secondAttribute="top" id="NP4-Jv-3Tw"/>
                 <constraint firstItem="0sY-mm-Unj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YPY-6J-9ZM"/>
-                <constraint firstItem="0sY-mm-Unj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="177" id="l3s-MQ-207"/>
+                <constraint firstItem="fob-d4-hcV" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="dem-Zb-Pze"/>
+                <constraint firstItem="2JS-0a-gXX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="rhQ-3Y-O0E"/>
+                <constraint firstItem="fob-d4-hcV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xs2-hd-KGK"/>
+                <constraint firstItem="2JS-0a-gXX" firstAttribute="top" secondItem="fob-d4-hcV" secondAttribute="bottom" constant="30" id="zd1-rP-CNl"/>
             </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>
 </document>

@@ -14,6 +14,13 @@ class ProductUploadViewController: SeletectedImageViewController {
 
     @IBOutlet weak var statusLabel: UILabel!
 
+    @IBOutlet weak var mainButton: BigRedShadowButton!
+    @IBOutlet weak var secondaryButton: UIButton!
+
+    @IBOutlet weak var successView: UIView!
+    @IBOutlet weak var linkButton: UIButton!
+    @IBOutlet weak var linkInfoLabel: UILabel!
+    
     private var product: Product
     private var dbProduct = [String: Any]()
 
@@ -23,8 +30,15 @@ class ProductUploadViewController: SeletectedImageViewController {
     private var didHaveError = false {
         didSet {
             if didHaveError {
-                // TODO: Display error message.
-                statusLabel.text = "Error uploading product!"
+                statusLabel.text = "Error uploading product 😕"
+                mainButton.isHidden = false
+                mainButton.setTitle("Retry?", for: .normal)
+                secondaryButton.isHidden = false
+            } else {
+                statusLabel.text = "Trying again..."
+                mainButton.isHidden = true
+                mainButton.setTitle("View Listing", for: .normal)
+                secondaryButton.isHidden = true
             }
         }
     }
@@ -47,21 +61,48 @@ class ProductUploadViewController: SeletectedImageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let reach = Reachability()!
-        if reach.currentReachabilityStatus == .notReachable {
-            didHaveError = true
-        } else {
+        mainButton.isHidden = true
+        successView.isHidden = true
+        secondaryButton.isHidden = true
+
+        linkButton.setTitle(WebsiteLinks.products + productKey, for: .normal)
+
+        startUpload()
+    }
+
+    // MARK: - Actions
+
+    @IBAction func viewListingPressed(_ sender: BigRedShadowButton) {
+        // TODO: Open the product viewer so they can see their newly created product!
+        if didHaveError {
+            didHaveError = false
             startUpload()
+        } else {
+            handler.dismiss()
         }
+    }
+
+    @IBAction func secondaryButtonPressed(_ sender: UIButton) {
+        handler.dismiss()
+    }
+
+    @IBAction func linkButtonPressed(_ sender: UIButton) {
+        UIPasteboard.general.string = WebsiteLinks.products + productKey
+        linkInfoLabel.text = "Copied!"
+        linkInfoLabel.textColor = #colorLiteral(red: 0.4078431373, green: 0.7490196078, blue: 0.4823529412, alpha: 1)
     }
 
     // MARK: - Upload
 
-    private func startUpload() {
-        if let userId = FIRAuth.auth()?.currentUser?.uid {
-            uploadImages(withUserId: userId)
+    private func startUpload() {let reach = Reachability()!
+        if reach.currentReachabilityStatus == .notReachable {
+            didHaveError = true
         } else {
-            SentryManager.shared.sendEvent(withMessage: "Product upload: Firebase current user does not exist!")
+            if let userId = FIRAuth.auth()?.currentUser?.uid {
+                uploadImages(withUserId: userId)
+            } else {
+                SentryManager.shared.sendEvent(withMessage: "Product upload: Firebase current user does not exist!")
+            }
         }
     }
 
@@ -144,10 +185,15 @@ class ProductUploadViewController: SeletectedImageViewController {
             dbProduct["condition"] = Condition.other.description
             dbProduct["originalBox"] = false
 
-            productRef.child(productKey).updateChildValues(dbProduct)
-
-            // TODO: Update with success, and URLs.
-            handler.dismiss()
+            productRef.child(productKey).updateChildValues(dbProduct, withCompletionBlock: { error, ref in
+                if let _ = error {
+                    self.didHaveError = true
+                } else {
+                    self.statusLabel.text = "🎉 Upload completed! 🎉"
+                    self.mainButton.isHidden = false
+                    self.successView.isHidden = false
+                }
+            })
         }
     }
 

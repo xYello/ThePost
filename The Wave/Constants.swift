@@ -41,3 +41,8 @@ struct PolicyLinks {
 struct CornerRadius {
     static let constant: CGFloat = 8.0
 }
+
+struct WebsiteLinks {
+    static let main = "thewaveapp.com/"
+    static let products = "thewaveapp.com/prouducts/"
+}

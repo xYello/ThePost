@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -63,7 +63,7 @@
                             <rect key="frame" x="24" y="37" width="52" height="36"/>
                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                             <state key="normal" title="Cancel">
-                                <color key="titleColor" red="0.90981578829999998" green="0.90719991919999998" blue="0.82353508470000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="titleColor" red="0.90980392156862744" green="0.90588235294117647" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="8J5-AF-Rhf"/>
@@ -113,7 +113,7 @@
         </view>
     </objects>
     <resources>
-        <image name="AllDuhJeeps" width="170" height="122"/>
+        <image name="AllDuhJeeps" width="70" height="70"/>
         <image name="CameraTakeButton" width="54" height="54"/>
     </resources>
 </document>
