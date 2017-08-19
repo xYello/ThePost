@@ -1,0 +1,6 @@
+framework module WVCheckMark {
+  umbrella header "WVCheckMark-umbrella.h"
+
+  export *
+  module * { export * }
+}

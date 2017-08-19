@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -16,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductUploadViewController" customModule="The_Wave" customModuleProvider="target">
             <connections>
+                <outlet property="check" destination="kt6-ir-Ca8" id="Icr-Uo-nzW"/>
                 <outlet property="linkButton" destination="393-YN-n3m" id="vft-iJ-Ai6"/>
                 <outlet property="linkInfoLabel" destination="BbB-IZ-9Of" id="TDq-Ta-Nlj"/>
                 <outlet property="mainButton" destination="fob-d4-hcV" id="uC1-ZV-maU"/>
@@ -88,10 +90,20 @@
                         <action selector="secondaryButtonPressed:" destination="-1" eventType="touchUpInside" id="q1V-cN-ecL"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kt6-ir-Ca8" customClass="WVCheckMark" customModule="WVCheckMark">
+                    <rect key="frame" x="119" y="100" width="138" height="138"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="kt6-ir-Ca8" secondAttribute="height" multiplier="1:1" id="W6Y-9W-ngn"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="kt6-ir-Ca8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="554-X9-cjN"/>
                 <constraint firstItem="wIJ-uR-ddw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5Bx-bj-QgM"/>
+                <constraint firstItem="0sY-mm-Unj" firstAttribute="top" secondItem="kt6-ir-Ca8" secondAttribute="bottom" constant="30" id="9ep-Pr-hkB"/>
+                <constraint firstItem="kt6-ir-Ca8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DzI-bE-XTc"/>
                 <constraint firstAttribute="bottom" secondItem="2JS-0a-gXX" secondAttribute="bottom" constant="10" id="G9z-U5-MEw"/>
                 <constraint firstItem="2JS-0a-gXX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IA3-Oj-cEj"/>
                 <constraint firstItem="fob-d4-hcV" firstAttribute="top" secondItem="0sY-mm-Unj" secondAttribute="bottom" constant="30" id="Kh1-Df-FKo"/>

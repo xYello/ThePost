@@ -22,6 +22,7 @@ target 'The Wave' do
   pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :subspecs => ['Core', 'KSCrash'], :tag => '3.1.2'
   pod 'ReachabilitySwift', '~> 3'
   pod 'TOCropViewController'
+  pod 'WVCheckMark'
 
   target 'The Wave Tests' do
     inherit! :search_paths

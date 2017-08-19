@@ -9,9 +9,12 @@
 import UIKit
 import Firebase
 import ReachabilitySwift
+import WVCheckMark
 
 class ProductUploadViewController: SeletectedImageViewController {
 
+    @IBOutlet weak var check: WVCheckMark!
+    
     @IBOutlet weak var statusLabel: UILabel!
 
     @IBOutlet weak var mainButton: BigRedShadowButton!
@@ -30,6 +33,9 @@ class ProductUploadViewController: SeletectedImageViewController {
     private var didHaveError = false {
         didSet {
             if didHaveError {
+                check.setColor(color: #colorLiteral(red: 0.6392156863, green: 0.2980392157, blue: 0.2235294118, alpha: 1).cgColor)
+                check.startX()
+
                 statusLabel.text = "Error uploading product 😕"
                 mainButton.isHidden = false
                 mainButton.setTitle("Retry?", for: .normal)
@@ -66,7 +72,10 @@ class ProductUploadViewController: SeletectedImageViewController {
         secondaryButton.isHidden = true
 
         linkButton.setTitle(WebsiteLinks.products + productKey, for: .normal)
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         startUpload()
     }
 
@@ -189,6 +198,9 @@ class ProductUploadViewController: SeletectedImageViewController {
                 if let _ = error {
                     self.didHaveError = true
                 } else {
+                    self.check.setColor(color: #colorLiteral(red: 0.4078431373, green: 0.7490196078, blue: 0.4823529412, alpha: 1).cgColor)
+                    self.check.start()
+
                     self.statusLabel.text = "🎉 Upload completed! 🎉"
                     self.mainButton.isHidden = false
                     self.successView.isHidden = false
