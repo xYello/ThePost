@@ -50,7 +50,6 @@ class BuildTrustViewController: UIViewController {
     @IBAction func facebookButtonPressed(_ sender: UIButton) {
         FBSDKLoginManager().logIn(withReadPermissions: ["public_profile", "email"], from: self, handler: { result, error in
             if let error = error {
-                // TODO: Update with error reporting.
                 print("Error signing up: \(error.localizedDescription)")
                 SentryManager.shared.sendEvent(withError: error)
             } else {
@@ -125,7 +124,6 @@ class BuildTrustViewController: UIViewController {
                 }
                 
             } else if let error = error {
-                // TODO: Update with error reporting.
                 print("Error signing up: \(error.localizedDescription)")
                 self.updateText(withError: error)
                 SentryManager.shared.sendEvent(withError: error)

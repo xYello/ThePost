@@ -120,7 +120,6 @@ class SignInUpPromptViewController: UIViewController {
         
         FBSDKLoginManager().logIn(withReadPermissions: ["public_profile", "email"], from: self, handler: { result, error in
             if let error = error {
-                // TODO: Update with error reporting.
                 print("Error signing up: \(error.localizedDescription)")
                 SentryManager.shared.sendEvent(withError: error)
                 self.disableButtons()
@@ -131,7 +130,6 @@ class SignInUpPromptViewController: UIViewController {
                         
                         req.start() { connection, result, error in
                             if let error = error {
-                                // TODO: Update with error reporting.
                                 print("Error signing up: \(error.localizedDescription)")
                                 SentryManager.shared.sendEvent(withError: error)
                                 self.disableButtons()
@@ -139,7 +137,6 @@ class SignInUpPromptViewController: UIViewController {
                                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                                 FIRAuth.auth()?.signIn(with: credential, completion: { user, firError in
                                     if let firError = firError {
-                                        // TODO: Update with error reporting.
                                         print("Error signing up: \(firError.localizedDescription)")
                                         SentryManager.shared.sendEvent(withError: firError)
                                         self.disableButtons()
@@ -192,7 +189,6 @@ class SignInUpPromptViewController: UIViewController {
                 let credential = FIRTwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
                 FIRAuth.auth()?.signIn(with: credential, completion: { user, firError in
                     if let firError = firError {
-                        // TODO: Update with error reporting.
                         print("Error signing up: \(firError.localizedDescription)")
                         SentryManager.shared.sendEvent(withError: error!)
                         self.disableButtons()
@@ -226,7 +222,6 @@ class SignInUpPromptViewController: UIViewController {
                 })
                 
             } else if let error = error {
-                // TODO: Update with error reporting.
                 print("Error signing up: \(error.localizedDescription)")
                 SentryManager.shared.sendEvent(withError: error)
                 self.disableButtons()

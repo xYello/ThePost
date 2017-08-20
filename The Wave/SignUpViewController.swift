@@ -217,7 +217,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             
             FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { user, error in
                 guard let _ = user, error == nil else {
-                    // TODO: Update with error reporting.
                     print("Error signing up: \(error!.localizedDescription)")
                     SentryManager.shared.sendEvent(withError: error!)
                     
@@ -237,7 +236,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 
                 changeRequest.commitChanges() { error in
                     guard error == nil else {
-                        // TODO: Update with error reporting.
                         print("Error saving changes: \(error!.localizedDescription)")
                         SentryManager.shared.sendEvent(withError: error!)
                         self.disableButtons()

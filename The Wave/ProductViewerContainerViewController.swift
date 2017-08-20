@@ -66,7 +66,6 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     
     // MARK: - View lifecycle
     
-    // TODO: Report button
     override func viewDidLoad() {
         super.viewDidLoad()
         view.roundCorners(radius: 8.0)
