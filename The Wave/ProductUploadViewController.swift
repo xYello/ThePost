@@ -82,7 +82,6 @@ class ProductUploadViewController: SeletectedImageViewController {
     // MARK: - Actions
 
     @IBAction func viewListingPressed(_ sender: BigRedShadowButton) {
-        // TODO: Open the product viewer so they can see their newly created product!
         if didHaveError {
             didHaveError = false
             startUpload()
