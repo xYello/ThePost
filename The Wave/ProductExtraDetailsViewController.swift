@@ -76,8 +76,14 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         jeepTypeLabel.text = product.jeepModel.name
 
         if let price = product.price {
-            priceTextField.text = "$\(Int(price))"
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.maximumFractionDigits = 0
+
+            let string = formatter.string(from: price as NSNumber)
+            priceTextField.text = string
         }
+
         priceTextField.textColor = .waveGreen
         priceTextField.addBorder(withWidth: 1.0, color: .waveLightGray)
         priceTextField.roundCorners(radius: 3.0)
@@ -339,8 +345,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         }
 
         if let text = priceTextField.text {
-            let priceString = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
-            if text.characters.count <= 1 || "$" + priceString != text {
+            if text.characters.count <= 1 {
                 indicateTextFieldIsRequired(textField: priceTextField)
                 viewsToShake.append(priceTextField)
             }
