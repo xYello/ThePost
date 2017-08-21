@@ -33,7 +33,7 @@ class ProductUploadViewController: SeletectedImageViewController {
     private var didHaveError = false {
         didSet {
             if didHaveError {
-                check.setColor(color: #colorLiteral(red: 0.6392156863, green: 0.2980392157, blue: 0.2235294118, alpha: 1).cgColor)
+                check.setColor(color: UIColor.waveRed.cgColor)
                 check.startX()
 
                 statusLabel.text = "Error uploading product 😕"
@@ -97,7 +97,7 @@ class ProductUploadViewController: SeletectedImageViewController {
     @IBAction func linkButtonPressed(_ sender: UIButton) {
         UIPasteboard.general.string = WebsiteLinks.products + productKey
         linkInfoLabel.text = "Copied!"
-        linkInfoLabel.textColor = #colorLiteral(red: 0.4078431373, green: 0.7490196078, blue: 0.4823529412, alpha: 1)
+        linkInfoLabel.textColor = .waveGreen
     }
 
     // MARK: - Upload
@@ -197,7 +197,7 @@ class ProductUploadViewController: SeletectedImageViewController {
                 if let _ = error {
                     self.didHaveError = true
                 } else {
-                    self.check.setColor(color: #colorLiteral(red: 0.4078431373, green: 0.7490196078, blue: 0.4823529412, alpha: 1).cgColor)
+                    self.check.setColor(color: UIColor.waveGreen.cgColor)
                     self.check.start()
 
                     self.statusLabel.text = "🎉 Upload completed! 🎉"

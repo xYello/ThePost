@@ -73,12 +73,12 @@ class SettingsContainerViewController: UIViewController {
         
         if let text = sender.text {
             if text.characters.count >= 4 {
-                fullNameLabel.textColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                fullNameLabel.textColor = .waveGreen
             } else {
-                fullNameLabel.textColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                fullNameLabel.textColor = .waveRed
             }
         } else {
-            fullNameLabel.textColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            fullNameLabel.textColor = .waveRed
         }
     }
     
@@ -91,30 +91,30 @@ class SettingsContainerViewController: UIViewController {
         
         if let text = sender.text {
             if text.characters.count > 5 {
-                passwordLabel.textColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                passwordLabel.textColor = .waveGreen
             } else {
-                passwordLabel.textColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                passwordLabel.textColor = .waveRed
             }
             
             if text == confirmPasswordTextField.text {
-                confirmPasswordLabel.textColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                confirmPasswordLabel.textColor = .waveGreen
             } else {
-                confirmPasswordLabel.textColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                confirmPasswordLabel.textColor = .waveRed
             }
         } else {
-            passwordLabel.textColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            passwordLabel.textColor = .waveRed
         }
     }
     
     @IBAction func confirmPasswordTextFieldEditingChanged(_ sender: UITextField) {
         if let text = sender.text {
             if text == passwordTextField.text {
-                confirmPasswordLabel.textColor = #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1)
+                confirmPasswordLabel.textColor = .waveGreen
             } else {
-                confirmPasswordLabel.textColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                confirmPasswordLabel.textColor = .waveRed
             }
         } else {
-            confirmPasswordLabel.textColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            confirmPasswordLabel.textColor = .waveRed
         }
     }
 
@@ -159,7 +159,7 @@ class SettingsContainerViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         
-        if passwordLabel.textColor == #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1) && confirmPasswordLabel.textColor == #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1) {
+        if passwordLabel.textColor == .waveGreen && confirmPasswordLabel.textColor == .waveGreen {
             FIRAuth.auth()!.currentUser!.updatePassword(passwordTextField.text!, completion: { error in
                 if let error = error {
                     print("Error saving password: \(error.localizedDescription)")
@@ -170,7 +170,7 @@ class SettingsContainerViewController: UIViewController {
             })
         }
         
-        if fullName != fullNameTextField.text && fullNameLabel.textColor == #colorLiteral(red: 0.1464666128, green: 0.6735964417, blue: 0.3412255645, alpha: 1) {
+        if fullName != fullNameTextField.text && fullNameLabel.textColor == .waveGreen {
             let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid)
             let updates = ["fullName": fullNameTextField.text!]
             ref.updateChildValues(updates) { error, ref in

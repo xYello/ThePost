@@ -60,26 +60,26 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         leftMidButton.setBackgroundImage(#imageLiteral(resourceName: "NewImageProduct"), for: .normal)
 
         // Bottom background view
-        productNameTextField.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
+        productNameTextField.addBorder(withWidth: 1.0, color: .waveLightGray)
         productNameTextField.roundCorners(radius: 3.0)
 
-        jeepTypeView.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
+        jeepTypeView.addBorder(withWidth: 1.0, color: .waveLightGray)
         jeepTypeView.roundCorners(radius: 3.0)
         jeepTypeLabel.text = product.jeepModel.name
 
         if let price = product.price {
             priceTextField.text = "$\(Int(price))"
         }
-        priceTextField.textColor = #colorLiteral(red: 0.2353003025, green: 0.5520883203, blue: 0.3824126124, alpha: 1)
-        priceTextField.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
+        priceTextField.textColor = .waveGreen
+        priceTextField.addBorder(withWidth: 1.0, color: .waveLightGray)
         priceTextField.roundCorners(radius: 3.0)
         priceTextField.delegate = self
         priceTextField.keyboardType = .numberPad
 
-        locationView.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
+        locationView.addBorder(withWidth: 1.0, color: .waveLightGray)
         locationView.roundCorners(radius: 3.0)
 
-        descriptionTextView.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
+        descriptionTextView.addBorder(withWidth: 1.0, color: .waveLightGray)
         descriptionTextView.roundCorners(radius: 3.0)
         descriptionTextView.delegate = self
 
@@ -150,7 +150,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
 
     @IBAction func namePriceTextFieldChanged(_ sender: UITextField) {
         if sender === productNameTextField {
-            productNameTextField.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
+            productNameTextField.addBorder(withWidth: 1.0, color: .waveLightGray)
         } else if sender === priceTextField {
             if let text = sender.text {
                 if text != "" {
@@ -171,7 +171,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
                 }
             }
 
-            priceTextField.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.8235294118, green: 0.8392156863, blue: 0.8509803922, alpha: 1))
+            priceTextField.addBorder(withWidth: 1.0, color: .waveLightGray)
         }
     }
 
@@ -291,7 +291,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     }
 
     private func indicateTextFieldIsRequired(textField: UITextField) {
-        textField.addBorder(withWidth: 1.0, color: #colorLiteral(red: 0.6392156863, green: 0.2980392157, blue: 0.2235294118, alpha: 1))
+        textField.addBorder(withWidth: 1.0, color: .waveRed)
     }
 
 }

@@ -52,6 +52,7 @@
 		4D04C54E1E0F2CD3004B2264 /* AppServicesRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */; };
 		4D0541111EA968CA0033526C /* BuildTrustModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0541101EA968CA0033526C /* BuildTrustModalViewController.swift */; };
 		4D0541131EA969780033526C /* BuildTrustViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0541121EA969780033526C /* BuildTrustViewController.swift */; };
+		4D05890D1F4A4FC800E7B865 /* UIColor+TheWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05890C1F4A4FC800E7B865 /* UIColor+TheWave.swift */; };
 		4D1102061E2EAD7600ADF559 /* ProfileModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1102051E2EAD7600ADF559 /* ProfileModalViewController.swift */; };
 		4D11145F1E737B74001C274F /* ProductListingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D11145E1E737B74001C274F /* ProductListingCollectionReusableView.swift */; };
 		4D14F6D61E31A09400AF71F8 /* ModalPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14F6D51E31A09400AF71F8 /* ModalPresentationViewController.swift */; };
@@ -200,6 +201,7 @@
 		4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppServicesRequestViewController.swift; sourceTree = "<group>"; };
 		4D0541101EA968CA0033526C /* BuildTrustModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildTrustModalViewController.swift; sourceTree = "<group>"; };
 		4D0541121EA969780033526C /* BuildTrustViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildTrustViewController.swift; sourceTree = "<group>"; };
+		4D05890C1F4A4FC800E7B865 /* UIColor+TheWave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+TheWave.swift"; sourceTree = "<group>"; };
 		4D1102051E2EAD7600ADF559 /* ProfileModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModalViewController.swift; sourceTree = "<group>"; };
 		4D11145E1E737B74001C274F /* ProductListingCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingCollectionReusableView.swift; sourceTree = "<group>"; };
 		4D14F6D51E31A09400AF71F8 /* ModalPresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalPresentationViewController.swift; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				4D20C1E31EF374AE0090AEBE /* Date+StartOfWeek.swift */,
+				4D05890C1F4A4FC800E7B865 /* UIColor+TheWave.swift */,
 				4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */,
 				497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */,
 				4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */,
@@ -1131,6 +1134,7 @@
 				4D23EC771E1F86360001C045 /* ChatConversationViewController.swift in Sources */,
 				4DBF61E31E29C26600D07AD5 /* ReviewsSummaryViewController.swift in Sources */,
 				4D5AB0B81E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift in Sources */,
+				4D05890D1F4A4FC800E7B865 /* UIColor+TheWave.swift in Sources */,
 				4DE4D9EF1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift in Sources */,
 				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
 				4DA153F51E22EB1300708543 /* Conversation.swift in Sources */,

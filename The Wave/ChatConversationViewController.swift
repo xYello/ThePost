@@ -218,7 +218,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         if let conversation = sender as? Conversation {
             if let vc = segue.destination as? ChatContainerViewController {
                 navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-                navigationController!.navigationBar.tintColor = #colorLiteral(red: 0.7647058824, green: 0.768627451, blue: 0.7137254902, alpha: 1)
+                navigationController!.navigationBar.tintColor = .waveYellow
                 
                 vc.conversationToPass = conversation
                 vc.hidesBottomBarWhenPushed = true

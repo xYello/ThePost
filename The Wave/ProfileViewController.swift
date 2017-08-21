@@ -214,7 +214,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         if selectionBar == nil {
             selectionBar = UIView()
             selectionBar!.frame = CGRect(x: sellingProductTypeButton.frame.origin.x - 4, y: self.bottomMostSeperator.frame.origin.y - 1, width: sellingProductTypeButton.frame.width + 8, height: 2)
-            selectionBar!.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+            selectionBar!.backgroundColor = .waveRed
             selectionBar!.isUserInteractionEnabled = false
             view.addSubview(selectionBar!)
         }
@@ -275,7 +275,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.nameLabel.alpha = 0.2
             cell.priceLabel.alpha = 0.2
             cell.simplifiedDescriptionLabel.alpha = 0.2
-            cell.likeImageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
+            cell.likeImageView.tintColor = .waveYellow
             cell.likeImageView.alpha = 0.2
             cell.likeCountLabel.alpha = 0.2
             
@@ -418,8 +418,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func productListingButtonTapped(_ sender: UIButton) {
         
-        if sender.titleColor(for: .normal) != #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1) {
-            sender.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1), for: .normal)
+        if sender.titleColor(for: .normal) != .waveRed {
+            sender.setTitleColor(.waveRed, for: .normal)
             previouslySelectedButton.setTitleColor(#colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1), for: .normal)
             previouslySelectedButton = sender
             
@@ -768,11 +768,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
                 
                 if hasFacebook && hasTwitter {
-                    buildTrustView.backgroundColor = #colorLiteral(red: 0.3330563009, green: 0.6850114465, blue: 0.4460556507, alpha: 1)
+                    buildTrustView.backgroundColor = .waveGreen
                     buildTrustLabel.text = "Trust Built"
                     buildTrustButton.isEnabled = false
                 } else {
-                    buildTrustView.backgroundColor = #colorLiteral(red: 0.6447251439, green: 0.2988195121, blue: 0.2212364674, alpha: 1)
+                    buildTrustView.backgroundColor = .waveRed
                     buildTrustLabel.text = "Build Trust"
                     buildTrustButton.isEnabled = true
                 }

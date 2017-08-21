@@ -21,7 +21,7 @@ class PercentageBar: UIView {
         roundCorners(radius: frame.width / 2.0)
         
         bar = UIView()
-        bar.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
+        bar.backgroundColor = .waveYellow
         bar.roundCorners(radius: frame.width / 2.0)
         bar.translatesAutoresizingMaskIntoConstraints = false
         addSubview(bar)

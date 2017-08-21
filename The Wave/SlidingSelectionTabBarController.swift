@@ -70,14 +70,14 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                 let circle = UIView()
                 circle.isUserInteractionEnabled = false
                 circle.frame = CGRect(x: views[2].frame.midX, y: views[2].frame.midY, width: 0, height: 0)
-                circle.backgroundColor = #colorLiteral(red: 0.645365417, green: 0.2968381643, blue: 0.2095199227, alpha: 1)
+                circle.backgroundColor = .waveRed
                 circle.roundCorners()
                 circle.alpha = 0.0
                 tabBar.insertSubview(circle, belowSubview: views[2])
                 
                 selectionBar = UIView()
                 selectionBar!.frame = CGRect(x: tabBar.frame.width, y: tabBar.frame.height - 2, width: views[0].frame.width, height: 2)
-                selectionBar!.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+                selectionBar!.backgroundColor = .waveRed
                 selectionBar!.isUserInteractionEnabled = false
                 selectionBar!.alpha = 0.0
                 tabBar.insertSubview(selectionBar!, belowSubview: circle)
@@ -281,7 +281,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
             productLabel = UILabel()
             productLabel.text = "Sell product"
             productLabel.font = UIFont(name: "Lato-Regular", size: 14.0)
-            productLabel.textColor = #colorLiteral(red: 0.4078431373, green: 0.7490196078, blue: 0.4823529412, alpha: 1)
+            productLabel.textColor = .waveGreen
             productLabel.textAlignment = .center
             productLabel.frame = CGRect(x: 0, y: 0, width: 80, height: 20)
             productLabel.center = CGPoint(x: views[2].center.x + middleButtonFrame.width, y: middleButtonFrame.origin.y - 2.0 * middleButtonFrame.height + 40)

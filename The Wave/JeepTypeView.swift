@@ -57,7 +57,7 @@ class JeepTypeView: UIView {
 
     private func updateState() {
         if selected {
-            backgroundColor = #colorLiteral(red: 0.6932104826, green: 0.2709493041, blue: 0.1961503625, alpha: 1)
+            backgroundColor = .waveRed
             jeepTypeImageView.tintColor = .white
             jeepLabel.textColor = .white
         } else {

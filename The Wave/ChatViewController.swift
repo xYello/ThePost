@@ -242,11 +242,11 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     // MARK: - JSQBubble Colors
     
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
-        return JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1))
+        return JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .waveRed)
     }
     
     private func setupIncomingBubble() -> JSQMessagesBubbleImage {
-        return JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1))
+        return JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: .waveYellow)
     }
     
     // MARK: - JSQMessages Actions
