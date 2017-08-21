@@ -184,6 +184,7 @@ class ProductUploadViewController: SeletectedImageViewController {
             dbProduct["likeCount"] = 0
             dbProduct["viewCount"] = 0
             dbProduct["datePosted"] = FIRServerValue.timestamp()
+            dbProduct["location"] = product.cityStateString
 
             if let description = product.detailedDescription {
                 dbProduct["detailedDescription"] = description

@@ -65,6 +65,7 @@
 		4D1842371F46BFC800B2AEF2 /* UIView+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1842361F46BFC800B2AEF2 /* UIView+Shake.swift */; };
 		4D1FB3841F44A2EB008055DE /* ProductUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1FB3831F44A2EB008055DE /* ProductUploadViewController.swift */; };
 		4D1FB3861F44A302008055DE /* ProductUploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D1FB3851F44A302008055DE /* ProductUploadViewController.xib */; };
+		4D1FB3881F44BF2A008055DE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1FB3871F44BF2A008055DE /* LocationManager.swift */; };
 		4D20C1E41EF374AE0090AEBE /* Date+StartOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C1E31EF374AE0090AEBE /* Date+StartOfWeek.swift */; };
 		4D239C3F1E12DF7E00F2668E /* ProductListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */; };
 		4D239C421E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */; };
@@ -215,6 +216,7 @@
 		4D1BC6621E7DBEE50068EAF9 /* The Wave.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "The Wave.entitlements"; sourceTree = "<group>"; };
 		4D1FB3831F44A2EB008055DE /* ProductUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUploadViewController.swift; sourceTree = "<group>"; };
 		4D1FB3851F44A302008055DE /* ProductUploadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductUploadViewController.xib; sourceTree = "<group>"; };
+		4D1FB3871F44BF2A008055DE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4D20C1E31EF374AE0090AEBE /* Date+StartOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StartOfWeek.swift"; sourceTree = "<group>"; };
 		4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingViewController.swift; sourceTree = "<group>"; };
 		4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListingContentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -696,6 +698,7 @@
 				4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */,
 				4D17F2021E85911F000BEAAB /* PushNotification.swift */,
 				4DD8CB241F034ADE004546F7 /* SentryManager.swift */,
+				4D1FB3871F44BF2A008055DE /* LocationManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -1105,6 +1108,7 @@
 				4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */,
 				496944C31F34026E00AEC0D1 /* JeepTypeView.swift in Sources */,
 				2F2CF3391E8E316C00E6EBF7 /* SocialPost.swift in Sources */,
+				4D1FB3881F44BF2A008055DE /* LocationManager.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
 				4D1102061E2EAD7600ADF559 /* ProfileModalViewController.swift in Sources */,
 				4D1667351E4FC06F0092FDFB /* SettingsContainerViewController.swift in Sources */,

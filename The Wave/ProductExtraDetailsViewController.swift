@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ProductExtraDetailsViewController: SeletectedImageViewController, JeepModelChooserDelegate, UITextViewDelegate, UITextFieldDelegate {
+class ProductExtraDetailsViewController: SeletectedImageViewController, JeepModelChooserDelegate, UITextViewDelegate, UITextFieldDelegate, LocationDelegate {
+
+    private enum LocationStatus {
+        case determiningLocation
+        case locationFound
+    }
 
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var bottomBackgroundView: UIView!
@@ -33,6 +39,8 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     @IBOutlet weak var cashSwitch: UISwitch!
 
     private var product: Product!
+
+    private var locationStatus: LocationStatus = .determiningLocation
 
     // MARK: - Init
 
@@ -86,6 +94,23 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         shippingSwitch.isOn = false
         paypalSwitch.isOn = false
 
+        let status = Location.manager.locationAuthStatus
+        switch status {
+        case .authorizedWhenInUse, .authorizedAlways:
+            locationGlyphImageView.isHidden = true
+            locationLabel.text = "Determining..."
+
+            Location.manager.add(asDelegate: self)
+            Location.manager.startGetheringWithoutPerissionRequest()
+            getPlacemarkFromFoundLocation()
+        case .denied, .restricted:
+            locationGlyphImageView.isHidden = false
+            locationLabel.text = "Location denied"
+        case .notDetermined:
+            locationGlyphImageView.isHidden = false
+            locationLabel.text = "Enable location"
+        }
+
         view.hideKeyboardWhenTappedAround()
     }
 
@@ -137,6 +162,37 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         jeepTypeLabel.text = model.name
     }
 
+    // MARK: - Location delegate
+
+    func didUpdate(with location: CLLocation) {
+        getPlacemarkFromFoundLocation()
+    }
+
+    func didChange(authorizationStatus: CLAuthorizationStatus) {
+        switch authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationLabel.text = "Determining..."
+            locationGlyphImageView.isHidden = true
+        case .denied, .restricted:
+            locationLabel.text = "Location denied"
+            locationGlyphImageView.isHidden = false
+        case .notDetermined:
+            locationLabel.text = "Enabled location"
+            locationGlyphImageView.isHidden = true
+        }
+    }
+
+    private func getPlacemarkFromFoundLocation() {
+        Location.manager.getPlacemarkFromLastLocation(handler: { placemark in
+            if let city = placemark?.subAdministrativeArea, let state = placemark?.administrativeArea {
+                self.locationStatus = .locationFound
+                DispatchQueue.main.async {
+                    self.locationLabel.text = "\(city), \(state)"
+                }
+            }
+        })
+    }
+
     // MARK: - Actions
 
     @IBAction func cameraButtonPressed(_ sender: UIButton) {
@@ -184,19 +240,33 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     }
     
     @IBAction func locationButtonPressed(_ sender: UIButton) {
+        let status = Location.manager.locationAuthStatus
+        switch status {
+        case .denied, .restricted:
+            // TODO: Send to settings
+            break
+        case .notDetermined:
+            Location.manager.add(asDelegate: self)
+            Location.manager.startGatheringAndRequestPermission()
+        default:
+            break
+        }
     }
 
     @IBAction func postProductButtonPressed(_ sender: BigRedShadowButton) {
         if isRequiredTextFieldsFilled() {
-            product.name = productNameTextField.text
-            product.acceptsCash = cashSwitch.isOn
-            product.acceptsPayPal = paypalSwitch.isOn
-            product.willingToShip = shippingSwitch.isOn
-            product.detailedDescription = descriptionTextView.text
-
-            let vc = ProductUploadViewController(withProduct: product)
-            vc.handler = handler
-            navigationController?.pushViewController(vc, animated: true)
+            if locationStatus == .determiningLocation {
+                let alert = UIAlertController(title: "Are you sure you wish to continue?",
+                                              message: "Location has not yet been determined, no location information will appear on the listing if you proceed.",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+                    self.sendProduct()
+                }))
+                present(alert, animated: true, completion: nil)
+            } else {
+                sendProduct()
+            }
         }
     }
     
@@ -292,6 +362,20 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
 
     private func indicateTextFieldIsRequired(textField: UITextField) {
         textField.addBorder(withWidth: 1.0, color: .waveRed)
+    }
+
+    private func sendProduct() {
+        product.name = productNameTextField.text
+        product.acceptsCash = cashSwitch.isOn
+        product.acceptsPayPal = paypalSwitch.isOn
+        product.willingToShip = shippingSwitch.isOn
+        product.detailedDescription = descriptionTextView.text
+        // TODO: Figure out how to pass location around...
+        product.cityStateString = locationLabel.text
+
+        let vc = ProductUploadViewController(withProduct: product)
+        vc.handler = handler
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

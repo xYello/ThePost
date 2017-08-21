@@ -46,7 +46,7 @@ class Product: NSObject {
     var jeepModel: JeepModel!
     var price: Float!
     var condition: Condition!
-    var location: String?
+    var cityStateString: String?
     var likeCount: Int?
     var postedDate: Date!
     var relativeDate: String! {
@@ -155,7 +155,7 @@ class Product: NSObject {
                 product!.detailedDescription = desc
             }
             if let location = productDict["location"] as? String {
-                product!.location = location
+                product!.cityStateString = location
             }
 
             product!.willingToShip = productDict["willingToShip"] as! Bool

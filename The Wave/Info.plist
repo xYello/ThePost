@@ -79,6 +79,8 @@
 	<string>The Wave would like access to the camera to take images of products.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>The Wave would like access to the photo library to upload images of products.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The Wave would like access to location for location-based search results and creating location-backed information.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-BoldItalic.ttf</string>
