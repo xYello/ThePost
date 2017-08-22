@@ -190,7 +190,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
 
     private func getPlacemarkFromFoundLocation() {
         Location.manager.getPlacemarkFromLastLocation(handler: { placemark in
-            if let city = placemark?.subAdministrativeArea, let state = placemark?.administrativeArea {
+            if let city = placemark?.locality, let state = placemark?.administrativeArea {
                 self.locationStatus = .locationFound
                 DispatchQueue.main.async {
                     self.locationLabel.text = "\(city), \(state)"
