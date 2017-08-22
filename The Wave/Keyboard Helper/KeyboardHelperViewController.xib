@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+            <string>Avenir-Light</string>
+        </array>
         <array key="Lato-Regular.ttf">
             <string>Lato-Regular</string>
         </array>
@@ -16,6 +20,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KeyboardHelperViewController" customModule="The_Wave" customModuleProvider="target">
             <connections>
+                <outlet property="characterCounterLabel" destination="bYx-Xh-fgR" id="F3m-gR-u6Q"/>
                 <outlet property="container" destination="f5b-Td-UfB" id="Trh-OS-dd0"/>
                 <outlet property="containerToBottomConstraint" destination="yzB-1H-vOI" id="y9M-CL-h9f"/>
                 <outlet property="textView" destination="A57-To-xuI" id="rPj-zR-i3M"/>
@@ -31,20 +36,20 @@
                     <rect key="frame" x="16" y="397" width="343" height="250"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzJ-mX-BnN">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="194"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="190"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A57-To-xuI">
-                            <rect key="frame" x="4" y="0.0" width="334" height="194"/>
+                            <rect key="frame" x="4" y="0.0" width="334" height="190"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="194" id="XaZ-Lo-MRT"/>
+                                <constraint firstAttribute="height" constant="190" id="XaZ-Lo-MRT"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5M-Sa-5CC">
-                            <rect key="frame" x="0.0" y="195" width="343" height="55"/>
+                            <rect key="frame" x="0.0" y="191" width="343" height="59"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                             <state key="normal" title="Done"/>
@@ -69,9 +74,17 @@
                         <constraint firstAttribute="trailing" secondItem="zzJ-mX-BnN" secondAttribute="trailing" id="ykU-eZ-1f6"/>
                     </constraints>
                 </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000/1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYx-Xh-fgR">
+                    <rect key="frame" x="152" y="367" width="72.5" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="A57-To-xuI" firstAttribute="top" secondItem="bYx-Xh-fgR" secondAttribute="bottom" constant="8" id="4nm-og-GUW"/>
+                <constraint firstItem="bYx-Xh-fgR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="509-1K-bGn"/>
                 <constraint firstItem="f5b-Td-UfB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="BVY-3W-O1T"/>
                 <constraint firstAttribute="trailing" secondItem="f5b-Td-UfB" secondAttribute="trailing" constant="16" id="j6U-s6-C2I"/>
                 <constraint firstAttribute="bottom" secondItem="f5b-Td-UfB" secondAttribute="bottom" constant="20" id="yzB-1H-vOI"/>

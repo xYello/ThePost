@@ -18,19 +18,36 @@ class KeyboardHelperViewController: UIViewController, UITextViewDelegate {
         return vc
     }
 
+    static func getVc(with text: String, with characterLimit: UInt, withNewTextHandler handler: @escaping ((String) -> ())) -> KeyboardHelperViewController {
+        let vc = KeyboardHelperViewController(text: text, characterLimit: characterLimit)
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.textHandler = handler
+
+        return vc
+    }
+
     @IBOutlet weak var container: UIView!
+    @IBOutlet weak var characterCounterLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
 
     @IBOutlet weak var containerToBottomConstraint: NSLayoutConstraint!
     
     private var text: String!
+    private var characterLimit: UInt?
 
     fileprivate var textHandler: ((String) -> ())!
 
     // MARK: - Init
 
-    init(text: String) {
+    private init(text: String) {
         self.text = text
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    private init(text: String, characterLimit: UInt) {
+        self.text = text
+        self.characterLimit = characterLimit
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -50,6 +67,11 @@ class KeyboardHelperViewController: UIViewController, UITextViewDelegate {
         container.roundCorners(radius: 8.0)
 
         textView.delegate = self
+
+        if let limit = characterLimit {
+            characterCounterLabel.isHidden = false
+            characterCounterLabel.text = "\(text.characters.count)/\(limit)"
+        }
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(prepareForDismissal))
         view.addGestureRecognizer(tap)
@@ -73,6 +95,21 @@ class KeyboardHelperViewController: UIViewController, UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
         text = textView.text
+        if let limit = characterLimit {
+            characterCounterLabel.text = "\(text.characters.count)/\(limit)"
+        }
+    }
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        var shouldAllowCharacter = true
+
+        if let old = textView.text, let limit = characterLimit {
+            if old.characters.count + text.characters.count > limit {
+                shouldAllowCharacter = false
+            }
+        }
+
+        return shouldAllowCharacter
     }
 
     // MARK: - Actions

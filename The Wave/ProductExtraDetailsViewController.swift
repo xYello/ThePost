@@ -150,7 +150,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
             textView.text = ""
         }
         
-        let vc = KeyboardHelperViewController.getVc(with: textView.text) { text in
+        let vc = KeyboardHelperViewController.getVc(with: textView.text, with: 1000) { text in
             if text != "" {
                 self.descriptionTextView.text = text
                 self.descriptionTextView.textColor = .black
