@@ -104,7 +104,7 @@ class KeyboardHelperViewController: UIViewController, UITextViewDelegate {
         var shouldAllowCharacter = true
 
         if let old = textView.text, let limit = characterLimit {
-            if old.characters.count + text.characters.count > limit {
+            if UInt(old.characters.count + text.characters.count) > limit {
                 shouldAllowCharacter = false
             }
         }
