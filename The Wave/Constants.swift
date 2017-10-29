@@ -20,6 +20,9 @@ struct UserInfoKeys {
 struct TwitterInfoKeys {
     static let token = "twitterToken"
     static let secret = "twitterTokenSecret"
+
+    static let consumer = "***REMOVED***"
+    static let consumerSecret = "***REMOVED***"
 }
 
 struct ProductListingType {

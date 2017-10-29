@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         Fabric.with([Answers.self, Crashlytics.self])
-        Twitter.sharedInstance().start(withConsumerKey: "***REMOVED***", consumerSecret: "***REMOVED***")
+        Twitter.sharedInstance().start(withConsumerKey: TwitterInfoKeys.consumer, consumerSecret: TwitterInfoKeys.consumerSecret)
         
         OneSignal.initWithLaunchOptions(launchOptions, appId: OneSignalKeys.appId, handleNotificationAction: nil, settings: ["kOSSettingsKeyAutoPrompt": false])
         OneSignal.inFocusDisplayType = .none
