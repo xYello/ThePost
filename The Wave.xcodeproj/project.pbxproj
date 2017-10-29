@@ -25,6 +25,7 @@
 		49714F0F1F32C94700A7B4FC /* UIView+TappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49714F0E1F32C94700A7B4FC /* UIView+TappedAround.swift */; };
 		497BFC4F1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */; };
 		49A162201F22E6D7004D3C6D /* FeedbackModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */; };
+		49A7F4431FA5B55700A0CE4D /* BadgeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */; };
 		49B33EDB1F2325A8005FF03E /* KeyboardHelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B33EDA1F2325A8005FF03E /* KeyboardHelperViewController.swift */; };
 		49B33EDE1F2325CE005FF03E /* KeyboardHelperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B33EDD1F2325CE005FF03E /* KeyboardHelperViewController.xib */; };
 		4D04C52F1E0EFCDD004B2264 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */; };
@@ -173,6 +174,7 @@
 		49714F0E1F32C94700A7B4FC /* UIView+TappedAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TappedAround.swift"; sourceTree = "<group>"; };
 		497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PhotoPermissions.swift"; sourceTree = "<group>"; };
 		49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackModalViewController.swift; sourceTree = "<group>"; };
+		49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeStatus.swift; sourceTree = "<group>"; };
 		49B33EDA1F2325A8005FF03E /* KeyboardHelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelperViewController.swift; sourceTree = "<group>"; };
 		49B33EDD1F2325CE005FF03E /* KeyboardHelperViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyboardHelperViewController.xib; sourceTree = "<group>"; };
 		4AFDBA5990DDCDE5DE135C8A /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
@@ -545,6 +547,7 @@
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				60C2ED5C1E29C6DA00ED83EA /* Constants.swift */,
 				4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */,
+				49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */,
 				4DD8CB261F034AE9004546F7 /* Managers */,
 				4D14F6D81E31B4F800AF71F8 /* Extensions */,
 				4D14F6D71E31B4E500AF71F8 /* Models */,
@@ -934,11 +937,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-The Wave/Pods-The Wave-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle,
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
@@ -1175,6 +1178,7 @@
 				4D04C54E1E0F2CD3004B2264 /* AppServicesRequestViewController.swift in Sources */,
 				4DBF61EB1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift in Sources */,
 				4DBF61E51E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift in Sources */,
+				49A7F4431FA5B55700A0CE4D /* BadgeStatus.swift in Sources */,
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
 				497BFC4F1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift in Sources */,
 				4DBF61E71E29CA3100D07AD5 /* PercentageBar.swift in Sources */,

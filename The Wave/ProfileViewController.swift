@@ -11,12 +11,6 @@ import Firebase
 import AVFoundation
 import ReachabilitySwift
 
-private enum BadgeStatus: String {
-    case verified = "verified"
-    case admin = "admin"
-    case unicorn = "unicorn"
-}
-
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private enum ProductViewing {
@@ -608,15 +602,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             if let stateString = snapshot.value as? String {
                 if let state = BadgeStatus(rawValue: stateString) {
                     self.profileBadge.isHidden = false
-
-                    switch state {
-                    case .verified:
-                        self.profileBadge.image = #imageLiteral(resourceName: "VerifiedBadge")
-                    case .admin:
-                        self.profileBadge.image = #imageLiteral(resourceName: "AdminBadge")
-                    case .unicorn:
-                        self.profileBadge.image = #imageLiteral(resourceName: "AndrewBadge")
-                    }
+                    self.profileBadge.image = state.getImage()
                 }
             }
         })

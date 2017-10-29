@@ -18,7 +18,8 @@ class JeepSocialTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var postImageView: UIImageView!
-    
+    @IBOutlet weak var badgeImageView: UIImageView!
+
     @IBOutlet weak var postNameLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -138,6 +139,13 @@ class JeepSocialTableViewCell: UITableViewCell {
                 
                 if let name = userDict["fullName"] as? String {
                     self.postNameLabel.text = name
+                }
+
+                if let badgeString = userDict["badge"] as? String {
+                    if let badge = BadgeStatus(rawValue: badgeString) {
+                        self.badgeImageView.isHidden = false
+                        self.badgeImageView.image = badge.getImage()
+                    }
                 }
             }
         })
