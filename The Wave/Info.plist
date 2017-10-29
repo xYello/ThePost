@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>2.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -72,17 +72,17 @@
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
-        <string>twitter</string>
-        <string>twitterauth</string>
+		<string>twitter</string>
+		<string>twitterauth</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>The Wave would like access to the camera to take images of products.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>The Wave would like access to the photo library to upload images of products.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>The Wave would like access to location for location-based search results and creating location-backed information.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The Wave would like access to the photo library to upload images of products.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-BoldItalic.ttf</string>
