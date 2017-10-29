@@ -28,6 +28,8 @@ class SettingsContainerViewController: UIViewController {
     
     @IBOutlet weak var giveFeedbackButton: UIButton!
 
+    @IBOutlet weak var userIdLabel: UILabel!
+    
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     
@@ -51,6 +53,8 @@ class SettingsContainerViewController: UIViewController {
 
         giveFeedbackButton.layer.borderColor = giveFeedbackButton.titleLabel!.textColor.cgColor
         giveFeedbackButton.layer.borderWidth = 1.0
+
+        userIdLabel.text = "User ID: \(Auth.auth().currentUser!.uid)"
         
         saveButton.roundCorners(radius: 8.0)
         saveButton.alpha = 0.0
