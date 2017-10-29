@@ -115,6 +115,8 @@ class Product: NSObject {
     
     var isSold = false
 
+    private let productLocationRef = "product-locations"
+
     // MARK: - Init
 
     override init() {
@@ -136,13 +138,17 @@ class Product: NSObject {
 
     func saveLastLocation(completion: ((Error?) -> ())?) {
         if let location = Location.manager.lastLocation {
-            let geoFire = GeoFire(firebaseRef: Database.database().reference().child("product-locations"))
+            let geoFire = GeoFire(firebaseRef: Database.database().reference().child(productLocationRef))
             geoFire?.setLocation(location, forKey: uid) { error in
                 completion?(error)
             }
         } else {
             completion?(nil)
         }
+    }
+
+    func deleteLocation() {
+        Database.database().reference().child(productLocationRef).child(uid).removeValue()
     }
 
     // MARK: - Statics
