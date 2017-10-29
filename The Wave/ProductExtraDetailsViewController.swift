@@ -375,7 +375,6 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         product.acceptsPayPal = paypalSwitch.isOn
         product.willingToShip = shippingSwitch.isOn
         product.detailedDescription = descriptionTextView.text
-        // TODO: Figure out how to pass location around...
         product.cityStateString = locationLabel.text
 
         let vc = ProductUploadViewController(withProduct: product)
