@@ -14,6 +14,8 @@ target 'The Wave' do
   pod 'Firebase/RemoteConfig'
   pod 'FirebaseUI'
 
+  pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
+
   # Else
   pod 'Crashlytics'
   pod 'SwiftKeychainWrapper'
