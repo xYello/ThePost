@@ -100,24 +100,11 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         shippingSwitch.isOn = false
         paypalSwitch.isOn = false
 
-        let status = Location.manager.locationAuthStatus
-        switch status {
-        case .authorizedWhenInUse, .authorizedAlways:
-            locationGlyphImageView.isHidden = true
-            locationLabel.text = "Determining..."
-
-            Location.manager.add(asDelegate: self)
-            Location.manager.startGetheringWithoutPerissionRequest()
-            getPlacemarkFromFoundLocation()
-        case .denied, .restricted:
-            locationGlyphImageView.isHidden = false
-            locationLabel.text = "Location denied"
-        case .notDetermined:
-            locationGlyphImageView.isHidden = false
-            locationLabel.text = "Enable location"
-        }
+        updateLocationStatus()
 
         view.hideKeyboardWhenTappedAround()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationEnteredForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
 
     override func viewDidLayoutSubviews() {
@@ -133,8 +120,6 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         if let text = textField.text {
             if text.characters.count > 6 && string != "" {
                 shouldAllowCharacter = false
-            } else {
-
             }
         }
 
@@ -201,6 +186,12 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
 
     // MARK: - Actions
 
+    @objc private func applicationEnteredForeground() {
+        if locationStatus == .determiningLocation {
+            updateLocationStatus()
+        }
+    }
+
     @IBAction func cameraButtonPressed(_ sender: UIButton) {
         let vc = ImageSelectorViewController(prefilledImage: sender.image(for: .normal)) { image in
             if let image = image {
@@ -249,7 +240,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         let status = Location.manager.locationAuthStatus
         switch status {
         case .denied, .restricted:
-            // TODO: Send to settings
+            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
             break
         case .notDetermined:
             Location.manager.add(asDelegate: self)
@@ -380,6 +371,27 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         let vc = ProductUploadViewController(withProduct: product)
         vc.handler = handler
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    // MARK: - Location status
+
+    @objc func updateLocationStatus() {
+        let status = Location.manager.locationAuthStatus
+        switch status {
+        case .authorizedWhenInUse, .authorizedAlways:
+            locationGlyphImageView.isHidden = true
+            locationLabel.text = "Determining..."
+
+            Location.manager.add(asDelegate: self)
+            Location.manager.startGetheringWithoutPerissionRequest()
+            getPlacemarkFromFoundLocation()
+        case .denied, .restricted:
+            locationGlyphImageView.isHidden = false
+            locationLabel.text = "Location denied"
+        case .notDetermined:
+            locationGlyphImageView.isHidden = false
+            locationLabel.text = "Enable location"
+        }
     }
 
 }
