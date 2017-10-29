@@ -65,38 +65,18 @@ class JeepSocialTableViewCell: UITableViewCell {
         }
     }
 
+    // MARK: - Image load cancel
+
+    func cancelImageLoad() {
+        self.profileImageView.sd_cancelCurrentImageLoad()
+        self.postImageView.sd_cancelCurrentImageLoad()
+    }
+
     // MARK: - Firebase
     
-    func grabPostImage(forKey key: String, withURL urlString: String) {
+    func grabPostImage(withURL urlString: String) {
         let url = URL(string: urlString)
-        
-        // Load from cache or download.
-        SDWebImageManager.shared().diskImageExists(for: url, completion: { exists in
-            if exists {
-                SDWebImageManager.shared().loadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
-                    if key == self.postKey {
-                        if let i = image {
-                            DispatchQueue.main.async {
-                                self.postImageView.image = i
-                            }
-                        }
-                    }
-                })
-            } else {
-                SDWebImageDownloader.shared().downloadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
-                    if key == self.postKey {
-                        if let i = image {
-                            SDWebImageManager.shared().saveImage(toCache: image, for: url)
-
-                            DispatchQueue.main.async {
-                                self.postImageView.image = i
-                            }
-                        }
-                    }
-                })
-            }
-        })
-        
+        self.postImageView.sd_setImage(with: url)
     }
     
     func grabProfile(forKey key: String) {
@@ -105,33 +85,7 @@ class JeepSocialTableViewCell: UITableViewCell {
             if let userDict = snapshot.value as? [String: AnyObject] {
                 if let imageUrl = userDict["profileImage"] as? String {
                     if let url = URL(string: imageUrl) {
-                        
-                        // Load from cache or download.
-                        SDWebImageManager.shared().diskImageExists(for: url, completion: { exists in
-                            if exists {
-                                SDWebImageManager.shared().loadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
-                                    if key == self.ownerKey {
-                                        if let i = image {
-                                            DispatchQueue.main.async {
-                                                self.profileImageView.image = i
-                                            }
-                                        }
-                                    }
-                                })
-                            } else {
-                                SDWebImageDownloader.shared().downloadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
-                                    if key == self.ownerKey {
-                                        if let i = image {
-                                            SDWebImageManager.shared().saveImage(toCache: image, for: url)
-                                            
-                                            DispatchQueue.main.async {
-                                                self.profileImageView.image = i
-                                            }
-                                        }
-                                    }
-                                })
-                            }
-                        })
+                        self.profileImageView.sd_setImage(with: url)
                     }
                 } else {
                     self.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")

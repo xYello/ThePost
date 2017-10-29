@@ -115,13 +115,14 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let socialCell = cell as? JeepSocialTableViewCell {
-            socialCell.grabPostImage(forKey: socialPosts[indexPath.row].uid, withURL: socialPosts[indexPath.row].imageUrl)
+            socialCell.grabPostImage(withURL: socialPosts[indexPath.row].imageUrl)
             socialCell.grabProfile(forKey: socialPosts[indexPath.row].ownerId)
         }
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let socialCell = cell as? JeepSocialTableViewCell {
+            socialCell.cancelImageLoad()
             socialCell.likesRef.removeAllObservers()
         }
     }
