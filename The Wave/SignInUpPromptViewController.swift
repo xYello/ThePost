@@ -120,8 +120,11 @@ class SignInUpPromptViewController: UIViewController {
         
         FBSDKLoginManager().logIn(withReadPermissions: ["public_profile", "email"], from: self, handler: { result, error in
             if let error = error {
-                print("Error signing up: \(error.localizedDescription)")
-                SentryManager.shared.sendEvent(withError: error)
+                if (error as NSError).code != 1 {
+                    print("Error signing up: \(error.localizedDescription)")
+                    SentryManager.shared.sendEvent(withError: error)
+                }
+                
                 self.disableButtons()
             } else {
                 if FBSDKAccessToken.current() != nil {
