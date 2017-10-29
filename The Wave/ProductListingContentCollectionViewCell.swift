@@ -39,6 +39,9 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+
+    private var imageOperation: SDWebImageOperation?
+    private var imageDownloadToken: SDWebImageDownloadToken?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -133,33 +136,7 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
         firstImageRef.observeSingleEvent(of: .value, with: { snapshot in
             if let urlString = snapshot.value as? String {
                 let url = URL(string: urlString)
-                
-                // Load from cache or download.
-                SDWebImageManager.shared().diskImageExists(for: url, completion: { exists in
-                    if exists {
-                        SDWebImageManager.shared().loadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, data, error, cachType, done, url in
-                            if key == self.productKey {
-                                if let i = image {
-                                    DispatchQueue.main.async {
-                                        self.imageView.image = i
-                                    }
-                                }
-                            }
-                        })
-                    } else {
-                        SDWebImageDownloader.shared().downloadImage(with: url, options: .scaleDownLargeImages, progress: nil, completed: { image, error, cacheType, done in
-                            if key == self.productKey {
-                                if let i = image {
-                                    SDWebImageManager.shared().saveImage(toCache: image, for: url)
-                                    
-                                    DispatchQueue.main.async {
-                                        self.imageView.image = i
-                                    }
-                                }
-                            }
-                        })
-                    }
-                })
+                self.imageView.sd_setImage(with: url)
             } else {
                 self.imageView.image = nil
             }
@@ -193,6 +170,9 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
             })
         }
     }
-    
+
+    func cancelImageLoad() {
+        self.imageView.sd_cancelCurrentImageLoad()
+    }
     
 }

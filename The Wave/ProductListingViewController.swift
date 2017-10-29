@@ -236,6 +236,12 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             productCell.productKey = productArray()[indexPath.row].uid
         }
     }
+
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let productCell = cell as? ProductListingContentCollectionViewCell {
+            productCell.cancelImageLoad()
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
