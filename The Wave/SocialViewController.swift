@@ -145,23 +145,24 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
         if socialPosts.count == 0 {
             socialPosts.append(post)
         } else {
-            var iteratorIndex = 0
-            var indexToPlaceAt = -1
-            for oldPost in socialPosts {
-                if indexToPlaceAt == -1 {
-                    if post.likes >= oldPost.likes {
-                        indexToPlaceAt = iteratorIndex
-                    }
-                }
+            // This code will sort the collection view by "most popular" some people didn't like that. Leaving it... just in case.
+//            var iteratorIndex = 0
+//            var indexToPlaceAt = -1
+//            for oldPost in socialPosts {
+//                if indexToPlaceAt == -1 {
+//                    if post.likes >= oldPost.likes {
+//                        indexToPlaceAt = iteratorIndex
+//                    }
+//                }
+//
+//                iteratorIndex += 1
+//            }
+//
+//            if indexToPlaceAt == -1 {
+//                indexToPlaceAt = socialPosts.count
+//            }
 
-                iteratorIndex += 1
-            }
-
-            if indexToPlaceAt == -1 {
-                indexToPlaceAt = socialPosts.count
-            }
-
-            socialPosts.insert(post, at: indexToPlaceAt)
+            socialPosts.insert(post, at: 0)
         }
     }
 
