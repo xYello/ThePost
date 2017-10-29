@@ -253,7 +253,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     @IBAction func postProductButtonPressed(_ sender: BigRedShadowButton) {
         if isRequiredTextFieldsFilled() {
             if locationStatus == .determiningLocation {
-                let alert = UIAlertController(title: "Are you sure you wish to continue?",
+                let alert = UIAlertController(title: "📍 Are you sure you wish to continue? 📍",
                                               message: "Location has not yet been determined, no location information will appear on the listing if you proceed.",
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
