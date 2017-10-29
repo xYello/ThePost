@@ -102,6 +102,8 @@ PODS:
   - FirebaseUI/Twitter (4.5.0):
     - FirebaseUI/Auth
     - TwitterKit (~> 3.0)
+  - GeoFire (2.0.0):
+    - Firebase/Database (~> 4.0)
   - GoogleSignIn (4.1.1):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
@@ -184,6 +186,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/RemoteConfig
   - FirebaseUI
+  - GeoFire (from `https://github.com/firebase/geofire-objc.git`)
   - JSQMessagesViewController
   - OneSignal (~> 2.0)
   - ReachabilitySwift (~> 3)
@@ -195,10 +198,15 @@ DEPENDENCIES:
   - WVCheckMark
 
 EXTERNAL SOURCES:
+  GeoFire:
+    :git: https://github.com/firebase/geofire-objc.git
   Sentry:
     :git: https://github.com/getsentry/sentry-cocoa.git
 
 CHECKOUT OPTIONS:
+  GeoFire:
+    :commit: 96d6463f59016785f9c5ae9b669019c44786a23f
+    :git: https://github.com/firebase/geofire-objc.git
   Sentry:
     :commit: d4a154ef8157c8abfe7adab7b762e9e7c342458b
     :git: https://github.com/getsentry/sentry-cocoa.git
@@ -220,6 +228,7 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfig: 1c982f73af48ec048c8fa8621d5178cfdffac9aa
   FirebaseStorage: 0cca42d9b889a0227c3a50121f45a4469fc9eb27
   FirebaseUI: 883482fea73b73bbb488c55176f4c6ad128957eb
+  GeoFire: 02f02683e09367c2eee073c6b09c794da19833ee
   GoogleSignIn: 3fdaa34a2ba04dbd7a25d7db39aecb0da98d5bdc
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   gRPC: 42f915ce322b1abc5241621acc776f2fdb0a2039
@@ -245,6 +254,6 @@ SPEC CHECKSUMS:
   UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
   WVCheckMark: a62e278531f05fe3a42a056db6383c273f4d9e8b
 
-PODFILE CHECKSUM: a804a15a2ff743cd2667339eea7d2b4d702b7e29
+PODFILE CHECKSUM: e861b173d48d2edb8b2e90b4fc1ecc029ff0caa2
 
 COCOAPODS: 1.3.1

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import GeoFire
 
 enum Condition: Int {
     case new = 0, used, damaged, remanufactured, other
@@ -112,7 +114,11 @@ class Product: NSObject {
     var acceptsCash = false
     
     var isSold = false
-    
+
+    private let productLocationRef = "product-locations"
+
+    // MARK: - Init
+
     override init() {
         super.init()
     }
@@ -127,6 +133,25 @@ class Product: NSObject {
             self.condition = condition
         }
     }
+
+    // MARK: - Location
+
+    func saveLastLocation(completion: ((Error?) -> ())?) {
+        if let location = Location.manager.lastLocation {
+            let geoFire = GeoFire(firebaseRef: Database.database().reference().child(productLocationRef))
+            geoFire?.setLocation(location, forKey: uid) { error in
+                completion?(error)
+            }
+        } else {
+            completion?(nil)
+        }
+    }
+
+    func deleteLocation() {
+        Database.database().reference().child(productLocationRef).child(uid).removeValue()
+    }
+
+    // MARK: - Statics
     
     static func createProduct(with productDict: [String: AnyObject], with key: String) -> Product? {
         var product: Product?

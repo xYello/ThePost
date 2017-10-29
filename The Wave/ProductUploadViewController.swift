@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import ReachabilitySwift
 import WVCheckMark
+import GeoFire
 
 class ProductUploadViewController: SeletectedImageViewController {
 
@@ -28,7 +29,6 @@ class ProductUploadViewController: SeletectedImageViewController {
     private var dbProduct = [String: Any]()
 
     private let productRef = Database.database().reference().child("products")
-    private var productKey: String!
 
     private var didHaveError = false {
         didSet {
@@ -55,7 +55,7 @@ class ProductUploadViewController: SeletectedImageViewController {
         self.product = product
         super.init(nibName: nil, bundle: nil)
 
-        productKey = productRef.childByAutoId().key
+        product.uid = productRef.childByAutoId().key
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -71,7 +71,7 @@ class ProductUploadViewController: SeletectedImageViewController {
         successView.isHidden = true
         secondaryButton.isHidden = true
 
-        linkButton.setTitle(WebsiteLinks.products + productKey, for: .normal)
+        linkButton.setTitle(WebsiteLinks.products + product.uid, for: .normal)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -95,7 +95,7 @@ class ProductUploadViewController: SeletectedImageViewController {
     }
 
     @IBAction func linkButtonPressed(_ sender: UIButton) {
-        UIPasteboard.general.string = WebsiteLinks.products + productKey
+        UIPasteboard.general.string = WebsiteLinks.products + product.uid
         linkInfoLabel.text = "Copied!"
         linkInfoLabel.textColor = .waveGreen
     }
@@ -123,7 +123,7 @@ class ProductUploadViewController: SeletectedImageViewController {
 
         var imageDict = [String: String]()
 
-        let ref = Storage.storage().reference().child("products").child(productKey)
+        let ref = Storage.storage().reference().child("products").child(product.uid)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
 
@@ -193,17 +193,22 @@ class ProductUploadViewController: SeletectedImageViewController {
             // These are dummies, otherwise lower app versions would crash.
             dbProduct["condition"] = Condition.other.description
             dbProduct["originalBox"] = false
-
-            productRef.child(productKey).updateChildValues(dbProduct, withCompletionBlock: { error, ref in
+            productRef.child(product.uid).updateChildValues(dbProduct, withCompletionBlock: { error, ref in
                 if let _ = error {
                     self.didHaveError = true
                 } else {
-                    self.check.setColor(color: UIColor.waveGreen.cgColor)
-                    self.check.start()
+                    self.product.saveLastLocation() { error in
+                        if let error = error {
+                            SentryManager.shared.sendEvent(withError: error)
+                        } else {
+                            self.check.setColor(color: UIColor.waveGreen.cgColor)
+                            self.check.start()
 
-                    self.statusLabel.text = "🎉 Upload completed! 🎉"
-                    self.mainButton.isHidden = false
-                    self.successView.isHidden = false
+                            self.statusLabel.text = "🎉 Upload completed! 🎉"
+                            self.mainButton.isHidden = false
+                            self.successView.isHidden = false
+                        }
+                    }
                 }
             })
         }

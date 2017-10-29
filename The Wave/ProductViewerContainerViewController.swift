@@ -606,6 +606,9 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         storage.child("3").delete(completion: nil)
         storage.child("4").delete(completion: nil)
 
+        // Delete the location information if it exists.
+        product.deleteLocation()
+
         dismissParent()
     }
 
