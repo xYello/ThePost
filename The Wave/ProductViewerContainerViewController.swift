@@ -134,7 +134,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         formatter.numberStyle = .currency
         let string = formatter.string(from: floor(product.price) as NSNumber)
         let endIndex = string!.index(string!.endIndex, offsetBy: -3)
-        let truncated = string!.substring(to: endIndex) // Remove the .00 from the price.
+        let truncated = String(string![..<endIndex]) // Remove the .00 from the price.
         priceLabel.text = truncated
         
         textCellLayout = [product.name, product.jeepModel.name, truncated, product.condition.description, product.cityStateString ?? "None provided"]
