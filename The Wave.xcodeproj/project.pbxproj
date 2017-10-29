@@ -362,6 +362,15 @@
 			path = "Keyboard Helper";
 			sourceTree = "<group>";
 		};
+		49CA1FE31FA56CEE009D7111 /* Generics */ = {
+			isa = PBXGroup;
+			children = (
+				4D27D5D41F2D812C007D10B2 /* Image selector */,
+				49B33EDC1F2325B6005FF03E /* Keyboard Helper */,
+			);
+			name = Generics;
+			sourceTree = "<group>";
+		};
 		4D04C51B1E0EFCD1004B2264 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,11 +543,10 @@
 		4D58C4D31E0E1882004CA0E3 /* The Wave */ = {
 			isa = PBXGroup;
 			children = (
+				49CA1FE31FA56CEE009D7111 /* Generics */,
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				60C2ED5C1E29C6DA00ED83EA /* Constants.swift */,
 				4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */,
-				4D27D5D41F2D812C007D10B2 /* Image selector */,
-				49B33EDC1F2325B6005FF03E /* Keyboard Helper */,
 				4DD8CB261F034AE9004546F7 /* Managers */,
 				4D14F6D81E31B4F800AF71F8 /* Extensions */,
 				4D14F6D71E31B4E500AF71F8 /* Models */,
