@@ -1,5 +1,5 @@
 framework module GoogleToolboxForMac {
-  umbrella header "GoogleToolboxForMac-umbrella.h"
+  umbrella header "GoogleToolboxForMac-f0850809-umbrella.h"
 
   export *
   module * { export * }

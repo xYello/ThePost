@@ -1,0 +1,6 @@
+framework module GoogleToolboxForMac {
+  umbrella header "GoogleToolboxForMac-Defines-NSData+zlib-umbrella.h"
+
+  export *
+  module * { export * }
+}

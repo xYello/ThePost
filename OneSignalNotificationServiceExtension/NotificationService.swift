@@ -3,7 +3,7 @@
 //  OneSignalNotificationServiceExtension
 //
 //  Created by Andrew Robinson on 3/18/17.
-//  Copyright © 2017 The Post. All rights reserved.
+//  Copyright © 2017 The Wave. All rights reserved.
 //
 
 import UserNotifications

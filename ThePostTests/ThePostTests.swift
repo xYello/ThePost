@@ -3,11 +3,13 @@
 //  ThePostTests
 //
 //  Created by Andrew Robinson on 12/23/16.
-//  Copyright © 2016 The Post. All rights reserved.
+//  Copyright © 2016 The Wave. All rights reserved.
 //
 
 import XCTest
-@testable import ThePost
+import Firebase
+
+@testable import The_Wave
 
 class ThePostTests: XCTestCase {
     

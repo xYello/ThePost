@@ -18,6 +18,8 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.27.1):
     - FBSDKCoreKit
+  - Firebase (4.4.0):
+    - Firebase/Core (= 4.4.0)
   - Firebase/Auth (4.4.0):
     - Firebase/Core
     - FirebaseAuth (= 4.3.0)
@@ -176,6 +178,7 @@ PODS:
 
 DEPENDENCIES:
   - Crashlytics
+  - Firebase
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -242,6 +245,6 @@ SPEC CHECKSUMS:
   UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
   WVCheckMark: a62e278531f05fe3a42a056db6383c273f4d9e8b
 
-PODFILE CHECKSUM: ca69653d1154683e6d5dd3b7ca2e5291d2a96d31
+PODFILE CHECKSUM: a804a15a2ff743cd2667339eea7d2b4d702b7e29
 
 COCOAPODS: 1.3.1
