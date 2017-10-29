@@ -49,10 +49,10 @@ class SignInUpPromptViewController: UIViewController {
         animator = UIDynamicAnimator()
         
         let attributedString = NSMutableAttributedString(attributedString: signUpText.attributedText!)
-        attributedString.addAttributes([NSFontAttributeName: UIFont(name: "Lato-Bold", size: 30)!], range: NSRange(location: 0, length: 67))
-        attributedString.addAttributes([NSForegroundColorAttributeName: #colorLiteral(red: 0.7215686275, green: 0.3137254902, blue: 0.2156862745, alpha: 1)], range: NSRange(location: 0, length: 8))
-        attributedString.addAttributes([NSForegroundColorAttributeName: #colorLiteral(red: 0.1411764706, green: 0.1647058824, blue: 0.2117647059, alpha: 1)], range: NSRange(location: 8, length: 59))
-        attributedString.addAttributes([NSFontAttributeName: UIFont(name: "Lato-BoldItalic", size: 30)!], range: NSRange(location: 14, length: 8))
+        attributedString.addAttributes([NSAttributedStringKey.font: UIFont(name: "Lato-Bold", size: 30)!], range: NSRange(location: 0, length: 67))
+        attributedString.addAttributes([NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.7215686275, green: 0.3137254902, blue: 0.2156862745, alpha: 1)], range: NSRange(location: 0, length: 8))
+        attributedString.addAttributes([NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.1411764706, green: 0.1647058824, blue: 0.2117647059, alpha: 1)], range: NSRange(location: 8, length: 59))
+        attributedString.addAttributes([NSAttributedStringKey.font: UIFont(name: "Lato-BoldItalic", size: 30)!], range: NSRange(location: 14, length: 8))
         signUpText.attributedText = attributedString
         
         
@@ -60,22 +60,22 @@ class SignInUpPromptViewController: UIViewController {
         let touRange = (policyTextView.text as NSString).range(of: "Terms of Use")
         let privacyRange = (policyTextView.text as NSString).range(of: "Privacy Policy")
         
-        string.addAttribute(NSLinkAttributeName, value: PolicyLinks.termsOfUse, range: touRange)
-        string.addAttribute(NSLinkAttributeName, value: PolicyLinks.privacy, range: privacyRange)
+        string.addAttribute(NSAttributedStringKey.link, value: PolicyLinks.termsOfUse, range: touRange)
+        string.addAttribute(NSAttributedStringKey.link, value: PolicyLinks.privacy, range: privacyRange)
         
         let wholeRange = NSMakeRange(0, string.length)
         let font = UIFont(name: "Lato-LightItalic", size: 12.0)!
-        string.addAttribute(NSForegroundColorAttributeName, value: UIColor.black, range: wholeRange)
-        string.addAttribute(NSFontAttributeName, value: font, range: wholeRange)
+        string.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.black, range: wholeRange)
+        string.addAttribute(NSAttributedStringKey.font, value: font, range: wholeRange)
         
         let style = NSMutableParagraphStyle()
         style.alignment = .center
-        string.addAttribute(NSParagraphStyleAttributeName, value: style, range: wholeRange)
+        string.addAttribute(NSAttributedStringKey.paragraphStyle, value: style, range: wholeRange)
         
-        policyTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.black,
-                                             NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue,
-                                             NSUnderlineColorAttributeName: UIColor.black,
-                                             NSFontAttributeName: font]
+        policyTextView.linkTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.black,
+                                             NSAttributedStringKey.underlineStyle.rawValue: NSUnderlineStyle.styleSingle.rawValue,
+                                             NSAttributedStringKey.underlineColor.rawValue: UIColor.black,
+                                             NSAttributedStringKey.font.rawValue: font]
         policyTextView.attributedText = string
     }
     
@@ -124,7 +124,7 @@ class SignInUpPromptViewController: UIViewController {
                     print("Error signing up: \(error.localizedDescription)")
                     SentryManager.shared.sendEvent(withError: error)
                 }
-                
+
                 self.disableButtons()
             } else {
                 if FBSDKAccessToken.current() != nil {

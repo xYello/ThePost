@@ -194,7 +194,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if productArray().count == 0 {
-            UIView.animate(withDuration: 0.25, animations: { done in
+            UIView.animate(withDuration: 0.25, animations: {
                 self.noProductView.alpha = 1.0
             })
         } else {

@@ -46,7 +46,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NSString *const SentryClientVersionString = @"3.1.2";
+NSString *const SentryClientVersionString = @"3.9.0";
 NSString *const SentryClientSdkName = @"sentry-cocoa";
 
 static SentryClient *sharedClient = nil;
@@ -67,6 +67,7 @@ static SentryKSCrashInstallation *installation = nil;
 @synthesize tags = _tags;
 @synthesize extra = _extra;
 @synthesize user = _user;
+@synthesize sampleRate = _sampleRate;
 @dynamic logLevel;
 
 #pragma mark Initializer
@@ -85,8 +86,9 @@ static SentryKSCrashInstallation *installation = nil;
                      didFailWithError:(NSError *_Nullable *_Nullable)error {
     self = [super init];
     if (self) {
-        [self setExtra:[NSDictionary new]];
-        [self setTags:[NSDictionary new]];
+        [self restoreContextBeforeCrash];
+        _extra = [NSDictionary new];
+        _tags = [NSDictionary new];
         self.dsn = [[SentryDsn alloc] initWithString:dsn didFailWithError:error];
         self.requestManager = requestManager;
         NSLog(@"Sentry Started -- Version: %@", self.class.versionString);
@@ -95,6 +97,10 @@ static SentryKSCrashInstallation *installation = nil;
         if (nil != error && nil != *error) {
             [SentryLog logWithMessage:(*error).localizedDescription andLevel:kSentryLogLevelError];
             return nil;
+        }
+        // We want to send all stored events on start up
+        if ([self.requestManager isReady]) {
+            [self sendAllStoredEvents];
         }
     }
     return self;
@@ -137,17 +143,27 @@ static SentryKSCrashInstallation *installation = nil;
     [self sendEvent:event useClientProperties:YES withCompletionHandler:completionHandler];
 }
 
-- (void)    sendEvent:(SentryEvent *)event
-  useClientProperties:(BOOL)useClientProperties
-withCompletionHandler:(_Nullable SentryRequestFinished)completionHandler {
+- (void)prepareEvent:(SentryEvent *)event
+ useClientProperties:(BOOL)useClientProperties {
     NSParameterAssert(event);
     if (useClientProperties) {
         [self setSharedPropertiesOnEvent:event];
     }
-
+    
     if (nil != self.beforeSerializeEvent) {
         self.beforeSerializeEvent(event);
     }
+}
+
+- (void)storeEvent:(SentryEvent *)event {
+    [self prepareEvent:event useClientProperties:YES];
+    [self.fileManager storeEvent:event];
+}
+
+- (void)    sendEvent:(SentryEvent *)event
+  useClientProperties:(BOOL)useClientProperties
+withCompletionHandler:(_Nullable SentryRequestFinished)completionHandler {
+    [self prepareEvent:event useClientProperties:useClientProperties];
     
     if (nil != self.shouldSendEvent && !self.shouldSendEvent(event)) {
         NSString *message = @"SentryClient shouldSendEvent returned NO so we will not send the event";
@@ -207,6 +223,14 @@ withCompletionHandler:(_Nullable SentryRequestFinished)completionHandler {
                                                                          didFailWithError:nil];
         [self sendRequest:request withCompletionHandler:^(NSError *_Nullable error) {
             if (nil == error) {
+                NSDictionary *serializedEvent = [NSJSONSerialization JSONObjectWithData:fileDictionary[@"data"]
+                                                                                 options:0
+                                                                                   error:nil];
+                if (nil != serializedEvent) {
+                    [NSNotificationCenter.defaultCenter postNotificationName:@"Sentry/eventSentSuccessfully"
+                                                                      object:nil
+                                                                    userInfo:serializedEvent];
+                }
                 [self.fileManager removeFileAtPath:fileDictionary[@"path"]];
             }
         }];
@@ -247,28 +271,32 @@ withCompletionHandler:(_Nullable SentryRequestFinished)completionHandler {
     if (nil == event.infoDict) {
         event.infoDict = [[NSBundle mainBundle] infoDictionary];
     }
-    
-    if (nil == event.threads && nil != self._snapshotThreads && nil != self._debugMeta) {
+}
+
+- (void)appendStacktraceToEvent:(SentryEvent *)event {
+    if (nil != self._snapshotThreads && nil != self._debugMeta) {
         event.threads = self._snapshotThreads;
         event.debugMeta = self._debugMeta;
-        self._snapshotThreads = nil;
     }
 }
 
 #pragma mark Global properties
 
 - (void)setTags:(NSDictionary<NSString *, NSString *> *_Nullable)tags {
-    [self setCrashUserInfo:tags forKey:@"tags"];
+    [[NSUserDefaults standardUserDefaults] setObject:tags forKey:@"sentry.io.tags"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     _tags = tags;
 }
 
 - (void)setExtra:(NSDictionary<NSString *, id> *_Nullable)extra {
-    [self setCrashUserInfo:extra forKey:@"extra"];
+    [[NSUserDefaults standardUserDefaults] setObject:extra forKey:@"sentry.io.extra"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     _extra = extra;
 }
 
 - (void)setUser:(SentryUser *_Nullable)user {
-    [self setCrashUserInfo:[user serialize] forKey:@"user"];
+    [[NSUserDefaults standardUserDefaults] setObject:[user serialize] forKey:@"sentry.io.user"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     _user = user;
 }
 
@@ -278,31 +306,31 @@ withCompletionHandler:(_Nullable SentryRequestFinished)completionHandler {
     [self setTags:[NSDictionary new]];
 }
 
+- (void)restoreContextBeforeCrash {
+    NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
+    [context setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"sentry.io.tags"] forKey:@"tags"];
+    [context setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"sentry.io.extra"] forKey:@"extra"];
+    [context setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"sentry.io.user"] forKey:@"user"];
+    self.lastContext = context;
+}
+
+- (void)setSampleRate:(float)sampleRate {
+    if (sampleRate < 0 || sampleRate > 1) {
+        [SentryLog logWithMessage:@"sampleRate must be between 0.0 and 1.0" andLevel:kSentryLogLevelError];
+        return;
+    }
+    _sampleRate = sampleRate;
+    self.shouldSendEvent = ^BOOL(SentryEvent *_Nonnull event) {
+        return (sampleRate >= ((double)arc4random() / 0x100000000));
+    };
+}
+
 #pragma mark KSCrash
 
 #if WITH_KSCRASH
 
 - (BOOL)crashedLastLaunch {
     return KSCrash.sharedInstance.crashedLastLaunch;
-}
-
-- (void)setCrashUserInfo:(NSDictionary<NSString *, id <NSSecureCoding>> *_Nullable)dict forKey:(NSString *)key {
-    if (nil == KSCrash.sharedInstance) {
-        [SentryLog logWithMessage:@"KSCrash has not been initialized, call startCrashHandlerWithError" andLevel:kSentryLogLevelError];
-        return;
-    }
-    NSMutableDictionary *userInfo = nil;
-    if (nil != KSCrash.sharedInstance.userInfo) {
-        userInfo = KSCrash.sharedInstance.userInfo.mutableCopy;
-    } else {
-        userInfo = [NSMutableDictionary new];
-    }
-    if (nil == dict) {
-        [userInfo removeObjectForKey:key];
-    } else {
-        [userInfo setValue:dict forKey:key];
-    }
-    KSCrash.sharedInstance.userInfo = userInfo;
 }
 
 #pragma GCC diagnostic push
@@ -354,7 +382,7 @@ withCompletionHandler:(_Nullable SentryRequestFinished)completionHandler {
                                          reason:@"SENTRY_SNAPSHOT"
                                        language:@""
                                      lineOfCode:@""
-                                     stackTrace:[NSArray new]
+                                     stackTrace:[[NSArray alloc] init]
                                   logAllThreads:NO
                                terminateProgram:NO];
     [installation sendAllReportsWithCompletion:^(NSArray *filteredReports, BOOL completed, NSError *error) {
@@ -375,10 +403,6 @@ withCompletionHandler:(_Nullable SentryRequestFinished)completionHandler {
               logAllThreads:(BOOL)logAllThreads
            terminateProgram:(BOOL)terminateProgram {
     [SentryLog logWithMessage:@"Cannot report userException without KSCrash dependency" andLevel:kSentryLogLevelError];
-}
-
-- (void)setCrashUserInfo:(NSDictionary<NSString *, id <NSSecureCoding>> *_Nullable)dict forKey:(NSString *)key {
-    // We need to do nothing here without KSCrash
 }
 
 #pragma GCC diagnostic pop

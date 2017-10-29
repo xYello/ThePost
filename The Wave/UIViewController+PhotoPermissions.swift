@@ -14,7 +14,7 @@ extension UIViewController {
 
         if type == .photoLibrary || UIImagePickerController.isSourceTypeAvailable(.camera) {
 
-            let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+            let status = AVCaptureDevice.authorizationStatus(for: .video)
 
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = delegate
@@ -22,7 +22,7 @@ extension UIViewController {
 
             if status == .notDetermined {
                 if type != .photoLibrary {
-                    AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
+                    AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
                         if granted {
                             self.present(imagePicker, animated: true, completion: nil)
                         }

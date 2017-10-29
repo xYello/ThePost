@@ -280,7 +280,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.likeCountLabel.alpha = 0.2
             
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: cell.priceLabel.text!)
-            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+            attributeString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
             cell.priceLabel.attributedText = attributeString
         } else {
             cell.productImageView.alpha = 1.0
@@ -294,7 +294,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
             if let attributedText = cell.priceLabel.attributedText {
                 let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: attributedText.string)
-                attributeString.removeAttribute(NSStrikethroughColorAttributeName, range: NSMakeRange(0, attributeString.length))
+                attributeString.removeAttribute(NSAttributedStringKey.strikethroughColor, range: NSMakeRange(0, attributeString.length))
                 cell.priceLabel.attributedText = attributeString
             }
         }
@@ -467,7 +467,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if type == .photoLibrary || UIImagePickerController.isSourceTypeAvailable(.camera) {
             
-            let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+            let status = AVCaptureDevice.authorizationStatus(for: .video)
             
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
@@ -475,7 +475,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
             if status == .notDetermined {
                 if type != .photoLibrary {
-                    AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { granted in
+                    AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
                         if granted {
                             self.present(imagePicker, animated: true, completion: nil)
                         }

@@ -70,22 +70,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let privacyRange = (policyTextView.text as NSString).range(of: "Privacy Policy")
         
         let string = NSMutableAttributedString(string: policyTextView.text!)
-        string.addAttribute(NSLinkAttributeName, value: PolicyLinks.termsOfUse, range: touRange)
-        string.addAttribute(NSLinkAttributeName, value: PolicyLinks.privacy, range: privacyRange)
+        string.addAttribute(NSAttributedStringKey.link, value: PolicyLinks.termsOfUse, range: touRange)
+        string.addAttribute(NSAttributedStringKey.link, value: PolicyLinks.privacy, range: privacyRange)
         
         let wholeRange = NSMakeRange(0, string.length)
         let font = UIFont(name: "Lato-LightItalic", size: 14.0)!
-        string.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: wholeRange)
-        string.addAttribute(NSFontAttributeName, value: font, range: wholeRange)
+        string.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.white, range: wholeRange)
+        string.addAttribute(NSAttributedStringKey.font, value: font, range: wholeRange)
         
         let style = NSMutableParagraphStyle()
         style.alignment = .center
-        string.addAttribute(NSParagraphStyleAttributeName, value: style, range: wholeRange)
+        string.addAttribute(NSAttributedStringKey.paragraphStyle, value: style, range: wholeRange)
         
-        policyTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
-                                             NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue,
-                                             NSUnderlineColorAttributeName: UIColor.white,
-                                             NSFontAttributeName: font]
+        policyTextView.linkTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
+                                             NSAttributedStringKey.underlineStyle.rawValue: NSUnderlineStyle.styleSingle.rawValue,
+                                             NSAttributedStringKey.underlineColor.rawValue: UIColor.white,
+                                             NSAttributedStringKey.font.rawValue: font]
         policyTextView.attributedText = string
         
     }
@@ -267,7 +267,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     private func formatTextField(field: UITextField, withImageView imageView: UIImageView) {
         field.roundCorners()
         field.delegate = self
-        field.attributedPlaceholder = NSAttributedString(string: field.placeholder!, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3503303272)])
+        field.attributedPlaceholder = NSAttributedString(string: field.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3503303272)])
         
         imageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
         

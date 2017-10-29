@@ -83,13 +83,18 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (NSArray<NSDictionary<NSString *, id> *> *)allFilesContentInFolder:(NSString *)path {
-    NSMutableArray *contents = [NSMutableArray new];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    for (NSString *filePath in [self allFilesInFolder:path]) {
-        NSString *finalPath = [path stringByAppendingPathComponent:filePath];
-        [contents addObject:@{@"path": finalPath, @"data": [fileManager contentsAtPath:finalPath]}];
+    @synchronized (self) {
+        NSMutableArray *contents = [NSMutableArray new];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        for (NSString *filePath in [self allFilesInFolder:path]) {
+            NSString *finalPath = [path stringByAppendingPathComponent:filePath];
+            NSData *content = [fileManager contentsAtPath:finalPath];
+            if (nil != content) {
+                [contents addObject:@{@"path": finalPath, @"data": content}];
+            }
+        }
+        return contents;
     }
-    return contents;
 }
 
 - (void)deleteAllStoredEvents {
@@ -107,12 +112,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<NSString *> *)allFilesInFolder:(NSString *)path {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
-    NSArray < NSString * > *storedEvents = [fileManager contentsOfDirectoryAtPath:path error:&error];
+    NSArray <NSString *> *storedFiles = [fileManager contentsOfDirectoryAtPath:path error:&error];
     if (nil != error) {
         [SentryLog logWithMessage:[NSString stringWithFormat:@"Couldn't load files in folder %@: %@", path, error] andLevel:kSentryLogLevelError];
         return [NSArray new];
     }
-    return storedEvents;
+    return [storedFiles sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 - (BOOL)removeFileAtPath:(NSString *)path {

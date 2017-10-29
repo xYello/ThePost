@@ -30,7 +30,7 @@ class PriceChooseViewController: SeletectedImageViewController, UITextFieldDeleg
         priceTextField.addTarget(self, action: #selector(textFieldTextChanged(_:)), for: .editingChanged)
         priceTextField.delegate = self
 
-        priceTextField.attributedPlaceholder = NSAttributedString(string: "$0", attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 0.5)])
+        priceTextField.attributedPlaceholder = NSAttributedString(string: "$0", attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.137254902, green: 0.6352941176, blue: 0.3019607843, alpha: 0.5)])
         priceTextField.layer.borderColor = UIColor.white.cgColor
         priceTextField.layer.borderWidth = 1.0
         priceTextField.roundCorners(radius: 3.0)

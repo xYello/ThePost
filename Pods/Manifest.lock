@@ -163,9 +163,9 @@ PODS:
   - SDWebImage (4.1.2):
     - SDWebImage/Core (= 4.1.2)
   - SDWebImage/Core (4.1.2)
-  - Sentry/Core (3.1.2)
-  - Sentry/KSCrash (3.1.2):
-    - KSCrash/Core (~> 1.15.9)
+  - Sentry/Core (3.9.0)
+  - Sentry/KSCrash (3.9.0):
+    - KSCrash/Core (~> 1.15.12)
   - SwiftKeychainWrapper (3.0.1)
   - TOCropViewController (2.1.0)
   - TwitterCore (3.0.2)
@@ -184,8 +184,8 @@ DEPENDENCIES:
   - JSQMessagesViewController
   - OneSignal (~> 2.0)
   - ReachabilitySwift (~> 3)
-  - Sentry/Core (from `https://github.com/getsentry/sentry-cocoa.git`, tag `3.1.2`)
-  - Sentry/KSCrash (from `https://github.com/getsentry/sentry-cocoa.git`, tag `3.1.2`)
+  - Sentry/Core (from `https://github.com/getsentry/sentry-cocoa.git`)
+  - Sentry/KSCrash (from `https://github.com/getsentry/sentry-cocoa.git`)
   - SwiftKeychainWrapper
   - TOCropViewController
   - UPCarouselFlowLayout
@@ -194,12 +194,11 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   Sentry:
     :git: https://github.com/getsentry/sentry-cocoa.git
-    :tag: 3.1.2
 
 CHECKOUT OPTIONS:
   Sentry:
+    :commit: d4a154ef8157c8abfe7adab7b762e9e7c342458b
     :git: https://github.com/getsentry/sentry-cocoa.git
-    :tag: 3.1.2
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -235,7 +234,7 @@ SPEC CHECKSUMS:
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
-  Sentry: 5a578891f177e994d89d57effc70adb97bfb29db
+  Sentry: 1dc2a4e3e90b1df975eb57be7175d0b70486ed30
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   TOCropViewController: f88194a084f6afe1fd6f21a3f0edda7dd097e38b
   TwitterCore: e0420b01e02e7d20e94690e37f43e75de219ab8d
@@ -243,6 +242,6 @@ SPEC CHECKSUMS:
   UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
   WVCheckMark: a62e278531f05fe3a42a056db6383c273f4d9e8b
 
-PODFILE CHECKSUM: 89b01027615b91833f626dea15d020ab953a43a0
+PODFILE CHECKSUM: ca69653d1154683e6d5dd3b7ca2e5291d2a96d31
 
 COCOAPODS: 1.3.1

@@ -203,7 +203,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     private func formatTextField(field: UITextField, withImageView imageView: UIImageView) {
         field.roundCorners()
-        field.attributedPlaceholder = NSAttributedString(string: field.placeholder!, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3503303272)])
+        field.attributedPlaceholder = NSAttributedString(string: field.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3503303272)])
         
         imageView.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
         

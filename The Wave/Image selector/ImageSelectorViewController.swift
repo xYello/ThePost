@@ -134,13 +134,13 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
         #if !(IOS_SIMULATOR)
         // Camera Setup
         session = AVCaptureSession()
-        session.sessionPreset = AVCaptureSessionPresetPhoto
+        session.sessionPreset = AVCaptureSession.Preset.photo
 
-        let backCam = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        let backCam = AVCaptureDevice.default(for: .video)
         var input: AVCaptureDeviceInput?
 
         do {
-            input =  try AVCaptureDeviceInput(device: backCam)
+            input =  try AVCaptureDeviceInput(device: backCam!)
         } catch {
             print(error.localizedDescription)
         }
@@ -157,7 +157,7 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
         }
 
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
-        videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        videoPreviewLayer.videoGravity = .resizeAspectFill
         videoPreviewLayer.connection?.videoOrientation = .portrait
         view.layer.addSublayer(videoPreviewLayer)
         session.startRunning()
@@ -247,7 +247,7 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
 
 extension ImageSelectorViewController: AVCapturePhotoCaptureDelegate {
 
-    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+    func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         if let buffer = photoSampleBuffer, let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer, previewPhotoSampleBuffer: nil), let image = UIImage(data: data) {
             captured(image: image, error: nil)
         } else if let error = error {

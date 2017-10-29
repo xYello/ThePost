@@ -40,7 +40,8 @@ NSTimeInterval const SentryRequestTimeout = 15;
 
 @implementation SentryNSURLRequest
 
-- (_Nullable instancetype)initStoreRequestWithDsn:(SentryDsn *)dsn andEvent:(SentryEvent *)event
+- (_Nullable instancetype)initStoreRequestWithDsn:(SentryDsn *)dsn
+                                         andEvent:(SentryEvent *)event
                                  didFailWithError:(NSError *_Nullable *_Nullable)error {
     NSDictionary *serialized = [event serialize];
     if (![NSJSONSerialization isValidJSONObject:serialized]) {
@@ -51,7 +52,7 @@ NSTimeInterval const SentryRequestTimeout = 15;
     }
 
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:serialized
-                                                       options:0
+                                                       options:SentryClient.logLevel == kSentryLogLevelVerbose ? NSJSONWritingPrettyPrinted : 0
                                                          error:error];
     
     if (SentryClient.logLevel == kSentryLogLevelVerbose) {
@@ -62,7 +63,8 @@ NSTimeInterval const SentryRequestTimeout = 15;
     return [self initStoreRequestWithDsn:dsn andData:jsonData didFailWithError:error];
 }
 
-- (_Nullable instancetype)initStoreRequestWithDsn:(SentryDsn *)dsn andData:(NSData *)data
+- (_Nullable instancetype)initStoreRequestWithDsn:(SentryDsn *)dsn
+                                          andData:(NSData *)data
                                  didFailWithError:(NSError *_Nullable *_Nullable)error {
     NSURL *apiURL = [self.class getStoreUrlFromDsn:dsn];
     self = [super initWithURL:apiURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:SentryRequestTimeout];
@@ -96,13 +98,13 @@ static NSString *newHeaderPart(NSString *key, id value) {
 
 static NSString *newAuthHeader(NSURL *url) {
     NSMutableString *string = [NSMutableString stringWithString:@"Sentry "];
-
     [string appendFormat:@"%@,", newHeaderPart(@"sentry_version", SentryServerVersionString)];
     [string appendFormat:@"%@,", newHeaderPart(@"sentry_client", [NSString stringWithFormat:@"sentry-cocoa/%@", SentryClient.versionString])];
     [string appendFormat:@"%@,", newHeaderPart(@"sentry_timestamp", @((NSInteger) [[NSDate date] timeIntervalSince1970]))];
-    [string appendFormat:@"%@,", newHeaderPart(@"sentry_key", url.user)];
-    [string appendFormat:@"%@", newHeaderPart(@"sentry_secret", url.password)];
-
+    [string appendFormat:@"%@", newHeaderPart(@"sentry_key", url.user)];
+    if (nil != url.password) {
+        [string appendFormat:@",%@", newHeaderPart(@"sentry_secret", url.password)];
+    }
     return string;
 }
 

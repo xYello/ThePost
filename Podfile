@@ -19,7 +19,7 @@ target 'The Wave' do
   pod 'SwiftKeychainWrapper'
   pod 'JSQMessagesViewController'
   pod 'OneSignal', '~> 2.0'
-  pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :subspecs => ['Core', 'KSCrash'], :tag => '3.1.2'
+  pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :subspecs => ['Core', 'KSCrash']
   pod 'ReachabilitySwift', '~> 3'
   pod 'TOCropViewController'
   pod 'WVCheckMark'

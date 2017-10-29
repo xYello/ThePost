@@ -39,7 +39,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
             query.observe(.childAdded, with: { snapshot in
                 if let socialDict = snapshot.value as? [String: AnyObject] {
                     
-                    let date = Date(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
+                    let date = Date(timeIntervalSince1970: Double(truncating: socialDict["datePosted"] as! NSNumber) / 1000)
                     var likes = socialDict["likeCount"] as? Int
                     if let _ = likes {
                     } else {
@@ -56,7 +56,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
             socialRef!.observe(.childRemoved, with: { snapshot in
                 if let socialDict = snapshot.value as? [String: AnyObject] {
                     
-                    let date = Date(timeIntervalSince1970: Double(socialDict["datePosted"] as! NSNumber) / 1000)
+                    let date = Date(timeIntervalSince1970: Double(truncating: socialDict["datePosted"] as! NSNumber) / 1000)
                     var likes = socialDict["likeCount"] as? Int
                     if let _ = likes {
                     } else {
