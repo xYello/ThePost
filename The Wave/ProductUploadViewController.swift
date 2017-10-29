@@ -27,7 +27,7 @@ class ProductUploadViewController: SeletectedImageViewController {
     private var product: Product
     private var dbProduct = [String: Any]()
 
-    private let productRef = FIRDatabase.database().reference().child("products")
+    private let productRef = Database.database().reference().child("products")
     private var productKey: String!
 
     private var didHaveError = false {
@@ -106,7 +106,7 @@ class ProductUploadViewController: SeletectedImageViewController {
         if reach.currentReachabilityStatus == .notReachable {
             didHaveError = true
         } else {
-            if let userId = FIRAuth.auth()?.currentUser?.uid {
+            if let userId = Auth.auth().currentUser?.uid {
                 uploadImages(withUserId: userId)
             } else {
                 SentryManager.shared.sendEvent(withMessage: "Product upload: Firebase current user does not exist!")
@@ -123,8 +123,8 @@ class ProductUploadViewController: SeletectedImageViewController {
 
         var imageDict = [String: String]()
 
-        let ref = FIRStorage.storage().reference().child("products").child(productKey)
-        let metadata = FIRStorageMetadata()
+        let ref = Storage.storage().reference().child("products").child(productKey)
+        let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
 
         for i in 1...product.images.count {
@@ -133,7 +133,7 @@ class ProductUploadViewController: SeletectedImageViewController {
 
         for (index, _) in imageDict {
             if !self.didHaveError {
-                ref.child("\(index)").put(compressed[Int(index)! - 1], metadata: metadata, completion: { metadata, error in
+                ref.child("\(index)").putData(compressed[Int(index)! - 1], metadata: metadata) { metadata, error in
                     if let error = error {
                         SentryManager.shared.sendEvent(withError: error)
                         self.didHaveError = true
@@ -165,7 +165,7 @@ class ProductUploadViewController: SeletectedImageViewController {
                             }
                         }
                     }
-                })
+                }
             }
         }
     }
@@ -183,7 +183,7 @@ class ProductUploadViewController: SeletectedImageViewController {
             dbProduct["acceptsCash"] = product.acceptsCash
             dbProduct["likeCount"] = 0
             dbProduct["viewCount"] = 0
-            dbProduct["datePosted"] = FIRServerValue.timestamp()
+            dbProduct["datePosted"] = ServerValue.timestamp()
             dbProduct["location"] = product.cityStateString
 
             if let description = product.detailedDescription {

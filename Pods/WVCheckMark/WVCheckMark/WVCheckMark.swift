@@ -154,6 +154,7 @@ open class WVCheckMark: UIView {
                 }
             }
         }
+        
     }
     
 }

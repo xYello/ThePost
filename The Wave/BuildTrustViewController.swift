@@ -33,7 +33,7 @@ class BuildTrustViewController: UIViewController {
         facebookView.roundCorners(radius: 8.0)
         twitterView.roundCorners(radius: 8.0)
         
-        if let user = FIRAuth.auth()?.currentUser {
+        if let user = Auth.auth().currentUser {
             for provider in user.providerData {
                 if provider.providerID == "facebook.com" {
                     facebookView.isHidden = true
@@ -63,8 +63,8 @@ class BuildTrustViewController: UIViewController {
                                 self.updateText(withError: error)
                                 SentryManager.shared.sendEvent(withError: error)
                             } else {
-                                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                                FIRAuth.auth()?.currentUser?.link(with: credential) { user, error in
+                                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                                Auth.auth().currentUser?.link(with: credential) { user, error in
                                     if let error = error {
                                         print("Error in Facebook auth: \(error.localizedDescription)")
                                         self.updateText(withError: error)
@@ -73,11 +73,11 @@ class BuildTrustViewController: UIViewController {
                                         
                                         if let data = result as? [String: AnyObject] {
                                             if let e = data["email"] as? String {
-                                                FIRDatabase.database().reference().child("users").child(user!.uid).child("email").setValue(e)
+                                                Database.database().reference().child("users").child(user!.uid).child("email").setValue(e)
                                             }
                                         }
                                         
-                                        FIRDatabase.database().reference().child("users").child(user!.uid).child("verifiedWith").child("Facebook").setValue(true)
+                                        Database.database().reference().child("users").child(user!.uid).child("verifiedWith").child("Facebook").setValue(true)
                                         
                                         if self.twitterView.isHidden {
                                             self.dismissParent()
@@ -102,14 +102,14 @@ class BuildTrustViewController: UIViewController {
         Twitter.sharedInstance().logIn() { session, error in
             if let session = session {
                 
-                let credential = FIRTwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
-                FIRAuth.auth()?.currentUser?.link(with: credential) { user, error in
+                let credential = TwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
+                Auth.auth().currentUser?.link(with: credential) { user, error in
                     if let error = error {
                         print("Error in Twitter auth: \(error.localizedDescription)")
                         self.updateText(withError: error)
                         SentryManager.shared.sendEvent(withError: error)
                     } else {
-                        FIRDatabase.database().reference().child("users").child(user!.uid).child("verifiedWith").child("Twitter").setValue(true)
+                        Database.database().reference().child("users").child(user!.uid).child("verifiedWith").child("Twitter").setValue(true)
                         
                         if self.facebookView.isHidden {
                             self.dismissParent()

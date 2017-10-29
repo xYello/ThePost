@@ -31,15 +31,15 @@ class PushNotification: NSObject {
             // Force a delay, so a user can't spam notifications.
             self.likeTimer = Timer.scheduledTimer(withTimeInterval: self.kLikeTimerInvertal, repeats: false, block: { timer in
                 
-                let rc = FIRRemoteConfig.remoteConfig()
+                let rc = RemoteConfig.remoteConfig()
                 let headerValue = rc.configValue(forKey: "like_push_notification_heading")
                 let messageValue = rc.configValue(forKey: "like_push_notification_message")
                 let header = headerValue.stringValue
                 let message = messageValue.stringValue
                 if var m = message, var h = header {
                     
-                    let userRef = FIRDatabase.database().reference().child("users")
-                    userRef.child(FIRAuth.auth()!.currentUser!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
+                    let userRef = Database.database().reference().child("users")
+                    userRef.child(Auth.auth().currentUser!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
                         if let name = snapshot.value as? String {
                             
                             userRef.child(id).child("pushNotificationIds").observeSingleEvent(of: .value, with: { snapshot in
@@ -73,13 +73,13 @@ class PushNotification: NSObject {
             // Force a delay, so a user can't spam notifications.
             self.socialLikeTimer = Timer.scheduledTimer(withTimeInterval: self.kLikeTimerInvertal, repeats: false, block: { timer in
                 
-                let rc = FIRRemoteConfig.remoteConfig()
+                let rc = RemoteConfig.remoteConfig()
                 let messageValue = rc.configValue(forKey: "social_like_push_notification_message")
                 let message = messageValue.stringValue
                 if var m = message {
                     
-                    let userRef = FIRDatabase.database().reference().child("users")
-                    userRef.child(FIRAuth.auth()!.currentUser!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
+                    let userRef = Database.database().reference().child("users")
+                    userRef.child(Auth.auth().currentUser!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
                         if let name = snapshot.value as? String {
                             
                             userRef.child(id).child("pushNotificationIds").observeSingleEvent(of: .value, with: { snapshot in
@@ -101,15 +101,15 @@ class PushNotification: NSObject {
     
     func pushChat(withMessage text: String, withRecipientId id: String) {
         
-        let rc = FIRRemoteConfig.remoteConfig()
+        let rc = RemoteConfig.remoteConfig()
         let headerValue = rc.configValue(forKey: "chat_push_notification_heading")
         let messageValue = rc.configValue(forKey: "chat_push_notification_message")
         let header = headerValue.stringValue
         let message = messageValue.stringValue
         if var m = message, var h = header {
             
-            let userRef = FIRDatabase.database().reference().child("users")
-            userRef.child(FIRAuth.auth()!.currentUser!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
+            let userRef = Database.database().reference().child("users")
+            userRef.child(Auth.auth().currentUser!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
                 if let name = snapshot.value as? String {
                     
                     userRef.child(id).child("pushNotificationIds").observeSingleEvent(of: .value, with: { snapshot in
@@ -129,15 +129,15 @@ class PushNotification: NSObject {
     }
     
     func pushReview(withRating rating: Int, withRecipientId id: String) {
-        let rc = FIRRemoteConfig.remoteConfig()
+        let rc = RemoteConfig.remoteConfig()
         let headerValue = rc.configValue(forKey: "review_push_notification_heading")
         let messageValue = rc.configValue(forKey: "review_push_notification_message")
         let header = headerValue.stringValue
         let message = messageValue.stringValue
         if var m = message, var h = header {
             
-            let userRef = FIRDatabase.database().reference().child("users")
-            userRef.child(FIRAuth.auth()!.currentUser!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
+            let userRef = Database.database().reference().child("users")
+            userRef.child(Auth.auth().currentUser!.uid).child("fullName").observeSingleEvent(of: .value, with: { snapshot in
                 if let name = snapshot.value as? String {
                     
                     userRef.child(id).child("pushNotificationIds").observeSingleEvent(of: .value, with: { snapshot in

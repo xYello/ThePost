@@ -226,7 +226,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
         }
         
         if viewsToShake.count == 0 && fakePlaceholderLabel.isHidden {
-            if let uid = FIRAuth.auth()?.currentUser?.uid {
+            if let uid = Auth.auth().currentUser?.uid {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "MM/dd/yy HH:mm:ss"
                 formatter.timeZone = TimeZone(identifier: "America/New_York")
@@ -238,13 +238,13 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                                              "reviewerId": uid,
                                              "productId": product.uid]
                 
-                let ref = FIRDatabase.database().reference().child("reviews").child(userId)
+                let ref = Database.database().reference().child("reviews").child(userId)
                 
                 if let key = reviewedBeforeKey {
                     let childUpdates = [key: review]
                     ref.updateChildValues(childUpdates)
                     
-                    ref.child("reviewNumbers").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+                    ref.child("reviewNumbers").runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
                         if var reviewNumbers = currentData.value as? [String: Int] {
                             if let _ = reviewNumbers["sum"] {
                                 reviewNumbers["sum"]! += self.amountOfStars - self.previousReviewAmountOfStars
@@ -278,7 +278,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                                 currentData.value = reviewNumbers
                             }
                         }
-                        return FIRTransactionResult.success(withValue: currentData)
+                        return TransactionResult.success(withValue: currentData)
                     }) { (error, committed, snapshot) in
                         if let error = error {
                             print("Error while updating reviews: \(error.localizedDescription)")
@@ -305,7 +305,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                         starCountString = "fiveStars"
                     }
                     
-                    ref.child("reviewNumbers").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+                    ref.child("reviewNumbers").runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
                         if var reviewNumbers = currentData.value as? [String: Int] {
                             if let count = reviewNumbers["count"] {
                                 reviewNumbers["sum"]! += self.amountOfStars
@@ -319,7 +319,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
                             newNumbers[starCountString] = 1
                             currentData.value = newNumbers
                         }
-                        return FIRTransactionResult.success(withValue: currentData)
+                        return TransactionResult.success(withValue: currentData)
                     }) { (error, committed, snapshot) in
                         if let error = error {
                             print("Error while updating reviews: \(error.localizedDescription)")
@@ -354,7 +354,7 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     }
     
     private func grabProfileDetails() {
-        let sellerRef = FIRDatabase.database().reference().child("users").child(userId)
+        let sellerRef = Database.database().reference().child("users").child(userId)
         sellerRef.observeSingleEvent(of: .value, with: { snapshot in
             if let userDict = snapshot.value as? [String: Any] {
                 
@@ -371,8 +371,8 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     }
     
     private func checkIfPreviouslyReviewed() {
-        if let uid = FIRAuth.auth()?.currentUser?.uid {
-            let ref = FIRDatabase.database().reference().child("reviews").child(userId).queryOrdered(byChild: "reviewerId").queryStarting(atValue: uid).queryEnding(atValue: uid)
+        if let uid = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference().child("reviews").child(userId).queryOrdered(byChild: "reviewerId").queryStarting(atValue: uid).queryEnding(atValue: uid)
             ref.observeSingleEvent(of: .value, with: { snapshot in
                 if let userReviewsDict = snapshot.value as? [String: AnyObject] {
                     

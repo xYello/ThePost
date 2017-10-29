@@ -25,11 +25,11 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageViewAspectRatioConstraint: NSLayoutConstraint!
     
-    var ref: FIRDatabaseReference?
+    var ref: DatabaseReference?
     var productKey: String? {
         didSet {
             if let key = productKey {
-                ref = FIRDatabase.database().reference().child("products").child(key)
+                ref = Database.database().reference().child("products").child(key)
                 
                 // Grab product images
                 grabProductImages(forKey: key)
@@ -56,7 +56,7 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if FIRAuth.auth()?.currentUser == nil {
+        if Auth.auth().currentUser == nil {
             likeButton.isHidden = true
         } else {
             likeButton.isHidden = false
@@ -81,14 +81,14 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Helpers
     
-    private func incrementLikes(forRef ref: FIRDatabaseReference) {
+    private func incrementLikes(forRef ref: DatabaseReference) {
         
-        ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-            if var product = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
+        ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            if var product = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
                 var likes: Dictionary<String, Bool> = product["likes"] as? [String : Bool] ?? [:]
                 var likeCount = product["likeCount"] as? Int ?? 0
                 
-                let userLikesRef = FIRDatabase.database().reference().child("user-likes").child(uid)
+                let userLikesRef = Database.database().reference().child("user-likes").child(uid)
                 
                 if let _ = likes[uid] {
                     likeCount -= 1
@@ -116,9 +116,9 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                 
                 currentData.value = product
                 
-                return FIRTransactionResult.success(withValue: currentData)
+                return TransactionResult.success(withValue: currentData)
             }
-            return FIRTransactionResult.success(withValue: currentData)
+            return TransactionResult.success(withValue: currentData)
         }) { (error, committed, snapshot) in
             if let error = error {
                 print(error.localizedDescription)
@@ -129,7 +129,7 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     }
     
     private func grabProductImages(forKey key: String) {
-        let firstImageRef = FIRDatabase.database().reference().child("products").child(key).child("images").child("1")
+        let firstImageRef = Database.database().reference().child("products").child(key).child("images").child("1")
         firstImageRef.observeSingleEvent(of: .value, with: { snapshot in
             if let urlString = snapshot.value as? String {
                 let url = URL(string: urlString)
@@ -167,8 +167,8 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     }
     
     private func checkForCurrentUserLike(forKey key: String) {
-        if let uid = FIRAuth.auth()?.currentUser?.uid {
-            let likesRef = FIRDatabase.database().reference().child("products").child(key)
+        if let uid = Auth.auth().currentUser?.uid {
+            let likesRef = Database.database().reference().child("products").child(key)
             likesRef.observeSingleEvent(of: .value, with: { snapshot in
                 var isLiked = false
                 if let product = snapshot.value as? [String: AnyObject] {

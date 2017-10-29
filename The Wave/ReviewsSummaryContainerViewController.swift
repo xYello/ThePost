@@ -168,7 +168,7 @@ class ReviewsSummaryContainerViewController: UIViewController, UITableViewDataSo
     // MARK: - Firebase
     
     private func grabReviewStats() {
-        let ref = FIRDatabase.database().reference().child("reviews").child(userId).child("reviewNumbers")
+        let ref = Database.database().reference().child("reviews").child(userId).child("reviewNumbers")
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let numbers = snapshot.value as? [String: Int] {
                 let count = numbers["count"]!
@@ -214,7 +214,7 @@ class ReviewsSummaryContainerViewController: UIViewController, UITableViewDataSo
     }
     
     private func grabReviewerInfo() {
-        let userRef = FIRDatabase.database().reference().child("users").child(userId).child("fullName")
+        let userRef = Database.database().reference().child("users").child(userId).child("fullName")
         userRef.observeSingleEvent(of: .value, with: { snapshot in
             if let name = snapshot.value as? String {
                 self.profileNameLabel.text = name
@@ -223,7 +223,7 @@ class ReviewsSummaryContainerViewController: UIViewController, UITableViewDataSo
     }
     
     private func grabReviews() {
-        let ref = FIRDatabase.database().reference().child("reviews").child(userId)
+        let ref = Database.database().reference().child("reviews").child(userId)
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let reviews = snapshot.value as? [String: AnyObject] {
                 

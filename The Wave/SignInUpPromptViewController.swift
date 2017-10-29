@@ -31,14 +31,14 @@ class SignInUpPromptViewController: UIViewController {
     private var animator: UIDynamicAnimator!
     private var containerOriginalFrame: CGRect!
     
-    private var ref: FIRDatabaseReference!
+    private var ref: DatabaseReference!
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = FIRDatabase.database().reference().child("users")
+        ref = Database.database().reference().child("users")
         
         container.alpha = 0.0
         container.roundCorners(radius: 8.0)
@@ -134,8 +134,8 @@ class SignInUpPromptViewController: UIViewController {
                                 SentryManager.shared.sendEvent(withError: error)
                                 self.disableButtons()
                             } else {
-                                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                                FIRAuth.auth()?.signIn(with: credential, completion: { user, firError in
+                                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                                Auth.auth().signIn(with: credential, completion: { user, firError in
                                     if let firError = firError {
                                         print("Error signing up: \(firError.localizedDescription)")
                                         SentryManager.shared.sendEvent(withError: firError)
@@ -161,7 +161,7 @@ class SignInUpPromptViewController: UIViewController {
                                             self.ref.child(user!.uid).child("email").setValue(email)
 
                                             let user = User()
-                                            user.uid = FIRAuth.auth()!.currentUser!.uid
+                                            user.uid = Auth.auth().currentUser!.uid
                                             user.email = email
                                             SentryManager.shared.addUserCrediantials(withUser: user)
 
@@ -186,8 +186,8 @@ class SignInUpPromptViewController: UIViewController {
         Twitter.sharedInstance().logIn() { session, error in
             if let session = session {
                 
-                let credential = FIRTwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
-                FIRAuth.auth()?.signIn(with: credential, completion: { user, firError in
+                let credential = TwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
+                Auth.auth().signIn(with: credential, completion: { user, firError in
                     if let firError = firError {
                         print("Error signing up: \(firError.localizedDescription)")
                         SentryManager.shared.sendEvent(withError: error!)
@@ -213,7 +213,7 @@ class SignInUpPromptViewController: UIViewController {
                         })
 
                         let user = User()
-                        user.uid = FIRAuth.auth()!.currentUser!.uid
+                        user.uid = Auth.auth().currentUser!.uid
                         SentryManager.shared.addUserCrediantials(withUser: user)
                         
                         self.saveOneSignalId()
@@ -294,7 +294,7 @@ class SignInUpPromptViewController: UIViewController {
     
     private func saveOneSignalId() {
         if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId  {
-            let ref = self.ref.child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
+            let ref = self.ref.child(Auth.auth().currentUser!.uid).child("pushNotificationIds")
             ref.observeSingleEvent(of: .value, with: { snapshot in
                 if var ids = snapshot.value as? [String: Bool] {
                     ids[id] = true

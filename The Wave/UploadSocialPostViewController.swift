@@ -22,8 +22,8 @@ class UploadSocialPostViewController: UIViewController, UIImagePickerControllerD
     @IBOutlet weak var editImageButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     
-    private var ref: FIRDatabaseReference!
-    private var storageRef : FIRStorageReference!
+    private var ref: DatabaseReference!
+    private var storageRef : StorageReference!
     
     private var firstLaunch = false
     private var didPickPhoto = false
@@ -35,8 +35,8 @@ class UploadSocialPostViewController: UIViewController, UIImagePickerControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = FIRDatabase.database().reference()
-        storageRef = FIRStorage.storage().reference()
+        ref = Database.database().reference()
+        storageRef = Storage.storage().reference()
 
         editImageButton.roundCorners(radius: 8.0)
         submitButton.roundCorners(radius: 8.0)
@@ -67,21 +67,21 @@ class UploadSocialPostViewController: UIViewController, UIImagePickerControllerD
             self.titleLabel.text = "Uploading image! Please wait..."
         })
         
-        if let userID = FIRAuth.auth()?.currentUser?.uid {
+        if let userID = Auth.auth().currentUser?.uid {
             let key = self.ref.child("social-posts").childByAutoId().key
             
             var dbPost: [String: Any] = ["owner": userID,
-                                         "datePosted": FIRServerValue.timestamp()]
+                                         "datePosted": ServerValue.timestamp()]
             
             // Compress stored image
             let imageData = UIImageJPEGRepresentation(self.previewImageView.image!, 0.1)
             
             // Upload image
             let filePath = "social-posts/" + key + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
-            let metadata = FIRStorageMetadata()
+            let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
-            
-            self.storageRef.child(filePath).put(imageData!, metadata: metadata, completion: { metadata, error in
+
+            storageRef.child(filePath).putData(imageData!, metadata: metadata) { metadata, error in
                 if let error = error {
                     print("Error uploading images: \(error.localizedDescription)")
                     SentryManager.shared.sendEvent(withError: error)
@@ -105,7 +105,7 @@ class UploadSocialPostViewController: UIViewController, UIImagePickerControllerD
                         }
                     }
                 }
-            })
+            }
         }
     }
     

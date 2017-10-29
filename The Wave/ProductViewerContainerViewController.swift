@@ -35,8 +35,8 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     @IBOutlet weak var greenButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     
-    private var likesRef: FIRDatabaseReference!
-    private var viewsRef: FIRDatabaseReference!
+    private var likesRef: DatabaseReference!
+    private var viewsRef: DatabaseReference!
     
     private var tableFormat: [[String: CellType]] = []
     private var textCellLayout: [String] = []
@@ -107,7 +107,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                        ["Accepts PayPal": .exCheck],
                        ["Accepts Cash": .exCheck]]
         
-        if let uid = FIRAuth.auth()?.currentUser?.uid {
+        if let uid = Auth.auth().currentUser?.uid {
             if uid == product.ownerId {
                 orangeButton.setTitle("Delete", for: .normal)
                 greenButton.isHidden = true
@@ -297,7 +297,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     // MARK: - Actions
     
     @IBAction func markAsSoldPressed(_ sender: UIButton) {
-        let productRef = FIRDatabase.database().reference()
+        let productRef = Database.database().reference()
         let childUpdates: [String: Any] = ["products/\(product.uid!)/isSold": true,
                                            "products/\(product.uid!)/soldModel": "SOLD" + product.jeepModel.name]
 
@@ -313,7 +313,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             likeImageView.tintColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
         }
         
-        let productRef = FIRDatabase.database().reference().child("products").child(product.uid)
+        let productRef = Database.database().reference().child("products").child(product.uid)
         incrementLikes(forRef: productRef)
 
     }
@@ -395,9 +395,9 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     // MARK: - Firebase Database
     
     private func grabProductImages() {
-        let imagesRef = FIRDatabase.database().reference().child("products").child(product.uid).child("images")
+        let imagesRef = Database.database().reference().child("products").child(product.uid).child("images")
         imagesRef.observeSingleEvent(of: .value, with: { snapshot in
-            for image in snapshot.children.allObjects as! [FIRDataSnapshot] {
+            for image in snapshot.children.allObjects as! [DataSnapshot] {
                 self.product.imageUrls.append(image.value as! String)
             }
             self.collectionView.reloadData()
@@ -405,7 +405,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     }
     
     private func setupLikesAndViewsListeners() {
-        likesRef = FIRDatabase.database().reference().child("products").child(product.uid).child("likeCount")
+        likesRef = Database.database().reference().child("products").child(product.uid).child("likeCount")
         likesRef.observe(.value, with: { snapshot in
             if let count = snapshot.value as? Int {
                 DispatchQueue.main.async {
@@ -414,7 +414,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
             }
         })
         
-        viewsRef = FIRDatabase.database().reference().child("products").child(product.uid).child("viewCount")
+        viewsRef = Database.database().reference().child("products").child(product.uid).child("viewCount")
         viewsRef.observe(.value, with: { snapshot in
             if let count = snapshot.value as? Int {
                 DispatchQueue.main.async {
@@ -424,13 +424,13 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         })
         
         // Increment views
-        let productRef = FIRDatabase.database().reference().child("products").child(product.uid)
+        let productRef = Database.database().reference().child("products").child(product.uid)
         incrementViews(forRef: productRef.child("viewCount"))
     }
     
     private func grabSellerInfo() {
         seller = User()
-        let sellerRef = FIRDatabase.database().reference().child("users").child(product.ownerId)
+        let sellerRef = Database.database().reference().child("users").child(product.ownerId)
         sellerRef.observeSingleEvent(of: .value, with: { snapshot in
             if let userDict = snapshot.value as? [String: Any] {
                 
@@ -446,7 +446,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                     self.seller.facebookVerified = verifiedWith["Facebook"] ?? false
                 }
                 
-                let ref = FIRDatabase.database().reference().child("reviews").child(self.product.ownerId).child("reviewNumbers")
+                let ref = Database.database().reference().child("reviews").child(self.product.ownerId).child("reviewNumbers")
                 ref.observeSingleEvent(of: .value, with: { snapshot in
                     if let numbers = snapshot.value as? [String: Int] {
                         let count = numbers["count"]!
@@ -478,14 +478,14 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         return starsToTurnOn
     }
     
-    private func incrementLikes(forRef ref: FIRDatabaseReference) {
+    private func incrementLikes(forRef ref: DatabaseReference) {
         
-        ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-            if var product = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
+        ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            if var product = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
                 var likes: Dictionary<String, Bool> = product["likes"] as? [String : Bool] ?? [:]
                 var likeCount = product["likeCount"] as? Int ?? 0
                 
-                let userLikesRef = FIRDatabase.database().reference().child("user-likes").child(uid)
+                let userLikesRef = Database.database().reference().child("user-likes").child(uid)
                 
                 if let _ = likes[uid] {
                     likeCount -= 1
@@ -509,9 +509,9 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
                 
                 currentData.value = product
                 
-                return FIRTransactionResult.success(withValue: currentData)
+                return TransactionResult.success(withValue: currentData)
             }
-            return FIRTransactionResult.success(withValue: currentData)
+            return TransactionResult.success(withValue: currentData)
         }) { (error, committed, snapshot) in
             if let error = error {
                 print(error.localizedDescription)
@@ -521,14 +521,14 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         
     }
     
-    private func incrementViews(forRef ref: FIRDatabaseReference) {
-        ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+    private func incrementViews(forRef ref: DatabaseReference) {
+        ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             if let count = currentData.value as? Int {
                 currentData.value = count + 1
                 
-                return FIRTransactionResult.success(withValue: currentData)
+                return TransactionResult.success(withValue: currentData)
             }
-            return FIRTransactionResult.success(withValue: currentData)
+            return TransactionResult.success(withValue: currentData)
         }) { (error, committed, snapshot) in
             if let error = error {
                 print(error.localizedDescription)
@@ -538,9 +538,9 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     }
     
     private func checkForCurrentUserLike() {
-        if let uid = FIRAuth.auth()?.currentUser?.uid {
+        if let uid = Auth.auth().currentUser?.uid {
             var color = #colorLiteral(red: 0.2235294118, green: 0.2235294118, blue: 0.2235294118, alpha: 0.2034658138)
-            let likesRef = FIRDatabase.database().reference().child("products").child(product.uid)
+            let likesRef = Database.database().reference().child("products").child(product.uid)
             likesRef.observeSingleEvent(of: .value, with: { snapshot in
                 if let product = snapshot.value as? [String: AnyObject] {
                     if let likes = product["likes"] as? [String: Bool] {
@@ -560,7 +560,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     }
 
     private func deleteProduct() {
-        let basicRef = FIRDatabase.database().reference()
+        let basicRef = Database.database().reference()
 
         // Grab the chat to delete the user-chats.
         var ref = basicRef.child("chats").queryOrdered(byChild: "productID").queryStarting(atValue: product.uid).queryEnding(atValue: product.uid)
@@ -600,7 +600,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         })
 
         // Delete the associated product images. (Attempt to delete all. May error, but best we can do)
-        let storage = FIRStorage.storage().reference().child("products").child(product.uid)
+        let storage = Storage.storage().reference().child("products").child(product.uid)
         storage.child("1").delete(completion: nil)
         storage.child("2").delete(completion: nil)
         storage.child("3").delete(completion: nil)

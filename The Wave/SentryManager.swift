@@ -34,9 +34,10 @@ class SentryManager: NSObject {
     }
 
     func addUserCrediantials(withUser user: User) {
-        let sentryUser = Sentry.User(userId: user.uid)
-        sentryUser.email = user.email
-        sentry.user = sentryUser
+//        let sentryUser = Sentry.User(userId: "")
+//        sentryUser.email = user.email
+//        sentryUser.username = user.fullName
+//        sentry.user = sentryUser
 
         addExtras()
     }
@@ -82,7 +83,7 @@ class SentryManager: NSObject {
         }
 
         sentry.extra = [
-            "Selected Jeep": KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? "",
+            "Selected Jeep": KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? "N/A",
             "Product Listing View Type": viewType
         ]
     }

@@ -108,7 +108,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
         
         let index = tabBar.items!.index(of: item)
         
-        if index != 2 && FIRAuth.auth()?.currentUser != nil {
+        if index != 2 && Auth.auth().currentUser != nil {
             if let views = interactionViews {
                 let selectedFrame = views[index!].frame
                 
@@ -124,7 +124,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         var shouldSelect = false
         
-        if FIRAuth.auth()?.currentUser == nil {
+        if Auth.auth().currentUser == nil {
             let storyboard = UIStoryboard(name: "SignInUp", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "SignInUpPrompt")
             vc.modalPresentationStyle = .overCurrentContext

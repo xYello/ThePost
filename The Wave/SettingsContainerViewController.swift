@@ -128,7 +128,7 @@ class SettingsContainerViewController: UIViewController {
     }
 
     @IBAction func wantsToLogout(_ sender: UIButton) {
-        let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid)
+        let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
         ref.child("isOnline").removeValue()
 
         SentryManager.shared.clearUserCredentials()
@@ -138,7 +138,7 @@ class SettingsContainerViewController: UIViewController {
         }
         
         do {
-            try FIRAuth.auth()?.signOut()
+            try Auth.auth().signOut()
             
             KeychainWrapper.standard.removeObject(forKey: UserInfoKeys.UserPass)
             
@@ -151,7 +151,7 @@ class SettingsContainerViewController: UIViewController {
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: logoutNotificationKey), object: nil, userInfo: nil)
         } catch {
-            FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
+            Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("isOnline").setValue(true)
             print("Error signing out")
             SentryManager.shared.sendEvent(withError: error)
         }
@@ -160,7 +160,7 @@ class SettingsContainerViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         
         if passwordLabel.textColor == .waveGreen && confirmPasswordLabel.textColor == .waveGreen {
-            FIRAuth.auth()!.currentUser!.updatePassword(passwordTextField.text!, completion: { error in
+            Auth.auth().currentUser!.updatePassword(to: passwordTextField.text!, completion: { error in
                 if let error = error {
                     print("Error saving password: \(error.localizedDescription)")
                     SentryManager.shared.sendEvent(withError: error)
@@ -171,7 +171,7 @@ class SettingsContainerViewController: UIViewController {
         }
         
         if fullName != fullNameTextField.text && fullNameLabel.textColor == .waveGreen {
-            let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid)
+            let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
             let updates = ["fullName": fullNameTextField.text!]
             ref.updateChildValues(updates) { error, ref in
                 if let error = error {

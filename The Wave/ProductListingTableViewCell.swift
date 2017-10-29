@@ -19,12 +19,12 @@ class ProductListingTableViewCell: UITableViewCell {
     @IBOutlet weak var likeImageView: UIImageView!
     @IBOutlet weak var soldImageView: UIImageView!
     
-    var likesListenerRef: FIRDatabaseReference!
+    var likesListenerRef: DatabaseReference!
     
     var product: Product? {
         didSet {
             if let key = product?.uid {
-                likesListenerRef = FIRDatabase.database().reference().child("products").child(key)
+                likesListenerRef = Database.database().reference().child("products").child(key)
                 
                 // Grab the number of likes because this may be out of sync
                 likesListenerRef!.child("likeCount").observeSingleEvent(of: .value, with: { snapshot in
@@ -57,7 +57,7 @@ class ProductListingTableViewCell: UITableViewCell {
     // MARK: - Helpers
     
     private func grabProductImages(forKey key: String) {
-        let firstImageRef = FIRDatabase.database().reference().child("products").child(key).child("images").child("1")
+        let firstImageRef = Database.database().reference().child("products").child(key).child("images").child("1")
         firstImageRef.observeSingleEvent(of: .value, with: { snapshot in
             if let urlString = snapshot.value as? String {
                 let url = URL(string: urlString)

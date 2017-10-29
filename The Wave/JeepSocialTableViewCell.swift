@@ -24,7 +24,7 @@ class JeepSocialTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     
-    var likesRef: FIRDatabaseReference!
+    var likesRef: DatabaseReference!
     
     var postKey: String? {
         didSet {
@@ -99,7 +99,7 @@ class JeepSocialTableViewCell: UITableViewCell {
     }
     
     func grabProfile(forKey key: String) {
-        let ref = FIRDatabase.database().reference().child("users").child(key)
+        let ref = Database.database().reference().child("users").child(key)
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let userDict = snapshot.value as? [String: AnyObject] {
                 if let imageUrl = userDict["profileImage"] as? String {
@@ -145,10 +145,10 @@ class JeepSocialTableViewCell: UITableViewCell {
     
     private func incrementLikes() {
         if let key = postKey {
-            let ref = FIRDatabase.database().reference().child("social-posts").child(key)
+            let ref = Database.database().reference().child("social-posts").child(key)
             
-            ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-                if var post = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
+            ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+                if var post = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
                     var likes: Dictionary<String, Bool> = post["likes"] as? [String : Bool] ?? [:]
                     var likeCount = post["likeCount"] as? Int ?? 0
                     
@@ -174,9 +174,9 @@ class JeepSocialTableViewCell: UITableViewCell {
                     
                     currentData.value = post
                     
-                    return FIRTransactionResult.success(withValue: currentData)
+                    return TransactionResult.success(withValue: currentData)
                 }
-                return FIRTransactionResult.success(withValue: currentData)
+                return TransactionResult.success(withValue: currentData)
             }) { (error, committed, snapshot) in
                 if let error = error {
                     print(error.localizedDescription)
@@ -189,8 +189,8 @@ class JeepSocialTableViewCell: UITableViewCell {
     }
     
     private func checkForCurrentUserLike(forKey key: String) {
-        if let uid = FIRAuth.auth()?.currentUser?.uid {
-            let likesRef = FIRDatabase.database().reference().child("social-posts").child(key)
+        if let uid = Auth.auth().currentUser?.uid {
+            let likesRef = Database.database().reference().child("social-posts").child(key)
             likesRef.observeSingleEvent(of: .value, with: { snapshot in
                 var isLiked = false
                 if let post = snapshot.value as? [String: AnyObject] {
@@ -217,7 +217,7 @@ class JeepSocialTableViewCell: UITableViewCell {
     }
     
     private func listenForLikeCount(forKey key: String) {
-        likesRef = FIRDatabase.database().reference().child("social-posts").child(key).child("likeCount")
+        likesRef = Database.database().reference().child("social-posts").child(key).child("likeCount")
         likesRef.observe(.value, with: { snapshot in
             if let count = snapshot.value as? Int {
                 DispatchQueue.main.async {

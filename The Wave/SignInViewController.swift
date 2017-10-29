@@ -116,7 +116,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                 self.emailTextField.text = loginDictionary?[AppExtensionUsernameKey] as? String
                 self.passwordTextField.text = loginDictionary?[AppExtensionPasswordKey] as? String
                 
-                FIRAuth.auth()?.signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion: { user, error in
+                Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion: { user, error in
                     if let error = error {
                         if error.localizedDescription == "The email address is badly formatted." {
                             self.errorLabel.isHidden = false
@@ -137,10 +137,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         
                         self.disableButtons()
                     } else {
-                        FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
+                        Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("isOnline").setValue(true)
 
                         let user = User()
-                        user.uid = FIRAuth.auth()!.currentUser!.uid
+                        user.uid = Auth.auth().currentUser!.uid
                         user.email = self.emailTextField.text!
                         SentryManager.shared.addUserCrediantials(withUser: user)
 
@@ -164,7 +164,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         if let email = emailTextField.text, let password = passwordTextField.text {
             disableButtons()
             
-            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { user, error in
+            Auth.auth().signIn(withEmail: email, password: password, completion: { user, error in
                 if let error = error {
                     if error.localizedDescription == "The email address is badly formatted." {
                         self.errorLabel.isHidden = false
@@ -185,7 +185,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     
                     self.disableButtons()
                 } else {
-                    FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline").setValue(true)
+                    Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("isOnline").setValue(true)
                     self.saveOneSignalId()
                     KeychainWrapper.standard.set(self.passwordTextField.text!, forKey: UserInfoKeys.UserPass)
                     self.sendToNextViewController()
@@ -259,7 +259,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     private func saveOneSignalId() {
         if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
-            let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
+            let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("pushNotificationIds")
             ref.observeSingleEvent(of: .value, with: { snapshot in
                 if var ids = snapshot.value as? [String: Bool] {
                     ids[id] = true

@@ -34,7 +34,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var policyTextView: UITextView!
     
-    private var ref: FIRDatabaseReference!
+    private var ref: DatabaseReference!
     
     private var welcomeLabelToViewTopConstant: CGFloat = 0.0
     
@@ -64,7 +64,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
         view.addGestureRecognizer(gesture)
         
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         
         let touRange = (policyTextView.text as NSString).range(of: "Terms of Use")
         let privacyRange = (policyTextView.text as NSString).range(of: "Privacy Policy")
@@ -215,7 +215,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             
             disableButtons()
             
-            FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { user, error in
+            Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { user, error in
                 guard let _ = user, error == nil else {
                     print("Error signing up: \(error!.localizedDescription)")
                     SentryManager.shared.sendEvent(withError: error!)
@@ -231,7 +231,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 
-                let changeRequest = FIRAuth.auth()!.currentUser!.profileChangeRequest()
+                let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
                 changeRequest.displayName = self.usernameTextField.text
                 
                 changeRequest.commitChanges() { error in
@@ -243,7 +243,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     }
 
                     let user = User()
-                    user.uid = FIRAuth.auth()!.currentUser!.uid
+                    user.uid = Auth.auth().currentUser!.uid
                     user.email = self.emailTextField.text!
                     SentryManager.shared.addUserCrediantials(withUser: user)
                     
@@ -371,7 +371,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     private func saveOneSignalId() {
         if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
-            let ref = self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
+            let ref = self.ref.child("users").child(Auth.auth().currentUser!.uid).child("pushNotificationIds")
             ref.observeSingleEvent(of: .value, with: { snapshot in
                 if var ids = snapshot.value as? [String: Bool] {
                     ids[id] = true

@@ -20,10 +20,10 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     
     private var conversations: [Conversation] = []
     
-    private var chatRef: FIRDatabaseReference!
-    private var userPresenceIndicatorReferences: [FIRDatabaseReference] = []
-    private var conversationReferences: [FIRDatabaseQuery] = []
-    private var productReferences: [FIRDatabaseReference] = []
+    private var chatRef: DatabaseReference!
+    private var userPresenceIndicatorReferences: [DatabaseReference] = []
+    private var conversationReferences: [DatabaseQuery] = []
+    private var productReferences: [DatabaseReference] = []
     
     private var hasLoaded = false
     private var totalNumberOfConversations: UInt = 0
@@ -44,8 +44,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         tableView.dataSource = self
         tableView.delegate = self
         
-        if let uid = FIRAuth.auth()?.currentUser?.uid {
-            chatRef = FIRDatabase.database().reference().child("user-chats").child(uid)
+        if let uid = Auth.auth().currentUser?.uid {
+            chatRef = Database.database().reference().child("user-chats").child(uid)
         }
         
         observeConversations()
@@ -58,8 +58,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         super.viewWillAppear(animated)
         
         if shouldUpdateConversationsOnNextView {
-            if let uid = FIRAuth.auth()?.currentUser?.uid {
-                chatRef = FIRDatabase.database().reference().child("user-chats").child(uid)
+            if let uid = Auth.auth().currentUser?.uid {
+                chatRef = Database.database().reference().child("user-chats").child(uid)
                 
                 conversations.removeAll()
                 chatRef.removeAllObservers()
@@ -184,9 +184,9 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if let currentUserID = FIRAuth.auth()?.currentUser?.uid {
+            if let currentUserID = Auth.auth().currentUser?.uid {
                 let conversation = conversations[indexPath.row]
-                let basicRef = FIRDatabase.database().reference()
+                let basicRef = Database.database().reference()
 
                 basicRef.child("user-chats").child(conversation.otherPersonId).child(conversation.id).removeValue()
                 basicRef.child("user-chats").child(currentUserID).child(conversation.id).removeValue()
@@ -332,7 +332,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         newConvo.id = key
         
         initialConversationsGrabbed += 1
-        let ref = FIRDatabase.database().reference().child("chats").child(key)
+        let ref = Database.database().reference().child("chats").child(key)
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let chatDict = snapshot.value as? [String: AnyObject] {
                 
@@ -344,9 +344,9 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                     
                     self.hasLoaded = true
                     for (key, _) in participantsDict {
-                        if key != FIRAuth.auth()!.currentUser!.uid {
+                        if key != Auth.auth().currentUser!.uid {
                             
-                            let sellerRef = FIRDatabase.database().reference().child("users").child(key)
+                            let sellerRef = Database.database().reference().child("users").child(key)
                             sellerRef.observeSingleEvent(of: .value, with: { snapshot in
                                 if let userDict = snapshot.value as? [String: Any] {
                                     
@@ -382,7 +382,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     }
     
     private func createPresenceListener(forKey key: String, withConversation conversation: Conversation) {
-        let userRef = FIRDatabase.database().reference().child("users").child(key)
+        let userRef = Database.database().reference().child("users").child(key)
         userRef.child("isOnline").observe(.value, with: { snapshot in
             if let isOnline = snapshot.value as? Bool {
                 var iteratorIndex = 0
@@ -415,7 +415,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
         userPresenceIndicatorReferences.append(userRef)
     }
     
-    private func createLastMessageListener(forRef ref: FIRDatabaseReference, withConversation conversation: Conversation) {
+    private func createLastMessageListener(forRef ref: DatabaseReference, withConversation conversation: Conversation) {
         let messagesQueryRef = ref.child("messages").queryLimited(toLast: 1)
         messagesQueryRef.observe(.value, with: { snapshot in
             if let messageDict = snapshot.value as? [String: AnyObject] {
@@ -426,7 +426,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                         if let sender = messageData["senderId"] {
                             if let viewingConvo = self.userIsViewingConversation, viewingConvo.id == conversation.id {
                             } else {
-                                if let _ = conversation.lastSentMessageTime, sender != FIRAuth.auth()?.currentUser?.uid {
+                                if let _ = conversation.lastSentMessageTime, sender != Auth.auth().currentUser?.uid {
                                     conversation.unreadMessageCount += 1
                                 }
                             }
@@ -453,7 +453,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     }
     
     private func getProductDetailsWith(conversationIndex index: Int, withConversation conversation: Conversation) {
-        let productRef = FIRDatabase.database().reference().child("products").child(conversations[index].productID)
+        let productRef = Database.database().reference().child("products").child(conversations[index].productID)
         productRef.observe(.value, with: { snapshot in
             if let productDict = snapshot.value as? [String: Any] {
                 var iteratorIndex = 0

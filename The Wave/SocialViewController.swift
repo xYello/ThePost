@@ -15,8 +15,8 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var noPostsView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    private var ref: FIRDatabaseReference!
-    private var socialRef: FIRDatabaseReference?
+    private var ref: DatabaseReference!
+    private var socialRef: DatabaseReference?
     private var socialPosts: [SocialPost]!
         
     // MARK: - View lifecycle
@@ -26,7 +26,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         socialPosts = []
         
         if socialRef == nil {

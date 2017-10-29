@@ -21,17 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    private var userRef: FIRDatabaseReference?
+    private var userRef: DatabaseReference?
     private let reachability = Reachability()!
 
     // MARK: - Application delegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        FIRApp.configure()
+        FirebaseApp.configure()
     
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        Fabric.with([Answers.self, Crashlytics.self, Twitter.self])
+        Fabric.with([Answers.self, Crashlytics.self])
+        Twitter.sharedInstance().start(withConsumerKey: "***REMOVED***", consumerSecret: "***REMOVED***")
         
         OneSignal.initWithLaunchOptions(launchOptions, appId: OneSignalKeys.appId, handleNotificationAction: nil, settings: ["kOSSettingsKeyAutoPrompt": false])
         OneSignal.inFocusDisplayType = .none
@@ -67,16 +68,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        if let uid = FIRAuth.auth()?.currentUser?.uid {
-            FIRDatabase.database().reference().child("users").child(uid).child("isOnline").removeValue()
+        if let uid = Auth.auth().currentUser?.uid {
+            Database.database().reference().child("users").child(uid).child("isOnline").removeValue()
         }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         
-        if let uid = FIRAuth.auth()?.currentUser?.uid {
-            FIRDatabase.database().reference().child("users").child(uid).child("isOnline").setValue(true)
+        if let uid = Auth.auth().currentUser?.uid {
+            Database.database().reference().child("users").child(uid).child("isOnline").setValue(true)
         }
     }
 
@@ -97,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func saveOneSignalId() {
         if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
-            let ref = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("pushNotificationIds")
+            let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("pushNotificationIds")
             ref.observeSingleEvent(of: .value, with: { snapshot in
                 if var ids = snapshot.value as? [String: Bool] {
                     ids[id] = true
@@ -111,70 +112,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func reauthenticate() {
-        if let pass = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserPass), let email = FIRAuth.auth()?.currentUser?.email {
-            let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)
-            FIRAuth.auth()!.currentUser!.reauthenticate(with: credential, completion: { error in
+        if let pass = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserPass), let email = Auth.auth().currentUser?.email {
+            let credential = EmailAuthProvider.credential(withEmail: email, password: pass)
+            Auth.auth().currentUser!.reauthenticate(with: credential, completion: { error in
                 if let error = error {
                     print("Error reauthenticating: \(error.localizedDescription)")
                     SentryManager.shared.sendEvent(withError: error)
                 } else {
-                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
+                    self.userRef = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("isOnline")
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
                     self.saveOneSignalId()
 
                     let user = User()
-                    user.uid = FIRAuth.auth()!.currentUser!.uid
+                    user.uid = Auth.auth().currentUser!.uid
                     SentryManager.shared.addUserCrediantials(withUser: user)
                 }
 
             })
         } else if FBSDKAccessToken.current() != nil {
-            let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-            FIRAuth.auth()?.currentUser?.reauthenticate(with: credential, completion: { error in
+            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            Auth.auth().currentUser?.reauthenticate(with: credential, completion: { error in
                 if let error = error {
                     print("Error reauthenticating: \(error.localizedDescription)")
                     SentryManager.shared.sendEvent(withError: error)
                 } else {
-                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
+                    self.userRef = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("isOnline")
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
                     self.saveOneSignalId()
 
                     let user = User()
-                    user.uid = FIRAuth.auth()!.currentUser!.uid
+                    user.uid = Auth.auth().currentUser!.uid
                     SentryManager.shared.addUserCrediantials(withUser: user)
                 }
 
             })
         } else if let token = KeychainWrapper.standard.string(forKey: TwitterInfoKeys.token), let secret = KeychainWrapper.standard.string(forKey: TwitterInfoKeys.secret) {
-            let credential = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
-            FIRAuth.auth()?.currentUser?.reauthenticate(with: credential, completion: { error in
+            let credential = TwitterAuthProvider.credential(withToken: token, secret: secret)
+            Auth.auth().currentUser?.reauthenticate(with: credential, completion: { error in
                 if let error = error {
                     print("Error reauthenticating: \(error.localizedDescription)")
                     SentryManager.shared.sendEvent(withError: error)
                 } else {
-                    self.userRef = FIRDatabase.database().reference().child("users").child(FIRAuth.auth()!.currentUser!.uid).child("isOnline")
+                    self.userRef = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("isOnline")
                     self.userRef!.onDisconnectRemoveValue()
                     self.userRef!.setValue(true)
                     self.saveOneSignalId()
 
                     let user = User()
-                    user.uid = FIRAuth.auth()!.currentUser!.uid
+                    user.uid = Auth.auth().currentUser!.uid
                     SentryManager.shared.addUserCrediantials(withUser: user)
                 }
 
             })
         } else {
             do {
-                try FIRAuth.auth()?.signOut()
+                try Auth.auth().signOut()
             } catch {
                 print("Error signing out")
                 SentryManager.shared.sendEvent(withError: error)
             }
         }
 
-        let rc = FIRRemoteConfig.remoteConfig()
+        let rc = RemoteConfig.remoteConfig()
         rc.fetch(completionHandler: { status, error in
             if let er = error {
                 print("Error getting remote config: \(er.localizedDescription)")

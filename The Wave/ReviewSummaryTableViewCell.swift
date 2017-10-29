@@ -23,7 +23,7 @@ class ReviewSummaryTableViewCell: UITableViewCell {
     
     var reviewUserId: String! {
         didSet {
-            let userRef = FIRDatabase.database().reference().child("users").child(reviewUserId).child("fullName")
+            let userRef = Database.database().reference().child("users").child(reviewUserId).child("fullName")
             userRef.observeSingleEvent(of: .value, with: { snapshot in
                 if let name = snapshot.value as? String {
                     self.reviewerNameLabel.text = name

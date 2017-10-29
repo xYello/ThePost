@@ -69,9 +69,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     private var soldProducts: [Product] = []
     private var likedProducts: [Product] = []
     
-    private var userProductsRef: FIRDatabaseQuery?
-    private var likesQuery: FIRDatabaseQuery?
-    private var reviewNumbersRef: FIRDatabaseReference?
+    private var userProductsRef: DatabaseQuery?
+    private var likesQuery: DatabaseQuery?
+    private var reviewNumbersRef: DatabaseReference?
     
     private var shouldUpdateProfileOnNextView = false
 
@@ -144,7 +144,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             buildTrustView.roundCorners(radius: 5.0)
             buildTrustView.clipsToBounds = true
             
-            uid = FIRAuth.auth()!.currentUser!.uid
+            uid = Auth.auth().currentUser!.uid
             closeContainer.isHidden = true
         }
         
@@ -182,7 +182,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewWillAppear(animated)
         
         if shouldUpdateProfileOnNextView {
-            updateProfileInformation(with: FIRAuth.auth()!.currentUser!.uid)
+            updateProfileInformation(with: Auth.auth().currentUser!.uid)
             shouldUpdateProfileOnNextView = false
         }
     }
@@ -192,19 +192,19 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         if let id = userId {
             uid = id
         } else {
-            uid = FIRAuth.auth()!.currentUser!.uid
+            uid = Auth.auth().currentUser!.uid
         }
         
         if userProductsRef == nil {
             sellingProducts.removeAll()
             soldProducts.removeAll()
             
-            userProductsRef = FIRDatabase.database().reference().child("products").queryOrdered(byChild: "owner").queryStarting(atValue: uid).queryEnding(atValue: uid)
+            userProductsRef = Database.database().reference().child("products").queryOrdered(byChild: "owner").queryStarting(atValue: uid).queryEnding(atValue: uid)
             setupProductListeners()
         }
         if likesQuery == nil {
             likedProducts.removeAll()
-            likesQuery = FIRDatabase.database().reference().child("user-likes").child(uid).queryLimited(toLast: 100)
+            likesQuery = Database.database().reference().child("user-likes").child(uid).queryLimited(toLast: 100)
             grabLikedPosts()
         }
         if reviewNumbersRef == nil {
@@ -342,14 +342,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
             profileImageView.image = image
             
-            let uid = FIRAuth.auth()!.currentUser!.uid
-            let storageRef = FIRStorage.storage().reference()
+            let uid = Auth.auth().currentUser!.uid
+            let storageRef = Storage.storage().reference()
             let imageData = UIImageJPEGRepresentation(image, 0.1)
             let filePath = "profilePictures/" + "\(uid).jpg"
-            let metadata = FIRStorageMetadata()
+            let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             
-            storageRef.child(filePath).put(imageData!, metadata: metadata, completion: { metadata, error in
+            storageRef.child(filePath).putData(imageData!, metadata: metadata, completion: { metadata, error in
                 if let error = error {
                     print("Error uploading images: \(error.localizedDescription)")
                     SentryManager.shared.sendEvent(withError: error)
@@ -364,7 +364,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                             if let url = url {
                                 let stringUrl = url.absoluteString
                                 
-                                FIRDatabase.database().reference().child("users").child(uid).child("profileImage").setValue(stringUrl)
+                                Database.database().reference().child("users").child(uid).child("profileImage").setValue(stringUrl)
                             }
                         }
                     }
@@ -403,7 +403,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         var uid = ""
         if let id = userId {
             uid = id
-        } else if let deviceUserId = FIRAuth.auth()?.currentUser?.uid {
+        } else if let deviceUserId = Auth.auth().currentUser?.uid {
             uid = deviceUserId
         }
         
@@ -520,7 +520,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     private func grabVerifiedWithInformation(with uid: String) {
-        let ref = FIRDatabase.database().reference().child("users").child(uid).child("verifiedWith")
+        let ref = Database.database().reference().child("users").child(uid).child("verifiedWith")
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let verified = snapshot.value as? [String: Bool] {
                 let verifiedTwitter = verified["Twitter"] ?? false
@@ -549,7 +549,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     private func grabProfileImage(with uid: String) {
-        let ref = FIRDatabase.database().reference().child("users").child(uid).child("profileImage")
+        let ref = Database.database().reference().child("users").child(uid).child("profileImage")
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let urlString = snapshot.value as? String {
                 let url = URL(string: urlString)
@@ -561,7 +561,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     private func getUserProfile(with uid: String) {
-        let ref = FIRDatabase.database().reference().child("users").child(uid).child("fullName")
+        let ref = Database.database().reference().child("users").child(uid).child("fullName")
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let fullName = snapshot.value as? String {
                 DispatchQueue.main.async {
@@ -572,7 +572,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         })
     }
 
-    fileprivate func updateReviewCounts(with snapshot: FIRDataSnapshot) {
+    fileprivate func updateReviewCounts(with snapshot: DataSnapshot) {
         if let numbers = snapshot.value as? [String: Int] {
             let count = numbers["count"]!
             let number = Double(numbers["sum"]!) / Double(count)
@@ -592,7 +592,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     private func grabUsersReviewStats(with uid: String) {
-        reviewNumbersRef = FIRDatabase.database().reference().child("reviews").child(uid)
+        reviewNumbersRef = Database.database().reference().child("reviews").child(uid)
         reviewNumbersRef!.child("reviewNumbers").observeSingleEvent(of: .value, with: { snapshot in
             self.updateReviewCounts(with: snapshot)
         })
@@ -603,7 +603,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     private func grabUserBadgeState(with uid: String) {
-        let ref = FIRDatabase.database().reference().child("users").child(uid).child("badge")
+        let ref = Database.database().reference().child("users").child(uid).child("badge")
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let stateString = snapshot.value as? String {
                 if let state = BadgeStatus(rawValue: stateString) {
@@ -674,7 +674,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private func grabLikedPosts() {
         likesQuery!.observe(.childAdded, with: { snapshot in
-            let productQuery = FIRDatabase.database().reference().child("products").child(snapshot.key)
+            let productQuery = Database.database().reference().child("products").child(snapshot.key)
             productQuery.observeSingleEvent(of: .value, with: { snapshot in
                 if let productDict = snapshot.value as? [String: AnyObject] {
                     if let product = Product.createProduct(with: productDict, with: snapshot.key) {
@@ -688,7 +688,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         })
         
         likesQuery!.observe(.childRemoved, with: { snapshot in
-            let productQuery = FIRDatabase.database().reference().child("products").child(snapshot.key)
+            let productQuery = Database.database().reference().child("products").child(snapshot.key)
             productQuery.observeSingleEvent(of: .value, with: { snapshot in
                 if let productDict = snapshot.value as? [String: AnyObject] {
                     if let product = Product.createProduct(with: productDict, with: snapshot.key) {
@@ -748,11 +748,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @objc private func userHasChangedName(notification: NSNotification) {
-        getUserProfile(with: FIRAuth.auth()!.currentUser!.uid)
+        getUserProfile(with: Auth.auth().currentUser!.uid)
     }
     
     @objc private func userBuiltTrust(notification: NSNotification?) {
-        if let user = FIRAuth.auth()?.currentUser {
+        if let user = Auth.auth().currentUser {
             if !buildTrustView.isHidden {
                 grabVerifiedWithInformation(with: user.uid)
                 

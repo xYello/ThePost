@@ -1,6 +1,6 @@
-Part of [Fabric](https://www.fabric.io/), Twitter Kit is easiest way to bring real-time conversational content to your apps. Growing an app’s user base and retaining end users can be a challenge for any developer. To keep users engaged, you need rich, unique content that feels natural to your app’s experience.
+Twitter Kit is the easiest way to bring real-time conversational content to your apps. Growing an app’s user base and retaining end users can be a challenge for any developer. To keep users engaged, you need rich, unique content that feels natural to your app’s experience.
 
-To install, follow the instructions [here](https://fabric.io/kits/ios/twitterkit/install).
+To install, add `TwitterKit` to your `Podfile` and run `pod install`. If you already have `TwitterKit` just run `pod update TwitterKit`.
 
 ### Show a Single Tweet
 
@@ -20,7 +20,7 @@ To show a single Tweet, you first need to load that Tweet from the network and t
     }
 ```
 
-<img src="https://docs.fabric.io/apple/_images/show_tweet_compact.png" width="250"/>
+<img src="https://dev.twitter.com/_images/search_timeline.png" width="250"/>
 
 
 #### Configuring Tweet View Colors & Themes
@@ -35,7 +35,7 @@ To change the colors of a Tweet view you can either set properties directly on t
   tweetView.backgroundColor = .blueColor()
 ```
 
-<img src="https://docs.fabric.io/apple/_images/show_tweet_themed.png" width="250"/>
+<img src="https://dev.twitter.com/_images/show_tweet_themed.png" width="250"/>
 
 
 
@@ -57,20 +57,43 @@ class UserTimelineViewController: TWTRTimelineViewController {
         super.viewDidLoad()
 
         let client = TWTRAPIClient.clientWithCurrentUser()
-        self.dataSource = TWTRUserTimelineDataSource(screenName: "jack", APIClient: client)
+        self.dataSource = TWTRUserTimelineDataSource(screenName: "twitterdev", APIClient: client)
         self.showTweetActions = true
     }
 
 }
 ```
 
-<img src="https://docs.fabric.io/apple/_images/list_timeline.png" width="250"/>
+<img src="https://dev.twitter.com/_images/user_timeline.png" width="250"/>
+
+
+### Compose Tweets
+To allow users to composer their own Tweets from within your app, simply create a `TWTRComposer` and call `show(from: UIViewController, completion:)` on the instance. This class automatically handles presenting a log in controller if there are no logged in sessions.
+
+
+```swift
+
+let composer = TWTRComposer()
+
+composer.setText("just setting up my Twitter Kit")
+composer.setImage(UIImage(named: "twitterkit"))
+
+// Called from a UIViewController
+composer.show(from: self.navigationController!) { (result in
+    if (result == .done) {
+        print("Successfully composed Tweet")
+    } else {
+        print("Cancelled composing")
+    }
+}
+```
+
+<img src="https://dev.twitter.com/_images/compose_tweet.png" width="250"/>
+
 
 
 ## Resources		
-		
- * [Documentation](https://docs.fabric.io/apple/twitter/overview.html)		
- * [Forums](https://twittercommunity.com/c/fabric/twitter)		
- * [Website](https://docs.fabric.io/apple/twitter/overview.html)		
- * Follow us on Twitter: [@fabric](https://twitter.com/fabric)		
- * Follow us on Periscope: [Fabric](https://periscope.tv/fabric) and [TwitterDev](https://periscope.tv/twitterdev)
+
+ * [Documentation](https://dev.twitter.com/twitterkit/ios/overview)		
+ * [Forums](https://twittercommunity.com/c/publisher/twitter)		
+ * Follow us on Twitter: [@TwitterDev](https://twitter.com/TwitterDev)		

@@ -30,8 +30,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     private var products: [Product] = []
     private var searchedProducts: [Product] = []
     
-    private var ref: FIRDatabaseReference!
-    private var productRef: FIRDatabaseReference?
+    private var ref: DatabaseReference!
+    private var productRef: DatabaseReference?
     
     private var amountOfProducts = 0 {
         didSet {
@@ -65,7 +65,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         
         smallProductSortButton.setImage(#imageLiteral(resourceName: "SmallProducts").withRenderingMode(.alwaysTemplate), for: .normal)
         smallProductSortButton.imageView!.tintColor = UIColor.white
@@ -89,7 +89,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             navBar.clipsToBounds = true
         }
         
-        FIRAuth.auth()?.addStateDidChangeListener() { auth, user in
+        Auth.auth().addStateDidChangeListener() { auth, user in
             self.collectionView.reloadData()
         }
     }

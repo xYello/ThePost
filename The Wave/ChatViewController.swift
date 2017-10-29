@@ -27,7 +27,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     
     var soldImageViewMidConstraint: NSLayoutConstraint!
     
-    private var conversationRef: FIRDatabaseReference? {
+    private var conversationRef: DatabaseReference? {
         didSet {
             messageRef = conversationRef!.child("messages")
             userTypingRef = conversationRef!.child("typingIndicator").child(senderId)
@@ -36,12 +36,12 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
             observeMessages()
         }
     }
-    private var messageRef: FIRDatabaseReference!
-    private var messageQueryRef: FIRDatabaseQuery?
-    private var userTypingRef: FIRDatabaseReference?
-    private var otherUserTypingQueryRef: FIRDatabaseQuery?
+    private var messageRef: DatabaseReference!
+    private var messageQueryRef: DatabaseQuery?
+    private var userTypingRef: DatabaseReference?
+    private var otherUserTypingQueryRef: DatabaseQuery?
     
-    private var productIsSoldRef: FIRDatabaseReference!
+    private var productIsSoldRef: DatabaseReference!
     
     private var messages = [JSQMessage]()
     
@@ -120,14 +120,14 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
         animator = UIDynamicAnimator()
         animator.delegate = self
         
-        senderId = FIRAuth.auth()!.currentUser!.uid
+        senderId = Auth.auth().currentUser!.uid
         senderDisplayName = conversation.otherPersonName
         
         if conversation.id != "" {
-            conversationRef = FIRDatabase.database().reference().child("chats").child(conversation.id)
+            conversationRef = Database.database().reference().child("chats").child(conversation.id)
         }
         
-        productIsSoldRef = FIRDatabase.database().reference().child("products").child(conversation.productID).child("isSold")
+        productIsSoldRef = Database.database().reference().child("products").child(conversation.productID).child("isSold")
         getProductDetails()
         
         collectionView.backgroundColor = #colorLiteral(red: 0.1870684326, green: 0.2210902572, blue: 0.2803535461, alpha: 1)
@@ -254,7 +254,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
         if conversationRef == nil {
-            conversationRef = FIRDatabase.database().reference().child("chats").childByAutoId()
+            conversationRef = Database.database().reference().child("chats").childByAutoId()
             
             let participants = [conversation.otherPersonId: true,
                                 senderId: true]
@@ -263,7 +263,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
             let productID = ["productID": conversation.productID] as [String: String]
             conversationRef!.updateChildValues(productID)
             
-            let userChatsRef = FIRDatabase.database().reference().child("user-chats")
+            let userChatsRef = Database.database().reference().child("user-chats")
             let childUpdate = [conversationRef!.key: true]
             
             userChatsRef.child(conversation.otherPersonId).updateChildValues(childUpdate)
@@ -302,7 +302,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     
     @objc private func greenButtonPressed() {
         if greenButton.currentTitle == "Mark Sold" {
-            let productRef = FIRDatabase.database().reference()
+            let productRef = Database.database().reference()
             let childUpdates: [String: Any] = ["products/\(conversation.productID!)/isSold": true,
                                                "products/\(conversation.productID!)/soldModel": "SOLD" + product.jeepModel.name]
             
@@ -376,7 +376,7 @@ class ChatViewController: JSQMessagesViewController, UIDynamicAnimatorDelegate {
     }
     
     private func getProductDetails() {
-        let productRef = FIRDatabase.database().reference().child("products").child(conversation.productID)
+        let productRef = Database.database().reference().child("products").child(conversation.productID)
         productRef.observeSingleEvent(of: .value, with: { snapshot in
             if let productDict = snapshot.value as? [String: Any] {
                 
