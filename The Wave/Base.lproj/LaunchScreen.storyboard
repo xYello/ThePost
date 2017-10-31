@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +14,6 @@
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
@@ -24,6 +23,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bix-da-8pU" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="544"/>
+                                <color key="backgroundColor" red="0.63921568627450975" green="0.29803921568627451" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoadingScreenJeep" translatesAutoresizingMaskIntoConstraints="NO" id="5gX-oG-YAI">
                                 <rect key="frame" x="0.0" y="382" width="375" height="290"/>
                                 <constraints>
@@ -31,24 +34,29 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TheWaveTextImage" translatesAutoresizingMaskIntoConstraints="NO" id="rbG-Ez-MQf">
-                                <rect key="frame" x="56" y="56" width="263" height="212"/>
+                                <rect key="frame" x="56" y="76" width="263" height="212"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rbG-Ez-MQf" secondAttribute="height" multiplier="88:37" constant="-241.21621621621625" id="c0W-hr-dTQ"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.63921568627450975" green="0.29803921568627451" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.14509803921568626" green="0.16470588235294117" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bix-da-8pU" secondAttribute="trailing" id="4sc-Xa-3xa"/>
+                            <constraint firstItem="bix-da-8pU" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="5cK-ST-yE8"/>
                             <constraint firstItem="5gX-oG-YAI" firstAttribute="centerX" secondItem="rbG-Ez-MQf" secondAttribute="centerX" constant="0.5" id="GMB-sB-dgU"/>
                             <constraint firstItem="rbG-Ez-MQf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-0.5" id="JB9-Hw-ft9"/>
                             <constraint firstItem="rbG-Ez-MQf" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="40" id="ban-lb-eeu"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="bix-da-8pU" secondAttribute="bottom" constant="123" id="dhO-XN-LBN"/>
                             <constraint firstAttribute="trailing" secondItem="5gX-oG-YAI" secondAttribute="trailing" id="hr2-1t-3R2"/>
+                            <constraint firstItem="bix-da-8pU" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="nKm-KV-mLe"/>
                             <constraint firstItem="rbG-Ez-MQf" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="56" id="u4h-Mm-jBB"/>
                             <constraint firstItem="5gX-oG-YAI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="vJF-ds-EQr"/>
                             <constraint firstAttribute="bottomMargin" secondItem="5gX-oG-YAI" secondAttribute="bottom" constant="-5" id="xuL-87-yNr"/>
                         </constraints>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
