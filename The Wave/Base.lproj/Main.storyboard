@@ -340,7 +340,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any messages." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mw3-Vi-fM2">
-                                        <rect key="frame" x="12.5" y="193" width="261.5" height="24"/>
+                                        <rect key="frame" x="13" y="193" width="261.5" height="24"/>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="20"/>
                                         <color key="textColor" red="0.91004675629999998" green="0.90736204389999997" blue="0.81975060700000002" alpha="0.19638737416107382" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -391,6 +391,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ooy-5B-259" userLabel="Background View">
+                                <rect key="frame" x="0.0" y="595" width="375" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80000126361846924" green="0.80366784334182739" blue="0.81962811946868896" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DBM-HQ-Vn3" userLabel="Chat Action Container">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <subviews>
@@ -462,7 +467,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SdE-by-OdE">
-                                <rect key="frame" x="0.0" y="118" width="375" height="549"/>
+                                <rect key="frame" x="0.0" y="118" width="375" height="536"/>
                                 <connections>
                                     <segue destination="1KK-ln-WHj" kind="embed" identifier="chat_embed" id="hG9-US-yXx"/>
                                 </connections>
@@ -470,9 +475,9 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="SdE-by-OdE" firstAttribute="top" secondItem="DBM-HQ-Vn3" secondAttribute="bottom" constant="-2" id="HMT-tI-oYn"/>
-                            <constraint firstItem="DBM-HQ-Vn3" firstAttribute="top" secondItem="fxg-0G-gxe" secondAttribute="top" constant="64" id="Jhg-au-Vf0"/>
+                            <constraint firstItem="DBM-HQ-Vn3" firstAttribute="top" secondItem="awu-38-jWO" secondAttribute="bottom" id="Jhg-au-Vf0"/>
                             <constraint firstAttribute="trailing" secondItem="SdE-by-OdE" secondAttribute="trailing" id="SCt-uB-yCX"/>
-                            <constraint firstAttribute="bottom" secondItem="SdE-by-OdE" secondAttribute="bottom" id="SYn-Vc-LuD"/>
+                            <constraint firstAttribute="bottom" secondItem="SdE-by-OdE" secondAttribute="bottom" constant="13" id="SYn-Vc-LuD"/>
                             <constraint firstItem="DBM-HQ-Vn3" firstAttribute="leading" secondItem="fxg-0G-gxe" secondAttribute="leading" id="fF4-rT-cW6"/>
                             <constraint firstItem="SdE-by-OdE" firstAttribute="leading" secondItem="fxg-0G-gxe" secondAttribute="leading" id="iUv-eV-2Md"/>
                             <constraint firstAttribute="trailing" secondItem="DBM-HQ-Vn3" secondAttribute="trailing" id="r8b-2m-LZs"/>
@@ -738,7 +743,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-uC-8od">
-                                    <rect key="frame" x="146" y="20" width="47.5" height="12"/>
+                                    <rect key="frame" x="146.5" y="20" width="47.5" height="12"/>
                                     <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="10"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -1428,7 +1433,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Xo2-UZ-QJG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CLK-t5-65G">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="549"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3571,7 +3576,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-7e-Uov">
-                                                        <rect key="frame" x="62" y="8" width="60" height="17"/>
+                                                        <rect key="frame" x="61.5" y="8" width="60" height="17"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
