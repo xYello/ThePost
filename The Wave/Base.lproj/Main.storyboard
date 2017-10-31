@@ -340,7 +340,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any messages." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mw3-Vi-fM2">
-                                        <rect key="frame" x="13" y="193" width="261.5" height="24"/>
+                                        <rect key="frame" x="12.5" y="193" width="261.5" height="24"/>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="20"/>
                                         <color key="textColor" red="0.91004675629999998" green="0.90736204389999997" blue="0.81975060700000002" alpha="0.19638737416107382" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -542,10 +542,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vel-P0-P0Y">
-                                <rect key="frame" x="0.0" y="-65" width="375" height="103"/>
+                                <rect key="frame" x="0.0" y="-162" width="375" height="200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gd-uT-OVD">
-                                        <rect key="frame" x="8" y="64" width="180" height="39"/>
+                                        <rect key="frame" x="8" y="161" width="180" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="K5b-ok-2jF"/>
                                         </constraints>
@@ -555,7 +555,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPZ-cR-iL3">
-                                        <rect key="frame" x="187" y="64" width="180" height="39"/>
+                                        <rect key="frame" x="187" y="161" width="180" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="QAK-Rt-98h"/>
                                         </constraints>
@@ -570,7 +570,7 @@
                                     <constraint firstAttribute="trailing" secondItem="jPZ-cR-iL3" secondAttribute="trailing" constant="8" id="7mO-sI-wAU"/>
                                     <constraint firstAttribute="centerX" secondItem="0gd-uT-OVD" secondAttribute="trailing" id="Cak-5l-sHW"/>
                                     <constraint firstAttribute="bottom" secondItem="0gd-uT-OVD" secondAttribute="bottom" id="O71-vo-xMp"/>
-                                    <constraint firstAttribute="height" constant="103" id="PYb-ch-Muj"/>
+                                    <constraint firstAttribute="height" constant="200" id="PYb-ch-Muj"/>
                                     <constraint firstAttribute="bottom" secondItem="jPZ-cR-iL3" secondAttribute="bottom" id="fkm-Ph-chh"/>
                                     <constraint firstItem="0gd-uT-OVD" firstAttribute="leading" secondItem="vel-P0-P0Y" secondAttribute="leading" constant="8" id="y4c-3E-PBC"/>
                                     <constraint firstItem="jPZ-cR-iL3" firstAttribute="leading" secondItem="vel-P0-P0Y" secondAttribute="centerX" id="y7p-2m-rOM"/>
@@ -722,7 +722,7 @@
                             <constraint firstAttribute="trailing" secondItem="vel-P0-P0Y" secondAttribute="trailing" id="Zqd-eB-OlI"/>
                             <constraint firstItem="FDR-cf-xRl" firstAttribute="top" secondItem="vel-P0-P0Y" secondAttribute="bottom" id="em2-wK-nWz"/>
                             <constraint firstItem="FDR-cf-xRl" firstAttribute="centerX" secondItem="1TW-Le-DYq" secondAttribute="centerX" id="qVT-BS-OgW"/>
-                            <constraint firstItem="vel-P0-P0Y" firstAttribute="top" secondItem="1TW-Le-DYq" secondAttribute="top" constant="-65" id="vBp-rF-qCV"/>
+                            <constraint firstItem="vel-P0-P0Y" firstAttribute="top" secondItem="1TW-Le-DYq" secondAttribute="top" constant="-162" id="vBp-rF-qCV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7uX-fZ-UhN">
@@ -738,7 +738,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-uC-8od">
-                                    <rect key="frame" x="146" y="20" width="47.5" height="12"/>
+                                    <rect key="frame" x="146.5" y="20" width="47.5" height="12"/>
                                     <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="10"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -3230,7 +3230,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PIPBackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="cFO-7a-D9l">
-                                <rect key="frame" x="19" y="228" width="337" height="212"/>
+                                <rect key="frame" x="19" y="227.5" width="337" height="212"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cFO-7a-D9l" secondAttribute="height" multiplier="337:212" id="Xwz-8e-BEn"/>
                                 </constraints>
@@ -3247,7 +3247,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an option or cancel!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3J0-Qf-WP5">
-                                <rect key="frame" x="19" y="106" width="337" height="99"/>
+                                <rect key="frame" x="19" y="105.5" width="337" height="99"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="99" id="WO4-hx-Mog"/>
                                 </constraints>
@@ -3576,7 +3576,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-7e-Uov">
-                                                        <rect key="frame" x="62" y="8" width="60" height="17"/>
+                                                        <rect key="frame" x="61.5" y="8" width="60" height="17"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
