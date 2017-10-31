@@ -44,8 +44,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var closeContainer: UIView!
     @IBOutlet weak var closeButton: UIButton!
-    
-    @IBOutlet weak var profileImageViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileBadge: UIImageView!
     
     private var previouslySelectedButton: UIButton!
@@ -132,8 +130,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             settingsButton.isHidden = true
             buildTrustView.isHidden = true
             buildTrustButton.isHidden = true
-            
-            profileImageViewTopConstraint.constant = 0.0
         } else {
             buildTrustView.roundCorners(radius: 5.0)
             buildTrustView.clipsToBounds = true
@@ -174,6 +170,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        if userId == nil {
+            UIApplication.shared.statusBarStyle = .default
+        }
         
         if shouldUpdateProfileOnNextView {
             updateProfileInformation(with: Auth.auth().currentUser!.uid)
@@ -211,6 +211,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             selectionBar!.backgroundColor = .waveRed
             selectionBar!.isUserInteractionEnabled = false
             view.addSubview(selectionBar!)
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if userId == nil {
+            UIApplication.shared.statusBarStyle = .lightContent
         }
     }
     
