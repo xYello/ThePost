@@ -70,6 +70,10 @@ class JeepModelChooserViewController: SeletectedImageViewController, JeepTypeVie
     // MARK: - Actions
 
     @IBAction func nextButtonPressed(_ sender: BigRedShadowButton) {
+        if let model = selectedProduct {
+            product.jeepModel = model
+        }
+
         if let delegate = delegate {
             delegate.didChange(model: product.jeepModel)
             dismiss(animated: true, completion: nil)
@@ -91,7 +95,7 @@ class JeepModelChooserViewController: SeletectedImageViewController, JeepTypeVie
     // MARK: - JeepTypeView delegate
 
     func didTap(_ view: JeepTypeView) {
-        product.jeepModel = view.type
+        selectedProduct = view.type
         for v in typeViews {
             if v.type != view.type {
                 v.selected = false
