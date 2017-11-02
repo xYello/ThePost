@@ -262,7 +262,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
             view.insertSubview(socialButton, belowSubview: tabBar)
             
             socialLabel = UILabel()
-            socialLabel.text = "Show off your Jeep!"
+            socialLabel.text = "Show off your Jeep"
             socialLabel.font = UIFont(name: "Lato-Regular", size: 14.0)
             socialLabel.textColor = #colorLiteral(red: 0.9529411765, green: 0.6274509804, blue: 0.09803921569, alpha: 1)
             socialLabel.textAlignment = .center
