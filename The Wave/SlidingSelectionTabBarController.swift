@@ -76,7 +76,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                 tabBar.insertSubview(circle, belowSubview: views[2])
                 
                 selectionBar = UIView()
-                selectionBar!.frame = CGRect(x: tabBar.frame.width, y: tabBar.frame.height - 2, width: views[0].frame.width, height: 2)
+                selectionBar!.frame = CGRect(x: tabBar.frame.width, y: views[0].frame.origin.y + views[0].frame.height - 2, width: views[0].frame.width, height: 2)
                 selectionBar!.backgroundColor = .waveRed
                 selectionBar!.isUserInteractionEnabled = false
                 selectionBar!.alpha = 0.0

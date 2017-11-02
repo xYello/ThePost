@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -267,7 +267,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paC-tP-bIX">
-                    <rect key="frame" x="295" y="0.0" width="80" height="80"/>
+                    <rect key="frame" x="295" y="12" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="SYE-a8-wKZ"/>
                         <constraint firstAttribute="height" constant="80" id="oLF-cc-Ddl"/>
@@ -282,7 +282,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="paC-tP-bIX" secondAttribute="trailing" id="6Vk-HW-hAT"/>
                 <constraint firstItem="YHi-yk-9aM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Kgt-Ot-nb8"/>
-                <constraint firstItem="paC-tP-bIX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ROV-ge-e26"/>
+                <constraint firstItem="paC-tP-bIX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="ROV-ge-e26"/>
                 <constraint firstItem="YHi-yk-9aM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JK7-TA-ube" secondAttribute="bottom" constant="40" id="Zns-r3-v3h"/>
                 <constraint firstItem="CCU-kf-Pwu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hC7-9Q-zLi"/>
                 <constraint firstItem="JK7-TA-ube" firstAttribute="top" secondItem="CCU-kf-Pwu" secondAttribute="bottom" constant="41" id="hCu-KE-dcZ"/>

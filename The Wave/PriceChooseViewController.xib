@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -62,7 +62,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44t-22-Acf">
-                    <rect key="frame" x="295" y="0.0" width="80" height="80"/>
+                    <rect key="frame" x="295" y="12" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="F3E-U8-qz5"/>
                         <constraint firstAttribute="height" constant="80" id="WXI-Qi-Rhz"/>
@@ -75,7 +75,7 @@
             </subviews>
             <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="0.904571963028169" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="44t-22-Acf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2hD-kw-nwG"/>
+                <constraint firstItem="44t-22-Acf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="2hD-kw-nwG"/>
                 <constraint firstItem="eUT-VT-DRV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="3d9-3H-nHY"/>
                 <constraint firstItem="eUT-VT-DRV" firstAttribute="top" secondItem="h8x-SM-dkB" secondAttribute="bottom" constant="15.5" id="7ZH-IP-oWZ"/>
                 <constraint firstItem="ZCf-mG-ZZa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dbo-pA-0g3"/>
