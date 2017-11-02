@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -42,7 +43,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHi-yk-9aM" customClass="BigRedShadowButton" customModule="The_Wave" customModuleProvider="target">
-                    <rect key="frame" x="107" y="617" width="160" height="30"/>
+                    <rect key="frame" x="107" y="622" width="160" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="160" id="aN5-q0-Jfs"/>
                     </constraints>
@@ -52,7 +53,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK7-TA-ube">
-                    <rect key="frame" x="40" y="108" width="295" height="429"/>
+                    <rect key="frame" x="40" y="119" width="295" height="429"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mis-LK-BGs" customClass="JeepTypeView" customModule="The_Wave" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="149.5" width="130" height="129.5"/>
@@ -281,15 +282,17 @@
             <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="0.900390625" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="paC-tP-bIX" secondAttribute="trailing" id="6Vk-HW-hAT"/>
+                <constraint firstItem="YHi-yk-9aM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JK7-TA-ube" secondAttribute="bottom" constant="40" id="8iq-rf-bjw"/>
                 <constraint firstItem="YHi-yk-9aM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Kgt-Ot-nb8"/>
+                <constraint firstItem="JK7-TA-ube" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CCU-kf-Pwu" secondAttribute="bottom" constant="40" id="LVR-Jx-HjJ"/>
                 <constraint firstItem="paC-tP-bIX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="ROV-ge-e26"/>
-                <constraint firstItem="YHi-yk-9aM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JK7-TA-ube" secondAttribute="bottom" constant="40" id="Zns-r3-v3h"/>
+                <constraint firstItem="JK7-TA-ube" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cfh-lE-4r3"/>
                 <constraint firstItem="CCU-kf-Pwu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hC7-9Q-zLi"/>
-                <constraint firstItem="JK7-TA-ube" firstAttribute="top" secondItem="CCU-kf-Pwu" secondAttribute="bottom" constant="41" id="hCu-KE-dcZ"/>
-                <constraint firstAttribute="bottom" secondItem="YHi-yk-9aM" secondAttribute="bottom" constant="20" id="nmh-9C-9li"/>
                 <constraint firstItem="JK7-TA-ube" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="u1i-Rk-C9v"/>
                 <constraint firstItem="CCU-kf-Pwu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="47" id="uzt-JR-jR5"/>
+                <constraint firstAttribute="bottomMargin" secondItem="YHi-yk-9aM" secondAttribute="bottom" constant="15" id="wcK-KJ-fz9"/>
                 <constraint firstItem="JK7-TA-ube" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="y6G-25-iG2"/>
+                <constraint firstAttribute="trailing" secondItem="JK7-TA-ube" secondAttribute="trailing" constant="40" id="yy4-JA-tTW"/>
             </constraints>
             <point key="canvasLocation" x="33" y="737"/>
         </view>
