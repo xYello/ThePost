@@ -84,7 +84,7 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                 
                 UIView.animate(withDuration: 0.5, animations: {
                     self.selectionBar!.alpha = 1.0
-                    self.selectionBar!.frame = CGRect(x: 0, y: self.tabBar.frame.height - 2, width: views[0].frame.width, height: 2)
+                    self.selectionBar!.frame = CGRect(x: 0, y: views[0].frame.origin.y + views[0].frame.height - 2, width: views[0].frame.width, height: 2)
                     
                     let size = views[2].frame.height + 15
                     
