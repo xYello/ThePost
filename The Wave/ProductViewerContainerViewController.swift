@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import Lightbox
 
-class ProductViewerContainerViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
+class ProductViewerContainerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate {
     
     private enum CellType {
         case text
@@ -80,6 +81,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         priceContainer.roundCorners(radius: 8.0)
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -174,6 +176,19 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         cell.imageView.sd_setImage(with: url)
         
         return cell
+    }
+
+    // MARK: - CollectionView delegate
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var images = [LightboxImage]()
+        for url in product.imageUrls {
+            images.append(LightboxImage(imageURL: URL(string: url)!))
+        }
+
+        let box = LightboxController(images: images, startIndex: indexPath.row)
+        box.dynamicBackground = true
+        present(box, animated: true, completion: nil)
     }
     
     // MARK: - TableView datasource

@@ -25,6 +25,7 @@ target 'The Wave' do
   pod 'ReachabilitySwift', '~> 3'
   pod 'TOCropViewController'
   pod 'WVCheckMark'
+  pod 'Lightbox'
 
   target 'The Wave Tests' do
     inherit! :search_paths
