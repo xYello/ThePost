@@ -228,9 +228,6 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
 
     fileprivate func presentCropController(withImage image: UIImage) {
         let cropVc = TOCropViewController(image: image)
-        cropVc.imageCropFrame = CGRect(x: 0, y: 0, width: 343, height: 257)
-        cropVc.aspectRatioLockEnabled = true
-        cropVc.resetAspectRatioEnabled = false
         cropVc.delegate = self
 
         present(cropVc, animated: true, completion: nil)
