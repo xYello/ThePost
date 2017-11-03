@@ -24,6 +24,7 @@
 		496944C31F34026E00AEC0D1 /* JeepTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496944C21F34026E00AEC0D1 /* JeepTypeView.swift */; };
 		49714F0F1F32C94700A7B4FC /* UIView+TappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49714F0E1F32C94700A7B4FC /* UIView+TappedAround.swift */; };
 		497BFC4F1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */; };
+		49A0DDA51FABECE4002B53A7 /* LocationPermissionRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0DDA41FABECE4002B53A7 /* LocationPermissionRequestViewController.swift */; };
 		49A162201F22E6D7004D3C6D /* FeedbackModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */; };
 		49A7F4431FA5B55700A0CE4D /* BadgeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */; };
 		49B33EDB1F2325A8005FF03E /* KeyboardHelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B33EDA1F2325A8005FF03E /* KeyboardHelperViewController.swift */; };
@@ -173,6 +174,7 @@
 		496944C21F34026E00AEC0D1 /* JeepTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeepTypeView.swift; sourceTree = "<group>"; };
 		49714F0E1F32C94700A7B4FC /* UIView+TappedAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TappedAround.swift"; sourceTree = "<group>"; };
 		497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PhotoPermissions.swift"; sourceTree = "<group>"; };
+		49A0DDA41FABECE4002B53A7 /* LocationPermissionRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionRequestViewController.swift; sourceTree = "<group>"; };
 		49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackModalViewController.swift; sourceTree = "<group>"; };
 		49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeStatus.swift; sourceTree = "<group>"; };
 		49B33EDA1F2325A8005FF03E /* KeyboardHelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelperViewController.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */,
+				49A0DDA41FABECE4002B53A7 /* LocationPermissionRequestViewController.swift */,
 				4D04C5421E0F000B004B2264 /* WalkthroughViewController.swift */,
 				4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */,
 			);
@@ -1182,6 +1185,7 @@
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
 				497BFC4F1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift in Sources */,
 				4DBF61E71E29CA3100D07AD5 /* PercentageBar.swift in Sources */,
+				49A0DDA51FABECE4002B53A7 /* LocationPermissionRequestViewController.swift in Sources */,
 				4D5AB0B61E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift in Sources */,
 				4D04C5431E0F000B004B2264 /* WalkthroughViewController.swift in Sources */,
 				2F5450BB1E537433005A88A3 /* JeepSocialTableViewCell.swift in Sources */,

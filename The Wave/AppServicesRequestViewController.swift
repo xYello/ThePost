@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreLocation
 import SwiftKeychainWrapper
 import OneSignal
 
@@ -33,11 +32,13 @@ class AppServicesRequestViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func requestButtonPressed(_ sender: UIButton) {
-        
         OneSignal.promptForPushNotifications() { accepted in
-            self.performSegue(withIdentifier: "unwindToPresenting", sender: self)
+            if Location.manager.hasLocationAccess {
+                self.performSegue(withIdentifier: "unwindToPresenting", sender: self)
+            } else {
+                self.performSegue(withIdentifier: "locationSegue", sender: self)
+            }
         }
-        
     }
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {

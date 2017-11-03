@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,7 +64,7 @@
                                                     <rect key="frame" x="103" y="51" width="169" height="172"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTn-cP-lS9">
-                                                    <rect key="frame" x="42" y="317" width="290" height="31"/>
+                                                    <rect key="frame" x="50" y="325" width="274" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="31" id="T0W-la-vRI"/>
                                                     </constraints>
@@ -73,7 +73,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgt-D0-7ri">
-                                                    <rect key="frame" x="42" y="363" width="290" height="76"/>
+                                                    <rect key="frame" x="50" y="371" width="274" height="76"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="76" id="zSq-VG-iGY"/>
                                                     </constraints>
@@ -82,7 +82,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwP-yT-WnG">
-                                                    <rect key="frame" x="61" y="487" width="252" height="52"/>
+                                                    <rect key="frame" x="69" y="495" width="236" height="52"/>
                                                     <color key="backgroundColor" red="0.7776756883" green="0.35553953049999998" blue="0.24578282239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="52" id="vbC-rI-SLE"/>
@@ -163,7 +163,7 @@
         <!--App Services Request View Controller-->
         <scene sceneID="DKH-P4-e3v">
             <objects>
-                <viewController storyboardIdentifier="requesetServiceViewController" id="Hvl-3d-46k" customClass="AppServicesRequestViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="requesetNotificationsViewController" id="Hvl-3d-46k" customClass="AppServicesRequestViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="26Y-lT-Y9F"/>
                         <viewControllerLayoutGuide type="bottom" id="GIP-Ue-CZJ"/>
@@ -216,7 +216,7 @@
                                             <action selector="skipButtonPressed:" destination="Hvl-3d-46k" eventType="touchUpInside" id="zbr-9u-3jx"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stay up to date with all that happens in The Wave. Enable your notifcations." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aP-Ut-0pa">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stay up to date with all that happens in The 👋. When people favorite your products, send you a message, etc." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aP-Ut-0pa">
                                         <rect key="frame" x="15" y="89.5" width="312" height="78"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="78" id="bLd-zr-HWK"/>
@@ -259,12 +259,13 @@
                         <outlet property="requestButton" destination="PhQ-iA-Bew" id="tPP-M6-Tky"/>
                         <outlet property="titleLabel" destination="ENg-cY-foK" id="vx2-Am-mOv"/>
                         <segue destination="m7O-Z0-O4D" kind="unwind" identifier="unwindToPresenting" unwindAction="unwindToSignInUpPrompt:" id="1aJ-7j-0tC"/>
+                        <segue destination="Tdw-kD-jhF" kind="show" identifier="locationSegue" id="5BD-12-7Lg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iux-Iz-kMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="m7O-Z0-O4D" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6261.6000000000004" y="22.938530734632685"/>
+            <point key="canvasLocation" x="6542" y="423"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="CBt-MN-1j9">
@@ -950,10 +951,113 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="maR-kl-dxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6261.6000000000004" y="721.88905547226398"/>
+            <point key="canvasLocation" x="6543" y="1119"/>
+        </scene>
+        <!--Location Permission Request View Controller-->
+        <scene sceneID="a3q-Se-Eda">
+            <objects>
+                <viewController storyboardIdentifier="requeseLocationViewController" id="Tdw-kD-jhF" customClass="LocationPermissionRequestViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oze-hB-npg"/>
+                        <viewControllerLayoutGuide type="bottom" id="wML-a6-Y3D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WrC-li-Wf5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdL-bc-wEy">
+                                <rect key="frame" x="16" y="28" width="343" height="611"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Location Services" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2e-JJ-yQS">
+                                        <rect key="frame" x="0.0" y="58" width="343" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="LUe-Ly-ftA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="24"/>
+                                        <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MapLocation" translatesAutoresizingMaskIntoConstraints="NO" id="vzo-0X-nlN">
+                                        <rect key="frame" x="51" y="214" width="240" height="183"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdr-T0-Mcj">
+                                        <rect key="frame" x="49" y="457.5" width="246" height="47"/>
+                                        <color key="backgroundColor" red="0.7776756883" green="0.35553953049999998" blue="0.24578282239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="246" id="Fl4-9Z-V3N"/>
+                                            <constraint firstAttribute="height" constant="47" id="Lcl-eM-BAx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="20"/>
+                                        <state key="normal" title="Enable Location Services">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="requestButtonPressed:" destination="Tdw-kD-jhF" eventType="touchUpInside" id="0r9-4C-pdo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ya-cJ-FjM">
+                                        <rect key="frame" x="148" y="512" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="SVF-Ch-Lup"/>
+                                            <constraint firstAttribute="width" constant="46" id="nJr-3U-UCg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                        <state key="normal" title="Skip">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="skipButtonPressed:" destination="Tdw-kD-jhF" eventType="touchUpInside" id="an6-3f-pw7"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location is used to show products that are near you. This is so you don't see products that are 2,000 miles away." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvh-Qp-k92">
+                                        <rect key="frame" x="15" y="85" width="312" height="78"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="78" id="OLV-qh-PLN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="18"/>
+                                        <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Rdr-T0-Mcj" firstAttribute="centerX" secondItem="fdL-bc-wEy" secondAttribute="centerX" id="1co-Zs-gEC"/>
+                                    <constraint firstItem="vzo-0X-nlN" firstAttribute="centerY" secondItem="fdL-bc-wEy" secondAttribute="centerY" id="ALK-XA-T0A"/>
+                                    <constraint firstItem="vzo-0X-nlN" firstAttribute="top" secondItem="Pvh-Qp-k92" secondAttribute="bottom" constant="51" id="PBo-HS-OTL"/>
+                                    <constraint firstItem="7ya-cJ-FjM" firstAttribute="top" secondItem="Rdr-T0-Mcj" secondAttribute="bottom" constant="8" id="Qdf-vw-Hj4"/>
+                                    <constraint firstItem="Pvh-Qp-k92" firstAttribute="leading" secondItem="fdL-bc-wEy" secondAttribute="leadingMargin" constant="7" id="Tae-gw-Wqd"/>
+                                    <constraint firstItem="vzo-0X-nlN" firstAttribute="centerX" secondItem="fdL-bc-wEy" secondAttribute="centerX" id="YWE-vf-wMk"/>
+                                    <constraint firstItem="Pvh-Qp-k92" firstAttribute="top" secondItem="O2e-JJ-yQS" secondAttribute="bottom" constant="-4" id="ZBg-7k-QAJ"/>
+                                    <constraint firstItem="Pvh-Qp-k92" firstAttribute="centerX" secondItem="fdL-bc-wEy" secondAttribute="centerX" id="ZeI-cE-wnr"/>
+                                    <constraint firstItem="O2e-JJ-yQS" firstAttribute="centerX" secondItem="fdL-bc-wEy" secondAttribute="centerX" id="bBQ-Ju-rA2"/>
+                                    <constraint firstItem="O2e-JJ-yQS" firstAttribute="leading" secondItem="fdL-bc-wEy" secondAttribute="leadingMargin" constant="-8" id="fmI-ve-QLG"/>
+                                    <constraint firstItem="7ya-cJ-FjM" firstAttribute="centerX" secondItem="fdL-bc-wEy" secondAttribute="centerX" id="lRC-tb-w2q"/>
+                                    <constraint firstItem="vzo-0X-nlN" firstAttribute="leading" secondItem="fdL-bc-wEy" secondAttribute="leadingMargin" constant="43" id="ofV-8n-Crd"/>
+                                    <constraint firstItem="Rdr-T0-Mcj" firstAttribute="top" secondItem="vzo-0X-nlN" secondAttribute="bottom" constant="60" id="pk2-qh-usx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14117647059999999" green="0.1647058824" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fdL-bc-wEy" firstAttribute="top" secondItem="oze-hB-npg" secondAttribute="bottom" constant="8" id="3cb-Ko-7n5"/>
+                            <constraint firstItem="fdL-bc-wEy" firstAttribute="centerX" secondItem="WrC-li-Wf5" secondAttribute="centerX" id="Di0-tC-jIr"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="fdL-bc-wEy" secondAttribute="leading" id="Gxg-mo-vJY"/>
+                            <constraint firstItem="fdL-bc-wEy" firstAttribute="centerY" secondItem="WrC-li-Wf5" secondAttribute="centerY" id="Ubt-s4-puI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="requestButton" destination="Rdr-T0-Mcj" id="Fni-qb-jHa"/>
+                        <segue destination="8fd-T0-Wgf" kind="unwind" identifier="unwindToPresenting" unwindAction="unwindToSignInUpPrompt:" id="kzO-Y9-tEz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RV1-1d-HXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="8fd-T0-Wgf" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="7401" y="422"/>
         </scene>
     </scenes>
     <resources>
+        <image name="MapLocation" width="160" height="183"/>
         <image name="PVEx" width="17" height="17"/>
         <image name="Password" width="25" height="31"/>
         <image name="PhoneRing" width="180" height="174"/>
@@ -962,7 +1066,7 @@
         <image name="onepassword-button-light" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dSw-nw-Q8I"/>
         <segue reference="XdT-2O-c8F"/>
+        <segue reference="dSw-nw-Q8I"/>
     </inferredMetricsTieBreakers>
 </document>
