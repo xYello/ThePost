@@ -52,6 +52,9 @@
     // Add the view layers beforehand as this will trigger the initial sets of layouts
     if (self.isDismissing == NO) {
         [containerView addSubview:cropViewController.view];
+
+        //Force a relayout now that the view is in the view hierarchy (so things like the safe area insets are now valid)
+        [cropViewController viewDidLayoutSubviews];
     }
     else {
         [containerView insertSubview:previousController.view belowSubview:cropViewController.view];
@@ -83,7 +86,7 @@
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:0.7f options:0 animations:^{
             imageView.frame = self.toFrame;
         } completion:^(BOOL complete) {
-            [UIView animateWithDuration:0.1f animations:^{
+            [UIView animateWithDuration:0.25f animations:^{
                 imageView.alpha = 0.0f;
             }completion:^(BOOL complete) {
                 [imageView removeFromSuperview];

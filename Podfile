@@ -23,7 +23,7 @@ target 'The Wave' do
   pod 'OneSignal', '~> 2.0'
   pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :subspecs => ['Core', 'KSCrash']
   pod 'ReachabilitySwift', '~> 3'
-  pod 'TOCropViewController'
+  pod 'TOCropViewController', :git => 'https://github.com/TimOliver/TOCropViewController.git'
   pod 'WVCheckMark'
   pod 'Lightbox'
 

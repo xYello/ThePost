@@ -840,6 +840,7 @@
 		48EE2ECB5C2FD32E4625C684C5FCF7DB /* handshaker.h in Copy ../../src/core/lib/channel Private Headers */ = {isa = PBXBuildFile; fileRef = E7941CAFC7B4DEBDC716DFF85DBD24A6 /* handshaker.h */; };
 		4905FAB08AE41BB9C94F10772472AB1F /* GTMSessionFetcherLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC66AD5D9A478393F126971098E197D /* GTMSessionFetcherLogging.m */; };
 		492BC11CB2C5200CF4F1A0BC2AB5E084 /* ssl_cipher.c in Sources */ = {isa = PBXBuildFile; fileRef = A7862532EE3DC3C66F4EFEF143612398 /* ssl_cipher.c */; settings = {COMPILER_FLAGS = "-DOPENSSL_NO_ASM -GCC_WARN_INHIBIT_ALL_WARNINGS -w -fno-objc-arc"; }; };
+		492CDCF21FAD2599002B02F5 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA2769FE3B5E8AC583E1D1D0D4233AD /* FirebaseDatabase.framework */; };
 		493F6B294CFE575EC0019841490CD1AA /* lb_policy_factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 84805E7FAFDE599DA630A3A0F2ED72D9 /* lb_policy_factory.h */; };
 		494296DF5C0D6C96E95FE2E46522A60E /* iomgr_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B3050B146B86E9774E4757BDCC1383A /* iomgr_internal.h */; };
 		49488312098C50ADEC21F40D18403193 /* timer_manager.h in Copy ../../src/core/lib/iomgr Private Headers */ = {isa = PBXBuildFile; fileRef = 3378208EABEE100F58439A2481A17C42 /* timer_manager.h */; };
@@ -847,7 +848,6 @@
 		498605CF98C611CA3C587838E2067A99 /* tls13_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6041184CEBBA7820EFDDAAC6C9A21 /* tls13_client.c */; settings = {COMPILER_FLAGS = "-DOPENSSL_NO_ASM -GCC_WARN_INHIBIT_ALL_WARNINGS -w -fno-objc-arc"; }; };
 		4997DF97B65F881475FFE9B4638EE5DE /* leveldb-library-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E8B695AF3899B5FDD2CC05C37B4CEF3 /* leveldb-library-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4999097CCFB45D59AFFB80610AD1B4A0 /* RxLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE75264F3D44DAA3100003D609DB0C95 /* RxLibrary.framework */; };
-		49A0DDA61FABF54C002B53A7 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA2769FE3B5E8AC583E1D1D0D4233AD /* FirebaseDatabase.framework */; };
 		49A671FD58020A763767EC73DE9A7C4E /* es-US.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C0A64B9F6F5B372986F6E75C72DDF655 /* es-US.lproj */; };
 		49B4640260A24AB4E52105FDB497A990 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C607E343349F922175489508EEA2269 /* version.c */; settings = {COMPILER_FLAGS = "-DGRPC_ARES=0 -fno-objc-arc"; }; };
 		49DFE37FC379CE44A94286E5276A9897 /* uri_parser.h in Copy ../../src/core/ext/filters/client_channel Private Headers */ = {isa = PBXBuildFile; fileRef = DC31D31C9426851DB706BCFE456EB186 /* uri_parser.h */; };
@@ -7510,7 +7510,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49A0DDA61FABF54C002B53A7 /* FirebaseDatabase.framework in Frameworks */,
+				492CDCF21FAD2599002B02F5 /* FirebaseDatabase.framework in Frameworks */,
 				E904C16024C79B9763D8F8145EC36D77 /* CoreLocation.framework in Frameworks */,
 				9264B49E0A0BC650DC2B80E57F72C4EE /* Foundation.framework in Frameworks */,
 				1C821780AE89BE512CC0E3EE218A50AC /* GoogleToolboxForMac.framework in Frameworks */,

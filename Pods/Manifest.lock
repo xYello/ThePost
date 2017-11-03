@@ -201,7 +201,7 @@ DEPENDENCIES:
   - Sentry/Core (from `https://github.com/getsentry/sentry-cocoa.git`)
   - Sentry/KSCrash (from `https://github.com/getsentry/sentry-cocoa.git`)
   - SwiftKeychainWrapper
-  - TOCropViewController
+  - TOCropViewController (from `https://github.com/TimOliver/TOCropViewController.git`)
   - UPCarouselFlowLayout
   - WVCheckMark
 
@@ -210,6 +210,8 @@ EXTERNAL SOURCES:
     :git: https://github.com/firebase/geofire-objc.git
   Sentry:
     :git: https://github.com/getsentry/sentry-cocoa.git
+  TOCropViewController:
+    :git: https://github.com/TimOliver/TOCropViewController.git
 
 CHECKOUT OPTIONS:
   GeoFire:
@@ -218,6 +220,9 @@ CHECKOUT OPTIONS:
   Sentry:
     :commit: d4a154ef8157c8abfe7adab7b762e9e7c342458b
     :git: https://github.com/getsentry/sentry-cocoa.git
+  TOCropViewController:
+    :commit: 3d4027786bd27ab4478a1c3571cc71a1ece18756
+    :git: https://github.com/TimOliver/TOCropViewController.git
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -266,6 +271,6 @@ SPEC CHECKSUMS:
   UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
   WVCheckMark: a62e278531f05fe3a42a056db6383c273f4d9e8b
 
-PODFILE CHECKSUM: 4c6b02ce2e6a510c053226afd675093792a43140
+PODFILE CHECKSUM: c992929aafa9b9a2d8d7a440a748a0b5d3645511
 
 COCOAPODS: 1.3.1

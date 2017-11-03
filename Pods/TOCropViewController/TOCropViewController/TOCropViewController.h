@@ -85,6 +85,8 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerToolbarPosition) {
  If implemented, when the user hits cancel, or completes a 
  UIActivityViewController operation, this delegate will be called,
  giving you a chance to manually dismiss the view controller
+
+ @param cancelled Whether a cropping action was actually performed, or if the user explicitly hit 'Cancel'
  
  */
 - (void)cropViewController:(nonnull TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled NS_SWIFT_NAME(cropViewController(_:didFinishCancelled:));
@@ -157,7 +159,19 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerToolbarPosition) {
 /**
  Title label which can be used to show instruction on the top of the crop view controller
  */
-@property (nonnull, nonatomic, strong, readonly) UILabel *titleLabel;
+@property (nullable, nonatomic, readonly) UILabel *titleLabel;
+
+/**
+ Title for the 'Done' button.
+ Setting this will override the Default which is a localized string for "Done".
+ */
+@property (nullable, nonatomic, copy) NSString *doneButtonTitle;
+
+/**
+ Title for the 'Cancel' button.
+ Setting this will override the Default which is a localized string for "Cancel".
+ */
+@property (nullable, nonatomic, copy) NSString *cancelButtonTitle;
 
 /**
  If true, while it can still be resized, the crop box will be locked to its current aspect ratio.

@@ -46,7 +46,6 @@ static const CGFloat kTOCropViewControllerTitleTopPadding = 14.0f;
 @property (nonatomic, copy) void (^prepareForTransitionHandler)(void);
 @property (nonatomic, strong) TOCropViewControllerTransitioning *transitionController;
 @property (nonatomic, assign) BOOL inTransition;
-@property (nonatomic, assign) BOOL initialLayout;
 
 /* If pushed from a navigation controller, the visibility of that controller's bars. */
 @property (nonatomic, assign) BOOL navigationBarHidden;
@@ -104,6 +103,9 @@ CGFloat titleLabelHeight;
     self.cropView.frame = [self frameForCropViewWithVerticalLayout:self.verticalLayout];
     self.toolbar.frame = [self frameForToolBarWithVerticalLayout:self.verticalLayout];
 
+    // Perform the initial set up after the initial frame is set
+    [self.cropView performInitialSetup];
+
     __weak typeof(self) weakSelf = self;
     self.toolbar.doneButtonTapped   = ^{ [weakSelf doneButtonTapped]; };
     self.toolbar.cancelButtonTapped = ^{ [weakSelf cancelButtonTapped]; };
@@ -124,7 +126,7 @@ CGFloat titleLabelHeight;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
     if (animated) {
         self.inTransition = YES;
         [self setNeedsStatusBarAppearanceUpdate];
@@ -227,9 +229,14 @@ CGFloat titleLabelHeight;
 
 - (CGRect)frameForToolBarWithVerticalLayout:(BOOL)verticalLayout
 {
+    UIEdgeInsets insets = UIEdgeInsetsZero;
+    if (@available(iOS 11.0, *)) {
+        insets = self.view.safeAreaInsets;
+    }
+
     CGRect frame = CGRectZero;
     if (!verticalLayout) {
-        frame.origin.x = 0.0f;
+        frame.origin.x = insets.left;
         frame.origin.y = 0.0f;
         frame.size.width = 44.0f;
         frame.size.height = CGRectGetHeight(self.view.frame);
@@ -238,17 +245,21 @@ CGFloat titleLabelHeight;
         frame.origin.x = 0.0f;
         
         if (self.toolbarPosition == TOCropViewControllerToolbarPositionBottom) {
-            frame.origin.y = CGRectGetHeight(self.view.bounds) - 44.0f;
+            frame.origin.y = CGRectGetHeight(self.view.bounds) - (44.0f + insets.bottom);
         } else {
-            frame.origin.y = 0;
+            frame.origin.y = insets.top;
         }
         
         frame.size.width = CGRectGetWidth(self.view.bounds);
         frame.size.height = 44.0f;
         
         // If the bar is at the top of the screen and the status bar is visible, account for the status bar height
-        if (self.toolbarPosition == TOCropViewControllerToolbarPositionTop && self.prefersStatusBarHidden == NO) {
-            frame.size.height = 64.0f;
+        if (@available(iOS 11.0, *)) {
+        }
+        else {
+            if (self.toolbarPosition == TOCropViewControllerToolbarPositionTop && self.prefersStatusBarHidden == NO) {
+                frame.size.height = 64.0f;
+            }
         }
     }
     
@@ -260,36 +271,43 @@ CGFloat titleLabelHeight;
     //On an iPad, if being presented in a modal view controller by a UINavigationController,
     //at the time we need it, the size of our view will be incorrect.
     //If this is the case, derive our view size from our parent view controller instead
-    
-    CGRect bounds = CGRectZero;
+    UIView *view = nil;
     if (self.parentViewController == nil) {
-        bounds = self.view.bounds;
+        view = self.view;
     }
     else {
-        bounds = self.parentViewController.view.bounds;
+        view = self.parentViewController.view;
     }
-	
-	
+
+    UIEdgeInsets insets = UIEdgeInsetsZero;
+    if (@available(iOS 11.0, *)) {
+        insets = view.safeAreaInsets;
+    }
+
+    CGRect bounds = view.bounds;
     CGRect frame = CGRectZero;
+
     if (!verticalLayout) {
-        frame.origin.x = 44.0f;
+        frame.origin.x = 44.0f + insets.left;
 		frame.origin.y = 0.0f;
 		
-        frame.size.width = CGRectGetWidth(bounds) - 44.0f;
+        frame.size.width = CGRectGetWidth(bounds) - (44.0f + insets.left);
 		frame.size.height = CGRectGetHeight(bounds);
 		
     }
     else {
         frame.origin.x = 0.0f;
-        
+        frame.size.height = CGRectGetHeight(bounds);
+
         if (_toolbarPosition == TOCropViewControllerToolbarPositionBottom) {
 			frame.origin.y = 0.0f;
+            frame.size.height -= (insets.bottom + 44.0f);
         } else {
-			frame.origin.y = 44.0f;
+			frame.origin.y = 44.0f + insets.top;
+            frame.size.height -= insets.top;
         }
 
         frame.size.width = CGRectGetWidth(bounds);
-		frame.size.height = CGRectGetHeight(bounds) - 44.0f;
     }
     
     return frame;
@@ -312,18 +330,55 @@ CGFloat titleLabelHeight;
     return frame;
 }
 
-- (void)adjustCropViewInsetsForTitleLabel
+- (void)adjustCropViewInsets
 {
-    if (!self.titleLabel) {
-        self.cropView.cropRegionInsets = UIEdgeInsetsZero;
+    UIEdgeInsets insets = UIEdgeInsetsZero;
+    if (@available(iOS 11.0, *)) {
+        insets = self.view.safeAreaInsets;
+    }
+
+    if (!self.titleLabel.text.length) {
+        if (self.verticalLayout) {
+            self.cropView.cropRegionInsets = UIEdgeInsetsZero;
+        }
+        else {
+            self.cropView.cropRegionInsets = UIEdgeInsetsMake(0.0f, 0.0f, insets.bottom, 0.0f);
+        }
+
         return;
     }
+
+    [self.titleLabel sizeToFit];
 
     CGFloat verticalInset = 0.0f; // self.topLayoutGuide.length; // status bar //FIXME: Is this ever needed?
     verticalInset += kTOCropViewControllerTitleTopPadding;
     verticalInset += self.titleLabel.frame.size.height;
 
-    self.cropView.cropRegionInsets = UIEdgeInsetsMake(verticalInset, 0, 0, 0);
+    self.cropView.cropRegionInsets = UIEdgeInsetsMake(verticalInset, 0, insets.bottom, 0);
+}
+
+- (void)viewSafeAreaInsetsDidChange
+{
+    [super viewSafeAreaInsetsDidChange];
+    
+    if (@available(iOS 11.0, *)) {
+        // Update the toolbar with the necessary insets
+        UIEdgeInsets insets = UIEdgeInsetsZero;
+        if (!self.verticalLayout) {
+            insets.left = self.view.safeAreaInsets.left;
+        }
+        else {
+            if (self.toolbarPosition == TOCropViewControllerToolbarPositionTop) {
+                insets.top = self.view.safeAreaInsets.top;
+            }
+            else {
+                insets.bottom = self.view.safeAreaInsets.bottom;
+            }
+        }
+        
+        self.toolbar.backgroundViewOutsets = insets;
+        [self.toolbar setNeedsLayout];
+    }
 }
 
 - (void)viewDidLayoutSubviews
@@ -331,12 +386,11 @@ CGFloat titleLabelHeight;
     [super viewDidLayoutSubviews];
 
     self.cropView.frame = [self frameForCropViewWithVerticalLayout:self.verticalLayout];
+    [self adjustCropViewInsets];
     [self.cropView moveCroppedContentToCenterAnimated:NO];
 
     if (self.title.length) {
-        [self.titleLabel sizeToFit];
         self.titleLabel.frame = [self frameForTitleLabelWithSize:self.titleLabel.frame.size verticalLayout:self.verticalLayout];
-        [self adjustCropViewInsetsForTitleLabel];
         [self.cropView moveCroppedContentToCenterAnimated:NO];
     }
 
@@ -739,23 +793,20 @@ CGFloat titleLabelHeight;
 - (void)cancelButtonTapped
 {
     bool isDelegateOrCallbackHandled = NO;
-    
+
+    // Check if the delegate method was implemented and call if so
     if ([self.delegate respondsToSelector:@selector(cropViewController:didFinishCancelled:)]) {
         [self.delegate cropViewController:self didFinishCancelled:YES];
-        
-        if (self.onDidFinishCancelled != nil) {
-            self.onDidFinishCancelled(YES);
-        }
-        
         isDelegateOrCallbackHandled = YES;
     }
-    
+
+    // Check if the block version was implemented and call if so
     if (self.onDidFinishCancelled != nil) {
         self.onDidFinishCancelled(YES);
-        
         isDelegateOrCallbackHandled = YES;
     }
-    
+
+    // If neither callbacks were implemented, perform a default dismissing animation
     if (!isDelegateOrCallbackHandled) {
         if (self.navigationController) {
             [self.navigationController popViewControllerAnimated:YES];
@@ -830,15 +881,15 @@ CGFloat titleLabelHeight;
             if (!completed)
                 return;
             
-            bool isCallbackOrDelegateHandled = NO
+            bool isCallbackOrDelegateHandled = NO;
             
             if (self.onDidFinishCancelled != nil) {
-                self.onDidFinishCancelled(NO)
-                isCallbackOrDelegateHandled = YES
+                self.onDidFinishCancelled(NO);
+                isCallbackOrDelegateHandled = YES;
             }
             if ([self.delegate respondsToSelector:@selector(cropViewController:didFinishCancelled:)]) {
                 [self.delegate cropViewController:self didFinishCancelled:NO];
-                isCallbackOrDelegateHandled = YES
+                isCallbackOrDelegateHandled = YES;
             }
             
             if (!isCallbackOrDelegateHandled) {
@@ -935,11 +986,20 @@ CGFloat titleLabelHeight;
     self.titleLabel.frame = [self frameForTitleLabelWithSize:self.titleLabel.frame.size verticalLayout:self.verticalLayout];
 }
 
+- (void)setDoneButtonTitle:(NSString *)title {
+    self.toolbar.doneTextButtonTitle = title;
+}
+
+- (void)setCancelButtonTitle:(NSString *)title {
+    self.toolbar.cancelTextButtonTitle = title;
+}
+
 - (TOCropView *)cropView {
+    // Lazily create the crop view in case we try and access it before presentation, but
+    // don't add it until our parent view controller view has loaded at the right time
     if (!_cropView) {
         _cropView = [[TOCropView alloc] initWithCroppingStyle:self.croppingStyle image:self.image];
         _cropView.delegate = self;
-        _cropView.frame = [UIScreen mainScreen].bounds;
         _cropView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self.view addSubview:_cropView];
     }

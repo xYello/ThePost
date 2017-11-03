@@ -26,6 +26,8 @@
 
 @interface TOCropToolbar()
 
+@property (nonatomic, strong) UIView *backgroundView;
+
 @property (nonatomic, strong, readwrite) UIButton *doneTextButton;
 @property (nonatomic, strong, readwrite) UIButton *doneIconButton;
 
@@ -63,7 +65,9 @@
 }
 
 - (void)setup {
-    self.backgroundColor = [UIColor colorWithWhite:0.12f alpha:1.0f];
+    self.backgroundView = [[UIView alloc] initWithFrame:self.bounds];
+    self.backgroundView.backgroundColor = [UIColor colorWithWhite:0.12f alpha:1.0f];
+    [self addSubview:self.backgroundView];
     
     _rotateClockwiseButtonHidden = YES;
     
@@ -87,10 +91,11 @@
     }
     
     _doneTextButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_doneTextButton setTitle:NSLocalizedStringFromTableInBundle(@"Done",
-                                                                 @"TOCropViewControllerLocalizable",
-                                                                 resourceBundle,
-                                                                 nil)
+    [_doneTextButton setTitle: _doneTextButtonTitle ?
+        _doneTextButtonTitle : NSLocalizedStringFromTableInBundle(@"Done",
+                                                                  @"TOCropViewControllerLocalizable",
+                                                                  resourceBundle,
+                                                                  nil)
                      forState:UIControlStateNormal];
     [_doneTextButton setTitleColor:[UIColor colorWithRed:1.0f green:0.8f blue:0.0f alpha:1.0f] forState:UIControlStateNormal];
     [_doneTextButton.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
@@ -104,10 +109,12 @@
     [self addSubview:_doneIconButton];
     
     _cancelTextButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_cancelTextButton setTitle:NSLocalizedStringFromTableInBundle(@"Cancel",
-                                                                   @"TOCropViewControllerLocalizable",
-                                                                   resourceBundle,
-                                                                   nil)
+    
+    [_cancelTextButton setTitle: _cancelTextButtonTitle ?
+        _cancelTextButtonTitle : NSLocalizedStringFromTableInBundle(@"Cancel",
+                                                                    @"TOCropViewControllerLocalizable",
+                                                                    resourceBundle,
+                                                                    nil)
                        forState:UIControlStateNormal];
     [_cancelTextButton.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [_cancelTextButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -152,6 +159,15 @@
     self.cancelTextButton.hidden = (verticalLayout);
     self.doneIconButton.hidden   = (!verticalLayout);
     self.doneTextButton.hidden   = (verticalLayout);
+
+    CGRect frame = self.bounds;
+    frame.origin.x -= self.backgroundViewOutsets.left;
+    frame.size.width += self.backgroundViewOutsets.left;
+    frame.size.width += self.backgroundViewOutsets.right;
+    frame.origin.y -= self.backgroundViewOutsets.top;
+    frame.size.height += self.backgroundViewOutsets.top;
+    frame.size.height += self.backgroundViewOutsets.bottom;
+    self.backgroundView.frame = frame;
     
 #if TOCROPTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT
     static UIView *containerView = nil;
@@ -168,9 +184,15 @@
         
         // Work out the cancel button frame
         CGRect frame = CGRectZero;
-        frame.origin.y = self.statusBarVisible ? 20.0f : 0.0f;
+        if (@available(iOS 11.0, *)) {
+            frame.origin.y = 0.0f;
+        } else {
+            frame.origin.y = self.statusBarVisible ? 20.0f : 0.0f;
+        }
         frame.size.height = 44.0f;
-        frame.size.width = [self.cancelTextButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.cancelTextButton.titleLabel.font}].width + 10;
+        CGFloat cancelButtonWidth = [self.cancelTextButtonTitle ?
+                                     self.cancelTextButtonTitle : self.cancelTextButton.titleLabel.text  sizeWithAttributes:@{NSFontAttributeName:self.cancelTextButton.titleLabel.font}].width + 10;
+        frame.size.width = MIN(self.frame.size.width / 3.0, cancelButtonWidth);
 
         //If normal layout, place on the left side, else place on the right
         if (self.reverseContentLayout == NO) {
@@ -182,7 +204,9 @@
         self.cancelTextButton.frame = frame;
         
         // Work out the Done button frame
-        frame.size.width = [self.doneTextButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.doneTextButton.titleLabel.font}].width + 10;
+        CGFloat doneButtonWidth = [self.cancelTextButtonTitle ?
+                                   self.cancelTextButtonTitle : self.doneTextButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.doneTextButton.titleLabel.font}].width + 10;
+        frame.size.width = MIN(self.frame.size.width / 3.0, doneButtonWidth);
         
         if (self.reverseContentLayout == NO) {
             frame.origin.x = boundsSize.width - (frame.size.width + insetPadding);
@@ -203,7 +227,7 @@
             width = CGRectGetMinX(self.cancelTextButton.frame) - CGRectGetMaxX(self.doneTextButton.frame);
         }
         
-        CGRect containerRect = (CGRect){x,frame.origin.y,width,44.0f};
+        CGRect containerRect = CGRectIntegral((CGRect){x,frame.origin.y,width,44.0f});
 
 #if TOCROPTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT
         containerView.frame = containerRect;
@@ -225,7 +249,6 @@
         if (!self.rotateClockwiseButtonHidden) {
             [buttonsInOrderHorizontally addObject:self.rotateClockwiseButton];
         }
-        
         
         [self layoutToolbarButtons:buttonsInOrderHorizontally withSameButtonSize:buttonSize inContainerRect:containerRect horizontally:YES];
     }
@@ -283,7 +306,11 @@
         CGPoint origin = horizontally ? CGPointMake(diffOffset, sameOffset) : CGPointMake(sameOffset, diffOffset);
         if (horizontally) {
             origin.x += CGRectGetMinX(containerRect);
-            origin.y += self.statusBarVisible ? 20.0f : 0.0f;
+            if (@available(iOS 11.0, *)) {
+            }
+            else {
+                origin.y += self.statusBarVisible ? 20.0f : 0.0f;
+            }
         } else {
             origin.y += CGRectGetMinY(containerRect);
         }
@@ -367,6 +394,16 @@
         return self.doneIconButton.frame;
     
     return self.doneTextButton.frame;
+}
+
+- (void)setCancelTextButtonTitle:(NSString *)cancelTextButtonTitle {
+    _cancelTextButtonTitle = cancelTextButtonTitle;
+    [_cancelTextButton setTitle:_cancelTextButtonTitle forState:UIControlStateNormal];
+}
+
+- (void)setDoneTextButtonTitle:(NSString *)doneTextButtonTitle {
+    _doneTextButtonTitle = doneTextButtonTitle;
+    [_doneTextButton setTitle:_doneTextButtonTitle forState:UIControlStateNormal];
 }
 
 #pragma mark - Image Generation -
