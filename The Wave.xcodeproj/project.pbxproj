@@ -373,6 +373,17 @@
 			path = Generics;
 			sourceTree = "<group>";
 		};
+		49C88F0B1FAD1D7500B57978 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */,
+				4D17F2021E85911F000BEAAB /* PushNotification.swift */,
+				4DD8CB241F034ADE004546F7 /* SentryManager.swift */,
+				4D1FB3871F44BF2A008055DE /* LocationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		4D04C51B1E0EFCD1004B2264 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,7 +562,7 @@
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				60C2ED5C1E29C6DA00ED83EA /* Constants.swift */,
 				4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */,
-				4DD8CB261F034AE9004546F7 /* Managers */,
+				49C88F0B1FAD1D7500B57978 /* Managers */,
 				4D14F6D81E31B4F800AF71F8 /* Extensions */,
 				4D14F6D71E31B4E500AF71F8 /* Models */,
 				4DD1BC9B1E0E251E005F4800 /* Sub Classes */,
@@ -702,17 +713,6 @@
 				4D1FB3851F44A302008055DE /* ProductUploadViewController.xib */,
 			);
 			name = "Add New Product";
-			sourceTree = "<group>";
-		};
-		4DD8CB261F034AE9004546F7 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */,
-				4D17F2021E85911F000BEAAB /* PushNotification.swift */,
-				4DD8CB241F034ADE004546F7 /* SentryManager.swift */,
-				4D1FB3871F44BF2A008055DE /* LocationManager.swift */,
-			);
-			name = Managers;
 			sourceTree = "<group>";
 		};
 		4DE662281E6D127D00417EBB /* 1Password */ = {
