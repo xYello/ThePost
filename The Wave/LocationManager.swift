@@ -82,11 +82,8 @@ class Location: NSObject, CLLocationManagerDelegate {
     // MARK: - Private methods
 
     private func requestLocationIfNeeded() {
-        let status = CLLocationManager.authorizationStatus()
-        if status == .notDetermined {
+        if CLLocationManager.authorizationStatus() == .notDetermined {
             clmanager.requestWhenInUseAuthorization()
-        } else if status == .restricted || status == .denied {
-            // Take to settings.
         }
     }
 
