@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseStorageUI
+import Lightbox
 
 class SocialViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SocialTableViewCellDelegate {
 
@@ -26,6 +27,7 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
+
         ref = Database.database().reference()
         socialPosts = []
         
@@ -124,6 +126,16 @@ class SocialViewController: UIViewController, UITableViewDataSource, UITableView
         if let socialCell = cell as? JeepSocialTableViewCell {
             socialCell.cancelImageLoad()
             socialCell.likesRef.removeAllObservers()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? JeepSocialTableViewCell, let image = cell.postImageView.image {
+            let images = [LightboxImage(image: image)]
+
+            let box = LightboxController(images: images, startIndex: 0)
+            LightboxConfig.PageIndicator.enabled = false
+            present(box, animated: true, completion: nil)
         }
     }
 

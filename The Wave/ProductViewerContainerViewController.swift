@@ -145,12 +145,11 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         grabProductImages()
         grabSellerInfo()
         checkForCurrentUserLike()
+        setupLikesAndViewsListeners()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        setupLikesAndViewsListeners()
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)

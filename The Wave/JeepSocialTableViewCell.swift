@@ -43,6 +43,8 @@ class JeepSocialTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        selectionStyle = .none
         
         profileImageView.clipsToBounds = true
         profileImageView.roundCorners()
