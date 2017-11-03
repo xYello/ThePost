@@ -280,7 +280,7 @@ open class LightboxController: UIViewController {
       ? headerView.closeButton.frame.height
       : headerView.deleteButton.frame.height
 
-    headerView.frame = CGRect(x: 0, y: 16, width: bounds.width, height: headerViewHeight)
+    headerView.frame = CGRect(x: 0, y: 40, width: bounds.width, height: headerViewHeight)
     footerView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 70)
 
     [headerView, footerView].forEach { ($0 as AnyObject).configureLayout() }

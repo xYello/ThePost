@@ -187,7 +187,7 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         }
 
         let box = LightboxController(images: images, startIndex: indexPath.row)
-        box.dynamicBackground = true
+        LightboxConfig.PageIndicator.enabled = false
         present(box, animated: true, completion: nil)
     }
     
