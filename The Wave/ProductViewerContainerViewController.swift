@@ -71,8 +71,6 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
         super.viewDidLoad()
         view.roundCorners(radius: 8.0)
         view.clipsToBounds = true
-        
-        product.images.removeAll()
 
         markAsSoldButton.roundCorners(radius: 8.0)
         
@@ -409,13 +407,15 @@ class ProductViewerContainerViewController: UIViewController, UICollectionViewDa
     // MARK: - Firebase Database
     
     private func grabProductImages() {
-        let imagesRef = Database.database().reference().child("products").child(product.uid).child("images")
-        imagesRef.observeSingleEvent(of: .value, with: { snapshot in
-            for image in snapshot.children.allObjects as! [DataSnapshot] {
-                self.product.imageUrls.append(image.value as! String)
-            }
-            self.collectionView.reloadData()
-        })
+        if product.imageUrls.count < 1 {
+            let imagesRef = Database.database().reference().child("products").child(product.uid).child("images")
+            imagesRef.observeSingleEvent(of: .value, with: { snapshot in
+                for image in snapshot.children.allObjects as! [DataSnapshot] {
+                    self.product.imageUrls.append(image.value as! String)
+                }
+                self.collectionView.reloadData()
+            })
+        }
     }
     
     private func setupLikesAndViewsListeners() {
