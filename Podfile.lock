@@ -11,6 +11,7 @@ PODS:
   - BoringSSL/Implementation (9.0):
     - BoringSSL/Interface (= 9.0)
   - BoringSSL/Interface (9.0)
+  - Cache (4.1.2)
   - Crashlytics (3.9.0):
     - Fabric (~> 1.7.0)
   - Fabric (1.7.1)
@@ -142,6 +143,9 @@ PODS:
   - GTMSessionFetcher/Core (1.1.12)
   - GTMSessionFetcher/Full (1.1.12):
     - GTMSessionFetcher/Core (= 1.1.12)
+  - Hue (3.0.0)
+  - Imaginary (3.0.1):
+    - Cache (~> 4.0)
   - JSQMessagesViewController (7.3.5):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -156,6 +160,9 @@ PODS:
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
   - leveldb-library (1.18.3)
+  - Lightbox (2.0.0):
+    - Hue (~> 3.0)
+    - Imaginary (~> 3.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -188,6 +195,7 @@ DEPENDENCIES:
   - FirebaseUI
   - GeoFire (from `https://github.com/firebase/geofire-objc.git`)
   - JSQMessagesViewController
+  - Lightbox
   - OneSignal (~> 2.0)
   - ReachabilitySwift (~> 3)
   - Sentry/Core (from `https://github.com/getsentry/sentry-cocoa.git`)
@@ -214,6 +222,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   BoringSSL: 19083b821ef3ae0f758fae15482e183003b1e265
+  Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
   Crashlytics: 64aad5dd97249dd3ff94b979fea140144590cdd3
   Fabric: c7cfc652f036180a72fe2539646c8a624420419d
   FBSDKCoreKit: 03365dad5d790249196ffad8be4f6d8a2d98f932
@@ -237,10 +246,13 @@ SPEC CHECKSUMS:
   gRPC-RxLibrary: 1b1c9c9cf666709ad7714cb0e0f3c44dc0cbfb0b
   GTMOAuth2: be83fd28d63ae3087e7d351b1f39c1a7e24ab6e7
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
+  Hue: b8fe1e43eef13631331eebecb2198b68e2622f95
+  Imaginary: d8b6437d1bc49fc088615bc4dbb9e9380c2ba94c
   JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   KSCrash: 931b6caeebfbfe0d316007fcd209f6cb9889c624
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
+  Lightbox: 83ec9f4aba4c79fc7bb9bcd263386df9969f09bb
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   OneSignal: 9ec286d9156b86b3975f45d928e70f46c74ef4b7
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
@@ -254,6 +266,6 @@ SPEC CHECKSUMS:
   UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
   WVCheckMark: a62e278531f05fe3a42a056db6383c273f4d9e8b
 
-PODFILE CHECKSUM: e861b173d48d2edb8b2e90b4fc1ecc029ff0caa2
+PODFILE CHECKSUM: 4c6b02ce2e6a510c053226afd675093792a43140
 
 COCOAPODS: 1.3.1
