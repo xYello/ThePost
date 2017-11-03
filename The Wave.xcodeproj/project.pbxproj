@@ -347,6 +347,122 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		498424051FAD1E0900BE2036 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4D20C1E31EF374AE0090AEBE /* Date+StartOfWeek.swift */,
+				4D05890C1F4A4FC800E7B865 /* UIColor+TheWave.swift */,
+				4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */,
+				497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */,
+				4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */,
+				49714F0E1F32C94700A7B4FC /* UIView+TappedAround.swift */,
+				4943ED881F37EFBE00C758F8 /* UIView+Borders.swift */,
+				4D1842361F46BFC800B2AEF2 /* UIView+Shake.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		498424061FAD1E1B00BE2036 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */,
+				4D35A21B1E12126300A115EB /* Jeep.swift */,
+				4D239C431E131BBE00F2668E /* Product.swift */,
+				2F2CF3381E8E316C00E6EBF7 /* SocialPost.swift */,
+				4D907B551E13824D00F9FD8B /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		498424071FAD1E2400BE2036 /* Product Listing */ = {
+			isa = PBXGroup;
+			children = (
+				4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */,
+				4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */,
+				4D11145E1E737B74001C274F /* ProductListingCollectionReusableView.swift */,
+			);
+			path = "Product Listing";
+			sourceTree = "<group>";
+		};
+		498424081FAD1E4600BE2036 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				49CD7D781FAD216700FDD605 /* Individual Chat */,
+				49CD7D771FAD214F00FDD605 /* Conversations */,
+				4DA153F41E22EB1300708543 /* Conversation.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		4984240A1FAD1E5C00BE2036 /* Add Product */ = {
+			isa = PBXGroup;
+			children = (
+				4952DDC61F313C9400AB159E /* PriceChooseViewController.swift */,
+				4952DDC81F313CE900AB159E /* PriceChooseViewController.xib */,
+				491FEF8C1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift */,
+				491FEF8D1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib */,
+				4D1FB3831F44A2EB008055DE /* ProductUploadViewController.swift */,
+				4D1FB3851F44A302008055DE /* ProductUploadViewController.xib */,
+			);
+			path = "Add Product";
+			sourceTree = "<group>";
+		};
+		4984240B1FAD1E7700BE2036 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				4DC30D4F1E399E050087B447 /* SocialViewController.swift */,
+				2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */,
+				2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
+		4984240C1FAD1E8B00BE2036 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				49CD7D761FAD213A00FDD605 /* Settings */,
+				49CD7D751FAD212800FDD605 /* Build Trust */,
+				4D34358C1E203E2800E031D7 /* ProfileViewController.swift */,
+				4D2A38DB1E2180A3003D42CA /* ProductListingTableViewCell.swift */,
+				4D1102051E2EAD7600ADF559 /* ProfileModalViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		4984240D1FAD1E9700BE2036 /* Jeep Selector */ = {
+			isa = PBXGroup;
+			children = (
+				4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */,
+				4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */,
+				4D35A21D1E121E3800A115EB /* JeepModelButton.swift */,
+				496944BE1F33FA3F00AEC0D1 /* JeepModelChooserViewController.swift */,
+				496944C01F33FA5A00AEC0D1 /* JeepModelChooserViewController.xib */,
+				496944C21F34026E00AEC0D1 /* JeepTypeView.swift */,
+			);
+			path = "Jeep Selector";
+			sourceTree = "<group>";
+		};
+		4984240E1FAD1EA600BE2036 /* Product Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				49CD7D741FAD210C00FDD605 /* Table View Cells */,
+				4D5AB0AF1E249404005BF23B /* ProductViewerViewController.swift */,
+				4D581B5D1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift */,
+				4D5AB0B11E249418005BF23B /* ProductViewerContainerViewController.swift */,
+			);
+			path = "Product Viewer";
+			sourceTree = "<group>";
+		};
+		4984240F1FAD1EB300BE2036 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				49CD7D721FAD20BB00FDD605 /* Create Review */,
+				49CD7D731FAD20CE00FDD605 /* Review Summary */,
+				4DBF61EC1E29E05100D07AD5 /* Review.swift */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
 		49A1621E1F22E6B4004D3C6D /* Provide feedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +485,12 @@
 			children = (
 				4D27D5D41F2D812C007D10B2 /* Image selector */,
 				49B33EDC1F2325B6005FF03E /* Keyboard Helper */,
+				4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */,
+				4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */,
+				4DBF61E61E29CA3100D07AD5 /* PercentageBar.swift */,
+				4D14F6D51E31A09400AF71F8 /* ModalPresentationViewController.swift */,
+				4952DDCA1F3144EC00AB159E /* BigRedShadowButton.swift */,
+				4943ED8A1F37F6DD00C758F8 /* ExtendedTextField.swift */,
 			);
 			path = Generics;
 			sourceTree = "<group>";
@@ -382,6 +504,107 @@
 				4D1FB3871F44BF2A008055DE /* LocationManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		49CD7D6F1FAD1FA500FDD605 /* SignInUp */ = {
+			isa = PBXGroup;
+			children = (
+				4D5643381E4EAF7600064948 /* SignInUp.storyboard */,
+				49CD7D701FAD207500FDD605 /* Walkthrough */,
+				49CD7D711FAD209E00FDD605 /* 1Password */,
+				4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */,
+				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
+				4D161BC71E26E97B001BEE9D /* SignInViewController.swift */,
+				4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */,
+			);
+			path = SignInUp;
+			sourceTree = "<group>";
+		};
+		49CD7D701FAD207500FDD605 /* Walkthrough */ = {
+			isa = PBXGroup;
+			children = (
+				4D04C5421E0F000B004B2264 /* WalkthroughViewController.swift */,
+				4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */,
+				4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */,
+				49A0DDA41FABECE4002B53A7 /* LocationPermissionRequestViewController.swift */,
+			);
+			path = Walkthrough;
+			sourceTree = "<group>";
+		};
+		49CD7D711FAD209E00FDD605 /* 1Password */ = {
+			isa = PBXGroup;
+			children = (
+				4DE6622A1E6D12A100417EBB /* 1Password.xcassets */,
+				4DE6622B1E6D12A100417EBB /* OnePasswordExtension.h */,
+				4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */,
+			);
+			path = 1Password;
+			sourceTree = "<group>";
+		};
+		49CD7D721FAD20BB00FDD605 /* Create Review */ = {
+			isa = PBXGroup;
+			children = (
+				4D161BCA1E2700EC001BEE9D /* CreateReviewViewController.swift */,
+				4D161BCC1E2710C2001BEE9D /* CreateReviewContainerViewController.swift */,
+			);
+			path = "Create Review";
+			sourceTree = "<group>";
+		};
+		49CD7D731FAD20CE00FDD605 /* Review Summary */ = {
+			isa = PBXGroup;
+			children = (
+				4DBF61E21E29C26600D07AD5 /* ReviewsSummaryViewController.swift */,
+				4DBF61E41E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift */,
+				4DBF61EA1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift */,
+			);
+			path = "Review Summary";
+			sourceTree = "<group>";
+		};
+		49CD7D741FAD210C00FDD605 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4D5AB0BB1E24B54A005BF23B /* ProductViewerTextTableViewCell.swift */,
+				4D5AB0B51E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift */,
+				4D5AB0B71E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift */,
+				4D5AB0B91E24B512005BF23B /* ProductViewerExCheckTableViewCell.swift */,
+			);
+			path = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		49CD7D751FAD212800FDD605 /* Build Trust */ = {
+			isa = PBXGroup;
+			children = (
+				4D0541101EA968CA0033526C /* BuildTrustModalViewController.swift */,
+				4D0541121EA969780033526C /* BuildTrustViewController.swift */,
+			);
+			path = "Build Trust";
+			sourceTree = "<group>";
+		};
+		49CD7D761FAD213A00FDD605 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4D1667301E4FBFBB0092FDFB /* SettingsViewController.swift */,
+				4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		49CD7D771FAD214F00FDD605 /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				4D23EC761E1F86360001C045 /* ChatConversationViewController.swift */,
+				4D23EC741E1F86130001C045 /* ConversationTableViewCell.swift */,
+			);
+			path = Conversations;
+			sourceTree = "<group>";
+		};
+		49CD7D781FAD216700FDD605 /* Individual Chat */ = {
+			isa = PBXGroup;
+			children = (
+				4D5AB0AA1E242765005BF23B /* ChatContainerViewController.swift */,
+				4DA153F21E22EA6D00708543 /* ChatViewController.swift */,
+			);
+			path = "Individual Chat";
 			sourceTree = "<group>";
 		};
 		4D04C51B1E0EFCD1004B2264 /* Fonts */ = {
@@ -410,106 +633,6 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		4D04C54A1E0F1A6F004B2264 /* Walkthrough */ = {
-			isa = PBXGroup;
-			children = (
-				4D04C54D1E0F2CD3004B2264 /* AppServicesRequestViewController.swift */,
-				49A0DDA41FABECE4002B53A7 /* LocationPermissionRequestViewController.swift */,
-				4D04C5421E0F000B004B2264 /* WalkthroughViewController.swift */,
-				4D04C5461E0F0B85004B2264 /* WalkthroughCollectionViewCell.swift */,
-			);
-			name = Walkthrough;
-			sourceTree = "<group>";
-		};
-		4D05410F1EA968A10033526C /* Buid Trust */ = {
-			isa = PBXGroup;
-			children = (
-				4D0541101EA968CA0033526C /* BuildTrustModalViewController.swift */,
-				4D0541121EA969780033526C /* BuildTrustViewController.swift */,
-			);
-			name = "Buid Trust";
-			sourceTree = "<group>";
-		};
-		4D14F6D71E31B4E500AF71F8 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */,
-				4D35A21B1E12126300A115EB /* Jeep.swift */,
-				4D239C431E131BBE00F2668E /* Product.swift */,
-				2F2CF3381E8E316C00E6EBF7 /* SocialPost.swift */,
-				4D907B551E13824D00F9FD8B /* User.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		4D14F6D81E31B4F800AF71F8 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				4D20C1E31EF374AE0090AEBE /* Date+StartOfWeek.swift */,
-				4D05890C1F4A4FC800E7B865 /* UIColor+TheWave.swift */,
-				4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */,
-				497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */,
-				4D04C54B1E0F1AA6004B2264 /* UIView+RoundedCorners.swift */,
-				49714F0E1F32C94700A7B4FC /* UIView+TappedAround.swift */,
-				4943ED881F37EFBE00C758F8 /* UIView+Borders.swift */,
-				4D1842361F46BFC800B2AEF2 /* UIView+Shake.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
-		4D161BC91E2700BC001BEE9D /* Reviews */ = {
-			isa = PBXGroup;
-			children = (
-				4DBF61EC1E29E05100D07AD5 /* Review.swift */,
-				4DBF61E91E29DEDE00D07AD5 /* Create */,
-				4DBF61E81E29DED500D07AD5 /* Summary */,
-			);
-			name = Reviews;
-			sourceTree = "<group>";
-		};
-		4D16672F1E4FBFAC0092FDFB /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				4D1667301E4FBFBB0092FDFB /* SettingsViewController.swift */,
-				4D1667341E4FC06F0092FDFB /* SettingsContainerViewController.swift */,
-			);
-			name = Settings;
-			sourceTree = "<group>";
-		};
-		4D239C401E12DF9300F2668E /* Product Listing */ = {
-			isa = PBXGroup;
-			children = (
-				4D239C3E1E12DF7E00F2668E /* ProductListingViewController.swift */,
-				4D239C411E12F6DB00F2668E /* ProductListingContentCollectionViewCell.swift */,
-				4D11145E1E737B74001C274F /* ProductListingCollectionReusableView.swift */,
-			);
-			name = "Product Listing";
-			sourceTree = "<group>";
-		};
-		4D23BC731E7F739900AE542F /* SignInUp */ = {
-			isa = PBXGroup;
-			children = (
-				4D5643381E4EAF7600064948 /* SignInUp.storyboard */,
-				4DE662281E6D127D00417EBB /* 1Password */,
-				4D04C54A1E0F1A6F004B2264 /* Walkthrough */,
-				4D23EC6F1E1ECE0C0001C045 /* SignInUpPromptViewController.swift */,
-				4D58C4F41E0E1957004CA0E3 /* SignUpViewController.swift */,
-				4D161BC71E26E97B001BEE9D /* SignInViewController.swift */,
-				4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */,
-			);
-			name = SignInUp;
-			sourceTree = "<group>";
-		};
-		4D23EC711E1F85B40001C045 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				4DA153F41E22EB1300708543 /* Conversation.swift */,
-				4DA153F01E22EA3F00708543 /* Conversations */,
-				4DA153F11E22EA4C00708543 /* Individual Conversation */,
-			);
-			name = Chat;
-			sourceTree = "<group>";
-		};
 		4D27D5D41F2D812C007D10B2 /* Image selector */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,18 +640,6 @@
 				4D27D5D71F2D8445007D10B2 /* ImageSelectorViewController.xib */,
 			);
 			path = "Image selector";
-			sourceTree = "<group>";
-		};
-		4D34358B1E203E1900E031D7 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				4D05410F1EA968A10033526C /* Buid Trust */,
-				4D16672F1E4FBFAC0092FDFB /* Settings */,
-				4D34358C1E203E2800E031D7 /* ProfileViewController.swift */,
-				4D2A38DB1E2180A3003D42CA /* ProductListingTableViewCell.swift */,
-				4D1102051E2EAD7600ADF559 /* ProfileModalViewController.swift */,
-			);
-			name = Profile;
 			sourceTree = "<group>";
 		};
 		4D58C4C81E0E1882004CA0E3 = {
@@ -563,20 +674,19 @@
 				60C2ED5C1E29C6DA00ED83EA /* Constants.swift */,
 				4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */,
 				49C88F0B1FAD1D7500B57978 /* Managers */,
-				4D14F6D81E31B4F800AF71F8 /* Extensions */,
-				4D14F6D71E31B4E500AF71F8 /* Models */,
-				4DD1BC9B1E0E251E005F4800 /* Sub Classes */,
-				4D239C401E12DF9300F2668E /* Product Listing */,
-				4D23EC711E1F85B40001C045 /* Chat */,
-				4DD3CCC41E14DC8200821C7C /* Add New Product */,
-				4DC30D4E1E399DEF0087B447 /* Social */,
+				498424051FAD1E0900BE2036 /* Extensions */,
+				498424061FAD1E1B00BE2036 /* Models */,
+				498424071FAD1E2400BE2036 /* Product Listing */,
+				498424081FAD1E4600BE2036 /* Chat */,
+				4984240A1FAD1E5C00BE2036 /* Add Product */,
+				4984240B1FAD1E7700BE2036 /* Social */,
+				4984240C1FAD1E8B00BE2036 /* Profile */,
+				4984240D1FAD1E9700BE2036 /* Jeep Selector */,
+				4984240E1FAD1EA600BE2036 /* Product Viewer */,
+				4984240F1FAD1EB300BE2036 /* Reviews */,
 				49A1621E1F22E6B4004D3C6D /* Provide feedback */,
-				4D34358B1E203E1900E031D7 /* Profile */,
-				4DFB05AC1E118A4600BEACE2 /* Jeep Selector */,
-				4D5AB0AC1E24939F005BF23B /* Product Viewer */,
-				4D161BC91E2700BC001BEE9D /* Reviews */,
 				4D58C4D81E0E1882004CA0E3 /* Main.storyboard */,
-				4D23BC731E7F739900AE542F /* SignInUp */,
+				49CD7D6F1FAD1FA500FDD605 /* SignInUp */,
 				4D58C4DB1E0E1882004CA0E3 /* Assets.xcassets */,
 				4D58C4DD1E0E1882004CA0E3 /* LaunchScreen.storyboard */,
 				4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */,
@@ -595,54 +705,6 @@
 			path = ThePostTests;
 			sourceTree = "<group>";
 		};
-		4D5AB0AC1E24939F005BF23B /* Product Viewer */ = {
-			isa = PBXGroup;
-			children = (
-				4D5AB0AE1E2493D7005BF23B /* Collection View Cells */,
-				4D5AB0AD1E2493B4005BF23B /* Table View Cells */,
-				4D5AB0AF1E249404005BF23B /* ProductViewerViewController.swift */,
-				4D5AB0B11E249418005BF23B /* ProductViewerContainerViewController.swift */,
-			);
-			name = "Product Viewer";
-			sourceTree = "<group>";
-		};
-		4D5AB0AD1E2493B4005BF23B /* Table View Cells */ = {
-			isa = PBXGroup;
-			children = (
-				4D5AB0BB1E24B54A005BF23B /* ProductViewerTextTableViewCell.swift */,
-				4D5AB0B51E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift */,
-				4D5AB0B71E24B4DB005BF23B /* ProductViewerSellerTableViewCell.swift */,
-				4D5AB0B91E24B512005BF23B /* ProductViewerExCheckTableViewCell.swift */,
-			);
-			name = "Table View Cells";
-			sourceTree = "<group>";
-		};
-		4D5AB0AE1E2493D7005BF23B /* Collection View Cells */ = {
-			isa = PBXGroup;
-			children = (
-				4D581B5D1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift */,
-			);
-			name = "Collection View Cells";
-			sourceTree = "<group>";
-		};
-		4DA153F01E22EA3F00708543 /* Conversations */ = {
-			isa = PBXGroup;
-			children = (
-				4D23EC761E1F86360001C045 /* ChatConversationViewController.swift */,
-				4D23EC741E1F86130001C045 /* ConversationTableViewCell.swift */,
-			);
-			name = Conversations;
-			sourceTree = "<group>";
-		};
-		4DA153F11E22EA4C00708543 /* Individual Conversation */ = {
-			isa = PBXGroup;
-			children = (
-				4D5AB0AA1E242765005BF23B /* ChatContainerViewController.swift */,
-				4DA153F21E22EA6D00708543 /* ChatViewController.swift */,
-			);
-			name = "Individual Conversation";
-			sourceTree = "<group>";
-		};
 		4DA2343C1E7DB709006B5192 /* OneSignalNotificationServiceExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,92 +712,6 @@
 				4DA2343F1E7DB709006B5192 /* Info.plist */,
 			);
 			path = OneSignalNotificationServiceExtension;
-			sourceTree = "<group>";
-		};
-		4DBF61E81E29DED500D07AD5 /* Summary */ = {
-			isa = PBXGroup;
-			children = (
-				4DBF61E21E29C26600D07AD5 /* ReviewsSummaryViewController.swift */,
-				4DBF61E41E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift */,
-				4DBF61EA1E29DF2000D07AD5 /* ReviewSummaryTableViewCell.swift */,
-			);
-			name = Summary;
-			sourceTree = "<group>";
-		};
-		4DBF61E91E29DEDE00D07AD5 /* Create */ = {
-			isa = PBXGroup;
-			children = (
-				4D161BCA1E2700EC001BEE9D /* CreateReviewViewController.swift */,
-				4D161BCC1E2710C2001BEE9D /* CreateReviewContainerViewController.swift */,
-			);
-			name = Create;
-			sourceTree = "<group>";
-		};
-		4DC30D4E1E399DEF0087B447 /* Social */ = {
-			isa = PBXGroup;
-			children = (
-				4DC30D511E39A6AB0087B447 /* Table View Cells */,
-				4DC30D4F1E399E050087B447 /* SocialViewController.swift */,
-				2FB607111E748E310053B41D /* UploadSocialPostViewController.swift */,
-			);
-			name = Social;
-			sourceTree = "<group>";
-		};
-		4DC30D511E39A6AB0087B447 /* Table View Cells */ = {
-			isa = PBXGroup;
-			children = (
-				2F5450BA1E537433005A88A3 /* JeepSocialTableViewCell.swift */,
-			);
-			name = "Table View Cells";
-			sourceTree = "<group>";
-		};
-		4DD1BC9B1E0E251E005F4800 /* Sub Classes */ = {
-			isa = PBXGroup;
-			children = (
-				4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */,
-				4DD1BC991E0E2421005F4800 /* RoundedTextField.swift */,
-				4DBF61E61E29CA3100D07AD5 /* PercentageBar.swift */,
-				4D14F6D51E31A09400AF71F8 /* ModalPresentationViewController.swift */,
-				4952DDCA1F3144EC00AB159E /* BigRedShadowButton.swift */,
-				4943ED8A1F37F6DD00C758F8 /* ExtendedTextField.swift */,
-			);
-			name = "Sub Classes";
-			sourceTree = "<group>";
-		};
-		4DD3CCC41E14DC8200821C7C /* Add New Product */ = {
-			isa = PBXGroup;
-			children = (
-				4952DDC61F313C9400AB159E /* PriceChooseViewController.swift */,
-				4952DDC81F313CE900AB159E /* PriceChooseViewController.xib */,
-				491FEF8C1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift */,
-				491FEF8D1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib */,
-				4D1FB3831F44A2EB008055DE /* ProductUploadViewController.swift */,
-				4D1FB3851F44A302008055DE /* ProductUploadViewController.xib */,
-			);
-			name = "Add New Product";
-			sourceTree = "<group>";
-		};
-		4DE662281E6D127D00417EBB /* 1Password */ = {
-			isa = PBXGroup;
-			children = (
-				4DE6622A1E6D12A100417EBB /* 1Password.xcassets */,
-				4DE6622B1E6D12A100417EBB /* OnePasswordExtension.h */,
-				4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */,
-			);
-			name = 1Password;
-			sourceTree = "<group>";
-		};
-		4DFB05AC1E118A4600BEACE2 /* Jeep Selector */ = {
-			isa = PBXGroup;
-			children = (
-				4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */,
-				4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */,
-				4D35A21D1E121E3800A115EB /* JeepModelButton.swift */,
-				496944BE1F33FA3F00AEC0D1 /* JeepModelChooserViewController.swift */,
-				496944C01F33FA5A00AEC0D1 /* JeepModelChooserViewController.xib */,
-				496944C21F34026E00AEC0D1 /* JeepTypeView.swift */,
-			);
-			name = "Jeep Selector";
 			sourceTree = "<group>";
 		};
 		60ABEB211EF35F2F00C7799B /* Recovered References */ = {
