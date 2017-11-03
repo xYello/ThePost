@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import AVFoundation
 import ReachabilitySwift
+import Lightbox
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -398,6 +399,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             options.addAction(cancel)
             
             present(options, animated: true, completion: nil)
+        } else {
+            if let image = profileImageView.image {
+                let images = [LightboxImage(image: image)]
+
+                let box = LightboxController(images: images, startIndex: 0)
+                LightboxConfig.PageIndicator.enabled = false
+                present(box, animated: true, completion: nil)
+            }
         }
     }
     
