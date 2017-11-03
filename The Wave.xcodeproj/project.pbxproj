@@ -422,6 +422,7 @@
 		4D14F6D71E31B4E500AF71F8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */,
 				4D35A21B1E12126300A115EB /* Jeep.swift */,
 				4D239C431E131BBE00F2668E /* Product.swift */,
 				2F2CF3381E8E316C00E6EBF7 /* SocialPost.swift */,
@@ -550,7 +551,6 @@
 				4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */,
 				60C2ED5C1E29C6DA00ED83EA /* Constants.swift */,
 				4DE662291E6D12A100417EBB /* The Wave-Bridging-Header.h */,
-				49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */,
 				4DD8CB261F034AE9004546F7 /* Managers */,
 				4D14F6D81E31B4F800AF71F8 /* Extensions */,
 				4D14F6D71E31B4E500AF71F8 /* Models */,
