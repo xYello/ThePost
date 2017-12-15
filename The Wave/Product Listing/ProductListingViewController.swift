@@ -208,8 +208,6 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plpContentCell", for: indexPath) as! ProductListingContentCollectionViewCell
         let product = productArray()[indexPath.row]
         
-        cell.descriptionLabel.text = product.jeepModel.name
-        
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         
@@ -221,9 +219,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             let truncated = String(string![..<endIndex]) // Remove the .00 from the price.
             cell.priceLabel.text = truncated
         }
-        
-        cell.nameLabel.text = product.name
-        
+
+        cell.locationLabel.text = product.cityStateString ?? "Not Provided"
+
         cell.imageView.image = nil
         
         return cell

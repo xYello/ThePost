@@ -18,12 +18,10 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var priceContainer: UIView!
     @IBOutlet weak var priceLabel: UILabel!
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
     @IBOutlet weak var likeButton: UIButton!
     
-    @IBOutlet weak var imageViewAspectRatioConstraint: NSLayoutConstraint!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var locationIcon: UIImageView!
     
     var ref: DatabaseReference?
     var productKey: String? {
@@ -45,13 +43,16 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        clipsToBounds = true
+        roundCorners(radius: 8.0)
         
         imageView.clipsToBounds = true
         
-        likeButton.layer.shadowRadius = 2.0
-        likeButton.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        likeButton.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
-        likeButton.layer.shadowOpacity = 1.0
+        priceContainer.layer.shadowRadius = 2.0
+        priceContainer.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        priceContainer.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
+        priceContainer.layer.shadowOpacity = 1.0
 
         priceContainer.roundCorners(radius: 8.0)
     }
@@ -64,14 +65,6 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
         } else {
             likeButton.isHidden = false
         }
-        
-        imageView.removeConstraint(imageViewAspectRatioConstraint)
-        if frame.width > frame.height {
-            imageViewAspectRatioConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .width, multiplier: 140/393, constant: 1.0)
-        } else {
-            imageViewAspectRatioConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .width, multiplier: 3024/4032, constant: 1.0)
-        }
-        imageView.addConstraint(imageViewAspectRatioConstraint)
     }
     
     // MARK: - Actions
