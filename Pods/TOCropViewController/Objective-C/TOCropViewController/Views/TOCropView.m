@@ -78,7 +78,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 /* Pre-screen-rotation state information */
 @property (nonatomic, assign) CGPoint rotationContentOffset;
 @property (nonatomic, assign) CGSize  rotationContentSize;
-@property (nonatomic, assign) CGSize  rotationBoundSize;
+@property (nonatomic, assign) CGRect  rotationBoundFrame;
 
 /* View State information */
 @property (nonatomic, readonly) CGRect contentBounds; /* Give the current screen real-estate, the frame that the scroll view is allowed to use */
@@ -86,7 +86,6 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 @property (nonatomic, readonly) BOOL hasAspectRatio;  /* True if an aspect ratio was explicitly applied to this crop view */
 
 /* 90-degree rotation state data */
-@property (nonatomic, assign) BOOL applyInitialRotatedAngle; /* No by default, when setting initialRotatedAngle this will be set to YES, and set back to NO after first application - so it's only done once */
 @property (nonatomic, assign) CGSize cropBoxLastEditedSize; /* When performing 90-degree rotations, remember what our last manual size was to use that as a base */
 @property (nonatomic, assign) NSInteger cropBoxLastEditedAngle; /* Remember which angle we were at when we saved the editing size */
 @property (nonatomic, assign) CGFloat cropBoxLastEditedZoomScale; /* Remember the zoom size when we last edited */
@@ -101,41 +100,14 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 /* In iOS 9, a new dynamic blur effect became available. */
 @property (nonatomic, assign) BOOL dynamicBlurEffect;
 
-/* If restoring to  a previous crop setting, these properties hang onto the
+/* If restoring to a previous crop setting, these properties hang onto the
  values until the view is configured for the first time. */
 @property (nonatomic, assign) NSInteger restoreAngle;
 @property (nonatomic, assign) CGRect    restoreImageCropFrame;
 
-- (void)setup;
-
-/* Image layout */
-- (void)layoutInitialImage;
-- (void)matchForegroundToBackground;
-
-/* Crop box handling */
-- (TOCropViewOverlayEdge)cropEdgeForPoint:(CGPoint)point;
-- (void)updateCropBoxFrameWithGesturePoint:(CGPoint)point;
-- (void)toggleTranslucencyViewVisible:(BOOL)visible;
-- (void)updateToImageCropFrame:(CGRect)imageCropframe;
-
-/* Editing state */
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated;
-- (void)startEditing;
-
-/* Timer handling */
-- (void)startResetTimer;
-- (void)timerTriggered;
-- (void)cancelResetTimer;
-
-/* Gesture Recognizers */
-- (void)gridPanGestureRecognized:(UIPanGestureRecognizer *)recognizer;
-- (void)longPressGestureRecognized:(UILongPressGestureRecognizer *)recognizer;
-
-/* Reset state */
-- (void)checkForCanReset;
-
-/* Capture rotation state (for 90-degree rotation) */
-- (void)captureStateForImageRotation;
+/* Set to YES once `performInitialLayout` is called. This lets pending properties get queued until the view
+ has been properly set up in its parent. */
+@property (nonatomic, assign) BOOL initialSetupPerformed;
 
 @end
 
@@ -190,11 +162,9 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     [self addSubview:self.scrollView];
 
     // Disable smart inset behavior in iOS 11
-    #if defined(__IPHONE_11_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_11_0
     if (@available(iOS 11.0, *)) {
         self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
-    #endif
 
     self.scrollView.touchesBegan = ^{ [weakSelf startEditing]; };
     self.scrollView.touchesEnded = ^{ [weakSelf startResetTimer]; };
@@ -269,6 +239,14 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 #pragma mark - View Layout -
 - (void)performInitialSetup
 {
+    // Calling this more than once is potentially destructive
+    if (self.initialSetupPerformed) {
+        return;
+    }
+    
+    // Disable from calling again
+    self.initialSetupPerformed = YES;
+    
     //Perform the initial layout of the image
     [self layoutInitialImage];
     
@@ -278,6 +256,9 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     if (self.restoreAngle != 0) {
         self.angle = self.restoreAngle;
         self.restoreAngle = 0;
+        
+        self.cropBoxLastEditedAngle = self.angle;
+        [self captureStateForImageRotation];
     }
     
     //If an image crop frame was also specified before creation, apply it now
@@ -358,7 +339,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 {
     self.rotationContentOffset = self.scrollView.contentOffset;
     self.rotationContentSize   = self.scrollView.contentSize;
-    self.rotationBoundSize     = self.scrollView.bounds.size;
+    self.rotationBoundFrame     = self.contentBounds;
 }
 
 - (void)performRelayoutForRotation
@@ -380,7 +361,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     [self captureStateForImageRotation];
     
     //Work out the center point of the content before we rotated
-    CGPoint oldMidPoint = (CGPoint){self.rotationBoundSize.width * 0.5f, self.rotationBoundSize.height * 0.5f};
+    CGPoint oldMidPoint = (CGPoint){CGRectGetMidX(self.rotationBoundFrame), CGRectGetMidY(self.rotationBoundFrame)};
     CGPoint contentCenter = (CGPoint){self.rotationContentOffset.x + oldMidPoint.x, self.rotationContentOffset.y + oldMidPoint.y};
     
     //Normalize it to a percentage we can apply to different sizes
@@ -389,9 +370,8 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     normalizedCenter.y = contentCenter.y / self.rotationContentSize.height;
     
     //Work out the new content offset by applying the normalized values to the new layout
-    CGPoint newMidPoint = (CGPoint){self.scrollView.bounds.size.width * 0.5f,
-                                    self.scrollView.bounds.size.height * 0.5f};
-    
+    CGPoint newMidPoint = (CGPoint){CGRectGetMidX(self.contentBounds),CGRectGetMidY(self.contentBounds)};
+
     CGPoint translatedContentOffset = CGPointZero;
     translatedContentOffset.x = self.scrollView.contentSize.width * normalizedCenter.x;
     translatedContentOffset.y = self.scrollView.contentSize.height * normalizedCenter.y;
@@ -751,15 +731,15 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     // Zoom into the scroll view to the appropriate size
     self.scrollView.zoomScale = self.scrollView.minimumZoomScale * scale;
     
-    // Work out the size and offset of the upscaed crop box
+    // Work out the size and offset of the upscaled crop box
     CGRect frame = CGRectZero;
     frame.size = (CGSize){scaledCropSize.width * scale, scaledCropSize.height * scale};
     
     //set the crop box
     CGRect cropBoxFrame = CGRectZero;
     cropBoxFrame.size = frame.size;
-    cropBoxFrame.origin.x = (self.bounds.size.width - frame.size.width) * 0.5f;
-    cropBoxFrame.origin.y = (self.bounds.size.height - frame.size.height) * 0.5f;
+    cropBoxFrame.origin.x = CGRectGetMidX(bounds) - (frame.size.width * 0.5f);
+    cropBoxFrame.origin.y = CGRectGetMidY(bounds) - (frame.size.height * 0.5f);
     self.cropBoxFrame = cropBoxFrame;
     
     frame.origin.x = (scaledOffset.x * scale) - self.scrollView.contentInset.left;
@@ -1052,7 +1032,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 
 - (void)setImageCropFrame:(CGRect)imageCropFrame
 {
-    if (self.superview == nil) {
+    if (!self.initialSetupPerformed) {
         self.restoreImageCropFrame = imageCropFrame;
         return;
     }
@@ -1165,13 +1145,22 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
         newAngle = 0;
     }
     
-    if (self.superview == nil) {
+    if (!self.initialSetupPerformed) {
         self.restoreAngle = newAngle;
         return;
     }
     
-    while (labs(self.angle) != labs(newAngle)) {
-        [self rotateImageNinetyDegreesAnimated:NO];
+    // Negative values are allowed, so rotate clockwise or counter clockwise depending
+    // on direction
+    if (newAngle >= 0) {
+        while (labs(self.angle) != labs(newAngle)) {
+            [self rotateImageNinetyDegreesAnimated:NO clockwise:YES];
+        }
+    }
+    else {
+        while (-labs(self.angle) != -labs(newAngle)) {
+            [self rotateImageNinetyDegreesAnimated:NO clockwise:NO];
+        }
     }
 }
 
@@ -1337,7 +1326,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     _aspectRatio = aspectRatio;
     
     // Will be executed automatically when added to a super view
-    if (self.superview == nil) {
+    if (!self.initialSetupPerformed) {
         return;
     }
     
@@ -1443,9 +1432,10 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     //Work out the new angle, and wrap around once we exceed 360s
     NSInteger newAngle = self.angle;
     newAngle = clockwise ? newAngle + 90 : newAngle - 90;
-    if (newAngle <= -360 || newAngle >= 360)
+    if (newAngle <= -360 || newAngle >= 360) {
         newAngle = 0;
-    
+    }
+
     _angle = newAngle;
     
     //Convert the new angle to radians
@@ -1488,8 +1478,8 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
         self.scrollView.zoomScale *= scale;
     }
     
-    newCropFrame.origin.x = floorf((CGRectGetWidth(self.bounds) - newCropFrame.size.width) * 0.5f);
-    newCropFrame.origin.y = floorf((CGRectGetHeight(self.bounds) - newCropFrame.size.height) * 0.5f);
+    newCropFrame.origin.x = floorf(CGRectGetMidX(contentBounds) - (newCropFrame.size.width * 0.5f));
+    newCropFrame.origin.y = floorf(CGRectGetMidY(contentBounds) - (newCropFrame.size.height * 0.5f));
     
     //If we're animated, generate a snapshot view that we'll animate in place of the real view
     UIView *snapshotView = nil;
@@ -1539,8 +1529,8 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     offset.y = floorf(-midPoint.y + cropTargetPoint.y);
     offset.x = MAX(-self.scrollView.contentInset.left, offset.x);
     offset.y = MAX(-self.scrollView.contentInset.top, offset.y);
-    offset.x = MIN(self.scrollView.contentSize.width - newCropFrame.size.width - self.scrollView.contentInset.right, offset.x);
-    offset.y = MIN(self.scrollView.contentSize.height - newCropFrame.size.height - self.scrollView.contentInset.bottom, offset.y);
+    offset.x = MIN(self.scrollView.contentSize.width - (newCropFrame.size.width - self.scrollView.contentInset.right), offset.x);
+    offset.y = MIN(self.scrollView.contentSize.height - (newCropFrame.size.height - self.scrollView.contentInset.bottom), offset.y);
     
     //if the scroll view's new scale is 1 and the new offset is equal to the old, will not trigger the delegate 'scrollViewDidScroll:'
     //so we should call the method manually to update the foregroundImageView's frame
@@ -1552,7 +1542,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     //If we're animated, play an animation of the snapshot view rotating,
     //then fade it out over the live content
     if (animated) {
-        snapshotView.center = self.scrollView.center;
+        snapshotView.center = (CGPoint){CGRectGetMidX(contentBounds), CGRectGetMidY(contentBounds)};
         [self addSubview:snapshotView];
         
         self.backgroundContainerView.hidden = YES;

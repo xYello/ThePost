@@ -9,9 +9,9 @@
 import UIKit
 import AVFoundation
 import Firebase
-import TOCropViewController
+import CropViewController
 
-class UploadSocialPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TOCropViewControllerDelegate {
+class UploadSocialPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
     
     @IBOutlet weak var exButton: UIButton!
 
@@ -179,7 +179,7 @@ class UploadSocialPostViewController: UIViewController, UIImagePickerControllerD
     }
 
     private func presentCrop(withImage image: UIImage) {
-        let cropVc = TOCropViewController(image: image)
+        let cropVc = CropViewController(image: image)
         cropVc.imageCropFrame = previewImageView.frame
         cropVc.aspectRatioLockEnabled = true
         cropVc.resetAspectRatioEnabled = false
@@ -199,14 +199,14 @@ class UploadSocialPostViewController: UIViewController, UIImagePickerControllerD
         presentCrop(withImage: chosenImage)
     }
 
-    // MARK: - TOViewController delegate
+    // MARK: - CropViewController delegate
 
-    func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle: Int) {
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         updateImage(image)
         cropViewController.dismiss(animated: true, completion: nil)
     }
 
-    func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
+    func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
         if cancelled {
             if let image = originalImage {
                 updateImage(image)

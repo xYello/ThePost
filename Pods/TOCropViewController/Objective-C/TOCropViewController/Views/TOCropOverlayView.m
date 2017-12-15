@@ -36,9 +36,6 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
 @property (nonatomic, strong) NSArray *bottomRightLineViews;
 @property (nonatomic, strong) NSArray *topRightLineViews;
 
-- (void)setup;
-- (void)layoutLines;
-
 @end
 
 @implementation TOCropOverlayView
@@ -73,17 +70,17 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
 - (void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
-    
-    if (_outerLineViews)
+    if (_outerLineViews) {
         [self layoutLines];
+    }
 }
 
 - (void)didMoveToSuperview
 {
     [super didMoveToSuperview];
-    
-    if (_outerLineViews)
+    if (_outerLineViews) {
         [self layoutLines];
+    }
 }
 
 - (void)layoutLines
