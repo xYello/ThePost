@@ -76,10 +76,10 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let viewType = KeychainWrapper.standard.string(forKey: ProductListingType.key)
         if viewType == nil || viewType == ProductListingType.small {
-            layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: floor(view.frame.height * (235/736)))
+            layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: 230)
         } else {
             isWideViewType = true
-            layout.itemSize = CGSize(width: floor(view.frame.width * (394/414)), height: floor(view.frame.height * (235/736)))
+            layout.itemSize = CGSize(width: floor(view.frame.width * (394/414)), height: 230)
         }
         
         collectionView.dataSource = self
@@ -329,7 +329,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         wideProductSortButton.imageView!.tintColor = #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 0.5)
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: floor(view.frame.height * (235/736)))
+        layout.itemSize = CGSize(width: floor(view.frame.width * (190/414)), height: 230)
         
         KeychainWrapper.standard.set(ProductListingType.small, forKey: ProductListingType.key)
         
@@ -344,7 +344,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         wideProductSortButton.imageView!.tintColor = UIColor.white
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: floor(view.frame.width * (394/414)), height: floor(view.frame.height * (235/736)))
+        layout.itemSize = CGSize(width: floor(view.frame.width * (394/414)), height: 230)
         
         KeychainWrapper.standard.set(ProductListingType.wide, forKey: ProductListingType.key)
         
