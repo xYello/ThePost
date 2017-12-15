@@ -32,6 +32,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     private var ref: DatabaseReference!
     private var productRef: DatabaseReference?
+    private var productQuery: DatabaseQuery!
+
+    private var filter = Filter()
     
     private var amountOfProducts = 0 {
         didSet {
@@ -116,49 +119,38 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             }
             
             productRef = ref.child("products")
-            
-            var query = productRef!.queryOrdered(byChild: "soldModel")
-                .queryStarting(atValue: "SELLING").queryEnding(atValue: "SELLING\u{f8ff}").queryLimited(toLast: 200)
-            if jeepModel.type != .all {
-                query = productRef!.queryOrdered(byChild: "soldModel")
-                    .queryStarting(atValue: "SELLING" + jeepModel.type.name)
-                    .queryEnding(atValue: "SELLING" + jeepModel.type.name)
-                    .queryLimited(toLast: 200)
-            }
-            query.observe(.childAdded, with: { snapshot in
-                if let productDict = snapshot.value as? [String: AnyObject] {
-                    if let product = Product.createProduct(with: productDict, with: snapshot.key) {
-                        
-                        self.amountOfProducts += 1
-                        
-                        self.placeInOrder(product: product)
-                        
+
+            ////////////////
+            Location.manager.startGatheringAndRequestPermission()
+            filter.model = .all
+            filter.type = .location(50)
+            ////////////////
+
+            filter.grabProducts(forReference: productRef!, productAdded: { product in
+                if let product = product {
+                    self.amountOfProducts += 1
+
+                    self.placeInOrder(product: product)
+
+                    if !self.isSearching {
+                        self.collectionView.performBatchUpdates({
+                            self.collectionView.reloadSections(IndexSet(integer: 0))
+                        }, completion: nil)
+                    }
+                }
+            }, productRemoved: { product in
+                if let product = product {
+                    let index = self.indexOfProduct(product)
+
+                    if index != -1 {
+                        self.amountOfProducts -= 1
+                        self.products.remove(at: index)
+
                         if !self.isSearching {
                             self.collectionView.performBatchUpdates({
                                 self.collectionView.reloadSections(IndexSet(integer: 0))
                             }, completion: nil)
                         }
-                        
-                    }
-                }
-            })
-            
-            query.observe(.childRemoved, with: { snapshot in
-                if let productDict = snapshot.value as? [String: AnyObject] {
-                    if let product = Product.createProduct(with: productDict, with: snapshot.key) {
-                        let index = self.indexOfProduct(product)
-                        
-                        if index != -1 {
-                            self.amountOfProducts -= 1
-                            self.products.remove(at: index)
-                            
-                            if !self.isSearching {
-                                self.collectionView.performBatchUpdates({
-                                    self.collectionView.reloadSections(IndexSet(integer: 0))
-                                }, completion: nil)
-                            }
-                        }
-                        
                     }
                 }
             })

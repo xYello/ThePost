@@ -14,6 +14,8 @@
 		317F8312604FAE3B60BC7E56 /* Pods_The_Wave_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6297B4D70B986A58945734 /* Pods_The_Wave_Tests.framework */; };
 		491FEF8E1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491FEF8C1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift */; };
 		491FEF8F1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491FEF8D1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib */; };
+		492FEC6D1FE447F80039A4EA /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FEC6C1FE447F80039A4EA /* Filter.swift */; };
+		492FEC6F1FE4713F0039A4EA /* Int+MilesAndMeters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FEC6E1FE4713F0039A4EA /* Int+MilesAndMeters.swift */; };
 		4943ED891F37EFBE00C758F8 /* UIView+Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4943ED881F37EFBE00C758F8 /* UIView+Borders.swift */; };
 		4943ED8B1F37F6DD00C758F8 /* ExtendedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4943ED8A1F37F6DD00C758F8 /* ExtendedTextField.swift */; };
 		4952DDC71F313C9400AB159E /* PriceChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4952DDC61F313C9400AB159E /* PriceChooseViewController.swift */; };
@@ -164,6 +166,8 @@
 		4375007B15C08C7978EE6C10 /* Pods-The Wave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Wave.release.xcconfig"; path = "Pods/Target Support Files/Pods-The Wave/Pods-The Wave.release.xcconfig"; sourceTree = "<group>"; };
 		491FEF8C1F36BC1C00F618AC /* ProductExtraDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductExtraDetailsViewController.swift; sourceTree = "<group>"; };
 		491FEF8D1F36BC1C00F618AC /* ProductExtraDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductExtraDetailsViewController.xib; sourceTree = "<group>"; };
+		492FEC6C1FE447F80039A4EA /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		492FEC6E1FE4713F0039A4EA /* Int+MilesAndMeters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+MilesAndMeters.swift"; sourceTree = "<group>"; };
 		4943ED881F37EFBE00C758F8 /* UIView+Borders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Borders.swift"; sourceTree = "<group>"; };
 		4943ED8A1F37F6DD00C758F8 /* ExtendedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTextField.swift; sourceTree = "<group>"; };
 		4952DDC61F313C9400AB159E /* PriceChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceChooseViewController.swift; sourceTree = "<group>"; };
@@ -358,6 +362,7 @@
 				49714F0E1F32C94700A7B4FC /* UIView+TappedAround.swift */,
 				4943ED881F37EFBE00C758F8 /* UIView+Borders.swift */,
 				4D1842361F46BFC800B2AEF2 /* UIView+Shake.swift */,
+				492FEC6E1FE4713F0039A4EA /* Int+MilesAndMeters.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 				4D239C431E131BBE00F2668E /* Product.swift */,
 				2F2CF3381E8E316C00E6EBF7 /* SocialPost.swift */,
 				4D907B551E13824D00F9FD8B /* User.swift */,
+				492FEC6C1FE447F80039A4EA /* Filter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -916,11 +922,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-The Wave/Pods-The Wave-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle,
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
@@ -1169,6 +1175,7 @@
 				4DBF61E51E29C28F00D07AD5 /* ReviewsSummaryContainerViewController.swift in Sources */,
 				49A7F4431FA5B55700A0CE4D /* BadgeStatus.swift in Sources */,
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
+				492FEC6F1FE4713F0039A4EA /* Int+MilesAndMeters.swift in Sources */,
 				497BFC4F1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift in Sources */,
 				4DBF61E71E29CA3100D07AD5 /* PercentageBar.swift in Sources */,
 				49A0DDA51FABECE4002B53A7 /* LocationPermissionRequestViewController.swift in Sources */,
@@ -1184,6 +1191,7 @@
 				4D04C54C1E0F1AA6004B2264 /* UIView+RoundedCorners.swift in Sources */,
 				4D2A38DC1E2180A3003D42CA /* ProductListingTableViewCell.swift in Sources */,
 				496944C31F34026E00AEC0D1 /* JeepTypeView.swift in Sources */,
+				492FEC6D1FE447F80039A4EA /* Filter.swift in Sources */,
 				2F2CF3391E8E316C00E6EBF7 /* SocialPost.swift in Sources */,
 				4D1FB3881F44BF2A008055DE /* LocationManager.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,

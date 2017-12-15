@@ -116,6 +116,7 @@ class Product: NSObject {
     var isSold = false
 
     private let productLocationRef = "product-locations"
+    var location: CLLocation?
 
     // MARK: - Init
 
