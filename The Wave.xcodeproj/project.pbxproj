@@ -28,6 +28,9 @@
 		497BFC4F1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */; };
 		49A0DDA51FABECE4002B53A7 /* LocationPermissionRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0DDA41FABECE4002B53A7 /* LocationPermissionRequestViewController.swift */; };
 		49A162201F22E6D7004D3C6D /* FeedbackModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */; };
+		49A43AA31FE785F2005BB37E /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49A43AA21FE785F2005BB37E /* FilterViewController.xib */; };
+		49A43AA51FE78603005BB37E /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A43AA41FE78603005BB37E /* FilterViewController.swift */; };
+		49A43AA81FE78D43005BB37E /* SelectionSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A43AA71FE78D43005BB37E /* SelectionSliderViewController.swift */; };
 		49A7F4431FA5B55700A0CE4D /* BadgeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */; };
 		49B33EDB1F2325A8005FF03E /* KeyboardHelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B33EDA1F2325A8005FF03E /* KeyboardHelperViewController.swift */; };
 		49B33EDE1F2325CE005FF03E /* KeyboardHelperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B33EDD1F2325CE005FF03E /* KeyboardHelperViewController.xib */; };
@@ -180,6 +183,9 @@
 		497BFC4E1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PhotoPermissions.swift"; sourceTree = "<group>"; };
 		49A0DDA41FABECE4002B53A7 /* LocationPermissionRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionRequestViewController.swift; sourceTree = "<group>"; };
 		49A1621F1F22E6D7004D3C6D /* FeedbackModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackModalViewController.swift; sourceTree = "<group>"; };
+		49A43AA21FE785F2005BB37E /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
+		49A43AA41FE78603005BB37E /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		49A43AA71FE78D43005BB37E /* SelectionSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSliderViewController.swift; sourceTree = "<group>"; };
 		49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeStatus.swift; sourceTree = "<group>"; };
 		49B33EDA1F2325A8005FF03E /* KeyboardHelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelperViewController.swift; sourceTree = "<group>"; };
 		49B33EDD1F2325CE005FF03E /* KeyboardHelperViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyboardHelperViewController.xib; sourceTree = "<group>"; };
@@ -477,6 +483,23 @@
 			path = "Provide feedback";
 			sourceTree = "<group>";
 		};
+		49A43AA11FE785A8005BB37E /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				49A43AA21FE785F2005BB37E /* FilterViewController.xib */,
+				49A43AA41FE78603005BB37E /* FilterViewController.swift */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		49A43AA61FE788C3005BB37E /* SelectionSlider */ = {
+			isa = PBXGroup;
+			children = (
+				49A43AA71FE78D43005BB37E /* SelectionSliderViewController.swift */,
+			);
+			path = SelectionSlider;
+			sourceTree = "<group>";
+		};
 		49B33EDC1F2325B6005FF03E /* Keyboard Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,6 +512,7 @@
 		49C88F0A1FAD1B8800B57978 /* Generics */ = {
 			isa = PBXGroup;
 			children = (
+				49A43AA61FE788C3005BB37E /* SelectionSlider */,
 				4D27D5D41F2D812C007D10B2 /* Image selector */,
 				49B33EDC1F2325B6005FF03E /* Keyboard Helper */,
 				4DD3CCBF1E144E0400821C7C /* SlidingSelectionTabBarController.swift */,
@@ -683,6 +707,7 @@
 				498424051FAD1E0900BE2036 /* Extensions */,
 				498424061FAD1E1B00BE2036 /* Models */,
 				498424071FAD1E2400BE2036 /* Product Listing */,
+				49A43AA11FE785A8005BB37E /* Filters */,
 				498424081FAD1E4600BE2036 /* Chat */,
 				4984240A1FAD1E5C00BE2036 /* Add Product */,
 				4984240B1FAD1E7700BE2036 /* Social */,
@@ -878,6 +903,7 @@
 				4D04C5401E0EFCDD004B2264 /* Lato-ThinItalic.ttf in Resources */,
 				4D04C53B1E0EFCDD004B2264 /* Lato-MediumItalic.ttf in Resources */,
 				4D04C5361E0EFCDD004B2264 /* Lato-HeavyItalic.ttf in Resources */,
+				49A43AA31FE785F2005BB37E /* FilterViewController.xib in Resources */,
 				4D04C5321E0EFCDD004B2264 /* Lato-BoldItalic.ttf in Resources */,
 				4D04C5301E0EFCDD004B2264 /* Lato-BlackItalic.ttf in Resources */,
 				4D04C53A1E0EFCDD004B2264 /* Lato-Medium.ttf in Resources */,
@@ -1177,6 +1203,7 @@
 				4D58C4F51E0E1957004CA0E3 /* SignUpViewController.swift in Sources */,
 				492FEC6F1FE4713F0039A4EA /* Int+MilesAndMeters.swift in Sources */,
 				497BFC4F1F2ED74B00C1E3D9 /* UIViewController+PhotoPermissions.swift in Sources */,
+				49A43AA81FE78D43005BB37E /* SelectionSliderViewController.swift in Sources */,
 				4DBF61E71E29CA3100D07AD5 /* PercentageBar.swift in Sources */,
 				49A0DDA51FABECE4002B53A7 /* LocationPermissionRequestViewController.swift in Sources */,
 				4D5AB0B61E24B4BA005BF23B /* ProductViewerDetailsTableViewCell.swift in Sources */,
@@ -1219,6 +1246,7 @@
 				4DBF61ED1E29E05100D07AD5 /* Review.swift in Sources */,
 				4D23EC701E1ECE0C0001C045 /* SignInUpPromptViewController.swift in Sources */,
 				4D5AB0BA1E24B512005BF23B /* ProductViewerExCheckTableViewCell.swift in Sources */,
+				49A43AA51FE78603005BB37E /* FilterViewController.swift in Sources */,
 				4DD8CB251F034ADE004546F7 /* SentryManager.swift in Sources */,
 				4D23EC771E1F86360001C045 /* ChatConversationViewController.swift in Sources */,
 				4DBF61E31E29C26600D07AD5 /* ReviewsSummaryViewController.swift in Sources */,

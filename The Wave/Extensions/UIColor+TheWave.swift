@@ -12,6 +12,10 @@ extension UIColor {
         return #colorLiteral(red: 0.6392156863, green: 0.2980392157, blue: 0.2235294118, alpha: 1)
     }
 
+    static var waveBrightRed: UIColor {
+        return #colorLiteral(red: 0.8470588235, green: 0.337254902, blue: 0.2156862745, alpha: 1)
+    }
+
     static var waveYellow: UIColor {
         return #colorLiteral(red: 0.9098039216, green: 0.9058823529, blue: 0.8235294118, alpha: 1)
     }
