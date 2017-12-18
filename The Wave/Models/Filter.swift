@@ -15,7 +15,7 @@ typealias ProductAddedBlock = (_ product: Product?) -> Void
 typealias ProductRemovedBlock = (_ product: Product?) -> Void
 
 enum FilterType {
-    case location(Int) // in miles
+    case location // in miles
     case model
 }
 
@@ -27,19 +27,25 @@ class Filter {
         }
     }
 
+    let minimumRadius = 0
+    let maximumRadius = 250
+    var radius: Int
+
     var modelQuery: DatabaseQuery?
     var locationQuery: GFCircleQuery?
 
     init() {
         let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? ""
         model = JeepModel.enumFromString(string: selectedJeepDescription)
+
+        radius = 0
     }
 
     func grabProducts(forReference reference: DatabaseReference, productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
         switch type {
         case .model:
             modelSearch(forReference: reference, productAdded: productAdded, productRemoved: productRemoved)
-        case .location(_):
+        case .location:
             locationSearch(productAdded: productAdded, productRemoved: productRemoved)
         }
     }
@@ -83,43 +89,38 @@ class Filter {
     private func locationSearch(productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
         locationQuery?.removeAllObservers()
 
-        switch type {
-        case .location(let distance):
-            if let last = Location.manager.lastLocation {
+        if let last = Location.manager.lastLocation {
 
-                let reference = Database.database().reference().child("product-locations")
-                let geo = GeoFire(firebaseRef: reference)
-                locationQuery = geo?.query(at: last, withRadius: Double(distance.toMeters() / 1000))
-                locationQuery?.observe(.keyEntered, with: { key, location in
-                    if let key = key, let _ = location {
-                        self.findProductForKey(key: key, block: { product in
-                            if let product = product {
-                                productAdded(product)
-                            } else {
-                                productAdded(nil)
-                            }
-                        })
-                    } else {
-                        productAdded(nil)
-                    }
-                })
+            let reference = Database.database().reference().child("product-locations")
+            let geo = GeoFire(firebaseRef: reference)
+            locationQuery = geo?.query(at: last, withRadius: Double(radius.toMeters() / 1000))
+            locationQuery?.observe(.keyEntered, with: { key, location in
+                if let key = key, let _ = location {
+                    self.findProductForKey(key: key, block: { product in
+                        if let product = product {
+                            productAdded(product)
+                        } else {
+                            productAdded(nil)
+                        }
+                    })
+                } else {
+                    productAdded(nil)
+                }
+            })
 
-                locationQuery?.observe(.keyExited, with: { key, location in
-                    if let key = key, let _ = location {
-                        self.findProductForKey(key: key, block: { product in
-                            if let product = product {
-                                productRemoved(product)
-                            } else {
-                                productRemoved(nil)
-                            }
-                        })
-                    } else {
-                        productRemoved(nil)
-                    }
-                })
-            }
-        default:
-            break
+            locationQuery?.observe(.keyExited, with: { key, location in
+                if let key = key, let _ = location {
+                    self.findProductForKey(key: key, block: { product in
+                        if let product = product {
+                            productRemoved(product)
+                        } else {
+                            productRemoved(nil)
+                        }
+                    })
+                } else {
+                    productRemoved(nil)
+                }
+            })
         }
     }
 
