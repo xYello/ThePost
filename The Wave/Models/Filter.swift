@@ -19,7 +19,7 @@ enum FilterType {
     case model
 }
 
-class Filter {
+class Filter: LocationDelegate {
     var type = FilterType.model
     var model: JeepModel {
         didSet {
@@ -31,8 +31,13 @@ class Filter {
     let maximumRadius = 250
     var radius: Int
 
-    var modelQuery: DatabaseQuery?
-    var locationQuery: GFCircleQuery?
+    private var modelQuery: DatabaseQuery?
+    private var locationQuery: GFCircleQuery?
+
+    private var savedAddBlock: ProductAddedBlock?
+    private var savedRemoveBlock: ProductRemovedBlock?
+    private var lastSavedLocation: CLLocation?
+    private var locationCheckTimer: Timer?
 
     init() {
         let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? ""
@@ -44,9 +49,37 @@ class Filter {
     func grabProducts(forReference reference: DatabaseReference, productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
         switch type {
         case .model:
+            if Location.manager.hasStartedLocationServices {
+                Location.manager.stopGathering()
+            }
+
             modelSearch(forReference: reference, productAdded: productAdded, productRemoved: productRemoved)
         case .location:
-            locationSearch(productAdded: productAdded, productRemoved: productRemoved)
+            if !Location.manager.hasStartedLocationServices {
+                Location.manager.startGatheringAndRequestPermission()
+                Location.manager.add(asDelegate: self)
+                lastSavedLocation = Location.manager.lastLocation
+            }
+
+            savedAddBlock = productAdded
+            savedRemoveBlock = productRemoved
+
+            if let timer = locationCheckTimer {
+                timer.invalidate()
+                lastSavedLocation = nil
+            }
+
+            locationCheckTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true, block: { timer in
+                if let loc = Location.manager.lastLocation,
+                    self.lastSavedLocation?.coordinate.latitude != loc.coordinate.latitude,
+                    self.lastSavedLocation?.coordinate.longitude != loc.coordinate.longitude {
+                    self.lastSavedLocation = loc
+                    if let add = self.savedAddBlock, let remove = self.savedRemoveBlock {
+                        self.locationSearch(productAdded: add, productRemoved: remove)
+                    }
+                }
+            })
+            locationCheckTimer?.fire()
         }
     }
 
@@ -98,7 +131,13 @@ class Filter {
                 if let key = key, let _ = location {
                     self.findProductForKey(key: key, block: { product in
                         if let product = product {
-                            productAdded(product)
+                            if self.model == .all {
+                                productAdded(product)
+                            } else if self.model == product.jeepModel {
+                                productAdded(product)
+                            } else {
+                                productAdded(nil)
+                            }
                         } else {
                             productAdded(nil)
                         }
@@ -136,4 +175,13 @@ class Filter {
             block(nil)
         })
     }
+
+    // MARK: - Location delegate
+
+    func didUpdate(with location: CLLocation) {
+        if lastSavedLocation == nil {
+            locationCheckTimer?.fire()
+        }
+    }
+
 }

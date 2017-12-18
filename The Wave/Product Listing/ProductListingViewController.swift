@@ -11,8 +11,6 @@ import Firebase
 import SwiftKeychainWrapper
 
 class ProductListingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
-    
-    var jeep: Jeep!
 
     @IBOutlet weak var jeepTypeLabel: UILabel!
     @IBOutlet weak var numberOfProductsLabel: UILabel!
@@ -34,6 +32,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     private var productRef: DatabaseReference?
     private var productQuery: DatabaseQuery!
 
+    private var jeep: Jeep!
+    private var previousRadius: Int!
     private var filter = Filter()
     
     private var amountOfProducts = 0 {
@@ -100,7 +100,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if productRef == nil || filter.model != jeep.type {
+        if productRef == nil || filter.model != jeep.type || filter.radius != previousRadius {
             products.removeAll()
             amountOfProducts = 0
             
@@ -110,6 +110,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             }, completion: nil)
 
             jeep = Jeep(withType: filter.model)
+            previousRadius = filter.radius
 
             if let name = jeep.name {
                 jeepTypeLabel.text = name
@@ -117,10 +118,11 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             
             productRef = ref.child("products")
 
-            ////////////////
-            Location.manager.startGatheringAndRequestPermission()
-            filter.type = .model
-            ////////////////
+            if filter.radius == 0 {
+                filter.type = .model
+            } else {
+                filter.type = .location
+            }
 
             filter.grabProducts(forReference: productRef!, productAdded: { product in
                 if let product = product {
