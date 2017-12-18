@@ -14,6 +14,10 @@ import SwiftKeychainWrapper
 typealias ProductAddedBlock = (_ product: Product?) -> Void
 typealias ProductRemovedBlock = (_ product: Product?) -> Void
 
+protocol FilterDelegate {
+    func filterResetQueries()
+}
+
 enum FilterType {
     case location // in miles
     case model
@@ -30,6 +34,8 @@ class Filter: LocationDelegate {
     let minimumRadius = 0
     let maximumRadius = 250
     var radius: Int
+
+    var delegate: FilterDelegate?
 
     private var modelQuery: DatabaseQuery?
     private var locationQuery: GFCircleQuery?
@@ -87,6 +93,7 @@ class Filter: LocationDelegate {
 
     private func modelSearch(forReference reference: DatabaseReference, productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
         modelQuery?.removeAllObservers()
+        delegate?.filterResetQueries()
 
         modelQuery = reference.queryOrdered(byChild: "soldModel").queryStarting(atValue: "SELLING").queryEnding(atValue: "SELLING\u{f8ff}").queryLimited(toLast: 200)
         if model != .all {
@@ -121,6 +128,7 @@ class Filter: LocationDelegate {
 
     private func locationSearch(productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
         locationQuery?.removeAllObservers()
+        delegate?.filterResetQueries()
 
         if let last = Location.manager.lastLocation {
 

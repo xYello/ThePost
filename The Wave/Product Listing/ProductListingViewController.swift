@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class ProductListingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
+class ProductListingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, FilterDelegate {
 
     @IBOutlet weak var jeepTypeLabel: UILabel!
     @IBOutlet weak var numberOfProductsLabel: UILabel!
@@ -95,6 +95,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         Auth.auth().addStateDidChangeListener() { auth, user in
             self.collectionView.reloadData()
         }
+
+        filter.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -306,6 +308,14 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                     header.searchBar.text = text
                 })
             }
+        }
+    }
+
+    // MARK: - Filter delegate
+
+    func filterResetQueries() {
+        if products.count > 0 {
+            products.removeAll()
         }
     }
     
