@@ -51,6 +51,17 @@ enum JeepModel: Int {
         }
     }
 
+    static func enumFrom(shortDescription: String) -> JeepModel {
+        switch shortDescription {
+        case JeepModel.wranglerJK.shortDescription: return JeepModel.wranglerJK
+        case JeepModel.wranglerTJ.shortDescription: return JeepModel.wranglerTJ
+        case JeepModel.wranglerYJ.shortDescription: return JeepModel.wranglerYJ
+        case JeepModel.cherokeeCJ.shortDescription: return JeepModel.cherokeeCJ
+        case JeepModel.cherokeeXJ.shortDescription: return JeepModel.cherokeeXJ
+        default: return JeepModel.all
+        }
+    }
+
     static func arrayOfStrings() -> [String] {
         return [JeepModel.all.name,
                 JeepModel.wranglerJK.name,

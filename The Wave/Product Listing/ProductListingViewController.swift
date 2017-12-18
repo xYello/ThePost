@@ -12,7 +12,7 @@ import SwiftKeychainWrapper
 
 class ProductListingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
-    var jeepModel: Jeep!
+    var jeep: Jeep!
 
     @IBOutlet weak var jeepTypeLabel: UILabel!
     @IBOutlet weak var numberOfProductsLabel: UILabel!
@@ -100,10 +100,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? ""
-        let jeepType = JeepModel.enumFromString(string: selectedJeepDescription)
-        
-        if productRef == nil || jeepType != jeepModel.type {
+        if productRef == nil || filter.model != jeep.type {
             products.removeAll()
             amountOfProducts = 0
             
@@ -112,9 +109,9 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
                 self.collectionView.reloadSections(IndexSet(integer: 0))
             }, completion: nil)
 
-            jeepModel = Jeep(withType: jeepType)
+            jeep = Jeep(withType: filter.model)
 
-            if let name = jeepModel.name {
+            if let name = jeep.name {
                 jeepTypeLabel.text = name
             }
             
@@ -122,7 +119,6 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
 
             ////////////////
             Location.manager.startGatheringAndRequestPermission()
-            filter.model = .all
             filter.type = .model
             ////////////////
 
@@ -370,10 +366,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             
         } else {
 
-            let vc = FilterViewController()
-//            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let vc = mainStoryboard.instantiateViewController(withIdentifier: "jeepSelectorViewController") as! JeepSelectorViewController
-//
+            let vc = FilterViewController(with: filter)
             present(vc, animated: true, completion: nil)
         }
     }

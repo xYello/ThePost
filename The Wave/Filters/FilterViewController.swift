@@ -15,16 +15,29 @@ class FilterViewController: UIViewController {
             sliderView.delegate = self
         }
     }
-
+    
     private var sliderItems = [JeepModel.wranglerJK.shortDescription,
                                JeepModel.wranglerTJ.shortDescription,
                                JeepModel.wranglerYJ.shortDescription,
                                JeepModel.cherokeeCJ.shortDescription,
                                JeepModel.cherokeeXJ.shortDescription,
                                "All"]
-    
+
+    private var filter: Filter
+
+    init(with filter: Filter) {
+        self.filter = filter
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = .waveDarkBlue
     }
 
@@ -42,10 +55,13 @@ extension FilterViewController: SelectionSliderDelegate {
     }
 
     func sliderInitialSelectionIndex() -> Int {
-        return 2
+        var string = filter.model.shortDescription
+        if filter.model == .all { string = "All" }
+
+        return sliderItems.index(of: string) ?? 0
     }
 
     func sliderSelectionDidUpdate(atIndex index: Int) {
-        //
+        filter.model = JeepModel.enumFrom(shortDescription: sliderItems[index])
     }
 }

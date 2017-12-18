@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import GeoFire
+import SwiftKeychainWrapper
 
 typealias ProductAddedBlock = (_ product: Product?) -> Void
 typealias ProductRemovedBlock = (_ product: Product?) -> Void
@@ -20,10 +21,19 @@ enum FilterType {
 
 class Filter {
     var type = FilterType.model
-    var model = JeepModel.all
+    var model: JeepModel {
+        didSet {
+            KeychainWrapper.standard.set(model.name, forKey: UserInfoKeys.UserSelectedJeep)
+        }
+    }
 
     var modelQuery: DatabaseQuery?
     var locationQuery: GFCircleQuery?
+
+    init() {
+        let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? ""
+        model = JeepModel.enumFromString(string: selectedJeepDescription)
+    }
 
     func grabProducts(forReference reference: DatabaseReference, productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
         switch type {
@@ -37,6 +47,7 @@ class Filter {
     // MARK: - Model Search
 
     private func modelSearch(forReference reference: DatabaseReference, productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
+        modelQuery?.removeAllObservers()
 
         modelQuery = reference.queryOrdered(byChild: "soldModel").queryStarting(atValue: "SELLING").queryEnding(atValue: "SELLING\u{f8ff}").queryLimited(toLast: 200)
         if model != .all {
@@ -70,6 +81,8 @@ class Filter {
     // MARK: - Location search
 
     private func locationSearch(productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
+        locationQuery?.removeAllObservers()
+
         switch type {
         case .location(let distance):
             if let last = Location.manager.lastLocation {
