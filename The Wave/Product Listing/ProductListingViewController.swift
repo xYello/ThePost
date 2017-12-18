@@ -123,7 +123,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             ////////////////
             Location.manager.startGatheringAndRequestPermission()
             filter.model = .all
-            filter.type = .location(50)
+            filter.type = .model
             ////////////////
 
             filter.grabProducts(forReference: productRef!, productAdded: { product in
@@ -212,8 +212,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             cell.priceLabel.text = truncated
         }
 
+        cell.nameLabel.text = product.name
         cell.locationLabel.text = product.cityStateString ?? "Not Provided"
-
         cell.imageView.image = nil
         
         return cell

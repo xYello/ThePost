@@ -10,12 +10,14 @@ import UIKit
 import Firebase
 import FirebaseStorageUI
 import OneSignal
+import GeoFire
 
 class ProductListingContentCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var nameLabel: UILabel!
+
     @IBOutlet weak var imageView: UIImageView!
 
-    @IBOutlet weak var priceContainer: UIView!
     @IBOutlet weak var priceLabel: UILabel!
     
     @IBOutlet weak var likeButton: UIButton!
@@ -31,6 +33,7 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                 
                 // Grab product images
                 grabProductImages(forKey: key)
+                grabLocation(for: key)
                 
                 // Check to see if the current user likes this product
                 checkForCurrentUserLike(forKey: key)
@@ -48,13 +51,8 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
         roundCorners(radius: 8.0)
         
         imageView.clipsToBounds = true
-        
-        priceContainer.layer.shadowRadius = 2.0
-        priceContainer.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        priceContainer.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
-        priceContainer.layer.shadowOpacity = 1.0
 
-        priceContainer.roundCorners(radius: 8.0)
+        priceLabel.textColor = .waveGreen
     }
     
     override func layoutSubviews() {
@@ -162,6 +160,23 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                 
             })
         }
+    }
+
+    private func grabLocation(for key: String) {
+        let ref = Database.database().reference().child("product-locations")
+        let geo = GeoFire(firebaseRef: ref)
+        geo?.getLocationForKey(key, withCallback: { location, error in
+            if let location = location, let last = Location.manager.lastLocation {
+                let distance = Int(location.distance(from: last)).toMiles()
+                DispatchQueue.main.async {
+                    if distance == 1 {
+                        self.locationLabel.text = "\(distance) mile"
+                    } else {
+                        self.locationLabel.text = "\(distance) miles"
+                    }
+                }
+            }
+        })
     }
 
     func cancelImageLoad() {
