@@ -26,6 +26,7 @@ target 'The Wave' do
   pod 'CropViewController'
   pod 'WVCheckMark'
   pod 'Lightbox'
+  pod 'DottedLineView'
 
   target 'The Wave Tests' do
     inherit! :search_paths

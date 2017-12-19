@@ -16,6 +16,7 @@ PODS:
     - Fabric (~> 1.7.2)
   - CropViewController (2.3.5):
     - TOCropViewController
+  - DottedLineView (1.0.0)
   - Fabric (1.7.2)
   - FBSDKCoreKit (4.27.1):
     - Bolts (~> 1.7)
@@ -190,6 +191,7 @@ PODS:
 DEPENDENCIES:
   - Crashlytics
   - CropViewController
+  - DottedLineView
   - Firebase
   - Firebase/Auth
   - Firebase/Core
@@ -227,6 +229,7 @@ SPEC CHECKSUMS:
   Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   CropViewController: 73a095de5605b017afdf34c6f2604569e147bcbd
+  DottedLineView: 750c5aee6eae69f9bc9acd3bc6ee9938e35856bb
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   FBSDKCoreKit: 03365dad5d790249196ffad8be4f6d8a2d98f932
   FBSDKLoginKit: 66ff53b73cffd967ab773e32fac39e90a60e6d46
@@ -269,6 +272,6 @@ SPEC CHECKSUMS:
   UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
   WVCheckMark: a62e278531f05fe3a42a056db6383c273f4d9e8b
 
-PODFILE CHECKSUM: 20c2bf3867cd1e51b3a8a813a4af99ce3a8c165c
+PODFILE CHECKSUM: 844b446fb853f08fb297167f389fbe9b5d7995e7
 
 COCOAPODS: 1.3.1

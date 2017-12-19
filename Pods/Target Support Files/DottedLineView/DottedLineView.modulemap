@@ -1,0 +1,6 @@
+framework module DottedLineView {
+  umbrella header "DottedLineView-umbrella.h"
+
+  export *
+  module * { export * }
+}

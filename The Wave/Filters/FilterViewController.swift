@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import DottedLineView
 
 class FilterViewController: UIViewController {
 
     @IBOutlet weak var modelImageView: UIImageView!
     @IBOutlet weak var modelLabel: UILabel!
     @IBOutlet weak var radiusView: UIView!
-    @IBOutlet weak var dashView: UIView!
-    
+    @IBOutlet weak var radiusMileageLabel: UILabel!
+    @IBOutlet weak var dottedView: DottedLineView!
+
     @IBOutlet weak var sliderView: SelectionSliderView! {
         didSet {
             sliderView.delegate = self
@@ -58,7 +60,9 @@ class FilterViewController: UIViewController {
         radiusView.roundCorners()
         radiusView.backgroundColor = #colorLiteral(red: 0.01647708192, green: 0.624725759, blue: 1, alpha: 1).withAlphaComponent(0.25)
         radiusView.addBorder(withWidth: 2.0, color: #colorLiteral(red: 0.01647708192, green: 0.624725759, blue: 1, alpha: 1))
-        dashView.backgroundColor = .clear
+        radiusMileageLabel.text = "\(filter.radius)"
+        radiusMileageLabel.textColor = #colorLiteral(red: 0.01647708192, green: 0.624725759, blue: 1, alpha: 1)
+        dottedView.lineColor = #colorLiteral(red: 0.01647708192, green: 0.624725759, blue: 1, alpha: 1)
         modelImageView.image = Jeep(withType: filter.model).image?.withRenderingMode(.alwaysTemplate)
         modelImageView.tintColor = .white
         modelLabel.textColor = .white
@@ -77,12 +81,20 @@ class FilterViewController: UIViewController {
 
         modelImageViewWidthConstraint.constant = sizeOfModelImage(for: mileageSlider.value)
         radiusView.alpha = alphaOfRadius(for: mileageSlider.value)
+        radiusMileageLabel.alpha = radiusView.alpha
+        dottedView.alpha = radiusView.alpha
+        dottedView.lineWidth = lineWidth(for: mileageSlider.value)
 
         mileageLabel.textColor = .white
         mileageLabel.text = milesString()
         mileageContainer.backgroundColor = .clear
         mileageContainer.roundCorners(radius: 10.0)
         mileageContainer.addBorder(withWidth: 2.0, color: .white)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        radiusView.roundCorners()
     }
 
     // MARK: - Actions
@@ -94,9 +106,13 @@ class FilterViewController: UIViewController {
     @objc func sliderValueChange(slider: UISlider) {
         filter.radius = Int(slider.value)
         mileageLabel.text = milesString()
+        radiusMileageLabel.text = "\(filter.radius)"
 
         modelImageViewWidthConstraint.constant = sizeOfModelImage(for: slider.value)
         radiusView.alpha = alphaOfRadius(for: slider.value)
+        radiusMileageLabel.alpha = radiusView.alpha
+        dottedView.alpha = radiusView.alpha
+        dottedView.lineWidth = lineWidth(for: slider.value)
         view.layoutIfNeeded()
     }
 
@@ -111,13 +127,12 @@ class FilterViewController: UIViewController {
     }
 
     private func sizeOfModelImage(for value: Float) -> CGFloat {
-        if value >= Float(filter.maximumRadius - filter.maximumRadius / 5) {
-            return CGFloat((filter.maximumRadius / 5) - 10)
-        } else if value >= Float(filter.maximumRadius / 5) {
-            return CGFloat(Float(filter.maximumRadius) - value - 10)
+        let multiple = 1 - radiusView.frame.width / view.frame.width
+        if value >= Float(filter.maximumRadius / 5) {
+            return CGFloat(150 - (value * Float(multiple)) - 10)
         }
 
-        return CGFloat(filter.maximumRadius - (filter.maximumRadius / 5) - 10)
+        return 150 - CGFloat(filter.maximumRadius / 5) * multiple - 10
     }
 
     private func alphaOfRadius(for value: Float) -> CGFloat {
@@ -126,6 +141,10 @@ class FilterViewController: UIViewController {
         }
 
         return 1.0
+    }
+
+    private func lineWidth(for value: Float) -> CGFloat {
+        return 3.5
     }
 
 }
