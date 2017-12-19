@@ -15,6 +15,7 @@ let buildTrustChangeNotificationKey = "kBuildTrustHasUpdateNotificationKey"
 struct UserInfoKeys {
     static let UserPass = "userPass"
     static let UserSelectedJeep = "userSelectedJeep"
+    static let UserSelectedRadius = "userSelectedRadius"
 }
 
 struct TwitterInfoKeys {

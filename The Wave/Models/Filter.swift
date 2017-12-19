@@ -33,7 +33,11 @@ class Filter: LocationDelegate {
 
     let minimumRadius = 0
     let maximumRadius = 250
-    var radius: Int
+    var radius: Int {
+        didSet {
+            KeychainWrapper.standard.set(radius, forKey: UserInfoKeys.UserSelectedRadius)
+        }
+    }
 
     var delegate: FilterDelegate?
 
@@ -49,7 +53,8 @@ class Filter: LocationDelegate {
         let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? ""
         model = JeepModel.enumFromString(string: selectedJeepDescription)
 
-        radius = 0
+        // Default to 100 mile radius, this will prompt a location search.
+        radius = KeychainWrapper.standard.integer(forKey: UserInfoKeys.UserSelectedRadius) ?? 100
     }
 
     func grabProducts(forReference reference: DatabaseReference, productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
@@ -61,6 +66,10 @@ class Filter: LocationDelegate {
 
             modelSearch(forReference: reference, productAdded: productAdded, productRemoved: productRemoved)
         case .location:
+            if !Location.manager.hasLocationAccess {
+                modelSearch(forReference: reference, productAdded: productAdded, productRemoved: productRemoved)
+            }
+
             if !Location.manager.hasStartedLocationServices {
                 Location.manager.startGatheringAndRequestPermission()
                 Location.manager.add(asDelegate: self)
@@ -93,6 +102,7 @@ class Filter: LocationDelegate {
 
     private func modelSearch(forReference reference: DatabaseReference, productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
         modelQuery?.removeAllObservers()
+        locationQuery?.removeAllObservers()
         delegate?.filterResetQueries()
 
         modelQuery = reference.queryOrdered(byChild: "soldModel").queryStarting(atValue: "SELLING").queryEnding(atValue: "SELLING\u{f8ff}").queryLimited(toLast: 200)
@@ -128,6 +138,7 @@ class Filter: LocationDelegate {
 
     private func locationSearch(productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
         locationQuery?.removeAllObservers()
+        modelQuery?.removeAllObservers()
         delegate?.filterResetQueries()
 
         if let last = Location.manager.lastLocation {
