@@ -3,7 +3,7 @@
         "apps": [],
         "details": [
             {
-                "appID": "com.thewaveapp.thewave",
+                "appID": "***REMOVED***.com.thewaveapp.thewave",
                 "paths": [ "/product/*"]
             }
         ]

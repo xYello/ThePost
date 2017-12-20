@@ -93,6 +93,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Twitter.sharedInstance().application(app, open: url, options: options)
         return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String!, annotation: options[.annotation])
     }
+
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+                return false
+        }
+
+        let parameters = components.path.split(separator: "/", maxSplits: 10, omittingEmptySubsequences: false)
+        if parameters.count == 2 && parameters[0] == "product/" {
+            print("\(parameters[1])")
+        }
+
+        application.open(url, options: [:], completionHandler: nil)
+
+        return false
+    }
     
     // MARK: - OneSignal && Firebase
     
