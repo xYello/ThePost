@@ -84,6 +84,7 @@ class SentryManager: NSObject {
 
         sentry.extra = [
             "Selected Jeep": KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? "N/A",
+            "Search Radius": KeychainWrapper.standard.integer(forKey: UserInfoKeys.UserSelectedRadius) ?? "N/A",
             "Product Listing View Type": viewType
         ]
     }
