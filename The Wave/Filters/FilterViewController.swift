@@ -24,6 +24,7 @@ class FilterViewController: UIViewController {
     }
     
     @IBOutlet weak var mileageSlider: UISlider!
+    @IBOutlet weak var maxMileageLabel: UILabel!
     @IBOutlet weak var mileageLabel: UILabel!
     @IBOutlet weak var mileageContainer: UIView!
     
@@ -87,6 +88,7 @@ class FilterViewController: UIViewController {
 
         mileageLabel.textColor = .white
         mileageLabel.text = milesString()
+        maxMileageLabel.text = "\(filter.maximumRadius)"
         mileageContainer.backgroundColor = .clear
         mileageContainer.roundCorners(radius: 10.0)
         mileageContainer.addBorder(withWidth: 2.0, color: .white)
