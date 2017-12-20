@@ -4,9 +4,6 @@
 target 'The Wave' do
   use_frameworks!
 
-  # Collection View custom scrolling
-  pod 'UPCarouselFlowLayout'
-
   # Firebase
   pod 'Firebase/Core'
   pod 'Firebase/Auth'

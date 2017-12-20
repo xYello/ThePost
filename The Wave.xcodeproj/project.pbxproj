@@ -87,7 +87,6 @@
 		4D35A2141E12050700A115EB /* UIImage+TransparentBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */; };
 		4D35A2161E120E2A00A115EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */; };
 		4D35A21C1E12126300A115EB /* Jeep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A21B1E12126300A115EB /* Jeep.swift */; };
-		4D35A21E1E121E3800A115EB /* JeepModelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35A21D1E121E3800A115EB /* JeepModelButton.swift */; };
 		4D5643391E4EAF7600064948 /* SignInUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D5643381E4EAF7600064948 /* SignInUp.storyboard */; };
 		4D581B5E1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D581B5D1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift */; };
 		4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58C4D41E0E1882004CA0E3 /* AppDelegate.swift */; };
@@ -120,8 +119,6 @@
 		4DE4D9EF1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4D9EE1E4D38AD00CF78F9 /* RecoverPasswordViewController.swift */; };
 		4DE6622D1E6D12A100417EBB /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DE6622A1E6D12A100417EBB /* 1Password.xcassets */; };
 		4DE6622E1E6D12A100417EBB /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */; };
-		4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */; };
-		4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */; };
 		4DFE38681E2FDFE900A83EAE /* PresentationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */; };
 		60C2ED5D1E29C6DA00ED83EA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2ED5C1E29C6DA00ED83EA /* Constants.swift */; };
 		64D20E87D49AFE3FE11F2B87 /* Pods_The_Wave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CCF87EF14103CE40FA9607C /* Pods_The_Wave.framework */; };
@@ -244,7 +241,6 @@
 		4D35A2131E12050700A115EB /* UIImage+TransparentBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TransparentBorders.swift"; sourceTree = "<group>"; };
 		4D35A2151E120E2A00A115EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4D35A21B1E12126300A115EB /* Jeep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jeep.swift; sourceTree = "<group>"; };
-		4D35A21D1E121E3800A115EB /* JeepModelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepModelButton.swift; sourceTree = "<group>"; };
 		4D5643381E4EAF7600064948 /* SignInUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignInUp.storyboard; sourceTree = "<group>"; };
 		4D581B5D1E256AD700EB66FD /* ProductViewerImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewerImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D58C4D11E0E1882004CA0E3 /* The Wave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Wave.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -284,8 +280,6 @@
 		4DE6622A1E6D12A100417EBB /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
 		4DE6622B1E6D12A100417EBB /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		4DE6622C1E6D12A100417EBB /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
-		4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorViewController.swift; sourceTree = "<group>"; };
-		4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JeepSelectorCollectionViewCell.swift; sourceTree = "<group>"; };
 		4DFE38671E2FDFE900A83EAE /* PresentationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationCenter.swift; sourceTree = "<group>"; };
 		507095285936BB872350682F /* Pods-ThePostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThePostTests/Pods-ThePostTests.debug.xcconfig"; sourceTree = "<group>"; };
 		60C2ED5C1E29C6DA00ED83EA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -444,9 +438,6 @@
 		4984240D1FAD1E9700BE2036 /* Jeep Selector */ = {
 			isa = PBXGroup;
 			children = (
-				4DFB05AD1E118B3100BEACE2 /* JeepSelectorViewController.swift */,
-				4DFB05AF1E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift */,
-				4D35A21D1E121E3800A115EB /* JeepModelButton.swift */,
 				496944BE1F33FA3F00AEC0D1 /* JeepModelChooserViewController.swift */,
 				496944C01F33FA5A00AEC0D1 /* JeepModelChooserViewController.xib */,
 				496944C21F34026E00AEC0D1 /* JeepTypeView.swift */,
@@ -1110,7 +1101,6 @@
 				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/UPCarouselFlowLayout/UPCarouselFlowLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/WVCheckMark/WVCheckMark.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -1144,7 +1134,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UPCarouselFlowLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WVCheckMark.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -1230,7 +1219,6 @@
 				4D161BC81E26E97B001BEE9D /* SignInViewController.swift in Sources */,
 				4D23EC751E1F86130001C045 /* ConversationTableViewCell.swift in Sources */,
 				4DD3CCC01E144E0400821C7C /* SlidingSelectionTabBarController.swift in Sources */,
-				4DFB05B01E118F0100BEACE2 /* JeepSelectorCollectionViewCell.swift in Sources */,
 				4952DDC71F313C9400AB159E /* PriceChooseViewController.swift in Sources */,
 				496944BF1F33FA3F00AEC0D1 /* JeepModelChooserViewController.swift in Sources */,
 				4DC30D501E399E050087B447 /* SocialViewController.swift in Sources */,
@@ -1258,8 +1246,6 @@
 				4D35A21C1E12126300A115EB /* Jeep.swift in Sources */,
 				4DA153F51E22EB1300708543 /* Conversation.swift in Sources */,
 				4DE6622E1E6D12A100417EBB /* OnePasswordExtension.m in Sources */,
-				4D35A21E1E121E3800A115EB /* JeepModelButton.swift in Sources */,
-				4DFB05AE1E118B3100BEACE2 /* JeepSelectorViewController.swift in Sources */,
 				4D58C4D51E0E1882004CA0E3 /* AppDelegate.swift in Sources */,
 				4D907B561E13824D00F9FD8B /* User.swift in Sources */,
 				4D20C1E41EF374AE0090AEBE /* Date+StartOfWeek.swift in Sources */,

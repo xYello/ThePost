@@ -35,162 +35,6 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Jeep Selector View Controller-->
-        <scene sceneID="RJg-qb-mtk">
-            <objects>
-                <viewController storyboardIdentifier="jeepSelectorViewController" id="akQ-8e-u87" customClass="JeepSelectorViewController" customModule="The_Wave" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="F6y-Gx-fnl"/>
-                        <viewControllerLayoutGuide type="bottom" id="jUJ-aL-aRG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="d1I-Jm-muv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TracksBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Lal-rS-7KA">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acl-qf-2Vj">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJc-ne-n5r">
-                                        <rect key="frame" x="326" y="0.0" width="49" height="76"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="49" id="J8L-dA-cGx"/>
-                                            <constraint firstAttribute="height" constant="76" id="kJf-Lh-hJo"/>
-                                        </constraints>
-                                        <state key="normal" image="PVEx"/>
-                                        <connections>
-                                            <action selector="closeButtonPressed:" destination="akQ-8e-u87" eventType="touchUpInside" id="vWa-oe-Ref"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.094117647058823528" alpha="0.62" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="OJc-ne-n5r" firstAttribute="top" secondItem="acl-qf-2Vj" secondAttribute="top" id="pNi-jM-0MQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="OJc-ne-n5r" secondAttribute="trailing" id="ucX-4g-Psr"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Model" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aE-Jx-ZLC">
-                                <rect key="frame" x="16" y="69" width="343" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="Uwa-P7-J3k"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="25"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="naq-wi-1rR">
-                                <rect key="frame" x="0.0" y="124" width="375" height="420"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4vw-Xb-f91">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="jeepSelectorCell" id="lKS-Yd-LfQ" customClass="JeepSelectorCollectionViewCell" customModule="The_Wave" customModuleProvider="target">
-                                        <rect key="frame" x="46" y="0.0" width="283" height="269"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="283" height="269"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jeep Model" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeW-gg-j5s">
-                                                    <rect key="frame" x="8" y="141" width="267" height="25"/>
-                                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="19"/>
-                                                    <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model Year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pN6-cr-WXZ">
-                                                    <rect key="frame" x="8" y="164" width="267" height="23"/>
-                                                    <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="19"/>
-                                                    <color key="textColor" red="0.36078431372549019" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HF3-Xb-1uX" customClass="JeepModelButton" customModule="The_Wave" customModuleProvider="target">
-                                                    <rect key="frame" x="63" y="206" width="157" height="36"/>
-                                                    <color key="backgroundColor" red="0.63921568627450975" green="0.29803921568627451" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="157" id="qxS-tE-dAQ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="19"/>
-                                                    <state key="normal" title="Select">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JKGrillIcon" translatesAutoresizingMaskIntoConstraints="NO" id="eEZ-uE-98C">
-                                                    <rect key="frame" x="52" y="20" width="179" height="108"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="eEZ-uE-98C" secondAttribute="height" multiplier="69:49" constant="26.918367346938766" id="sQw-Ka-a3i"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                        </view>
-                                        <color key="backgroundColor" red="0.90980392156862744" green="0.90588235294117647" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="VeW-gg-j5s" firstAttribute="centerY" relation="greaterThanOrEqual" secondItem="lKS-Yd-LfQ" secondAttribute="centerY" constant="19" id="01c-Zk-jZ1"/>
-                                            <constraint firstItem="HF3-Xb-1uX" firstAttribute="top" relation="lessThanOrEqual" secondItem="pN6-cr-WXZ" secondAttribute="bottom" constant="19" id="2Q4-Qe-I3x"/>
-                                            <constraint firstItem="HF3-Xb-1uX" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pN6-cr-WXZ" secondAttribute="bottom" constant="2" id="75Z-tf-7uM"/>
-                                            <constraint firstAttribute="leadingMargin" secondItem="eEZ-uE-98C" secondAttribute="leading" constant="-44" id="8Go-Pc-FWc"/>
-                                            <constraint firstAttribute="leadingMargin" secondItem="VeW-gg-j5s" secondAttribute="leading" id="CCI-Aj-Q4R"/>
-                                            <constraint firstAttribute="leadingMargin" secondItem="pN6-cr-WXZ" secondAttribute="leading" id="Rn3-jb-5Jf"/>
-                                            <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="HF3-Xb-1uX" secondAttribute="bottom" constant="2" id="SLn-27-LVM"/>
-                                            <constraint firstItem="eEZ-uE-98C" firstAttribute="centerX" secondItem="lKS-Yd-LfQ" secondAttribute="centerX" id="WWU-gB-XWz"/>
-                                            <constraint firstAttribute="bottomMargin" relation="lessThanOrEqual" secondItem="HF3-Xb-1uX" secondAttribute="bottom" constant="19" id="Ysn-Q4-eP3"/>
-                                            <constraint firstItem="VeW-gg-j5s" firstAttribute="top" secondItem="eEZ-uE-98C" secondAttribute="bottom" constant="13" id="aqE-iU-4S8"/>
-                                            <constraint firstItem="HF3-Xb-1uX" firstAttribute="centerX" secondItem="lKS-Yd-LfQ" secondAttribute="centerX" id="bzc-Wi-mrP"/>
-                                            <constraint firstItem="VeW-gg-j5s" firstAttribute="centerX" secondItem="lKS-Yd-LfQ" secondAttribute="centerX" id="dvZ-kI-qTG"/>
-                                            <constraint firstItem="pN6-cr-WXZ" firstAttribute="top" secondItem="VeW-gg-j5s" secondAttribute="bottom" constant="-2" id="l0x-hT-jos"/>
-                                            <constraint firstItem="pN6-cr-WXZ" firstAttribute="centerX" secondItem="lKS-Yd-LfQ" secondAttribute="centerX" id="qkP-Pt-evN"/>
-                                            <constraint firstAttribute="topMargin" secondItem="eEZ-uE-98C" secondAttribute="top" constant="-12" id="uAN-mn-mNZ"/>
-                                        </constraints>
-                                        <size key="customSize" width="283" height="269"/>
-                                        <connections>
-                                            <outlet property="modelImage" destination="eEZ-uE-98C" id="fqK-UF-EKU"/>
-                                            <outlet property="modelLabel" destination="VeW-gg-j5s" id="s4m-ct-mpW"/>
-                                            <outlet property="modelYearLabel" destination="pN6-cr-WXZ" id="OMF-UA-Xbf"/>
-                                            <outlet property="selectButton" destination="HF3-Xb-1uX" id="FkA-ok-T0q"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="GAf-NF-WVr">
-                                <rect key="frame" x="16" y="552" width="343" height="37"/>
-                            </pageControl>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="GAf-NF-WVr" firstAttribute="top" secondItem="naq-wi-1rR" secondAttribute="bottom" constant="8" id="1rG-kk-aSs"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="8aE-Jx-ZLC" secondAttribute="leading" id="5D8-eh-Wlo"/>
-                            <constraint firstAttribute="trailing" secondItem="naq-wi-1rR" secondAttribute="trailing" id="5ko-qI-E6W"/>
-                            <constraint firstAttribute="trailing" secondItem="acl-qf-2Vj" secondAttribute="trailing" id="8fC-qN-P5T"/>
-                            <constraint firstAttribute="trailing" secondItem="Lal-rS-7KA" secondAttribute="trailing" id="HeB-pe-ZHM"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="GAf-NF-WVr" secondAttribute="leading" id="JgE-N0-bcO"/>
-                            <constraint firstItem="8aE-Jx-ZLC" firstAttribute="top" secondItem="F6y-Gx-fnl" secondAttribute="bottom" constant="49" id="K0T-RS-wMv"/>
-                            <constraint firstAttribute="bottom" secondItem="acl-qf-2Vj" secondAttribute="bottom" id="LOp-qS-ggv"/>
-                            <constraint firstItem="acl-qf-2Vj" firstAttribute="top" secondItem="d1I-Jm-muv" secondAttribute="top" id="NiR-Tx-jdw"/>
-                            <constraint firstItem="Lal-rS-7KA" firstAttribute="leading" secondItem="d1I-Jm-muv" secondAttribute="leading" id="T6t-x0-Uwx"/>
-                            <constraint firstItem="naq-wi-1rR" firstAttribute="top" secondItem="8aE-Jx-ZLC" secondAttribute="bottom" constant="8" id="WiP-ir-TKf"/>
-                            <constraint firstItem="8aE-Jx-ZLC" firstAttribute="centerX" secondItem="d1I-Jm-muv" secondAttribute="centerX" id="YeC-ri-pO8"/>
-                            <constraint firstItem="naq-wi-1rR" firstAttribute="leading" secondItem="d1I-Jm-muv" secondAttribute="leading" id="aoK-x3-B46"/>
-                            <constraint firstItem="GAf-NF-WVr" firstAttribute="centerX" secondItem="d1I-Jm-muv" secondAttribute="centerX" id="cxy-aO-dBl"/>
-                            <constraint firstItem="Lal-rS-7KA" firstAttribute="top" secondItem="d1I-Jm-muv" secondAttribute="top" id="dyM-RU-J0b"/>
-                            <constraint firstItem="acl-qf-2Vj" firstAttribute="leading" secondItem="d1I-Jm-muv" secondAttribute="leading" id="gat-uk-YPA"/>
-                            <constraint firstAttribute="bottom" secondItem="Lal-rS-7KA" secondAttribute="bottom" id="hG6-KZ-erO"/>
-                            <constraint firstItem="jUJ-aL-aRG" firstAttribute="top" secondItem="GAf-NF-WVr" secondAttribute="bottom" constant="78" id="zak-Cj-LmU"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="collectionView" destination="naq-wi-1rR" id="u7i-vx-P2R"/>
-                        <outlet property="pageControl" destination="GAf-NF-WVr" id="f58-bz-cyF"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="U6O-Z1-Q82" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-735.20000000000005" y="2657.7211394302849"/>
-        </scene>
         <!--addNewPostTabBarViewController-->
         <scene sceneID="tlW-2B-70z">
             <objects>
@@ -251,7 +95,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GcG-77-XE4" userLabel="Presence Indicator">
-                                                    <rect key="frame" x="208.5" y="18" width="11" height="11"/>
+                                                    <rect key="frame" x="208.5" y="18.5" width="11" height="11"/>
                                                     <color key="backgroundColor" red="0.39215686274509803" green="0.792156862745098" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="11" id="3sB-oi-bg3"/>
@@ -342,7 +186,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any messages." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mw3-Vi-fM2">
-                                        <rect key="frame" x="12.5" y="193" width="261.5" height="24"/>
+                                        <rect key="frame" x="13" y="193" width="261.5" height="24"/>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="20"/>
                                         <color key="textColor" red="0.91004675629999998" green="0.90736204389999997" blue="0.81975060700000002" alpha="0.19638737416107382" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -741,7 +585,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-uC-8od">
-                                    <rect key="frame" x="146" y="20" width="47.5" height="12"/>
+                                    <rect key="frame" x="146.5" y="20" width="47.5" height="12"/>
                                     <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="10"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -2977,7 +2821,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiK-PH-VOl">
-                                <rect key="frame" x="120.5" y="13" width="103" height="26"/>
+                                <rect key="frame" x="121" y="13" width="103" height="26"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="22"/>
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3574,7 +3418,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-7e-Uov">
-                                                        <rect key="frame" x="62" y="8" width="60" height="17"/>
+                                                        <rect key="frame" x="61.5" y="8" width="60" height="17"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -3789,7 +3633,6 @@
         <image name="FacebookSmallRounded" width="20" height="20"/>
         <image name="FeedbackHorn" width="75" height="67"/>
         <image name="HomeTabBarIcon" width="21" height="23"/>
-        <image name="JKGrillIcon" width="225" height="81"/>
         <image name="Like Count" width="13" height="11"/>
         <image name="LikeIcon" width="13" height="13"/>
         <image name="LikeIconNotLiked" width="20" height="20"/>
@@ -3811,7 +3654,6 @@
         <image name="SocialLikeIcon" width="35" height="35"/>
         <image name="SocialTimeImage" width="13" height="13"/>
         <image name="SoldSign" width="50" height="45"/>
-        <image name="TracksBackground" width="414" height="736"/>
         <image name="TwitterSmall" width="20" height="17"/>
         <image name="WideProducts" width="20" height="20"/>
         <image name="chatpaperplane" width="130" height="127"/>

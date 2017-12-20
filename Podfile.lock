@@ -185,7 +185,6 @@ PODS:
   - TwitterCore (3.0.2)
   - TwitterKit (3.2.1):
     - TwitterCore (>= 3.0.2)
-  - UPCarouselFlowLayout (1.1.1)
   - WVCheckMark (1.0.8)
 
 DEPENDENCIES:
@@ -206,7 +205,6 @@ DEPENDENCIES:
   - Sentry/Core (from `https://github.com/getsentry/sentry-cocoa.git`)
   - Sentry/KSCrash (from `https://github.com/getsentry/sentry-cocoa.git`)
   - SwiftKeychainWrapper
-  - UPCarouselFlowLayout
   - WVCheckMark
 
 EXTERNAL SOURCES:
@@ -269,9 +267,8 @@ SPEC CHECKSUMS:
   TOCropViewController: a21b39c910d161600a26b6e3f89a58707afaa4f8
   TwitterCore: e0420b01e02e7d20e94690e37f43e75de219ab8d
   TwitterKit: 205ac89824bbfe9e85a16c420d30bb7bcbedac45
-  UPCarouselFlowLayout: 02045c1505d63057fba3d9975be880a8d16bf17d
   WVCheckMark: a62e278531f05fe3a42a056db6383c273f4d9e8b
 
-PODFILE CHECKSUM: 844b446fb853f08fb297167f389fbe9b5d7995e7
+PODFILE CHECKSUM: 1c188f5206cef525c08245a33b9e09c7f2781b8a
 
 COCOAPODS: 1.3.1
