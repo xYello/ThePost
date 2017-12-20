@@ -223,7 +223,12 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let productCell = cell as? ProductListingContentCollectionViewCell {
-            productCell.productKey = productArray()[indexPath.row].uid
+            let array = productArray()
+            if indexPath.row >= 0 && indexPath.row < array.count {
+                productCell.productKey = array[indexPath.row].uid
+            } else {
+                collectionView.reloadData()
+            }
         }
     }
 
