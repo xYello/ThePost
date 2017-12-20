@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -34,7 +35,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose make &amp; model" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCU-kf-Pwu">
-                    <rect key="frame" x="94.5" y="39" width="185.5" height="20"/>
+                    <rect key="frame" x="94.5" y="40" width="185.5" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="Jvm-VV-w8T"/>
                     </constraints>
@@ -268,7 +269,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paC-tP-bIX">
-                    <rect key="frame" x="295" y="9" width="80" height="80"/>
+                    <rect key="frame" x="295" y="10" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="SYE-a8-wKZ"/>
                         <constraint firstAttribute="height" constant="80" id="oLF-cc-Ddl"/>
@@ -281,19 +282,20 @@
             </subviews>
             <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="0.900390625" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="CCU-kf-Pwu" firstAttribute="top" secondItem="NNL-qJ-Nay" secondAttribute="top" constant="20" id="4jR-3z-PmD"/>
                 <constraint firstAttribute="trailing" secondItem="paC-tP-bIX" secondAttribute="trailing" id="6Vk-HW-hAT"/>
                 <constraint firstItem="YHi-yk-9aM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JK7-TA-ube" secondAttribute="bottom" constant="40" id="8iq-rf-bjw"/>
                 <constraint firstItem="YHi-yk-9aM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Kgt-Ot-nb8"/>
-                <constraint firstItem="JK7-TA-ube" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CCU-kf-Pwu" secondAttribute="bottom" constant="40" id="LVR-Jx-HjJ"/>
                 <constraint firstItem="JK7-TA-ube" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cfh-lE-4r3"/>
                 <constraint firstItem="CCU-kf-Pwu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hC7-9Q-zLi"/>
+                <constraint firstItem="JK7-TA-ube" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CCU-kf-Pwu" secondAttribute="bottom" constant="40" id="luE-66-HkW"/>
                 <constraint firstItem="JK7-TA-ube" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="u1i-Rk-C9v"/>
-                <constraint firstItem="CCU-kf-Pwu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="39" id="uzt-JR-jR5"/>
                 <constraint firstItem="paC-tP-bIX" firstAttribute="centerY" secondItem="CCU-kf-Pwu" secondAttribute="centerY" id="wRY-ac-cuW"/>
                 <constraint firstAttribute="bottomMargin" secondItem="YHi-yk-9aM" secondAttribute="bottom" constant="15" id="wcK-KJ-fz9"/>
                 <constraint firstItem="JK7-TA-ube" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="y6G-25-iG2"/>
                 <constraint firstAttribute="trailing" secondItem="JK7-TA-ube" secondAttribute="trailing" constant="40" id="yy4-JA-tTW"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="NNL-qJ-Nay"/>
             <point key="canvasLocation" x="33" y="737"/>
         </view>
     </objects>

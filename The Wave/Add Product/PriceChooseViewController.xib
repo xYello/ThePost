@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -28,22 +29,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ThumbsUp" translatesAutoresizingMaskIntoConstraints="NO" id="ZCf-mG-ZZa">
-                    <rect key="frame" x="143" y="56" width="88" height="97"/>
+                    <rect key="frame" x="143" y="55" width="88" height="97"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nice, photo uploaded!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ypd-8q-BYV">
-                    <rect key="frame" x="103.5" y="179" width="169" height="22"/>
+                    <rect key="frame" x="103.5" y="178" width="169" height="22"/>
                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's add a price to the product:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8x-SM-dkB">
-                    <rect key="frame" x="87.5" y="240" width="200" height="19.5"/>
+                    <rect key="frame" x="87.5" y="239" width="200" height="19.5"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="$0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eUT-VT-DRV">
-                    <rect key="frame" x="60" y="275" width="255" height="65"/>
+                    <rect key="frame" x="60" y="274" width="255" height="65"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="pwr-ta-cU8"/>
                     </constraints>
@@ -52,7 +53,7 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zse-y2-NTQ" customClass="BigRedShadowButton" customModule="The_Wave" customModuleProvider="target">
-                    <rect key="frame" x="108" y="360" width="160" height="30"/>
+                    <rect key="frame" x="108" y="359" width="160" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="160" id="Cpr-yA-46b"/>
                     </constraints>
@@ -62,7 +63,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44t-22-Acf">
-                    <rect key="frame" x="295" y="12" width="80" height="80"/>
+                    <rect key="frame" x="295" y="20" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="F3E-U8-qz5"/>
                         <constraint firstAttribute="height" constant="80" id="WXI-Qi-Rhz"/>
@@ -75,11 +76,11 @@
             </subviews>
             <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="0.904571963028169" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="44t-22-Acf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="2hD-kw-nwG"/>
+                <constraint firstItem="44t-22-Acf" firstAttribute="top" secondItem="sE4-NH-QWi" secondAttribute="top" id="2hD-kw-nwG"/>
                 <constraint firstItem="eUT-VT-DRV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="3d9-3H-nHY"/>
                 <constraint firstItem="eUT-VT-DRV" firstAttribute="top" secondItem="h8x-SM-dkB" secondAttribute="bottom" constant="15.5" id="7ZH-IP-oWZ"/>
                 <constraint firstItem="ZCf-mG-ZZa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dbo-pA-0g3"/>
-                <constraint firstItem="ZCf-mG-ZZa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="56" id="FOy-Yh-A7l"/>
+                <constraint firstItem="ZCf-mG-ZZa" firstAttribute="top" secondItem="sE4-NH-QWi" secondAttribute="top" constant="35" id="FOy-Yh-A7l"/>
                 <constraint firstItem="h8x-SM-dkB" firstAttribute="top" secondItem="Ypd-8q-BYV" secondAttribute="bottom" constant="39" id="VJw-tB-Mel"/>
                 <constraint firstItem="eUT-VT-DRV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ZOV-LF-0CM"/>
                 <constraint firstItem="h8x-SM-dkB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bag-t1-Bby"/>
@@ -89,6 +90,7 @@
                 <constraint firstAttribute="trailing" secondItem="44t-22-Acf" secondAttribute="trailing" id="nHJ-XC-fbg"/>
                 <constraint firstItem="Zse-y2-NTQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tIE-pi-e1G"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="sE4-NH-QWi"/>
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
     </objects>

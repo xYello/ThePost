@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -100,7 +101,7 @@
             </subviews>
             <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="kt6-ir-Ca8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="554-X9-cjN"/>
+                <constraint firstItem="kt6-ir-Ca8" firstAttribute="top" secondItem="0Br-AJ-X9r" secondAttribute="top" constant="80" id="554-X9-cjN"/>
                 <constraint firstItem="wIJ-uR-ddw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5Bx-bj-QgM"/>
                 <constraint firstItem="0sY-mm-Unj" firstAttribute="top" secondItem="kt6-ir-Ca8" secondAttribute="bottom" constant="30" id="9ep-Pr-hkB"/>
                 <constraint firstItem="kt6-ir-Ca8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DzI-bE-XTc"/>
@@ -114,6 +115,7 @@
                 <constraint firstItem="fob-d4-hcV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xs2-hd-KGK"/>
                 <constraint firstItem="2JS-0a-gXX" firstAttribute="top" secondItem="fob-d4-hcV" secondAttribute="bottom" constant="30" id="zd1-rP-CNl"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="0Br-AJ-X9r"/>
             <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>

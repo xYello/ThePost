@@ -277,6 +277,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         button.clipsToBounds = true
         button.roundCorners(radius: CornerRadius.constant)
         button.setImage(nil, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
     }
 
     private func updateButtonImage(for image: UIImage, from sender: UIButton) {
