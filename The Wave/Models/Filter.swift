@@ -167,7 +167,7 @@ class Filter: LocationDelegate {
             })
 
             locationQuery?.observe(.keyExited, with: { key, location in
-                if let key = key, let _ = location {
+                if let key = key {
                     self.findProductForKey(key: key, block: { product in
                         if let product = product {
                             productRemoved(product)
