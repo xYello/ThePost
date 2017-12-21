@@ -1,3 +1,7 @@
+Version 2.1.0
+==================================
+- Add ABTesting feature to allow developers to run experiments using Remote Config.
+
 Version 2.0.3
 ==================================
 - Resolved an issue that config values are not updating correctly when targeted by a user property condition.
