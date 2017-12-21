@@ -201,24 +201,30 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plpContentCell", for: indexPath) as! ProductListingContentCollectionViewCell
-        let product = productArray()[indexPath.row]
-        
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        
-        if product.price == 0.00 {
-            cell.priceLabel.text = "Free"
+
+        let array = productArray()
+        if indexPath.row >= 0 && indexPath.row < array.count {
+            let product = array[indexPath.row]
+
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+
+            if product.price == 0.00 {
+                cell.priceLabel.text = "Free"
+            } else {
+                let string = formatter.string(from: floor(product.price) as NSNumber)
+                let endIndex = string!.index(string!.endIndex, offsetBy: -3)
+                let truncated = String(string![..<endIndex]) // Remove the .00 from the price.
+                cell.priceLabel.text = truncated
+            }
+
+            cell.nameLabel.text = product.name
+            cell.locationLabel.text = product.cityStateString ?? "Not Provided"
+            cell.imageView.image = nil
         } else {
-            let string = formatter.string(from: floor(product.price) as NSNumber)
-            let endIndex = string!.index(string!.endIndex, offsetBy: -3)
-            let truncated = String(string![..<endIndex]) // Remove the .00 from the price.
-            cell.priceLabel.text = truncated
+            collectionView.reloadData()
         }
 
-        cell.nameLabel.text = product.name
-        cell.locationLabel.text = product.cityStateString ?? "Not Provided"
-        cell.imageView.image = nil
-        
         return cell
     }
     
