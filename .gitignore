@@ -16,6 +16,9 @@ DerivedData/
 xcuserdata/
 .DS_Store
 
+## Firebase configuration
+/The Wave/GoogleService-Info.plist
+
 ## Other
 *.moved-aside
 *.xcuserstate
