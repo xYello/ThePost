@@ -20,6 +20,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var wideProductSortButton: UIButton!
     
     @IBOutlet weak var noProductView: UIView!
+    @IBOutlet weak var emptyStateHeavyLabel: UILabel!
     
     private var selectionBar: UIView?
     
@@ -125,6 +126,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             } else {
                 filter.type = .location
             }
+
+            emptyStateHeavyLabel.text = "Be the first to post in the \(filter.model.shortDescription) category!"
 
             filter.grabProducts(forReference: productRef!, productAdded: { product in
                 if let product = product {
