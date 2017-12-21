@@ -95,7 +95,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GcG-77-XE4" userLabel="Presence Indicator">
-                                                    <rect key="frame" x="208.5" y="18.5" width="11" height="11"/>
+                                                    <rect key="frame" x="208.5" y="17.5" width="11" height="11"/>
                                                     <color key="backgroundColor" red="0.39215686274509803" green="0.792156862745098" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="11" id="3sB-oi-bg3"/>
@@ -2846,7 +2846,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiK-PH-VOl">
-                                <rect key="frame" x="121" y="13" width="103" height="26"/>
+                                <rect key="frame" x="120" y="13" width="103" height="26"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="22"/>
                                 <color key="textColor" red="0.90980392160000001" green="0.90588235289999997" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3659,12 +3659,12 @@
         <image name="EmptyStateImage" width="35" height="85"/>
         <image name="FacebookSmallRounded" width="20" height="20"/>
         <image name="FeedbackHorn" width="75" height="67"/>
-        <image name="HomeTabBarIcon" width="21" height="23"/>
+        <image name="HomeTabBarIcon" width="25" height="27"/>
         <image name="Like Count" width="13" height="11"/>
         <image name="LikeIcon" width="13" height="13"/>
         <image name="LikeIconNotLiked" width="20" height="20"/>
         <image name="LocationGlyphPin" width="12" height="17"/>
-        <image name="MessagesTabBarIcon" width="23" height="23"/>
+        <image name="MessagesTabBarIcon" width="27" height="27"/>
         <image name="NewPostTabBarIcon" width="34" height="34"/>
         <image name="PIPBackgroundImage" width="385" height="265"/>
         <image name="PLPFilters" width="20" height="21"/>
@@ -3674,7 +3674,7 @@
         <image name="ProfileFacebookIcon" width="17" height="33"/>
         <image name="ProfileReviewsStar" width="22" height="21"/>
         <image name="ProfileSettingsIcon" width="27" height="27"/>
-        <image name="ProfileTabBarIcon" width="23" height="23"/>
+        <image name="ProfileTabBarIcon" width="27" height="27"/>
         <image name="ReviewStarButtonSize" width="39" height="38"/>
         <image name="Shield" width="64" height="76"/>
         <image name="SmallProducts" width="20" height="20"/>
