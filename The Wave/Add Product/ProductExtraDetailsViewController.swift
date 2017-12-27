@@ -270,7 +270,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     }
     
     @IBAction func xButonPressed(_ sender: UIButton) {
-        handler.dismiss()
+        handler.dismiss(nil)
     }
 
     // MARK: - Helpers

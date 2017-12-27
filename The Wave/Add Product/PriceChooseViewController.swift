@@ -75,7 +75,7 @@ class PriceChooseViewController: SeletectedImageViewController, UITextFieldDeleg
     }
 
     @IBAction func xButtonPressed(_ sender: UIButton) {
-        handler.dismiss()
+        handler.dismiss(nil)
     }
 
     // MARK: - Textfield delegate

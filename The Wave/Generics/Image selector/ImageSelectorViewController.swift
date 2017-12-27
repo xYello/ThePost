@@ -11,9 +11,11 @@ import Photos
 import AVFoundation
 import TOCropViewController
 
+typealias DismissCompletion = () -> Void
+
 // This class is to be subclassed by view controllers that take this view controller's selected image.
 protocol ImageSelectorClose {
-    func dismiss()
+    func dismiss(_ done: DismissCompletion?)
 }
 
 class SeletectedImageViewController: UIViewController {
@@ -235,9 +237,9 @@ class ImageSelectorViewController: UIViewController, ImageSelectorClose {
 
     // MARK: - ImageSelectorClose protocol
 
-    func dismiss() {
+    func dismiss(_ done: DismissCompletion? = nil) {
         vcToPresent?.navigationController?.dismiss(animated: true, completion: {
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: done)
         })
     }
 }

@@ -20,6 +20,8 @@ import ReachabilitySwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+
+    var mainVC: UIViewController?
     
     private var userRef: DatabaseReference?
     private let reachability = Reachability()!
@@ -41,8 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        self.window!.rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "slidingSelectionTabBarController") as! SlidingSelectionTabBarController
+
+        mainVC = mainStoryboard.instantiateViewController(withIdentifier: "slidingSelectionTabBarController")
+        self.window!.rootViewController = mainVC!
         self.window!.makeKeyAndVisible()
         
         if reachability.isReachable {
@@ -92,6 +95,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         Twitter.sharedInstance().application(app, open: url, options: options)
         return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String!, annotation: options[.annotation])
+    }
+
+    // MARK: - Helpers
+
+    func topNavController() -> UIViewController? {
+        guard let tab = mainVC else { return nil }
+
+        var top: UIViewController? = tab
+        while top?.presentedViewController != nil {
+            top = top?.presentedViewController
+        }
+
+        return top
     }
     
     // MARK: - OneSignal && Firebase
