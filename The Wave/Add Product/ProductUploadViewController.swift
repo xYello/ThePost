@@ -87,15 +87,12 @@ class ProductUploadViewController: SeletectedImageViewController {
             didHaveError = false
             startUpload()
         } else if let p = uploadedProduct {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let vc = storyboard.instantiateViewController(withIdentifier: "viewProductInfo") as? ProductViewerViewController {
-                vc.modalPresentationStyle = .overCurrentContext
-
+            if let vc = ProductViewerViewController.vc {
                 vc.product = p
 
                 handler.dismiss({
-                    if let sender = (UIApplication.shared.delegate as? AppDelegate)?.topNavController() {
-                        sender.present(vc, animated: true, completion: nil)
+                    if let sender = (UIApplication.shared.delegate as? AppDelegate)?.topViewController() {
+                        PresentationCenter.manager.present(viewController: vc, sender: sender)
                     }
                 })
             } else {

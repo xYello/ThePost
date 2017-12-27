@@ -99,25 +99,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
 
-        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-            let url = userActivity.webpageURL,
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-                return false
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else {
+            return false
         }
 
-        let parameters = components.path.split(separator: "/", maxSplits: 10, omittingEmptySubsequences: false)
-        if parameters.count == 2 && parameters[0] == "product/" {
-            print("\(parameters[1])")
+        if DeepOpenerManager.manager.handle(link: url) {
+            return true
         }
 
         application.open(url, options: [:], completionHandler: nil)
-
+        
         return false
     }
 
     // MARK: - Helpers
 
-    func topNavController() -> UIViewController? {
+    func topViewController() -> UIViewController? {
         guard let tab = mainVC else { return nil }
 
         var top: UIViewController? = tab

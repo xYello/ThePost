@@ -102,6 +102,8 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        DeepOpenerManager.manager.openSavedProductID()
         
         if productRef == nil || filter.model != jeep.type || filter.radius != previousRadius {
             products.removeAll()

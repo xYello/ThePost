@@ -10,6 +10,16 @@ import UIKit
 
 class ProductViewerViewController: ModalPresentationViewController {
 
+    static var vc: ProductViewerViewController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "viewProductInfo") as? ProductViewerViewController {
+            vc.modalPresentationStyle = .overCurrentContext
+            return vc
+        } else {
+            return nil
+        }
+    }
+
     @IBOutlet weak var container: UIView!
     
     private var animator: UIDynamicAnimator!

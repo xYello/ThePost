@@ -34,6 +34,7 @@
 		49A7F4431FA5B55700A0CE4D /* BadgeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */; };
 		49B33EDB1F2325A8005FF03E /* KeyboardHelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B33EDA1F2325A8005FF03E /* KeyboardHelperViewController.swift */; };
 		49B33EDE1F2325CE005FF03E /* KeyboardHelperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B33EDD1F2325CE005FF03E /* KeyboardHelperViewController.xib */; };
+		49ECF25F1FF44AB0009C6945 /* DeepOpenerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF25E1FF44AB0009C6945 /* DeepOpenerManager.swift */; };
 		4D04C52F1E0EFCDD004B2264 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */; };
 		4D04C5301E0EFCDD004B2264 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51D1E0EFCDD004B2264 /* Lato-BlackItalic.ttf */; };
 		4D04C5311E0EFCDD004B2264 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D04C51E1E0EFCDD004B2264 /* Lato-Bold.ttf */; };
@@ -186,6 +187,7 @@
 		49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeStatus.swift; sourceTree = "<group>"; };
 		49B33EDA1F2325A8005FF03E /* KeyboardHelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelperViewController.swift; sourceTree = "<group>"; };
 		49B33EDD1F2325CE005FF03E /* KeyboardHelperViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyboardHelperViewController.xib; sourceTree = "<group>"; };
+		49ECF25E1FF44AB0009C6945 /* DeepOpenerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepOpenerManager.swift; sourceTree = "<group>"; };
 		4AFDBA5990DDCDE5DE135C8A /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		4D04C51C1E0EFCDD004B2264 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "Fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
 		4D04C51D1E0EFCDD004B2264 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "Fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -523,6 +525,7 @@
 				4D17F2021E85911F000BEAAB /* PushNotification.swift */,
 				4DD8CB241F034ADE004546F7 /* SentryManager.swift */,
 				4D1FB3871F44BF2A008055DE /* LocationManager.swift */,
+				49ECF25E1FF44AB0009C6945 /* DeepOpenerManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1216,6 +1219,7 @@
 				2F2CF3391E8E316C00E6EBF7 /* SocialPost.swift in Sources */,
 				4D1FB3881F44BF2A008055DE /* LocationManager.swift in Sources */,
 				4DD1BC9A1E0E2421005F4800 /* RoundedTextField.swift in Sources */,
+				49ECF25F1FF44AB0009C6945 /* DeepOpenerManager.swift in Sources */,
 				4D1102061E2EAD7600ADF559 /* ProfileModalViewController.swift in Sources */,
 				4D1667351E4FC06F0092FDFB /* SettingsContainerViewController.swift in Sources */,
 				49A162201F22E6D7004D3C6D /* FeedbackModalViewController.swift in Sources */,
