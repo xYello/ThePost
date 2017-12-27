@@ -13,6 +13,8 @@ import CoreLocation
 
 class CreateReviewContainerViewController: UIViewController, UITextViewDelegate {
 
+    @IBOutlet weak var topBackgroundView: UIView!
+
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var questionLabel: UILabel!
@@ -29,8 +31,6 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
-    
-    private var originalViewFrame: CGRect?
     
     private var reviewedBeforeKey: String?
     private var previousReviewAmountOfStars = 0
@@ -92,6 +92,8 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
         
         let pan = UIPanGestureRecognizer(target: self, action: #selector(viewTapped))
         view.addGestureRecognizer(pan)
+
+        topBackgroundView.backgroundColor = .waveRed
         
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -121,61 +123,28 @@ class CreateReviewContainerViewController: UIViewController, UITextViewDelegate 
         submitButton.backgroundColor = UIColor.clear
         checkIfPreviouslyReviewed()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
-        
         grabProfileDetails()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        originalViewFrame = view.frame
-    }
-    
-    // MARK: - Notifications
-    
-    @objc private func keyboardWillShow(_ notification: NSNotification) {
-        if view.frame.origin.y == originalViewFrame?.origin.y {
-            if let userInfo = notification.userInfo {
-                let keyboardRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-                let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-                let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
-                let animationCurveRaw = animationCurveRawNSN.uintValue
-                let animationCurve  = UIViewAnimationOptions(rawValue: animationCurveRaw)
-                
-                let endViewFrame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y - textView.frame.origin.y, width: view.frame.width, height: view.frame.height)
-                let viewExpansion = keyboardRect.origin.y - endViewFrame.origin.y - endViewFrame.height
-                
-                UIView.animate(withDuration: duration, delay: 0.0, options: animationCurve, animations: {
-                    self.view.frame = CGRect(x: self.view.frame.origin.x,
-                                             y: self.view.frame.origin.y - self.textView.frame.origin.y,
-                                             width: self.view.frame.width,
-                                             height: self.view.frame.height + viewExpansion)
-                }, completion: nil)
-            }
-        }
-    }
-    
-    @objc private func keyboardWillHide(_ notification: NSNotification) {
-        if let frame = originalViewFrame {
-            if let userInfo = notification.userInfo {
-                let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-                let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
-                let animationCurveRaw = animationCurveRawNSN.uintValue
-                let animationCurve  = UIViewAnimationOptions(rawValue: animationCurveRaw)
-                
-                UIView.animate(withDuration: duration, delay: 0.0, options: animationCurve, animations: {
-                    self.view.frame = frame
-                }, completion: nil)
-            }
-        }
     }
     
     // MARK: - TextView delegate
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        fakePlaceholderLabel.isHidden = true
+        textView.resignFirstResponder()
+
+        if !fakePlaceholderLabel.isHidden {
+            fakePlaceholderLabel.isHidden = true
+        }
+
+        let vc = KeyboardHelperViewController.getVc(with: textView.text) { string in
+            if string == "" {
+                self.textView.text = ""
+                self.fakePlaceholderLabel.isHidden = false
+            } else {
+                self.textView.text = string
+                self.fakePlaceholderLabel.isHidden = true
+            }
+        }
+        present(vc, animated: false, completion: nil)
     }
     
     // MARK: - Actions
