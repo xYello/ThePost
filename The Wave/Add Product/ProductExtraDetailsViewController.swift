@@ -368,8 +368,8 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         product.acceptsCash = cashSwitch.isOn
         product.acceptsPayPal = paypalSwitch.isOn
         product.willingToShip = shippingSwitch.isOn
-        product.detailedDescription = descriptionTextView.text
         product.cityStateString = locationLabel.text
+        product.detailedDescription = descriptionTextView.text == "Write a description..." ? nil : descriptionTextView.text
 
         let vc = ProductUploadViewController(withProduct: product)
         vc.handler = handler
