@@ -18,6 +18,24 @@ class PushNotification: NSObject {
     private var socialLikeTimer: Timer?
     
     private let kLikeTimerInvertal = 2.0
+
+    // MARK: - Helpers
+
+    private func pushNotification(withHeading heading: String?, withMessage message: String, withPlayerIds ids: [String: Bool]) {
+        if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
+            for (key, _) in ids {
+                if key != id {
+                    if heading == nil {
+                        OneSignal.postNotification(["contents": ["en": message], "include_player_ids": [key]])
+                    } else {
+                        OneSignal.postNotification(["headings": ["en": heading], "contents": ["en": message], "include_player_ids": [key]])
+                    }
+                }
+            }
+        }
+    }
+
+    // MARK: - Pushers
     
     func pushLiked(withProductName productName: String, withRecipientId id: String) {
         
@@ -158,21 +176,6 @@ class PushNotification: NSObject {
                     
                 }
             })
-        }
-    }
-    
-    private func pushNotification(withHeading heading: String?, withMessage message: String, withPlayerIds ids: [String: Bool]) {
-        
-        if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
-            for (key, _) in ids {
-                if key != id {
-                    if heading == nil {
-                        OneSignal.postNotification(["contents": ["en": message], "include_player_ids": [key]])
-                    } else {
-                        OneSignal.postNotification(["headings": ["en": heading], "contents": ["en": message], "include_player_ids": [key]])
-                    }
-                }
-            }
         }
     }
 

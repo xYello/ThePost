@@ -3020,8 +3020,22 @@
                                     <action selector="wantsToLogout:" destination="IRB-Ud-IIt" eventType="touchUpInside" id="l7u-HP-AUn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6K-CR-72U">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fne-Jd-FHy">
                                 <rect key="frame" x="7" y="426.5" width="329" height="43"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.33725490200000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="rPS-FK-NpM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                <state key="normal" title="Clear push notification IDs">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearPushIDsPressed:" destination="IRB-Ud-IIt" eventType="touchUpInside" id="VWs-aA-I00"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6K-CR-72U">
+                                <rect key="frame" x="7" y="366.5" width="329" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="77x-Pz-hvT"/>
                                 </constraints>
@@ -3036,14 +3050,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.18823529411764706" green="0.2196078431372549" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="9xA-A4-lJm" firstAttribute="top" secondItem="Fne-Jd-FHy" secondAttribute="bottom" constant="17" id="0d7-QS-Tzw"/>
                             <constraint firstAttribute="trailing" secondItem="Ifu-nV-yEx" secondAttribute="trailing" id="2dp-Ab-yLa"/>
                             <constraint firstItem="jiK-PH-VOl" firstAttribute="centerX" secondItem="d9P-1i-OEb" secondAttribute="centerX" id="Fvf-JP-Urq"/>
                             <constraint firstAttribute="trailing" secondItem="kxr-UE-yDK" secondAttribute="trailing" id="Hkk-m3-6C3"/>
                             <constraint firstItem="AtP-WP-fhm" firstAttribute="top" secondItem="9xA-A4-lJm" secondAttribute="bottom" constant="8.5" id="MOS-HR-jRl"/>
                             <constraint firstItem="Ifu-nV-yEx" firstAttribute="top" secondItem="jGm-oR-JrZ" secondAttribute="bottom" constant="8" id="Njw-dR-b3k"/>
+                            <constraint firstItem="Fne-Jd-FHy" firstAttribute="trailing" secondItem="9xA-A4-lJm" secondAttribute="trailing" id="O1T-nq-FD1"/>
                             <constraint firstItem="PkB-5I-HOy" firstAttribute="top" secondItem="kxr-UE-yDK" secondAttribute="bottom" constant="7.5" id="P6D-8M-WgX"/>
                             <constraint firstAttribute="bottom" secondItem="BHI-Ca-JyK" secondAttribute="bottom" id="PLV-p8-d6M"/>
                             <constraint firstAttribute="trailing" secondItem="9xA-A4-lJm" secondAttribute="trailing" constant="7" id="PQJ-z6-lNW"/>
+                            <constraint firstItem="Fne-Jd-FHy" firstAttribute="top" secondItem="M6K-CR-72U" secondAttribute="bottom" constant="17" id="Pe2-Nt-mBY"/>
                             <constraint firstItem="PkB-5I-HOy" firstAttribute="leading" secondItem="d9P-1i-OEb" secondAttribute="leading" id="QLG-VQ-FPc"/>
                             <constraint firstAttribute="trailing" secondItem="BHI-Ca-JyK" secondAttribute="trailing" id="WtU-fj-oXs"/>
                             <constraint firstItem="BHI-Ca-JyK" firstAttribute="leading" secondItem="d9P-1i-OEb" secondAttribute="leading" id="Y9t-QE-Lsk"/>
@@ -3051,9 +3068,9 @@
                             <constraint firstItem="M6K-CR-72U" firstAttribute="trailing" secondItem="9xA-A4-lJm" secondAttribute="trailing" id="c3D-Zz-e4F"/>
                             <constraint firstItem="Ifu-nV-yEx" firstAttribute="leading" secondItem="d9P-1i-OEb" secondAttribute="leading" id="de3-E6-ufr"/>
                             <constraint firstItem="kxr-UE-yDK" firstAttribute="top" secondItem="XUR-t7-Vcn" secondAttribute="bottom" constant="8" id="eVw-FX-PLY"/>
-                            <constraint firstItem="9xA-A4-lJm" firstAttribute="top" secondItem="M6K-CR-72U" secondAttribute="bottom" constant="17" id="h91-gM-eWh"/>
                             <constraint firstItem="9xA-A4-lJm" firstAttribute="leading" secondItem="d9P-1i-OEb" secondAttribute="leading" constant="7" id="hiR-EA-zjW"/>
                             <constraint firstAttribute="trailing" secondItem="PkB-5I-HOy" secondAttribute="trailing" id="im7-9l-hMh"/>
+                            <constraint firstItem="Fne-Jd-FHy" firstAttribute="leading" secondItem="9xA-A4-lJm" secondAttribute="leading" id="l2n-yA-E0e"/>
                             <constraint firstItem="jiK-PH-VOl" firstAttribute="top" secondItem="d9P-1i-OEb" secondAttribute="top" constant="13" id="qcT-Ri-o8t"/>
                             <constraint firstItem="XUR-t7-Vcn" firstAttribute="top" secondItem="Ifu-nV-yEx" secondAttribute="bottom" constant="23.5" id="qri-a8-5rj"/>
                             <constraint firstItem="jGm-oR-JrZ" firstAttribute="top" secondItem="jiK-PH-VOl" secondAttribute="bottom" constant="9" id="s2B-fy-kMB"/>
