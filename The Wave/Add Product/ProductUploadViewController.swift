@@ -31,6 +31,8 @@ class ProductUploadViewController: SeletectedImageViewController {
 
     private let productRef = Database.database().reference().child("products")
 
+    private var shouldDisplaySuccessView = false
+
     private var didHaveError = false {
         didSet {
             if didHaveError {
@@ -73,6 +75,10 @@ class ProductUploadViewController: SeletectedImageViewController {
         secondaryButton.isHidden = true
 
         linkButton.setTitle(WebsiteLinks.products + product.uid, for: .normal)
+
+        let rc = RemoteConfig.remoteConfig()
+        let value = rc.configValue(forKey: "should_show_product_URL_on_upload")
+        shouldDisplaySuccessView = value.boolValue
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -219,7 +225,7 @@ class ProductUploadViewController: SeletectedImageViewController {
 
                             self.statusLabel.text = "🎉 Upload completed! 🎉"
                             self.mainButton.isHidden = false
-                            self.successView.isHidden = false
+                            self.successView.isHidden = !self.shouldDisplaySuccessView
 
                             ref.observeSingleEvent(of: .value, with: { snapshot in
                                 if let productDict = snapshot.value as? [String: AnyObject] {
