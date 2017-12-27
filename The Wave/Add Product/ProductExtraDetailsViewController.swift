@@ -179,6 +179,8 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
                 self.locationStatus = .locationFound
                 DispatchQueue.main.async {
                     self.locationLabel.text = "\(city), \(state)"
+                    self.locationView.backgroundColor = #colorLiteral(red: 0.3254901961, green: 0.5411764706, blue: 0.3960784314, alpha: 0.3)
+                    self.locationView.addBorder(withWidth: 1.0, color: .waveGreen)
                 }
             }
         })
@@ -268,7 +270,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     }
     
     @IBAction func xButonPressed(_ sender: UIButton) {
-        handler.dismiss()
+        handler.dismiss(nil)
     }
 
     // MARK: - Helpers
@@ -327,7 +329,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
     private func isRequiredTextFieldsFilled() -> Bool {
         var viewsToShake = [UIView]()
         if let text = productNameTextField.text {
-            if text.characters.count == 0 {
+            if text.count == 0 {
                 indicateTextFieldIsRequired(textField: productNameTextField)
                 viewsToShake.append(productNameTextField)
             }
@@ -337,7 +339,7 @@ class ProductExtraDetailsViewController: SeletectedImageViewController, JeepMode
         }
 
         if let text = priceTextField.text {
-            if text.characters.count <= 1 {
+            if text.count <= 1 {
                 indicateTextFieldIsRequired(textField: priceTextField)
                 viewsToShake.append(priceTextField)
             }

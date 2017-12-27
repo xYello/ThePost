@@ -88,7 +88,7 @@ class JeepModelChooserViewController: SeletectedImageViewController, JeepTypeVie
         if let _ = delegate {
             dismiss(animated: true, completion: nil)
         } else {
-            handler.dismiss()
+            handler.dismiss(nil)
         }
     }
 

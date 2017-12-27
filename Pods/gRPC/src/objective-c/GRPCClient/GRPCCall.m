@@ -18,6 +18,8 @@
 
 #import "GRPCCall.h"
 
+#import "GRPCCall+OAuth2.h"
+
 #include <grpc/grpc.h>
 #include <grpc/support/time.h>
 #import <RxLibrary/GRXConcurrentWriteable.h>
@@ -40,10 +42,14 @@ NSString * const kGRPCHeadersKey = @"io.grpc.HeadersKey";
 NSString * const kGRPCTrailersKey = @"io.grpc.TrailersKey";
 static NSMutableDictionary *callFlags;
 
+static NSString * const kAuthorizationHeader = @"authorization";
+static NSString * const kBearerPrefix = @"Bearer ";
+
 @interface GRPCCall () <GRXWriteable>
 // Make them read-write.
 @property(atomic, strong) NSDictionary *responseHeaders;
 @property(atomic, strong) NSDictionary *responseTrailers;
+@property(atomic) BOOL isWaitingForToken;
 @end
 
 // The following methods of a C gRPC call object aren't reentrant, and thus
@@ -106,10 +112,13 @@ static NSMutableDictionary *callFlags;
 
 @synthesize state = _state;
 
-// TODO(jcanizales): If grpc_init is idempotent, this should be changed from load to initialize.
-+ (void)load {
-  grpc_init();
-  callFlags = [NSMutableDictionary dictionary];
++ (void)initialize {
+  // Guarantees the code in {} block is invoked only once. See ref at:
+  // https://developer.apple.com/documentation/objectivec/nsobject/1418639-initialize?language=objc
+  if (self == [GRPCCall self]) {
+    grpc_init();
+    callFlags = [NSMutableDictionary dictionary];
+  }
 }
 
 + (void)setCallSafety:(GRPCCallSafety)callSafety host:(NSString *)host path:(NSString *)path {
@@ -181,9 +190,6 @@ static NSMutableDictionary *callFlags;
 
 - (void)finishWithError:(NSError *)errorOrNil {
   @synchronized(self) {
-    if (_state == GRXWriterStateFinished) {
-      return;
-    }
     _state = GRXWriterStateFinished;
   }
 
@@ -211,7 +217,11 @@ static NSMutableDictionary *callFlags;
   [self finishWithError:[NSError errorWithDomain:kGRPCErrorDomain
                                             code:GRPCErrorCodeCancelled
                                         userInfo:@{NSLocalizedDescriptionKey: @"Canceled by app"}]];
-  [self cancelCall];
+  if (!self.isWaitingForToken) {
+    [self cancelCall];
+  } else {
+    self.isWaitingForToken = NO;
+  }
 }
 
 - (void)dealloc {
@@ -289,7 +299,7 @@ static NSMutableDictionary *callFlags;
 // network queue if the write didn't succeed.
 // If the call is a unary call, parameter \a errorHandler will be ignored and
 // the error handler of GRPCOpSendClose will be executed in case of error.
-- (void)writeMessage:(NSData *)message withErrorHandler:(void (^)())errorHandler {
+- (void)writeMessage:(NSData *)message withErrorHandler:(void (^)(void))errorHandler {
 
   __weak GRPCCall *weakSelf = self;
   void(^resumingHandler)(void) = ^{
@@ -335,7 +345,7 @@ static NSMutableDictionary *callFlags;
 
 // Only called from the call queue. The error handler will be called from the
 // network queue if the requests stream couldn't be closed successfully.
-- (void)finishRequestWithErrorHandler:(void (^)())errorHandler {
+- (void)finishRequestWithErrorHandler:(void (^)(void))errorHandler {
   if (!_unaryCall) {
     [_wrappedCall startBatchWithOperations:@[[[GRPCOpSendClose alloc] init]]
                               errorHandler:errorHandler];
@@ -410,6 +420,37 @@ static NSMutableDictionary *callFlags;
 
 #pragma mark GRXWriter implementation
 
+- (void)startCallWithWriteable:(id<GRXWriteable>)writeable {
+  _responseWriteable = [[GRXConcurrentWriteable alloc] initWithWriteable:writeable
+                                                           dispatchQueue:_responseQueue];
+
+  _wrappedCall = [[GRPCWrappedCall alloc] initWithHost:_host
+                                            serverName:_serverName
+                                                  path:_path
+                                               timeout:_timeout];
+  NSAssert(_wrappedCall, @"Error allocating RPC objects. Low memory?");
+
+  [self sendHeaders:_requestHeaders];
+  [self invokeCall];
+
+  // TODO(jcanizales): Extract this logic somewhere common.
+  NSString *host = [NSURL URLWithString:[@"https://" stringByAppendingString:_host]].host;
+  if (!host) {
+    // TODO(jcanizales): Check this on init.
+    [NSException raise:NSInvalidArgumentException format:@"host of %@ is nil", _host];
+  }
+  _connectivityMonitor = [GRPCConnectivityMonitor monitorWithHost:host];
+  __weak typeof(self) weakSelf = self;
+  void (^handler)(void) = ^{
+    typeof(self) strongSelf = weakSelf;
+    [strongSelf finishWithError:[NSError errorWithDomain:kGRPCErrorDomain
+                                                    code:GRPCErrorCodeUnavailable
+                                                userInfo:@{ NSLocalizedDescriptionKey : @"Connectivity lost." }]];
+  };
+  [_connectivityMonitor handleLossWithHandler:handler
+                      wifiStatusChangeHandler:nil];
+}
+
 - (void)startWithWriteable:(id<GRXWriteable>)writeable {
   @synchronized(self) {
     _state = GRXWriterStateStarted;
@@ -422,33 +463,23 @@ static NSMutableDictionary *callFlags;
   // that the life of the instance is determined by this retain cycle.
   _retainSelf = self;
 
-  _responseWriteable = [[GRXConcurrentWriteable alloc] initWithWriteable:writeable
-                                                           dispatchQueue:_responseQueue];
-
-  _wrappedCall = [[GRPCWrappedCall alloc] initWithHost:_host serverName:_serverName path:_path];
-  NSAssert(_wrappedCall, @"Error allocating RPC objects. Low memory?");
-
-  [self sendHeaders:_requestHeaders];
-  [self invokeCall];
-
-  // TODO(jcanizales): Extract this logic somewhere common.
-  NSString *host = [NSURL URLWithString:[@"https://" stringByAppendingString:_host]].host;
-  if (!host) {
-    // TODO(jcanizales): Check this on init.
-    [NSException raise:NSInvalidArgumentException format:@"host of %@ is nil", _host];
+  if (self.tokenProvider != nil) {
+    self.isWaitingForToken = YES;
+    __weak typeof(self) weakSelf = self;
+    [self.tokenProvider getTokenWithHandler:^(NSString *token){
+      typeof(self) strongSelf = weakSelf;
+      if (strongSelf && strongSelf.isWaitingForToken) {
+        if (token) {
+          NSString *t = [kBearerPrefix stringByAppendingString:token];
+          strongSelf.requestHeaders[kAuthorizationHeader] = t;
+        }
+        [strongSelf startCallWithWriteable:writeable];
+        strongSelf.isWaitingForToken = NO;
+      }
+    }];
+  } else {
+    [self startCallWithWriteable:writeable];
   }
-  __weak typeof(self) weakSelf = self;
-  _connectivityMonitor = [GRPCConnectivityMonitor monitorWithHost:host];
-  void (^handler)() = ^{
-    typeof(self) strongSelf = weakSelf;
-    if (strongSelf) {
-      [strongSelf finishWithError:[NSError errorWithDomain:kGRPCErrorDomain
-                                                      code:GRPCErrorCodeUnavailable
-                                                  userInfo:@{ NSLocalizedDescriptionKey : @"Connectivity lost." }]];
-    }
-  };
-  [_connectivityMonitor handleLossWithHandler:handler
-                      wifiStatusChangeHandler:nil];
 }
 
 - (void)setState:(GRXWriterState)newState {

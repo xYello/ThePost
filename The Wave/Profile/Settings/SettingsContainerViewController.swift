@@ -130,6 +130,33 @@ class SettingsContainerViewController: UIViewController {
             present(vc, animated: false, completion: nil)
         }
     }
+    
+    @IBAction func clearPushIDsPressed(_ sender: UIButton) {
+        let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("pushNotificationIds")
+        ref.observeSingleEvent(of: .value) { snapshot in
+            if let value = snapshot.value as? [String: Bool] {
+                if value.count > 1 {
+                    let alert = UIAlertController(title: "⚠️ Warning ⚠️",
+                                                  message: "There was more than 1 notification ID that was found on your profile. Do you wish to delete the ones that are not this current device? This will generally fix multiple notifications from appearing.",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+                        if let id = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
+                            for (key, _) in value {
+                                if key != id  {
+                                    ref.child(key).removeValue()
+                                }
+                            }
+                            sender.setTitle("Cleared!", for: .normal)
+                        }
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    sender.setTitle("Cleared!", for: .normal)
+                }
+            }
+        }
+    }
 
     @IBAction func wantsToLogout(_ sender: UIButton) {
         let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)

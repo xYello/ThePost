@@ -76,7 +76,8 @@ class FeedbackModalViewController: UIViewController, UITextViewDelegate {
     // MARK: - Actions
 
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        if textView.text != "", textView.text != "Type here...", let uid = Auth.auth().currentUser?.uid {
+        if textView.text != "", textView.text != "Type here...", textView.text != "Thanks for the feedback! Uploading now...",
+            let uid = Auth.auth().currentUser?.uid {
             let feedbackToSet = ["userID": uid,
                                  "message": textView.text] as [String: Any]
 

@@ -10,6 +10,8 @@ target 'The Wave' do
   pod 'Firebase/Database'
   pod 'Firebase/RemoteConfig'
   pod 'FirebaseUI'
+  pod 'TwitterCore', '~> 3.0.2.0'
+  pod 'TwitterKit', '~> 3.2.1.0'
 
   pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
 

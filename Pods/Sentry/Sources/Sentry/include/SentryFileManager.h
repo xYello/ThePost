@@ -16,16 +16,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class SentryEvent, SentryBreadcrumb;
+@class SentryEvent, SentryBreadcrumb, SentryDsn;
 
 @interface SentryFileManager : NSObject
 SENTRY_NO_INIT
 
-- (_Nullable instancetype)initWithError:(NSError **)error;
+- (_Nullable instancetype)initWithDsn:(SentryDsn *)dsn didFailWithError:(NSError **)error;
 
 - (NSString *)storeEvent:(SentryEvent *)event;
+- (NSString *)storeEvent:(SentryEvent *)event maxCount:(NSUInteger)maxCount;
 
 - (NSString *)storeBreadcrumb:(SentryBreadcrumb *)crumb;
+- (NSString *)storeBreadcrumb:(SentryBreadcrumb *)crumb maxCount:(NSUInteger)maxCount;
 
 + (BOOL)createDirectoryAtPath:(NSString *)path withError:(NSError **)error;
 

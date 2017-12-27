@@ -26,6 +26,7 @@ class ProductUploadViewController: SeletectedImageViewController {
     @IBOutlet weak var linkInfoLabel: UILabel!
     
     private var product: Product
+    private var uploadedProduct: Product?
     private var dbProduct = [String: Any]()
 
     private let productRef = Database.database().reference().child("products")
@@ -85,13 +86,28 @@ class ProductUploadViewController: SeletectedImageViewController {
         if didHaveError {
             didHaveError = false
             startUpload()
+        } else if let p = uploadedProduct {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let vc = storyboard.instantiateViewController(withIdentifier: "viewProductInfo") as? ProductViewerViewController {
+                vc.modalPresentationStyle = .overCurrentContext
+
+                vc.product = p
+
+                handler.dismiss({
+                    if let sender = (UIApplication.shared.delegate as? AppDelegate)?.topNavController() {
+                        sender.present(vc, animated: true, completion: nil)
+                    }
+                })
+            } else {
+                handler.dismiss(nil)
+            }
         } else {
-            handler.dismiss()
+            handler.dismiss(nil)
         }
     }
 
     @IBAction func secondaryButtonPressed(_ sender: UIButton) {
-        handler.dismiss()
+        handler.dismiss(nil)
     }
 
     @IBAction func linkButtonPressed(_ sender: UIButton) {
@@ -207,6 +223,14 @@ class ProductUploadViewController: SeletectedImageViewController {
                             self.statusLabel.text = "🎉 Upload completed! 🎉"
                             self.mainButton.isHidden = false
                             self.successView.isHidden = false
+
+                            ref.observeSingleEvent(of: .value, with: { snapshot in
+                                if let productDict = snapshot.value as? [String: AnyObject] {
+                                    if let product = Product.createProduct(with: productDict, with: snapshot.key) {
+                                        self.uploadedProduct = product
+                                    }
+                                }
+                            })
                         }
                     }
                 }
