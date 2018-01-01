@@ -12,6 +12,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
             <string>Avenir-Heavy</string>
             <string>Avenir-Light</string>
             <string>Avenir-Medium</string>
@@ -21,6 +22,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterViewController" customModule="The_Wave" customModuleProvider="target">
             <connections>
                 <outlet property="dottedView" destination="Phb-a8-eBp" id="Sg2-z1-0Io"/>
+                <outlet property="errorLabel" destination="GOw-bL-jRa" id="aV8-IR-ehw"/>
                 <outlet property="maxMileageLabel" destination="t3Q-Mt-Bqs" id="yiT-IO-DaJ"/>
                 <outlet property="mileageContainer" destination="ooY-jc-myB" id="fXp-rn-KlI"/>
                 <outlet property="mileageLabel" destination="4Mf-8G-r4s" id="pYa-ZG-PH4"/>
@@ -140,6 +142,12 @@
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOw-bL-jRa">
+                    <rect key="frame" x="166.5" y="308.5" width="42" height="23.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                    <color key="textColor" red="0.63921568630000003" green="0.29803921570000003" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -147,6 +155,7 @@
                 <constraint firstItem="dxL-Yk-HFv" firstAttribute="centerY" secondItem="4Mf-8G-r4s" secondAttribute="centerY" id="3Af-Ia-Icu"/>
                 <constraint firstItem="Ie0-CI-cDL" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="4o7-Ws-IYr"/>
                 <constraint firstItem="hJg-V6-e0y" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ooY-jc-myB" secondAttribute="bottom" constant="5" id="5bV-lY-aAy"/>
+                <constraint firstItem="GOw-bL-jRa" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="5v1-8b-uPC"/>
                 <constraint firstItem="4Mf-8G-r4s" firstAttribute="centerY" secondItem="ooY-jc-myB" secondAttribute="centerY" id="9XF-3E-BIK"/>
                 <constraint firstItem="t3Q-Mt-Bqs" firstAttribute="trailing" secondItem="VoX-5q-Jm4" secondAttribute="trailing" id="9lD-Ao-5pS"/>
                 <constraint firstItem="6oH-eW-1Ui" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="CTB-Eu-P7g"/>
@@ -162,6 +171,7 @@
                 <constraint firstItem="VoX-5q-Jm4" firstAttribute="top" secondItem="Vpz-Hx-hOg" secondAttribute="bottom" constant="25" id="VvR-lR-EwY"/>
                 <constraint firstItem="4Mf-8G-r4s" firstAttribute="trailing" secondItem="ooY-jc-myB" secondAttribute="trailing" constant="-10" id="dHZ-Lf-6DR"/>
                 <constraint firstItem="VoX-5q-Jm4" firstAttribute="leading" secondItem="NTg-Wc-aoS" secondAttribute="leading" id="dQb-LT-kXm"/>
+                <constraint firstItem="Ie0-CI-cDL" firstAttribute="top" secondItem="GOw-bL-jRa" secondAttribute="bottom" id="eO5-nh-ZwR"/>
                 <constraint firstItem="6oH-eW-1Ui" firstAttribute="leading" secondItem="Phb-a8-eBp" secondAttribute="leading" id="i0n-Re-cta"/>
                 <constraint firstItem="4Mf-8G-r4s" firstAttribute="top" secondItem="ooY-jc-myB" secondAttribute="bottom" constant="-30" id="ipx-1O-zCN"/>
                 <constraint firstItem="hJg-V6-e0y" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="k2G-uC-0iQ"/>

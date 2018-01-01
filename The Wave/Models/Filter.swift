@@ -66,8 +66,9 @@ class Filter: LocationDelegate {
 
             modelSearch(forReference: reference, productAdded: productAdded, productRemoved: productRemoved)
         case .location:
-            if !Location.manager.hasLocationAccess {
+            if !Location.manager.hasLocationAccess || Auth.auth().currentUser == nil {
                 modelSearch(forReference: reference, productAdded: productAdded, productRemoved: productRemoved)
+                return
             }
 
             if !Location.manager.hasStartedLocationServices {

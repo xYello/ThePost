@@ -94,7 +94,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
         }
         
         Auth.auth().addStateDidChangeListener() { auth, user in
-            self.collectionView.reloadData()
+            self.createListeners()
         }
 
         filter.delegate = self
@@ -131,34 +131,7 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
 
             emptyStateHeavyLabel.text = "Be the first to post in the \(filter.model.shortDescription) category!"
 
-            filter.grabProducts(forReference: productRef!, productAdded: { product in
-                if let product = product {
-                    self.amountOfProducts += 1
-
-                    self.placeInOrder(product: product)
-
-                    if !self.isSearching {
-                        self.collectionView.performBatchUpdates({
-                            self.collectionView.reloadSections(IndexSet(integer: 0))
-                        }, completion: nil)
-                    }
-                }
-            }, productRemoved: { product in
-                if let product = product {
-                    let index = self.indexOfProduct(product)
-
-                    if index != -1 {
-                        self.amountOfProducts -= 1
-                        self.products.remove(at: index)
-
-                        if !self.isSearching {
-                            self.collectionView.performBatchUpdates({
-                                self.collectionView.reloadSections(IndexSet(integer: 0))
-                            }, completion: nil)
-                        }
-                    }
-                }
-            })
+            createListeners()
             
         }
     }
@@ -400,6 +373,37 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
     }
     
     // MARK: - Helpers
+
+    private func createListeners() {
+        filter.grabProducts(forReference: productRef!, productAdded: { product in
+            if let product = product {
+                self.amountOfProducts += 1
+
+                self.placeInOrder(product: product)
+
+                if !self.isSearching {
+                    self.collectionView.performBatchUpdates({
+                        self.collectionView.reloadSections(IndexSet(integer: 0))
+                    }, completion: nil)
+                }
+            }
+        }, productRemoved: { product in
+            if let product = product {
+                let index = self.indexOfProduct(product)
+
+                if index != -1 {
+                    self.amountOfProducts -= 1
+                    self.products.remove(at: index)
+
+                    if !self.isSearching {
+                        self.collectionView.performBatchUpdates({
+                            self.collectionView.reloadSections(IndexSet(integer: 0))
+                        }, completion: nil)
+                    }
+                }
+            }
+        })
+    }
 
     private func placeInOrder(product: Product) {
         if products.count == 0 {

@@ -17,6 +17,7 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var radiusMileageLabel: UILabel!
     @IBOutlet weak var dottedView: DottedLineView!
 
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var sliderView: SelectionSliderView! {
         didSet {
             sliderView.delegate = self
@@ -92,11 +93,23 @@ class FilterViewController: UIViewController {
         mileageContainer.backgroundColor = .clear
         mileageContainer.roundCorners(radius: 10.0)
         mileageContainer.addBorder(withWidth: 2.0, color: .white)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(cameToForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         radiusView.roundCorners()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if !Location.manager.hasLocationAccess {
+            errorLabel.text = "Location services are disabled!"
+        } else {
+            errorLabel.text = ""
+        }
     }
 
     // MARK: - Actions
@@ -116,6 +129,16 @@ class FilterViewController: UIViewController {
         dottedView.alpha = radiusView.alpha
         dottedView.lineWidth = lineWidth(for: slider.value)
         view.layoutIfNeeded()
+    }
+
+    // MARK: - Notifications
+
+    @objc private func cameToForeground() {
+        if !Location.manager.hasLocationAccess {
+            errorLabel.text = "Location services are disabled!"
+        } else {
+            errorLabel.text = ""
+        }
     }
 
     // MARK: - Helpers
