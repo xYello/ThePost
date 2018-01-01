@@ -16,6 +16,8 @@ struct UserInfoKeys {
     static let UserPass = "userPass"
     static let UserSelectedJeep = "userSelectedJeep"
     static let UserSelectedRadius = "userSelectedRadius"
+    static let UserAppLaunchCount = "userAppLaunchCount"
+    static let UserLastSavedVersion = "userLastSavedVersion"
 }
 
 struct TwitterInfoKeys {

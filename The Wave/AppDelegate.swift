@@ -15,6 +15,7 @@ import SwiftKeychainWrapper
 import FBSDKCoreKit
 import OneSignal
 import ReachabilitySwift
+import StoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -47,6 +48,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainVC = mainStoryboard.instantiateViewController(withIdentifier: "slidingSelectionTabBarController")
         self.window!.rootViewController = mainVC!
         self.window!.makeKeyAndVisible()
+
+        // Handle review controller
+        if var launchAmount = KeychainWrapper.standard.integer(forKey: UserInfoKeys.UserAppLaunchCount) {
+            KeychainWrapper.standard.set(launchAmount + 1, forKey: UserInfoKeys.UserAppLaunchCount)
+
+            let major = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+            if let saved = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserLastSavedVersion), saved != major {
+                launchAmount = 1
+                KeychainWrapper.standard.set(1, forKey: UserInfoKeys.UserAppLaunchCount)
+            }
+            KeychainWrapper.standard.set("\(major)", forKey: UserInfoKeys.UserLastSavedVersion)
+
+            if launchAmount == 4 {
+                if #available(iOS 10.3, *) {
+                    Timer.scheduledTimer(withTimeInterval: 15.0, repeats: false, block: { timer in
+                        SKStoreReviewController.requestReview()
+                    })
+                }
+            }
+        } else {
+            KeychainWrapper.standard.set(1, forKey: UserInfoKeys.UserAppLaunchCount)
+        }
         
         if reachability.isReachable {
             reauthenticate()
