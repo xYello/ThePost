@@ -135,7 +135,7 @@ class FilterViewController: UIViewController {
 
     @objc private func cameToForeground() {
         if !Location.manager.hasLocationAccess {
-            errorLabel.text = "Location services are disabled!"
+            errorLabel.text = "Location services have been denied!"
         } else {
             errorLabel.text = ""
         }
