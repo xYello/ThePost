@@ -66,7 +66,7 @@ class Filter: LocationDelegate {
 
             modelSearch(forReference: reference, productAdded: productAdded, productRemoved: productRemoved)
         case .location:
-            if !Location.manager.hasLocationAccess || Auth.auth().currentUser == nil {
+            if Auth.auth().currentUser == nil {
                 modelSearch(forReference: reference, productAdded: productAdded, productRemoved: productRemoved)
                 return
             }
@@ -75,6 +75,10 @@ class Filter: LocationDelegate {
                 Location.manager.startGatheringAndRequestPermission()
                 Location.manager.add(asDelegate: self)
                 lastSavedLocation = Location.manager.lastLocation
+            }
+
+            if !Location.manager.hasLocationAccess {
+                modelSearch(forReference: reference, productAdded: productAdded, productRemoved: productRemoved)
             }
 
             savedAddBlock = productAdded
