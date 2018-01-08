@@ -87,6 +87,7 @@ class JeepSocialTableViewCell: UITableViewCell {
             if let userDict = snapshot.value as? [String: AnyObject] {
                 if let imageUrl = userDict["profileImage"] as? String {
                     if let url = URL(string: imageUrl) {
+                        self.profileImageView.image = #imageLiteral(resourceName: "DefaultProfilePicture")
                         self.profileImageView.sd_setImage(with: url)
                     }
                 } else {
