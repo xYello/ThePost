@@ -101,7 +101,11 @@ class JeepSocialTableViewCell: UITableViewCell {
                     if let badge = BadgeStatus(rawValue: badgeString) {
                         self.badgeImageView.isHidden = false
                         self.badgeImageView.image = badge.getImage()
+                    } else {
+                        self.badgeImageView.isHidden = true
                     }
+                } else {
+                    self.badgeImageView.isHidden = true
                 }
             }
         })
