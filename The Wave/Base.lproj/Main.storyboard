@@ -343,66 +343,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6OL-0N-ka6">
-                                <rect key="frame" x="0.0" y="38" width="375" height="516"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyStateImage" translatesAutoresizingMaskIntoConstraints="NO" id="wW6-pR-xhk">
-                                        <rect key="frame" x="170" y="190.5" width="35" height="85"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="g6b-Sb-atf"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownArrow" translatesAutoresizingMaskIntoConstraints="NO" id="bGm-yj-QOY">
-                                        <rect key="frame" x="170" y="471" width="35" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="PYs-TA-cQG"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looks like we're missing some items." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsE-VQ-rRT">
-                                        <rect key="frame" x="90.5" y="283.5" width="195" height="16.5"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set your distance for a wider range to find more products in your area." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuW-o6-ig5">
-                                        <rect key="frame" x="90" y="371" width="195" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="195" id="A5P-ZF-7dk"/>
-                                            <constraint firstAttribute="height" constant="34" id="mSy-vH-yCT"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be the first to post in [type] category!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RbN-PC-ObK">
-                                        <rect key="frame" x="82" y="301.5" width="212" height="16.5"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Psst." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LH4-W5-QB6">
-                                        <rect key="frame" x="65.5" y="372" width="26.5" height="16.5"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="hsE-VQ-rRT" firstAttribute="top" secondItem="wW6-pR-xhk" secondAttribute="bottom" constant="8" id="09b-0V-cYq"/>
-                                    <constraint firstItem="wW6-pR-xhk" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="Dtd-1b-9xc"/>
-                                    <constraint firstItem="AuW-o6-ig5" firstAttribute="centerY" secondItem="6OL-0N-ka6" secondAttribute="centerY" constant="130" id="GHF-eH-Y1o"/>
-                                    <constraint firstItem="RbN-PC-ObK" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="TX3-0S-5cn"/>
-                                    <constraint firstItem="wW6-pR-xhk" firstAttribute="centerY" secondItem="6OL-0N-ka6" secondAttribute="centerY" constant="-25" id="Vh2-Y8-9Zk"/>
-                                    <constraint firstAttribute="bottom" secondItem="bGm-yj-QOY" secondAttribute="bottom" constant="15" id="X8q-zE-iG6"/>
-                                    <constraint firstItem="AuW-o6-ig5" firstAttribute="leading" secondItem="LH4-W5-QB6" secondAttribute="trailing" constant="-2" id="Xiq-Ch-gng"/>
-                                    <constraint firstItem="hsE-VQ-rRT" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="Ykz-B2-j3J"/>
-                                    <constraint firstItem="bGm-yj-QOY" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="cWD-BR-0iP"/>
-                                    <constraint firstItem="LH4-W5-QB6" firstAttribute="top" secondItem="AuW-o6-ig5" secondAttribute="top" constant="1" id="fYy-AX-6rP"/>
-                                    <constraint firstItem="RbN-PC-ObK" firstAttribute="top" secondItem="hsE-VQ-rRT" secondAttribute="bottom" constant="1.5" id="gZu-jI-XCY"/>
-                                    <constraint firstItem="AuW-o6-ig5" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="tPA-UD-pqn"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vel-P0-P0Y">
                                 <rect key="frame" x="0.0" y="-162" width="375" height="200"/>
                                 <subviews>
@@ -568,6 +508,74 @@
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6OL-0N-ka6">
+                                <rect key="frame" x="0.0" y="38" width="375" height="516"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyStateImage" translatesAutoresizingMaskIntoConstraints="NO" id="wW6-pR-xhk">
+                                        <rect key="frame" x="170" y="190.5" width="35" height="85"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="g6b-Sb-atf"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownArrow" translatesAutoresizingMaskIntoConstraints="NO" id="bGm-yj-QOY">
+                                        <rect key="frame" x="170" y="471" width="35" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="PYs-TA-cQG"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looks like we're missing some items." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsE-VQ-rRT">
+                                        <rect key="frame" x="90.5" y="283.5" width="195" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Items may also need to be reuploaded for your location)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvk-mA-G9j">
+                                        <rect key="frame" x="62" y="398" width="252" height="14"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="10"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set your distance for a wider range to find more products in your area." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuW-o6-ig5">
+                                        <rect key="frame" x="90" y="356" width="195" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="195" id="A5P-ZF-7dk"/>
+                                            <constraint firstAttribute="height" constant="34" id="mSy-vH-yCT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be the first to post in [type] category!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RbN-PC-ObK">
+                                        <rect key="frame" x="82" y="301.5" width="212" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Psst." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LH4-W5-QB6">
+                                        <rect key="frame" x="65.5" y="357" width="26.5" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="hsE-VQ-rRT" firstAttribute="top" secondItem="wW6-pR-xhk" secondAttribute="bottom" constant="8" id="09b-0V-cYq"/>
+                                    <constraint firstItem="Vvk-mA-G9j" firstAttribute="top" secondItem="AuW-o6-ig5" secondAttribute="bottom" constant="8" id="0zQ-s8-YH3"/>
+                                    <constraint firstItem="Vvk-mA-G9j" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="4qp-kb-tuJ"/>
+                                    <constraint firstItem="wW6-pR-xhk" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="Dtd-1b-9xc"/>
+                                    <constraint firstItem="AuW-o6-ig5" firstAttribute="centerY" secondItem="6OL-0N-ka6" secondAttribute="centerY" constant="115" id="GHF-eH-Y1o"/>
+                                    <constraint firstItem="RbN-PC-ObK" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="TX3-0S-5cn"/>
+                                    <constraint firstItem="wW6-pR-xhk" firstAttribute="centerY" secondItem="6OL-0N-ka6" secondAttribute="centerY" constant="-25" id="Vh2-Y8-9Zk"/>
+                                    <constraint firstAttribute="bottom" secondItem="bGm-yj-QOY" secondAttribute="bottom" constant="15" id="X8q-zE-iG6"/>
+                                    <constraint firstItem="AuW-o6-ig5" firstAttribute="leading" secondItem="LH4-W5-QB6" secondAttribute="trailing" constant="-2" id="Xiq-Ch-gng"/>
+                                    <constraint firstItem="hsE-VQ-rRT" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="Ykz-B2-j3J"/>
+                                    <constraint firstItem="bGm-yj-QOY" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="cWD-BR-0iP"/>
+                                    <constraint firstItem="LH4-W5-QB6" firstAttribute="top" secondItem="AuW-o6-ig5" secondAttribute="top" constant="1" id="fYy-AX-6rP"/>
+                                    <constraint firstItem="RbN-PC-ObK" firstAttribute="top" secondItem="hsE-VQ-rRT" secondAttribute="bottom" constant="1.5" id="gZu-jI-XCY"/>
+                                    <constraint firstItem="AuW-o6-ig5" firstAttribute="centerX" secondItem="6OL-0N-ka6" secondAttribute="centerX" id="tPA-UD-pqn"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.18823529411764706" green="0.2196078431372549" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
