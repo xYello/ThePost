@@ -373,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */,
+				4DA153F41E22EB1300708543 /* Conversation.swift */,
 				4D35A21B1E12126300A115EB /* Jeep.swift */,
 				4D239C431E131BBE00F2668E /* Product.swift */,
 				2F2CF3381E8E316C00E6EBF7 /* SocialPost.swift */,
@@ -397,7 +398,6 @@
 			children = (
 				49CD7D781FAD216700FDD605 /* Individual Chat */,
 				49CD7D771FAD214F00FDD605 /* Conversations */,
-				4DA153F41E22EB1300708543 /* Conversation.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";

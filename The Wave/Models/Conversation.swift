@@ -9,6 +9,12 @@
 import UIKit
 
 class Conversation: NSObject {
+
+    static let conversationIDKey = "conversationID"
+    static let productOwnerIDKey = "productOwnerID"
+    static let otherPersonNameKey = "productOwnerName"
+    static let productIDKey = "productID"
+    static let preformattedMessageKey = "preformattedMessage"
     
     var id: String!
     
