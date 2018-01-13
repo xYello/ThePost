@@ -14,6 +14,7 @@ class PushNotification: NSObject {
 
     private enum NotificationType: String {
         case chat = "chatNotificationType"
+        case like = "likeNotificationType"
     }
     
     static let sender = PushNotification()
@@ -60,6 +61,11 @@ class PushNotification: NSObject {
                                                            Conversation.otherPersonNameKey: data[Conversation.otherPersonNameKey] ?? ""]
 
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: openChatControllerNotificationKey), object: nil, userInfo: userInfo)
+                        case .like:
+                            if let productID = data["productID"] as? String {
+                                DeepOpenerManager.manager.savedProductID = productID
+                                DeepOpenerManager.manager.openSavedProductID()
+                            }
                         }
                     }
                 }
@@ -69,7 +75,7 @@ class PushNotification: NSObject {
 
     // MARK: - Pushers
     
-    func pushLiked(withProductName productName: String, withRecipientId id: String) {
+    func pushLiked(withProductName productName: String, withProductID productID: String, withRecipientId id: String) {
         
         if let timer = likeTimer {
             timer.invalidate()
@@ -99,7 +105,7 @@ class PushNotification: NSObject {
                                     m = m.replacingOccurrences(of: "%PRODUCT%", with: productName)
                                     m = m.replacingOccurrences(of: "%USER%", with: name)
                                     
-                                    self.pushNotification(withHeading: h, withMessage: m, withPlayerIds: ids)
+                                    self.pushNotification(withHeading: h, withMessage: m, withPlayerIds: ids, withAdditionalData: ["type": NotificationType.like.rawValue, "productID": productID])
                                 }
                             })
                             
