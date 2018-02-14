@@ -14,11 +14,11 @@ class SentryManager: NSObject {
 
     static let shared = SentryManager()
 
-    private var sentry: Client! {
-        get {
-            return Client.shared!
-        }
-    }
+//    private var sentry: Client! {
+//        get {
+//            return Client.shared!
+//        }
+//    }
 
     // MARK: - Register and clears
 
@@ -43,7 +43,7 @@ class SentryManager: NSObject {
     }
 
     func clearUserCredentials() {
-        sentry.clearContext()
+//        sentry.clearContext()
 
         addExtras()
     }
@@ -62,14 +62,14 @@ class SentryManager: NSObject {
             "User Info": ns.userInfo.description
         ]
 
-        sentry.send(event: event)
+//        sentry.send(event: event)
     }
 
     func sendEvent(withMessage message: String) {
         let event = Event(level: .debug)
         event.message = message
 
-        sentry.send(event: event)
+//        sentry.send(event: event)
     }
 
     // MARK: - Privates
@@ -82,11 +82,11 @@ class SentryManager: NSObject {
             }
         }
 
-        sentry.extra = [
-            "Selected Jeep": KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? "N/A",
-            "Search Radius": KeychainWrapper.standard.integer(forKey: UserInfoKeys.UserSelectedRadius) ?? "N/A",
-            "Product Listing View Type": viewType
-        ]
+//        sentry.extra = [
+//            "Selected Jeep": KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? "N/A",
+//            "Search Radius": KeychainWrapper.standard.integer(forKey: UserInfoKeys.UserSelectedRadius) ?? "N/A",
+//            "Product Listing View Type": viewType
+//        ]
     }
 
 }
