@@ -165,12 +165,12 @@ class SlidingSelectionTabBarController: UITabBarController, UITabBarControllerDe
                 if let navBar = childViewControllers[1] as? UINavigationController {
                     if navBar.childViewControllers.count >= 1 {
                         if let conversationVC = navBar.childViewControllers[0] as? ChatConversationViewController {
-                            let conversation = Conversation(id: "",
-                                                            otherPersonId: userInfo["productOwnerID"]!,
-                                                            otherPersonName: userInfo["productOwnerName"]!,
-                                                            productID: userInfo["productID"]!)
+                            let conversation = Conversation(id: userInfo[Conversation.conversationIDKey]!,
+                                                            otherPersonId: userInfo[Conversation.productOwnerIDKey]!,
+                                                            otherPersonName: userInfo[Conversation.otherPersonNameKey]!,
+                                                            productID: userInfo[Conversation.productIDKey]!)
                             
-                            if let preMessage = userInfo["preformattedMessage"] {
+                            if let preMessage = userInfo[Conversation.preformattedMessageKey] {
                                 conversation.firstMessage = preMessage
                             }
                             

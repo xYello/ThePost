@@ -330,8 +330,7 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
     private func createChatObserver(forKey key: String) {
         let newConvo = Conversation()
         newConvo.id = key
-        
-        initialConversationsGrabbed += 1
+
         let ref = Database.database().reference().child("chats").child(key)
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if let chatDict = snapshot.value as? [String: AnyObject] {
@@ -348,6 +347,8 @@ class ChatConversationViewController: UIViewController, UITableViewDataSource, U
                             
                             let sellerRef = Database.database().reference().child("users").child(key)
                             sellerRef.observeSingleEvent(of: .value, with: { snapshot in
+                                self.initialConversationsGrabbed += 1
+
                                 if let userDict = snapshot.value as? [String: Any] {
                                     
                                     newConvo.otherPersonId = key

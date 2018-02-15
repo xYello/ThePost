@@ -13,7 +13,7 @@ class DeepOpenerManager {
 
     static let manager = DeepOpenerManager()
 
-    private var savedProductID: String?
+    var savedProductID: String?
 
     // MARK: - Input
 

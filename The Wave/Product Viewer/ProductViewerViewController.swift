@@ -25,7 +25,7 @@ class ProductViewerViewController: ModalPresentationViewController {
     private var animator: UIDynamicAnimator!
     
     var product: Product!
-    var chatOpen:Bool?
+    var chatOpen: Bool?
     
     // MARK: - View lifecycle
     

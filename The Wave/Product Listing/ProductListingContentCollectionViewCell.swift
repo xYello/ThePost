@@ -99,7 +99,7 @@ class ProductListingContentCollectionViewCell: UICollectionViewCell {
                     let userLikesUpdate = [self.productKey!: true]
                     userLikesRef.updateChildValues(userLikesUpdate)
                     
-                    PushNotification.sender.pushLiked(withProductName: product["name"] as! String, withRecipientId: product["owner"] as! String)
+                    PushNotification.sender.pushLiked(withProductName: product["name"] as! String, withProductID: self.productKey!, withRecipientId: product["owner"] as! String)
                     
                     DispatchQueue.main.async {
                         self.likeButton.setImage(#imageLiteral(resourceName: "LikeIconLiked"), for: .normal)

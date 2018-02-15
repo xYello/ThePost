@@ -373,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				49A7F4421FA5B55700A0CE4D /* BadgeStatus.swift */,
+				4DA153F41E22EB1300708543 /* Conversation.swift */,
 				4D35A21B1E12126300A115EB /* Jeep.swift */,
 				4D239C431E131BBE00F2668E /* Product.swift */,
 				2F2CF3381E8E316C00E6EBF7 /* SocialPost.swift */,
@@ -397,7 +398,6 @@
 			children = (
 				49CD7D781FAD216700FDD605 /* Individual Chat */,
 				49CD7D771FAD214F00FDD605 /* Conversations */,
-				4DA153F41E22EB1300708543 /* Conversation.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -758,7 +758,6 @@
 				4D58C4CD1E0E1882004CA0E3 /* Sources */,
 				4D58C4CE1E0E1882004CA0E3 /* Frameworks */,
 				4D58C4CF1E0E1882004CA0E3 /* Resources */,
-				4D907B571E1397FB00F9FD8B /* Fabric Run Script */,
 				D88F1244ED4A79B931C2C532 /* [CP] Embed Pods Frameworks */,
 				1C4DDA71AF72728357EB4EDC /* [CP] Copy Pods Resources */,
 				4DA234461E7DB709006B5192 /* Embed App Extensions */,
@@ -826,7 +825,6 @@
 				TargetAttributes = {
 					4D58C4D01E0E1882004CA0E3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 665Y3S9688;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1030,20 +1028,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-The Wave Tests/Pods-The Wave Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		4D907B571E1397FB00F9FD8B /* Fabric Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Fabric Run Script";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 665Y3S9688 49dc3a97cebb4d092aa64ba544fbb29c57e4f0a42aa46a399fff1e95fafa3e7d";
 		};
 		4DD8CB231F034586004546F7 /* Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1427,7 +1411,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 665Y3S9688;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "The Wave/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1456,7 +1440,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 665Y3S9688;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "The Wave/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
