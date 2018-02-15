@@ -826,7 +826,7 @@
 				TargetAttributes = {
 					4D58C4D01E0E1882004CA0E3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ***REMOVED***;
+						DevelopmentTeam = 665Y3S9688;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -843,14 +843,14 @@
 					};
 					4D58C4E41E0E1883004CA0E3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ***REMOVED***;
+						DevelopmentTeam = 665Y3S9688;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 4D58C4D01E0E1882004CA0E3;
 					};
 					4DA2343A1E7DB709006B5192 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ***REMOVED***;
+						DevelopmentTeam = 665Y3S9688;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1043,7 +1043,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" ***REMOVED*** 49dc3a97cebb4d092aa64ba544fbb29c57e4f0a42aa46a399fff1e95fafa3e7d";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 665Y3S9688 49dc3a97cebb4d092aa64ba544fbb29c57e4f0a42aa46a399fff1e95fafa3e7d";
 		};
 		4DD8CB231F034586004546F7 /* Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1427,7 +1427,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = ***REMOVED***;
+				DEVELOPMENT_TEAM = 665Y3S9688;
 				INFOPLIST_FILE = "The Wave/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1456,7 +1456,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = ***REMOVED***;
+				DEVELOPMENT_TEAM = 665Y3S9688;
 				INFOPLIST_FILE = "The Wave/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1476,7 +1476,7 @@
 			baseConfigurationReference = 26FBD37BB0AE2B9D47F9F7E3 /* Pods-The Wave Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = ***REMOVED***;
+				DEVELOPMENT_TEAM = 665Y3S9688;
 				INFOPLIST_FILE = ThePostTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePost.ThePostTests;
@@ -1492,7 +1492,7 @@
 			baseConfigurationReference = 2CE2EB1BDCC5C74DE2E7018D /* Pods-The Wave Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = ***REMOVED***;
+				DEVELOPMENT_TEAM = 665Y3S9688;
 				INFOPLIST_FILE = ThePostTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThePost.ThePostTests;
@@ -1509,7 +1509,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = ***REMOVED***;
+				DEVELOPMENT_TEAM = 665Y3S9688;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thewaveapp.thewave.OneSignalNotificationServiceExtension;
@@ -1526,7 +1526,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = ***REMOVED***;
+				DEVELOPMENT_TEAM = 665Y3S9688;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thewaveapp.thewave.OneSignalNotificationServiceExtension;
