@@ -159,7 +159,7 @@ class Filter: LocationDelegate {
             locationQuery?.observe(.keyEntered, with: { key, location in
                 if let key = key, let _ = location {
                     self.findProductForKey(key: key, block: { product in
-                        if let product = product {
+                        if let product = product, product.isSold == false {
                             if self.model == .all {
                                 productAdded(product)
                             } else if self.model == product.jeepModel {
