@@ -53,8 +53,8 @@ class Filter: LocationDelegate {
         let selectedJeepDescription = KeychainWrapper.standard.string(forKey: UserInfoKeys.UserSelectedJeep) ?? ""
         model = JeepModel.enumFromString(string: selectedJeepDescription)
 
-        // Default to 100 mile radius, this will prompt a location search.
-        radius = KeychainWrapper.standard.integer(forKey: UserInfoKeys.UserSelectedRadius) ?? 100
+        // Default to 0 mile radius, this will do a model search.
+        radius = KeychainWrapper.standard.integer(forKey: UserInfoKeys.UserSelectedRadius) ?? 0
     }
 
     func grabProducts(forReference reference: DatabaseReference, productAdded: @escaping ProductAddedBlock, productRemoved: @escaping ProductRemovedBlock) {
