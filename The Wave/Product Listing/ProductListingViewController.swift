@@ -132,7 +132,6 @@ class ProductListingViewController: UIViewController, UICollectionViewDataSource
             emptyStateHeavyLabel.text = "Be the first to post in the \(filter.model.shortDescription) category!"
 
             createListeners()
-            
         }
     }
     

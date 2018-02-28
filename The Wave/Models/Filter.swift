@@ -64,6 +64,11 @@ class Filter: LocationDelegate {
                 Location.manager.stopGathering()
             }
 
+            if let timer = locationCheckTimer {
+                timer.invalidate()
+                lastSavedLocation = nil
+            }
+
             modelSearch(forReference: reference, productAdded: productAdded, productRemoved: productRemoved)
         case .location:
             if Auth.auth().currentUser == nil {
